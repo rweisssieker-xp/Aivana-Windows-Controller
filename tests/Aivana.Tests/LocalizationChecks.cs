@@ -28,6 +28,8 @@ internal static class LocalizationChecks
                 Assert(Localization.PreferredLanguageSetting(resource) == region, "picker must select legacy settings");
                 Localization.SetLanguage(region);
                 Assert(Localization.CurrentLanguage == resource, "regional choice should resolve its catalog");
+                var expectedName = resource switch { "en" => "New action", "fr" => "Nouvelle action", "it" => "Nuova azione", _ => "Neue Aktion" };
+                Assert(Localization.Translate("Neue Aktion") == expectedName, "new action label must be translated");
                 var expected = 1234.5.ToString("N1", CultureInfo.GetCultureInfo(region));
                 Assert(Localization.Format("{0:N1}", 1234.5) == expected, "regional number formatting should match " + region);
             }

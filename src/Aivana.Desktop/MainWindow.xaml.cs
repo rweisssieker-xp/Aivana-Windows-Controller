@@ -570,7 +570,7 @@ public partial class MainWindow : Window
     private void AddMacroTemplate(Profile? profile)
     {
         if (profile == null || !ResolvePendingDraft()) return;
-        var tile = new Tile { Name = "Neues Makro", Icon = "⌘", Steps = [new ActionStep { Kind = ActionKind.Delay, DelayMs = 100 }] };
+        var tile = new Tile { Name = L("Neues Makro"), Icon = "⌘", Steps = [new ActionStep { Kind = ActionKind.Delay, DelayMs = 100 }] };
         _selectedTileId = tile.Id; _draftTile = Clone(tile); _draftProfileId = profile.Id; _selectedStep = 0;
         _draftBaseline = ""; _draftBaselineTileId = tile.Id; _draftBaselineProfileId = profile.Id; Refresh();
     }
@@ -755,7 +755,7 @@ public partial class MainWindow : Window
         {
             var index = settings.Profiles.FindIndex(p => p.Id == selected.Id) + 1;
             detailStack.Children.Add(Label(LF($"{(selected.Id == settings.ActiveProfileId ? "AKTIV" : "INAKTIV")}   ·   {(selected.Id == settings.DefaultProfileId ? "STANDARDPROFIL" : "PRIORITÄT " + index)}"), 10, selected.Id == settings.DefaultProfileId ? "#67D8CC" : "#91A3A5", true, new Thickness(0, 7, 0, 4)));
-            detailStack.Children.Add(FieldLabel(L("NAME"))); detailStack.Children.Add(Input(selected.Name, v => { var prior = selected.Name; SaveSetting(() => selected.Name = v, () => selected.Name = prior); Refresh(); }, "Arbeitsprofil"));
+            detailStack.Children.Add(FieldLabel(L("NAME"))); detailStack.Children.Add(Input(selected.Name, v => { var prior = selected.Name; SaveSetting(() => selected.Name = v, () => selected.Name = prior); Refresh(); }, L("Arbeitsprofil")));
             detailStack.Children.Add(FieldLabel(L("PROZESSNAME (OPTIONAL)"))); detailStack.Children.Add(Input(selected.ProcessName, v => { var prior = selected.ProcessName; SaveSetting(() => selected.ProcessName = v, () => selected.ProcessName = prior); Refresh(); }, "code.exe"));
             detailStack.Children.Add(FieldLabel(L("FENSTERTITEL ENTHÄLT (OPTIONAL)"))); detailStack.Children.Add(Input(selected.WindowTitleContains, v => { var prior = selected.WindowTitleContains; SaveSetting(() => selected.WindowTitleContains = v, () => selected.WindowTitleContains = prior); Refresh(); }, L("z. B. Projektname")));
             detailStack.Children.Add(Label(L("Prozessname und Fenstertitel müssen beide passen (UND). Ein leerer Wert wird ignoriert. Nutze den Fenstertitel, wenn ein Programm mehrere Arbeitsbereiche über verschiedene Fenster verwaltet."), 10, "#8A9B9D", false, new Thickness(0, 7, 0, 0)));
@@ -881,7 +881,7 @@ public partial class MainWindow : Window
     private void AddTile(Profile? profile)
     {
         if (profile == null) return;
-        var tile = new Tile { Name = "Neue Aktion", Icon = "▶", Color = "#25C4B6", Steps = [new ActionStep { Kind = ActionKind.Delay, DelayMs = 100 }] };
+        var tile = new Tile { Name = L("Neue Aktion"), Icon = "▶", Color = "#25C4B6", Steps = [new ActionStep { Kind = ActionKind.Delay, DelayMs = 100 }] };
         if (!ResolvePendingDraft()) return;
         _selectedTileId = tile.Id; _draftTile = Clone(tile); _draftProfileId = profile.Id; _selectedStep = 0;
         _draftBaseline = ""; _draftBaselineTileId = tile.Id; _draftBaselineProfileId = profile.Id; Refresh();
@@ -889,7 +889,7 @@ public partial class MainWindow : Window
     private void DuplicateTile(Tile source)
     {
         var profile = ActiveProfile; if (profile == null || !ResolvePendingDraft()) return;
-        var clone = Clone(source); clone.Id = Guid.NewGuid(); clone.Name += " (Kopie)"; clone.Hotkey = ""; clone.Favorite = source.Favorite; _selectedTileId = clone.Id; _draftTile = Clone(clone); _draftProfileId = profile.Id; _selectedStep = 0;
+        var clone = Clone(source); clone.Id = Guid.NewGuid(); clone.Name = Aivana.Core.Localization.Format("{0} (Kopie)", source.Name); clone.Hotkey = ""; clone.Favorite = source.Favorite; _selectedTileId = clone.Id; _draftTile = Clone(clone); _draftProfileId = profile.Id; _selectedStep = 0;
         _draftBaseline = ""; _draftBaselineTileId = clone.Id; _draftBaselineProfileId = profile.Id; Refresh();
     }
     private void DeleteTile(Tile tile)
@@ -931,12 +931,12 @@ public partial class MainWindow : Window
     {
         if (!ResolvePendingDraft()) return;
         var oldActive = _controller.Settings.ActiveProfileId;
-        var p = new Profile { Name = $"Profil {_controller.Settings.Profiles.Count + 1}", Tiles = [] }; _controller.Settings.Profiles.Add(p);
+        var p = new Profile { Name = Aivana.Core.Localization.Format("Profil {0}", _controller.Settings.Profiles.Count + 1), Tiles = [] }; _controller.Settings.Profiles.Add(p);
         try { _controller.SelectProfile(p.Id); Refresh(); } catch (Exception ex) { _controller.Settings.ActiveProfileId = oldActive; _controller.Settings.Profiles.Remove(p); ShowError(ex); }
     }
     private void DuplicateProfile()
     {
-        if (!ResolvePendingDraft()) return; var source = ActiveProfile; if (source == null) return; var p = Clone(source); p.Id = Guid.NewGuid(); p.Name += " (Kopie)"; p.WindowTitleContains = source.WindowTitleContains; foreach (var t in p.Tiles) t.Id = Guid.NewGuid();
+        if (!ResolvePendingDraft()) return; var source = ActiveProfile; if (source == null) return; var p = Clone(source); p.Id = Guid.NewGuid(); p.Name = Aivana.Core.Localization.Format("{0} (Kopie)", source.Name); p.WindowTitleContains = source.WindowTitleContains; foreach (var t in p.Tiles) t.Id = Guid.NewGuid();
         var oldActive = _controller.Settings.ActiveProfileId;
         _controller.Settings.Profiles.Add(p);
         try { _controller.SelectProfile(p.Id); Refresh(); } catch (Exception ex) { _controller.Settings.ActiveProfileId = oldActive; _controller.Settings.Profiles.Remove(p); ShowError(ex); }
