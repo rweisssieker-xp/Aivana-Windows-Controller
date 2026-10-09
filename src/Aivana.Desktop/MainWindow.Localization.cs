@@ -38,13 +38,13 @@ public partial class MainWindow
         {
             new("auto", L("Automatisch (Windows-Sprache)"))
         };
-        options.AddRange(Localization.SupportedLanguages.Select(code => new LanguageOption(code, Localization.LanguageNames[code])));
+        options.AddRange(Localization.SupportedLanguageSettings.Select(code => new LanguageOption(code, Localization.LanguageNames[code])));
         var picker = new ComboBox
         {
             ItemsSource = options,
             DisplayMemberPath = nameof(LanguageOption.Name),
             SelectedValuePath = nameof(LanguageOption.Code),
-            SelectedValue = _controller.Settings.UiLanguage,
+            SelectedValue = Localization.PreferredLanguageSetting(_controller.Settings.UiLanguage),
             MinWidth = 220,
             Margin = new System.Windows.Thickness(0, 2, 0, 8)
         };

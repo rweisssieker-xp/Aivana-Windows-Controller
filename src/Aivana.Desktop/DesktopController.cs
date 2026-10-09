@@ -146,8 +146,8 @@ public sealed partial class DesktopController : IDisposable
                 if (normalized.Equals(HotkeyParser.Normalize(Settings.CancelHotkey), StringComparison.OrdinalIgnoreCase)) errors.Add($"{tile.Name}: Dieser Hotkey wird zum Abbrechen verwendet.");
             }
         }
-        if (!string.IsNullOrWhiteSpace(Settings.CancelHotkey) && !HotkeyParser.TryParse(Settings.CancelHotkey, out _, out _, out var cancelError)) errors.Add("Abbruch-Hotkey: " + cancelError);
-        if (!string.IsNullOrWhiteSpace(Settings.PaletteHotkey) && !HotkeyParser.TryParse(Settings.PaletteHotkey, out _, out _, out var paletteError)) errors.Add("Befehlspalette: " + paletteError);
+        if (!string.IsNullOrWhiteSpace(Settings.CancelHotkey) && !HotkeyParser.TryParse(Settings.CancelHotkey, out _, out _, out var cancelError)) errors.Add(Aivana.Core.Localization.Format("Abbruch-Hotkey: {0}", Aivana.Core.Localization.Translate(cancelError)));
+        if (!string.IsNullOrWhiteSpace(Settings.PaletteHotkey) && !HotkeyParser.TryParse(Settings.PaletteHotkey, out _, out _, out var paletteError)) errors.Add(Aivana.Core.Localization.Format("Befehlspalette: {0}", Aivana.Core.Localization.Translate(paletteError)));
         if (errors.Count > 0) throw new InvalidOperationException(string.Join(Environment.NewLine, errors));
         _store.Save(Settings); Register(); Changed?.Invoke();
     }

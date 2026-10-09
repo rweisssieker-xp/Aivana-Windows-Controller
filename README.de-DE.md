@@ -98,6 +98,6 @@ Die Windows-Prüfungen können verbundene Hardware auslesen und unterstützte iC
 
 Das [Dokumentationsverzeichnis](docs/de-DE/README.md) enthält historische Entwürfe, Pläne, Recherche und datierte Testberichte. Historische Pläne beschreiben ihren damaligen Umfang und ersetzen keine aktuelle Übersicht der implementierten Unterstützung.
 
-Die GitHub-Dokumentation ist auf US-Englisch (`en-US`), Deutsch (`de-DE`), Französisch (`fr-FR`) und Italienisch (`it-IT`) verfügbar. Diese Dokumentations-Sprachcodes ändern nicht die bestehenden Sprachcodes der App.
+Die GitHub-Dokumentation ist auf US-Englisch (`en-US`), Deutsch (`de-DE`), Französisch (`fr-FR`) und Italienisch (`it-IT`) verfügbar. Die App akzeptiert auch diese vier regionalen Sprachcodes und verwendet die passenden Zahlenformate. Bestehende Sprachcodes bleiben kompatibel.
 
 

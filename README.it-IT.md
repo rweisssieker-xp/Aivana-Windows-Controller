@@ -75,7 +75,7 @@ Il rilevamento Corsair usa le informazioni disponibili sul dispositivo. Il contr
 
 Le Impostazioni offrono 27 lingue: tedesco, inglese, francese, spagnolo, italiano, portoghese, olandese, polacco, ceco, slovacco, ungherese, rumeno, bulgaro, greco, danese, svedese, norvegese, finlandese, estone, lettone, lituano, sloveno, croato, ucraino, russo, turco e serbo in alfabeto latino. «Automatica» segue la lingua di visualizzazione di Windows. Le traduzioni sono incluse localmente. Layout, hotkey e nomi creati dall'utente sono indipendenti dalla lingua dell'interfaccia.
 
-La documentazione del repository è disponibile in inglese statunitense (`en-US`), tedesco (`de-DE`), francese (`fr-FR`) e italiano (`it-IT`). Le lingue della documentazione non modificano i codici lingua già usati dall'app.
+La documentazione del repository è disponibile in inglese statunitense (`en-US`), tedesco (`de-DE`), francese (`fr-FR`) e italiano (`it-IT`). L'app accetta anche questi quattro codici regionali e usa i relativi formati numerici. I codici lingua esistenti restano compatibili.
 
 ## Layout e ricerca sui produttori
 

@@ -75,7 +75,7 @@ Corsair detection uses available device information. RGB control requires compat
 
 Settings offers 27 languages: German, English, French, Spanish, Italian, Portuguese, Dutch, Polish, Czech, Slovak, Hungarian, Romanian, Bulgarian, Greek, Danish, Swedish, Norwegian, Finnish, Estonian, Latvian, Lithuanian, Slovenian, Croatian, Ukrainian, Russian, Turkish, and Serbian in Latin script. Automatic follows the Windows display language. Translations are bundled locally. Layouts, hotkeys, and user-created names are independent of the interface language.
 
-Repository documentation is available in US English (`en-US`), German (`de-DE`), French (`fr-FR`), and Italian (`it-IT`). Documentation locales do not change the app's existing language setting codes.
+Repository documentation is available in US English (`en-US`), German (`de-DE`), French (`fr-FR`), and Italian (`it-IT`). The app also accepts these four regional language codes and uses their number formats. Existing language codes remain compatible.
 
 ## Layouts and manufacturer research
 

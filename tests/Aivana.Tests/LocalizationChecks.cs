@@ -21,6 +21,18 @@ internal static class LocalizationChecks
             Assert(Localization.Format("Number {0:N1}", 1234.5) == "Number 1,234.5", "formatting should use the selected UI culture");
             Assert(Localization.Translate((FormattableString)$"Count {1234.5:N1}") == "Count 1,234.5", "FormattableString should preserve the template and active culture");
 
+            foreach (var (region, resource) in new[] { ("en-US", "en"), ("de-DE", "de"), ("fr-FR", "fr"), ("it-IT", "it") })
+            {
+                Assert(Localization.IsSupportedLanguageSetting(region), "regional language should validate: " + region);
+                Assert(Localization.PreferredLanguageSetting(region.ToLowerInvariant()) == region, "picker must select saved regional settings");
+                Assert(Localization.PreferredLanguageSetting(resource) == region, "picker must select legacy settings");
+                Localization.SetLanguage(region);
+                Assert(Localization.CurrentLanguage == resource, "regional choice should resolve its catalog");
+                var expected = 1234.5.ToString("N1", CultureInfo.GetCultureInfo(region));
+                Assert(Localization.Format("{0:N1}", 1234.5) == expected, "regional number formatting should match " + region);
+            }
+            Assert(!Localization.IsSupportedLanguageSetting("en-XX"), "unknown regional aliases must be rejected");
+
             var settings = ConfigStore.CreateDefaults();
             Assert(settings.UiLanguage == "auto", "new settings should follow the operating system language");
             Assert(ConfigurationValidator.Validate(settings).Count == 0, "auto should be a valid setting");

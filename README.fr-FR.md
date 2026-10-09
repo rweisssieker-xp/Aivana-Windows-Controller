@@ -75,7 +75,7 @@ La détection Corsair s’appuie sur les informations disponibles du périphéri
 
 Les paramètres proposent 27 langues : allemand, anglais, français, espagnol, italien, portugais, néerlandais, polonais, tchèque, slovaque, hongrois, roumain, bulgare, grec, danois, suédois, norvégien, finnois, estonien, letton, lituanien, slovène, croate, ukrainien, russe, turc et serbe en alphabet latin. Le mode Automatique suit la langue d’affichage de Windows. Les traductions sont intégrées localement. Les dispositions, raccourcis et noms définis par l’utilisateur sont indépendants de la langue de l’interface.
 
-La documentation du dépôt est disponible en anglais américain (`en-US`), allemand (`de-DE`), français (`fr-FR`) et italien (`it-IT`). Les langues de la documentation ne modifient pas les codes de langue existants de l’application.
+La documentation du dépôt est disponible en anglais américain (`en-US`), allemand (`de-DE`), français (`fr-FR`) et italien (`it-IT`). L’application accepte également ces quatre codes régionaux et utilise leurs formats numériques. Les codes de langue existants restent compatibles.
 
 ## Dispositions et recherche fabricants
 

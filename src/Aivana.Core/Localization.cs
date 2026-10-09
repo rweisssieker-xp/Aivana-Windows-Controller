@@ -13,8 +13,25 @@ public static class Localization
         "da", "sv", "nb", "fi", "et", "lv", "lt", "sl", "hr", "uk", "ru", "tr", "sr",
     ];
 
+    private static readonly IReadOnlyDictionary<string, string> RegionalCodes = new Dictionary<string, string>
+    {
+        ["en"] = "en-US", ["de"] = "de-DE", ["fr"] = "fr-FR", ["it"] = "it-IT",
+    };
+
+    public static string PreferredLanguageSetting(string language)
+    {
+        var normalized = NormalizeSetting(language);
+        return RegionalCodes.GetValueOrDefault(normalized,
+            RegionalCodes.Values.FirstOrDefault(code => code.Equals(normalized, StringComparison.OrdinalIgnoreCase)) ?? normalized);
+    }
+
+    public static IReadOnlyList<string> SupportedLanguageSettings { get; } =
+        Array.AsReadOnly(Languages.Select(PreferredLanguageSetting).ToArray());
+
     private static readonly IReadOnlyDictionary<string, string> NativeNames = new Dictionary<string, string>(StringComparer.Ordinal)
     {
+        ["de-DE"] = "Deutsch (Deutschland)", ["en-US"] = "English (United States)",
+        ["fr-FR"] = "Français (France)", ["it-IT"] = "Italiano (Italia)",
         ["de"] = "Deutsch", ["en"] = "English", ["fr"] = "Français", ["es"] = "Español", ["it"] = "Italiano",
         ["pt"] = "Português", ["nl"] = "Nederlands", ["pl"] = "Polski", ["cs"] = "Čeština", ["sk"] = "Slovenčina",
         ["hu"] = "Magyar", ["ro"] = "Română", ["bg"] = "Български", ["el"] = "Ελληνικά", ["da"] = "Dansk",
@@ -43,8 +60,9 @@ public static class Localization
     }
 
     public static bool IsSupportedLanguageSetting(string? language) =>
-        language is not null && (language.Equals("auto", StringComparison.OrdinalIgnoreCase) ||
-            Languages.Contains(language.Trim(), StringComparer.OrdinalIgnoreCase));
+        language is not null && (language.Trim().Equals("auto", StringComparison.OrdinalIgnoreCase) ||
+            Languages.Contains(language.Trim(), StringComparer.OrdinalIgnoreCase) ||
+            RegionalCodes.Values.Contains(language.Trim(), StringComparer.OrdinalIgnoreCase));
 
     /// <summary>Translate a German source string; absent keys fall back to English and then the source.</summary>
     public static string Translate(string key)
@@ -143,7 +161,7 @@ public static class Localization
 
     private static string ResolveLanguage(string setting)
     {
-        if (setting != "auto") return setting;
+        if (setting != "auto") return RegionalCodes.FirstOrDefault(pair => pair.Value.Equals(setting, StringComparison.OrdinalIgnoreCase)).Key ?? setting;
         try
         {
             var osLanguage = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName.ToLowerInvariant();
@@ -158,7 +176,7 @@ public static class Localization
     private static CultureInfo GetCulture(string language)
     {
         // Serbian UI copy is Latin-script; Serbian culture fallback may otherwise select Cyrillic conventions.
-        var cultureName = language == "sr" ? "sr-Latn" : language;
+        var cultureName = language == "sr" ? "sr-Latn" : RegionalCodes.GetValueOrDefault(language, language);
         try { return CultureInfo.GetCultureInfo(cultureName); }
         catch (CultureNotFoundException) { return CultureInfo.GetCultureInfo("en"); }
     }

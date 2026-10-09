@@ -14,7 +14,7 @@ public partial class MainWindow
         var originalProfiles = JsonSerializer.Serialize(settings.Profiles);
         try
         {
-            foreach (var language in Localization.SupportedLanguages)
+            foreach (var language in Localization.SupportedLanguages.Concat(new[] { "en-US", "de-DE", "fr-FR", "it-IT" }))
             {
                 settings.UiLanguage = language;
                 Localization.SetLanguage(language);
@@ -27,7 +27,7 @@ public partial class MainWindow
                 }
                 if (JsonSerializer.Serialize(settings.Profiles) != originalProfiles || settings.KeyboardLayoutId != previousLayout)
                     throw new InvalidOperationException($"Language {language} changed user profile data or physical keyboard layout.");
-                if (language is "en" or "fr" or "pl" or "el" or "uk")
+                if (language is "en-US" or "de-DE" or "fr-FR" or "it-IT" or "pl" or "el" or "uk")
                 {
                     _page = "Einstellungen";
                     RenderPage(ActiveProfile);
