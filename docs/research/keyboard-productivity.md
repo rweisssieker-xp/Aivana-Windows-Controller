@@ -1,5 +1,7 @@
 # Sonderfunktionen von Tastaturen und Zusatz-Keypads
 
+[English (US)](../en-US/research/keyboard-productivity.md) | [Deutsch](../de-DE/research/keyboard-productivity.md) | [Français](../fr-FR/research/keyboard-productivity.md) | [Italiano](../it-IT/research/keyboard-productivity.md)
+
 Recherche aus offiziellen Herstellerseiten, Produktdatenblättern und Handbüchern (Stand: 8. Oktober 2026). Das ist eine Funktions- und Integrationsübersicht, keine Verfügbarkeitsgarantie: Bei älteren Produkten kann Software noch als Download angeboten werden, obwohl das Gerät selbst abgekündigt oder nur noch gebraucht erhältlich ist.
 
 **Für die Windows-Controller-Integration zählt die Unterscheidung:** Normale Tastatur-, Consumer-Control-, Maus- oder Gamepad-HID-Ereignisse sind als Eingaben nutzbar. Herstellersoftware kann darüber hinaus Aktionen im Hintergrund ausführen oder ein Gerät über einen Herstellerkanal steuern. Ein RGB-/Licht-API ist dabei kein API für Tastenereignisse. „Nicht belegt“ heißt hier ausschließlich, dass die ausgewerteten Herstellerunterlagen keine passende öffentliche Eingabe-/Geräte-API dokumentieren.

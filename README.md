@@ -1,94 +1,103 @@
 # Aivana Windows Controller
 
-Lokales Hotkey-Panel für Windows mit Stream-Deck-artigen Kacheln, Profilen, Makros und Tastaturerkennung. Oberfläche in 27 Sprachen, kein Konto, keine Cloud.
+**English (US)** | [Deutsch](README.de-DE.md) | [Français](README.fr-FR.md) | [Italiano](README.it-IT.md)
 
-## Start
+A local Windows hotkey controller with Stream Deck-style tiles, profiles, macros, and keyboard detection. The interface supports 27 languages. No account or cloud connection is required for everyday use.
 
-Die veröffentlichte Anwendung liegt nach dem Build unter `artifacts/win-x64/Aivana.Controller.exe`. Der gesamte Ordner wird benötigt; er kann an einen beliebigen Ort kopiert werden. Windows 11 x64 ist das erste Zielsystem.
+[Documentation](docs/en-US/README.md) · [Verification](docs/en-US/VERIFICATION.md) · [Feature test report](docs/en-US/testing/2026-10-09-usp-release.md)
 
-Für den Start aus dem Quellcode ist das .NET-10-SDK erforderlich:
+## Getting started
+
+After publishing, the application is at `artifacts/win-x64/Aivana.Controller.exe`. Keep the entire output folder together; you can copy it elsewhere. Windows 11 x64 is the initial target. Build artifacts are excluded from Git; a source checkout does not include a prebuilt executable.
+
+Install the .NET 10 SDK specified in `global.json` to build and run from source:
 
 ```powershell
 dotnet build Aivana.slnx -c Release
 dotnet run --project src/Aivana.Desktop -c Release
 ```
 
-Eigenständige Ausgabe ohne vorinstallierte .NET-Laufzeit:
+Publish a self-contained build without requiring a separately installed .NET runtime:
 
 ```powershell
 dotnet publish src/Aivana.Desktop -c Release -r win-x64 --self-contained true -o artifacts/win-x64
 ```
 
-## Bedienung
+## Basic workflow
 
-1. Profil auswählen und eine neue Kachel anlegen.
-2. Namen, Symbol, Farbe und Tastenkombination einstellen. Kombinationen mit Strg/Alt/Shift vermeiden unbeabsichtigte Aktionen beim normalen Schreiben.
-3. Einen oder mehrere Aktionsschritte hinzufügen. Programme, Dateien, Websites, Text, Tastenkombinationen, Medien, Lautstärke, Profilwechsel und Pausen sind verfügbar.
-4. Speichern. Änderungen bleiben bis dahin als Entwurf erhalten; Verwerfen stellt den gespeicherten Stand wieder her. Der Play-Knopf einer Kachel oder ihr Hotkey startet dieselbe Ausführung.
-5. Kacheln und Makroschritte lassen sich per Drag-and-drop oder Pfeiltasten umordnen. Vorlagen erleichtern neue Aktionen. Makros können bis zu 100-mal wiederholt werden. Abbruch über die Oberfläche, das Tray-Menü oder standardmäßig Strg+Alt+Escape.
+1. Select a profile and create an action tile.
+2. Set its name, icon, color, and keyboard shortcut. Ctrl/Alt/Shift combinations reduce accidental activation while typing.
+3. Add one or more steps: applications, files, websites, text, shortcuts, media, volume, profile switching, or delays.
+4. Save. Changes remain a draft until saved; discard restores the saved version. The tile Play button and its hotkey use the same execution path.
+5. Reorder tiles and macro steps with drag-and-drop or arrow buttons. Templates simplify setup. Macros can repeat up to 100 times. Cancel through the interface, system tray menu, or Ctrl+Alt+Escape by default.
 
-Programmspezifische Profile erhalten einen Prozessnamen ohne vollständigen Pfad. Die Reihenfolge der Profile bestimmt die Priorität, wenn mehrere passen. Das Standardprofil gilt als Rückfallprofil. Automatische Profile müssen in den Einstellungen eingeschaltet werden.
+Application-specific profiles use a process name without its full path. Profile order breaks ties; the default profile is the fallback. Automatic profile selection must be enabled in Settings.
 
-Fenster schließen lässt die App standardmäßig im Infobereich weiterlaufen. Doppelklick auf das Tray-Symbol öffnet sie. Beenden erfolgt über das Tray-Menü. Autostart ist optional und standardmäßig deaktiviert. Hotkeys lassen sich zentral pausieren.
+Closing the main window keeps the app in the system tray by default. Double-click its tray icon to reopen it; use the tray menu to exit. Startup with Windows is optional and disabled by default. Hotkeys can be paused centrally.
 
-## Schnelle Steuerung und neue Aktionen
+## Actions and command palette
 
-„＋ Aktion“ öffnet einen durchsuchbaren Aktionskatalog mit 80 konkreten Funktionen in sieben Kategorien. Jede Funktion zeigt Beschreibung und Vorschau. Derselbe Katalog steht im Makroeditor über „＋ Hinzufügen“ und „Funktion auswählen“ bereit. Die Auswahl erstellt einen bearbeitbaren Entwurf und führt nichts aus.
+Add Action opens a searchable catalog with 80 presets in seven categories. Each has a description and preview. The macro editor uses the same catalog to add or replace steps. Selecting a preset in this editor workflow creates a draft without execution.
 
-Audioaktionen können die Lautstärke genau zwischen 0 und 100 Prozent setzen sowie Ausgabe und Mikrofon stummschalten, aktivieren oder umschalten. Im Editor lässt sich ein konkretes Ausgabe- oder Mikrofongerät auswählen; ohne Auswahl gilt das Windows-Standardgerät. Ein nicht verfügbares gespeichertes Gerät führt zu einer Meldung, statt ein anderes Gerät zu steuern. „Geräte aktualisieren“ liest die aktuell verbundenen Geräte neu ein.
+The command palette opens from the header or with Ctrl+K inside the app. It searches saved actions across profiles, catalog presets, profile switching, navigation, pause/resume, macro cancellation, and import/export. Filter by saved actions, catalog functions, or app commands. Arrow keys select, Enter activates, Ctrl+Enter edits an editable entry, and Escape closes. Favorites appear first. Ready-to-use catalog commands can run immediately; presets requiring setup open a draft. Settings can define a global palette shortcut. New configurations use Ctrl+Shift+Space; existing configurations do not receive a new global shortcut automatically.
 
-OBS Studio wird direkt über WebSocket v5 gesteuert: Aufnahme starten/stoppen/umschalten/pausieren/fortsetzen, Stream starten/stoppen/umschalten, Szene wechseln und Eingabe-Stummschaltung umschalten. Den WebSocket-Server in OBS unter Werkzeuge aktivieren und die Adresse im Editor einstellen. „Verbindung prüfen und Namen laden“ liest die OBS-Version, Szenen und Eingaben aus; anschließend können Namen aus der Liste übernommen oder manuell eingegeben werden. Diese Prüfung startet keine Aufnahme und keinen Stream. Das Passwort lässt sich in der Windows-Anmeldeinformationsverwaltung speichern und ist nicht Teil der exportierten Konfiguration. Ohne laufendes OBS meldet die Aktion einen Verbindungsfehler.
+Audio actions set volume precisely from 0 to 100 percent and mute, unmute, or toggle output and microphone devices. Choose a specific endpoint or leave it unset for the Windows default. An unavailable saved endpoint produces an error instead of controlling another device. Refresh Devices reloads the connected devices.
 
-Die Befehlspalette öffnet sich über den Kopfbereich oder Ctrl+K im App-Fenster. Sie durchsucht alle Profile nach Aktionsnamen, Profil, Typ und Hotkey. Pfeiltasten wählen, Enter startet, Ctrl+Enter bearbeitet und Escape schließt. Favoriten stehen zuerst. Ein globaler Hotkey ist in den Einstellungen konfigurierbar; neue Konfigurationen verwenden Ctrl+Shift+Space. Bestehende Konfigurationen erhalten keinen neuen globalen Hotkey automatisch.
+OBS Studio uses WebSocket v5: start/stop/toggle/pause/resume recording; start/stop/toggle streaming; change scenes; toggle input mute. Enable the WebSocket server under Tools in OBS and set its endpoint in the editor. Check Connection and Load Names reads the OBS version, scenes, and inputs without starting a recording or stream. Choose names from the list or enter them manually. Passwords can be saved in Windows Credential Manager and are excluded from exported configurations. Unavailable OBS connections report an error.
 
-Profile können einen Prozessnamen und einen Teil des Fenstertitels enthalten. Beide angegebenen Bedingungen müssen passen; die Profilreihenfolge entscheidet bei mehreren Treffern. „Profil sperren“ verhindert automatische Wechsel für die laufende Sitzung. „Bedingungen aus Vordergrund übernehmen“ übernimmt das zuletzt fokussierte externe Programm.
+Profiles can match a process name and part of a window title. Both specified conditions must match. Lock Profile prevents automatic switching for the session. Capture Conditions from Foreground uses the last focused external application.
 
-Text und Zwischenablage unterstützen `{{date}}`, `{{time}}`, `{{datetime}}`, `{{clipboard}}`, `{{profile}}`, `{{process}}` und `{{user}}`. Das Datum verwendet yyyy-MM-dd, die Uhrzeit HH:mm. Unbekannte Platzhalter bleiben erhalten. `{{profile}}` bezeichnet das Profil, zu dem die gestartete Aktion gehört; `{{process}}` den externen Programmkontext. Inhalte aus der Zwischenablage werden nur gelesen, wenn der entsprechende Platzhalter vorkommt. Die Zwischenablage-Aktion schreibt Text; sie fügt ihn nicht automatisch ein.
+Text and clipboard actions support `{{date}}`, `{{time}}`, `{{datetime}}`, `{{clipboard}}`, `{{profile}}`, `{{process}}`, and `{{user}}`. Dates use `yyyy-MM-dd`; times use `HH:mm`. Unknown placeholders remain unchanged. `{{profile}}` identifies the launched action's profile; `{{process}}` identifies the external application context. Clipboard content is read only when that placeholder is used. The clipboard action writes text but does not paste automatically.
 
-Fensteraktionen minimieren, maximieren, stellen wieder her oder ordnen links/rechts im Arbeitsbereich des aktuellen Monitors an. Die Systemaktion sperrt Windows. Diese Aktionen starten ausschließlich bei einem ausdrücklichen Aktionsaufruf.
+Window actions minimize, maximize, restore, or arrange a window on the left/right side of its monitor's work area. The system action locks Windows. These actions run only when explicitly invoked.
 
-„Vorschau“ zeigt die geplanten Makroschritte, Wiederholungen und Variablen ohne Ausführung. „Rückgängig“ und „Wiederholen“ bearbeiten den aktuellen Entwurf mit bis zu 100 Zuständen. In Textfeldern bleibt die native Textbearbeitung über Ctrl+Z erhalten. Favoriten lassen sich im Editor oder Kachelmenü setzen und im Dashboard filtern. Ausführungshäufigkeit wird nur für die laufende Sitzung erfasst.
+Preview shows steps, repetitions, and variables without execution. Undo and Redo retain up to 100 draft states; text boxes keep native Ctrl+Z editing. Mark favorites in the editor or tile menu and filter them on the dashboard. Execution counts apply only to the current session.
 
-Für Text-, Tastenkürzel- und Fensteraktionen aus der Oberfläche wird das letzte externe Zielfenster aktiviert. Die Befehlspalette zeigt den Zielkontext an. Ist das Ziel geschlossen oder verweigert Windows die Aktivierung, wird die Ausführung mit einer Meldung gestoppt.
+Text, shortcut, and window actions launched from the interface activate the last external target window. The palette displays that target context. If the target has closed or Windows refuses activation, execution stops with a message.
 
-## Geräte und Corsair
+## Keyboard assistance and feedback
 
-„Sondertasten-Assistent“ ist in der Tastaturansicht und Befehlspalette erreichbar. Er zeigt die von iCUE gemeldeten G-Tasten an. „Tastendruck erkennen“ übernimmt diese Tasten vorübergehend, ohne ihre bestehenden Aktionen auszuführen. Nach Erkennung, Abbruch oder Schließen werden die normalen Bindungen wiederhergestellt. Eine Katalogfunktion wird mit der gewählten Taste als ungespeicherter Entwurf geöffnet; doppelte Belegungen werden geprüft.
+The Special-Key Wizard is on the Keyboard page and in the palette. It lists the G-keys reported by iCUE. Detect Key Press temporarily captures them without executing their assigned actions. Normal bindings return after detection, cancellation, or closing. A catalog function and selected key open as an unsaved draft; duplicate bindings are checked.
 
-„Tastatur-Overlay“ zeigt das gewählte Referenzlayout mit den aktiven Belegungen. Ctrl+Alt+F1 gedrückt halten oder das Overlay über die Befehlspalette beziehungsweise Tastaturansicht ein-/ausblenden. Das Overlay nimmt keinen Fokus an und lässt Mausklicks durch. Profil- und Belegungsänderungen erscheinen während der Anzeige; gewöhnliche Windows-Tastendrücke werden hervorgehoben. Nicht jede herstellerspezifische Taste liefert ein solches Windows-Signal.
+The Keyboard Overlay shows the selected reference layout and active bindings. Hold Ctrl+Alt+F1 or toggle it from the palette or Keyboard page. It does not take focus and lets mouse clicks pass through. Profile and binding changes update while visible; ordinary Windows key presses are highlighted. Manufacturer-specific controls may not supply an equivalent Windows key signal.
 
-Während einer Ausführung zeigt eine Statusanzeige Warten, Fortschritt je Schritt/Durchlauf, Abschluss, Abbruch oder Fehler. Sie enthält keine eingegebenen Textinhalte und nimmt keinen Fokus an. „Befehle ausgeführt“ bestätigt den Abschluss der Befehlsausführung, nicht einen unabhängig abgefragten Live-Zustand einer Drittanwendung. Fehlerdetails stehen im Aktivitätsverlauf.
+Execution feedback shows waiting, step/repetition progress, completion, cancellation, or failure without taking focus or exposing entered text. Commands Executed confirms command execution, not an independently queried live state in a third-party application. Error details appear in the activity log.
 
-Corsair G1–G6 können über das offizielle iCUE-SDK direkt einer Aktion zugeordnet werden. Im Aktionseditor unter „Corsair-G-Taste“ Gerät und Taste auswählen und speichern, oder in der K100-Tastaturansicht eine G-Taste anklicken und die Zuordnung als Entwurf übernehmen. Die Bindung gilt für das ausgewählte Gerät und das aktive Profil; Pause deaktiviert auch diese Auslöser. iCUE muss laufen und den Zugriff erlauben. Fn, iCUE-Rad, Profil- und Sperrtaste sind über diesen G-Tasten-Zugriff nicht belegbar.
+## Devices and Corsair
 
-## Sprache
+Corsair G1–G6 can be assigned directly through the official iCUE SDK. Select the device and key in the action editor and save, or prepare a draft from the K100 keyboard view. Bindings apply to the selected device and active profile; pause disables them too. iCUE must be running and allow access. Fn, the iCUE wheel, profile, and lock controls cannot be mapped through this G-key API.
 
-Unter Einstellungen kann die Oberfläche zwischen 27 Sprachen wechseln: Deutsch, Englisch, Französisch, Spanisch, Italienisch, Portugiesisch, Niederländisch, Polnisch, Tschechisch, Slowakisch, Ungarisch, Rumänisch, Bulgarisch, Griechisch, Dänisch, Schwedisch, Norwegisch, Finnisch, Estnisch, Lettisch, Litauisch, Slowenisch, Kroatisch, Ukrainisch, Russisch, Türkisch und Serbisch in lateinischer Schrift. „Automatisch“ verwendet die Windows-Sprache. Die Übersetzungen sind lokal eingebettet; Tastaturlayout, Hotkeys und eigene Aktionsnamen bleiben unabhängig davon.
+The Devices page lists Windows keyboard interfaces and refreshes periodically and when devices connect. A physical keyboard may expose multiple HID interfaces. Standard global hotkeys work across manufacturers.
 
-Die Geräteansicht listet Windows-Tastaturgeräte und aktualisiert sich beim Anstecken sowie regelmäßig. Manche physischen Tastaturen besitzen mehrere HID-Geräteeinträge. Standard-Hotkeys funktionieren unabhängig vom Hersteller auf allen Tastaturen.
+Corsair detection uses available device information. RGB control requires compatible hardware, running iCUE, and the official iCUE SDK; the app reports actual availability. Other manufacturers currently receive detection and standard actions. Outside Corsair G-key integration, proprietary controls work when Windows receives them as regular input. The app does not install a keyboard driver.
 
-Corsair-Geräte werden anhand verfügbarer Geräteinformationen erkannt. RGB-Steuerung setzt ein kompatibles Gerät, laufendes iCUE und das offizielle iCUE-SDK voraus. Ohne diese Voraussetzungen zeigt die App den tatsächlichen Status. Andere Hersteller erhalten zunächst Geräteerkennung und sämtliche Standardaktionen. Außerhalb der implementierten Corsair-G-Tasten-Anbindung funktionieren proprietäre Sondertasten, wenn sie Windows als reguläre Eingaben erreichen; die App installiert keinen Tastaturtreiber.
+## Languages
 
-## Tastaturansicht und Herstellerrecherche
+Settings offers 27 languages: German, English, French, Spanish, Italian, Portuguese, Dutch, Polish, Czech, Slovak, Hungarian, Romanian, Bulgarian, Greek, Danish, Swedish, Norwegian, Finnish, Estonian, Latvian, Lithuanian, Slovenian, Croatian, Ukrainian, Russian, Turkish, and Serbian in Latin script. Automatic follows the Windows display language. Translations are bundled locally. Layouts, hotkeys, and user-created names are independent of the interface language.
 
-Die Tastaturansicht verwendet getrennte Profile für ISO-DE und ANSI-US, jeweils Vollformat und TKL, sowie Corsair K100 RGB. Tastenpositionen, breite bzw. hohe Tasten und ISO-Enter werden über Geometriedaten dargestellt. Standardprofile sind generische Referenzlayouts; das K100-Profil orientiert sich an den dokumentierten Bedienelementen, ohne Millimetermaße vorzugeben. Die Sprach-/Geometrievariante muss ausgewählt werden: ein erkannter Modellname oder USB-VID/PID beweist keine konkrete Variante.
+Repository documentation is available in US English (`en-US`), German (`de-DE`), French (`fr-FR`), and Italian (`it-IT`). Documentation locales do not change the app's existing language setting codes.
 
-Beim Zuordnen werden physische Scancodes mit dem aktiven Windows-Eingabelayout abgeglichen. Ein Klick öffnet einen Aktionsentwurf; die vorhandene Speicherung und Konfliktprüfung gelten weiter. Belegungen sind globale Windows-Hotkeys und nicht auf eine einzelne angeschlossene Tastatur beschränkt. Corsair G1–G6 verwenden die gerätebezogene iCUE-Anbindung. Andere proprietäre Bedienelemente benötigen einen passenden Adapter bzw. konfigurierte Hersteller-Shortcuts. Haupt- und Nummernblock-Enter teilen bei globalen Windows-Hotkeys dieselbe virtuelle Taste.
+## Layouts and manufacturer research
 
-Die Recherche in `docs/research/tastaturhersteller-sonderfunktionen.md` und der zugehörigen CSV beschreibt 74 Marken-/Herstellergruppen mit Sonderfunktionen und offiziellen Quellen. Sie unterscheidet Konfiguratoren, Eingabe-SDKs und Beleuchtungs-APIs. Die zusätzliche Datei `docs/research/keyboard-layout-evidence.md` erfasst modellabhängige Layout-, SKU- und Modulunterschiede. Diese Recherche ist keine Zusage bereits implementierter Geräteunterstützung.
+The keyboard view provides full-size and tenkeyless ISO-DE/ANSI-US references plus Corsair K100 RGB layouts. Geometry represents positions, wide/tall keys, and ISO Enter. Standard layouts are generic references. K100 layouts follow documented controls without claiming millimeter-accurate dimensions. Choose the correct language/geometry variant: a model name or USB VID/PID does not establish a specific variant.
 
-## Daten
+Mapping resolves physical scan codes using the active Windows input layout. The workflow prepares a draft and retains save/conflict checks. Standard bindings are global Windows hotkeys, not isolated to one connected keyboard. Corsair G1–G6 use device-specific iCUE integration. Other proprietary controls require an adapter or manufacturer-configured shortcuts. Main Enter and numeric-keypad Enter share a virtual-key identity for global hotkeys.
 
-Konfiguration wird im lokalen App-Datenverzeichnis gespeichert. Import/Export verwenden JSON. Ein Import zeigt eine Vorschau, ersetzt nach Zustimmung die aktuelle Konfiguration und deaktiviert importierte Belegungen bis zur manuellen Aktivierung. Inhalte von Textaktionen werden nicht als Tastaturprotokoll erfasst.
+The [manufacturer research](docs/en-US/research/tastaturhersteller-sonderfunktionen.md) and [CSV](docs/en-US/research/tastaturhersteller-sonderfunktionen.csv) cover 74 brand/manufacturer groups, distinguishing configurators, input SDKs, and lighting APIs. [Layout evidence](docs/en-US/research/keyboard-layout-evidence.md) records model, SKU, and module differences. Research coverage does not mean hardware support is implemented.
 
-## Prüfungen
+## Data
+
+Configuration is stored in local application data. Import/export use JSON. Import previews the configuration, replaces the current configuration after confirmation, and disables imported bindings until manually enabled. Text-action content is not collected as a keystroke log. Credential Manager passwords are separate from exported profiles.
+
+## Verification
 
 ```powershell
 dotnet run --project tests/Aivana.Tests -c Release
+dotnet run --project tests/Aivana.Windows.Tests -c Release
 ```
 
-Native Eingaben können keine höheren Windows-Berechtigungen umgehen. In einer als Administrator laufenden Zielanwendung kann eine normal gestartete Controller-App deshalb keine Eingaben erzeugen. Belegte oder reservierte Hotkeys werden als Konflikt angezeigt.
+Windows checks may inspect hardware and temporarily configure/release supported iCUE bindings. Run them without another controller using those bindings. Audio endpoint checks do not change live volume or mute settings.
 
-Technischer Entwurf und Implementierungsplan stehen unter `docs/superpowers`.
+Native input cannot bypass Windows privileges. A normally launched controller may not send input to an administrator application. Reserved or occupied hotkeys appear as conflicts.
 
-
+The [documentation index](docs/en-US/README.md) links historical designs, plans, research, and dated test reports. Historical plans describe their recorded scope, not a current guarantee of feature support.

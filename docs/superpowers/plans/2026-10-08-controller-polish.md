@@ -1,5 +1,7 @@
 # Controller usability and capability improvement plan
 
+[English (US)](../../en-US/superpowers/plans/2026-10-08-controller-polish.md) | [Deutsch](../../de-DE/superpowers/plans/2026-10-08-controller-polish.md) | [Français](../../fr-FR/superpowers/plans/2026-10-08-controller-polish.md) | [Italiano](../../it-IT/superpowers/plans/2026-10-08-controller-polish.md)
+
 User request: improve appearance, usability and functionality; prior authorization requests maximum useful subagents on necessary smaller models and autonomous completion.
 
 ## Scope

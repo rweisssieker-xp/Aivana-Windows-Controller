@@ -1,5 +1,7 @@
 # Tastaturmarken mit Sonderfunktionen – Recherche für Windows-Controller
 
+[English (US)](../en-US/research/keyboard-custom.md) | [Deutsch](../de-DE/research/keyboard-custom.md) | [Français](../fr-FR/research/keyboard-custom.md) | [Italiano](../it-IT/research/keyboard-custom.md)
+
 Stand: 8. Oktober 2026. Stichprobe von 24 angefragten Marken, kein vollständiges Weltverzeichnis. „Sonderfunktion“ meint hier hardware-/firmwareseitige Analog- bzw. Hall-/TMR-Erkennung, Rapid Trigger, dynamische Tastenfunktionen, Makros, Ebenen, Knöpfe, Displays oder vergleichbare Konfiguration. Links führen primär zu Herstellerprodukt-, Support- oder Downloadseiten.
 
 ## Integrationsbefund

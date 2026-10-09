@@ -1,5 +1,7 @@
 # Physische Tastaturansicht für Mapping
 
+[English (US)](../../en-US/superpowers/specs/2026-10-08-keyboard-mapping.md) | [Deutsch](../../de-DE/superpowers/specs/2026-10-08-keyboard-mapping.md) | [Français](../../fr-FR/superpowers/specs/2026-10-08-keyboard-mapping.md) | [Italiano](../../it-IT/superpowers/specs/2026-10-08-keyboard-mapping.md)
+
 ## Ziel
 
 Die Tastaturansicht soll beim Zuordnen von Aktionen die tatsächlichen Tastenpositionen zeigen. Gleich breite Zeilen reichen nicht: Enter, Shift, Space, Navigation, Nummernblock und Hersteller-Zusatzbedienelemente unterscheiden sich.

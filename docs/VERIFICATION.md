@@ -1,5 +1,7 @@
 # Prüfung – 8. Oktober 2026
 
+[English (US)](en-US/VERIFICATION.md) | [Deutsch](de-DE/VERIFICATION.md) | [Français](fr-FR/VERIFICATION.md) | [Italiano](it-IT/VERIFICATION.md)
+
 Die Anwendung wurde unter Windows x64 mit dem stabilen .NET-SDK 10.0.202 gebaut und als eigenständige Windows-x64-Ausgabe veröffentlicht.
 
 ## Automatisiert geprüft

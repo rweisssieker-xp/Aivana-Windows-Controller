@@ -1,5 +1,7 @@
 # Windows Controller Implementation Plan
 
+[English (US)](../../en-US/superpowers/plans/2026-10-08-windows-controller.md) | [Deutsch](../../de-DE/superpowers/plans/2026-10-08-windows-controller.md) | [Français](../../fr-FR/superpowers/plans/2026-10-08-windows-controller.md) | [Italiano](../../it-IT/superpowers/plans/2026-10-08-windows-controller.md)
+
 > For agentic workers: use parallel isolated ownership; the user explicitly requested complete implementation with maximum useful subagents.
 
 **Goal:** Deliver the native Windows hotkey panel in the approved design.

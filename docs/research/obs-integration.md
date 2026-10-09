@@ -1,5 +1,7 @@
 # OBS Studio integration
 
+[English (US)](../en-US/research/obs-integration.md) | [Deutsch](../de-DE/research/obs-integration.md) | [Français](../fr-FR/research/obs-integration.md) | [Italiano](../it-IT/research/obs-integration.md)
+
 Aivana uses the OBS Studio obs-websocket v5 protocol over ClientWebSocket; it does not install a third-party OBS client library. The protocol opens with server Hello (opcode 0), answers with Identify (opcode 1), waits for Identified (opcode 2), sends a whitelisted request (opcode 6), then matches its RequestResponse (opcode 7) by request ID. Password authentication follows OBS's documented two-stage SHA-256 challenge calculation.
 
 Enable **Tools → WebSocket Server Settings** in OBS. The default endpoint is **ws://127.0.0.1:4455**. Set the action's **OBS-WebSocket-Adresse** field for another endpoint. A remote endpoint must use wss://; unencrypted ws:// is accepted only for a loopback address. The endpoint can also include a path or custom port. Aivana rejects embedded URL credentials.

@@ -1,5 +1,7 @@
 # Keyboard assistance, overlay and execution feedback
 
+[English (US)](../en-US/testing/2026-10-09-usp-release.md) | [Deutsch](../de-DE/testing/2026-10-09-usp-release.md) | [Français](../fr-FR/testing/2026-10-09-usp-release.md) | [Italiano](../it-IT/testing/2026-10-09-usp-release.md)
+
 Implemented the three prioritized improvements in the existing Windows app:
 
 - Special-key wizard: actual iCUE-supported device/key inventory, temporary G-key capture, configuration-success verification, conflict validation and an unsaved action draft. Capture rollback, queued callback invalidation and normal-binding restoration cover errors and dialog closure.

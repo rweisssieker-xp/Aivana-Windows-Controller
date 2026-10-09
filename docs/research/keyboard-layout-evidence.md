@@ -1,5 +1,7 @@
 # Physische Layouts und Varianten: Stream-Deck-artige Tastaturkontrollen
 
+[English (US)](../en-US/research/keyboard-layout-evidence.md) | [Deutsch](../de-DE/research/keyboard-layout-evidence.md) | [Français](../fr-FR/research/keyboard-layout-evidence.md) | [Italiano](../it-IT/research/keyboard-layout-evidence.md)
+
 Recherche: 08.10.2026. Dieses Blatt dokumentiert Varianten, die für eine gerätegetreue Windows-Oberfläche relevant sind. Die Produktseiten belegen, dass ein Layout oder Modul existiert; sie ersetzen kein gerätespezifisches, maßstäbliches Bild. Keine Positionskoordinaten oder Tastenformen ergänzen, wenn die gewählte SKU-/Regionsabbildung sie nicht belegt.
 
 | Modell | Herstellerbelegte Steuerungen / Geometrie | Varianten- und Kennungsnachweis | Offizielle Evidenz |

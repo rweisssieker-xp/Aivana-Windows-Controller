@@ -1,5 +1,7 @@
 # Gaming-Tastaturen mit Sonderfunktionen und Integrationsschnittstellen
 
+[English (US)](../en-US/research/keyboard-gaming.md) | [Deutsch](../de-DE/research/keyboard-gaming.md) | [Français](../fr-FR/research/keyboard-gaming.md) | [Italiano](../it-IT/research/keyboard-gaming.md)
+
 Recherche vom 08.10.2026. Auswahl etablierter PC-Gaming-Marken, nicht jede Marke weltweit. „Sonderfunktion“ meint hier physische Makro-/Zusatzkeys, Ebenen, Knöpfe/Displays oder analoge/HE-Eingabe. SDK-Einstufungen beziehen sich auf öffentlich dokumentierte Hersteller-Schnittstellen; ein Konfigurationsprogramm allein ist kein öffentliches SDK. RGB-API erlaubt in der Regel Lichtsteuerung, keine Umbelegung oder Abfrage normaler Tasten.
 
 | Marke | Funktionen/Beispielmodell | Software/API | Einstufung/Integrationsgrenze | Offizielle URLs |
