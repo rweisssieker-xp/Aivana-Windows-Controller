@@ -1,0 +1,100 @@
+201	Nie znaleziono akcji.	Nenalezena žádná akce.	Nenašla sa žiadna akcia.	Nem található művelet.
+202	Brak przypisania	Bez přiřazení	Bez priradenia	Nincs hozzárendelés
+203	Brak powiązania	Bez vazby	Bez väzby	Nincs kötés
+204	Brak klawisza	Žádná klávesa	Žiadny kláves	Nincs billentyű
+205	Kliknij klawisz, aby zobaczyć jego opis i przypisanie Windows.	Kliknutím na klávesu zobrazíte její popisek a přiřazení ve Windows.	Kliknutím na kláves zobrazíte jeho popis a priradenie vo Windows.	Kattintson egy billentyűre a felirat és a Windows-hozzárendelés megtekintéséhez.
+206	Konfiguracja uszkodzona	Poškozená konfigurace	Poškodená konfigurácia	Sérült konfiguráció
+207	GŁOŚNOŚĆ	HLASITOST	HLASITOSŤ	HANGERŐ
+208	Głośniej	Zvýšit hlasitost	Zvýšiť hlasitosť	Hangerő növelése
+209	Głośność	Hlasitost	Hlasitosť	Hangerő
+210	Akcja głośności: {0}	Akce hlasitosti: {0}	Akcia hlasitosti: {0}	Hangerőművelet: {0}
+211	Pusty krok	Prázdný krok	Prázdny krok	Üres lépés
+212	Utwórz akcję. Wybierz odpowiedni punkt wyjścia, na przykład program, stronę, tekst lub sterowanie multimediami.	Vytvořte akci. Zvolte vhodný výchozí bod, například program, web, text nebo ovládání médií.	Vytvorte akciu. Zvoľte vhodný východiskový bod, napríklad program, web, text alebo ovládanie médií.	Hozzon létre egy műveletet. Válasszon megfelelő kiindulópontot, például programot, weboldalt, szöveget vagy médiavezérlést.
+213	Ciszej	Snížit hlasitost	Znížiť hlasitosť	Hangerő csökkentése
+214	TRWA	BĚŽÍ	BEŽÍ	FUT
+215	Usuń	Smazat	Odstrániť	Törlés
+216	POLECENIE MULTIMEDIALNE	PŘÍKAZ MÉDIÍ	PRÍKAZ MÉDIÍ	MÉDIAPARANCS
+217	MODYFIKATORY WYBORU KLAWISZA	MODIFIKÁTORY PRO VÝBĚR KLÁVESY	MODIFIKÁTORY NA VÝBER KLÁVESU	MÓDOSÍTÓK A BILLENTYŰVÁLASZTÁSHOZ
+218	Makro przerwane.	Makro zrušeno.	Makro zrušené.	A makró megszakítva.
+219	Makro ukończone.	Makro dokončeno.	Makro dokončené.	A makró befejeződött.
+220	Makro już działa.	Makro již běží.	Makro už beží.	A makró már fut.
+221	Makro działa.	Makro běží.	Makro beží.	A makró fut.
+222	Makro oczekuje.	Makro čeká.	Makro čaká.	A makró várakozik.
+223	Oznacz akcję gwiazdką, aby szybko ją tutaj znaleźć.	Označte akci hvězdičkou, abyste ji zde rychle našli.	Označte akciu hviezdičkou, aby ste ju tu rýchlo našli.	Jelölje meg a műveletet csillaggal, hogy itt gyorsan megtalálja.
+224	Maksymalizuj	Maximalizovat	Maximalizovať	Teljes méret
+225	Akcja multimedialna: {0}	Akce médií: {0}	Akcia médií: {0}	Médiaművelet: {0}
+226	Sterowanie multimediami	Ovládání médií	Ovládanie médií	Médiavezérlés
+227	Kilka akcji używa tej kombinacji klawiszy. Wybierz akcję docelową do edycji.	Tuto kombinaci kláves používá více akcí. Vyberte cílovou akci pro úpravu.	Túto kombináciu klávesov používa viac akcií. Vyberte cieľovú akciu na úpravu.	Több művelet használja ezt a billentyűkombinációt. Válasszon célműveletet a szerkesztéshez.
+228	Wymagany jest co najmniej jeden krok akcji.	Je vyžadován alespoň jeden krok akce.	Vyžaduje sa aspoň jeden krok akcie.	Legalább egy műveleti lépés szükséges.
+229	Wymagany jest co najmniej jeden modyfikator.	Je vyžadován alespoň jeden modifikátor.	Vyžaduje sa aspoň jeden modifikátor.	Legalább egy módosító szükséges.
+230	Wymagany jest co najmniej jeden profil.	Je vyžadován alespoň jeden profil.	Vyžaduje sa aspoň jeden profil.	Legalább egy profil szükséges.
+231	Minimalizuj	Minimalizovat	Minimalizovať	Kis méret
+232	Połączono z iCUE; lista urządzeń jest aktualizowana.	Připojeno k iCUE; inventář zařízení se aktualizuje.	Pripojené k iCUE; inventár zariadení sa aktualizuje.	Kapcsolódva az iCUE-hoz; az eszközlista frissül.
+233	Połączono z iCUE; dostępne klawiatury Corsair do podświetlenia: {0}.	Připojeno k iCUE; pro podsvícení je dostupných {0} klávesnic Corsair.	Pripojené k iCUE; na podsvietenie je dostupných {0} klávesníc Corsair.	Kapcsolódva az iCUE-hoz; {0} Corsair-billentyűzet világítása vezérelhető.
+234	NAZWA	NÁZEV	NÁZOV	NÉV
+235	NIEDOSTĘPNE	NEDOSTUPNÉ	NEDOSTUPNÉ	NEM ELÉRHETŐ
+236	Nieobsługiwany typ akcji: {0}.	Nepodporovaný typ akce: {0}.	Nepodporovaný typ akcie: {0}.	Nem támogatott művelettípus: {0}.
+237	Nieobsługiwana akcja okna: {0}.	Nepodporovaná akce okna: {0}.	Nepodporovaná akcia okna: {0}.	Nem támogatott ablakművelet: {0}.
+238	Nieobsługiwana wersja konfiguracji: {0}.	Nepodporovaná verze konfigurace: {0}.	Nepodporovaná verzia konfigurácie: {0}.	Nem támogatott konfigurációverzió: {0}.
+239	Nieobsługiwana akcja multimediów lub głośności: {0}.	Nepodporovaná akce médií nebo hlasitosti: {0}.	Nepodporovaná akcia médií alebo hlasitosti: {0}.	Nem támogatott média- vagy hangerőművelet: {0}.
+240	Nieobsługiwana akcja systemowa: {0}.	Nepodporovaná systémová akce: {0}.	Nepodporovaná systémová akcia: {0}.	Nem támogatott rendszerművelet: {0}.
+241	Nieobsługiwany klawisz: {0}.	Nepodporovaná klávesa: {0}.	Nepodporovaný kláves: {0}.	Nem támogatott billentyű: {0}.
+242	Niepołączone · {0}	Nepřipojeno · {0}	Nepripojené · {0}	Nincs csatlakoztatva · {0}
+243	Jeszcze brak ulubionych	Zatím žádné oblíbené	Zatiaľ žiadne obľúbené	Még nincsenek kedvencek
+244	Jeszcze nie przypisano do aktywnej akcji. Propozycja nie jest zapisywana automatycznie.	Zatím nepřiřazeno k aktivní akci. Návrh se neukládá automaticky.	Zatiaľ nepriradené k aktívnej akcii. Návrh sa neukladá automaticky.	Még nincs aktív művelethez rendelve. A javaslat nem mentődik automatikusan.
+245	WSTRZYMANE · skróty są wstrzymane	POZASTAVENO · zkratky jsou pozastaveny	POZASTAVENÉ · skratky sú pozastavené	SZÜNETEL · a gyorsbillentyűk szünetelnek
+246	PRIORYTET 	PRIORITA 	PRIORITA 	PRIORITÁS 
+247	SZCZEGÓŁY PROFILU	PODROBNOSTI PROFILU	PODROBNOSTI PROFILU	PROFILADATOK
+248	ŚCIEŻKA PROGRAMU	CESTA K PROGRAMU	CESTA K PROGRAMU	PROGRAM ELÉRÉSI ÚTJA
+249	Zmień wyszukiwany tekst.	Upravte hledaný výraz.	Upravte hľadaný výraz.	Módosítsa a keresőkifejezést.
+250	Pauza	Pauza	Pauza	Szünet
+251	Wstrzymane	Pozastaveno	Pozastavené	Szünetel
+252	Otwórz ścieżkę: {0}	Otevřít cestu: {0}	Otvoriť cestu: {0}	Elérési út megnyitása: {0}
+253	Profil	Profil	Profil	Profil
+254	Zachowaj profil	Zachovat profil	Zachovať profil	Profil megtartása
+255	Przełącz profil	Přepnout profil	Prepnúť profil	Profilváltás
+256	Przełącz profil: {0}	Přepnout profil: {0}	Prepnúť profil: {0}	Profilváltás: {0}
+257	Profil jest używany	Profil se používá	Profil sa používa	A profil használatban van
+258	Profil {0} wymaga nazwy.	Profil {0} vyžaduje název.	Profil {0} vyžaduje názov.	A(z) {0} profilhoz név szükséges.
+259	Profil „{0}” zawiera pusty kafelek.	Profil „{0}“ obsahuje prázdnou dlaždici.	Profil „{0}“ obsahuje prázdnu dlaždicu.	A(z) „{0}” profil üres csempét tartalmaz.
+260	Profil „{0}” nie zawiera prawidłowej listy kafelków.	Profil „{0}“ neobsahuje platný seznam dlaždic.	Profil „{0}“ neobsahuje platný zoznam dlaždíc.	A(z) „{0}” profil nem tartalmaz érvényes csempelistát.
+261	Profil „{0}” nie ma prawidłowego identyfikatora.	Profil „{0}“ nemá platné ID.	Profil „{0}“ nemá platné ID.	A(z) „{0}” profilnak nincs érvényes azonosítója.
+262	Profile	Profily	Profily	Profilok
+263	Eksportuj profile	Exportovat profily	Exportovať profily	Profilok exportálása
+264	Importuj profile	Importovat profily	Importovať profily	Profilok importálása
+265	Przełączanie profili	Přepínání profilů	Prepínanie profilov	Profilváltás
+266	Uruchom program	Spustit program	Spustiť program	Program indítása
+267	Uruchom program: {0}	Spustit program: {0}	Spustiť program: {0}	Program indítása: {0}
+268	PROFIL DOMYŚLNY	VÝCHOZÍ PROFIL	PREDVOLENÝ PROFIL	ALAPÉRTELMEZETT PROFIL
+269	SYMBOL	SYMBOL	SYMBOL	IKON
+270	AKCJA SYSTEMOWA	SYSTÉMOVÁ AKCE	SYSTÉMOVÁ AKCIA	RENDSZERMŰVELET
+271	Zamknij	Zavřít	Zavrieť	Bezárás
+272	Krok {0} wymaga koloru w formacie #RRGGBB.	Krok {0} vyžaduje barvu ve formátu #RRGGBB.	Krok {0} vyžaduje farbu vo formáte #RRGGBB.	A(z) {0}. lépéshez #RRGGBB formátumú szín szükséges.
+273	Krok {0} wymaga wartości.	Krok {0} vyžaduje hodnotu.	Krok {0} vyžaduje hodnotu.	A(z) {0}. lépéshez érték szükséges.
+274	Krok {0} nie zawiera prawidłowej wartości.	Krok {0} neobsahuje platnou hodnotu.	Krok {0} neobsahuje platnú hodnotu.	A(z) {0}. lépés nem tartalmaz érvényes értéket.
+275	Krok {0} ma nieznany typ akcji.	Krok {0} má neznámý typ akce.	Krok {0} má neznámy typ akcie.	A(z) {0}. lépés művelettípusa ismeretlen.
+276	Krok {0} ma nieznaną akcję okna.	Krok {0} má neznámou akci okna.	Krok {0} má neznámu akciu okna.	A(z) {0}. lépés ablakművelete ismeretlen.
+277	Krok {0} ma nieznaną akcję głośności.	Krok {0} má neznámou akci hlasitosti.	Krok {0} má neznámu akciu hlasitosti.	A(z) {0}. lépés hangerőművelete ismeretlen.
+278	Krok {0} ma nieznaną akcję multimedialną.	Krok {0} má neznámou akci médií.	Krok {0} má neznámu akciu médií.	A(z) {0}. lépés médiaművelete ismeretlen.
+279	Krok {0} ma nieznaną akcję systemową.	Krok {0} má neznámou systémovou akci.	Krok {0} má neznámu systémovú akciu.	A(z) {0}. lépés rendszerművelete ismeretlen.
+280	Krok {0} jest pusty.	Krok {0} je prázdný.	Krok {0} je prázdny.	A(z) {0}. lépés üres.
+281	Krok {0}/{1} · cykl {2}/{3}	Krok {0}/{1} · průchod {2}/{3}	Krok {0}/{1} · priechod {2}/{3}	{0}/{1}. lépés · {2}/{3}. futás
+282	Zapisz	Uložit	Uložiť	Mentés
+283	Stop	Stop	Stop	Leállítás
+284	Wycisz	Ztlumit	Stlmiť	Némítás
+285	Szukaj	Hledat	Hľadať	Keresés
+286	Akcja systemowa: {0}	Systémová akce: {0}	Systémová akcia: {0}	Rendszerművelet: {0}
+287	UKŁAD KLAWIATURY	ROZLOŽENÍ KLÁVESNICE	ROZLOŽENIE KLÁVESNICE	BILLENTYŰZETKIOSZTÁS
+288	KOMBINACJA KLAWISZY	KOMBINACE KLÁVES	KOMBINÁCIA KLÁVESOV	BILLENTYŰKOMBINÁCIÓ
+289	TEKST	TEXT	TEXT	SZÖVEG
+290	Klawiatura	Klávesnice	Klávesnica	Billentyűzet
+291	Klawiatura (HID)	Klávesnice (HID)	Klávesnica (HID)	Billentyűzet (HID)
+292	Klawiatura (Windows Keyboard Input)	Klávesnice (Windows Keyboard Input)	Klávesnica (Windows Keyboard Input)	Billentyűzet (Windows Keyboard Input)
+293	Układ klawiatury: {0}	Rozložení klávesnice: {0}	Rozloženie klávesnice: {0}	Billentyűzetkiosztás: {0}
+294	Klawisz	Klávesa	Kláves	Billentyű
+295	Kliknij klawisz	Klikněte na klávesu	Kliknite na kláves	Kattintson egy billentyűre
+296	Kombinacja klawiszy	Kombinace kláves	Kombinácia klávesov	Billentyűkombináció
+297	Wyślij skrót: {0}	Odeslat zkratku: {0}	Odoslať skratku: {0}	Billentyűparancs küldése: {0}
+298	Wpisz tekst	Zadat text	Zadať text	Szöveg bevitele
+299	Wpisz tekst: „{0}”	Zadat text: „{0}“	Zadať text: „{0}“	Szöveg bevitele: „{0}”
+300	Martwy klawisz: skróty odnoszą się do fizycznego klawisza.	Mrtvá klávesa: zkratky se vztahují k fyzické klávese.	Mŕtvy kláves: skratky sa vzťahujú na fyzický kláves.	Holt billentyű: a gyorsbillentyűk a fizikai billentyűre vonatkoznak.

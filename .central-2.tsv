@@ -1,0 +1,100 @@
+101	Nie udało się ustalić obszaru roboczego aktywnego monitora.	Pracovní oblast aktivního monitoru se nepodařilo zjistit.	Pracovnú oblasť aktívneho monitora sa nepodarilo zistiť.	Az aktív monitor munkaterülete nem állapítható meg.
+102	Skrót wymaga co najmniej jednego modyfikatora i jednego klawisza.	Zkratka vyžaduje alespoň jeden modifikátor a jednu klávesu.	Skratka vyžaduje aspoň jeden modifikátor a jeden kláves.	A gyorsbillentyűhöz legalább egy módosító és egy billentyű szükséges.
+103	Obszar roboczy monitora jest nieprawidłowy.	Pracovní oblast monitoru je neplatná.	Pracovná oblasť monitora je neplatná.	A monitor munkaterülete érvénytelen.
+104	Nie znaleziono folderu: {0}	Složka nebyla nalezena: {0}	Priečinok sa nenašiel: {0}	A mappa nem található: {0}
+105	Ścieżka jest pusta.	Cesta je prázdná.	Cesta je prázdna.	Az elérési út üres.
+106	Ścieżka programu jest pusta.	Cesta k programu je prázdná.	Cesta k programu je prázdna.	A program elérési útja üres.
+107	Dyspozytor STA aplikacji jest niedostępny.	Dispečer STA aplikace není dostupný.	Dispečer STA aplikácie nie je dostupný.	Az alkalmazás STA-diszpécsere nem érhető el.
+108	Nie udało się zapisać schowka Windows: {0}	Do schránky Windows se nepodařilo zapsat: {0}	Do schránky Windows sa nepodarilo zapísať: {0}	A Windows-vágólap írása sikertelen: {0}
+109	Nie udało się odczytać schowka Windows: {0}	Schránku Windows se nepodařilo přečíst: {0}	Schránku Windows sa nepodarilo prečítať: {0}	A Windows-vágólap olvasása sikertelen: {0}
+110	Nie udało się zaktualizować stanu iCUE.	Stav iCUE se nepodařilo aktualizovat.	Stav iCUE sa nepodarilo aktualizovať.	Az iCUE állapota nem frissíthető.
+111	Brakuje listy akcji.	Chybí seznam akcí.	Chýba zoznam akcií.	A műveletlista hiányzik.
+112	Wybór nie tworzy akcji. Istniejący skrót otwiera swoją akcję; nowa propozycja pozostaje niezapisana, dopóki nie zapiszesz jej w edytorze.	Výběr nevytváří akci. Existující zkratka otevře svou akci; nový návrh zůstane neuložený, dokud jej neuložíte v editoru.	Výber nevytvára akciu. Existujúca skratka otvorí svoju akciu; nový návrh zostane neuložený, kým ho neuložíte v editore.	A kiválasztás nem hoz létre műveletet. A meglévő gyorsbillentyű megnyitja a műveletét; az új javaslat a szerkesztőben történő mentésig mentetlen marad.
+113	Klawisz Corsair G{0} na urządzeniu „{1}” jest przypisany w profilu wielokrotnie.	Klávesa Corsair G{0} na zařízení „{1}“ je v profilu přiřazena vícekrát.	Kláves Corsair G{0} na zariadení „{1}“ je v profile priradený viackrát.	A(z) „{1}” eszköz Corsair G{0} billentyűje többször van hozzárendelve a profilban.
+114	Klawiatura Corsair nie obsługuje G{0} lub nie jest już połączona.	Klávesnice Corsair nepodporuje G{0} nebo již není připojena.	Klávesnica Corsair nepodporuje G{0} alebo už nie je pripojená.	A Corsair-billentyűzet nem támogatja a G{0} billentyűt, vagy már nincs csatlakoztatva.
+115	Przypisanie klawisza Corsair wymaga identyfikatora urządzenia.	Přiřazení klávesy Corsair vyžaduje ID zařízení.	Priradenie klávesu Corsair vyžaduje ID zariadenia.	A Corsair-billentyű hozzárendeléséhez eszközazonosító szükséges.
+116	Przypisanie klawisza Corsair musi używać obsługiwanego klawisza G od G1 do G6.	Přiřazení klávesy Corsair musí používat podporovanou klávesu G od G1 do G6.	Priradenie klávesu Corsair musí používať podporovaný kláves G od G1 do G6.	A Corsair-billentyű hozzárendelésében támogatott G-billentyűt kell használni G1 és G6 között.
+117	Nie znaleziono pliku: {0}	Soubor nebyl nalezen: {0}	Súbor sa nenašiel: {0}	A fájl nem található: {0}
+118	Kolor musi być szesnastkową wartością RGB, na przykład #25C4B6.	Barva musí být uvedena jako hexadecimální hodnota RGB, například #25C4B6.	Farba musí byť uvedená ako hexadecimálna hodnota RGB, napríklad #25C4B6.	A színt RGB hexadecimális értékként kell megadni, például #25C4B6.
+119	Identyfikator nie może być pusty.	ID nesmí být prázdné.	ID nesmie byť prázdne.	Az azonosító nem lehet üres.
+120	Plik JSON nie zawiera obiektu konfiguracji.	Soubor JSON neobsahuje objekt konfigurace.	Súbor JSON neobsahuje objekt konfigurácie.	A JSON-fájl nem tartalmaz konfigurációs objektumot.
+121	Konfiguracja JSON „{0}” jest uszkodzona.	Konfigurace JSON „{0}“ je poškozená.	Konfigurácia JSON „{0}“ je poškodená.	A(z) „{0}” JSON-konfiguráció sérült.
+122	Identyfikator kafelka {0} występuje wielokrotnie.	ID dlaždice {0} se vyskytuje vícekrát.	ID dlaždice {0} sa vyskytuje viackrát.	A(z) {0} csempeazonosító többször szerepel.
+123	Kolor kafelka musi mieć format #RRGGBB.	Barva dlaždice musí mít formát #RRGGBB.	Farba dlaždice musí mať formát #RRGGBB.	A csempe színét #RRGGBB formátumban kell megadni.
+124	Konfiguracja jest nieprawidłowa	Konfigurace je neplatná	Konfigurácia je neplatná	A konfiguráció érvénytelen
+125	Nie można wyeksportować konfiguracji	Konfiguraci nelze exportovat	Konfiguráciu nemožno exportovať	A konfiguráció nem exportálható
+126	Nie można zapisać konfiguracji	Konfiguraci nelze uložit	Konfiguráciu nemožno uložiť	A konfiguráció nem menthető
+127	Plik konfiguracji przekracza dopuszczalny rozmiar 10 MiB.	Konfigurační soubor překračuje povolenou velikost 10 MiB.	Konfiguračný súbor prekračuje povolenú veľkosť 10 MiB.	A konfigurációs fájl meghaladja a megengedett 10 MiB méretet.
+128	Pauza w kroku {0} musi wynosić od 0 do 600000 ms.	Pauza v kroku {0} musí být mezi 0 a 600000 ms.	Pauza v kroku {0} musí byť medzi 0 a 600000 ms.	A(z) {0}. lépés szünetének 0 és 600000 ms között kell lennie.
+129	Identyfikator profilu {0} występuje wielokrotnie.	ID profilu {0} se vyskytuje vícekrát.	ID profilu {0} sa vyskytuje viackrát.	A(z) {0} profilazonosító többször szerepel.
+130	Lista profili zawiera pusty wpis.	Seznam profilů obsahuje prázdnou položku.	Zoznam profilov obsahuje prázdnu položku.	A profillista üres bejegyzést tartalmaz.
+131	Brakuje listy profili.	Chybí seznam profilů.	Chýba zoznam profilov.	A profillista hiányzik.
+132	Ustawienie języka „{0}” jest nieznane.	Nastavení jazyka „{0}“ není známo.	Nastavenie jazyka „{0}“ nie je známe.	A(z) „{0}” nyelvbeállítás ismeretlen.
+133	Kombinacja klawiszy zawiera pusty element. Użyj na przykład:	Kombinace kláves obsahuje prázdnou část. Použijte například:	Kombinácia klávesov obsahuje prázdnu časť. Použite napríklad:	A billentyűkombináció üres részt tartalmaz. Használja például ezt:
+134	URL w kroku {0} musi zaczynać się od http:// lub https://.	URL v kroku {0} musí začínat http:// nebo https://.	URL v kroku {0} musí začínať http:// alebo https://.	A(z) {0}. lépés URL-címének http:// vagy https:// előtaggal kell kezdődnie.
+135	Odrzucono połączenie z iCUE (błąd SDK {0}).	Připojení k iCUE bylo odmítnuto (chyba SDK {0}).	Pripojenie k iCUE bolo odmietnuté (chyba SDK {0}).	Az iCUE-kapcsolat elutasítva (SDK-hiba: {0}).
+136	Połączenie z iCUE zostało przerwane; próby połączenia SDK są kontynuowane.	Připojení k iCUE bylo přerušeno; pokusy o připojení SDK pokračují.	Pripojenie k iCUE bolo prerušené; pokusy o pripojenie SDK pokračujú.	Az iCUE-kapcsolat megszakadt; az SDK tovább próbál kapcsolódni.
+137	Liczba powtórzeń musi wynosić od 1 do 100.	Počet opakování musí být mezi 1 a 100.	Počet opakovaní musí byť medzi 1 a 100.	Az ismétlések számának 1 és 100 között kell lennie.
+138	Wybrana klawiatura Corsair nie jest już połączona lub nie obsługuje sterowania LED.	Vybraná klávesnice Corsair již není připojena nebo nepodporuje ovládání LED.	Vybraná klávesnica Corsair už nie je pripojená alebo nepodporuje ovládanie LED.	A kiválasztott Corsair-billentyűzet már nincs csatlakoztatva, vagy nem támogatja a LED-vezérlést.
+139	Biblioteka DLL iCUE SDK jest niezgodna lub brakuje wymaganych funkcji.	DLL SDK iCUE není kompatibilní nebo chybí požadované funkce.	DLL SDK iCUE nie je kompatibilná alebo chýbajú požadované funkcie.	Az iCUE SDK DLL nem kompatibilis, vagy hiányoznak a szükséges funkciók.
+140	Znaleziono bibliotekę DLL iCUE SDK, ale nie udało się jej załadować.	DLL SDK iCUE byla nalezena, ale nepodařilo se ji načíst.	DLL SDK iCUE sa našla, ale nepodarilo sa ju načítať.	Az iCUE SDK DLL megtalálható, de nem tölthető be.
+141	Ostatni klawisz nie może być modyfikatorem. Dodaj zwykły klawisz, na przykład:	Poslední klávesa nesmí být modifikátor. Přidejte běžnou klávesu, například:	Posledný kláves nesmie byť modifikátor. Pridajte bežný kláves, napríklad:	Az utolsó billentyű nem lehet módosító. Adjon hozzá egy normál billentyűt, például:
+142	Przywrócić ostatnią prawidłową kopię zapasową? Uszkodzony plik zostanie zachowany osobno.	Obnovit poslední platnou zálohu? Poškozený soubor bude zachován samostatně.	Obnoviť poslednú platnú zálohu? Poškodený súbor bude zachovaný samostatne.	Visszaállítja az utolsó érvényes biztonsági mentést? A sérült fájl külön megmarad.
+143	Ta funkcja urządzenia nie jest dostępna jako standardowe zdarzenie skrótu Windows.	Tato funkce zařízení není dostupná jako běžná událost klávesové zkratky Windows.	Táto funkcia zariadenia nie je dostupná ako bežná udalosť klávesovej skratky Windows.	Ez az eszközfunkció nem érhető el normál Windows-gyorsbillentyűeseményként.
+144	Ta pozycja współdzieli globalny identyfikator skrótu z innym klawiszem i nie można jej odróżnić.	Tato pozice sdílí globální identifikátor zkratky s další klávesou a nelze ji rozlišit samostatně.	Táto pozícia zdieľa globálny identifikátor skratky s ďalším klávesom a nemožno ju rozlíšiť samostatne.	Ez a pozíció egy másik billentyűvel közös globális gyorsbillentyű-azonosítót használ, ezért külön nem különböztethető meg.
+145	Ta wersja iCUE SDK nie obsługuje zdarzeń klawiszy G Corsair.	Tato verze SDK iCUE nepodporuje události kláves G Corsair.	Táto verzia SDK iCUE nepodporuje udalosti klávesov G Corsair.	Az iCUE SDK ezen verziója nem támogatja a Corsair G-billentyűeseményeket.
+146	Ten skrót jest już przypisany.	Tato zkratka je již přiřazena.	Táto skratka je už priradená.	Ez a gyorsbillentyű már hozzá van rendelve.
+147	Ten profil jest używany jako cel w {0} akcjach profilu. Najpierw zmień te odwołania.	Tento profil je použit jako cíl v {0} profilových akcích. Nejprve změňte tyto odkazy.	Tento profil sa používa ako cieľ v {0} profilových akciách. Najprv zmeňte tieto odkazy.	Ez a profil {0} profilművelet célja. Először módosítsa ezeket a hivatkozásokat.
+148	Powtórzony element skrótu: {0}.	Duplicitní část zkratky: {0}.	Duplicitná časť skratky: {0}.	Ismétlődő gyorsbillentyűelem: {0}.
+149	Powtórzony modyfikator: {0}.	Duplicitní modifikátor: {0}.	Duplicitný modifikátor: {0}.	Ismétlődő módosító: {0}.
+150	Ta akcja ma zmiany. Czy chcesz je zapisać, odrzucić czy kontynuować edycję?	Tato akce obsahuje změny. Chcete je uložit, zahodit, nebo pokračovat v úpravách?	Táto akcia obsahuje zmeny. Chcete ich uložiť, zahodiť alebo pokračovať v úpravách?	A művelet módosult. Menti, elveti a módosításokat, vagy folytatja a szerkesztést?
+151	Symbol zastępczy schowka wymaga dostępu do odczytu schowka.	Zástupná proměnná schránky vyžaduje přístup pro čtení schránky.	Zástupná premenná schránky vyžaduje prístup na čítanie schránky.	A vágólap helyőrzőjéhez vágólapolvasási hozzáférés szükséges.
+152	Nazwa jest wymagana.	Název je povinný.	Názov je povinný.	Név megadása szükséges.
+153	Symbol jest wymagany.	Symbol je povinný.	Symbol je povinný.	Ikon megadása szükséges.
+154	Klawisz G Corsair można przypisać tylko raz.	Klávesu G Corsair lze přiřadit pouze jednou.	Kláves G Corsair možno priradiť len raz.	Egy Corsair G-billentyű csak egyszer rendelhető hozzá.
+155	Przypisanie klawisza Corsair musi zawierać urządzenie i klawisz G od G1 do G6.	Přiřazení klávesy Corsair musí obsahovat zařízení a klávesu G od G1 do G6.	Priradenie klávesu Corsair musí obsahovať zariadenie a kláves G od G1 do G6.	A Corsair-billentyű hozzárendelésének egy eszközt és egy G1–G6 billentyűt kell tartalmaznia.
+156	Modyfikator był przytrzymany przez ponad {0} sekund. Zwolnij Ctrl, Alt, Shift lub Windows i spróbuj ponownie.	Modifikační klávesa byla držena déle než {0} sekund. Uvolněte Ctrl, Alt, Shift nebo Windows a zkuste to znovu.	Modifikačný kláves bol držaný dlhšie než {0} sekúnd. Uvoľnite Ctrl, Alt, Shift alebo Windows a skúste to znova.	Egy módosítóbillentyű több mint {0} másodpercig volt lenyomva. Engedje fel a Ctrl, Alt, Shift vagy Windows billentyűt, és próbálja újra.
+157	Ustawienia	Nastavení	Nastavenia	Beállítások
+158	Brak dostępnego okna na pierwszym planie.	Není dostupné žádné okno v popředí.	Nie je dostupné žiadne okno v popredí.	Nincs elérhető előtérablak.
+159	Brak prawidłowego okna na pierwszym planie.	Není k dispozici platné okno v popředí.	Nie je k dispozícii platné okno v popredí.	Nincs érvényes előtérablak.
+160	Brak kopii zapasowej.	Není k dispozici žádná záloha.	Nie je k dispozícii žiadna záloha.	Nincs biztonsági mentés.
+161	Można otwierać tylko prawidłowe adresy HTTP i HTTPS.	Lze otevřít pouze platné adresy HTTP a HTTPS.	Možno otvoriť len platné adresy HTTP a HTTPS.	Csak érvényes HTTP- és HTTPS-címek nyithatók meg.
+162	Windows rezerwuje F12 dla debugera; nie można go używać jako skrótu.	Windows vyhrazuje F12 pro ladicí program; nelze jej použít jako zkratku.	Windows rezervuje F12 pre ladiaci program; nemožno ho použiť ako skratku.	A Windows az F12 billentyűt a hibakereső számára tartja fenn; gyorsbillentyűként nem használható.
+163	KOLOR	BARVA	FARBA	SZÍN
+164	AKCJA OKNA	AKCE OKNA	AKCIA OKNA	ABLAKMŰVELET
+165	Błąd	Chyba	Chyba	Hiba
+166	Błąd w kroku {0}: {1} Makro zostało zakończone.	Chyba v kroku {0}: {1} Makro bylo ukončeno.	Chyba v kroku {0}: {1} Makro bolo ukončené.	Hiba a(z) {0}. lépésben: {1} A makró leállt.
+167	Błąd: {0}	Chyba: {0}	Chyba: {0}	Hiba: {0}
+168	Rozmieść okno	Uspořádat okno	Usporiadať okno	Ablak elrendezése
+169	Akcja okna: {0}	Akce okna: {0}	Akcia okna: {0}	Ablakművelet: {0}
+170	Dla tekstu i akcji okna: otwórz paletę z wybranego programu.	Pro text a akce okna: otevřete paletu z požadovaného programu.	Pre text a akcie okna: otvorte paletu z požadovaného programu.	Szöveg- és ablakműveleteknél nyissa meg a palettát a kívánt programból.
+171	ZABLOKOWANE · automatyczne przełączanie wyłączone	UZAMČENO · automatické přepínání vypnuto	ZAMKNUTÉ · automatické prepínanie vypnuté	ZÁROLVA · automatikus váltás kikapcsolva
+172	Nadruk klawisza {0}; wynik Windows {1} (Shift: {2})	Popisek klávesy {0}; výstup Windows {1} (Shift: {2})	Popis klávesu {0}; výstup Windows {1} (Shift: {2})	Billentyűfelirat: {0}; Windows-kimenet: {1} (Shift: {2})
+173	Urządzenie	Zařízení	Zariadenie	Eszköz
+174	Urządzenia	Zařízení	Zariadenia	Eszközök
+175	Wybrano: {0} · skrót Windows: {1}.	Vybráno: {0} · zkratka Windows: {1}.	Vybrané: {0} · skratka Windows: {1}.	Kiválasztva: {0} · Windows-gyorsbillentyű: {1}.
+176	Globalny skrót: 	Globální zkratka: 	Globálna skratka: 	Globális gyorsbillentyű: 
+177	G{0} · obecnie niedostępny	G{0} · nyní nedostupná	G{0} · momentálne nedostupný	G{0} · jelenleg nem érhető el
+178	SKRÓT KLAWISZOWY	KLÁVESOVÁ ZKRATKA	KLÁVESOVÁ SKRATKA	GYORSBILLENTYŰ
+179	SKRÓT NIEDOSTĘPNY · {0}	ZKRATKA NEDOSTUPNÁ · {0}	SKRATKA NEDOSTUPNÁ · {0}	GYORSBILLENTYŰ NEM ELÉRHETŐ · {0}
+180	PROPOZYCJA SKRÓTU	NÁVRH ZKRATKY	NÁVRH SKRATKY	GYORSBILLENTYŰ-JAVASLAT
+181	SKRÓTY KLAWISZOWE	KLÁVESOVÉ ZKRATKY	KLÁVESOVÉ SKRATKY	GYORSBILLENTYŰK
+182	Główny Enter i Enter bloku numerycznego współdzielą identyfikator skrótu i nie można ich przypisać osobno.	Hlavní Enter a Enter na numerické klávesnici sdílejí identifikátor zkratky a nelze je přiřadit samostatně.	Hlavný Enter a Enter na numerickej klávesnici zdieľajú identifikátor skratky a nemožno ich priradiť samostatne.	A fő Enter és a numerikus Enter közös gyorsbillentyű-azonosítót használ, ezért külön nem rendelhetők hozzá.
+183	Propozycja skrótu dla {0} to niezapisany szkic. Sprawdź go i zapisz w edytorze.	Návrh zkratky pro {0} není uložen. Zkontrolujte jej a uložte v editoru.	Návrh skratky pre {0} nie je uložený. Skontrolujte ho a uložte v editore.	A(z) {0} gyorsbillentyűjavaslata mentetlen vázlat. Ellenőrizze és mentse a szerkesztőben.
+184	Skrót: 	Zkratka: 	Skratka: 	Gyorsbillentyű: 
+185	Włącz skróty	Povolit zkratky	Zapnúť skratky	Gyorsbillentyűk engedélyezése
+186	Skróty nadal działają. Dwukrotne kliknięcie ikony otwiera okno.	Zkratky fungují dál. Dvojitým kliknutím na ikonu otevřete okno.	Skratky fungujú ďalej. Dvojitým kliknutím na ikonu otvoríte okno.	A gyorsbillentyűk tovább működnek. Az ikonra duplán kattintva megnyílik az ablak.
+187	Wstrzymaj skróty	Pozastavit zkratky	Pozastaviť skratky	Gyorsbillentyűk szüneteltetése
+188	NIEAKTYWNE	NEAKTIVNÍ	NEAKTÍVNE	INAKTÍV
+189	Przygotuj w edytorze	Připravit v editoru	Pripraviť v editore	Előkészítés a szerkesztőben
+190	Podgląd importu	Náhled importu	Náhľad importu	Importálási előnézet
+191	KONFIGURACJA	KONFIGURACE	KONFIGURÁCIA	KONFIGURÁCIÓ
+192	KONFLIKT	KONFLIKT	KONFLIKT	ÜTKÖZÉS
+193	KONFLIKT  ·  {0}	KONFLIKT  ·  {0}	KONFLIKT  ·  {0}	ÜTKÖZÉS  ·  {0}
+194	Kafelek „{0}” nie ma prawidłowego identyfikatora.	Dlaždice „{0}“ nemá platné ID.	Dlaždica „{0}“ nemá platné ID.	A(z) „{0}” csempének nincs érvényes azonosítója.
+195	Kafelek „{0}”: Profil docelowy „{1}” nie istnieje.	Dlaždice „{0}“: Cílový profil „{1}“ neexistuje.	Dlaždica „{0}“: Cieľový profil „{1}“ neexistuje.	„{0}” csempe: A(z) „{1}” célprofil nem létezik.
+196	Kafelek „{0}”: {1}	Dlaždice „{0}“: {1}	Dlaždica „{0}“: {1}	„{0}” csempe: {1}
+197	Katalog · {0}	Katalog · {0}	Katalóg · {0}	Katalógus · {0}
+198	Skrót katalogu: {0} (bez indywidualnego kodu skanowania Windows)	Katalogová zkratka: {0} (bez individuálního kódu skenování Windows)	Katalógová skratka: {0} (bez individuálneho kódu skenovania Windows)	Katalógusbeli gyorsbillentyű: {0} (egyedi Windows-kód nélkül)
+199	Brak okna docelowego. Otwórz paletę z wybranego programu.	Není dostupné cílové okno. Otevřete paletu z požadovaného programu.	Nie je dostupné cieľové okno. Otvorte paletu z požadovaného programu.	Nincs elérhető célablak. Nyissa meg a palettát a kívánt programból.
+200	Nie znaleziono akcji	Nenalezena žádná akce	Nenašla sa žiadna akcia	Nem található művelet

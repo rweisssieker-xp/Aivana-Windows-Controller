@@ -1,0 +1,26 @@
+{
+  "sourceLanguage": "de",
+  "keys": [
+    "Corsair-G-Tasten sind nicht verfügbar.",
+    "Eine Corsair-Tastenzuordnung muss ein Gerät und eine G-Taste von G1 bis G6 enthalten.",
+    "Eine Corsair-G-Taste darf nur einmal zugeordnet werden.",
+    "Corsair-G-Tasten warten auf eine iCUE-Verbindung.",
+    "iCUE-G-Tastenereignisse sind verfügbar.",
+    "Diese iCUE-SDK-Version unterstützt keine Corsair-G-Tastenereignisse.",
+    "iCUE meldet unterstützte Corsair-G-Tasten G1 bis G6.",
+    "iCUE meldet für die verbundenen Tastaturen keine unterstützten G-Tasten G1 bis G6.",
+    "iCUE meldet keine Corsair-Tastatur mit unterstützten G-Tasten.",
+    "Die Corsair-Tastatur unterstützt G{0} nicht oder ist nicht mehr verbunden.",
+    "iCUE konnte G-Tastenereignisse nicht abonnieren (SDK-Fehler {0}).",
+    "iCUE hat den Zugriff auf G-Tasten von {0} abgelehnt (SDK-Fehler {1}).",
+    "iCUE konnte den G-Tastenzugriff für {0} nicht freigeben (SDK-Fehler {1}).",
+    "iCUE überwacht {0} zugeordnete Corsair-G-Taste(n).",
+    "Einige zugeordnete Corsair-G-Tasten sind nicht verfügbar; die übrigen werden überwacht.",
+    "Corsair-G-Tasten sind verfügbar; derzeit ist keine Taste zugeordnet.",
+    "iCUE konnte Corsair-G{0} nicht aktivieren (SDK-Fehler {1}).",
+    "iCUE konnte Corsair-G{0} nicht freigeben (SDK-Fehler {1}).",
+    "Die Corsair-Tastenzuordnung braucht eine Geräte-ID.",
+    "Die Corsair-Tastenzuordnung muss eine unterstützte G-Taste G1 bis G6 verwenden.",
+    "Die Corsair-G{0}-Taste auf Gerät „{1}“ ist im Profil mehrfach zugeordnet."
+  ]
+}

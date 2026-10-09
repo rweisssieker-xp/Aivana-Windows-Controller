@@ -1,0 +1,11 @@
+{
+  "sourceLanguage": "de",
+  "keys": [
+    "Die Audio-Lautstärke muss zwischen 0 und 100 Prozent liegen.",
+    "Die Windows-Audioendpunktsteuerung ist nur unter Windows verfügbar.",
+    "Es ist kein Standard-Audioendpunkt verfügbar.",
+    "Der Standard-Audioendpunkt stellt keine Lautstärke- oder Stummschaltungssteuerung bereit.",
+    "Die Audioendpunktsteuerung ist fehlgeschlagen (Windows-Fehler 0x{0:X8}): {1}",
+    "Windows konnte den Audioendpunkt nicht steuern: {0} (Fehler 0x{1:X8})."
+  ]
+}

@@ -1,0 +1,1052 @@
+{
+  "AIVANA  ·  WINDOWS CONTROLLER": [
+    "AIVANA  ·  WINDOWS CONTROLLER",
+    "AIVANA  ·  WINDOWS CONTROLLER",
+    "AIVANA  ·  WINDOWS CONTROLLER",
+    "AIVANA  ·  WINDOWS CONTROLLER"
+  ],
+  "ARBEITSORDNER (OPTIONAL)": [
+    "FOLDER ROBOCZY (OPCJONALNIE)",
+    "PRACOVNÍ SLOŽKA (VOLITELNÁ)",
+    "PRACOVNÝ PRIEČINOK (VOLITEĽNÝ)",
+    "MUNKAMAPPA (NEM KÖTELEZŐ)"
+  ],
+  "Aktion aktiviert": [
+    "Akcja włączona",
+    "Akce povolena",
+    "Akcia povolená",
+    "Művelet engedélyezve"
+  ],
+  "Aktion bearbeiten": [
+    "Edytuj akcję",
+    "Upravit akci",
+    "Upraviť akciu",
+    "Művelet szerkesztése"
+  ],
+  "Aktion einrichten": [
+    "Konfiguruj akcję",
+    "Nastavit akci",
+    "Nastaviť akciu",
+    "Művelet beállítása"
+  ],
+  "Aktion fehlgeschlagen": [
+    "Akcja nie powiodła się",
+    "Akce se nezdařila",
+    "Akcia zlyhala",
+    "A művelet nem sikerült"
+  ],
+  "Aktion fehlgeschlagen: {0}": [
+    "Akcja nie powiodła się: {0}",
+    "Akce se nezdařila: {0}",
+    "Akcia zlyhala: {0}",
+    "A művelet nem sikerült: {0}"
+  ],
+  "Aktion, Hotkey, Typ oder Profil suchen": [
+    "Szukaj akcji, skrótu klawiszowego, typu lub profilu",
+    "Hledat akci, klávesovou zkratku, typ nebo profil",
+    "Hľadať akciu, klávesovú skratku, typ alebo profil",
+    "Művelet, billentyűparancs, típus vagy profil keresése"
+  ],
+  "Aktionen laufen gerade": [
+    "Akcje są uruchomione",
+    "Akce právě běží",
+    "Akcie práve bežia",
+    "A műveletek futnak"
+  ],
+  "Aktionen nach Name, Hotkey oder Typ filtern": [
+    "Filtruj akcje według nazwy, skrótu klawiszowego lub typu",
+    "Filtrovat akce podle názvu, klávesové zkratky nebo typu",
+    "Filtrovať akcie podľa názvu, klávesovej skratky alebo typu",
+    "Műveletek szűrése név, billentyűparancs vagy típus szerint"
+  ],
+  "Aktueller Fenstertitel: {0}": [
+    "Bieżący tytuł okna: {0}",
+    "Aktuální název okna: {0}",
+    "Aktuálny názov okna: {0}",
+    "Aktuális ablakcím: {0}"
+  ],
+  "Aktuelles Vordergrundprogramm: {0}": [
+    "Bieżąca aplikacja na pierwszym planie: {0}",
+    "Aktuální aplikace v popředí: {0}",
+    "Aktuálna aplikácia v popredí: {0}",
+    "Aktuális előtérben lévő alkalmazás: {0}"
+  ],
+  "Alle Aktionen profileübergreifend suchen · Ctrl+K": [
+    "Szukaj wszystkich akcji we wszystkich profilach · Ctrl+K",
+    "Hledat všechny akce napříč profily · Ctrl+K",
+    "Hľadať všetky akcie naprieč profilmi · Ctrl+K",
+    "Keresés az összes profilban · Ctrl+K"
+  ],
+  "Alle Dateien (*.*)|*.*": [
+    "Wszystkie pliki (*.*)|*.*",
+    "Všechny soubory (*.*)|*.*",
+    "Všetky súbory (*.*)|*.*",
+    "Minden fájl (*.*)|*.*"
+  ],
+  "Als Favorit markieren": [
+    "Oznacz jako ulubione",
+    "Označit jako oblíbené",
+    "Označiť ako obľúbené",
+    "Megjelölés kedvencként"
+  ],
+  "Als Standard": [
+    "Jako domyślne",
+    "Jako výchozí",
+    "Ako predvolené",
+    "Alapértelmezettként"
+  ],
+  "An Cursorposition einfügen": [
+    "Wstaw w miejscu kursora",
+    "Vložit na pozici kurzoru",
+    "Vložiť na pozíciu kurzora",
+    "Beillesztés a kurzor helyére"
+  ],
+  "Arbeitsbereiche, Priorität und automatische Zuordnung": [
+    "Obszary robocze, priorytet i automatyczne przypisywanie",
+    "Pracovní prostory, priorita a automatické přiřazení",
+    "Pracovné priestory, priorita a automatické priradenie",
+    "Munkaterületek, prioritás és automatikus hozzárendelés"
+  ],
+  "Arbeitsordner auswählen": [
+    "Wybierz folder roboczy",
+    "Vybrat pracovní složku",
+    "Vybrať pracovný priečinok",
+    "Munkamappa kiválasztása"
+  ],
+  "Auswählen · ziehen zum Sortieren · Rechtsklick für weitere Optionen": [
+    "Wybierz · przeciągnij, aby zmienić kolejność · kliknij prawym przyciskiem, aby wyświetlić więcej opcji",
+    "Vyberte · přetažením změňte pořadí · pravým tlačítkem zobrazíte další možnosti",
+    "Vyberte · presunutím zmeňte poradie · pravým tlačidlom zobrazíte ďalšie možnosti",
+    "Válasszon · húzással rendezhet · jobb kattintással további lehetőségek"
+  ],
+  "Automatisch (Windows-Sprache)": [
+    "Automatycznie (język systemu Windows)",
+    "Automaticky (jazyk Windows)",
+    "Automaticky (jazyk Windows)",
+    "Automatikus (a Windows nyelve)"
+  ],
+  "Autostart ist standardmäßig aus und wird als Benutzeroption verwaltet.": [
+    "Autostart jest domyślnie wyłączony i można nim zarządzać w opcjach użytkownika.",
+    "Automatické spouštění je ve výchozím nastavení vypnuté a spravuje se v uživatelských možnostech.",
+    "Automatické spúšťanie je predvolene vypnuté a spravuje sa v používateľských možnostiach.",
+    "Az automatikus indítás alapértelmezés szerint ki van kapcsolva, és a felhasználói beállításokban kezelhető."
+  ],
+  "BEFEHLSPALETTE · GLOBALER HOTKEY": [
+    "PALETA POLECEŃ · GLOBALNY SKRÓT KLAWISZOWY",
+    "PALETA PŘÍKAZŮ · GLOBÁLNÍ KLÁVESOVÁ ZKRATKA",
+    "PALETA PRÍKAZOV · GLOBÁLNA KLÁVESOVÁ SKRATKA",
+    "PARANCS­PALETTA · GLOBÁLIS BILLENTYŰPARANCS"
+  ],
+  "Beim Schließen in den Infobereich minimieren": [
+    "Minimalizuj do obszaru powiadomień po zamknięciu",
+    "Při zavření minimalizovat do oznamovací oblasti",
+    "Pri zatvorení minimalizovať do oblasti oznámení",
+    "Bezáráskor kis méret az értesítési területre"
+  ],
+  "Beispiel: Ctrl+Shift+S oder Alt+F4.": [
+    "Przykład: Ctrl+Shift+S lub Alt+F4.",
+    "Příklad: Ctrl+Shift+S nebo Alt+F4.",
+    "Príklad: Ctrl+Shift+S alebo Alt+F4.",
+    "Példa: Ctrl+Shift+S vagy Alt+F4."
+  ],
+  "Beleuchtung setzen": [
+    "Ustaw oświetlenie",
+    "Nastavit osvětlení",
+    "Nastaviť osvetlenie",
+    "Világítás beállítása"
+  ],
+  "Bitte gib der Aktion einen Namen.": [
+    "Wpisz nazwę akcji.",
+    "Zadejte název akce.",
+    "Zadajte názov akcie.",
+    "Adja meg a művelet nevét."
+  ],
+  "Bitte gib ein Symbol ein.": [
+    "Wpisz ikonę.",
+    "Zadejte ikonu.",
+    "Zadajte ikonu.",
+    "Adjon meg egy ikont."
+  ],
+  "Bitte mit Strg, Alt, Umschalt oder Win aufnehmen": [
+    "Nagraj, naciskając Ctrl, Alt, Shift lub Win",
+    "Nahrajte stisknutím Ctrl, Alt, Shift nebo Win",
+    "Nahrajte stlačením Ctrl, Alt, Shift alebo Win",
+    "A rögzítéshez nyomja le a Ctrl, Alt, Shift vagy Win billentyűt"
+  ],
+  "Bitte speichere oder verwerfe den Entwurf, bevor du ihn testest.": [
+    "Zapisz lub odrzuć wersję roboczą przed jej przetestowaniem.",
+    "Před testováním koncept uložte nebo zahoďte.",
+    "Pred testovaním koncept uložte alebo zahoďte.",
+    "Tesztelés előtt mentse vagy vesse el a piszkozatot."
+  ],
+  "CORSAIR / iCUE": [
+    "CORSAIR / iCUE",
+    "CORSAIR / iCUE",
+    "CORSAIR / iCUE",
+    "CORSAIR / iCUE"
+  ],
+  "DATEI ODER ORDNER": [
+    "PLIK LUB FOLDER",
+    "SOUBOR NEBO SLOŽKA",
+    "SÚBOR ALEBO PRIEČINOK",
+    "FÁJL VAGY MAPPA"
+  ],
+  "DATENSCHUTZ\nKeine Cloud und keine Telemetrie. Der Verlauf enthält Aktionsstatus, aber keine eingegebenen Textinhalte.": [
+    "PRYWATNOŚĆ\nBrak chmury i telemetrii. Historia zawiera status akcji, ale nie zawiera wpisanej treści.",
+    "SOUKROMÍ\nŽádný cloud ani telemetrie. Historie obsahuje stav akcí, nikoli zadaný text.",
+    "SÚKROMIE\nŽiadny cloud ani telemetria. História obsahuje stav akcií, nie zadaný text.",
+    "ADATVÉDELEM\nNincs felhő és telemetria. Az előzmények a műveletek állapotát tárolják, a beírt szöveget nem."
+  ],
+  "Das Profil dieses Entwurfs ist nicht mehr verfügbar.": [
+    "Profil tej wersji roboczej jest już niedostępny.",
+    "Profil tohoto konceptu už není k dispozici.",
+    "Profil tohto konceptu už nie je k dispozícii.",
+    "A piszkozat profilja már nem érhető el."
+  ],
+  "Dashboard auf gespeicherte Favoriten einschränken": [
+    "Ogranicz pulpit do zapisanych ulubionych",
+    "Omezit řídicí panel na uložené oblíbené položky",
+    "Obmedziť panel na uložené obľúbené položky",
+    "Irányítópult szűrése a mentett kedvencekre"
+  ],
+  "Datei auswählen": [
+    "Wybierz plik",
+    "Vybrat soubor",
+    "Vybrať súbor",
+    "Fájl kiválasztása"
+  ],
+  "Datei oder Ordner": [
+    "Plik lub folder",
+    "Soubor nebo složka",
+    "Súbor alebo priečinok",
+    "Fájl vagy mappa"
+  ],
+  "Datei…": [
+    "Plik…",
+    "Soubor…",
+    "Súbor…",
+    "Fájl…"
+  ],
+  "Deine Aktionen und Belegungen auf einen Blick": [
+    "Wszystkie akcje i skróty w jednym miejscu",
+    "Všechny vaše akce a zkratky na jednom místě",
+    "Všetky vaše akcie a skratky na jednom mieste",
+    "Műveletek és billentyűparancsok egy helyen"
+  ],
+  "Der Abbruch-Hotkey stoppt alle laufenden Makros.": [
+    "Skrót klawiszowy przerwania zatrzymuje wszystkie uruchomione makra.",
+    "Klávesová zkratka pro přerušení zastaví všechna spuštěná makra.",
+    "Klávesová skratka prerušenia zastaví všetky spustené makrá.",
+    "A megszakító billentyűparancs leállítja az összes futó makrót."
+  ],
+  "Der Gerätestatus stammt aus dem Windows-HID-Inventar; Beleuchtungssteuerung ist nur verfügbar, wenn das optionale iCUE-SDK ein kompatibles Gerät meldet.": [
+    "Stan urządzenia pochodzi z wykazu HID systemu Windows; sterowanie oświetleniem jest dostępne tylko wtedy, gdy opcjonalny pakiet iCUE SDK wykryje zgodne urządzenie.",
+    "Stav zařízení pochází z inventáře HID systému Windows; ovládání osvětlení je dostupné pouze tehdy, když volitelná sada iCUE SDK ohlásí kompatibilní zařízení.",
+    "Stav zariadenia pochádza z inventára HID systému Windows; ovládanie osvetlenia je dostupné len vtedy, keď voliteľná súprava iCUE SDK ohlási kompatibilné zariadenie.",
+    "Az eszközállapot a Windows HID-leltárából származik; a világítás vezérlése csak akkor érhető el, ha az opcionális iCUE SDK kompatibilis eszközt jelez."
+  ],
+  "Der Import wird vor dem Übernehmen geprüft. Export enthält Profile und Belegungen.": [
+    "Import jest sprawdzany przed zastosowaniem. Eksport obejmuje profile i skróty.",
+    "Import se před použitím ověří. Export obsahuje profily a zkratky.",
+    "Import sa pred použitím overí. Export obsahuje profily a skratky.",
+    "Importálás előtt ellenőrizzük az adatokat. Az export a profilokat és hozzárendeléseket tartalmazza."
+  ],
+  "Details und Schnittstellen": [
+    "Szczegóły i interfejsy",
+    "Podrobnosti a rozhraní",
+    "Podrobnosti a rozhrania",
+    "Részletek és felületek"
+  ],
+  "Diese Taste wird nicht unterstützt": [
+    "Ten klawisz nie jest obsługiwany",
+    "Tato klávesa není podporována",
+    "Tento kláves nie je podporovaný",
+    "Ez a billentyű nem támogatott"
+  ],
+  "Dieser Hotkey ist bereits {0} zugewiesen.": [
+    "Ten skrót klawiszowy jest już przypisany do: {0}.",
+    "Tato klávesová zkratka je již přiřazena k: {0}.",
+    "Táto klávesová skratka je už priradená k: {0}.",
+    "Ez a billentyűparancs már hozzá van rendelve ehhez: {0}."
+  ],
+  "Dieser Hotkey ist dem globalen Abbruch-Hotkey zugewiesen.": [
+    "Ten skrót klawiszowy jest przypisany do globalnego skrótu przerwania.",
+    "Tato klávesová zkratka je přiřazena ke globální zkratce pro přerušení.",
+    "Táto klávesová skratka je priradená ku globálnej skratke prerušenia.",
+    "Ez a billentyűparancs a globális megszakító billentyűparancshoz van rendelve."
+  ],
+  "Drücke eine Taste wie Enter oder F5, oder eine Kombination wie Ctrl+Shift+S. Escape bricht ab.": [
+    "Naciśnij klawisz, np. Enter lub F5, albo kombinację, np. Ctrl+Shift+S. Naciśnij Escape, aby anulować.",
+    "Stiskněte klávesu, například Enter nebo F5, případně kombinaci, například Ctrl+Shift+S. Stisknutím Escape akci zrušíte.",
+    "Stlačte kláves, napríklad Enter alebo F5, prípadne kombináciu, napríklad Ctrl+Shift+S. Stlačením Escape akciu zrušíte.",
+    "Nyomjon le egy billentyűt (például Enter vagy F5), vagy egy kombinációt (például Ctrl+Shift+S). Az Escape megszakítja a műveletet."
+  ],
+  "ERKANNTE TASTATUREN": [
+    "WYKRYTE KLAWIATURY",
+    "ROZPOZNANÉ KLÁVESNICE",
+    "ROZPOZNANÉ KLÁVESNICE",
+    "FELISMERT BILLENTYŰZETEK"
+  ],
+  "Eine Belegung besteht aus einer einzelnen Aktion oder einer geordneten Makrofolge.": [
+    "Przypisanie składa się z jednej akcji lub uporządkowanej sekwencji makra.",
+    "Přiřazení se skládá z jedné akce nebo uspořádané sekvence maker.",
+    "Priradenie pozostáva z jednej akcie alebo usporiadanej sekvencie makra.",
+    "A hozzárendelés egy műveletből vagy rendezett makrósorozatból áll."
+  ],
+  "Eine der unterstützten Aktionen für das aktive Fenster auswählen.": [
+    "Wybierz jedną z obsługiwanych akcji dla aktywnego okna.",
+    "Vyberte jednu z podporovaných akcí pro aktivní okno.",
+    "Vyberte jednu z podporovaných akcií pre aktívne okno.",
+    "Válasszon egy, az aktív ablakhoz támogatott műveletet."
+  ],
+  "Enter, F5 oder Ctrl+Shift+S": [
+    "Enter, F5 lub Ctrl+Shift+S",
+    "Enter, F5 nebo Ctrl+Shift+S",
+    "Enter, F5 alebo Ctrl+Shift+S",
+    "Enter, F5 vagy Ctrl+Shift+S"
+  ],
+  "Erkannte Tastaturen und verfügbare Herstellerfunktionen": [
+    "Wykryte klawiatury i dostępne funkcje producenta",
+    "Rozpoznané klávesnice a dostupné funkce výrobce",
+    "Rozpoznané klávesnice a dostupné funkcie výrobcu",
+    "Felismerhető billentyűzetek és elérhető gyártói funkciók"
+  ],
+  "Esc  ×": [
+    "Esc  ×",
+    "Esc  ×",
+    "Esc  ×",
+    "Esc  ×"
+  ],
+  "FENSTERTITEL ENTHÄLT (OPTIONAL)": [
+    "TYTUŁ OKNA ZAWIERA (OPCJONALNIE)",
+    "TITULEK OKNA OBSAHUJE (VOLITELNÉ)",
+    "NÁZOV OKNA OBSAHUJE (VOLITEĽNÉ)",
+    "AZ ABLAKCÍM TARTALMAZZA (NEM KÖTELEZŐ)"
+  ],
+  "Farbe bitte im Format #RRGGBB eingeben.": [
+    "Wpisz kolor w formacie #RRGGBB.",
+    "Zadejte barvu ve formátu #RRGGBB.",
+    "Zadajte farbu vo formáte #RRGGBB.",
+    "Adja meg a színt #RRGGBB formátumban."
+  ],
+  "Farbe testen": [
+    "Testuj kolor",
+    "Otestovat barvu",
+    "Otestovať farbu",
+    "Szín tesztelése"
+  ],
+  "Farbe wählen…": [
+    "Wybierz kolor…",
+    "Vybrat barvu…",
+    "Vybrať farbu…",
+    "Szín kiválasztása…"
+  ],
+  "Finde Aktionen in allen Profilen.": [
+    "Znajdź akcje we wszystkich profilach.",
+    "Najděte akce ve všech profilech.",
+    "Nájdite akcie vo všetkých profiloch.",
+    "Műveletek keresése az összes profilban."
+  ],
+  "Fähigkeiten: {0}": [
+    "Możliwości: {0}",
+    "Možnosti: {0}",
+    "Možnosti: {0}",
+    "Képességek: {0}"
+  ],
+  "Führe {0} aus …": [
+    "Uruchamianie {0} …",
+    "Spouští se {0} …",
+    "Spúšťa sa {0} …",
+    "{0} futtatása …"
+  ],
+  "Globaler Hotkey:": [
+    "Globalny skrót klawiszowy:",
+    "Globální klávesová zkratka:",
+    "Globálna klávesová skratka:",
+    "Globális billentyűparancs:"
+  ],
+  "HTTP- und HTTPS-Adressen werden geöffnet.": [
+    "Adresy HTTP i HTTPS zostaną otwarte.",
+    "Adresy HTTP a HTTPS se otevřou.",
+    "Adresy HTTP a HTTPS sa otvoria.",
+    "A HTTP- és HTTPS-címek megnyílnak."
+  ],
+  "Hotkey entfernen": [
+    "Usuń skrót klawiszowy",
+    "Odebrat klávesovou zkratku",
+    "Odstrániť klávesovú skratku",
+    "Billentyűparancs eltávolítása"
+  ],
+  "Hotkey-Konflikt mit {0}.": [
+    "Konflikt skrótu klawiszowego z: {0}.",
+    "Konflikt klávesové zkratky s: {0}.",
+    "Konflikt klávesovej skratky s: {0}.",
+    "Billentyűparancs-ütközés ezzel: {0}."
+  ],
+  "Hotkeys sind pausiert. Aktionen können über die Palette nicht gestartet werden.": [
+    "Skróty klawiszowe są wstrzymane. Akcji nie można uruchomić z palety.",
+    "Klávesové zkratky jsou pozastavené. Akce nelze spouštět z palety.",
+    "Klávesové skratky sú pozastavené. Akcie nemožno spúšťať z palety.",
+    "A billentyűparancsok szünetelnek. A palettáról nem indíthatók műveletek."
+  ],
+  "Kein Profil": [
+    "Brak profilu",
+    "Žádný profil",
+    "Žiadny profil",
+    "Nincs profil"
+  ],
+  "Keine passende Aktion gefunden.": [
+    "Nie znaleziono pasującej akcji.",
+    "Nebyla nalezena žádná odpovídající akce.",
+    "Nenašla sa žiadna vyhovujúca akcia.",
+    "Nem található megfelelő művelet."
+  ],
+  "Klicken und Kombination drücken": [
+    "Kliknij i naciśnij kombinację",
+    "Klikněte a stiskněte kombinaci",
+    "Kliknite a stlačte kombináciu",
+    "Kattintson, majd nyomja le a kombinációt"
+  ],
+  "Kombination drücken …": [
+    "Naciśnij kombinację …",
+    "Stiskněte kombinaci …",
+    "Stlačte kombináciu …",
+    "Nyomja le a kombinációt …"
+  ],
+  "Konflikt mit dem globalen Abbruch-Hotkey.": [
+    "Konflikt z globalnym skrótem przerwania.",
+    "Konflikt s globální zkratkou pro přerušení.",
+    "Konflikt s globálnou skratkou prerušenia.",
+    "Ütközés a globális megszakító billentyűparanccsal."
+  ],
+  "LETZTE AKTIVITÄT": [
+    "OSTATNIA AKTYWNOŚĆ",
+    "POSLEDNÍ AKTIVITA",
+    "POSLEDNÁ AKTIVITA",
+    "LEGUTÓBBI TEVÉKENYSÉG"
+  ],
+  "Links anordnen": [
+    "Wyrównaj do lewej",
+    "Zarovnat doleva",
+    "Zarovnať doľava",
+    "Balra igazítás"
+  ],
+  "Lokal · begrenzter Verlauf": [
+    "Lokalnie · ograniczona historia",
+    "Lokálně · omezená historie",
+    "Lokálne · obmedzená história",
+    "Helyi · korlátozott előzmények"
+  ],
+  "Lokale Verarbeitung": [
+    "Przetwarzanie lokalne",
+    "Místní zpracování",
+    "Lokálne spracovanie",
+    "Helyi feldolgozás"
+  ],
+  "MAKRO-SCHRITTE · {0}": [
+    "KROKI MAKRA · {0}",
+    "KROKY MAKRA · {0}",
+    "KROKY MAKRA · {0}",
+    "MAKRÓLÉPÉSEK · {0}"
+  ],
+  "Makro-Vorschau · {0}": [
+    "Podgląd makra · {0}",
+    "Náhled makra · {0}",
+    "Ukážka makra · {0}",
+    "Makró előnézete · {0}"
+  ],
+  "Makro-Wiederholungen (1–100)": [
+    "Powtórzenia makra (1–100)",
+    "Opakování makra (1–100)",
+    "Opakovania makra (1–100)",
+    "Makróismétlések (1–100)"
+  ],
+  "Makros abbrechen": [
+    "Przerwij makra",
+    "Přerušit makra",
+    "Prerušiť makrá",
+    "Makrók megszakítása"
+  ],
+  "Mehrschritt-Makro erstellen": [
+    "Utwórz makro wieloetapowe",
+    "Vytvořit vícekrokové makro",
+    "Vytvoriť viackrokové makro",
+    "Többlépéses makró létrehozása"
+  ],
+  "Mit Windows starten": [
+    "Uruchom przy starcie systemu Windows",
+    "Spustit při spuštění Windows",
+    "Spustiť pri spustení Windows",
+    "Indítás a Windowszal"
+  ],
+  "Nicht gespeicherte Änderungen": [
+    "Niezapisane zmiany",
+    "Neuložené změny",
+    "Neuložené zmeny",
+    "Nem mentett módosítások"
+  ],
+  "Noch kein Schritt. Wähle oben eine Aktion aus.": [
+    "Brak kroków. Wybierz akcję powyżej.",
+    "Zatím žádný krok. Vyberte akci výše.",
+    "Zatiaľ žiadny krok. Vyberte akciu vyššie.",
+    "Még nincs lépés. Válasszon egy műveletet fent."
+  ],
+  "Noch keine Tastatur erkannt": [
+    "Nie wykryto jeszcze klawiatury",
+    "Zatím nebyla rozpoznána žádná klávesnice",
+    "Zatiaľ nebola rozpoznaná žiadna klávesnica",
+    "Még nem található billentyűzet"
+  ],
+  "Nur Sperren ist verfügbar.": [
+    "Dostępna jest tylko akcja blokowania.",
+    "Je dostupná pouze akce uzamčení.",
+    "Dostupná je len akcia uzamknutia.",
+    "Csak a zárolási művelet érhető el."
+  ],
+  "Nur Vorschau: Es werden keine Aktionen ausgeführt.": [
+    "Tylko podgląd: akcje nie zostaną wykonane.",
+    "Pouze náhled: akce se neprovedou.",
+    "Len ukážka: akcie sa nevykonajú.",
+    "Csak előnézet: a műveletek nem futnak le."
+  ],
+  "Nur mit iCUE-SDK und kompatiblem Gerät verfügbar.": [
+    "Dostępne tylko z iCUE SDK i zgodnym urządzeniem.",
+    "Dostupné pouze s iCUE SDK a kompatibilním zařízením.",
+    "Dostupné len s iCUE SDK a kompatibilným zariadením.",
+    "Csak iCUE SDK-val és kompatibilis eszközzel érhető el."
+  ],
+  "Nächster Titel": [
+    "Następny utwór",
+    "Další skladba",
+    "Ďalšia skladba",
+    "Következő szám"
+  ],
+  "Ordner auswählen": [
+    "Wybierz folder",
+    "Vybrat složku",
+    "Vybrať priečinok",
+    "Mappa kiválasztása"
+  ],
+  "Ordner…": [
+    "Folder…",
+    "Složka…",
+    "Priečinok…",
+    "Mappa…"
+  ],
+  "PAUSE (MS)": [
+    "OPÓŹNIENIE (MS)",
+    "PRODLEVA (MS)",
+    "ONESKORENIE (MS)",
+    "KÉSLELTETÉS (MS)"
+  ],
+  "PROZESSNAME (OPTIONAL)": [
+    "NAZWA PROCESU (OPCJONALNIE)",
+    "NÁZEV PROCESU (VOLITELNÉ)",
+    "NÁZOV PROCESU (VOLITEĽNÉ)",
+    "FOLYAMAT NEVE (NEM KÖTELEZŐ)"
+  ],
+  "Pfad oder Wert": [
+    "Ścieżka lub wartość",
+    "Cesta nebo hodnota",
+    "Cesta alebo hodnota",
+    "Elérési út vagy érték"
+  ],
+  "Profil anhand des Vordergrundprogramms wechseln": [
+    "Przełącz profil na podstawie aplikacji na pierwszym planie",
+    "Přepnout profil podle aplikace v popředí",
+    "Prepnúť profil podľa aplikácie v popredí",
+    "Profilváltás az előtérben lévő alkalmazás alapján"
+  ],
+  "Profil nach Namen auswählen.": [
+    "Wybierz profil według nazwy.",
+    "Vyberte profil podle názvu.",
+    "Vyberte profil podľa názvu.",
+    "Profil kiválasztása név szerint."
+  ],
+  "Profil öffnen": [
+    "Otwórz profil",
+    "Otevřít profil",
+    "Otvoriť profil",
+    "Profil megnyitása"
+  ],
+  "Profile und Aktionen werden lokal auf diesem PC gespeichert.": [
+    "Profile i akcje są przechowywane lokalnie na tym komputerze.",
+    "Profily a akce se ukládají místně na tomto počítači.",
+    "Profily a akcie sa ukladajú lokálne v tomto počítači.",
+    "A profilok és műveletek helyben, ezen a számítógépen tárolódnak."
+  ],
+  "Programm auswählen": [
+    "Wybierz program",
+    "Vybrat program",
+    "Vybrať program",
+    "Program kiválasztása"
+  ],
+  "Programmdatei auswählen; Argumente und Arbeitsordner sind eigene Felder.": [
+    "Wybierz plik programu; argumenty i folder roboczy mają osobne pola.",
+    "Vyberte soubor programu; argumenty a pracovní složka mají samostatná pole.",
+    "Vyberte súbor programu; argumenty a pracovný priečinok majú samostatné polia.",
+    "Válassza ki a programfájlt; az argumentumok és a munkamappa külön mezőben adhatók meg."
+  ],
+  "Programme (*.exe)|*.exe|Alle Dateien (*.*)|*.*": [
+    "Programy (*.exe)|*.exe|Wszystkie pliki (*.*)|*.*",
+    "Programy (*.exe)|*.exe|Všechny soubory (*.*)|*.*",
+    "Programy (*.exe)|*.exe|Všetky súbory (*.*)|*.*",
+    "Programok (*.exe)|*.exe|Minden fájl (*.*)|*.*"
+  ],
+  "Prozessname und Fenstertitel müssen beide passen (UND). Ein leerer Wert wird ignoriert. Nutze den Fenstertitel, wenn ein Programm mehrere Arbeitsbereiche über verschiedene Fenster verwaltet.": [
+    "Nazwa procesu i tytuł okna muszą pasować jednocześnie (AND). Puste wartości są ignorowane. Użyj tytułu okna, jeśli program zarządza kilkoma obszarami roboczymi w różnych oknach.",
+    "Název procesu i titulek okna se musí shodovat (AND). Prázdná hodnota se ignoruje. Titulek okna použijte, pokud program spravuje více pracovních prostorů v různých oknech.",
+    "Názov procesu aj názov okna sa musia zhodovať (AND). Prázdna hodnota sa ignoruje. Názov okna použite, ak program spravuje viacero pracovných priestorov v rôznych oknách.",
+    "A folyamat nevének és az ablak címének is egyeznie kell (ÉS). Az üres értéket figyelmen kívül hagyjuk. Akkor használja az ablakcímet, ha a program különböző ablakokban több munkaterületet kezel."
+  ],
+  "Prozessnamen ohne Pfad eintragen, z. B. premiere.exe.": [
+    "Wpisz nazwę procesu bez ścieżki, np. premiere.exe.",
+    "Zadejte název procesu bez cesty, např. premiere.exe.",
+    "Zadajte názov procesu bez cesty, napr. premiere.exe.",
+    "Az elérési út nélküli folyamatnevet adja meg, például: premiere.exe."
+  ],
+  "Prüfe die Verbindung und aktualisiere die Geräteliste. Das normale Hotkey-System bleibt davon unabhängig.": [
+    "Sprawdź połączenie i odśwież listę urządzeń. Zwykły system skrótów klawiszowych działa niezależnie od tego.",
+    "Zkontrolujte připojení a obnovte seznam zařízení. Běžný systém klávesových zkratek funguje nezávisle na tom.",
+    "Skontrolujte pripojenie a obnovte zoznam zariadení. Bežný systém klávesových skratiek funguje nezávisle od toho.",
+    "Ellenőrizze a kapcsolatot, majd frissítse az eszközlistát. A normál billentyűparancs-rendszer ettől függetlenül működik."
+  ],
+  "RGB-Hexfarbe, zum Beispiel #35D0C1": [
+    "Kolor RGB w zapisie szesnastkowym, np. #35D0C1",
+    "Barva RGB v šestnáctkovém zápisu, například #35D0C1",
+    "Farba RGB v šestnástkovom zápise, napríklad #35D0C1",
+    "RGB-szín hexadecimális formátumban, például: #35D0C1"
+  ],
+  "Rechts anordnen": [
+    "Wyrównaj do prawej",
+    "Zarovnat doprava",
+    "Zarovnať doprava",
+    "Jobbra igazítás"
+  ],
+  "SCHRITT {0} · {1}": [
+    "KROK {0} · {1}",
+    "KROK {0} · {1}",
+    "KROK {0} · {1}",
+    "{0}. LÉPÉS · {1}"
+  ],
+  "START & VERHALTEN": [
+    "URUCHAMIANIE I ZACHOWANIE",
+    "SPUŠTĚNÍ A CHOVÁNÍ",
+    "SPUSTENIE A SPRÁVANIE",
+    "INDÍTÁS ÉS MŰKÖDÉS"
+  ],
+  "Schritt {0}: Bitte Windows sperren auswählen.": [
+    "Krok {0}: wybierz Zablokuj system Windows.",
+    "Krok {0}: vyberte Uzamknout Windows.",
+    "Krok {0}: vyberte Uzamknúť Windows.",
+    "{0}. lépés: válassza a Windows zárolása műveletet."
+  ],
+  "Schritt {0}: Bitte ein vorhandenes Zielprofil auswählen.": [
+    "Krok {0}: wybierz istniejący profil docelowy.",
+    "Krok {0}: vyberte existující cílový profil.",
+    "Krok {0}: vyberte existujúci cieľový profil.",
+    "{0}. lépés: válasszon egy létező célprofilt."
+  ],
+  "Schritt {0}: Bitte eine Lautstärkeaktion auswählen.": [
+    "Krok {0}: wybierz akcję głośności.",
+    "Krok {0}: vyberte akci hlasitosti.",
+    "Krok {0}: vyberte akciu hlasitosti.",
+    "{0}. lépés: válasszon hangerőműveletet."
+  ],
+  "Schritt {0}: Bitte eine unterstützte Fensteraktion auswählen.": [
+    "Krok {0}: wybierz obsługiwaną akcję okna.",
+    "Krok {0}: vyberte podporovanou akci okna.",
+    "Krok {0}: vyberte podporovanú akciu okna.",
+    "{0}. lépés: válasszon támogatott ablakműveletet."
+  ],
+  "Schritt {0}: Bitte eine vollständige HTTP- oder HTTPS-Adresse eingeben.": [
+    "Krok {0}: wpisz pełny adres HTTP lub HTTPS.",
+    "Krok {0}: zadejte úplnou adresu HTTP nebo HTTPS.",
+    "Krok {0}: zadajte úplnú adresu HTTP alebo HTTPS.",
+    "{0}. lépés: adjon meg egy teljes HTTP- vagy HTTPS-címet."
+  ],
+  "Schritt {0}: Bitte einen Medienbefehl auswählen.": [
+    "Krok {0}: wybierz polecenie multimedialne.",
+    "Krok {0}: vyberte příkaz pro média.",
+    "Krok {0}: vyberte mediálny príkaz.",
+    "{0}. lépés: válasszon médiaparancsot."
+  ],
+  "Schritt {0}: Bitte einen Programm-, Datei- oder Ordnerpfad eingeben.": [
+    "Krok {0}: wpisz ścieżkę do programu, pliku lub folderu.",
+    "Krok {0}: zadejte cestu k programu, souboru nebo složce.",
+    "Krok {0}: zadajte cestu k programu, súboru alebo priečinku.",
+    "{0}. lépés: adja meg egy program, fájl vagy mappa elérési útját."
+  ],
+  "Schritt {0}: Farbe bitte im Format #RRGGBB eingeben.": [
+    "Krok {0}: wpisz kolor w formacie #RRGGBB.",
+    "Krok {0}: zadejte barvu ve formátu #RRGGBB.",
+    "Krok {0}: zadajte farbu vo formáte #RRGGBB.",
+    "{0}. lépés: adja meg a színt #RRGGBB formátumban."
+  ],
+  "Schritt {0}: Pause muss zwischen 0 und 600.000 ms liegen.": [
+    "Krok {0}: opóźnienie musi wynosić od 0 do 600 000 ms.",
+    "Krok {0}: prodleva musí být v rozmezí 0 až 600 000 ms.",
+    "Krok {0}: oneskorenie musí byť od 0 do 600 000 ms.",
+    "{0}. lépés: a késleltetésnek 0 és 600 000 ms közé kell esnie."
+  ],
+  "Schritt {0}: Tastenkombination: Bitte eine Taste eingeben.": [
+    "Krok {0}: kombinacja klawiszy: wpisz klawisz.",
+    "Krok {0}: kombinace kláves: zadejte klávesu.",
+    "Krok {0}: kombinácia klávesov: zadajte kláves.",
+    "{0}. lépés: billentyűkombináció – adjon meg egy billentyűt."
+  ],
+  "Schritt {0}: Tastenkombination: {1}": [
+    "Krok {0}: kombinacja klawiszy: {1}",
+    "Krok {0}: kombinace kláves: {1}",
+    "Krok {0}: kombinácia klávesov: {1}",
+    "{0}. lépés: billentyűkombináció: {1}"
+  ],
+  "Startverhalten, Import und lokale Steuerung": [
+    "Zachowanie przy uruchamianiu, import i sterowanie lokalne",
+    "Chování při spuštění, import a místní ovládání",
+    "Správanie pri spustení, import a lokálne ovládanie",
+    "Indítási működés, importálás és helyi vezérlés"
+  ],
+  "Stoppt alle laufenden Makros und gibt simulierte Tasten frei.": [
+    "Zatrzymuje wszystkie uruchomione makra i zwalnia symulowane klawisze.",
+    "Zastaví všechna spuštěná makra a uvolní simulované klávesy.",
+    "Zastaví všetky spustené makrá a uvoľní simulované klávesy.",
+    "Leállítja az összes futó makrót, és felengedi a szimulált billentyűket."
+  ],
+  "TEXT FÜR ZWISCHENABLAGE": [
+    "TEKST ZE SCHOWKA",
+    "TEXT DO SCHRÁNKY",
+    "TEXT DO SCHRÁNKY",
+    "VÁGÓLAP SZÖVEGE"
+  ],
+  "Tastenkombination aufnehmen": [
+    "Nagraj kombinację klawiszy",
+    "Nahrát kombinaci kláves",
+    "Nahrať kombináciu klávesov",
+    "Billentyűkombináció rögzítése"
+  ],
+  "Tastenpositionen und Belegungen im gewählten Layout": [
+    "Pozycje klawiszy i przypisania w wybranym układzie",
+    "Pozice kláves a přiřazení ve vybraném rozložení",
+    "Pozície klávesov a priradenia vo vybranom rozložení",
+    "Billentyűpozíciók és hozzárendelések a kiválasztott kiosztásban"
+  ],
+  "Technische Geräteinformationen": [
+    "Informacje techniczne o urządzeniu",
+    "Technické informace o zařízení",
+    "Technické informácie o zariadení",
+    "Eszköz műszaki adatai"
+  ],
+  "Text wird mit ersetzten Variablen in die Zwischenablage kopiert.": [
+    "Tekst zostanie skopiowany do schowka po zastąpieniu zmiennych.",
+    "Text se zkopíruje do schránky s nahrazenými proměnnými.",
+    "Text sa skopíruje do schránky s nahradenými premennými.",
+    "A szöveg a változók behelyettesítése után a vágólapra kerül."
+  ],
+  "Tipp: Nutze Strg, Alt, Umschalt oder Win zusammen mit einer Taste.": [
+    "Wskazówka: użyj Ctrl, Alt, Shift lub Win wraz z innym klawiszem.",
+    "Tip: použijte Ctrl, Alt, Shift nebo Win spolu s další klávesou.",
+    "Tip: použite Ctrl, Alt, Shift alebo Win spolu s ďalším klávesom.",
+    "Tipp: a Ctrl, Alt, Shift vagy Win billentyűt egy másik billentyűvel együtt használja."
+  ],
+  "Unicode-Text wird eingegeben. Variablen werden beim Ausführen ersetzt.": [
+    "Wpisywany jest tekst Unicode. Zmienne są zastępowane podczas wykonywania.",
+    "Zadává se text Unicode. Proměnné se nahradí při spuštění.",
+    "Vkladá sa text Unicode. Premenné sa nahradia pri vykonaní.",
+    "Unicode-szöveg kerül beírásra. A változók futtatáskor behelyettesülnek."
+  ],
+  "Verfügbar: {{date}} · {{time}} · {{datetime}} · {{clipboard}} · {{profile}} · {{process}} · {{user}}": [
+    "Dostępne: {{date}} · {{time}} · {{datetime}} · {{clipboard}} · {{profile}} · {{process}} · {{user}}",
+    "Dostupné: {{date}} · {{time}} · {{datetime}} · {{clipboard}} · {{profile}} · {{process}} · {{user}}",
+    "Dostupné: {{date}} · {{time}} · {{datetime}} · {{clipboard}} · {{profile}} · {{process}} · {{user}}",
+    "Elérhető: {{date}} · {{time}} · {{datetime}} · {{clipboard}} · {{profile}} · {{process}} · {{user}}"
+  ],
+  "Vorheriger Titel": [
+    "Poprzedni utwór",
+    "Předchozí skladba",
+    "Predchádzajúca skladba",
+    "Előző szám"
+  ],
+  "Wartezeit zwischen Schritten (0–600.000 ms).": [
+    "Czas oczekiwania między krokami (0–600 000 ms).",
+    "Čekání mezi kroky (0–600 000 ms).",
+    "Čakanie medzi krokmi (0–600 000 ms).",
+    "Várakozási idő a lépések között (0–600 000 ms)."
+  ],
+  "Weitere Optionen": [
+    "Więcej opcji",
+    "Další možnosti",
+    "Ďalšie možnosti",
+    "További lehetőségek"
+  ],
+  "Wenn automatische Profile aktiv sind, wechselt die App bei passenden Vordergrundbedingungen. Ohne Treffer bleibt das Standardprofil aktiv. Bei mehreren Treffern gilt die Listenreihenfolge.": [
+    "Gdy profile automatyczne są włączone, aplikacja zmienia profil po spełnieniu warunków dla okna na pierwszym planie. Jeśli nie ma dopasowania, pozostaje profil domyślny. Przy wielu dopasowaniach obowiązuje kolejność na liście.",
+    "Pokud jsou zapnuté automatické profily, aplikace přepne profil při splnění podmínek pro okno v popředí. Bez shody zůstane aktivní výchozí profil. Při více shodách rozhoduje pořadí v seznamu.",
+    "Ak sú automatické profily zapnuté, aplikácia pri splnení podmienok pre okno v popredí prepne profil. Ak nič nevyhovuje, zostane aktívny predvolený profil. Pri viacerých zhodách rozhoduje poradie v zozname.",
+    "Ha az automatikus profilok aktívak, az alkalmazás az előtérben lévő ablak feltételei alapján profilt vált. Egyezés nélkül az alapértelmezett profil marad aktív. Több egyezés esetén a lista sorrendje érvényesül."
+  ],
+  "Wert für diese Aktion.": [
+    "Wartość dla tej akcji.",
+    "Hodnota pro tuto akci.",
+    "Hodnota pre túto akciu.",
+    "A művelet értéke."
+  ],
+  "Wiedergabe / Pause": [
+    "Odtwarzanie / pauza",
+    "Přehrát / pozastavit",
+    "Prehrať / pozastaviť",
+    "Lejátszás / szünet"
+  ],
+  "Wiederholungen müssen zwischen 1 und 100 liegen.": [
+    "Liczba powtórzeń musi wynosić od 1 do 100.",
+    "Počet opakování musí být v rozmezí 1 až 100.",
+    "Počet opakovaní musí byť od 1 do 100.",
+    "Az ismétlések számának 1 és 100 közé kell esnie."
+  ],
+  "Windows sperren": [
+    "Zablokuj system Windows",
+    "Uzamknout Windows",
+    "Uzamknúť Windows",
+    "Windows zárolása"
+  ],
+  "Windows öffnet den Pfad mit der zugeordneten Anwendung.": [
+    "System Windows otworzy ścieżkę w przypisanej do niej aplikacji.",
+    "Windows otevře cestu v přiřazené aplikaci.",
+    "Windows otvorí cestu v priradenej aplikácii.",
+    "A Windows a társított alkalmazással nyitja meg az elérési utat."
+  ],
+  "Wähle Wiedergabe/Pause, Weiter, Zurück oder Stopp.": [
+    "Wybierz Odtwarzanie/Pauza, Dalej, Wstecz lub Stop.",
+    "Vyberte Přehrát/Pozastavit, Další, Zpět nebo Zastavit.",
+    "Vyberte Prehrať/Pozastaviť, Ďalej, Späť alebo Zastaviť.",
+    "Válassza a Lejátszás/Szünet, Következő, Előző vagy Leállítás lehetőséget."
+  ],
+  "Wähle eine Aktion aus.": [
+    "Wybierz akcję.",
+    "Vyberte akci.",
+    "Vyberte akciu.",
+    "Válasszon műveletet."
+  ],
+  "Wähle eine Kachel aus oder lege eine neue Aktion an.": [
+    "Wybierz kafelek lub utwórz nową akcję.",
+    "Vyberte dlaždici nebo vytvořte novou akci.",
+    "Vyberte dlaždicu alebo vytvorte novú akciu.",
+    "Válasszon egy csempét, vagy hozzon létre új műveletet."
+  ],
+  "Wähle lauter, leiser oder stumm.": [
+    "Wybierz: głośniej, ciszej lub wycisz.",
+    "Vyberte zvýšit hlasitost, snížit hlasitost nebo ztlumit.",
+    "Vyberte zvýšiť hlasitosť, znížiť hlasitosť alebo stlmiť.",
+    "Válassza a Hangerő növelése, Hangerő csökkentése vagy Némítás lehetőséget."
+  ],
+  "iCUE meldet momentan keine steuerbare Tastatur. Die normalen Hotkeys funktionieren unabhängig davon weiter.": [
+    "iCUE nie zgłasza obecnie klawiatury, którą można sterować. Zwykłe skróty klawiszowe działają niezależnie.",
+    "iCUE nyní nehlásí žádnou ovladatelnou klávesnici. Běžné klávesové zkratky fungují nezávisle na tom.",
+    "iCUE momentálne nehlási žiadnu ovládateľnú klávesnicu. Bežné klávesové skratky fungujú nezávisle od toho.",
+    "iCUE jelenleg nem jelez vezérelhető billentyűzetet. A normál billentyűparancsok ettől függetlenül működnek."
+  ],
+  "iCUE öffnen": [
+    "Otwórz iCUE",
+    "Otevřít iCUE",
+    "Otvoriť iCUE",
+    "iCUE megnyitása"
+  ],
+  "z. B. Musik starten": [
+    "np. rozpocznij odtwarzanie muzyki",
+    "např. spustit hudbu",
+    "napr. spustiť hudbu",
+    "például zene indítása"
+  ],
+  "{0}  ·  USB {1}:{2}": [
+    "{0}  ·  USB {1}:{2}",
+    "{0}  ·  USB {1}:{2}",
+    "{0}  ·  USB {1}:{2}",
+    "{0}  ·  USB {1}:{2}"
+  ],
+  "{0}  ·  {1} aktive Aktionen": [
+    "{0}  ·  {1} aktywnych akcji",
+    "{0}  ·  {1} aktivních akcí",
+    "{0}  ·  {1} aktívnych akcií",
+    "{0}  ·  {1} aktív művelet"
+  ],
+  "{0} LEDs": [
+    "{0} diod LED",
+    "{0} LED diod",
+    "{0} LED diód",
+    "{0} LED"
+  ],
+  "{0} Schnittstellen": [
+    "{0} interfejsów",
+    "{0} rozhraní",
+    "{0} rozhraní",
+    "{0} felület"
+  ],
+  "{0} Schritte · {1} Durchlauf{2}": [
+    "{0} kroków · {1} przebieg{2}",
+    "{0} kroků · {1} průchod{2}",
+    "{0} krokov · {1} priechod{2}",
+    "{0} lépés · {1} futam{2}"
+  ],
+  "{0} erkannte Geräteeinträge": [
+    "{0} wykrytych wpisów urządzeń",
+    "{0} rozpoznaných položek zařízení",
+    "{0} rozpoznaných položiek zariadení",
+    "{0} felismert eszközbejegyzés"
+  ],
+  "Änderungen gespeichert": [
+    "Zmiany zapisane",
+    "Změny uloženy",
+    "Zmeny uložené",
+    "Módosítások mentve"
+  ],
+  "Über die Palette findest du Aktionen in allen Profilen. Ctrl+K ist zusätzlich verfügbar, wenn dieses Fenster den Fokus hat.": [
+    "Paleta pozwala znaleźć akcje we wszystkich profilach. Skrót Ctrl+K jest też dostępny, gdy to okno ma fokus.",
+    "V paletě najdete akce ve všech profilech. Zkratka Ctrl+K je navíc dostupná, když je toto okno aktivní.",
+    "V palete nájdete akcie vo všetkých profiloch. Skratka Ctrl+K je navyše dostupná, keď je toto okno aktívne.",
+    "A palettán az összes profil műveletei kereshetők. A Ctrl+K akkor is használható, ha ez az ablak van fókuszban."
+  ],
+  "Ⅱ  Hotkeys pausieren": [
+    "Ⅱ  Wstrzymaj skróty klawiszowe",
+    "Ⅱ  Pozastavit klávesové zkratky",
+    "Ⅱ  Pozastaviť klávesové skratky",
+    "Ⅱ  Billentyűparancsok szüneteltetése"
+  ],
+  "↑ Priorität": [
+    "↑ Priorytet",
+    "↑ Priorita",
+    "↑ Priorita",
+    "↑ Prioritás"
+  ],
+  "↑↓ navigieren   ·   Enter starten   ·   Esc schließen": [
+    "↑↓ nawiguj   ·   Enter uruchom   ·   Esc zamknij",
+    "↑↓ navigace   ·   Enter spustit   ·   Esc zavřít",
+    "↑↓ navigácia   ·   Enter spustiť   ·   Esc zavrieť",
+    "↑↓ navigálás   ·   Enter indítás   ·   Esc bezárás"
+  ],
+  "↶ Rückgängig": [
+    "↶ Cofnij",
+    "↶ Zpět",
+    "↶ Späť",
+    "↶ Visszavonás"
+  ],
+  "↷ Wiederholen": [
+    "↷ Ponów",
+    "↷ Znovu",
+    "↷ Znova",
+    "↷ Ismét"
+  ],
+  "↻ Aktualisieren": [
+    "↻ Odśwież",
+    "↻ Obnovit",
+    "↻ Obnoviť",
+    "↻ Frissítés"
+  ],
+  "⇧ Import": [
+    "⇧ Importuj",
+    "⇧ Importovat",
+    "⇧ Importovať",
+    "⇧ Importálás"
+  ],
+  "⇧ Konfiguration importieren": [
+    "⇧ Importuj konfigurację",
+    "⇧ Importovat konfiguraci",
+    "⇧ Importovať konfiguráciu",
+    "⇧ Konfiguráció importálása"
+  ],
+  "⇩ Export": [
+    "⇩ Eksportuj",
+    "⇩ Exportovat",
+    "⇩ Exportovať",
+    "⇩ Exportálás"
+  ],
+  "⇩ Konfiguration exportieren": [
+    "⇩ Eksportuj konfigurację",
+    "⇩ Exportovat konfiguraci",
+    "⇩ Exportovať konfiguráciu",
+    "⇩ Konfiguráció exportálása"
+  ],
+  "⌕  Befehlspalette  {0}": [
+    "⌕  Paleta poleceń  {0}",
+    "⌕  Paleta příkazů  {0}",
+    "⌕  Paleta príkazov  {0}",
+    "⌕  Parancspaletta  {0}"
+  ],
+  "⌖ Bedingungen aus Vordergrund übernehmen": [
+    "⌖ Przejmij warunki z okna na pierwszym planie",
+    "⌖ Převzít podmínky z okna v popředí",
+    "⌖ Prevziať podmienky z okna v popredí",
+    "⌖ Előtérben lévő ablak feltételeinek átvétele"
+  ],
+  "⌗   Tastatur": [
+    "⌗   Klawiatura",
+    "⌗   Klávesnice",
+    "⌗   Klávesnica",
+    "⌗   Billentyűzet"
+  ],
+  "⌨   Geräte": [
+    "⌨   Urządzenia",
+    "⌨   Zařízení",
+    "⌨   Zariadenia",
+    "⌨   Eszközök"
+  ],
+  "▦   Profile": [
+    "▦   Profile",
+    "▦   Profily",
+    "▦   Profily",
+    "▦   Profilok"
+  ],
+  "▶  Hotkeys fortsetzen": [
+    "▶  Wznów skróty klawiszowe",
+    "▶  Pokračovat v používání klávesových zkratek",
+    "▶  Pokračovať v používaní klávesových skratiek",
+    "▶  Billentyűparancsok folytatása"
+  ],
+  "▶  Starten": [
+    "▶  Uruchom",
+    "▶  Spustit",
+    "▶  Spustiť",
+    "▶  Indítás"
+  ],
+  "▶ Testen": [
+    "▶ Testuj",
+    "▶ Testovat",
+    "▶ Testovať",
+    "▶ Tesztelés"
+  ],
+  "◫   Dashboard": [
+    "◫   Pulpit",
+    "◫   Řídicí panel",
+    "◫   Panel",
+    "◫   Irányítópult"
+  ],
+  "⚙   Einstellungen": [
+    "⚙   Ustawienia",
+    "⚙   Nastavení",
+    "⚙   Nastavenia",
+    "⚙   Beállítások"
+  ],
+  "⧉ Duplizieren": [
+    "⧉ Duplikuj",
+    "⧉ Duplikovat",
+    "⧉ Duplikovať",
+    "⧉ Másolat készítése"
+  ],
+  "＋ Aktion": [
+    "＋ Akcja",
+    "＋ Akce",
+    "＋ Akcia",
+    "＋ Művelet"
+  ],
+  "＋ Hinzufügen": [
+    "＋ Dodaj",
+    "＋ Přidat",
+    "＋ Pridať",
+    "＋ Hozzáadás"
+  ],
+  "＋ Profil": [
+    "＋ Profil",
+    "＋ Profil",
+    "＋ Profil",
+    "＋ Profil"
+  ]
+}

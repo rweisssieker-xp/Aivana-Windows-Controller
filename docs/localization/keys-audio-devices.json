@@ -1,0 +1,22 @@
+{
+  "sourceLanguage": "de",
+  "keys": [
+    "Audioendgeräte auflisten",
+    "Anzahl der Audioendgeräte lesen",
+    "Audioendgerät lesen",
+    "Windows hat keine Audioendgeräteliste zurückgegeben.",
+    "Die gespeicherte Audioendgeräte-ID ist ungültig oder nicht mehr verfügbar.",
+    "Das ausgewählte Audioendgerät ist nicht mehr verfügbar. Wähle ein aktives Gerät aus.",
+    "Geräterichtung prüfen",
+    "Das ausgewählte Gerät ist kein Wiedergabegerät.",
+    "Das ausgewählte Gerät ist kein Aufnahmegerät.",
+    "Das ausgewählte Audioendgerät stellt keine Lautstärke- oder Stummschaltungssteuerung bereit.",
+    "Audioendgeräte-ID lesen",
+    "Windows hat eine leere Audioendgeräte-ID zurückgegeben.",
+    "Gerätenamen lesen",
+    "Windows hat keinen Eigenschaftsspeicher für das Audioendgerät zurückgegeben.",
+    "Windows hat keinen gültigen Anzeigenamen für das Audioendgerät zurückgegeben.",
+    "Lautstärke lesen",
+    "Stummschaltung lesen"
+  ]
+}

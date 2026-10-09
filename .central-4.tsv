@@ -1,0 +1,80 @@
+301	Nieznana akcja: {0}	Neznámá akce: {0}	Neznáma akcia: {0}	Ismeretlen művelet: {0}
+302	Nieznany błąd	Neznámá chyba	Neznáma chyba	Ismeretlen hiba
+303	Nieznany modyfikator: {0}.	Neznámý modifikátor: {0}.	Neznámy modifikátor: {0}.	Ismeretlen módosító: {0}.
+304	Nieprawidłowa akcja: {0}	Neplatná akce: {0}	Neplatná akcia: {0}	Érvénytelen művelet: {0}
+305	POŁĄCZONE	PŘIPOJENO	PRIPOJENÉ	CSATLAKOZTATVA
+306	Łączenie z iCUE …	Připojování k iCUE …	Pripájanie k iCUE …	Kapcsolódás az iCUE-hoz …
+307	Odrzuć	Zahodit	Zahodiť	Elvetés
+308	Podgląd	Náhled	Náhľad	Előnézet
+309	ADRES INTERNETOWY	WEBOVÁ ADRESA	WEBOVÁ ADRESA	WEB CÍM
+310	WARTOŚĆ	HODNOTA	HODNOTA	ÉRTÉK
+311	Czekaj: {0:0.##} sekund	Čekat: {0:0.##} sekund	Čakať: {0:0.##} sekúnd	Várakozás: {0:0.##} másodperc
+312	Czekaj: {0} sekund	Čekat: {0} sekund	Čakať: {0} sekúnd	Várakozás: {0} másodperc
+313	Otwórz stronę internetową	Otevřít webovou stránku	Otvoriť webovú stránku	Weboldal megnyitása
+314	Otwórz stronę internetową: {0}	Otevřít webovou stránku: {0}	Otvoriť webovú stránku: {0}	Weboldal megnyitása: {0}
+315	Przywróć	Obnovit	Obnoviť	Visszaállítás
+316	Powtórzenie: {0} cykl	Opakování: {0} průchod	Opakovanie: {0} priechod	Ismétlés: {0} futás
+317	Powtórzenie: {0} cykle	Opakování: {0} průchodů	Opakovanie: {0} priechodov	Ismétlés: {0} futás
+318	Windows przyjął {0} z {1} symulowanych naciśnięć klawiszy (błąd {2}).	Windows přijal {0} z {1} simulovaných stisků kláves (chyba {2}).	Windows prijal {0} z {1} simulovaných stlačení klávesov (chyba {2}).	A Windows {0}/{1} szimulált billentyűleütést fogadott el (hiba: {2}).
+319	Windows nie może obecnie przypisać tej fizycznej pozycji do klawisza skrótu.	Windows nyní nemůže přiřadit tuto fyzickou pozici ke klávese zkratky.	Windows momentálne nemôže priradiť túto fyzickú pozíciu ku klávesu skratky.	A Windows jelenleg nem tudja ezt a fizikai pozíciót gyorsbillentyűhöz rendelni.
+320	Windows nie mógł aktywować okna docelowego. Otwórz paletę bezpośrednio z tego programu.	Windows nemohl aktivovat cílové okno. Otevřete paletu přímo z tohoto programu.	Windows nemohol aktivovať cieľové okno. Otvorte paletu priamo z tohto programu.	A Windows nem tudta aktiválni a célablakot. Nyissa meg a palettát közvetlenül ebből a programból.
+321	Windows nie mógł zarejestrować skrótu przerwania (błąd {0}).	Windows nemohl zaregistrovat zkratku pro zrušení (chyba {0}).	Windows nemohol zaregistrovať skratku na zrušenie (chyba {0}).	A Windows nem tudta regisztrálni a megszakítási gyorsbillentyűt (hiba: {0}).
+322	Windows nie mógł zarejestrować palety poleceń (błąd {0}).	Windows nemohl zaregistrovat paletu příkazů (chyba {0}).	Windows nemohol zaregistrovať paletu príkazov (chyba {0}).	A Windows nem tudta regisztrálni a parancspalettát (hiba: {0}).
+323	Windows nie mógł zablokować sesji (błąd {0}).	Windows nemohl uzamknout relaci (chyba {0}).	Windows nemohol zamknúť reláciu (chyba {0}).	A Windows nem tudta zárolni a munkamenetet (hiba: {0}).
+324	Windows nie mógł zarejestrować {0} (błąd {1}).	Windows nemohl zaregistrovat {0} (chyba {1}).	Windows nemohol zaregistrovať {0} (chyba {1}).	A Windows nem tudta regisztrálni: {0} (hiba: {1}).
+325	Windows: {0} · {1} · Shift: {2}	Windows: {0} · {1} · Shift: {2}	Windows: {0} · {1} · Shift: {2}	Windows: {0} · {1} · Shift: {2}
+326	Zostanie zastosowane dopiero po zapisaniu w edytorze.	Použije se až po uložení v editoru.	Použije sa až po uložení v editore.	Csak a szerkesztőben történő mentés után lép érvénybe.
+327	Wybierz układ referencyjny widoku klawiszy.	Vyberte referenční rozložení pro zobrazení kláves.	Vyberte referenčné rozloženie na zobrazenie klávesov.	Válasszon referenciaelrendezést a billentyűnézethez.
+328	Wybierz podłączone urządzenie obsługujące klawisze G Corsair.	Vyberte připojené zařízení s podporovanými klávesami G Corsair.	Vyberte pripojené zariadenie s podporovanými klávesmi G Corsair.	Válasszon csatlakoztatott eszközt támogatott Corsair G-billentyűkkel.
+329	Wybierz akcję docelową, aby przygotować ten klawisz G Corsair w edytorze.	Vyberte cílovou akci pro přípravu této klávesy G Corsair v editoru.	Vyberte cieľovú akciu na prípravu tohto klávesu G Corsair v editore.	Válasszon célműveletet a Corsair G-billentyű szerkesztőben történő előkészítéséhez.
+330	Najpierw wybierz klawisz z prawidłowym skrótem i akcję docelową.	Nejprve vyberte klávesu s platnou zkratkou a cílovou akci.	Najprv vyberte kláves s platnou skratkou a cieľovú akciu.	Először válasszon érvényes gyorsbillentyűt és célműveletet.
+331	PROFIL DOCELOWY	CÍLOVÝ PROFIL	CIEĽOVÝ PROFIL	CÉLPROFIL
+332	Wybierz akcję docelową; kliknięcie klawisza nie zmienia zapisanej akcji.	Vyberte cílovou akci; kliknutí na klávesu nemění uloženou akci.	Vyberte cieľovú akciu; kliknutie na kláves nemení uloženú akciu.	Válasszon célműveletet; a billentyűre kattintás nem módosít mentett műveletet.
+333	Wybierz akcję docelową	Vybrat cílovou akci	Vybrať cieľovú akciu	Célművelet kiválasztása
+334	Okno docelowe: {0} · {1}	Cílové okno: {0} · {1}	Cieľové okno: {0} · {1}	Célablak: {0} · {1}
+335	Ustaw schowek	Nastavit schránku	Nastaviť schránku	Vágólap beállítása
+336	Ustaw schowek: {0}	Nastavit schránku: {0}	Nastaviť schránku: {0}	Vágólap beállítása: {0}
+337	aktywne	aktivní	aktívne	aktív
+338	wyłączone	zakázáno	vypnuté	letiltva
+339	e	e	e	e
+340	gotowe do użycia	připraveno k použití	pripravené na použitie	használatra kész
+341	obecnie nic	právě nic	práve nič	jelenleg semmi
+342	Wyszukiwanie iCUE SDK …	Hledání SDK iCUE …	Hľadanie SDK iCUE …	iCUE SDK keresése …
+343	iCUE nie odpowiada; próby połączenia SDK są kontynuowane.	iCUE neodpovídá; pokusy o připojení SDK pokračují.	iCUE neodpovedá; pokusy o pripojenie SDK pokračujú.	Az iCUE nem válaszol; az SDK tovább próbál kapcsolódni.
+344	iCUE wykrywa klawiatury Corsair, ale nie zgłasza sterowalnych diod LED.	iCUE rozpoznává klávesnice Corsair, ale nehlásí ovladatelné LED.	iCUE rozpoznáva klávesnice Corsair, ale nehlási ovládateľné LED.	Az iCUE észlel Corsair-billentyűzeteket, de nem jelez vezérelhető LED-eket.
+345	iCUE odmówiło dostępu do klawiszy G urządzenia {0} (błąd SDK {1}).	iCUE odmítlo přístup ke klávesám G zařízení {0} (chyba SDK {1}).	iCUE odmietlo prístup ku klávesom G zariadenia {0} (chyba SDK {1}).	Az iCUE elutasította a(z) {0} G-billentyűihez való hozzáférést (SDK-hiba: {1}).
+346	iCUE odrzuciło żądanie podświetlenia (błąd SDK {0}).	iCUE odmítlo požadavek na podsvícení (chyba SDK {0}).	iCUE odmietlo požiadavku na podsvietenie (chyba SDK {0}).	Az iCUE elutasította a világítási kérést (SDK-hiba: {0}).
+347	iCUE odrzuciło połączenie SDK.	iCUE odmítlo připojení SDK.	iCUE odmietlo pripojenie SDK.	Az iCUE elutasította az SDK-kapcsolatot.
+348	iCUE jest połączone, ale nie zgłasza klawiatury Corsair.	iCUE je připojeno, ale nehlásí žádnou klávesnici Corsair.	iCUE je pripojené, ale nehlási žiadnu klávesnicu Corsair.	Az iCUE csatlakoztatva van, de nem jelez Corsair-billentyűzetet.
+349	iCUE nie mogło aktywować Corsair G{0} (błąd SDK {1}).	iCUE nemohlo aktivovat Corsair G{0} (chyba SDK {1}).	iCUE nemohlo aktivovať Corsair G{0} (chyba SDK {1}).	Az iCUE nem tudta aktiválni a Corsair G{0} billentyűt (SDK-hiba: {1}).
+350	iCUE nie mogło zwolnić Corsair G{0} (błąd SDK {1}).	iCUE nemohlo uvolnit Corsair G{0} (chyba SDK {1}).	iCUE nemohlo uvoľniť Corsair G{0} (chyba SDK {1}).	Az iCUE nem tudta felszabadítani a Corsair G{0} billentyűt (SDK-hiba: {1}).
+351	iCUE nie mogło subskrybować zdarzeń klawiszy G (błąd SDK {0}).	iCUE nemohlo odebírat události kláves G (chyba SDK {0}).	iCUE nemohlo odoberať udalosti klávesov G (chyba SDK {0}).	Az iCUE nem tudott feliratkozni a G-billentyűeseményekre (SDK-hiba: {0}).
+352	iCUE nie mogło zwolnić dostępu do klawiszy G urządzenia {0} (błąd SDK {1}).	iCUE nemohlo uvolnit přístup ke klávesám G zařízení {0} (chyba SDK {1}).	iCUE nemohlo uvoľniť prístup ku klávesom G zariadenia {0} (chyba SDK {1}).	Az iCUE nem tudta felszabadítani a(z) {0} G-billentyűihez való hozzáférést (SDK-hiba: {1}).
+353	iCUE zgłasza nieznany stan połączenia.	iCUE hlásí neznámý stav připojení.	iCUE hlási neznámy stav pripojenia.	Az iCUE ismeretlen kapcsolati állapotot jelez.
+354	iCUE nie zgłasza obsługiwanych klawiszy G1–G6 na podłączonych klawiaturach.	iCUE nehlásí podporované klávesy G1 až G6 na připojených klávesnicích.	iCUE nehlási podporované klávesy G1 až G6 na pripojených klávesniciach.	Az iCUE nem jelez támogatott G1–G6 billentyűket a csatlakoztatott billentyűzeteken.
+355	iCUE nie zgłasza klawiatury Corsair obsługującej klawisze G.	iCUE nehlásí klávesnici Corsair s podporovanými klávesami G.	iCUE nehlási klávesnicu Corsair s podporovanými klávesmi G.	Az iCUE nem jelez támogatott G-billentyűkkel rendelkező Corsair-billentyűzetet.
+356	iCUE zgłasza obsługiwane klawisze G1–G6 Corsair.	iCUE hlásí podporované klávesy Corsair G1 až G6.	iCUE hlási podporované klávesy Corsair G1 až G6.	Az iCUE támogatott Corsair G1–G6 billentyűket jelez.
+357	Nie znaleziono iCUE. Zainstaluj je z oficjalnej strony Corsair.	iCUE nebylo nalezeno. Nainstalujte jej z oficiálního webu Corsair.	iCUE sa nenašlo. Nainštalujte ho z oficiálneho webu Corsair.	Az iCUE nem található. Telepítse a Corsair hivatalos weboldaláról.
+358	iCUE monitoruje {0} przypisanych klawiszy G Corsair.	iCUE sleduje {0} přiřazených kláves G Corsair.	iCUE sleduje {0} priradených klávesov G Corsair.	Az iCUE {0} hozzárendelt Corsair G-billentyűt figyel.
+359	Zdarzenia klawiszy G iCUE są dostępne.	Události kláves G iCUE jsou dostupné.	Udalosti klávesov G iCUE sú dostupné.	Az iCUE G-billentyűeseményei elérhetők.
+360	Połączenie iCUE SDK zamknięte.	Připojení SDK iCUE uzavřeno.	Pripojenie SDK iCUE zatvorené.	Az iCUE SDK-kapcsolat lezárva.
+361	w tym profilu	v tomto profilu	v tomto profile	ebben a profilban
+362	maksymalizacja	maximalizovat	maximalizovať	teljes méret
+363	minimalizacja	minimalizovat	minimalizovať	kis méret
+364	ze skrótem	se zkratkou	so skratkou	gyorsbillentyűvel
+365	przywracanie	obnovit	obnoviť	visszaállítás
+366	jest wykonywane	probíhá	prebieha	fut
+367	Zastosować {0} profili i {1} przypisań?\nBieżąca konfiguracja zostanie zastąpiona. Importowane akcje pozostaną wyłączone do ich włączenia.	Použít {0} profilů a {1} přiřazení?\nAktuální konfigurace bude nahrazena. Importované akce zůstanou zakázány, dokud je nepovolíte.	Použiť {0} profilov a {1} priradení?\nAktuálna konfigurácia bude nahradená. Importované akcie zostanú vypnuté, kým ich nezapnete.	Alkalmaz {0} profilt és {1} hozzárendelést?\nA jelenlegi konfiguráció lecserélődik. Az importált műveletek engedélyezésig letiltva maradnak.
+368	{0} kroków · {1}×	{0} kroků · {1}×	{0} krokov · {1}×	{0} lépés · {1}×
+369	Użyj {0} jako części proponowanego skrótu.	Použít {0} jako součást navrhované zkratky.	Použiť {0} ako súčasť navrhovanej skratky.	A(z) {0} használata a javasolt gyorsbillentyű részeként.
+370	{0} otwarto w edytorze. Zapisany skrót nie został zmieniony.	{0} bylo otevřeno v editoru. Uložená zkratka se nezměnila.	{0} bolo otvorené v editore. Uložená skratka sa nezmenila.	A(z) {0} megnyílt a szerkesztőben. A mentett gyorsbillentyű nem változott.
+371	{0} zmienia wybór modyfikatorów powyżej.	{0} mění výběr modifikátorů výše.	{0} mení výber modifikátorov vyššie.	A(z) {0} módosítja a fenti módosítóválasztást.
+373	Zmień wyszukiwany tekst, aby zobaczyć więcej akcji.	Změňte hledaný výraz pro zobrazení dalších akcí.	Zmeňte hľadaný výraz na zobrazenie ďalších akcií.	További műveletek megjelenítéséhez módosítsa a keresőkifejezést.
+374	Zmiany akcji	Změny akce	Zmeny akcie	Műveletmódosítások
+375	Otwórz	Otevřít	Otvoriť	Megnyitás
+376	⌕  Paleta poleceń  Ctrl+Shift+Space	⌕  Paleta příkazů  Ctrl+Shift+Space	⌕  Paleta príkazov  Ctrl+Shift+Space	⌕  Parancspaletta  Ctrl+Shift+Space
+377	★ ULUBIONE	★ OBLÍBENÉ	★ OBĽÚBENÉ	★ KEDVENC
+378	★ Ulubione ({0})	★ Oblíbené ({0})	★ Obľúbené ({0})	★ Kedvencek ({0})
+379	☆ Ulubione ({0})	☆ Oblíbené ({0})	☆ Obľúbené ({0})	☆ Kedvencek ({0})
+380	🔒 Zablokuj profil	🔒 Uzamknout profil	🔒 Zamknúť profil	🔒 Profil zárolása
+381	🔓 Odblokuj	🔓 Odemknout	🔓 Odomknúť	🔓 Feloldás

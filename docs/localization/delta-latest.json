@@ -1,0 +1,19 @@
+[
+  "Aktion",
+  "Ausführung abgebrochen",
+  "Ausführung fehlgeschlagen · Details im Aktivitätsverlauf",
+  "Befehl nicht gestartet · Details im Aktivitätsverlauf",
+  "Befehle ausgeführt",
+  "Befehle warten auf Ausführung",
+  "Befehle werden ausgeführt",
+  "Ctrl+Alt+F1 halten · Overlay über die Befehlspalette ein-/ausblenden.",
+  "Drücke eine G-Taste. Bestehende G-Tasten-Aktionen sind während der Erkennung ausgesetzt.",
+  "Erkennung stoppen",
+  "Fn, Profil-, Sperr- und iCUE-Radtasten werden vom G-Tasten-SDK nicht als belegbare Tasten bereitgestellt. Andere Hersteller können Standard-Hotkeys senden; diese zeichnest du im Aktionseditor auf.",
+  "G{0} erkannt. Wähle jetzt eine Aktion.",
+  "Im Editor öffnen",
+  "Sondertasten-Assistent",
+  "Tastatur-Overlay",
+  "Tastendruck erkennen",
+  "Wähle dein Gerät und eine unterstützte G-Taste. Die Zuordnung wird als Entwurf geöffnet."
+]

@@ -1,0 +1,197 @@
+0	AIVANA  ·  WINDOWS CONTROLLER	AIVANA  ·  WINDOWS CONTROLLER	AIVANA  ·  WINDOWS CONTROLLER	AIVANA  ·  WINDOWS CONTROLLER
+1	FOLDER ROBOCZY (OPCJONALNIE)	PRACOVNÍ SLOŽKA (VOLITELNÁ)	PRACOVNÝ PRIEČINOK (VOLITEĽNÝ)	MUNKAMAPPA (NEM KÖTELEZŐ)
+2	Akcja włączona	Akce povolena	Akcia povolená	Művelet engedélyezve
+3	Edytuj akcję	Upravit akci	Upraviť akciu	Művelet szerkesztése
+4	Konfiguruj akcję	Nastavit akci	Nastaviť akciu	Művelet beállítása
+5	Akcja nie powiodła się	Akce se nezdařila	Akcia zlyhala	A művelet nem sikerült
+6	Akcja nie powiodła się: {0}	Akce se nezdařila: {0}	Akcia zlyhala: {0}	A művelet nem sikerült: {0}
+7	Szukaj akcji, skrótu klawiszowego, typu lub profilu	Hledat akci, klávesovou zkratku, typ nebo profil	Hľadať akciu, klávesovú skratku, typ alebo profil	Művelet, billentyűparancs, típus vagy profil keresése
+8	Akcje są uruchomione	Akce právě běží	Akcie práve bežia	A műveletek futnak
+9	Filtruj akcje według nazwy, skrótu klawiszowego lub typu	Filtrovat akce podle názvu, klávesové zkratky nebo typu	Filtrovať akcie podľa názvu, klávesovej skratky alebo typu	Műveletek szűrése név, billentyűparancs vagy típus szerint
+10	Bieżący tytuł okna: {0}	Aktuální název okna: {0}	Aktuálny názov okna: {0}	Aktuális ablakcím: {0}
+11	Bieżąca aplikacja na pierwszym planie: {0}	Aktuální aplikace v popředí: {0}	Aktuálna aplikácia v popredí: {0}	Aktuális előtérben lévő alkalmazás: {0}
+12	Szukaj wszystkich akcji we wszystkich profilach · Ctrl+K	Hledat všechny akce napříč profily · Ctrl+K	Hľadať všetky akcie naprieč profilmi · Ctrl+K	Keresés az összes profilban · Ctrl+K
+13	Wszystkie pliki (*.*)|*.*	Všechny soubory (*.*)|*.*	Všetky súbory (*.*)|*.*	Minden fájl (*.*)|*.*
+14	Oznacz jako ulubione	Označit jako oblíbené	Označiť ako obľúbené	Megjelölés kedvencként
+15	Jako domyślne	Jako výchozí	Ako predvolené	Alapértelmezettként
+16	Wstaw w miejscu kursora	Vložit na pozici kurzoru	Vložiť na pozíciu kurzora	Beillesztés a kurzor helyére
+17	Obszary robocze, priorytet i automatyczne przypisywanie	Pracovní prostory, priorita a automatické přiřazení	Pracovné priestory, priorita a automatické priradenie	Munkaterületek, prioritás és automatikus hozzárendelés
+18	Wybierz folder roboczy	Vybrat pracovní složku	Vybrať pracovný priečinok	Munkamappa kiválasztása
+19	Wybierz · przeciągnij, aby zmienić kolejność · kliknij prawym przyciskiem, aby wyświetlić więcej opcji	Vyberte · přetažením změňte pořadí · pravým tlačítkem zobrazíte další možnosti	Vyberte · presunutím zmeňte poradie · pravým tlačidlom zobrazíte ďalšie možnosti	Válasszon · húzással rendezhet · jobb kattintással további lehetőségek
+20	Automatycznie (język systemu Windows)	Automaticky (jazyk Windows)	Automaticky (jazyk Windows)	Automatikus (a Windows nyelve)
+21	Autostart jest domyślnie wyłączony i można nim zarządzać w opcjach użytkownika.	Automatické spouštění je ve výchozím nastavení vypnuté a spravuje se v uživatelských možnostech.	Automatické spúšťanie je predvolene vypnuté a spravuje sa v používateľských možnostiach.	Az automatikus indítás alapértelmezés szerint ki van kapcsolva, és a felhasználói beállításokban kezelhető.
+22	PALETA POLECEŃ · GLOBALNY SKRÓT KLAWISZOWY	PALETA PŘÍKAZŮ · GLOBÁLNÍ KLÁVESOVÁ ZKRATKA	PALETA PRÍKAZOV · GLOBÁLNA KLÁVESOVÁ SKRATKA	PARANCS­PALETTA · GLOBÁLIS BILLENTYŰPARANCS
+23	Minimalizuj do obszaru powiadomień po zamknięciu	Při zavření minimalizovat do oznamovací oblasti	Pri zatvorení minimalizovať do oblasti oznámení	Bezáráskor kis méret az értesítési területre
+24	Przykład: Ctrl+Shift+S lub Alt+F4.	Příklad: Ctrl+Shift+S nebo Alt+F4.	Príklad: Ctrl+Shift+S alebo Alt+F4.	Példa: Ctrl+Shift+S vagy Alt+F4.
+25	Ustaw oświetlenie	Nastavit osvětlení	Nastaviť osvetlenie	Világítás beállítása
+26	Wpisz nazwę akcji.	Zadejte název akce.	Zadajte názov akcie.	Adja meg a művelet nevét.
+27	Wpisz ikonę.	Zadejte ikonu.	Zadajte ikonu.	Adjon meg egy ikont.
+28	Nagraj, naciskając Ctrl, Alt, Shift lub Win	Nahrajte stisknutím Ctrl, Alt, Shift nebo Win	Nahrajte stlačením Ctrl, Alt, Shift alebo Win	A rögzítéshez nyomja le a Ctrl, Alt, Shift vagy Win billentyűt
+29	Zapisz lub odrzuć wersję roboczą przed jej przetestowaniem.	Před testováním koncept uložte nebo zahoďte.	Pred testovaním koncept uložte alebo zahoďte.	Tesztelés előtt mentse vagy vesse el a piszkozatot.
+30	CORSAIR / iCUE	CORSAIR / iCUE	CORSAIR / iCUE	CORSAIR / iCUE
+31	PLIK LUB FOLDER	SOUBOR NEBO SLOŽKA	SÚBOR ALEBO PRIEČINOK	FÁJL VAGY MAPPA
+32	PRYWATNOŚĆ\nBrak chmury i telemetrii. Historia zawiera status akcji, ale nie zawiera wpisanej treści.	SOUKROMÍ\nŽádný cloud ani telemetrie. Historie obsahuje stav akcí, nikoli zadaný text.	SÚKROMIE\nŽiadny cloud ani telemetria. História obsahuje stav akcií, nie zadaný text.	ADATVÉDELEM\nNincs felhő és telemetria. Az előzmények a műveletek állapotát tárolják, a beírt szöveget nem.
+33	Profil tej wersji roboczej jest już niedostępny.	Profil tohoto konceptu už není k dispozici.	Profil tohto konceptu už nie je k dispozícii.	A piszkozat profilja már nem érhető el.
+34	Ogranicz pulpit do zapisanych ulubionych	Omezit řídicí panel na uložené oblíbené položky	Obmedziť panel na uložené obľúbené položky	Irányítópult szűrése a mentett kedvencekre
+35	Wybierz plik	Vybrat soubor	Vybrať súbor	Fájl kiválasztása
+36	Plik lub folder	Soubor nebo složka	Súbor alebo priečinok	Fájl vagy mappa
+37	Plik…	Soubor…	Súbor…	Fájl…
+38	Wszystkie akcje i skróty w jednym miejscu	Všechny vaše akce a zkratky na jednom místě	Všetky vaše akcie a skratky na jednom mieste	Műveletek és billentyűparancsok egy helyen
+39	Skrót klawiszowy przerwania zatrzymuje wszystkie uruchomione makra.	Klávesová zkratka pro přerušení zastaví všechna spuštěná makra.	Klávesová skratka prerušenia zastaví všetky spustené makrá.	A megszakító billentyűparancs leállítja az összes futó makrót.
+40	Stan urządzenia pochodzi z wykazu HID systemu Windows; sterowanie oświetleniem jest dostępne tylko wtedy, gdy opcjonalny pakiet iCUE SDK wykryje zgodne urządzenie.	Stav zařízení pochází z inventáře HID systému Windows; ovládání osvětlení je dostupné pouze tehdy, když volitelná sada iCUE SDK ohlásí kompatibilní zařízení.	Stav zariadenia pochádza z inventára HID systému Windows; ovládanie osvetlenia je dostupné len vtedy, keď voliteľná súprava iCUE SDK ohlási kompatibilné zariadenie.	Az eszközállapot a Windows HID-leltárából származik; a világítás vezérlése csak akkor érhető el, ha az opcionális iCUE SDK kompatibilis eszközt jelez.
+41	Import jest sprawdzany przed zastosowaniem. Eksport obejmuje profile i skróty.	Import se před použitím ověří. Export obsahuje profily a zkratky.	Import sa pred použitím overí. Export obsahuje profily a skratky.	Importálás előtt ellenőrizzük az adatokat. Az export a profilokat és hozzárendeléseket tartalmazza.
+42	Szczegóły i interfejsy	Podrobnosti a rozhraní	Podrobnosti a rozhrania	Részletek és felületek
+43	Ten klawisz nie jest obsługiwany	Tato klávesa není podporována	Tento kláves nie je podporovaný	Ez a billentyű nem támogatott
+44	Ten skrót klawiszowy jest już przypisany do: {0}.	Tato klávesová zkratka je již přiřazena k: {0}.	Táto klávesová skratka je už priradená k: {0}.	Ez a billentyűparancs már hozzá van rendelve ehhez: {0}.
+45	Ten skrót klawiszowy jest przypisany do globalnego skrótu przerwania.	Tato klávesová zkratka je přiřazena ke globální zkratce pro přerušení.	Táto klávesová skratka je priradená ku globálnej skratke prerušenia.	Ez a billentyűparancs a globális megszakító billentyűparancshoz van rendelve.
+46	Naciśnij klawisz, np. Enter lub F5, albo kombinację, np. Ctrl+Shift+S. Naciśnij Escape, aby anulować.	Stiskněte klávesu, například Enter nebo F5, případně kombinaci, například Ctrl+Shift+S. Stisknutím Escape akci zrušíte.	Stlačte kláves, napríklad Enter alebo F5, prípadne kombináciu, napríklad Ctrl+Shift+S. Stlačením Escape akciu zrušíte.	Nyomjon le egy billentyűt (például Enter vagy F5), vagy egy kombinációt (például Ctrl+Shift+S). Az Escape megszakítja a műveletet.
+47	WYKRYTE KLAWIATURY	ROZPOZNANÉ KLÁVESNICE	ROZPOZNANÉ KLÁVESNICE	FELISMERT BILLENTYŰZETEK
+48	Przypisanie składa się z jednej akcji lub uporządkowanej sekwencji makra.	Přiřazení se skládá z jedné akce nebo uspořádané sekvence maker.	Priradenie pozostáva z jednej akcie alebo usporiadanej sekvencie makra.	A hozzárendelés egy műveletből vagy rendezett makrósorozatból áll.
+49	Wybierz jedną z obsługiwanych akcji dla aktywnego okna.	Vyberte jednu z podporovaných akcí pro aktivní okno.	Vyberte jednu z podporovaných akcií pre aktívne okno.	Válasszon egy, az aktív ablakhoz támogatott műveletet.
+50	Enter, F5 lub Ctrl+Shift+S	Enter, F5 nebo Ctrl+Shift+S	Enter, F5 alebo Ctrl+Shift+S	Enter, F5 vagy Ctrl+Shift+S
+51	Wykryte klawiatury i dostępne funkcje producenta	Rozpoznané klávesnice a dostupné funkce výrobce	Rozpoznané klávesnice a dostupné funkcie výrobcu	Felismerhető billentyűzetek és elérhető gyártói funkciók
+52	Esc  ×	Esc  ×	Esc  ×	Esc  ×
+53	TYTUŁ OKNA ZAWIERA (OPCJONALNIE)	TITULEK OKNA OBSAHUJE (VOLITELNÉ)	NÁZOV OKNA OBSAHUJE (VOLITEĽNÉ)	AZ ABLAKCÍM TARTALMAZZA (NEM KÖTELEZŐ)
+54	Wpisz kolor w formacie #RRGGBB.	Zadejte barvu ve formátu #RRGGBB.	Zadajte farbu vo formáte #RRGGBB.	Adja meg a színt #RRGGBB formátumban.
+55	Testuj kolor	Otestovat barvu	Otestovať farbu	Szín tesztelése
+56	Wybierz kolor…	Vybrat barvu…	Vybrať farbu…	Szín kiválasztása…
+57	Znajdź akcje we wszystkich profilach.	Najděte akce ve všech profilech.	Nájdite akcie vo všetkých profiloch.	Műveletek keresése az összes profilban.
+58	Możliwości: {0}	Možnosti: {0}	Možnosti: {0}	Képességek: {0}
+59	Uruchamianie {0} …	Spouští se {0} …	Spúšťa sa {0} …	{0} futtatása …
+60	Globalny skrót klawiszowy:	Globální klávesová zkratka:	Globálna klávesová skratka:	Globális billentyűparancs:
+61	Adresy HTTP i HTTPS zostaną otwarte.	Adresy HTTP a HTTPS se otevřou.	Adresy HTTP a HTTPS sa otvoria.	A HTTP- és HTTPS-címek megnyílnak.
+62	Usuń skrót klawiszowy	Odebrat klávesovou zkratku	Odstrániť klávesovú skratku	Billentyűparancs eltávolítása
+63	Konflikt skrótu klawiszowego z: {0}.	Konflikt klávesové zkratky s: {0}.	Konflikt klávesovej skratky s: {0}.	Billentyűparancs-ütközés ezzel: {0}.
+64	Skróty klawiszowe są wstrzymane. Akcji nie można uruchomić z palety.	Klávesové zkratky jsou pozastavené. Akce nelze spouštět z palety.	Klávesové skratky sú pozastavené. Akcie nemožno spúšťať z palety.	A billentyűparancsok szünetelnek. A palettáról nem indíthatók műveletek.
+65	Brak profilu	Žádný profil	Žiadny profil	Nincs profil
+66	Nie znaleziono pasującej akcji.	Nebyla nalezena žádná odpovídající akce.	Nenašla sa žiadna vyhovujúca akcia.	Nem található megfelelő művelet.
+67	Kliknij i naciśnij kombinację	Klikněte a stiskněte kombinaci	Kliknite a stlačte kombináciu	Kattintson, majd nyomja le a kombinációt
+68	Naciśnij kombinację …	Stiskněte kombinaci …	Stlačte kombináciu …	Nyomja le a kombinációt …
+69	Konflikt z globalnym skrótem przerwania.	Konflikt s globální zkratkou pro přerušení.	Konflikt s globálnou skratkou prerušenia.	Ütközés a globális megszakító billentyűparanccsal.
+70	OSTATNIA AKTYWNOŚĆ	POSLEDNÍ AKTIVITA	POSLEDNÁ AKTIVITA	LEGUTÓBBI TEVÉKENYSÉG
+71	Wyrównaj do lewej	Zarovnat doleva	Zarovnať doľava	Balra igazítás
+72	Lokalnie · ograniczona historia	Lokálně · omezená historie	Lokálne · obmedzená história	Helyi · korlátozott előzmények
+73	Przetwarzanie lokalne	Místní zpracování	Lokálne spracovanie	Helyi feldolgozás
+74	KROKI MAKRA · {0}	KROKY MAKRA · {0}	KROKY MAKRA · {0}	MAKRÓLÉPÉSEK · {0}
+75	Podgląd makra · {0}	Náhled makra · {0}	Ukážka makra · {0}	Makró előnézete · {0}
+76	Powtórzenia makra (1–100)	Opakování makra (1–100)	Opakovania makra (1–100)	Makróismétlések (1–100)
+77	Przerwij makra	Přerušit makra	Prerušiť makrá	Makrók megszakítása
+78	Utwórz makro wieloetapowe	Vytvořit vícekrokové makro	Vytvoriť viackrokové makro	Többlépéses makró létrehozása
+79	Uruchom przy starcie systemu Windows	Spustit při spuštění Windows	Spustiť pri spustení Windows	Indítás a Windowszal
+80	Niezapisane zmiany	Neuložené změny	Neuložené zmeny	Nem mentett módosítások
+81	Brak kroków. Wybierz akcję powyżej.	Zatím žádný krok. Vyberte akci výše.	Zatiaľ žiadny krok. Vyberte akciu vyššie.	Még nincs lépés. Válasszon egy műveletet fent.
+82	Nie wykryto jeszcze klawiatury	Zatím nebyla rozpoznána žádná klávesnice	Zatiaľ nebola rozpoznaná žiadna klávesnica	Még nem található billentyűzet
+83	Dostępna jest tylko akcja blokowania.	Je dostupná pouze akce uzamčení.	Dostupná je len akcia uzamknutia.	Csak a zárolási művelet érhető el.
+84	Tylko podgląd: akcje nie zostaną wykonane.	Pouze náhled: akce se neprovedou.	Len ukážka: akcie sa nevykonajú.	Csak előnézet: a műveletek nem futnak le.
+85	Dostępne tylko z iCUE SDK i zgodnym urządzeniem.	Dostupné pouze s iCUE SDK a kompatibilním zařízením.	Dostupné len s iCUE SDK a kompatibilným zariadením.	Csak iCUE SDK-val és kompatibilis eszközzel érhető el.
+86	Następny utwór	Další skladba	Ďalšia skladba	Következő szám
+87	Wybierz folder	Vybrat složku	Vybrať priečinok	Mappa kiválasztása
+88	Folder…	Složka…	Priečinok…	Mappa…
+89	OPÓŹNIENIE (MS)	PRODLEVA (MS)	ONESKORENIE (MS)	KÉSLELTETÉS (MS)
+90	NAZWA PROCESU (OPCJONALNIE)	NÁZEV PROCESU (VOLITELNÉ)	NÁZOV PROCESU (VOLITEĽNÉ)	FOLYAMAT NEVE (NEM KÖTELEZŐ)
+91	Ścieżka lub wartość	Cesta nebo hodnota	Cesta alebo hodnota	Elérési út vagy érték
+92	Przełącz profil na podstawie aplikacji na pierwszym planie	Přepnout profil podle aplikace v popředí	Prepnúť profil podľa aplikácie v popredí	Profilváltás az előtérben lévő alkalmazás alapján
+93	Wybierz profil według nazwy.	Vyberte profil podle názvu.	Vyberte profil podľa názvu.	Profil kiválasztása név szerint.
+94	Otwórz profil	Otevřít profil	Otvoriť profil	Profil megnyitása
+95	Profile i akcje są przechowywane lokalnie na tym komputerze.	Profily a akce se ukládají místně na tomto počítači.	Profily a akcie sa ukladajú lokálne v tomto počítači.	A profilok és műveletek helyben, ezen a számítógépen tárolódnak.
+96	Wybierz program	Vybrat program	Vybrať program	Program kiválasztása
+97	Wybierz plik programu; argumenty i folder roboczy mają osobne pola.	Vyberte soubor programu; argumenty a pracovní složka mají samostatná pole.	Vyberte súbor programu; argumenty a pracovný priečinok majú samostatné polia.	Válassza ki a programfájlt; az argumentumok és a munkamappa külön mezőben adhatók meg.
+98	Programy (*.exe)|*.exe|Wszystkie pliki (*.*)|*.*	Programy (*.exe)|*.exe|Všechny soubory (*.*)|*.*	Programy (*.exe)|*.exe|Všetky súbory (*.*)|*.*	Programok (*.exe)|*.exe|Minden fájl (*.*)|*.*
+99	Nazwa procesu i tytuł okna muszą pasować jednocześnie (AND). Puste wartości są ignorowane. Użyj tytułu okna, jeśli program zarządza kilkoma obszarami roboczymi w różnych oknach.	Název procesu i titulek okna se musí shodovat (AND). Prázdná hodnota se ignoruje. Titulek okna použijte, pokud program spravuje více pracovních prostorů v různých oknech.	Názov procesu aj názov okna sa musia zhodovať (AND). Prázdna hodnota sa ignoruje. Názov okna použite, ak program spravuje viacero pracovných priestorov v rôznych oknách.	A folyamat nevének és az ablak címének is egyeznie kell (ÉS). Az üres értéket figyelmen kívül hagyjuk. Akkor használja az ablakcímet, ha a program különböző ablakokban több munkaterületet kezel.
+100	Wpisz nazwę procesu bez ścieżki, np. premiere.exe.	Zadejte název procesu bez cesty, např. premiere.exe.	Zadajte názov procesu bez cesty, napr. premiere.exe.	Az elérési út nélküli folyamatnevet adja meg, például: premiere.exe.
+101	Sprawdź połączenie i odśwież listę urządzeń. Zwykły system skrótów klawiszowych działa niezależnie od tego.	Zkontrolujte připojení a obnovte seznam zařízení. Běžný systém klávesových zkratek funguje nezávisle na tom.	Skontrolujte pripojenie a obnovte zoznam zariadení. Bežný systém klávesových skratiek funguje nezávisle od toho.	Ellenőrizze a kapcsolatot, majd frissítse az eszközlistát. A normál billentyűparancs-rendszer ettől függetlenül működik.
+102	Kolor RGB w zapisie szesnastkowym, np. #35D0C1	Barva RGB v šestnáctkovém zápisu, například #35D0C1	Farba RGB v šestnástkovom zápise, napríklad #35D0C1	RGB-szín hexadecimális formátumban, például: #35D0C1
+103	Wyrównaj do prawej	Zarovnat doprava	Zarovnať doprava	Jobbra igazítás
+104	KROK {0} · {1}	KROK {0} · {1}	KROK {0} · {1}	{0}. LÉPÉS · {1}
+105	URUCHAMIANIE I ZACHOWANIE	SPUŠTĚNÍ A CHOVÁNÍ	SPUSTENIE A SPRÁVANIE	INDÍTÁS ÉS MŰKÖDÉS
+106	Krok {0}: wybierz Zablokuj system Windows.	Krok {0}: vyberte Uzamknout Windows.	Krok {0}: vyberte Uzamknúť Windows.	{0}. lépés: válassza a Windows zárolása műveletet.
+107	Krok {0}: wybierz istniejący profil docelowy.	Krok {0}: vyberte existující cílový profil.	Krok {0}: vyberte existujúci cieľový profil.	{0}. lépés: válasszon egy létező célprofilt.
+108	Krok {0}: wybierz akcję głośności.	Krok {0}: vyberte akci hlasitosti.	Krok {0}: vyberte akciu hlasitosti.	{0}. lépés: válasszon hangerőműveletet.
+109	Krok {0}: wybierz obsługiwaną akcję okna.	Krok {0}: vyberte podporovanou akci okna.	Krok {0}: vyberte podporovanú akciu okna.	{0}. lépés: válasszon támogatott ablakműveletet.
+110	Krok {0}: wpisz pełny adres HTTP lub HTTPS.	Krok {0}: zadejte úplnou adresu HTTP nebo HTTPS.	Krok {0}: zadajte úplnú adresu HTTP alebo HTTPS.	{0}. lépés: adjon meg egy teljes HTTP- vagy HTTPS-címet.
+111	Krok {0}: wybierz polecenie multimedialne.	Krok {0}: vyberte příkaz pro média.	Krok {0}: vyberte mediálny príkaz.	{0}. lépés: válasszon médiaparancsot.
+112	Krok {0}: wpisz ścieżkę do programu, pliku lub folderu.	Krok {0}: zadejte cestu k programu, souboru nebo složce.	Krok {0}: zadajte cestu k programu, súboru alebo priečinku.	{0}. lépés: adja meg egy program, fájl vagy mappa elérési útját.
+113	Krok {0}: wpisz kolor w formacie #RRGGBB.	Krok {0}: zadejte barvu ve formátu #RRGGBB.	Krok {0}: zadajte farbu vo formáte #RRGGBB.	{0}. lépés: adja meg a színt #RRGGBB formátumban.
+114	Krok {0}: opóźnienie musi wynosić od 0 do 600 000 ms.	Krok {0}: prodleva musí být v rozmezí 0 až 600 000 ms.	Krok {0}: oneskorenie musí byť od 0 do 600 000 ms.	{0}. lépés: a késleltetésnek 0 és 600 000 ms közé kell esnie.
+115	Krok {0}: kombinacja klawiszy: wpisz klawisz.	Krok {0}: kombinace kláves: zadejte klávesu.	Krok {0}: kombinácia klávesov: zadajte kláves.	{0}. lépés: billentyűkombináció – adjon meg egy billentyűt.
+116	Krok {0}: kombinacja klawiszy: {1}	Krok {0}: kombinace kláves: {1}	Krok {0}: kombinácia klávesov: {1}	{0}. lépés: billentyűkombináció: {1}
+117	Zachowanie przy uruchamianiu, import i sterowanie lokalne	Chování při spuštění, import a místní ovládání	Správanie pri spustení, import a lokálne ovládanie	Indítási működés, importálás és helyi vezérlés
+118	Zatrzymuje wszystkie uruchomione makra i zwalnia symulowane klawisze.	Zastaví všechna spuštěná makra a uvolní simulované klávesy.	Zastaví všetky spustené makrá a uvoľní simulované klávesy.	Leállítja az összes futó makrót, és felengedi a szimulált billentyűket.
+119	TEKST ZE SCHOWKA	TEXT DO SCHRÁNKY	TEXT DO SCHRÁNKY	VÁGÓLAP SZÖVEGE
+120	Nagraj kombinację klawiszy	Nahrát kombinaci kláves	Nahrať kombináciu klávesov	Billentyűkombináció rögzítése
+121	Pozycje klawiszy i przypisania w wybranym układzie	Pozice kláves a přiřazení ve vybraném rozložení	Pozície klávesov a priradenia vo vybranom rozložení	Billentyűpozíciók és hozzárendelések a kiválasztott kiosztásban
+122	Informacje techniczne o urządzeniu	Technické informace o zařízení	Technické informácie o zariadení	Eszköz műszaki adatai
+123	Tekst zostanie skopiowany do schowka po zastąpieniu zmiennych.	Text se zkopíruje do schránky s nahrazenými proměnnými.	Text sa skopíruje do schránky s nahradenými premennými.	A szöveg a változók behelyettesítése után a vágólapra kerül.
+124	Wskazówka: użyj Ctrl, Alt, Shift lub Win wraz z innym klawiszem.	Tip: použijte Ctrl, Alt, Shift nebo Win spolu s další klávesou.	Tip: použite Ctrl, Alt, Shift alebo Win spolu s ďalším klávesom.	Tipp: a Ctrl, Alt, Shift vagy Win billentyűt egy másik billentyűvel együtt használja.
+125	Wpisywany jest tekst Unicode. Zmienne są zastępowane podczas wykonywania.	Zadává se text Unicode. Proměnné se nahradí při spuštění.	Vkladá sa text Unicode. Premenné sa nahradia pri vykonaní.	Unicode-szöveg kerül beírásra. A változók futtatáskor behelyettesülnek.
+126	Dostępne: {{date}} · {{time}} · {{datetime}} · {{clipboard}} · {{profile}} · {{process}} · {{user}}	Dostupné: {{date}} · {{time}} · {{datetime}} · {{clipboard}} · {{profile}} · {{process}} · {{user}}	Dostupné: {{date}} · {{time}} · {{datetime}} · {{clipboard}} · {{profile}} · {{process}} · {{user}}	Elérhető: {{date}} · {{time}} · {{datetime}} · {{clipboard}} · {{profile}} · {{process}} · {{user}}
+127	Poprzedni utwór	Předchozí skladba	Predchádzajúca skladba	Előző szám
+128	Czas oczekiwania między krokami (0–600 000 ms).	Čekání mezi kroky (0–600 000 ms).	Čakanie medzi krokmi (0–600 000 ms).	Várakozási idő a lépések között (0–600 000 ms).
+129	Więcej opcji	Další možnosti	Ďalšie možnosti	További lehetőségek
+130	Gdy profile automatyczne są włączone, aplikacja zmienia profil po spełnieniu warunków dla okna na pierwszym planie. Jeśli nie ma dopasowania, pozostaje profil domyślny. Przy wielu dopasowaniach obowiązuje kolejność na liście.	Pokud jsou zapnuté automatické profily, aplikace přepne profil při splnění podmínek pro okno v popředí. Bez shody zůstane aktivní výchozí profil. Při více shodách rozhoduje pořadí v seznamu.	Ak sú automatické profily zapnuté, aplikácia pri splnení podmienok pre okno v popredí prepne profil. Ak nič nevyhovuje, zostane aktívny predvolený profil. Pri viacerých zhodách rozhoduje poradie v zozname.	Ha az automatikus profilok aktívak, az alkalmazás az előtérben lévő ablak feltételei alapján profilt vált. Egyezés nélkül az alapértelmezett profil marad aktív. Több egyezés esetén a lista sorrendje érvényesül.
+131	Wartość dla tej akcji.	Hodnota pro tuto akci.	Hodnota pre túto akciu.	A művelet értéke.
+132	Odtwarzanie / pauza	Přehrát / pozastavit	Prehrať / pozastaviť	Lejátszás / szünet
+133	Liczba powtórzeń musi wynosić od 1 do 100.	Počet opakování musí být v rozmezí 1 až 100.	Počet opakovaní musí byť od 1 do 100.	Az ismétlések számának 1 és 100 közé kell esnie.
+134	Zablokuj system Windows	Uzamknout Windows	Uzamknúť Windows	Windows zárolása
+135	System Windows otworzy ścieżkę w przypisanej do niej aplikacji.	Windows otevře cestu v přiřazené aplikaci.	Windows otvorí cestu v priradenej aplikácii.	A Windows a társított alkalmazással nyitja meg az elérési utat.
+136	Wybierz Odtwarzanie/Pauza, Dalej, Wstecz lub Stop.	Vyberte Přehrát/Pozastavit, Další, Zpět nebo Zastavit.	Vyberte Prehrať/Pozastaviť, Ďalej, Späť alebo Zastaviť.	Válassza a Lejátszás/Szünet, Következő, Előző vagy Leállítás lehetőséget.
+137	Wybierz akcję.	Vyberte akci.	Vyberte akciu.	Válasszon műveletet.
+138	Wybierz kafelek lub utwórz nową akcję.	Vyberte dlaždici nebo vytvořte novou akci.	Vyberte dlaždicu alebo vytvorte novú akciu.	Válasszon egy csempét, vagy hozzon létre új műveletet.
+139	Wybierz: głośniej, ciszej lub wycisz.	Vyberte zvýšit hlasitost, snížit hlasitost nebo ztlumit.	Vyberte zvýšiť hlasitosť, znížiť hlasitosť alebo stlmiť.	Válassza a Hangerő növelése, Hangerő csökkentése vagy Némítás lehetőséget.
+140	iCUE nie zgłasza obecnie klawiatury, którą można sterować. Zwykłe skróty klawiszowe działają niezależnie.	iCUE nyní nehlásí žádnou ovladatelnou klávesnici. Běžné klávesové zkratky fungují nezávisle na tom.	iCUE momentálne nehlási žiadnu ovládateľnú klávesnicu. Bežné klávesové skratky fungujú nezávisle od toho.	iCUE jelenleg nem jelez vezérelhető billentyűzetet. A normál billentyűparancsok ettől függetlenül működnek.
+141	Otwórz iCUE	Otevřít iCUE	Otvoriť iCUE	iCUE megnyitása
+142	np. rozpocznij odtwarzanie muzyki	např. spustit hudbu	napr. spustiť hudbu	például zene indítása
+143	{0}  ·  USB {1}:{2}	{0}  ·  USB {1}:{2}	{0}  ·  USB {1}:{2}	{0}  ·  USB {1}:{2}
+144	{0}  ·  {1} aktywnych akcji	{0}  ·  {1} aktivních akcí	{0}  ·  {1} aktívnych akcií	{0}  ·  {1} aktív művelet
+145	{0} diod LED	{0} LED diod	{0} LED diód	{0} LED
+146	{0} interfejsów	{0} rozhraní	{0} rozhraní	{0} felület
+147	{0} kroków · {1} przebieg{2}	{0} kroků · {1} průchod{2}	{0} krokov · {1} priechod{2}	{0} lépés · {1} futam{2}
+148	{0} wykrytych wpisów urządzeń	{0} rozpoznaných položek zařízení	{0} rozpoznaných položiek zariadení	{0} felismert eszközbejegyzés
+149	Zmiany zapisane	Změny uloženy	Zmeny uložené	Módosítások mentve
+150	Paleta pozwala znaleźć akcje we wszystkich profilach. Skrót Ctrl+K jest też dostępny, gdy to okno ma fokus.	V paletě najdete akce ve všech profilech. Zkratka Ctrl+K je navíc dostupná, když je toto okno aktivní.	V palete nájdete akcie vo všetkých profiloch. Skratka Ctrl+K je navyše dostupná, keď je toto okno aktívne.	A palettán az összes profil műveletei kereshetők. A Ctrl+K akkor is használható, ha ez az ablak van fókuszban.
+151	Ⅱ  Wstrzymaj skróty klawiszowe	Ⅱ  Pozastavit klávesové zkratky	Ⅱ  Pozastaviť klávesové skratky	Ⅱ  Billentyűparancsok szüneteltetése
+152	↑ Priorytet	↑ Priorita	↑ Priorita	↑ Prioritás
+153	↑↓ nawiguj   ·   Enter uruchom   ·   Esc zamknij	↑↓ navigace   ·   Enter spustit   ·   Esc zavřít	↑↓ navigácia   ·   Enter spustiť   ·   Esc zavrieť	↑↓ navigálás   ·   Enter indítás   ·   Esc bezárás
+154	↶ Cofnij	↶ Zpět	↶ Späť	↶ Visszavonás
+155	↷ Ponów	↷ Znovu	↷ Znova	↷ Ismét
+156	↻ Odśwież	↻ Obnovit	↻ Obnoviť	↻ Frissítés
+157	⇧ Importuj	⇧ Importovat	⇧ Importovať	⇧ Importálás
+158	⇧ Importuj konfigurację	⇧ Importovat konfiguraci	⇧ Importovať konfiguráciu	⇧ Konfiguráció importálása
+159	⇩ Eksportuj	⇩ Exportovat	⇩ Exportovať	⇩ Exportálás
+160	⇩ Eksportuj konfigurację	⇩ Exportovat konfiguraci	⇩ Exportovať konfiguráciu	⇩ Konfiguráció exportálása
+161	⌕  Paleta poleceń  {0}	⌕  Paleta příkazů  {0}	⌕  Paleta príkazov  {0}	⌕  Parancspaletta  {0}
+162	⌖ Przejmij warunki z okna na pierwszym planie	⌖ Převzít podmínky z okna v popředí	⌖ Prevziať podmienky z okna v popredí	⌖ Előtérben lévő ablak feltételeinek átvétele
+163	⌗   Klawiatura	⌗   Klávesnice	⌗   Klávesnica	⌗   Billentyűzet
+164	⌨   Urządzenia	⌨   Zařízení	⌨   Zariadenia	⌨   Eszközök
+165	▦   Profile	▦   Profily	▦   Profily	▦   Profilok
+166	▶  Wznów skróty klawiszowe	▶  Pokračovat v používání klávesových zkratek	▶  Pokračovať v používaní klávesových skratiek	▶  Billentyűparancsok folytatása
+167	▶  Uruchom	▶  Spustit	▶  Spustiť	▶  Indítás
+168	▶ Testuj	▶ Testovat	▶ Testovať	▶ Tesztelés
+169	◫   Pulpit	◫   Řídicí panel	◫   Panel	◫   Irányítópult
+170	⚙   Ustawienia	⚙   Nastavení	⚙   Nastavenia	⚙   Beállítások
+171	⧉ Duplikuj	⧉ Duplikovat	⧉ Duplikovať	⧉ Másolat készítése
+172	＋ Akcja	＋ Akce	＋ Akcia	＋ Művelet
+173	＋ Dodaj	＋ Přidat	＋ Pridať	＋ Hozzáadás
+174	＋ Profil	＋ Profil	＋ Profil	＋ Profil
+176	Klawisz martwy: skróty klawiszowe dotyczą fizycznego klawisza.	Mrtvá klávesa: klávesové zkratky se vztahují k fyzické klávese.	Mŕtvy kláves: klávesové skratky sa vzťahujú na fyzický kláves.	Halott billentyű: a billentyűparancsok a fizikai billentyűre vonatkoznak.
+186	System Windows nie może obecnie przypisać tej fizycznej pozycji klawisza do klawisza skrótu.	Windows momentálně nedokáže přiřadit tuto fyzickou pozici ke klávese zkratky.	Windows momentálne nedokáže priradiť túto fyzickú pozíciu ku klávesu skratky.	A Windows jelenleg nem tudja ezt a fizikai pozíciót billentyűparancshoz rendelni.
+189	Windows: {0} · {1} · Shift: {2}	Windows: {0} · {1} · Shift: {2}	Windows: {0} · {1} · Shift: {2}	Windows: {0} · {1} · Shift: {2}
+190	Zastosuj dopiero po zapisaniu w edytorze.	Použije se až po uložení v editoru.	Použije sa až po uložení v editore.	A szerkesztőben való mentés után lép érvénybe.
+192	Wybierz układ odniesienia dla widoku klawiszy.	Vyberte referenční rozložení pro zobrazení kláves.	Vyberte referenčné rozloženie pre zobrazenie klávesov.	Válasszon referencia-kiosztást a billentyűnézethez.
+196	Najpierw wybierz klawisz z prawidłowym skrótem i akcję docelową.	Nejprve vyberte klávesu s platnou zkratkou a cílovou akci.	Najprv vyberte kláves s platnou skratkou a cieľovú akciu.	Először válasszon érvényes billentyűparanccsal rendelkező billentyűt és célműveletet.
+197	Wybierz akcję docelową; kliknięcie klawisza nie zmienia zapisanej akcji.	Vyberte cílovou akci; kliknutí na klávesu uloženou akci nezmění.	Vyberte cieľovú akciu; kliknutie na kláves nezmení uloženú akciu.	Válasszon célműveletet; egy billentyűre kattintva nem változik meg a mentett művelet.
+198	Wybierz akcję docelową	Vybrat cílovou akci	Vybrať cieľovú akciu	Célművelet kiválasztása
+199	Okno docelowe: {0} · {1}	Cílové okno: {0} · {1}	Cieľové okno: {0} · {1}	Célablak: {0} · {1}
+206	Zastosować {0} profili i {1} przypisań?\nBieżąca konfiguracja zostanie zastąpiona. Zaimportowane akcje pozostaną wyłączone, dopóki ich nie włączysz.	Převzít {0} profilů a {1} přiřazení?\nAktuální konfigurace bude nahrazena. Importované akce zůstanou vypnuté, dokud je nezapnete.	Prevziať {0} profilov a {1} priradení?\nAktuálna konfigurácia sa nahradí. Importované akcie zostanú vypnuté, kým ich nezapnete.	Átveszi a(z) {0} profilt és {1} hozzárendelést?\nA jelenlegi konfiguráció lecserélődik. Az importált műveletek kikapcsolva maradnak, amíg be nem kapcsolja őket.
+209	{0} kroków · {1}×	{0} kroků · {1}×	{0} krokov · {1}×	{0} lépés · {1}×
+210	Użyj {0} jako części sugerowanego skrótu klawiszowego.	Použít {0} jako součást navržené klávesové zkratky.	Použiť {0} ako súčasť navrhnutej klávesovej skratky.	A(z) {0} használata a javasolt billentyűparancs részeként.
+212	{0} otwarto w edytorze. Zapisany skrót klawiszowy nie został zmieniony.	{0} bylo otevřeno v editoru. Uložená klávesová zkratka se nezměnila.	{0} sa otvorilo v editore. Uložená klávesová skratka sa nezmenila.	A(z) {0} megnyílt a szerkesztőben. A mentett billentyűparancs nem változott.
+213	{0} zmienia wybór modyfikatorów powyżej.	{0} změní výběr modifikátorů výše.	{0} zmení výber modifikátorov vyššie.	A(z) {0} módosítja a fenti módosítóbillentyű-választást.
+214	{TemplateBinding SelectionBoxItem}	{TemplateBinding SelectionBoxItem}	{TemplateBinding SelectionBoxItem}	{TemplateBinding SelectionBoxItem}
+215	Zmień wyszukiwane hasło, aby wyświetlić więcej akcji.	Změňte hledaný výraz a zobrazí se další akce.	Zmeňte hľadaný výraz a zobrazia sa ďalšie akcie.	Módosítsa a keresőkifejezést további műveletek megjelenítéséhez.
+216	Zmiany w akcji	Změny akce	Zmeny akcie	Művelet módosításai
+229	⌕  Paleta poleceń  Ctrl+Shift+Space	⌕  Paleta příkazů  Ctrl+Shift+Space	⌕  Paleta príkazov  Ctrl+Shift+Space	⌕  Parancspaletta  Ctrl+Shift+Space
+239	★ Ulubione ({0})	★ Oblíbené ({0})	★ Obľúbené ({0})	★ Kedvencek ({0})
+240	☆ Ulubione ({0})	☆ Oblíbené ({0})	☆ Obľúbené ({0})	☆ Kedvencek ({0})
+243	🔒 Zablokuj profil	🔒 Uzamknout profil	🔒 Uzamknúť profil	🔒 Profil zárolása
+244	🔓 Odblokuj	🔓 Odemknout	🔓 Odomknúť	🔓 Feloldás

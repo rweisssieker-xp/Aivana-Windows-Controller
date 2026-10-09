@@ -1,0 +1,75 @@
+0	 · Zmienne: {0}	 · Proměnné: {0}	 · Premenné: {0}	 · Változók: {0}
+20	(bez nazwy)	(bez názvu)	(bez názvu)	(névtelen)
+22	SKRÓT PRZERWANIA	ZKRATKA PRO ZRUŠENÍ	SKRATKA NA ZRUŠENIE	MEGSZAKÍTÁSI GYORSBILLENTYŰ
+24	AKCJA	AKCE	AKCIA	MŰVELET
+25	AKCJE	AKCE	AKCIE	MŰVELETEK
+26	KAFELKI AKCJI	DLAŽDICE AKCÍ	DLAŽDICE AKCIÍ	MŰVELETCSEMPÉK
+27	AKTYWNE	AKTIVNÍ	AKTÍVNE	AKTÍV
+28	JĘZYK INTERFEJSU	JAZYK ROZHRANÍ	JAZYK ROZHRANIA	MEGJELENÍTÉSI NYELV
+29	OBSZAR ROBOCZY	PRACOVNÍ PROSTOR	PRACOVNÝ PRIESTOR	MUNKATERÜLET
+30	ARGUMENTY	ARGUMENTY	ARGUMENTY	ARGUMENTUMOK
+31	WYŁ.	VYPNUTO	VYPNUTÉ	KI
+32	AUTOMATYCZNE PRZEŁĄCZANIE ODBLOKOWANE	AUTOMATICKÉ PŘEPÍNÁNÍ POVOLENO	AUTOMATICKÉ PREPÍNANIE POVOLENÉ	AUTOMATIKUS VÁLTÁS ENGEDÉLYEZVE
+33	Zażądano przerwania	Požadováno zrušení	Požadované zrušenie	Megszakítás kérve
+34	Skrót przerwania: {0}	Zkratka pro zrušení: {0}	Skratka na zrušenie: {0}	Megszakítási gyorsbillentyű: {0}
+37	Aivana Controller już działa. Otwórz go za pomocą ikony w obszarze powiadomień.	Aivana Controller již běží. Otevřete jej pomocí ikony v oznamovací oblasti.	Aivana Controller už beží. Otvorte ho pomocou ikony v oblasti oznámení.	Az Aivana Controller már fut. Nyissa meg az értesítési területen lévő ikonnal.
+38	Aivana pozostaje aktywna	Aivana zůstává aktivní	Aivana zostáva aktívna	Az Aivana aktív marad
+39	Aivana – Błąd	Aivana – Chyba	Aivana – Chyba	Aivana – Hiba
+40	Aivana – Błąd uruchamiania	Aivana – Chyba spuštění	Aivana – Chyba spustenia	Aivana – Indítási hiba
+41	Akcja jest wyłączona.	Akce je zakázána.	Akcia je vypnutá.	A művelet le van tiltva.
+42	Uruchom akcję teraz	Spustit akci nyní	Spustiť akciu teraz	Művelet indítása most
+43	Akcja trwa	Akce běží	Akcia beží	A művelet fut
+44	Aktywne	Aktivní	Aktívne	Aktív
+45	Aktywne: {0}	Aktivní: {0}	Aktívne: {0}	Aktív: {0}
+46	Włącz skróty klawiszowe, aby wykonywać akcje.	Povolte klávesové zkratky pro spouštění akcí.	Zapnite klávesové skratky na spúšťanie akcií.	A műveletek futtatásához engedélyezze a gyorsbillentyűket.
+47	Wykonywanie	Spouštění	Spúšťanie	Végrehajtás
+48	PALETA POLECEŃ	PALETA PŘÍKAZŮ	PALETA PRÍKAZOV	PARANCSPALE TTA
+49	ZAJĘTE	OBSAZENO	OBSADENÉ	FOGLALT
+50	GOTOWE	PŘIPRAVENO	PRIPRAVENÉ	KÉSZ
+51	Edytuj	Upravit	Upraviť	Szerkesztés
+52	Przechwyć warunki	Zachytit podmínky	Zachytiť podmienky	Feltételek rögzítése
+53	Zakończ	Ukončit	Ukončiť	Kilépés
+54	Paleta poleceń	Paleta příkazů	Paleta príkazov	Parancspaletta
+55	Paleta poleceń: {0}	Paleta příkazů: {0}	Paleta príkazov: {0}	Parancspaletta: {0}
+56	Zajęte: {0}. Kliknij ponownie, aby otworzyć tę akcję w edytorze.	Obsazeno: {0}. Kliknutím znovu otevřete tuto akci v editoru.	Obsadené: {0}. Opätovným kliknutím otvoríte túto akciu v editore.	Foglalt: {0}. Kattintson újra a művelet szerkesztőben való megnyitásához.
+57	Zastosowano kolor podświetlenia	Barva podsvícení použita	Farba podsvietenia použitá	Világítási szín alkalmazva
+58	Gotowe	Připraveno	Pripravené	Kész
+59	KONTROLER	OVLADAČ	OVLÁDAČ	VEZÉRLŐ
+60	KLAWISZ G CORSAIR	KLÁVESA G CORSAIR	KLÁVES G CORSAIR	CORSAIR G-BILLENTYŰ
+63	Corsair G{0} to niezapisany szkic dla {1}. Sprawdź go i zapisz w edytorze.	Corsair G{0} je neuložený návrh pro {1}. Zkontrolujte jej a uložte v editoru.	Corsair G{0} je neuložený návrh pre {1}. Skontrolujte ho a uložte v editore.	A Corsair G{0} egy mentetlen vázlat ehhez: {1}. Ellenőrizze és mentse a szerkesztőben.
+64	Podświetlenie Corsair	Podsvícení Corsair	Podsvietenie Corsair	Corsair-világítás
+65	Ustaw kolor Corsair: {0}	Nastavit barvu Corsair: {0}	Nastaviť farbu Corsair: {0}	Corsair-szín beállítása: {0}
+66	Wybrano klawisz G Corsair i akcję docelową. Przypisanie zostanie przygotowane jako niezapisany szkic.	Je vybrána klávesa G Corsair a cílová akce. Přiřazení bude připraveno jako neuložený návrh.	Je vybraný kláves G Corsair a cieľová akcia. Priradenie bude pripravené ako neuložený návrh.	A Corsair G-billentyű és a célművelet ki van választva. A hozzárendelés mentetlen vázlatként készül el.
+67	Klawisze G Corsair są niedostępne.	Klávesy G Corsair nejsou dostupné.	Klávesy G Corsair nie sú dostupné.	A Corsair G-billentyűk nem érhetők el.
+68	Klawisze G Corsair są dostępne; obecnie żaden klawisz nie jest przypisany.	Klávesy G Corsair jsou dostupné; nyní není přiřazena žádná klávesa.	Klávesy G Corsair sú dostupné; momentálne nie je priradený žiadny kláves.	A Corsair G-billentyűk elérhetők; jelenleg nincs hozzárendelt billentyű.
+69	Klawisze G Corsair oczekują na połączenie z iCUE.	Klávesy G Corsair čekají na připojení k iCUE.	Klávesy G Corsair čakajú na pripojenie k iCUE.	A Corsair G-billentyűk iCUE-kapcsolatra várnak.
+70	Klawisze G Corsair: 	Klávesy G Corsair: 	Klávesy G Corsair: 	Corsair G-billentyűk: 
+71	Klawiatura Corsair	Klávesnice Corsair	Klávesnica Corsair	Corsair-billentyűzet
+72	Klawiatura Corsair dla klawiszy G	Klávesnice Corsair pro klávesy G	Klávesnica Corsair pre klávesy G	Corsair-billentyűzet a G-billentyűkhöz
+73	Zaktualizowano podświetlenie klawiatury Corsair.	Podsvícení klávesnice Corsair bylo aktualizováno.	Podsvietenie klávesnice Corsair bolo aktualizované.	A Corsair-billentyűzet világítása frissült.
+74	CorsairGetDevices zgłosił błąd SDK {0}.	CorsairGetDevices ohlásil chybu SDK {0}.	CorsairGetDevices nahlásil chybu SDK {0}.	A CorsairGetDevices {0} SDK-hibát jelzett.
+76	WYŁĄCZONE	ZAKÁZÁNO	VYPNUTÉ	LETILTVA
+77	Skrót przerwania „{0}” jest także przypisany do kafelka „{1}”.	Zkratka pro zrušení „{0}“ je přiřazena také dlaždici „{1}“.	Skratka na zrušenie „{0}“ je priradená aj dlaždici „{1}“.	A „{0}” megszakítási gyorsbillentyű a(z) „{1}” csempéhez is hozzá van rendelve.
+78	Skrót przerwania „{0}” jest nieprawidłowy.	Zkratka pro zrušení „{0}“ je neplatná.	Skratka na zrušenie „{0}“ je neplatná.	A „{0}” megszakítási gyorsbillentyű érvénytelen.
+79	Nie udało się ustawić pozycji okna (błąd Windows {0}).	Okno se nepodařilo umístit (chyba Windows {0}).	Okno sa nepodarilo umiestniť (chyba Windows {0}).	Az ablak elhelyezése sikertelen (Windows-hiba: {0}).
+80	Nie udało się wykonać operacji {0} na oknie.	Operaci {0} se na okně nepodařilo provést.	Operáciu {0} sa na okne nepodarilo vykonať.	Az ablakon a(z) {0} művelet sikertelen.
+81	Skrót palety poleceń jest zarezerwowany lub już zajęty.	Zkratka palety příkazů je vyhrazena nebo již obsazena.	Skratka palety príkazov je rezervovaná alebo už obsadená.	A parancspaletta gyorsbillentyűje fenntartott vagy már foglalt.
+82	Skrót musi zawierać co najmniej jeden klawisz, a każdy modyfikator tylko raz.	Zkratka musí obsahovat alespoň jednu klávesu a každý modifikátor jen jednou.	Skratka musí obsahovať aspoň jeden kláves a každý modifikátor len raz.	A gyorsbillentyűnek legalább egy billentyűt kell tartalmaznia, minden módosítót csak egyszer.
+83	Skrót „{0}” jest przypisany wielokrotnie w profilu „{1}”.	Zkratka „{0}“ je v profilu „{1}“ přiřazena vícekrát.	Skratka „{0}“ je v profile „{1}“ priradená viackrát.	A „{0}” gyorsbillentyű többször szerepel a(z) „{1}” profilban.
+84	Układ zostanie zapisany w ustawieniach lokalnych.	Rozložení se ukládá do místního nastavení.	Rozloženie sa ukladá do miestnych nastavení.	Az elrendezés a helyi beállításokba kerül.
+85	Skrót palety „{0}” jest także przypisany do kafelka „{1}”.	Zkratka palety „{0}“ je přiřazena také dlaždici „{1}“.	Skratka palety „{0}“ je priradená aj dlaždici „{1}“.	A paletta „{0}” gyorsbillentyűje a(z) „{1}” csempéhez is hozzá van rendelve.
+86	Skrót palety „{0}” jest nieprawidłowy.	Zkratka palety „{0}“ je neplatná.	Skratka palety „{0}“ je neplatná.	A paletta „{0}” gyorsbillentyűje érvénytelen.
+87	Skrót palety „{0}” koliduje ze skrótem przerwania „{1}”.	Zkratka palety „{0}“ je v konfliktu se zkratkou pro zrušení „{1}“.	Skratka palety „{0}“ je v konflikte so skratkou na zrušenie „{1}“.	A paletta „{0}” gyorsbillentyűje ütközik a „{1}” megszakítási gyorsbillentyűvel.
+88	Nie udało się otworzyć programu lub ścieżki: {0}	Program nebo cestu se nepodařilo otevřít: {0}	Program alebo cestu sa nepodarilo otvoriť: {0}	A program vagy elérési út megnyitása sikertelen: {0}
+89	Układ językowy i kształt klawiatury wybiera się ręcznie; nie są automatycznie ustalane na podstawie podłączonego urządzenia.	Jazykové a tvarové rozložení se volí výslovně; neurčuje se automaticky podle připojeného zařízení.	Jazykové a tvarové rozloženie sa volí výslovne; neurčuje sa automaticky podľa pripojeného zariadenia.	A nyelvi és formai elrendezést külön kell kiválasztani; a csatlakoztatott eszköz alapján nem kerül automatikusan meghatározásra.
+90	Profil domyślny nie wskazuje istniejącego identyfikatora profilu.	Výchozí profil neodkazuje na existující ID profilu.	Predvolený profil neodkazuje na existujúce ID profilu.	Az alapértelmezett profil nem létező profilazonosítóra hivatkozik.
+91	Układ klawiatury „{0}” jest nieznany.	Rozložení klávesnice „{0}“ není známo.	Rozloženie klávesnice „{0}“ nie je známe.	A(z) „{0}” billentyűzetkiosztás ismeretlen.
+92	Nie znaleziono profilu docelowego.	Cílový profil nebyl nalezen.	Cieľový profil sa nenašiel.	A célprofil nem található.
+93	Aktywny profil nie wskazuje istniejącego identyfikatora profilu.	Aktivní profil neodkazuje na existující ID profilu.	Aktívny profil neodkazuje na existujúce ID profilu.	Az aktív profil nem létező profilazonosítóra hivatkozik.
+94	Ta akcja nie może zmieniać własnego okna aplikacji. Najpierw ustaw fokus na oknie docelowym.	Touto akcí nelze změnit vlastní okno aplikace. Nejprve zaměřte cílové okno.	Touto akciou nemožno zmeniť vlastné okno aplikácie. Najprv zamerajte cieľové okno.	Ezzel a művelettel az alkalmazás saját ablaka nem módosítható. Előbb helyezze a fókuszt a célablakra.
+95	Pakiet iCUE SDK nie jest zainstalowany; podświetlenie Corsair jest niedostępne.	SDK iCUE není nainstalováno; podsvícení Corsair není dostupné.	SDK iCUE nie je nainštalované; podsvietenie Corsair nie je dostupné.	Az iCUE SDK nincs telepítve; a Corsair-világítás nem érhető el.
+96	Nie udało się odczytać listy urządzeń iCUE.	Inventář iCUE se nepodařilo načíst.	Inventár iCUE sa nepodarilo načítať.	Az iCUE eszközlistájának olvasása sikertelen.
+97	Nie można usunąć ostatniego profilu.	Poslední profil nelze smazat.	Posledný profil nemožno odstrániť.	Az utolsó profil nem törölhető.
+98	Pulpit	Přehled	Prehľad	Áttekintés
+99	Otwórz plik / folder	Otevřít soubor / složku	Otvoriť súbor / priečinok	Fájl / mappa megnyitása
+100	Twój profil jest jeszcze pusty	Váš profil je zatím prázdný	Váš profil je zatiaľ prázdny	A profil még üres

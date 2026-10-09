@@ -1,0 +1,5 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <EmbeddedResource Include="Localization\*.json" LogicalName="Aivana.Core.Localization.%(Filename)%(Extension)" />
+  </ItemGroup>
+</Project>

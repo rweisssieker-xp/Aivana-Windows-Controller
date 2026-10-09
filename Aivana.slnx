@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Aivana.Core/Aivana.Core.csproj" />
+    <Project Path="src/Aivana.Desktop/Aivana.Desktop.csproj" />
+    <Project Path="src/Aivana.Windows/Aivana.Windows.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Aivana.Tests/Aivana.Tests.csproj" />
+    <Project Path="tests/Aivana.Windows.Tests/Aivana.Windows.Tests.csproj" />
+  </Folder>
+</Solution>
