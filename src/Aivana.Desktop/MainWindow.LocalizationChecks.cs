@@ -14,6 +14,26 @@ public partial class MainWindow
         var originalProfiles = JsonSerializer.Serialize(settings.Profiles);
         try
         {
+            foreach (var region in new[] { "en-US", "de-DE", "fr-FR", "it-IT" })
+            {
+                settings.UiLanguage = region;
+                Localization.SetLanguage(region);
+                Refresh();
+                if (FooterStatus.Text != L("Bereit"))
+                    throw new InvalidOperationException("Ready status did not follow language switch: " + region);
+                _page = "Profile";
+                var profiles = BuildProfilesPage();
+                var selected = ActiveProfile ?? throw new InvalidOperationException("Active profile missing");
+                var index = settings.Profiles.FindIndex(profile => profile.Id == selected.Id) + 1;
+                var expected = L("AKTIV") + "   ·   " + (selected.Id == settings.DefaultProfileId ? L("STANDARDPROFIL") : L("PRIORITÄT ") + index);
+                if (!FindKeyboardVisualChildren<System.Windows.Controls.TextBlock>(profiles).Any(block => block.Text == expected))
+                    throw new InvalidOperationException("Profile state did not follow language switch: " + region);
+                var keyboard = BuildKeyboardPage(selected);
+                var choices = FindKeyboardVisualChildren<System.Windows.Controls.ComboBox>(keyboard)
+                    .SelectMany(combo => combo.Items.OfType<KeyboardTileChoice>()).ToList();
+                if (choices.Count != selected.Tiles.Count || choices.Any(choice => choice.Label != choice.Tile.Name + " · " + L(choice.Tile.Enabled ? "aktiv" : "deaktiviert")))
+                    throw new InvalidOperationException("Keyboard target state did not follow language switch: " + region);
+            }
             foreach (var language in Localization.SupportedLanguages.Concat(new[] { "en-US", "de-DE", "fr-FR", "it-IT" }))
             {
                 settings.UiLanguage = language;

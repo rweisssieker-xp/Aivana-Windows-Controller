@@ -95,7 +95,7 @@ public partial class MainWindow
         right.Children.Add(proposal);
         var targetPicker = new ComboBox
         {
-            ItemsSource = profile?.Tiles.Select(tile => new KeyboardTileChoice(tile, LF($"{tile.Name} · {(tile.Enabled ? "aktiv" : "deaktiviert")}"))).ToList() ?? [],
+            ItemsSource = profile?.Tiles.Select(tile => new KeyboardTileChoice(tile, $"{tile.Name} · {L(tile.Enabled ? "aktiv" : "deaktiviert")}")).ToList() ?? [],
             DisplayMemberPath = nameof(KeyboardTileChoice.Label),
             SelectedValuePath = nameof(KeyboardTileChoice.Id),
             SelectedValue = profile?.Tiles.Any(tile => tile.Id == _keyboardTargetTileId) == true ? _keyboardTargetTileId : null,

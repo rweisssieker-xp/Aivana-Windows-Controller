@@ -42,7 +42,12 @@ public sealed partial class DesktopController : IDisposable
     public bool ProfileLocked { get; private set; }
     public int GetRunCount(Guid id) => _usage.TryGetValue(id, out var usage) ? usage.Count : 0;
     public DateTime? GetLastRun(Guid id) => _usage.TryGetValue(id, out var usage) ? usage.Last : null;
-    public string LastStatus { get; private set; } = Aivana.Core.Localization.Translate("Bereit");
+    private string? _lastStatus;
+    public string LastStatus
+    {
+        get => _lastStatus ?? Aivana.Core.Localization.Translate("Bereit");
+        private set => _lastStatus = value;
+    }
     public bool HasRunningActions => _runner.HasRunningActions;
     public bool IsRunning(Guid id) => _runner.IsRunning(id);
     public string GetTileStatus(Guid id) => _tileStatuses.GetValueOrDefault(id, Aivana.Core.Localization.Translate("Bereit"));

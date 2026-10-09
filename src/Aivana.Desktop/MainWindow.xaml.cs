@@ -754,7 +754,7 @@ public partial class MainWindow : Window
         if (selected != null)
         {
             var index = settings.Profiles.FindIndex(p => p.Id == selected.Id) + 1;
-            detailStack.Children.Add(Label(LF($"{(selected.Id == settings.ActiveProfileId ? "AKTIV" : "INAKTIV")}   ·   {(selected.Id == settings.DefaultProfileId ? "STANDARDPROFIL" : "PRIORITÄT " + index)}"), 10, selected.Id == settings.DefaultProfileId ? "#67D8CC" : "#91A3A5", true, new Thickness(0, 7, 0, 4)));
+            detailStack.Children.Add(Label($"{L(selected.Id == settings.ActiveProfileId ? "AKTIV" : "INAKTIV")}   ·   {(selected.Id == settings.DefaultProfileId ? L("STANDARDPROFIL") : L("PRIORITÄT ") + index)}", 10, selected.Id == settings.DefaultProfileId ? "#67D8CC" : "#91A3A5", true, new Thickness(0, 7, 0, 4)));
             detailStack.Children.Add(FieldLabel(L("NAME"))); detailStack.Children.Add(Input(selected.Name, v => { var prior = selected.Name; SaveSetting(() => selected.Name = v, () => selected.Name = prior); Refresh(); }, L("Arbeitsprofil")));
             detailStack.Children.Add(FieldLabel(L("PROZESSNAME (OPTIONAL)"))); detailStack.Children.Add(Input(selected.ProcessName, v => { var prior = selected.ProcessName; SaveSetting(() => selected.ProcessName = v, () => selected.ProcessName = prior); Refresh(); }, "code.exe"));
             detailStack.Children.Add(FieldLabel(L("FENSTERTITEL ENTHÄLT (OPTIONAL)"))); detailStack.Children.Add(Input(selected.WindowTitleContains, v => { var prior = selected.WindowTitleContains; SaveSetting(() => selected.WindowTitleContains = v, () => selected.WindowTitleContains = prior); Refresh(); }, L("z. B. Projektname")));

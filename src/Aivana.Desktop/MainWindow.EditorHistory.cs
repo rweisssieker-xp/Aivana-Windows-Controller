@@ -186,7 +186,7 @@ public partial class MainWindow
         var content = new StackPanel();
         content.Children.Add(new TextBlock
         {
-            Text = LF($"{tile.Steps.Count} Schritte · {tile.Repeat} Durchlauf{(tile.Repeat == 1 ? "" : "e")}"),
+            Text = LF($"{tile.Steps.Count} Schritte · {tile.Repeat}×"),
             FontSize = 15,
             FontWeight = FontWeights.SemiBold,
             Foreground = Brush("#65D6CA"),
