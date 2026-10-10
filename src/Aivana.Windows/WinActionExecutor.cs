@@ -93,6 +93,9 @@ public sealed class WinActionExecutor : IActionExecutor, IDisposable
             case ActionKind.SwitchProfile:
                 await _switchProfile(step.Value ?? "").WaitAsync(cancellationToken).ConfigureAwait(false);
                 break;
+            case ActionKind.WaitWindow:
+                await WindowReadyService.WaitAsync(step, cancellationToken).ConfigureAwait(false);
+                break;
             case ActionKind.Delay:
                 await Task.Delay(Math.Clamp(step.DelayMs, 0, 600_000), cancellationToken).ConfigureAwait(false);
                 break;

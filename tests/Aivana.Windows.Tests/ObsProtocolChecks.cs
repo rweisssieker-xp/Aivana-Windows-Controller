@@ -141,6 +141,7 @@ internal static class ObsProtocolChecks
             : """{"result":true,"code":100}""";
         var response = "{\"op\":7,\"d\":{\"requestType\":\"SetCurrentProgramScene\",\"requestId\":\"" + requestId + "\",\"requestStatus\":" + result + "}}";
         await SendTextAsync(socket, response, cancellationToken).ConfigureAwait(false);
+        await WaitForClientDisconnectAsync(socket, cancellationToken).ConfigureAwait(false);
     }
 
     private static async Task RunDiscoveryExchangeAsync()
@@ -201,6 +202,19 @@ internal static class ObsProtocolChecks
                 "\",\"requestStatus\":{\"result\":true,\"code\":100},\"responseData\":" + responseData + "}}";
             await SendTextAsync(socket, response, cancellationToken).ConfigureAwait(false);
         }
+        await WaitForClientDisconnectAsync(socket, cancellationToken).ConfigureAwait(false);
+    }
+
+    // Keep the final response readable until the client has consumed it and disposed its socket.
+    // Disposing the server immediately after SendAsync races the client's final ReceiveAsync.
+    private static async Task WaitForClientDisconnectAsync(WebSocket socket, CancellationToken token)
+    {
+        try
+        {
+            var result = await socket.ReceiveAsync(new byte[1].AsMemory(), token).ConfigureAwait(false);
+            Check(result.MessageType == WebSocketMessageType.Close, "Client should disconnect after the final response.");
+        }
+        catch (WebSocketException) { /* ClientWebSocket.Dispose aborts without a close handshake. */ }
     }
 
     private static async Task SendTextAsync(WebSocket socket, string text, CancellationToken cancellationToken)

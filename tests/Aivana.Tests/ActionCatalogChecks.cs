@@ -4,6 +4,11 @@ internal static class ActionCatalogChecks
 {
     public static Task RunAsync()
     {
+        var wait = new Tile { Steps = [new ActionStep { Kind = ActionKind.WaitWindow, Value = "notepad.exe", DelayMs = 5000 }] };
+        Assert(ConfigurationValidator.ValidateTile(wait).Count == 0, "window wait should accept process and bounded timeout");
+        wait.Steps[0].DelayMs = 0;
+        Assert(ConfigurationValidator.ValidateTile(wait).Count > 0, "window wait needs a positive timeout");
+        Assert(ActionCatalog.Find("workflow.workspace") != null, "workspace workflow should be available");
         var presets = ActionCatalog.Presets;
         Assert(presets.Count >= 50, "the catalog should offer a broad set of concrete presets");
         Assert(presets.Select(preset => preset.Id).Distinct(StringComparer.Ordinal).Count() == presets.Count,
@@ -14,21 +19,24 @@ internal static class ActionCatalogChecks
 
         foreach (var preset in presets)
         {
-            var first = preset.CreateStep();
-            var second = preset.CreateStep();
-            Assert(!ReferenceEquals(first, second), $"{preset.Id} should create an independent ActionStep each time");
-            Assert(ConfigurationValidator.ValidateTile(new Tile { Name = preset.Name, Icon = preset.Icon, Steps = [first] }).Count == 0,
-                $"{preset.Id} should produce a step accepted by the configuration validator");
-            if (first.Kind == ActionKind.Delay)
+            var first = preset.CreateSteps();
+            var second = preset.CreateSteps();
+            Assert(first.Count > 0 && first.Count == second.Count, "preset should retain every step");
+            Assert(!preset.IsWorkflow || first.Count > 1, "workflows must contain multiple steps");
+            for (var i = 0; i < first.Count; i++)
             {
-                first.DelayMs++;
-                Assert(second.DelayMs != first.DelayMs, $"{preset.Id} should not share mutable delay state");
+                Assert(!ReferenceEquals(first[i], second[i]), "preset steps must be independent");
+                var originalValue = second[i].Value;
+                first[i].Value = "changed by caller";
+                Assert(second[i].Value == originalValue, "editing a step must not mutate another draft");
             }
-            else
+            foreach (var step in second)
             {
-                first.Value = "changed by caller";
-                Assert(second.Value != first.Value, $"{preset.Id} should not share mutable step values");
+                if (step.Kind == ActionKind.SwitchProfile) step.Value = "Standard";
+                if (step.Kind == ActionKind.Obs && string.IsNullOrWhiteSpace(step.Arguments)) step.Arguments = "Test";
             }
+            Assert(ConfigurationValidator.ValidateTile(new Tile { Name = preset.Name, Steps = second }).Count == 0,
+                "configured preset must validate: " + preset.Id);
         }
 
         Assert(ActionCatalog.Find("app.notepad")?.Name == Localization.Translate("Editor öffnen"),

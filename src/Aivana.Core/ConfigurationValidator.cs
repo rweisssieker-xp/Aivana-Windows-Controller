@@ -143,6 +143,14 @@ public static class ConfigurationValidator
                 errors.Add(Localization.Translate((FormattableString)$"Schritt {index + 1} enthält keinen gültigen Wert."));
                 continue;
             }
+            if (step.Kind == ActionKind.WaitWindow)
+            {
+                if (string.IsNullOrWhiteSpace(step.Value) && string.IsNullOrWhiteSpace(step.Arguments))
+                    errors.Add(Localization.Translate("Für das Zielfenster ist ein Prozessname oder Fenstertitel erforderlich."));
+                if (step.DelayMs is < 1 or > 600_000)
+                    errors.Add(Localization.Translate("Das Zeitlimit muss zwischen 1 und 600000 ms liegen."));
+                continue;
+            }
             if (step.Kind == ActionKind.Delay)
             {
                 if (step.DelayMs is < 0 or > 600_000)

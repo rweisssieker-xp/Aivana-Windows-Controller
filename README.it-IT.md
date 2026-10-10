@@ -37,7 +37,7 @@ Chiudendo la finestra principale, l'app resta per impostazione predefinita nell'
 
 ## Azioni e tavolozza dei comandi
 
-«Aggiungi azione» apre un catalogo ricercabile con 80 preimpostazioni in sette categorie. Ognuna include descrizione e anteprima. L'editor macro usa lo stesso catalogo per aggiungere o sostituire passaggi. In questo flusso, selezionare una preimpostazione nell'editor crea una bozza senza eseguirla.
+«Aggiungi azione» apre un catalogo ricercabile con 87 preimpostazioni in otto categorie. Ognuna include descrizione e anteprima. L'editor macro usa lo stesso catalogo per aggiungere o sostituire passaggi. In questo flusso, selezionare una preimpostazione nell'editor crea una bozza senza eseguirla.
 
 La tavolozza dei comandi si apre dall'intestazione oppure con Ctrl+K nell'app. Cerca le azioni salvate nei profili, le preimpostazioni del catalogo, il cambio profilo, la navigazione, pausa/ripresa, l'annullamento delle macro e import/export. Puoi filtrare per azioni salvate, funzioni di catalogo o comandi dell'app. Le frecce selezionano, Invio attiva, Ctrl+Invio modifica una voce modificabile ed Esc chiude. I preferiti appaiono per primi. I comandi di catalogo pronti all'uso si possono eseguire subito; le preimpostazioni che richiedono configurazione aprono una bozza. Nelle Impostazioni puoi definire una scorciatoia globale per la tavolozza. Le nuove configurazioni usano Ctrl+Shift+Space; quelle esistenti non ricevono automaticamente un nuovo hotkey globale.
 
@@ -101,3 +101,9 @@ I controlli Windows possono esaminare l'hardware e configurare/rilasciare tempor
 L'input nativo non può aggirare i privilegi di Windows. Un controller avviato normalmente potrebbe non inviare input a un'applicazione amministratore. Gli hotkey riservati o già occupati vengono segnalati come conflitti.
 
 L'[indice della documentazione](docs/it-IT/README.md) collega design, piani, ricerche e rapporti di test storici datati. I piani storici descrivono l'ambito registrato all'epoca, non una garanzia attuale di supporto delle funzioni.
+
+### Modelli di workflow e attesa della finestra di destinazione
+
+Il catalogo include sei workflow modificabili: spazio di lavoro, riunione, streaming, ricerca, cambio progetto e testo predefinito. Cerca `workflow.` nel catalogo o nella palette dei comandi. La selezione apre una bozza non salvata senza eseguire azioni. Tutti i passaggi vengono mantenuti quando si aggiunge un workflow a una macro o lo si assegna a un tasto Corsair. Personalizza URL, percorsi, profili e scene OBS prima di salvare.
+
+**Attendi la finestra di destinazione** accetta un processo con o senza `.exe`, una parte del titolo senza distinzione tra maiuscole e minuscole e un timeout da 1 a 600.000 ms. È richiesto almeno un filtro; se presenti entrambi, devono corrispondere entrambi. La macro continua quando la finestra corrispondente è visibile, risponde ed è in primo piano. Specifica il titolo se più finestre condividono lo stesso processo. Annullamento o timeout interrompono i passaggi successivi. Una finestra pronta non garantisce il caricamento del documento o la connessione a servizi esterni come OBS WebSocket.

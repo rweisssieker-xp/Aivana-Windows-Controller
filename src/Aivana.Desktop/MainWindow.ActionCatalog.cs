@@ -12,18 +12,21 @@ public partial class MainWindow
         if (profile is null) return;
         var dialog = BuildActionCatalogWindow(preset =>
         {
-            var step = preset.CreateStep();
-            if (step.Kind == ActionKind.SwitchProfile) step.Value = "";
+            var steps = preset.CreateSteps();
+            foreach (var step in steps.Where(step => step.Kind == ActionKind.SwitchProfile)) step.Value = "";
             if (draft is not null)
             {
                 if (replaceStep && _selectedStep >= 0 && _selectedStep < draft.Steps.Count)
-                    draft.Steps[_selectedStep] = step;
-                else { draft.Steps.Add(step); _selectedStep = draft.Steps.Count - 1; }
+                {
+                    draft.Steps.RemoveAt(_selectedStep);
+                    draft.Steps.InsertRange(_selectedStep, steps);
+                }
+                else { draft.Steps.AddRange(steps); _selectedStep = draft.Steps.Count - steps.Count; }
                 Refresh();
                 return;
             }
             if (!ResolvePendingDraft()) return;
-            var tile = new Tile { Name = preset.Name, Icon = preset.Icon, Steps = [step] };
+            var tile = new Tile { Name = preset.Name, Icon = preset.Icon, Steps = steps };
             _selectedTileId = tile.Id; _draftTile = Clone(tile); _draftProfileId = profile.Id; _selectedStep = 0;
             _draftBaseline = ""; _draftBaselineTileId = tile.Id; _draftBaselineProfileId = profile.Id;
             Refresh();
@@ -92,10 +95,9 @@ public partial class MainWindow
             detail.Children.Add(Label(preset.Category, 11, "#69D8CC", false, new Thickness(0, 12, 0, 4)));
             detail.Children.Add(Label(preset.Name, 20, "#E8F0F1", true));
             detail.Children.Add(Label(preset.Description, 12, "#B5C2C3", false, new Thickness(0, 12, 0, 14)));
-            var step = preset.CreateStep();
+            var steps = preset.CreateSteps();
             detail.Children.Add(FieldLabel(L("Vorschau")));
-            var preview = step.Kind == ActionKind.SwitchProfile ? new[] { L("Profil nach Namen auswählen.") }
-                : MacroPreview.Build(new Tile { Steps = [step] }).Skip(1);
+            var preview = MacroPreview.Build(new Tile { Steps = steps }).Skip(1);
             foreach (var line in preview)
                 detail.Children.Add(Label(line, 11, "#91A3A5", false, new Thickness(0, 5, 0, 0)));
             detail.Children.Add(Label(L("Die Auswahl führt keine Aktion aus."), 11, "#69D8CC", false, new Thickness(0, 18, 0, 0)));

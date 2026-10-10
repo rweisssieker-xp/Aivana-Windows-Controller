@@ -34,6 +34,7 @@ public static class MacroPreview
                 ActionKind.Media => Localization.Translate((FormattableString)$"Medienaktion: {value}"),
                 ActionKind.Volume => Localization.Translate((FormattableString)$"Lautstärkeaktion: {value}"),
                 ActionKind.SwitchProfile => Localization.Translate((FormattableString)$"Profil wechseln: {value}"),
+                ActionKind.WaitWindow => Localization.Format("Auf Zielfenster warten: Prozess {0} · Titel {1} · Zeitlimit {2} ms", value, step.Arguments, step.DelayMs),
                 ActionKind.Delay => DescribeDelay(step.DelayMs),
                 ActionKind.CorsairColor => Localization.Translate((FormattableString)$"Corsair-Farbe setzen: {value}"),
                 ActionKind.Clipboard => Localization.Translate((FormattableString)$"Zwischenablage setzen: {value}"),

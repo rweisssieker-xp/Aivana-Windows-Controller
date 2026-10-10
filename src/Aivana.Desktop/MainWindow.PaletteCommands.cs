@@ -33,7 +33,7 @@ public partial class MainWindow
             }, L("Profile"));
         foreach (var preset in ActionCatalog.Presets)
         {
-            var entry = new PaletteEntry(new Tile { Name = preset.Name, Icon = preset.Icon, Steps = [preset.CreateStep()] },
+            var entry = new PaletteEntry(new Tile { Name = preset.Name, Icon = preset.Icon, Steps = preset.CreateSteps() },
                 new Profile { Name = preset.Category }, preset.Description, false, "", L("Funktion auswählen"), true,
                 Preset: preset, SearchTerms: preset.Id + " " + preset.CategoryId);
             entries.Add(entry with { CanRun = entry.NeedsConfiguration || !_controller.Paused,
@@ -55,9 +55,9 @@ public partial class MainWindow
     private void CreatePalettePreset(ActionPreset preset)
     {
         if (!ResolvePendingDraft() || ActiveProfile == null) return;
-        var step = preset.CreateStep();
-        if (step.Kind == ActionKind.SwitchProfile) step.Value = "";
-        var tile = new Tile { Name = preset.Name, Icon = preset.Icon, Steps = [step] };
+        var steps = preset.CreateSteps();
+        foreach (var step in steps.Where(step => step.Kind == ActionKind.SwitchProfile)) step.Value = "";
+        var tile = new Tile { Name = preset.Name, Icon = preset.Icon, Steps = steps };
         _page = "Dashboard"; _selectedTileId = tile.Id; _draftTile = tile; _draftProfileId = ActiveProfile.Id; _selectedStep = 0;
         _draftBaseline = ""; _draftBaselineTileId = tile.Id; _draftBaselineProfileId = ActiveProfile.Id;
         ResetDraftHistory(); Show(); WindowState = WindowState.Normal; Activate(); Refresh(forceRender: true);

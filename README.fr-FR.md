@@ -37,7 +37,7 @@ Par défaut, fermer la fenêtre principale laisse l’application dans la zone d
 
 ## Actions et palette de commandes
 
-« Ajouter une action » ouvre un catalogue consultable de 80 préréglages répartis en sept catégories. Chacun comporte une description et un aperçu. L’éditeur de macros utilise le même catalogue pour ajouter ou remplacer des étapes. Dans ce parcours de l’éditeur, sélectionner un préréglage crée un brouillon sans l’exécuter.
+« Ajouter une action » ouvre un catalogue consultable de 87 préréglages répartis en huit catégories. Chacun comporte une description et un aperçu. L’éditeur de macros utilise le même catalogue pour ajouter ou remplacer des étapes. Dans ce parcours de l’éditeur, sélectionner un préréglage crée un brouillon sans l’exécuter.
 
 La palette de commandes s’ouvre depuis l’en-tête ou avec Ctrl+K dans l’application. Elle recherche les actions enregistrées dans tous les profils, les préréglages du catalogue, le changement de profil, la navigation, la pause/reprise, l’annulation des macros et l’import/export. Filtrez les actions enregistrées, les fonctions du catalogue ou les commandes de l’application. Les flèches sélectionnent, Entrée active, Ctrl+Entrée modifie une entrée modifiable et Échap ferme la palette. Les favoris apparaissent en premier. Les commandes du catalogue prêtes à l’emploi peuvent être exécutées immédiatement ; les préréglages à configurer ouvrent un brouillon. Les paramètres permettent de définir un raccourci global pour la palette. Les nouvelles configurations utilisent Ctrl+Maj+Espace ; aucun nouveau raccourci global n’est attribué automatiquement aux configurations existantes.
 
@@ -101,3 +101,9 @@ Les contrôles Windows peuvent inspecter le matériel et configurer temporaireme
 Les entrées natives ne peuvent pas contourner les privilèges Windows. Un contrôleur lancé normalement peut être incapable d’envoyer des entrées à une application exécutée en tant qu’administrateur. Les raccourcis réservés ou déjà utilisés apparaissent comme des conflits.
 
 L’[index de documentation](docs/fr-FR/README.md) relie les conceptions historiques, plans, recherches et rapports de tests datés. Les plans historiques décrivent le périmètre consigné à l’époque et ne garantissent pas la prise en charge actuelle des fonctions.
+
+### Modèles de workflows et attente d’une fenêtre cible
+
+Le catalogue propose six workflows modifiables : espace de travail, réunion, streaming, recherche, changement de projet et texte prédéfini. Recherchez `workflow.` dans le catalogue ou la palette de commandes. La sélection ouvre un brouillon non enregistré sans rien exécuter. Tous les pas sont conservés lors de l’ajout à une macro ou de l’affectation à une touche Corsair. Adaptez les URL, chemins, profils et scènes OBS avant l’enregistrement.
+
+**Attendre la fenêtre cible** accepte un processus avec ou sans `.exe`, une partie du titre sans distinction de casse et un délai de 1 à 600 000 ms. Au moins un filtre est requis ; si les deux sont fournis, les deux doivent correspondre. La macro continue lorsque la fenêtre correspondante est visible, répond et passe au premier plan. Précisez le titre si plusieurs fenêtres partagent le même processus. Une annulation ou un dépassement du délai arrête les étapes suivantes. Une fenêtre prête ne garantit ni le chargement du document ni la connexion à un service externe tel qu’OBS WebSocket.

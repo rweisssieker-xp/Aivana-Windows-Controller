@@ -97,9 +97,9 @@ public partial class MainWindow
     private void ApplySpecialKeyDraft(string deviceId, int key, ActionPreset preset)
     {
         var profile = ActiveProfile ?? throw new InvalidOperationException();
-        var step = preset.CreateStep();
-        if (step.Kind == ActionKind.SwitchProfile) step.Value = "";
-        var tile = new Tile { Name = preset.Name, Icon = preset.Icon, CorsairBinding = new CorsairBinding(deviceId, key), Steps = [step] };
+        var steps = preset.CreateSteps();
+        foreach (var step in steps.Where(step => step.Kind == ActionKind.SwitchProfile)) step.Value = "";
+        var tile = new Tile { Name = preset.Name, Icon = preset.Icon, CorsairBinding = new CorsairBinding(deviceId, key), Steps = steps };
         _selectedTileId = tile.Id; _draftTile = tile; _draftProfileId = profile.Id; _selectedStep = 0;
         _draftBaseline = ""; _draftBaselineTileId = tile.Id; _draftBaselineProfileId = profile.Id;
         ResetDraftHistory();

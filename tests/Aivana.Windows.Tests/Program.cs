@@ -22,9 +22,66 @@ internal static class Program
     [return: MarshalAs(UnmanagedType.Bool)]
     private static extern bool PostMessage(IntPtr hwnd, int message, IntPtr wParam, IntPtr lParam);
 
+    [DllImport("user32.dll")] private static extern bool ShowWindowAsync(IntPtr window, int command);
+    [DllImport("user32.dll")] private static extern IntPtr GetForegroundWindow();
+    [DllImport("user32.dll")] private static extern bool SetForegroundWindow(IntPtr window);
+
     [STAThread]
-    private static void Main()
+    private static void Main(string[] args)
     {
+        try { Run(args); }
+        catch (Exception ex) { Console.Error.WriteLine(ex); Environment.ExitCode = 1; }
+    }
+
+    private static void Run(string[] args)
+    {
+        if (args is ["--window-wait-fixture", var title])
+        {
+            using var fixture = new HwndSource(new HwndSourceParameters(title)
+            {
+                Width = 320, Height = 120, WindowStyle = unchecked((int)0x10CF0000)
+            });
+            ShowWindowAsync(fixture.Handle, 5);
+            SetForegroundWindow(fixture.Handle);
+            fixture.RootVisual = new System.Windows.Controls.TextBlock { Text = "Aivana window wait test", FontSize = 18 };
+            System.Windows.Threading.Dispatcher.Run();
+            return;
+        }
+        using (var executor = new WinActionExecutor(_ => Task.CompletedTask))
+        {
+            var timeout = false;
+            try { executor.ExecuteAsync(new ActionStep { Kind = ActionKind.WaitWindow, Value = "AivanaMissingWindow-" + Guid.NewGuid().ToString("N"), DelayMs = 50 }, CancellationToken.None).GetAwaiter().GetResult(); }
+            catch (TimeoutException) { timeout = true; }
+            Check(timeout, "Native window search must time out when no matching process exists.");
+            using var cancellation = new CancellationTokenSource(); cancellation.Cancel();
+            var cancelled = false;
+            try { executor.ExecuteAsync(new ActionStep { Kind = ActionKind.WaitWindow, Value = "notepad", DelayMs = 1000 }, cancellation.Token).GetAwaiter().GetResult(); }
+            catch (OperationCanceledException) { cancelled = true; }
+            Check(cancelled, "Native window wait must honor cancellation before activating anything.");
+        }
+        var previousWindow = GetForegroundWindow();
+        using (var fixture = System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+        {
+            FileName = Environment.ProcessPath!, Arguments = "--window-wait-fixture AivanaWait-" + Guid.NewGuid().ToString("N"),
+            UseShellExecute = false, CreateNoWindow = true, WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden
+        }) ?? throw new InvalidOperationException("Test window process failed to start."))
+        {
+            try
+            {
+                // The title filter isolates our own fixture from every live user window.
+                var fixtureTitle = fixture.StartInfo.Arguments.Split(' ')[1];
+                using var executor = new WinActionExecutor(_ => Task.CompletedTask);
+                executor.ExecuteAsync(new ActionStep { Kind = ActionKind.WaitWindow, Value = fixture.ProcessName, Arguments = fixtureTitle, DelayMs = 10000 }, CancellationToken.None).GetAwaiter().GetResult();
+                fixture.Refresh();
+                Check(!fixture.HasExited && GetForegroundWindow() == fixture.MainWindowHandle && fixture.MainWindowTitle == fixtureTitle, "Window wait should find and focus the separate test window.");
+            }
+            finally
+            {
+                if (!fixture.HasExited) { fixture.Kill(); fixture.WaitForExit(5000); }
+                if (previousWindow != IntPtr.Zero) SetForegroundWindow(previousWindow);
+            }
+        }
+        Console.WriteLine("Window wait native success, timeout and cancellation checks passed using an isolated test window.");
         AudioEndpointChecks.Run();
         ObsProtocolChecks.Run();
         var leftHalf = WinActionExecutor.CalculateWindowHalf(new WinActionExecutor.NativeRect { Left = -1920, Top = 40, Right = 0, Bottom = 1040 }, right: false);

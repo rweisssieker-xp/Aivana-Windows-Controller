@@ -4,6 +4,8 @@ namespace Aivana.Core;
 public sealed class ActionPreset
 {
     private readonly Func<ActionStep> _createStep;
+    private readonly Func<List<ActionStep>>? _createWorkflow;
+    public bool IsWorkflow => _createWorkflow is not null;
     private readonly string _categorySource;
     private readonly string _nameSource;
     private readonly string _descriptionSource;
@@ -28,7 +30,13 @@ public sealed class ActionPreset
     public string Icon { get; }
 
     /// <summary>Creates a new step each time so edits to one tile cannot mutate the catalog or another tile.</summary>
-    public ActionStep CreateStep() => _createStep();
+    public ActionStep CreateStep() => IsWorkflow
+        ? throw new InvalidOperationException("Use CreateSteps for a multi-step workflow.") : _createStep();
+    public List<ActionStep> CreateSteps() => _createWorkflow?.Invoke() ?? [_createStep()];
+
+    internal ActionPreset(string id, string name, string description, string icon, Func<List<ActionStep>> createWorkflow)
+        : this(id, "Ablaufvorlagen", name, description, icon, () => throw new InvalidOperationException())
+        => _createWorkflow = createWorkflow;
 
     internal string CategorySource => _categorySource;
     internal string NameSource => _nameSource;
@@ -133,6 +141,32 @@ public static class ActionCatalog
         Obs("obs.stream-toggle", "Streaming und OBS", "OBS-Stream umschalten", "Startet oder stoppt den OBS-Stream.", "◉", "ToggleStream"),
         Obs("obs.scene", "Streaming und OBS", "OBS-Szene wechseln", "Wechselt zur angegebenen OBS-Szene; den Szenennamen nach dem Hinzufügen anpassen.", "▣", "SetCurrentProgramScene", "Szene"),
         Obs("obs.microphone-toggle", "Streaming und OBS", "OBS-Mikrofon umschalten", "Schaltet den angegebenen OBS-Eingang stumm oder aktiv; den Eingabenamen anpassen.", "🎙", "ToggleInputMute", "Mikrofon"),
+
+        new ActionPreset("workflow.workspace", "Arbeitsplatz starten", "Öffnet Editor, Dokumente und Projektseite. Pfade und Webseite vor dem Speichern anpassen.", "▦", () => [
+            new() { Kind = ActionKind.Launch, Value = "notepad.exe" },
+            new() { Kind = ActionKind.WaitWindow, Value = "notepad", DelayMs = 15000 },
+            new() { Kind = ActionKind.OpenPath, Value = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) },
+            new() { Kind = ActionKind.Url, Value = "https://example.com" }]),
+        new ActionPreset("workflow.meeting", "Meeting vorbereiten", "Stoppt Medien, schaltet das Mikrofon stumm und öffnet den anpassbaren Meeting-Link.", "🎙", () => [
+            new() { Kind = ActionKind.Media, Value = "Stop" }, new() { Kind = ActionKind.Volume, Value = "MicMuteOn" },
+            new() { Kind = ActionKind.Url, Value = "https://example.com" }]),
+        new ActionPreset("workflow.streaming", "Streaming vorbereiten", "Startet OBS und wartet auf sein Fenster. Programmpfad und Szenenname vor dem Speichern anpassen.", "●", () => [
+            new() { Kind = ActionKind.Launch, Value = "obs64.exe" },
+            new() { Kind = ActionKind.WaitWindow, Value = "obs64", DelayMs = 30000 },
+            new() { Kind = ActionKind.Obs, Value = "SetCurrentProgramScene", Arguments = "", WorkingDirectory = "ws://127.0.0.1:4455" }]),
+        new ActionPreset("workflow.research", "Recherche starten", "Öffnet Wikipedia und einen Editor; beginnt die Notiz mit Datum und Uhrzeit.", "⌕", () => [
+            new() { Kind = ActionKind.Url, Value = "https://www.wikipedia.org" },
+            new() { Kind = ActionKind.Launch, Value = "notepad.exe" },
+            new() { Kind = ActionKind.WaitWindow, Value = "notepad", DelayMs = 15000 },
+            new() { Kind = ActionKind.Text, Value = "{{datetime}}\n" }]),
+        new ActionPreset("workflow.project", "Projekt wechseln", "Öffnet den Projektordner und wechselt zum gewählten Controller-Profil. Ordner und Profil anpassen.", "▤", () => [
+            new() { Kind = ActionKind.OpenPath, Value = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) },
+            new() { Kind = ActionKind.SwitchProfile, Value = "" }]),
+        new ActionPreset("workflow.snippet", "Textbaustein einfügen", "Kopiert eine anpassbare Vorlage mit Datum und fügt sie im aktiven Fenster ein.", "T", () => [
+            new() { Kind = ActionKind.Clipboard, Value = "{{date}} · {{user}}" },
+            new() { Kind = ActionKind.Shortcut, Value = "Ctrl+V" }]),
+        new ActionPreset("custom.wait-window", "Makros und Gerät", "Auf Zielfenster warten", "Wartet auf ein sichtbares, reagierendes Zielfenster und fokussiert es. Prozess, Titel und Zeitlimit anpassen.", "◷", () => new ActionStep { Kind = ActionKind.WaitWindow, Value = "notepad", DelayMs = 15000 }),
+
     });
 
     public static IReadOnlyList<ActionPreset> Presets => PresetList;

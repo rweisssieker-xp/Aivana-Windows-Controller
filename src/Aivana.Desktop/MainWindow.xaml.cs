@@ -435,7 +435,7 @@ public partial class MainWindow : Window
     internal sealed record PaletteEntry(Tile Tile, Profile Profile, string Preview, bool Favorite, string Hotkey, string State, bool CanRun,
         Action? Command = null, ActionPreset? Preset = null, string SearchTerms = "")
     {
-        public bool NeedsConfiguration => Preset != null && (Preset.Id.StartsWith("custom.", StringComparison.Ordinal)
+        public bool NeedsConfiguration => Preset != null && (Preset.IsWorkflow || Preset.Id.StartsWith("custom.", StringComparison.Ordinal)
             || ConfigurationValidator.ValidateTile(Tile).Count > 0);
         public string Meta => Command != null ? Profile.Name : string.Join("  ·  ", new[] { Profile.Name, string.IsNullOrWhiteSpace(Hotkey) ? ActionName(Tile.Steps.FirstOrDefault()?.Kind ?? ActionKind.Launch) : Hotkey });
         public string Badge => Preset != null ? L("Aktionskatalog") : Command != null ? "Aivana" : Favorite ? L("★ FAVORIT") : L("AKTION");
@@ -1088,7 +1088,7 @@ public partial class MainWindow : Window
     }
     private static string ActionName(ActionKind kind) => kind switch
     {
-        ActionKind.Launch => L("Programm starten"), ActionKind.OpenPath => L("Datei / Ordner öffnen"), ActionKind.Url => L("Webseite öffnen"), ActionKind.Text => L("Text eingeben"), ActionKind.Shortcut => L("Tastenkombination"), ActionKind.Media => L("Mediensteuerung"), ActionKind.Volume => L("Lautstärke"), ActionKind.SwitchProfile => L("Profil wechseln"), ActionKind.Delay => L("Pause"), ActionKind.CorsairColor => L("Corsair-Beleuchtung"), ActionKind.Clipboard => L("Zwischenablage setzen"), ActionKind.Window => L("Fenster anordnen"), ActionKind.System => L("Windows sperren"), ActionKind.Obs => "OBS Studio", _ => kind.ToString()
+        ActionKind.Launch => L("Programm starten"), ActionKind.OpenPath => L("Datei / Ordner öffnen"), ActionKind.Url => L("Webseite öffnen"), ActionKind.Text => L("Text eingeben"), ActionKind.Shortcut => L("Tastenkombination"), ActionKind.Media => L("Mediensteuerung"), ActionKind.Volume => L("Lautstärke"), ActionKind.SwitchProfile => L("Profil wechseln"), ActionKind.Delay => L("Pause"), ActionKind.CorsairColor => L("Corsair-Beleuchtung"), ActionKind.Clipboard => L("Zwischenablage setzen"), ActionKind.Window => L("Fenster anordnen"), ActionKind.System => L("Windows sperren"), ActionKind.Obs => "OBS Studio", ActionKind.WaitWindow => L("Auf Zielfenster warten"), _ => kind.ToString()
     };
     private static bool HotkeyContainsKey(string hotkey, string key)
     {

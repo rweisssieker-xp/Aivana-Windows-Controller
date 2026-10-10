@@ -242,7 +242,7 @@ public partial class MainWindow
                     step.Kind = kind; step.Value = restored?.Value ?? DefaultStepValue(kind);
                     step.Arguments = restored?.Arguments ?? ""; step.WorkingDirectory = restored?.WorkingDirectory ?? "";
                     step.AudioDeviceId = restored?.AudioDeviceId;
-                    step.DelayMs = kind == ActionKind.Delay ? Math.Clamp(restored?.DelayMs ?? step.DelayMs, 0, 600000) : step.DelayMs;
+                    step.DelayMs = kind == ActionKind.WaitWindow ? Math.Clamp(restored?.DelayMs ?? 15000, 1, 600000) : kind == ActionKind.Delay ? Math.Clamp(restored?.DelayMs ?? step.DelayMs, 0, 600000) : step.DelayMs;
                     Refresh(forceRender: true);
                 };
                 content.Children.Add(kindPicker);
@@ -300,6 +300,19 @@ public partial class MainWindow
     private void AddStepFields(Panel target, Tile tile, ActionStep step)
     {
         var kind = step.Kind;
+        if (kind == ActionKind.WaitWindow)
+        {
+            target.Children.Add(FieldLabel(L("PROZESSNAME (OPTIONAL)")));
+            target.Children.Add(EditorInput(step.Value, value => step.Value = value, "notepad.exe"));
+            target.Children.Add(FieldLabel(L("FENSTERTITEL ENTHÄLT (OPTIONAL)")));
+            target.Children.Add(EditorInput(step.Arguments, value => step.Arguments = value, L("z. B. Projektname")));
+            target.Children.Add(FieldLabel(L("ZEITLIMIT (MS)")));
+            var timeout = new EditorNumericUpDown(step.DelayMs, 1, 600000);
+            timeout.ValueChanged += value => { step.DelayMs = value; Refresh(); };
+            target.Children.Add(timeout);
+            target.Children.Add(Label(L("Mindestens einen Filter angeben. Das Makro wartet, bis das Zielfenster sichtbar ist, reagiert und fokussiert wurde."), 11, "#91A3A5"));
+            return;
+        }
         if (kind == ActionKind.Obs) { AddObsStepFields(target, step); return; }
         if (kind == ActionKind.Volume) { AddAudioStepFields(target, step); return; }
         var (valueLabel, hint) = kind switch
@@ -450,7 +463,7 @@ public partial class MainWindow
 
     private void AddStep(Tile tile, ActionKind kind)
     {
-        var step = new ActionStep { Kind = kind, Value = DefaultStepValue(kind), DelayMs = 100 };
+        var step = new ActionStep { Kind = kind, Value = DefaultStepValue(kind), DelayMs = kind == ActionKind.WaitWindow ? 15000 : 100 };
         tile.Steps.Add(step); _selectedStep = tile.Steps.Count - 1; Refresh();
     }
     private static string DefaultStepValue(ActionKind kind) => kind switch

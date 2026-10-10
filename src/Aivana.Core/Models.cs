@@ -1,6 +1,6 @@
 namespace Aivana.Core;
 
-public enum ActionKind { Launch, OpenPath, Url, Text, Shortcut, Media, Volume, SwitchProfile, Delay, CorsairColor, Clipboard, Window, System, Obs }
+public enum ActionKind { Launch, OpenPath, Url, Text, Shortcut, Media, Volume, SwitchProfile, Delay, CorsairColor, Clipboard, Window, System, Obs, WaitWindow }
 public sealed class ActionStep
 {
     public ActionKind Kind { get; set; }
