@@ -51,6 +51,18 @@ public partial class MainWindow
             throw new InvalidOperationException("Missing saved audio device was silently retargeted.");
         devices.SelectedValue = "";
         if (savedAudio.AudioDeviceId is not null) throw new InvalidOperationException("Choosing default audio device did not clear the saved endpoint ID.");
+        var brightnessStep = ActionCatalog.Find("display.brighter")!.CreateStep();
+        var brightnessFields = new StackPanel(); AddStepFields(brightnessFields, new Tile { Steps = [brightnessStep] }, brightnessStep);
+        var brightnessMode = brightnessFields.Children.OfType<ComboBox>().Single();
+        brightnessMode.SelectedValue = "Down";
+        if (brightnessStep.Value != "Down") throw new InvalidOperationException("Brightness mode editor failed.");
+        brightnessMode.SelectedValue = "Set";
+        if (brightnessStep.Value != "Set:50") throw new InvalidOperationException("Exact brightness editor failed.");
+        var brightnessNumeric = brightnessFields.Children.OfType<EditorNumericUpDown>().Single();
+        if (!brightnessNumeric.IsEnabled) throw new InvalidOperationException("Brightness percentage control missing.");
+        FindKeyboardVisualChildren<Button>(brightnessNumeric).Single(button => button.Content as string == "▴")
+            .RaiseEvent(new RoutedEventArgs(System.Windows.Controls.Button.ClickEvent));
+        if (brightnessStep.Value != "Set:51") throw new InvalidOperationException("Brightness percentage did not update.");
         var workflow = ActionCatalog.Find("workflow.research")!;
         var workflowEntry = new PaletteEntry(new Tile { Name = workflow.Name, Steps = workflow.CreateSteps() }, new Profile(), workflow.Description, false, "", "", true, Preset: workflow);
         if (!workflowEntry.NeedsConfiguration) throw new InvalidOperationException("Workflow must open as an editable draft, never run on selection.");

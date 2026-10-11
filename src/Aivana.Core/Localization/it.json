@@ -843,5 +843,18 @@
   "＋ Hinzufügen": "＋ Aggiungi",
   "＋ Profil": "＋ Profilo",
   "🔒 Profil sperren": "🔒 Blocca profilo",
-  "🔓 Entsperren": "🔓 Sblocca"
+  "🔓 Entsperren": "🔓 Sblocca",
+  "Bildschirm dunkler": "Riduci luminosità dello schermo",
+  "Bildschirm heller": "Aumenta luminosità dello schermo",
+  "Bildschirmhelligkeit": "Luminosità dello schermo",
+  "Bildschirmhelligkeit: {0}": "Luminosità dello schermo: {0}",
+  "Die Helligkeit konnte bei {0} von {1} Display-Anbindungen nicht geändert werden.": "Impossibile modificare la luminosità per {0} delle {1} interfacce dello schermo.",
+  "Feste Helligkeit": "Luminosità fissa",
+  "Helligkeit: Up, Down oder Set:0 bis Set:100 verwenden.": "Luminosità: usare Up, Down oppure da Set:0 a Set:100.",
+  "Kein Display unterstützt die Helligkeitssteuerung. Bei externen Monitoren DDC/CI aktivieren.": "Nessuno schermo supporta il controllo della luminosità. Attivare DDC/CI sui monitor esterni.",
+  "Wirkt auf unterstützte Displays. Externe Monitore benötigen DDC/CI; heller/dunkler ändert 10 Prozentpunkte.": "Si applica agli schermi compatibili. I monitor esterni richiedono DDC/CI; ogni regolazione modifica la luminosità di 10 punti percentuali.",
+  "Erhöht die Helligkeit unterstützter Displays um 10 Prozentpunkte.": "Aumenta la luminosità degli schermi compatibili di 10 punti percentuali.",
+  "Verringert die Helligkeit unterstützter Displays um 10 Prozentpunkte.": "Riduce la luminosità degli schermi compatibili di 10 punti percentuali.",
+  "Bildschirmhelligkeit auf 50 Prozent": "Luminosità dello schermo al 50 per cento",
+  "Setzt die Helligkeit unterstützter Displays auf 50 Prozent. Der Wert ist bearbeitbar.": "Imposta la luminosità degli schermi compatibili al 50 per cento. Il valore è modificabile."
 }

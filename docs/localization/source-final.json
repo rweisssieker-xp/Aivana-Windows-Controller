@@ -843,5 +843,18 @@
   "Textbaustein einfügen",
   "Kopiert eine anpassbare Vorlage mit Datum und fügt sie im aktiven Fenster ein.",
   "Ablaufvorlagen",
-  "Wartet auf ein sichtbares, reagierendes Zielfenster und fokussiert es. Prozess, Titel und Zeitlimit anpassen."
+  "Wartet auf ein sichtbares, reagierendes Zielfenster und fokussiert es. Prozess, Titel und Zeitlimit anpassen.",
+  "Bildschirm dunkler",
+  "Bildschirm heller",
+  "Bildschirmhelligkeit",
+  "Bildschirmhelligkeit: {0}",
+  "Die Helligkeit konnte bei {0} von {1} Display-Anbindungen nicht geändert werden.",
+  "Feste Helligkeit",
+  "Helligkeit: Up, Down oder Set:0 bis Set:100 verwenden.",
+  "Kein Display unterstützt die Helligkeitssteuerung. Bei externen Monitoren DDC/CI aktivieren.",
+  "Wirkt auf unterstützte Displays. Externe Monitore benötigen DDC/CI; heller/dunkler ändert 10 Prozentpunkte.",
+  "Erhöht die Helligkeit unterstützter Displays um 10 Prozentpunkte.",
+  "Verringert die Helligkeit unterstützter Displays um 10 Prozentpunkte.",
+  "Bildschirmhelligkeit auf 50 Prozent",
+  "Setzt die Helligkeit unterstützter Displays auf 50 Prozent. Der Wert ist bearbeitbar."
 ]

@@ -92,6 +92,10 @@ public static class ActionCatalog
         WinWindow("window.right", "Fenster und Tastatur", "Fenster rechts anordnen", "Ordnet das aktive Fenster rechts auf dem Monitor an.", "◨", "right"),
         System("window.lock", "Fenster und Tastatur", "Windows sperren", "Sperrt die aktuelle Windows-Sitzung.", "🔒"),
 
+        Value("display.brighter", "Fenster und Tastatur", "Bildschirm heller", "Erhöht die Helligkeit unterstützter Displays um 10 Prozentpunkte.", "☀", ActionKind.Brightness, "Up"),
+        Value("display.dimmer", "Fenster und Tastatur", "Bildschirm dunkler", "Verringert die Helligkeit unterstützter Displays um 10 Prozentpunkte.", "◐", ActionKind.Brightness, "Down"),
+        Value("display.brightness-half", "Fenster und Tastatur", "Bildschirmhelligkeit auf 50 Prozent", "Setzt die Helligkeit unterstützter Displays auf 50 Prozent. Der Wert ist bearbeitbar.", "☀", ActionKind.Brightness, "Set:50"),
+
         // Audio and media
         Value("audio.volume-up", "Audio und Medien", "Lautstärke erhöhen", "Erhöht die Windows-Systemlautstärke.", "🔊", ActionKind.Volume, "Up"),
         Value("audio.volume-down", "Audio und Medien", "Lautstärke verringern", "Verringert die Windows-Systemlautstärke.", "🔉", ActionKind.Volume, "Down"),

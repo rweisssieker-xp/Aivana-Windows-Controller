@@ -4,6 +4,7 @@ internal static class ActionCatalogChecks
 {
     public static Task RunAsync()
     {
+        Assert(ActionCatalog.Find("display.brighter") != null && ActionCatalog.Find("display.dimmer") != null, "brightness presets should be available");
         var wait = new Tile { Steps = [new ActionStep { Kind = ActionKind.WaitWindow, Value = "notepad.exe", DelayMs = 5000 }] };
         Assert(ConfigurationValidator.ValidateTile(wait).Count == 0, "window wait should accept process and bounded timeout");
         wait.Steps[0].DelayMs = 0;

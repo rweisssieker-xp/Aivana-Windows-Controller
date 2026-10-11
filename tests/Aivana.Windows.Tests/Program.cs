@@ -35,6 +35,14 @@ internal static class Program
 
     private static void Run(string[] args)
     {
+        if (args is ["--brightness-roundtrip"])
+        {
+            DisplayBrightnessControl.Apply(new BrightnessCommand(null, 10), CancellationToken.None, roundTrip: true);
+            var result = DisplayBrightnessControl.LastRoundTrip ?? throw new InvalidOperationException("Hardware round trip missing.");
+            Check(result.Before != result.Changed && result.Before == result.Restored, "Brightness must actually change and return to its original value.");
+            Console.WriteLine($"PASS real display brightness round trip: {result.Before} -> {result.Changed} -> {result.Restored}; original value restored and read back.");
+            return;
+        }
         if (args is ["--window-wait-fixture", var title])
         {
             using var fixture = new HwndSource(new HwndSourceParameters(title)
@@ -82,6 +90,7 @@ internal static class Program
             }
         }
         Console.WriteLine("Window wait native success, timeout and cancellation checks passed using an isolated test window.");
+        Console.WriteLine($"Read-only brightness probe: {DisplayBrightnessControl.Apply(new BrightnessCommand(50, 0), CancellationToken.None, probeOnly: true)} supported display API bindings; no brightness was changed.");
         AudioEndpointChecks.Run();
         ObsProtocolChecks.Run();
         var leftHalf = WinActionExecutor.CalculateWindowHalf(new WinActionExecutor.NativeRect { Left = -1920, Top = 40, Right = 0, Bottom = 1040 }, right: false);

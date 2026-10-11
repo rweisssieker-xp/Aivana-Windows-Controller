@@ -8,6 +8,7 @@ Localization.SetLanguage("de");
 var checks = new (string Name, Func<Task> Run)[]
 {
     ("window waits match, cancel, time out and stop subsequent macro steps", WindowWaitChecks.RunAsync),
+    ("display brightness clamps, scales, validates and persists", BrightnessChecks.RunAsync),
     ("defaults are useful and do not auto-run", DefaultsAreUseful),
     ("action catalog presets are searchable and create independent steps", ActionCatalogChecks.RunAsync),
     ("localization supports language settings and culture-aware formatting", LocalizationChecks.RunAsync),

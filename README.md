@@ -37,7 +37,7 @@ Closing the main window keeps the app in the system tray by default. Double-clic
 
 ## Actions and command palette
 
-Add Action opens a searchable catalog with 87 presets in eight categories. Each has a description and preview. The macro editor uses the same catalog to add or replace steps. Selecting a preset in this editor workflow creates a draft without execution.
+Add Action opens a searchable catalog with 90 presets in eight categories. Each has a description and preview. The macro editor uses the same catalog to add or replace steps. Selecting a preset in this editor workflow creates a draft without execution.
 
 The command palette opens from the header or with Ctrl+K inside the app. It searches saved actions across profiles, catalog presets, profile switching, navigation, pause/resume, macro cancellation, and import/export. Filter by saved actions, catalog functions, or app commands. Arrow keys select, Enter activates, Ctrl+Enter edits an editable entry, and Escape closes. Favorites appear first. Ready-to-use catalog commands can run immediately; presets requiring setup open a draft. Settings can define a global palette shortcut. New configurations use Ctrl+Shift+Space; existing configurations do not receive a new global shortcut automatically.
 
@@ -107,3 +107,5 @@ The [documentation index](docs/en-US/README.md) links historical designs, plans,
 The catalog includes six editable workflows: workspace, meeting, streaming, research, project switch, and text snippet. Search for `workflow.` in the catalog or command palette. Selecting a workflow opens an unsaved draft; it never runs immediately. All steps are retained when adding a workflow to an existing macro or assigning it to a Corsair key. Configure example URLs, program paths, profiles, and OBS scenes before saving.
 
 The **Wait for target window** step accepts a process name (with or without `.exe`), a case-insensitive title substring, and a timeout of 1–600,000 ms. At least one filter is required; both filters must match when supplied. The macro continues only after a matching visible window responds and reaches the foreground. Use a specific title when multiple windows share a process. Cancellation or timeout stops subsequent steps. Window readiness does not guarantee that a document has loaded or an external service such as OBS WebSocket is connected.
+
+Display brightness: search for **Increase screen brightness**, **Decrease screen brightness**, or **Screen brightness at 50 percent** in the action catalog. Relative actions change brightness by 10 percentage points; fixed values range from 0 to 100. Supported internal displays use WMI; compatible external monitors require DDC/CI enabled in their menu. The action affects all supported displays. Connections and docks can restrict support.

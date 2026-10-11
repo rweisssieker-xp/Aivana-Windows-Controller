@@ -58,6 +58,10 @@ public sealed class WinActionExecutor : IActionExecutor, IDisposable
             case ActionKind.Media:
                 await WithInputInjectionAsync(() => SendMediaAsync(step.Value ?? "", cancellationToken)).ConfigureAwait(false);
                 break;
+            case ActionKind.Brightness:
+                if (!BrightnessCommand.TryParse(step.Value, out var brightness)) throw new ArgumentException(Localization.Translate("Helligkeit: Up, Down oder Set:0 bis Set:100 verwenden."));
+                await Task.Run(() => DisplayBrightnessControl.Apply(brightness, cancellationToken), cancellationToken).ConfigureAwait(false);
+                break;
             case ActionKind.Volume:
                 if (AudioEndpointControl.TryParseCommand(step.Value, out var audio))
                 {

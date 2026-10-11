@@ -843,5 +843,18 @@
   "＋ Hinzufügen": "＋ Lisää",
   "＋ Profil": "＋ Profiili",
   "🔒 Profil sperren": "🔒 Lukitse profiili",
-  "🔓 Entsperren": "🔓 Avaa lukitus"
+  "🔓 Entsperren": "🔓 Avaa lukitus",
+  "Bildschirm dunkler": "Decrease screen brightness",
+  "Bildschirm heller": "Increase screen brightness",
+  "Bildschirmhelligkeit": "Screen brightness",
+  "Bildschirmhelligkeit: {0}": "Screen brightness: {0}",
+  "Die Helligkeit konnte bei {0} von {1} Display-Anbindungen nicht geändert werden.": "Could not change brightness for {0} of {1} display API bindings.",
+  "Feste Helligkeit": "Fixed brightness",
+  "Helligkeit: Up, Down oder Set:0 bis Set:100 verwenden.": "Brightness: use Up, Down or Set:0 through Set:100.",
+  "Kein Display unterstützt die Helligkeitssteuerung. Bei externen Monitoren DDC/CI aktivieren.": "No display supports brightness control. Enable DDC/CI on external monitors.",
+  "Wirkt auf unterstützte Displays. Externe Monitore benötigen DDC/CI; heller/dunkler ändert 10 Prozentpunkte.": "Applies to supported displays. External monitors require DDC/CI; brighter/dimmer changes brightness by 10 percentage points.",
+  "Erhöht die Helligkeit unterstützter Displays um 10 Prozentpunkte.": "Increases supported display brightness by 10 percentage points.",
+  "Verringert die Helligkeit unterstützter Displays um 10 Prozentpunkte.": "Decreases supported display brightness by 10 percentage points.",
+  "Bildschirmhelligkeit auf 50 Prozent": "Screen brightness at 50 percent",
+  "Setzt die Helligkeit unterstützter Displays auf 50 Prozent. Der Wert ist bearbeitbar.": "Sets supported display brightness to 50 percent. The value can be edited."
 }

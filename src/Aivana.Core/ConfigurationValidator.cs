@@ -169,6 +169,8 @@ public static class ConfigurationValidator
                 errors.Add(Localization.Translate((FormattableString)$"Die URL in Schritt {index + 1} muss mit http:// oder https:// beginnen."));
             if (step.Kind == ActionKind.Media && !IsOneOf(step.Value, "PlayPause", "play/pause", "toggle", "wiedergabe/pause", "Next", "nexttrack", "nächster titel", "Previous", "prev", "previoustrack", "vorheriger titel", "Stop", "stopp"))
                 errors.Add(Localization.Translate((FormattableString)$"Schritt {index + 1} hat eine unbekannte Medienaktion."));
+            if (step.Kind == ActionKind.Brightness && !BrightnessCommand.TryParse(step.Value, out _))
+                errors.Add(Localization.Translate("Helligkeit: Up, Down oder Set:0 bis Set:100 verwenden."));
             if (step.Kind == ActionKind.Volume && !ActionCommands.IsExtendedVolume(step.Value) && !IsOneOf(step.Value, "Up", "higher", "höher", "lauter", "volumeup", "Down", "lower", "niedriger", "leiser", "volumedown", "Mute", "stumm", "toggle", "volumemute"))
                 errors.Add(Localization.Translate((FormattableString)$"Schritt {index + 1} hat eine unbekannte Lautstärkeaktion."));
             if (step.Kind == ActionKind.Obs)

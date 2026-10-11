@@ -32,6 +32,7 @@ public static class MacroPreview
                 ActionKind.Text => Localization.Translate((FormattableString)$"Text eingeben: „{value}“"),
                 ActionKind.Shortcut => Localization.Translate((FormattableString)$"Tastenkürzel senden: {value}"),
                 ActionKind.Media => Localization.Translate((FormattableString)$"Medienaktion: {value}"),
+                ActionKind.Brightness => Localization.Format("Bildschirmhelligkeit: {0}", value),
                 ActionKind.Volume => Localization.Translate((FormattableString)$"Lautstärkeaktion: {value}"),
                 ActionKind.SwitchProfile => Localization.Translate((FormattableString)$"Profil wechseln: {value}"),
                 ActionKind.WaitWindow => Localization.Format("Auf Zielfenster warten: Prozess {0} · Titel {1} · Zeitlimit {2} ms", value, step.Arguments, step.DelayMs),

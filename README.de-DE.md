@@ -37,7 +37,7 @@ Fenster schließen lässt die App standardmäßig im Infobereich weiterlaufen. D
 
 ## Schnelle Steuerung und neue Aktionen
 
-„＋ Aktion“ öffnet einen durchsuchbaren Aktionskatalog mit 87 Vorlagen in acht Kategorien. Jede Funktion zeigt Beschreibung und Vorschau. Derselbe Katalog steht im Makroeditor über „＋ Hinzufügen“ und „Funktion auswählen“ bereit. Die Auswahl erstellt einen bearbeitbaren Entwurf und führt nichts aus.
+„＋ Aktion“ öffnet einen durchsuchbaren Aktionskatalog mit 90 Vorlagen in acht Kategorien. Jede Funktion zeigt Beschreibung und Vorschau. Derselbe Katalog steht im Makroeditor über „＋ Hinzufügen“ und „Funktion auswählen“ bereit. Die Auswahl erstellt einen bearbeitbaren Entwurf und führt nichts aus.
 
 Audioaktionen können die Lautstärke genau zwischen 0 und 100 Prozent setzen sowie Ausgabe und Mikrofon stummschalten, aktivieren oder umschalten. Im Editor lässt sich ein konkretes Ausgabe- oder Mikrofongerät auswählen; ohne Auswahl gilt das Windows-Standardgerät. Ein nicht verfügbares gespeichertes Gerät führt zu einer Meldung, statt ein anderes Gerät zu steuern. „Geräte aktualisieren“ liest die aktuell verbundenen Geräte neu ein.
 
@@ -107,3 +107,5 @@ Die GitHub-Dokumentation ist auf US-Englisch (`en-US`), Deutsch (`de-DE`), Franz
 Der Katalog enthält sechs bearbeitbare Abläufe: Arbeitsplatz, Meeting, Streaming, Recherche, Projektwechsel und Textbaustein. Suche im Katalog oder in der Befehlspalette nach `workflow.`. Die Auswahl öffnet einen ungespeicherten Entwurf und führt nichts aus. Beim Einfügen in ein Makro oder Zuordnen zu einer Corsair-Taste bleiben alle Schritte erhalten. Beispiel-URLs, Programmpfade, Profile und OBS-Szenen vor dem Speichern anpassen.
 
 **Auf Zielfenster warten** unterstützt Prozessnamen mit oder ohne `.exe`, einen Teil des Fenstertitels ohne Beachtung der Großschreibung und ein Zeitlimit von 1–600.000 ms. Mindestens ein Filter ist erforderlich; bei zwei Filtern müssen beide passen. Das Makro setzt erst fort, wenn ein passendes sichtbares Fenster reagiert und im Vordergrund ist. Bei mehreren Fenstern desselben Prozesses einen eindeutigen Titelfilter verwenden. Abbruch oder Zeitüberschreitung stoppen nachfolgende Schritte. Ein bereites Fenster garantiert weder ein fertig geladenes Dokument noch eine Verbindung zu externen Diensten wie OBS WebSocket.
+
+Bildschirmhelligkeit: Im Aktionskatalog nach **Bildschirm heller**, **Bildschirm dunkler** oder **Bildschirmhelligkeit auf 50 Prozent** suchen. Relative Aktionen ändern die Helligkeit um 10 Prozentpunkte; feste Werte reichen von 0 bis 100. Unterstützte interne Displays verwenden WMI; kompatible externe Monitore benötigen aktiviertes DDC/CI im Monitormenü. Die Aktion betrifft alle unterstützten Displays. Anschlüsse und Docks können die Unterstützung einschränken.

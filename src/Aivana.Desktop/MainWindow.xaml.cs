@@ -1088,7 +1088,7 @@ public partial class MainWindow : Window
     }
     private static string ActionName(ActionKind kind) => kind switch
     {
-        ActionKind.Launch => L("Programm starten"), ActionKind.OpenPath => L("Datei / Ordner öffnen"), ActionKind.Url => L("Webseite öffnen"), ActionKind.Text => L("Text eingeben"), ActionKind.Shortcut => L("Tastenkombination"), ActionKind.Media => L("Mediensteuerung"), ActionKind.Volume => L("Lautstärke"), ActionKind.SwitchProfile => L("Profil wechseln"), ActionKind.Delay => L("Pause"), ActionKind.CorsairColor => L("Corsair-Beleuchtung"), ActionKind.Clipboard => L("Zwischenablage setzen"), ActionKind.Window => L("Fenster anordnen"), ActionKind.System => L("Windows sperren"), ActionKind.Obs => "OBS Studio", ActionKind.WaitWindow => L("Auf Zielfenster warten"), _ => kind.ToString()
+        ActionKind.Launch => L("Programm starten"), ActionKind.OpenPath => L("Datei / Ordner öffnen"), ActionKind.Url => L("Webseite öffnen"), ActionKind.Text => L("Text eingeben"), ActionKind.Shortcut => L("Tastenkombination"), ActionKind.Media => L("Mediensteuerung"), ActionKind.Volume => L("Lautstärke"), ActionKind.SwitchProfile => L("Profil wechseln"), ActionKind.Delay => L("Pause"), ActionKind.CorsairColor => L("Corsair-Beleuchtung"), ActionKind.Clipboard => L("Zwischenablage setzen"), ActionKind.Window => L("Fenster anordnen"), ActionKind.System => L("Windows sperren"), ActionKind.Brightness => L("Bildschirmhelligkeit"), ActionKind.Obs => "OBS Studio", ActionKind.WaitWindow => L("Auf Zielfenster warten"), _ => kind.ToString()
     };
     private static bool HotkeyContainsKey(string hotkey, string key)
     {

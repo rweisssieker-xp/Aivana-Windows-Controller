@@ -843,5 +843,18 @@
   "＋ Hinzufügen": "＋ Hinzufügen",
   "＋ Profil": "＋ Profil",
   "🔒 Profil sperren": "🔒 Profil sperren",
-  "🔓 Entsperren": "🔓 Entsperren"
+  "🔓 Entsperren": "🔓 Entsperren",
+  "Bildschirm dunkler": "Bildschirm dunkler",
+  "Bildschirm heller": "Bildschirm heller",
+  "Bildschirmhelligkeit": "Bildschirmhelligkeit",
+  "Bildschirmhelligkeit: {0}": "Bildschirmhelligkeit: {0}",
+  "Die Helligkeit konnte bei {0} von {1} Display-Anbindungen nicht geändert werden.": "Die Helligkeit konnte bei {0} von {1} Display-Anbindungen nicht geändert werden.",
+  "Feste Helligkeit": "Feste Helligkeit",
+  "Helligkeit: Up, Down oder Set:0 bis Set:100 verwenden.": "Helligkeit: Up, Down oder Set:0 bis Set:100 verwenden.",
+  "Kein Display unterstützt die Helligkeitssteuerung. Bei externen Monitoren DDC/CI aktivieren.": "Kein Display unterstützt die Helligkeitssteuerung. Bei externen Monitoren DDC/CI aktivieren.",
+  "Wirkt auf unterstützte Displays. Externe Monitore benötigen DDC/CI; heller/dunkler ändert 10 Prozentpunkte.": "Wirkt auf unterstützte Displays. Externe Monitore benötigen DDC/CI; heller/dunkler ändert 10 Prozentpunkte.",
+  "Erhöht die Helligkeit unterstützter Displays um 10 Prozentpunkte.": "Erhöht die Helligkeit unterstützter Displays um 10 Prozentpunkte.",
+  "Verringert die Helligkeit unterstützter Displays um 10 Prozentpunkte.": "Verringert die Helligkeit unterstützter Displays um 10 Prozentpunkte.",
+  "Bildschirmhelligkeit auf 50 Prozent": "Bildschirmhelligkeit auf 50 Prozent",
+  "Setzt die Helligkeit unterstützter Displays auf 50 Prozent. Der Wert ist bearbeitbar.": "Setzt die Helligkeit unterstützter Displays auf 50 Prozent. Der Wert ist bearbeitbar."
 }

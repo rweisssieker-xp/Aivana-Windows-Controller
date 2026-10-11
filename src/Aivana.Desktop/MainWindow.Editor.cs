@@ -300,6 +300,20 @@ public partial class MainWindow
     private void AddStepFields(Panel target, Tile tile, ActionStep step)
     {
         var kind = step.Kind;
+        if (kind == ActionKind.Brightness)
+        {
+            target.Children.Add(FieldLabel(L("Bildschirmhelligkeit")));
+            var mode = new ComboBox { ItemsSource = new[] { new BrightnessChoice("Up", L("Bildschirm heller")), new BrightnessChoice("Down", L("Bildschirm dunkler")), new BrightnessChoice("Set", L("Feste Helligkeit")) }, DisplayMemberPath = "Label", SelectedValuePath = "Value", Margin = new Thickness(0, 2, 0, 8) };
+            mode.SelectedValue = step.Value.StartsWith("Set:", StringComparison.OrdinalIgnoreCase) ? "Set" : step.Value;
+            var numeric = new EditorNumericUpDown(BrightnessCommand.TryParse(step.Value, out var command) ? command.Percent ?? 50 : 50, 0, 100);
+            numeric.IsEnabled = mode.SelectedValue as string == "Set";
+            var percent = command.Percent ?? 50;
+            mode.SelectionChanged += (_, _) => { numeric.IsEnabled = mode.SelectedValue as string == "Set"; step.Value = numeric.IsEnabled ? "Set:" + percent : mode.SelectedValue as string ?? "Up"; Refresh(); };
+            numeric.ValueChanged += value => { percent = value; step.Value = "Set:" + value; Refresh(); };
+            target.Children.Add(mode); target.Children.Add(numeric);
+            target.Children.Add(Label(L("Wirkt auf unterstützte Displays. Externe Monitore benötigen DDC/CI; heller/dunkler ändert 10 Prozentpunkte."), 11, "#91A3A5"));
+            return;
+        }
         if (kind == ActionKind.WaitWindow)
         {
             target.Children.Add(FieldLabel(L("PROZESSNAME (OPTIONAL)")));
@@ -466,10 +480,11 @@ public partial class MainWindow
         var step = new ActionStep { Kind = kind, Value = DefaultStepValue(kind), DelayMs = kind == ActionKind.WaitWindow ? 15000 : 100 };
         tile.Steps.Add(step); _selectedStep = tile.Steps.Count - 1; Refresh();
     }
+    private sealed record BrightnessChoice(string Value, string Label);
     private static string DefaultStepValue(ActionKind kind) => kind switch
     {
         ActionKind.Media => "PlayPause", ActionKind.Volume => "Up", ActionKind.Url => "https://", ActionKind.Delay => "", ActionKind.CorsairColor => "#25C4B6",
-        ActionKind.Window => "Minimize", ActionKind.System => "Lock", ActionKind.Obs => "ToggleRecord", _ => ""
+        ActionKind.Brightness => "Up", ActionKind.Window => "Minimize", ActionKind.System => "Lock", ActionKind.Obs => "ToggleRecord", _ => ""
     };
     private static string? NormalizeActionValue(ActionKind kind, string value)
     {
