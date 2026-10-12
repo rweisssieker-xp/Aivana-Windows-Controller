@@ -12,13 +12,13 @@ Verwenden Sie die Sprachauswahl für die Dokumentation, um das vollständige Han
 
 ## Installation und erster Start
 
-Das anfängliche Ziel ist Windows 11 x64. Halten Sie alle Dateien und Unterverzeichnisse der Distribution zusammen. Starten Sie `MAKRIVO.exe`. Ein Source Checkout ist kein Installer. In sich geschlossene Pakete enthalten ihre .NET-Laufzeit; Framework-abhängige Pakete erfordern die entsprechenden .NET 10 Desktop- und ASP.NET-Laufzeiten. ONNX und Begleithosts müssen für ihre jeweiligen Funktionen enthalten sein.
+MAKRIVO richtet sich zunächst an Windows 11 x64. Bewahre alle Dateien und Unterordner des ausgelieferten Pakets zusammen auf und starte `MAKRIVO.exe`. Ein ausgechecktes Quellcode-Repository ist kein Installationsprogramm. Eigenständige Pakete enthalten die benötigte .NET-Laufzeit; frameworkabhängige Pakete benötigen die passenden .NET-10-Desktop- und ASP.NET-Laufzeiten. Für ONNX und weitere Begleitfunktionen müssen die jeweiligen Hostprogramme enthalten sein.
 
-1. Starten Sie MAKRIVO und wählen Sie in den Einstellungen die Sprache der Benutzeroberfläche aus. Automatisch folgt Windows. Das Tastaturlayout ist eine separate Einstellung.
-2. Wählen Sie ein Profil aus und fügen Sie dann über den durchsuchbaren Aktionskatalog eine Kachel hinzu. Geben Sie ihm einen erkennbaren Namen und wählen Sie seine Aktionen aus.
-3. Überprüfen Sie die Schritte und weisen Sie bei Bedarf eine Verknüpfung zu. Vermeiden Sie Kombinationen, die bereits von Windows oder Ihrer Zielanwendung verwendet werden.
-4. Speichern Sie den Entwurf. Nicht gespeicherte Änderungen sind nicht die gespeicherte Konfiguration.
-5. Testen Sie mit einer harmlosen Aktion, z. B. dem Öffnen eines Dokuments, und überprüfen Sie das Ausführungsfeedback.
+1. Starte MAKRIVO und wähle die Oberflächensprache in den Einstellungen. Die automatische Auswahl folgt Windows. Das Tastaturlayout wird unabhängig davon eingestellt.
+2. Wähle ein Profil und füge über den durchsuchbaren Aktionskatalog eine Kachel hinzu. Gib ihr einen eindeutigen Namen und wähle ihre Aktionen.
+3. Prüfe die Schritte und weise bei Bedarf eine Tastenkombination zu. Vermeide Kombinationen, die Windows oder die Zielanwendung bereits verwendet.
+4. Speichere den Entwurf. Ungespeicherte Änderungen sind noch nicht Teil der gespeicherten Konfiguration.
+5. Teste zunächst eine harmlose Aktion, etwa das Öffnen eines Dokuments, und prüfe die Rückmeldung zur Ausführung.
 
 Beim Schließen des Hauptfensters verbleibt die Anwendung normalerweise im Infobereich. Doppelklicken Sie auf das Taskleistensymbol, um es erneut zu öffnen, oder verwenden Sie zum Beenden das Taskleistenmenü. Der Beginn mit Windows ist optional und zunächst deaktiviert. Die Pausensteuerung unterbricht Bindungen; Das Symbol zeigt ein Pausenzeichen. Brechen Sie die Ausführung von Makros über die Benutzeroberfläche, die Taskleiste oder die konfigurierte Abbruchverknüpfung ab. Der Standardwert ist `Ctrl+Alt+Escape`.
 
@@ -34,7 +34,7 @@ Text- und Zwischenablageschritte unterstützen `{{date}}`, `{{time}}`, `{{dateti
 
 ## Profile und Arbeitsplatz-Assistent
 
-Profile können einem Prozessnamen und einem Teil eines Fenstertitels entsprechen. Wenn beide festgelegt sind, müssen beide übereinstimmen. Die Profilreihenfolge löst konkurrierende Spiele auf. Das Standardprofil ist das Fallback. Aktivieren Sie die automatische Auswahl explizit. Das Sperrprofil verhindert automatische Änderungen für die aktuelle Sitzung.
+Profile können anhand eines Prozessnamens und eines Teils des Fenstertitels ausgewählt werden. Sind beide Kriterien gesetzt, müssen beide zutreffen. Treffen mehrere Profile zu, entscheidet ihre Reihenfolge; andernfalls greift das Standardprofil. Aktiviere die automatische Auswahl ausdrücklich. Die Profilsperre verhindert automatische Wechsel während der aktuellen Sitzung.
 
 Öffnen Sie „Workplace Setup“ über „Extras“ oder die Palette. Wählen Sie Programme, Dokumente, Websites, ein Audio-/Anzeigeziel oder eine OBS-Szene aus. Der Assistent erstellt Arbeitsplatz-, Meeting-, Streaming-, Forschungs- oder Projektprofile. Überprüfen Sie die generierten Schritte vor dem Speichern. Setup führt die vorbereiteten Aktionen nicht aus.
 
@@ -54,9 +54,9 @@ Die Tastaturseite listet erkannte Schnittstellen und Referenzlayouts auf. Eine e
 
 Normale globale Hotkeys gelten für alle Tastaturen. Gerätespezifische Raw-Input-Zuordnungen erkennen ein bestimmtes Gerät und dessen Scan-Code, einschließlich unterstützter Funktions- und Medientasten. **Raw Input unterdrückt die normale Windows-Eingabe nicht. Eine exklusive Zweittastatur ist noch nicht produktionsreif.** Dafür fehlt ein signierter, lizenzierter und geprüfter Filtertreiber. MAKRIVO installiert keinen solchen Treiber.
 
-Unterstützte Sondertastenbelegungen können sofortiges Drücken, Tippen, Halten oder Doppeltippen verwenden. Angehaltene Layer-Tasten wählen vorübergehend eine andere Zuordnung aus und stellen beim Loslassen den Basis-Layer wieder her; Ebenenauswahltasten führen kein eigenes Makro aus. Die Halteschwellenwerte reichen von 150 bis 5,000 ms; Doppeltippen Sie auf Fenster von 150 bis 1,000 ms. Diese Zuordnungen unterscheiden sich von gewöhnlichen globalen Hotkeys.
+Unterstützte Sondertasten können beim unmittelbaren Drücken, kurzen Antippen, Halten oder doppelten Antippen auslösen. Eine gehaltene Ebenentaste aktiviert vorübergehend eine andere Belegung; beim Loslassen wird die Grundebene wiederhergestellt. Tasten zur Ebenenauswahl führen kein eigenes Makro aus. Die Halteschwelle lässt sich zwischen 150 und 5,000 ms einstellen, das Zeitfenster für doppeltes Antippen zwischen 150 und 1,000 ms. Diese Belegungen sind von gewöhnlichen globalen Tastenkombinationen getrennt.
 
-Der Spezialschlüssel-Assistent erkennt kompatible Schlüssel, ohne die ihnen zugewiesenen Aktionen während der Erfassung auszuführen. Die Diagnose erklärt nicht verfügbare Geräte, pausierte Bindungen, Profilkonflikte und Konflikte. Das Overlay zeigt das ausgewählte Layout und die Bindungen; Die standardmäßige Halteverknüpfung lautet `Ctrl+Alt+F1`.
+Der Sondertasten-Assistent erkennt kompatible Tasten, ohne während der Erfassung deren zugewiesene Aktionen auszuführen. Die Diagnose erklärt nicht verfügbare Geräte, pausierte Belegungen, unpassende Profile und Konflikte. Das Overlay zeigt das gewählte Layout und die Belegungen; standardmäßig wird es durch Halten von `Ctrl+Alt+F1` eingeblendet.
 
 | Integration | Anforderungen und Einschränkungen |
 | --- | --- |
@@ -71,7 +71,7 @@ Die Herstellerforschung beschreibt dokumentierte Funktionen, nicht implementiert
 
 ## Audio, Displays und OBS
 
-Audio-Schritte Set Volume von 0 zu 100 Prozentsatz und mute/unmute/toggle unterstützt Ausgang oder Mikrofon Endpunkte. Wählen Sie einen bestimmten Endpunkt oder verwenden Sie Windows Ein fehlendes gespeichertes Ziel erzeugt einen Fehler anstelle der stillen Kontrolle eines anderen Geräts. Erneutete Geräte nach der Wiederverbindung. Endpoint-Control ist keine Anforderung für unabhängige Mixer-Support.
+Audioaktionen stellen die Lautstärke unterstützter Ausgabe- oder Mikrofon-Endpunkte auf 0 bis 100 Prozent und können deren Stummschaltung ein-, ausschalten oder umschalten. Wähle einen bestimmten Endpunkt oder das Windows-Standardgerät. Fehlt ein gespeichertes Ziel, erscheint ein Fehler; die Aktion steuert nicht stillschweigend ein anderes Gerät. Aktualisiere die Geräteliste nach dem erneuten Anschließen. Die Endpunktsteuerung bietet keinen unabhängigen Lautstärkemixer für einzelne Anwendungen.
 
 Anzeigeaktionen erhöhen/verringern die Helligkeit um 10 Prozentpunkte oder legen Sie einen Wert von 0 bis 100 fest. Interne Displays nutzen unterstützte WMI-Schnittstellen; Externe Monitore erfordern DDC/CI-Unterstützung und normalerweise die entsprechende Monitormenüeinstellung. Docks, Adapter und Kabel können die Steuerung blockieren. Wählen Sie alle unterstützten Displays oder einen Monitor. Durch die erneute Verbindung können verfügbare Identitäten geändert werden. Überprüfen Sie das gespeicherte Ziel. Fehlende Messwerte werden als nicht verfügbar und nicht als Messwerte angezeigt.
 
@@ -85,7 +85,7 @@ Aktivieren Sie „Ergebnis überprüfen“ für geeignete Schritte. Die App unte
 
 Füge einen Schritt für die UI-Automation hinzu, wähle die Operation und erfasse das Ziel unter dem Mauszeiger nach der angezeigten Verzögerung. Die Erfassung allein führt keine Aktion aus. Prüfe den Selektor und verlange einen eindeutigen Treffer. Unterstützte Operationen sind `Invoke`, `Select`, `Toggle`, `Focus`, `SetValue` und `WaitState`. Passwortfelder, deaktivierte Bedienelemente und mehrdeutige Selektoren werden abgewiesen.
 
-Die UI-Automatisierung wird in einem begrenzten Begleitprozess ausgeführt. Dies hängt von der Windows-Barrierefreiheitsunterstützung und den Berechtigungen der Zielanwendung ab. Der Klickrekorder erfasst unterstützte Aktionen und Pausen; Allgemeine Texteingaben werden nicht aufgezeichnet. Überprüfen und validieren Sie den Entwurf, bevor Sie ihn annehmen. Änderungen an der Benutzeroberfläche in einer externen App können Selektoren ungültig machen. Die Prozessisolation begrenzt Abstürze und Abbrüche, ist jedoch keine Sicherheitssandbox.
+Die UI-Automatisierung läuft in einem Begleitprozess mit begrenzter Ausführungsdauer. Sie benötigt die Windows-Barrierefreiheitsschnittstellen der Zielanwendung und passende Berechtigungen. Der Klickrekorder erfasst unterstützte Aktionen und Pausen, aber keine allgemeine Texteingabe. Prüfe und validiere seinen Entwurf vor der Übernahme. Änderungen an der Oberfläche einer anderen App können Selektoren ungültig machen. Die Prozesstrennung begrenzt Absturzfolgen und ermöglicht den Abbruch, ist aber keine Sicherheits-Sandbox.
 
 ## Plugins
 
@@ -105,7 +105,7 @@ Private Serverschlüssel sind mit Windows DPAPI geschützt. Client-Anmeldeinform
 
 ## Lokaler KI-Besprechungsassistent
 
-Dieser optionale experimentelle Assistent ist standardmäßig deaktiviert. Öffnen Sie es über „Tools“, aktivieren Sie es explizit, wählen Sie eine Laufzeit/ein Modell aus und fügen Sie nur die Ressourcen hinzu, die berücksichtigt werden sollen. Geben Sie das Ziel an, erstellen Sie einen Entwurf, prüfen Sie offene Anfragen und übergeben Sie das Ergebnis an den normalen Redakteur. Nichts wird automatisch ausgeführt; Speichern und Ausführen bleiben explizite Aktionen. Es gibt keinen automatischen Laufzeit-Fallback.
+Dieser optionale, experimentelle Assistent ist standardmäßig deaktiviert. Öffne ihn über die Werkzeuge, aktiviere ihn ausdrücklich, wähle eine Laufzeit und ein Modell und füge nur die Ressourcen hinzu, die er berücksichtigen soll. Beschreibe dein Ziel, erstelle einen Entwurf, prüfe offene Anforderungen und übertrage das Ergebnis in den normalen Editor. Nichts wird automatisch ausgeführt; Speichern und Starten bleiben ausdrückliche Schritte. Es gibt keinen automatischen Wechsel auf eine andere Laufzeit.
 
 | Laufzeit | Einrichtung |
 | --- | --- |
@@ -116,19 +116,19 @@ Dieser optionale experimentelle Assistent ist standardmäßig deaktiviert. Öffn
 
 HTTP-Clients verwenden nur Loopback, verwenden keine Proxys und folgen keinen Weiterleitungen. MAKRIVO kann nicht zuverlässig feststellen, ob ein kompatibler lokaler Server intern einen Remote-Dienst aufruft. Authentifizierte lokale Server sind in dieser Version nicht konfigurierbar. Modellgewichte, Python und lokale Inferenzserver werden nicht automatisch heruntergeladen oder installiert.
 
-ONNX Pakete benötigt `tokenizer.json` und eine gültige Chat-Template. unterstützte Template-Formulare in `tokenizer_config.json` Es ist ein String `chat_template`Ein Wörterbuch mit einem String `default`, oder eine zweifelhafte Namens-/Default-Template-Liste. Wenn das Template fehlt oder null, `chat_template.jinja` als Fallback verwendet werden. leere, ambiguierte, übergrößerte oder falsch eingegebenen Vorlagen werden abgelehnt. ONNX Dateien, Einführung/Vision-Modelle und GPU-einige Pakete sind nicht mit kompatiblen GenAI Textmodelle: Die Bündelung GenAI Die runtime Version ist 0.17.1, CPU. Verwenden Sie nur vertrauenswürdige Modelle; Prozessseparation ist keine Sandbox.
+ONNX-Pakete benötigen `tokenizer.json` und eine gültige Chatvorlage. In `tokenizer_config.json` werden folgende Formen unterstützt: `chat_template` als Zeichenfolge, ein Wörterbuch mit `default` als Zeichenfolge oder eine eindeutig zuordenbare Liste benannter Vorlagen mit Standardauswahl. Fehlt die Vorlage oder ist ihr Wert null, dient `chat_template.jinja` als Ersatz. Leere, mehrdeutige, übergroße Vorlagen und Vorlagen mit falschem Datentyp werden abgewiesen. Beliebige ONNX-Dateien, Embedding- oder Bildmodelle und ausschließlich für GPUs ausgelegte Pakete ersetzen keine kompatiblen GenAI-Textmodelle. Die mitgelieferte GenAI-Laufzeit hat die Version 0.17.1 und nutzt die CPU. Verwende ausschließlich vertrauenswürdige Modelle; die Prozesstrennung ist keine Sandbox.
 
-Der Assistent unterstützt ausgewählte Programme ohne Argumente, ausgewählte Dokumente und Websites und schaltet das Mikrofon auf ausdrücklichen Wunsch stumm. Es werden keine Nachrichten, Termine, willkürlichen Skripte, kostenlosen Klicks, Downloads oder Headset-Wechsel erstellt. Die Ziel- und Ressourcennamen werden an die ausgewählte lokale Laufzeit gesendet. Ressourcenpfade und Dateiinhalte werden nicht separat bereitgestellt. Ein vom Nutzer eingegebenes Ziel kann selbst personenbezogene Daten enthalten. Das eigene Netzwerkverhalten einer lokalen Laufzeit bleibt in der Verantwortung des Benutzers.
+Der Assistent unterstützt ausgewählte Programme ohne Argumente, ausgewählte Dokumente und Websites sowie das Stummschalten des Mikrofons auf ausdrücklichen Wunsch. Er erstellt keine Nachrichten, Termine, beliebigen Skripte, frei gewählten Klickaktionen oder Downloads und wechselt keine Headsets. Das Ziel und die Ressourcennamen werden an die gewählte lokale Laufzeit übermittelt; Ressourcenpfade und Dateiinhalte werden nicht zusätzlich übergeben. Die eingegebene Zielbeschreibung kann selbst personenbezogene Daten enthalten. Für das Netzwerkverhalten der lokalen Laufzeit bleibt der Nutzer verantwortlich.
 
 Das Anforderungsbudget ONNX beträgt 90 Sekunden, einschließlich Modellladen, bis zu 3,072 Eingabeaufforderungstoken und 1,024 generierten Token, ebenfalls begrenzt durch den Modellkontext. Fehlerhafter/abgeschnittener JSON-Code und unbekannte Ressourcen-IDs werden abgelehnt. Abbrechen oder schließen, um eine Anfrage zu beenden. Ein Zufallsmodell-Laufzeittest stellt die Ausführung fest, nicht jedoch die nützliche Planungsqualität oder Zeitersparnis. Lokale Experimentprotokolle enthalten Ereigniskennungen und -zeiten, keinen Zieltext oder Dokumentinhalt. Sie werden nicht automatisch hochgeladen.
 
-Die spätere kleine Instruct-Modellbewertung produzierte in vier deutschen/Englischen Prüfungen null gültige Pläne. Native Inference arbeitete, aber das Modell fehlte den strengen Planungsvertrag. Dies ist ein negatives Qualitätsergebnis, nicht ein empfohlener Modell oder ein bewiesen nützlicher Assistant.
+Die spätere Prüfung mit einem kleinen Instruct-Modell lieferte in vier deutschen und englischen Versuchen keinen gültigen Plan. Die native Inferenz funktionierte, das Modell erfüllte jedoch die strengen Anforderungen an das Planformat nicht. Das ist ein negatives Qualitätsergebnis, keine Modellempfehlung und kein Nachweis für einen nützlichen Assistenten. Die genaue Modellrevision und die Grenzen des Versuchs stehen im datierten Testbericht zur lokalen Laufzeit.
 
 ## Import, Export, Synchronisierung und Sicherung
 
 Überprüfen Sie die Importvorschau, bevor Sie eine Konfiguration ersetzen. Importierte Aktionen werden deaktiviert gestartet und die portable Synchronisierung entfernt hardwarespezifische Bindungen. Ordnen Sie Geräte neu zu und aktivieren Sie Aktionen gezielt nach der Inspektion. Überprüfen Sie die Text-/Aktionsinhalte, bevor Sie einen Export freigeben. Der Ausschluss von Passwörtern führt nicht dazu, dass alle vom Benutzer erstellten Aktionsinhalte nicht vertraulich sind.
 
-Die Profilsynchronisierung tauscht Dateien in einer ausgewählten Ordnung aus, die optionell von Ihrem bestehenden Cloud-Client verwaltet wird. MAKRIVO keine Cloud-Konto liefert und keine Cloud-Kreditials speichert. Überprüfungen verhindern schweigende Übersetzungen. Inbegriffen von Aktionsinhalt ist eine ausdrückliche Wahl. Backup Ihre Konfiguration vor einem Ersatz-Import. `%LOCALAPPDATA%\AivanaWindowsController\settings.json`• Der historische Direktorenname wird für Kompatibilität beibehalten.Schließen Sie die App vor der manuellen Kopie/Restore.Speicherte SDK-Aufträge und OS-schützte Bestätigungen müssen auf einem anderen PC wiederhergestellt werden.
+Die Profilsynchronisierung tauscht Dateien über einen ausgewählten Ordner aus. Optional kann dieser von einem bereits vorhandenen Cloud-Client verwaltet werden. MAKRIVO stellt kein Cloud-Konto bereit und speichert keine Cloud-Zugangsdaten. Revisionsstände verhindern unbemerkte Überschreibungen. Aktionsinhalte werden nur nach ausdrücklicher Auswahl einbezogen. Sichere die Konfiguration vor einem Import, der sie ersetzt. Standardmäßig liegt sie unter `%LOCALAPPDATA%\AivanaWindowsController\settings.json`; der historische Ordnername bleibt aus Kompatibilitätsgründen erhalten. Schließe die App, bevor du die Datei manuell kopierst oder wiederherstellst. Auf einem anderen PC müssen gespeicherte SDK-Freigaben und durch das Betriebssystem geschützte Zugangsdaten möglicherweise neu eingerichtet werden.
 
 ## Fehlerhilfe
 
@@ -163,12 +163,12 @@ python tools/check_documentation.py
 
 Windows-Integrationstests können isolierte Fenster öffnen und unterstützte Anbieterbindungen vorübergehend konfigurieren/freigeben. Führen Sie sie aus, ohne dass ein anderer Controller diese Bindungen besitzt. Die standardmäßigen Helligkeits-/Audiosonden sind schreibgeschützt; Explizite Hardware-Roundtrip-Tests sind separat. Scheinprotokolle, gerenderte Screenshots und zufällige Inferenzdiagramme dürfen nicht als echte Akzeptanz in Hardware-/Modellqualität dargestellt werden.
 
-Der vollständige Herausgeber stellt Begleithosts, mobile Assets, das Beispiel-Plugin, die ONNX-Laufzeit und verfügbare Abhängigkeitshinweise zusammen. Behalten Sie die Unterverzeichnisse bei. Ein erfolgreicher Build ist kein unterzeichnetes Installationsprogramm oder eine rechtliche Freigabegenehmigung. Quelle und Builds können separat weiterentwickelt werden; Vergleichen Sie den Dokumentations-Snapshot und übertragen Sie ihn mit der installierten Version.
+Das vollständige Veröffentlichungsskript stellt die Begleitprogramme, Dateien des mobilen Panels, das Beispiel-Plugin, die ONNX-Laufzeit und vorhandene Hinweise zu Abhängigkeiten zusammen. Bewahre seine Unterordner auf. Ein erfolgreicher Build ist weder ein signiertes Installationsprogramm noch eine rechtliche Vertriebsfreigabe. Quellcode und ausgelieferte Builds können sich unterscheiden; vergleiche Dokumentationsstand und Commit mit der installierten Version.
 
 ## Lizenzierung, Datenschutz und Freigabestand
 
-Das beabsichtigte kommerzielle Modell ist ein einmaliger Kauf mit unbefristeter Nutzung der erworbenen Hauptversion; Endpreis, Gerätezuschlag und Upgrade-Bedingungen müssen in den tatsächlichen Verkaufsbedingungen festgelegt werden. Ein Produktionskauf-/Aktivierungssystem wird in diesem Handbuch nicht festgelegt. Für die alltägliche Kontrolle ist kein Cloud-Konto erforderlich.
+Vorgesehen ist ein einmaliger Kauf mit dauerhaftem Nutzungsrecht für die gekaufte Hauptversion. Endpreis, zulässige Geräteanzahl und Bedingungen für Versionsupgrades müssen in den tatsächlichen Verkaufsbedingungen festgelegt werden. Dieses Handbuch belegt kein produktionsreifes Kauf- oder Aktivierungssystem. Für die alltägliche Steuerung ist kein Cloud-Konto erforderlich.
 
-Verteilen Sie keine proprietären SDK-Binärdateien ohne nachgewiesene Genehmigung. Behalten Sie Lizenz- und Drittanbieterhinweise für jede gelieferte Abhängigkeit bei, einschließlich .NET- und ONNX-Paketen. Modellgewichte haben ihre eigenen Begriffe. Die datierte Lizenzprüfung ist älter als einige neue Abhängigkeiten und stellt keine Freigabe für diese Ergänzungen dar. Da das Repository öffentlich ist, gewährt es selbst keine allgemeine Open-Source-Lizenz.
+Verteile proprietäre SDK-Binärdateien nur mit nachgewiesener Erlaubnis. Bewahre Lizenztexte und Hinweise Dritter für jede ausgelieferte Abhängigkeit auf, einschließlich .NET- und ONNX-Paketen. Für Modellgewichte gelten eigene Lizenzbedingungen. Die datierte Lizenzprüfung liegt vor der Aufnahme einiger neuer Abhängigkeiten und erteilt dafür keine Freigabe. Allein die öffentliche Verfügbarkeit des Repositorys gewährt keine allgemeine Open-Source-Lizenz.
 
-Echte Herstellerhardware, Telefon-/Tablet-LAN-Betrieb, gemischte Monitor-/DPI-Übergänge, Langzeitnutzung, vollständige sprachliche Überprüfung, exklusive Treiberunterstützung und nützliche KI-Planungsqualität bleiben separate Abnahmearbeiten. Schließen Sie die Zustimmung niemals allein aus der Anwesenheit von Funktionen ab.
+Die Abnahme mit echter Herstellerhardware, der LAN-Betrieb mit Telefonen und Tablets, Übergänge zwischen unterschiedlichen Monitoren und DPI-Einstellungen, Dauerbetrieb, vollständige sprachliche Prüfung, exklusive Treiberunterstützung und nützliche KI-Planungsqualität bleiben eigenständige Prüfpunkte. Das bloße Vorhandensein einer Funktion belegt keine erfolgreiche Abnahme.
