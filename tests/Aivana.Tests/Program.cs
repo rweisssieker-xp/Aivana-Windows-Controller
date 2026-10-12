@@ -4,9 +4,27 @@ using System.Text.Json.Nodes;
 
 // Diagnostic wording checks deliberately use German; localization checks exercise all supported cultures separately.
 Localization.SetLanguage("de");
+if (args is ["--inspect-plugin",var packagePath])
+{
+    var inspected=Aivana.Core.Plugins.PluginPackage.Inspect(packagePath);
+    Console.WriteLine($"PASS package {inspected.Manifest.Id} {inspected.Manifest.Version}: hashes and manifest verified");
+    return 0;
+}
+
 
 var checks = new (string Name, Func<Task> Run)[]
 {
+    ("bounded meeting assistant", MeetingAssistantChecks.RunAsync),
+    ("physical keyboard isolation", PhysicalKeyboardChecks.RunAsync),
+    ("mobile authentication and replay", MobileSecurityChecks.RunAsync),
+    ("plugin package validation", PluginChecks.RunAsync),
+    ("UI selector validation", UiSelectorChecks.RunAsync),
+    ("workspace setup", WorkspaceSetupChecks.RunAsync),
+    ("verified execution", VerificationChecks.RunAsync),
+    ("generic per-device keyboard bindings", GenericKeyboardChecks.RunAsync),
+    ("shortcut recording and portable synchronization", RecorderSyncChecks.RunAsync),
+    ("key gestures and held layers", GestureChecks.RunAsync),
+    ("workflow conditions and failure policies", WorkflowChecks.RunAsync),
     ("window waits match, cancel, time out and stop subsequent macro steps", WindowWaitChecks.RunAsync),
     ("display brightness clamps, scales, validates and persists", BrightnessChecks.RunAsync),
     ("defaults are useful and do not auto-run", DefaultsAreUseful),

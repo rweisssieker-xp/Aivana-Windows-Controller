@@ -10,6 +10,8 @@ using Localization = Aivana.Core.Localization;
 namespace Aivana.Windows;
 
 /// <summary>Read-only inventory returned by OBS Studio WebSocket v5.</summary>
+public sealed record ObsLiveStatus(bool Recording, bool Streaming, string Scene);
+
 public sealed record ObsInventory(string Version, IReadOnlyList<string> Scenes, IReadOnlyList<string> Inputs);
 
 /// <summary>Executes a bounded set of OBS Studio WebSocket v5 actions.</summary>
@@ -51,6 +53,19 @@ public static class ObsActionClient
                 var scenes = await SendRequestAsync(socket, "GetSceneList", null, token, discovery: true).ConfigureAwait(false);
                 var inputs = await SendRequestAsync(socket, "GetInputList", null, token, discovery: true).ConfigureAwait(false);
                 return ParseInventory(version, scenes, inputs);
+            }).ConfigureAwait(false);
+    }
+
+    /// <summary>Reads recording, streaming and scene state; never sends a mutating request.</summary>
+    public static async Task<ObsLiveStatus> ReadStatusAsync(string? endpoint, CancellationToken cancellationToken = default)
+    {
+        return await WithAuthenticatedConnectionAsync(ParseEndpoint(endpoint), cancellationToken,
+            "Die OBS-Statusabfrage hat das Zeitlimit überschritten.", async (socket, token) =>
+            {
+                var recording = await SendRequestAsync(socket, "GetRecordStatus", null, token, discovery: true).ConfigureAwait(false);
+                var streaming = await SendRequestAsync(socket, "GetStreamStatus", null, token, discovery: true).ConfigureAwait(false);
+                var scene = await SendRequestAsync(socket, "GetCurrentProgramScene", null, token, discovery: true).ConfigureAwait(false);
+                return new ObsLiveStatus(recording.GetProperty("outputActive").GetBoolean(), streaming.GetProperty("outputActive").GetBoolean(), scene.GetProperty("currentProgramSceneName").GetString() ?? "");
             }).ConfigureAwait(false);
     }
 
@@ -207,7 +222,7 @@ public static class ObsActionClient
             if (helloData.TryGetProperty("authentication", out var auth) && auth.ValueKind == JsonValueKind.Object)
             {
                 if (string.IsNullOrEmpty(password))
-                    throw new InvalidOperationException(Localization.Translate("OBS benötigt ein Passwort. Speichere es in den OBS-Aktionseinstellungen oder setze AIVANA_OBS_PASSWORD für den Benutzer, der Aivana startet."));
+                    throw new InvalidOperationException(Localization.Translate("OBS benötigt ein Passwort. Speichere es in den OBS-Aktionseinstellungen oder setze AIVANA_OBS_PASSWORD für den Benutzer, der MAKRIVO startet."));
                 var salt = ReadString(auth, "salt");
                 var challenge = ReadString(auth, "challenge");
                 if (salt is null || challenge is null) throw ProtocolError();

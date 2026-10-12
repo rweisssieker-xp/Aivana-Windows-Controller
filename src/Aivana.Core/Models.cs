@@ -1,24 +1,40 @@
 namespace Aivana.Core;
 
-public enum ActionKind { Launch, OpenPath, Url, Text, Shortcut, Media, Volume, SwitchProfile, Delay, CorsairColor, Clipboard, Window, System, Obs, WaitWindow, Brightness }
+public enum ActionKind { Launch, OpenPath, Url, Text, Shortcut, Media, Volume, SwitchProfile, Delay, CorsairColor, Clipboard, Window, System, Obs, WaitWindow, Brightness, UiAutomation, Plugin, VendorLighting }
 public sealed class ActionStep
 {
+    public VerificationOptions? Verification { get; set; }
+    public UiAutomationAction? UiAutomation { get; set; }
+    public Aivana.Core.Plugins.PluginInvocation? Plugin { get; set; }
     public ActionKind Kind { get; set; }
     public string Value { get; set; } = "";
     public string Arguments { get; set; } = "";
     public string WorkingDirectory { get; set; } = "";
     // Empty follows Windows' default multimedia endpoint. Explicit IDs never fall back silently.
     public string? AudioDeviceId { get; set; }
+    // Empty addresses every supported display; explicit IDs never fall back.
+    public string? DisplayDeviceId { get; set; }
     public int DelayMs { get; set; } = 100;
+    public WorkflowCondition? Condition { get; set; }
+    public int OnConditionFalseSkip { get; set; }
+    public StepErrorPolicy OnError { get; set; }
 }
 public sealed class Tile
 {
+    public Guid? MeetingExperimentId { get; set; }
     public Guid Id { get; set; } = Guid.NewGuid();
     public string Name { get; set; } = "Neue Aktion";
     public string Icon { get; set; } = "▶";
     public string Color { get; set; } = "#25C4B6";
     public string Hotkey { get; set; } = "";
     public CorsairBinding? CorsairBinding { get; set; }
+    public KeyboardBinding? KeyboardBinding { get; set; }
+    public VendorKeyBinding? VendorBinding { get; set; }
+    public KeyGesture KeyGesture { get; set; }
+    public string KeyLayer { get; set; } = "";
+    public string HeldLayer { get; set; } = "";
+    public int HoldMilliseconds { get; set; } = 500;
+    public int DoubleTapMilliseconds { get; set; } = 300;
     public bool Enabled { get; set; } = true;
     public bool Favorite { get; set; }
     public int Repeat { get; set; } = 1;
@@ -35,6 +51,8 @@ public sealed class Profile
 }
 public sealed class AppSettings
 {
+    public bool MeetingAssistantEnabled { get; set; }
+    public VendorIntegrationSettings VendorIntegrations { get; set; } = new();
     public int Version { get; set; } = 1;
     public Guid ActiveProfileId { get; set; }
     public Guid DefaultProfileId { get; set; }

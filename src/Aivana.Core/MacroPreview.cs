@@ -45,6 +45,17 @@ public static class MacroPreview
                 _ => Localization.Translate((FormattableString)$"Unbekannte Aktion: {value}"),
             };
             var tokens = TokenPattern.Matches(value).Select(match => match.Value).Distinct(StringComparer.Ordinal).ToArray();
+            if (step.Condition is { } condition)
+            {
+                var kind = condition.Kind switch
+                {
+                    WorkflowConditionKind.FileExists => Localization.Translate("Datei vorhanden"),
+                    WorkflowConditionKind.ProcessRunning => Localization.Translate("Prozess läuft"),
+                    _ => Localization.Translate("Fenstertitel enthält")
+                };
+                description += Localization.Format(" · Bedingung: {0} {1} · umkehren: {2} · bei Nein zusätzlich überspringen: {3}", kind, condition.Value, condition.Negate, step.OnConditionFalseSkip);
+            }
+            if (step.OnError == StepErrorPolicy.Continue) description += Localization.Translate(" · Bei Fehler fortsetzen");
             if (tokens.Length > 0) description += Localization.Translate((FormattableString)$" · Variablen: {string.Join(", ", tokens)}");
             lines.Add(description);
         }

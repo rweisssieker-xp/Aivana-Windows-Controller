@@ -18,6 +18,13 @@ public partial class MainWindow
             {
                 if (replaceStep && _selectedStep >= 0 && _selectedStep < draft.Steps.Count)
                 {
+                    if (steps.Count == 1)
+                    {
+                        var previous = draft.Steps[_selectedStep];
+                        steps[0].Condition = previous.Condition;
+                        steps[0].OnConditionFalseSkip = previous.OnConditionFalseSkip;
+                        steps[0].OnError = previous.OnError;
+                    }
                     draft.Steps.RemoveAt(_selectedStep);
                     draft.Steps.InsertRange(_selectedStep, steps);
                 }

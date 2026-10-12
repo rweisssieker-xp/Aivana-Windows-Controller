@@ -82,6 +82,8 @@ public sealed class ConfigStore
             tile.Enabled = false;
         imported.AutoStart = false;
         imported.AutoProfiles = false;
+        imported.VendorIntegrations = new();
+        imported.MeetingAssistantEnabled = false;
         return imported;
     }
 

@@ -9,8 +9,12 @@ using Localization = Aivana.Core.Localization;
 
 namespace Aivana.Windows;
 
-public sealed class WinActionExecutor : IActionExecutor, IDisposable
+public sealed class WinActionExecutor : IActionExecutor, IWorkflowConditionEvaluator, IActionVerificationProvider, IDisposable
 {
+    private readonly Aivana.Windows.KeyboardAdapters.VendorLighting _vendorLighting = new();
+    public Func<string,string?>? VendorLibraryHash { get; set; }
+    public Task<ActionVerificationResult> PreflightAsync(ActionStep step, CancellationToken token) => WindowsActionVerification.PreflightAsync(step, token);
+    public Task<ActionVerificationResult> VerifyAsync(ActionStep step, CancellationToken token) => WindowsActionVerification.VerifyAsync(step, token);
     private readonly Func<string, Task> _switchProfile;
     private readonly CorsairService? _sharedCorsair;
     private readonly Func<string>? _activeProfile;
@@ -22,12 +26,51 @@ public sealed class WinActionExecutor : IActionExecutor, IDisposable
     { _switchProfile = switchProfile ?? throw new ArgumentNullException(nameof(switchProfile)); _sharedCorsair = corsairService; _activeProfile = activeProfile; _contextProcess = contextProcess; }
     public event Action<bool>? InputInjectionChanged;
 
+    public Task<bool> EvaluateAsync(WorkflowCondition condition, CancellationToken cancellationToken)
+    {
+        cancellationToken.ThrowIfCancellationRequested();
+        return Task.Run(() =>
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            if (condition.Kind == WorkflowConditionKind.FileExists)
+                return File.Exists(Environment.ExpandEnvironmentVariables(condition.Value));
+            var processName = Path.GetFileName(condition.Value.Trim());
+            if (processName.EndsWith(".exe", StringComparison.OrdinalIgnoreCase)) processName = processName[..^4];
+            var processes = Process.GetProcesses();
+            try
+            {
+                foreach (var process in processes)
+                {
+                    cancellationToken.ThrowIfCancellationRequested();
+                    try
+                    {
+                        if (condition.Kind == WorkflowConditionKind.ProcessRunning && process.ProcessName.Equals(processName, StringComparison.OrdinalIgnoreCase)) return true;
+                        if (condition.Kind == WorkflowConditionKind.WindowTitleContains && !string.IsNullOrWhiteSpace(process.MainWindowTitle) && process.MainWindowTitle.Contains(condition.Value, StringComparison.OrdinalIgnoreCase)) return true;
+                    }
+                    catch (InvalidOperationException) { }
+                    catch (System.ComponentModel.Win32Exception) { }
+                }
+                return false;
+            }
+            finally { foreach (var process in processes) process.Dispose(); }
+        }, cancellationToken);
+    }
+
     public async Task ExecuteAsync(ActionStep step, CancellationToken cancellationToken)
     {
         ArgumentNullException.ThrowIfNull(step);
         cancellationToken.ThrowIfCancellationRequested();
         switch (step.Kind)
         {
+            case ActionKind.VendorLighting:
+                await _vendorLighting.SetAsync(step.Arguments, step.Value, VendorLibraryHash?.Invoke(step.Arguments), cancellationToken);
+                break;
+            case ActionKind.Plugin:
+                _ = await Aivana.Windows.Plugins.PluginProcessClient.InvokeAsync(step.Plugin ?? throw new ArgumentException("Plugin fehlt."), cancellationToken);
+                break;
+            case ActionKind.UiAutomation:
+                _ = await AutomationWorkerClient.RequestAsync(new("execute", step.UiAutomation), cancellationToken);
+                break;
             case ActionKind.Launch:
                 if (string.IsNullOrWhiteSpace(step.Value)) throw new ArgumentException(Localization.Translate("Der Programmpfad ist leer."));
                 StartProcess(new ProcessStartInfo { FileName = step.Value, Arguments = step.Arguments ?? "", WorkingDirectory = step.WorkingDirectory ?? "", UseShellExecute = false });
@@ -60,7 +103,7 @@ public sealed class WinActionExecutor : IActionExecutor, IDisposable
                 break;
             case ActionKind.Brightness:
                 if (!BrightnessCommand.TryParse(step.Value, out var brightness)) throw new ArgumentException(Localization.Translate("Helligkeit: Up, Down oder Set:0 bis Set:100 verwenden."));
-                await Task.Run(() => DisplayBrightnessControl.Apply(brightness, cancellationToken), cancellationToken).ConfigureAwait(false);
+                await Task.Run(() => DisplayBrightnessService.Apply(brightness, step.DisplayDeviceId, cancellationToken), cancellationToken).ConfigureAwait(false);
                 break;
             case ActionKind.Volume:
                 if (AudioEndpointControl.TryParseCommand(step.Value, out var audio))
@@ -340,7 +383,7 @@ public sealed class WinActionExecutor : IActionExecutor, IDisposable
         catch (DirectoryNotFoundException ex) { throw new InvalidOperationException(Localization.Translate((FormattableString)$"Der Ordner wurde nicht gefunden: {startInfo.FileName}"), ex); }
     }
 
-    public void Dispose() { _ownedCorsair?.Dispose(); _ownedCorsair = null; }
+    public void Dispose() { _vendorLighting.Dispose(); _ownedCorsair?.Dispose(); _ownedCorsair = null; }
 
     internal static int InputSize => Marshal.SizeOf<Input>();
     internal static int KeyboardInputSize => Marshal.SizeOf<KeyboardInput>();

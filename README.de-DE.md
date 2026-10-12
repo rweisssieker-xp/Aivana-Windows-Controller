@@ -1,4 +1,6 @@
-# Aivana Windows Controller
+# MAKRIVO
+
+**Von Aivana.** [Aktuelle Featureliste und offene Freigaben](docs/FEATURES.md) · [Prüfstand der Erweiterungen](docs/testing/2026-10-12-six-extensions.md) · [Lokaler KI-Assistent als Prototyp](docs/testing/2026-10-12-local-meeting-assistant.md)
 
 [English (US)](README.md) | **Deutsch** | [Français](README.fr-FR.md) | [Italiano](README.it-IT.md)
 
@@ -8,7 +10,7 @@ Lokales Hotkey-Panel für Windows mit Stream-Deck-artigen Kacheln, Profilen, Mak
 
 ## Start
 
-Die veröffentlichte Anwendung liegt nach dem Build unter `artifacts/win-x64/Aivana.Controller.exe`. Der gesamte Ordner wird benötigt; er kann an einen beliebigen Ort kopiert werden. Windows 11 x64 ist das erste Zielsystem. Build-Artefakte sind von Git ausgeschlossen; ein Quellcode-Checkout enthält keine fertige EXE.
+Die veröffentlichte Anwendung liegt nach dem Build unter `artifacts/win-x64/MAKRIVO.exe`. Der gesamte Ordner wird benötigt; er kann an einen beliebigen Ort kopiert werden. Windows 11 x64 ist das erste Zielsystem. Build-Artefakte sind von Git ausgeschlossen; ein Quellcode-Checkout enthält keine fertige EXE.
 
 Für den Start aus dem Quellcode ist das .NET-10-SDK erforderlich:
 
@@ -108,4 +110,14 @@ Der Katalog enthält sechs bearbeitbare Abläufe: Arbeitsplatz, Meeting, Streami
 
 **Auf Zielfenster warten** unterstützt Prozessnamen mit oder ohne `.exe`, einen Teil des Fenstertitels ohne Beachtung der Großschreibung und ein Zeitlimit von 1–600.000 ms. Mindestens ein Filter ist erforderlich; bei zwei Filtern müssen beide passen. Das Makro setzt erst fort, wenn ein passendes sichtbares Fenster reagiert und im Vordergrund ist. Bei mehreren Fenstern desselben Prozesses einen eindeutigen Titelfilter verwenden. Abbruch oder Zeitüberschreitung stoppen nachfolgende Schritte. Ein bereites Fenster garantiert weder ein fertig geladenes Dokument noch eine Verbindung zu externen Diensten wie OBS WebSocket.
 
-Bildschirmhelligkeit: Im Aktionskatalog nach **Bildschirm heller**, **Bildschirm dunkler** oder **Bildschirmhelligkeit auf 50 Prozent** suchen. Relative Aktionen ändern die Helligkeit um 10 Prozentpunkte; feste Werte reichen von 0 bis 100. Unterstützte interne Displays verwenden WMI; kompatible externe Monitore benötigen aktiviertes DDC/CI im Monitormenü. Die Aktion betrifft alle unterstützten Displays. Anschlüsse und Docks können die Unterstützung einschränken.
+Bildschirmhelligkeit: Im Aktionskatalog nach **Bildschirm heller**, **Bildschirm dunkler** oder **Bildschirmhelligkeit auf 50 Prozent** suchen. Relative Aktionen ändern die Helligkeit um 10 Prozentpunkte; feste Werte reichen von 0 bis 100. Unterstützte interne Displays verwenden WMI; kompatible externe Monitore benötigen aktiviertes DDC/CI im Monitormenü. Standardmäßig betrifft die Aktion alle unterstützten Displays; im Editor lässt sich ein bestimmter Monitor auswählen. Anschlüsse und Docks können die Unterstützung einschränken.
+
+### Erweiterte Steuerung
+
+Öffne die Befehlspalette mit **Ctrl+K, während das App-Fenster den Fokus hat**. Suche nach **Ablaufeditor**, **Makro aufnehmen**, **Profile synchronisieren** oder **Tastendiagnose**. Der Ablaufeditor bearbeitet den ausgewählten Kachelentwurf: Datei-/Prozess-/Fensterbedingungen, Vorwärtssprünge und Fehlerbehandlung mit Stoppen oder Fortsetzen. Die Aufnahme erfasst Tastenkombinationen und Wartezeiten, keinen normalen Text; Escape beendet sie. Prüfe das Ergebnis vor der Übernahme.
+
+Wähle im Helligkeitsschritt alle unterstützten Displays oder einen bestimmten Monitor. Ist ein gewählter Monitor nicht verfügbar, erscheint ein Fehler, statt einen anderen Monitor zu verändern. Das Dashboard zeigt Live-Werte für Helligkeit, Audio und OBS, sofern die jeweilige Anbindung verfügbar ist. Fehlende Messwerte werden nicht als gemessene Werte ausgegeben.
+
+Ordne im Kacheleditor eine unterstützte physische Sondertaste zu und wähle Sofortdruck, Kurz-, Halte- oder Doppeldruck. Gehaltene Ebenentasten aktivieren vorübergehend eine andere Belegung; Loslassen stellt die vorherige Ebene wieder her. Gesten und Ebenen gelten für Corsair-SDK-G-Tasten und gerätebezogene Standard-Sondertasten, nicht für gewöhnliche globale Hotkeys. Die Standardtastenerkennung unterstützt F13–F24 und Tastatur-Medientasten. Proprietäre Fn-, Profil- und Radtasten benötigen weiterhin einen passenden Herstelleradapter oder eine Herstellerzuordnung zu einer Standardtaste. Raw Input beobachtet die Taste und unterdrückt ihr normales Windows-Verhalten nicht. Die Tastendiagnose erklärt Profil-, Pausen-, Verbindungs- und Belegungsprobleme.
+
+Die Profilsynchronisation tauscht Dateien über einen selbst gewählten Ordner aus, auch über einen bereits durch deinen Cloud-Client verwalteten Ordner. Prüfe die Vorschau vor dem Import; importierte Aktionen sind deaktiviert und Hardwarezuordnungen werden entfernt. Revisionen verhindern stilles Überschreiben; Aktionsinhalte werden nur ausdrücklich eingeschlossen. MAKRIVO stellt kein Cloud-Konto bereit und speichert keine Cloud-Zugangsdaten. Im Infobereich erscheint jetzt das eigene türkise M-Symbol, bei Pause mit bernsteinfarbenem Pausenzeichen.

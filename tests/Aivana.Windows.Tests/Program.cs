@@ -35,6 +35,11 @@ internal static class Program
 
     private static void Run(string[] args)
     {
+        if (args is ["--ui-automation-fixture"]) { Aivana.Windows.Tests.UiAutomationFixture.Run(); return; }
+        if (args is ["--meeting-only"]) { MeetingModelChecks.RunAsync().GetAwaiter().GetResult(); return; }
+        if (args is ["--mobile-only"]) { MobileHostChecks.RunAsync().GetAwaiter().GetResult(); return; }
+        if (args is ["--extensions-only"]) { ExtensionChecks.RunAsync().GetAwaiter().GetResult(); return; }
+        RawKeyboardEdgeChecks.Run();
         if (args is ["--brightness-roundtrip"])
         {
             DisplayBrightnessControl.Apply(new BrightnessCommand(null, 10), CancellationToken.None, roundTrip: true);
@@ -67,6 +72,8 @@ internal static class Program
             catch (OperationCanceledException) { cancelled = true; }
             Check(cancelled, "Native window wait must honor cancellation before activating anything.");
         }
+        if (!args.Contains("--skip-foreground-fixture"))
+        {
         var previousWindow = GetForegroundWindow();
         using (var fixture = System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
         {
@@ -79,7 +86,8 @@ internal static class Program
                 // The title filter isolates our own fixture from every live user window.
                 var fixtureTitle = fixture.StartInfo.Arguments.Split(' ')[1];
                 using var executor = new WinActionExecutor(_ => Task.CompletedTask);
-                executor.ExecuteAsync(new ActionStep { Kind = ActionKind.WaitWindow, Value = fixture.ProcessName, Arguments = fixtureTitle, DelayMs = 10000 }, CancellationToken.None).GetAwaiter().GetResult();
+                try { executor.ExecuteAsync(new ActionStep { Kind = ActionKind.WaitWindow, Value = fixture.ProcessName, Arguments = fixtureTitle, DelayMs = 10000 }, CancellationToken.None).GetAwaiter().GetResult(); }
+                catch { fixture.Refresh(); Console.Error.WriteLine($"Fixture diagnostics: exited={fixture.HasExited}, pid={fixture.Id}, handle={fixture.MainWindowHandle}, title={fixture.MainWindowTitle}, foreground={GetForegroundWindow()}, expected={fixtureTitle}"); throw; }
                 fixture.Refresh();
                 Check(!fixture.HasExited && GetForegroundWindow() == fixture.MainWindowHandle && fixture.MainWindowTitle == fixtureTitle, "Window wait should find and focus the separate test window.");
             }
@@ -90,7 +98,28 @@ internal static class Program
             }
         }
         Console.WriteLine("Window wait native success, timeout and cancellation checks passed using an isolated test window.");
+        }
+        else Console.WriteLine("SKIP foreground success fixture explicitly requested; no native focus success is claimed.");
         Console.WriteLine($"Read-only brightness probe: {DisplayBrightnessControl.Apply(new BrightnessCommand(50, 0), CancellationToken.None, probeOnly: true)} supported display API bindings; no brightness was changed.");
+        var displays = DisplayBrightnessService.GetDisplays();
+        Check(displays.All(d => !string.IsNullOrEmpty(d.Id) && !string.IsNullOrEmpty(d.Name) && d.Percent is >= 0 and <= 100), "Display snapshots require identities, names and normalized percentages.");
+        Check(displays.Select(d => d.Id).Distinct(StringComparer.OrdinalIgnoreCase).Count() == displays.Count, "Display identities must be unique.");
+        var reread = DisplayBrightnessService.GetDisplays();
+        Console.WriteLine("Display enumeration diagnostic: " + string.Join(",",displays.Select(d=>d.Id)) + " -> " + string.Join(",",reread.Select(d=>d.Id)));
+        Check(displays.Select(d => d.Id).Order().SequenceEqual(reread.Select(d => d.Id).Order()), "Stable attached display identities must survive repeated native enumeration.");
+        var unavailableRejected = false;
+        try { DisplayBrightnessService.Apply(new BrightnessCommand(50, 0), "missing-display-" + Guid.NewGuid().ToString("N")); }
+        catch (InvalidOperationException) { unavailableRejected = true; }
+        Check(unavailableRejected, "An unavailable explicit display must never change another display.");
+        using (var displayCancellation = new CancellationTokenSource())
+        {
+            displayCancellation.Cancel();
+            var displayCancelled = false;
+            try { DisplayBrightnessService.GetDisplays(displayCancellation.Token); }
+            catch (OperationCanceledException) { displayCancelled = true; }
+            Check(displayCancelled, "Display discovery must honor cancellation.");
+        }
+        Console.WriteLine("Display identities, live status, missing-target isolation and cancellation passed without changing brightness.");
         AudioEndpointChecks.Run();
         ObsProtocolChecks.Run();
         var leftHalf = WinActionExecutor.CalculateWindowHalf(new WinActionExecutor.NativeRect { Left = -1920, Top = 40, Right = 0, Bottom = 1040 }, right: false);
@@ -285,6 +314,7 @@ internal static class Program
         }
         source.Dispose();
         System.Windows.Threading.Dispatcher.CurrentDispatcher.InvokeShutdown();
+        ExtensionChecks.RunAsync().GetAwaiter().GetResult();
         Console.WriteLine("Windows adapter smoke checks passed.");
     }
 }

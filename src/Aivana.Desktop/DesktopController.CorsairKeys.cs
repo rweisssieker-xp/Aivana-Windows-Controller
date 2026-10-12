@@ -5,6 +5,10 @@ namespace Aivana.Desktop;
 
 public sealed partial class DesktopController
 {
+    private readonly KeyGestureRouter _keyGestures = new();
+    private System.Windows.Threading.DispatcherTimer? _gestureTimer;
+    private string _gestureBindingSnapshot = "";
+    public string ActiveKeyLayer => _keyGestures.ActiveLayer;
     private Action<CorsairMacroKeyPress>? _specialKeyCapture;
     private string? _specialKeyCaptureDevice;
     private int _specialKeyCaptureGeneration;
@@ -50,14 +54,37 @@ public sealed partial class DesktopController
     public string CorsairKeyStatus => _corsair.KeyStatus;
     public IReadOnlyList<int> GetCorsairMacroKeys(string deviceId) => _corsair.GetSupportedMacroKeyIds(deviceId);
 
-    private void InitializeCorsairKeys() => _corsair.MacroKeyPressed += OnCorsairMacroKeyPressed;
+    private void InitializeCorsairKeys()
+    {
+        _corsair.MacroKeyChanged += OnCorsairMacroKeyChanged;
+        _keyGestures.Triggered += tile => { if (!_disposed && !Paused && _inputInjectionDepth == 0) _ = ExecuteAsync(tile); };
+        _gestureTimer = new System.Windows.Threading.DispatcherTimer { Interval = TimeSpan.FromMilliseconds(25) };
+        _gestureTimer.Tick += (_,_) => { if (!_corsair.KeysAvailable && ActiveProfile.Tiles.All(t => t.KeyboardBinding is null)) ResetKeyGestures(); else _keyGestures.Advance(Environment.TickCount64, _inputInjectionDepth == 0); };
+        _gestureTimer.Start();
+    }
+    private void ResetKeyGestures() { _keyGestures.Reset(); Interlocked.Increment(ref _specialKeyCaptureGeneration); }
+    private void OnCorsairMacroKeyChanged(CorsairMacroKeyEdge edge)
+    {
+        if (edge.IsPressed) { OnCorsairMacroKeyPressed(new(edge.DeviceId, edge.KeyId)); return; }
+        var dispatcher = System.Windows.Application.Current?.Dispatcher;
+        if (_disposed || dispatcher is null || dispatcher.HasShutdownStarted) return;
+        var generation = Volatile.Read(ref _specialKeyCaptureGeneration);
+        dispatcher.BeginInvoke(new Action(() =>
+        {
+            if (_disposed || Paused || generation != Volatile.Read(ref _specialKeyCaptureGeneration)) return;
+            _keyGestures.Up(edge.DeviceId, edge.KeyId, Environment.TickCount64, _inputInjectionDepth == 0);
+        }));
+    }
 
     private void RefreshCorsairKeyBindings()
     {
         if (_disposed) return;
+        var snapshot = System.Text.Json.JsonSerializer.Serialize(new { Settings.ActiveProfileId, Paused, _specialKeyCaptureDevice, Available = _corsair.KeysAvailable,
+            Tiles = ActiveProfile.Tiles.Select(t => new { t.Id,t.Enabled,t.CorsairBinding,t.KeyboardBinding,t.KeyGesture,t.KeyLayer,t.HeldLayer,t.HoldMilliseconds,t.DoubleTapMilliseconds }) });
+        if (snapshot != _gestureBindingSnapshot) { ResetKeyGestures(); _gestureBindingSnapshot = snapshot; Interlocked.Increment(ref _specialKeyCaptureGeneration); }
         var bindings = _specialKeyCaptureDevice is { } captureDevice
             ? GetCorsairMacroKeys(captureDevice).Select(key => new CorsairMacroKeyBinding(captureDevice, key)).ToArray()
-            : Paused || _inputInjectionDepth > 0
+            : Paused
             ? Array.Empty<CorsairMacroKeyBinding>()
             : ActiveProfile.Tiles.Where(tile => tile.Enabled && tile.CorsairBinding is not null)
                 .Select(tile => new CorsairMacroKeyBinding(tile.CorsairBinding!.DeviceId, tile.CorsairBinding.KeyId))
@@ -79,10 +106,7 @@ public sealed partial class DesktopController
                 return;
             }
             if (_disposed || Paused || _inputInjectionDepth > 0) return;
-            var tile = ActiveProfile.Tiles.FirstOrDefault(candidate => candidate.Enabled
-                && candidate.CorsairBinding is { } binding
-                && binding.DeviceId == press.DeviceId && binding.KeyId == press.KeyId);
-            if (tile is not null) _ = ExecuteAsync(tile);
+            _keyGestures.Down(press.DeviceId, press.KeyId, ActiveProfile.Tiles, Environment.TickCount64);
         }));
     }
 
@@ -90,6 +114,8 @@ public sealed partial class DesktopController
     {
         _specialKeyCapture = null; _specialKeyCaptureDevice = null;
         Interlocked.Increment(ref _specialKeyCaptureGeneration);
-        _corsair.MacroKeyPressed -= OnCorsairMacroKeyPressed;
+        _corsair.MacroKeyChanged -= OnCorsairMacroKeyChanged;
+        _gestureTimer?.Stop();
+        ResetKeyGestures();
     }
 }

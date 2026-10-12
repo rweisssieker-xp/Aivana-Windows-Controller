@@ -1,4 +1,4 @@
-# Aivana Windows Controller — Documentation
+# MAKRIVO — Documentation
 
 [English (US)](../en-US/README.md) | [Deutsch](../de-DE/README.md) | [Français](../fr-FR/README.md) | [Italiano](../it-IT/README.md)
 
@@ -38,7 +38,7 @@ Research describes documented manufacturer capabilities, not a promise of implem
 
 - [Physical Keyboard View for Mapping](superpowers/specs/2026-10-08-keyboard-mapping.md)
 
-- [Aivana Windows Controller — Design](superpowers/specs/2026-10-08-windows-controller-design.md)
+- [MAKRIVO — Design](superpowers/specs/2026-10-08-windows-controller-design.md)
 
 Machine-readable localization catalogs remain in docs/localization; their keys are implementation data and are not translated as documentation.
 

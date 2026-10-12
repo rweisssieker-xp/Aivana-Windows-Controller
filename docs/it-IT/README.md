@@ -1,4 +1,4 @@
-# Aivana Windows Controller — Documentazione
+# MAKRIVO — Documentazione
 
 [English (US)](../en-US/README.md) | [Deutsch](../de-DE/README.md) | [Français](../fr-FR/README.md) | [Italiano](../it-IT/README.md)
 
@@ -38,7 +38,7 @@ La ricerca descrive le funzionalità documentate dai produttori, senza garantire
 
 - [Vista fisica della tastiera per l'associazione delle azioni](superpowers/specs/2026-10-08-keyboard-mapping.md)
 
-- [Aivana Windows Controller — Progetto](superpowers/specs/2026-10-08-windows-controller-design.md)
+- [MAKRIVO — Progetto](superpowers/specs/2026-10-08-windows-controller-design.md)
 
 I cataloghi di traduzione leggibili dal software restano in docs/localization; le chiavi sono dati di implementazione e non vengono tradotte come documentazione.
 

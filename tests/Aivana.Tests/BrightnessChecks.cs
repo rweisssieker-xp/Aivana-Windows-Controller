@@ -12,10 +12,10 @@ internal static class BrightnessChecks
             Check(!BrightnessCommand.TryParse(invalid, out _), "invalid brightness command must fail");
             Check(ConfigurationValidator.ValidateTile(new Tile { Steps = [new() { Kind = ActionKind.Brightness, Value = invalid }] }).Count > 0, "invalid brightness must not save");
         }
-        var step = new ActionStep { Kind = ActionKind.Brightness, Value = "Set:70" };
+        var step = new ActionStep { Kind = ActionKind.Brightness, Value = "Set:70", DisplayDeviceId = "ddc:stable-monitor-interface" };
         var json = System.Text.Json.JsonSerializer.Serialize(step);
         var restored = System.Text.Json.JsonSerializer.Deserialize<ActionStep>(json)!;
-        Check(restored.Kind == ActionKind.Brightness && restored.Value == "Set:70", "brightness must persist");
+        Check(restored.Kind == ActionKind.Brightness && restored.Value == "Set:70" && restored.DisplayDeviceId == step.DisplayDeviceId, "brightness must persist");
         Check(MacroPreview.Build(new Tile { Steps = [step] }).Any(line => line.Contains("Set:70")), "preview must describe the configured brightness");
         return Task.CompletedTask;
     }

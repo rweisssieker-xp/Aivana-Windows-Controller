@@ -27,7 +27,7 @@ dotnet build Aivana.slnx -c Release
 dotnet run --project tests/Aivana.Tests -c Release
 dotnet run --project tests/Aivana.Windows.Tests -c Release
 dotnet publish src/Aivana.Desktop -c Release -r win-x64 --self-contained true -o artifacts/win-x64
-& ./artifacts/win-x64/Aivana.Controller.exe --smoke-test
+& ./artifacts/win-x64/MAKRIVO.exe --smoke-test
 ```
 
 The GUI test writes its result and screenshot to `smoke` next to the tested EXE. It is intended as a diagnostic mode and does not start a persistent background instance when it finishes.
@@ -37,3 +37,5 @@ The GUI test writes its result and screenshot to `smoke` next to the tested EXE.
 Also checked: profile conditions using process and window title, variable substitution without recursive expansion, macro preview without execution, new action validation, and backward compatibility with old JSON files. Native checks cover the command palette registration, conflicts, WM_HOTKEY dispatch and release, as well as monitor-only layout and on-demand clipboard reads. The WPF test opens and renders the actual palette, checks undo/redo and favorites, checks clean drafts after rendering, and exits successfully.
 
 Windows locking, clipboard changes, and window movement were not applied to user programs during testing. Window actions post asynchronous Windows requests; the target program may impose its own minimum sizes or permission boundaries. Profile locking and execution statistics apply to the current session.
+
+2026-10-12 extension verification: 30 Core checks passed, Windows adapter checks passed (including release during input injection, read-only monitor identity and OBS status mocks), and WPF checks exercised workflow adoption/cancellation, recorder start/stop, profile exchange previews, gestures and icon resources. Localization: 27 catalogs with 967 keys each; documentation: 84 pages in four languages. Vendor-proprietary keys beyond Corsair were not hardware-tested; generic per-device support covers standard F13–F24 and media keyboard events. Cloud transport is provided by a user-selected synchronized folder; imports remain reviewed and disabled.

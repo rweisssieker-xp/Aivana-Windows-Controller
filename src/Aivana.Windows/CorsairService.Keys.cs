@@ -5,6 +5,7 @@ namespace Aivana.Windows;
 
 public sealed record CorsairMacroKeyBinding(string DeviceId, int KeyId);
 public sealed record CorsairMacroKeyPress(string DeviceId, int KeyId);
+public sealed record CorsairMacroKeyEdge(string DeviceId, int KeyId, bool IsPressed);
 
 public sealed partial class CorsairService
 {
@@ -30,6 +31,9 @@ public sealed partial class CorsairService
 
     /// <summary>Raised for a selected G-key press, after the iCUE SDK callback has returned.</summary>
     public event Action<CorsairMacroKeyPress>? MacroKeyPressed;
+    public event Action<CorsairMacroKeyEdge>? MacroKeyChanged;
+    private readonly System.Collections.Concurrent.ConcurrentQueue<CorsairMacroKeyEdge> _keyEdges = new();
+    private int _edgeDispatching;
 
     /// <summary>Whether iCUE reports at least one supported G1-G6 key and the SDK can listen for key events.</summary>
     public bool KeysAvailable { get { lock (_sync) return !_disposed && _connected && _macroKeyExportsAvailable && _supportedMacroKeys.Values.Any(keys => keys.Any(IsSupportedMacroKeyId)); } }
@@ -315,27 +319,39 @@ public sealed partial class CorsairService
             var binding = new CorsairMacroKeyBinding(press.DeviceId, press.KeyId);
             lock (_sync)
             {
-                if (_disposed) return;
+                if (_disposed || !_requestedMacroKeyBindings.Contains(binding)) return;
                 if (nativeKey.IsPressed == 0)
                 {
-                    _currentlyPressedMacroKeys.Remove(binding);
-                    return;
+                    if (!_currentlyPressedMacroKeys.Remove(binding)) return;
                 }
-                // iCUE may repeat key-down events while a G-key is held; dispatch only the edge.
-                if (!_requestedMacroKeyBindings.Contains(binding) || !_currentlyPressedMacroKeys.Add(binding)) return;
+                else if (!_currentlyPressedMacroKeys.Add(binding)) return;
+                _keyEdges.Enqueue(new CorsairMacroKeyEdge(deviceId, nativeKey.KeyId, nativeKey.IsPressed != 0));
             }
-            ThreadPool.QueueUserWorkItem(_ =>
-            {
-                Action<CorsairMacroKeyPress>? handler;
-                lock (_sync)
-                {
-                    if (_disposed || !_requestedMacroKeyBindings.Contains(binding)) return;
-                    handler = MacroKeyPressed;
-                }
-                try { handler?.Invoke(press); } catch { }
-            });
+            QueueKeyEdges();
         }
         catch { }
+    }
+
+    private void QueueKeyEdges()
+    {
+        if (Interlocked.CompareExchange(ref _edgeDispatching, 1, 0) != 0) return;
+        ThreadPool.QueueUserWorkItem(_ =>
+        {
+            try
+            {
+                while (_keyEdges.TryDequeue(out var edge))
+                {
+                    lock (_sync) { if (_disposed || !_requestedMacroKeyBindings.Contains(new(edge.DeviceId, edge.KeyId))) continue; }
+                    try { MacroKeyChanged?.Invoke(edge); } catch { }
+                    if (edge.IsPressed) try { MacroKeyPressed?.Invoke(new(edge.DeviceId, edge.KeyId)); } catch { }
+                }
+            }
+            finally
+            {
+                Interlocked.Exchange(ref _edgeDispatching, 0);
+                if (!_keyEdges.IsEmpty) QueueKeyEdges();
+            }
+        });
     }
 
     private void ResetMacroKeySessionState()

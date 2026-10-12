@@ -1,4 +1,6 @@
-# Aivana Windows Controller
+# MAKRIVO
+
+**Di Aivana.** [Funzionalità e limiti attuali (DE)](docs/FEATURES.md) · [Test delle estensioni (DE)](docs/testing/2026-10-12-six-extensions.md)
 
 [English (US)](README.md) | [Deutsch](README.de-DE.md) | [Français](README.fr-FR.md) | **Italiano**
 
@@ -8,7 +10,7 @@ Controller locale per hotkey Windows con riquadri in stile Stream Deck, profili,
 
 ## Per iniziare
 
-Dopo la pubblicazione, l'applicazione si trova in `artifacts/win-x64/Aivana.Controller.exe`. Mantieni insieme l'intera cartella di output; puoi copiarla altrove. Windows 11 x64 è il sistema iniziale di destinazione. Gli artefatti di build sono esclusi da Git; un checkout del codice sorgente non include un eseguibile precompilato.
+Dopo la pubblicazione, l'applicazione si trova in `artifacts/win-x64/MAKRIVO.exe`. Mantieni insieme l'intera cartella di output; puoi copiarla altrove. Windows 11 x64 è il sistema iniziale di destinazione. Gli artefatti di build sono esclusi da Git; un checkout del codice sorgente non include un eseguibile precompilato.
 
 Installa l'SDK .NET 10 indicato in `global.json` per compilare ed eseguire dal codice sorgente:
 
@@ -108,4 +110,14 @@ Il catalogo include sei workflow modificabili: spazio di lavoro, riunione, strea
 
 **Attendi la finestra di destinazione** accetta un processo con o senza `.exe`, una parte del titolo senza distinzione tra maiuscole e minuscole e un timeout da 1 a 600.000 ms. È richiesto almeno un filtro; se presenti entrambi, devono corrispondere entrambi. La macro continua quando la finestra corrispondente è visibile, risponde ed è in primo piano. Specifica il titolo se più finestre condividono lo stesso processo. Annullamento o timeout interrompono i passaggi successivi. Una finestra pronta non garantisce il caricamento del documento o la connessione a servizi esterni come OBS WebSocket.
 
-Luminosità: cercare **Aumenta luminosità dello schermo**, **Riduci luminosità dello schermo** o **Luminosità dello schermo al 50 per cento** nel catalogo. Le azioni relative modificano la luminosità di 10 punti percentuali; i valori fissi vanno da 0 a 100. Gli schermi interni compatibili utilizzano WMI; i monitor esterni compatibili richiedono DDC/CI attivato nel menu. L’azione riguarda tutti gli schermi compatibili. Collegamenti e dock possono limitare il supporto.
+Luminosità: cercare **Aumenta luminosità dello schermo**, **Riduci luminosità dello schermo** o **Luminosità dello schermo al 50 per cento** nel catalogo. Le azioni relative modificano la luminosità di 10 punti percentuali; i valori fissi vanno da 0 a 100. Gli schermi interni compatibili utilizzano WMI; i monitor esterni compatibili richiedono DDC/CI attivato nel menu. Per impostazione predefinita, l’azione riguarda tutti gli schermi compatibili; nell’editor è possibile selezionare un monitor specifico. Collegamenti e dock possono limitare il supporto.
+
+### Controlli avanzati
+
+Apri la palette con **Ctrl+K quando la finestra dell’app ha il focus**. Cerca l’**editor dei flussi**, la **registrazione macro**, la **sincronizzazione dei profili** o la **diagnostica dei tasti**; le etichette seguono la lingua scelta. L’editor modifica la bozza della tessera selezionata: condizioni su file/processi/finestre, salti in avanti e arresto o continuazione in caso di errore. Il registratore acquisisce scorciatoie e attese, non testo normale; Esc termina la registrazione. Esamina il risultato prima di adottarlo.
+
+Nel passo di luminosità scegli tutti i display supportati o un monitor specifico. Una destinazione selezionata non disponibile produce un errore invece di modificare un altro display. La dashboard mostra luminosità, audio e OBS quando le relative integrazioni sono disponibili; una lettura assente non viene presentata come misura.
+
+Nell’editor della tessera assegna un tasto speciale fisico supportato e scegli pressione immediata, breve, prolungata o doppia. Un selettore di livello mantenuto attiva temporaneamente altre assegnazioni; il rilascio ripristina il livello precedente. Gesti e livelli si applicano ai tasti G del SDK Corsair e ai tasti standard per dispositivo, non alle normali scorciatoie globali. Il rilevamento standard supporta F13–F24 e i tasti multimediali della tastiera. I comandi proprietari Fn, profilo e rotella richiedono ancora un adattatore compatibile del produttore o un’assegnazione a un tasto standard. Raw Input osserva senza sopprimere il normale comportamento di Windows. La diagnostica spiega problemi di profilo, pausa, connessione e assegnazione.
+
+La sincronizzazione scambia file tramite una cartella scelta, anche gestita da un client cloud già esistente. Esamina l’anteprima prima dell’importazione: le azioni importate sono disattivate e le assegnazioni hardware vengono rimosse. Le revisioni impediscono sovrascritture silenziose; includere i contenuti delle azioni è una scelta esplicita. MAKRIVO non fornisce account cloud e non conserva credenziali cloud. L’area di notifica usa ora l’icona M turchese propria, con indicatore di pausa ambra.

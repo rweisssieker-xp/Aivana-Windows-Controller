@@ -27,7 +27,7 @@ dotnet build Aivana.slnx -c Release
 dotnet run --project tests/Aivana.Tests -c Release
 dotnet run --project tests/Aivana.Windows.Tests -c Release
 dotnet publish src/Aivana.Desktop -c Release -r win-x64 --self-contained true -o artifacts/win-x64
-& ./artifacts/win-x64/Aivana.Controller.exe --smoke-test
+& ./artifacts/win-x64/MAKRIVO.exe --smoke-test
 ```
 
 Der GUI-Test schreibt Ergebnis und Screenshot nach `smoke` neben der geprüften EXE. Er ist als Diagnosemodus gedacht und startet nach Abschluss keine dauerhafte Hintergrundinstanz.
@@ -39,3 +39,5 @@ Zusätzlich geprüft: Profilbedingungen mit Prozess und Fenstertitel, Variablene
 
 Windows-Sperre, Zwischenablageänderungen und Fensterbewegungen wurden während der Tests nicht auf Benutzerprogramme angewendet. Fensteraktionen posten Windows-Anfragen asynchron; das konkrete Zielprogramm kann eigene Mindestgrößen oder Berechtigungsgrenzen haben. Profilsperre und Ausführungsstatistik gelten für die laufende Sitzung.
 
+
+Erweiterungsprüfung vom 12.10.2026: 30 Core-Prüfungen bestanden; Windows-Adapter einschließlich Loslassen während Eingabeinjektion, schreibgeschützter Monitorerkennung und OBS-Status-Mock bestanden. WPF prüft Ablaufübernahme/Abbrechen, Rekorder-Start/Stopp, Profilaustausch-Vorschau, Gesten und Symbolressourcen. Lokalisierung: 27 Kataloge mit je 967 Schlüsseln; Dokumentation: 84 Seiten in vier Sprachen. Proprietäre Tasten anderer Hersteller als Corsair wurden nicht an Hardware getestet; die generische Unterstützung umfasst gerätespezifische Standardereignisse F13–F24 und Medientasten. Cloud-Transport erfolgt über einen ausgewählten synchronisierten Ordner; Importe werden geprüft und bleiben deaktiviert.

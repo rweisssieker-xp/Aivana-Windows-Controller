@@ -27,7 +27,7 @@ dotnet build Aivana.slnx -c Release
 dotnet run --project tests/Aivana.Tests -c Release
 dotnet run --project tests/Aivana.Windows.Tests -c Release
 dotnet publish src/Aivana.Desktop -c Release -r win-x64 --self-contained true -o artifacts/win-x64
-& ./artifacts/win-x64/Aivana.Controller.exe --smoke-test
+& ./artifacts/win-x64/MAKRIVO.exe --smoke-test
 ```
 
 Il test GUI scrive risultati e screenshot in `smoke`, accanto all'EXE verificata. È una modalità diagnostica e al termine non avvia un'istanza permanente in background.
@@ -37,3 +37,5 @@ Il test GUI scrive risultati e screenshot in `smoke`, accanto all'EXE verificata
 Inoltre sono stati verificati: condizioni del profilo con processo e titolo della finestra, sostituzione delle variabili senza espansione ricorsiva, anteprima delle macro senza esecuzione, nuova convalida delle azioni e compatibilità con i vecchi file JSON. I controlli nativi includono la tavolozza dei comandi con registrazione, conflitti, dispatch e rilascio di WM_HOTKEY, la sola suddivisione dei monitor e la lettura degli appunti su richiesta. Il test WPF apre e renderizza la tavolozza reale, verifica Annulla/Ripristina e preferiti, controlla che le bozze restino pulite dopo il rendering e termina correttamente il processo.
 
 Durante i test non sono stati applicati a programmi dell'utente il blocco di Windows, modifiche agli appunti o spostamenti delle finestre. Le azioni finestra inviano richieste asincrone a Windows; il programma di destinazione può imporre dimensioni minime o limiti di autorizzazione. Il blocco del profilo e le statistiche di esecuzione valgono per la sessione corrente.
+
+Verifica delle estensioni del 12 ottobre 2026: superati 30 controlli Core e i controlli Windows, inclusi rilascio durante l’iniezione, identificazione dei monitor in sola lettura e simulazioni OBS. WPF verifica adozione/annullamento dei flussi, avvio/arresto del registratore, anteprime dello scambio profili, gesti e icone. Localizzazione: 27 cataloghi da 967 chiavi; documentazione: 84 pagine in quattro lingue. I tasti proprietari oltre Corsair non sono stati verificati su hardware; il supporto generico copre F13–F24 ed eventi multimediali standard per dispositivo. Il trasporto cloud usa una cartella sincronizzata scelta; le importazioni richiedono revisione e rimangono disabilitate.

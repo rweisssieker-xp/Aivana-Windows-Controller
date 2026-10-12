@@ -53,7 +53,7 @@ public partial class MainWindow
         if (savedAudio.AudioDeviceId is not null) throw new InvalidOperationException("Choosing default audio device did not clear the saved endpoint ID.");
         var brightnessStep = ActionCatalog.Find("display.brighter")!.CreateStep();
         var brightnessFields = new StackPanel(); AddStepFields(brightnessFields, new Tile { Steps = [brightnessStep] }, brightnessStep);
-        var brightnessMode = brightnessFields.Children.OfType<ComboBox>().Single();
+        var brightnessMode = brightnessFields.Children.OfType<ComboBox>().Single(combo => combo.Name != "DisplayDevicePicker");
         brightnessMode.SelectedValue = "Down";
         if (brightnessStep.Value != "Down") throw new InvalidOperationException("Brightness mode editor failed.");
         brightnessMode.SelectedValue = "Set";
@@ -63,6 +63,13 @@ public partial class MainWindow
         FindKeyboardVisualChildren<Button>(brightnessNumeric).Single(button => button.Content as string == "▴")
             .RaiseEvent(new RoutedEventArgs(System.Windows.Controls.Button.ClickEvent));
         if (brightnessStep.Value != "Set:51") throw new InvalidOperationException("Brightness percentage did not update.");
+        var savedDisplay = new ActionStep { Kind = ActionKind.Brightness, Value = "Down", DisplayDeviceId = "smoke-missing-display" };
+        var displayFields = new StackPanel(); AddStepFields(displayFields, new Tile { Steps = [savedDisplay] }, savedDisplay);
+        var displayPicker = displayFields.Children.OfType<ComboBox>().Single(combo => combo.Name == "DisplayDevicePicker");
+        if (displayPicker.SelectedValue as string != "smoke-missing-display" || savedDisplay.DisplayDeviceId != "smoke-missing-display")
+            throw new InvalidOperationException("Missing saved display was silently retargeted.");
+        displayPicker.SelectedIndex = 0;
+        if (savedDisplay.DisplayDeviceId is not null) throw new InvalidOperationException("Choosing all displays did not clear the saved display ID.");
         var workflow = ActionCatalog.Find("workflow.research")!;
         var workflowEntry = new PaletteEntry(new Tile { Name = workflow.Name, Steps = workflow.CreateSteps() }, new Profile(), workflow.Description, false, "", "", true, Preset: workflow);
         if (!workflowEntry.NeedsConfiguration) throw new InvalidOperationException("Workflow must open as an editable draft, never run on selection.");

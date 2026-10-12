@@ -9,6 +9,8 @@ public static class ConfigurationValidator
     {
         ArgumentNullException.ThrowIfNull(settings);
         var errors = new List<string>();
+        if (settings.VendorIntegrations is not { ApprovedLibraries: not null } integrations || !(integrations.AnalogRelease >= 0 && integrations.AnalogRelease < integrations.AnalogPress && integrations.AnalogPress <= 1)) errors.Add("Ungültige Hersteller-Einstellungen.");
+        else foreach (var library in integrations.ApprovedLibraries) if (library.Key is not ("logitech-g" or "logitech-led" or "wooting") || !Regex.IsMatch(library.Value ?? "", "^[0-9A-Fa-f]{64}$")) errors.Add("Ungültige SDK-Freigabe.");
         if (settings.Version != 1)
             errors.Add(Localization.Translate((FormattableString)$"Nicht unterstützte Konfigurationsversion: {settings.Version}."));
         if (!KeyboardLayoutCatalog.TryGet(settings.KeyboardLayoutId, out _))
@@ -51,6 +53,8 @@ public static class ConfigurationValidator
             }
 
             errors.AddRange(CorsairBindingValidator.ValidateProfileBindings(profile));
+            errors.AddRange(KeyboardBindingValidator.ValidateProfile(profile));
+            errors.AddRange(VendorBindingValidator.ValidateProfile(profile));
 
             var hotkeys = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             foreach (var tile in profile.Tiles)
@@ -118,12 +122,13 @@ public static class ConfigurationValidator
             errors.Add(Localization.Translate("Die Kachelfarbe muss im Format #RRGGBB angegeben sein."));
         if (tile.Repeat is < 1 or > 100)
             errors.Add(Localization.Translate("Die Wiederholung muss zwischen 1 und 100 liegen."));
+        if (tile.VendorBinding is { } vendor && (vendor.Adapter is not ("logitech-g" or "wooting") || string.IsNullOrWhiteSpace(vendor.DeviceId) || vendor.KeyCode is < 1 or > 65535)) errors.Add("Ungültige Hersteller-Tastenbindung.");
         if (tile.Steps is null)
         {
             errors.Add(Localization.Translate("Die Aktionsliste fehlt."));
             return errors;
         }
-        if (tile.Steps.Count == 0)
+        if (tile.Steps.Count == 0 && (string.IsNullOrWhiteSpace(tile.HeldLayer) || tile.CorsairBinding is null && tile.KeyboardBinding is null && tile.VendorBinding is null))
             errors.Add(Localization.Translate("Mindestens ein Aktionsschritt ist erforderlich."));
         for (var index = 0; index < tile.Steps.Count; index++)
         {
@@ -133,6 +138,8 @@ public static class ConfigurationValidator
                 errors.Add(Localization.Translate((FormattableString)$"Schritt {index + 1} ist leer."));
                 continue;
             }
+            errors.AddRange(WorkflowRules.Validate(step, tile.Steps.Count - index - 1));
+            if (step.Verification is { TimeoutMs: < 100 or > 60000 }) errors.Add("Verification timeout must be 100–60000 ms.");
             if (!Enum.IsDefined(step.Kind))
             {
                 errors.Add(Localization.Translate((FormattableString)$"Schritt {index + 1} hat eine unbekannte Aktionsart."));
@@ -141,6 +148,17 @@ public static class ConfigurationValidator
             if (step.Value is null)
             {
                 errors.Add(Localization.Translate((FormattableString)$"Schritt {index + 1} enthält keinen gültigen Wert."));
+                continue;
+            }
+            if (step.Kind == ActionKind.UiAutomation) { errors.AddRange(UiAutomationRules.Validate(step.UiAutomation)); continue; }
+            if (step.Kind == ActionKind.Plugin)
+            {
+                if (step.Plugin is not { TimeoutMs: >= 100 and <= 60000 } plugin || string.IsNullOrWhiteSpace(plugin.PackageId) || string.IsNullOrWhiteSpace(plugin.ActionId) || plugin.Parameters.ValueKind != System.Text.Json.JsonValueKind.Object) errors.Add("Plugin, Aktion und Parameter prüfen.");
+                continue;
+            }
+            if (step.Kind == ActionKind.VendorLighting)
+            {
+                if (!Regex.IsMatch(step.Value, "^#[0-9A-Fa-f]{6}$") || step.Arguments is not ("razer" or "steelseries" or "logitech-led")) errors.Add("Hersteller und RGB-Farbe prüfen.");
                 continue;
             }
             if (step.Kind == ActionKind.WaitWindow)

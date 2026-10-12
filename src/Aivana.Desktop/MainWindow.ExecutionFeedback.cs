@@ -58,7 +58,7 @@ public partial class MainWindow
             _executionFeedbackText = new TextBlock { TextWrapping = TextWrapping.Wrap, Foreground = Brushes.White, FontSize = 14, Margin = new Thickness(0, 0, 0, 12) };
             _executionFeedbackProgress = new ProgressBar { Height = 4, Minimum = 0, Maximum = 100, Foreground = _accent };
             var panel = new StackPanel();
-            panel.Children.Add(new TextBlock { Text = "AIVANA", Foreground = _accent, FontSize = 11, Margin = new Thickness(0, 0, 0, 8) });
+            panel.Children.Add(new TextBlock { Text = "MAKRIVO", Foreground = _accent, FontSize = 11, Margin = new Thickness(0, 0, 0, 8) });
             panel.Children.Add(_executionFeedbackText);
             panel.Children.Add(_executionFeedbackProgress);
             _executionFeedbackWindow = new Window

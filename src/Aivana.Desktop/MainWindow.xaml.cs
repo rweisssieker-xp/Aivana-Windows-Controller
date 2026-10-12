@@ -89,7 +89,7 @@ public partial class MainWindow : Window
             ProfilePicker.SelectedValue = active?.Id;
         PauseButton.Content = _controller.Paused ? L("▶  Hotkeys fortsetzen") : L("Ⅱ  Hotkeys pausieren");
         PaletteButton.Content = LF($"⌕  Befehlspalette  {(string.IsNullOrWhiteSpace(settings.PaletteHotkey) ? "Ctrl+K" : settings.PaletteHotkey)}");
-        SidebarHotkeyState.Text = _controller.Paused ? L("Pausiert") : L("Aktiv");
+        SidebarHotkeyState.Text = (_controller.Paused ? "Ⅱ  " : "●  ") + (_controller.Paused ? L("Pausiert") : L("Aktiv"));
         SidebarHotkeyState.Foreground = _controller.Paused ? Brush("#F2B66D") : Brush("#69D8CC");
         SidebarHotkeyDetail.Text = _controller.HasRunningActions ? L("Aktionen laufen gerade") : L("Lokale Verarbeitung");
         var globalError = _controller.HotkeyErrors.GetValueOrDefault(Guid.Empty);
@@ -105,10 +105,11 @@ public partial class MainWindow : Window
 
     private void MainWindow_SizeChanged(object sender, SizeChangedEventArgs e)
     {
+        UpdateSidebarLayout();
         var compact = ActualWidth < 1180;
         if (compact == _dashboardCompact) return;
         _dashboardCompact = compact;
-        if (!_refreshing && !_capturing && Keyboard.FocusedElement is not TextBox and not ComboBox)
+        if (!_refreshing && !_capturing)
             RenderPage(ActiveProfile);
     }
 
@@ -279,7 +280,7 @@ public partial class MainWindow : Window
         search.Name = "PaletteSearch";
         var searchRow = new DockPanel();
         var filter = new ComboBox { Name = "PaletteFilter", Width = 155, Margin = new Thickness(0, 0, 9, 11),
-            ItemsSource = new[] { L("Alle Funktionen"), L("AKTION"), L("Aktionskatalog"), "Aivana" }, SelectedIndex = 0 };
+            ItemsSource = new[] { L("Alle Funktionen"), L("AKTION"), L("Aktionskatalog"), "MAKRIVO" }, SelectedIndex = 0 };
         DockPanel.SetDock(filter, Dock.Left); searchRow.Children.Add(filter); searchRow.Children.Add(search);
         Grid.SetRow(searchRow, 1); layout.Children.Add(searchRow);
         var list = new ListBox { BorderThickness = new Thickness(0), Background = Brushes.Transparent, Padding = new Thickness(0, 2, 0, 4) };
@@ -438,7 +439,7 @@ public partial class MainWindow : Window
         public bool NeedsConfiguration => Preset != null && (Preset.IsWorkflow || Preset.Id.StartsWith("custom.", StringComparison.Ordinal)
             || ConfigurationValidator.ValidateTile(Tile).Count > 0);
         public string Meta => Command != null ? Profile.Name : string.Join("  ·  ", new[] { Profile.Name, string.IsNullOrWhiteSpace(Hotkey) ? ActionName(Tile.Steps.FirstOrDefault()?.Kind ?? ActionKind.Launch) : Hotkey });
-        public string Badge => Preset != null ? L("Aktionskatalog") : Command != null ? "Aivana" : Favorite ? L("★ FAVORIT") : L("AKTION");
+        public string Badge => Preset != null ? L("Aktionskatalog") : Command != null ? "MAKRIVO" : Favorite ? L("★ FAVORIT") : L("AKTION");
     }
 
     private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -476,6 +477,7 @@ public partial class MainWindow : Window
             _ => ""
         });
         UpdateNavigationState();
+        UpdatePrimaryAction();
     }
 
     private UIElement BuildDashboard(Profile? profile)
@@ -492,7 +494,7 @@ public partial class MainWindow : Window
 
         var tileArea = BuildTileArea(profile);
         var editor = BuildEditor(profile);
-        if (ActualWidth < 1180)
+        if (Width < 1180 || ActualWidth < 1180)
         {
             var content = new StackPanel();
             content.Children.Add(summary);
@@ -611,8 +613,12 @@ public partial class MainWindow : Window
         var body = new StackPanel { Margin = new Thickness(0, 9, 0, 7) };
         body.Children.Add(Label($"{(tile.Favorite ? "★  " : "")}{tile.Name}", 14, tile.Enabled ? "#E8F0F1" : "#829395", true));
         body.Children.Add(Label(tile.Steps.Count > 1 ? LF($"{tile.Steps.Count} Schritte · {tile.Repeat}×") : ActionName(tile.Steps.FirstOrDefault()?.Kind ?? ActionKind.Launch), 10, "#91A3A5", false, new Thickness(0, 2, 0, 0)));
+        AddTileLiveStatus(body, tile);
         var bottom = new DockPanel();
-        var hotkey = Label(string.IsNullOrWhiteSpace(tile.Hotkey) ? L("Keine Belegung") : tile.Hotkey, 10, string.IsNullOrWhiteSpace(hotkeyError) ? "#AFC2C2" : "#FF9A91", true);
+        var bindingLabel = tile.CorsairBinding is { } corsair ? $"G{corsair.KeyId}" : tile.KeyboardBinding is { } generic ? KeyboardBinding.KeyName(generic.VirtualKey) : tile.Hotkey;
+        if (!string.IsNullOrEmpty(tile.KeyLayer)) bindingLabel += " · " + tile.KeyLayer;
+        if (!string.IsNullOrEmpty(tile.HeldLayer)) bindingLabel += " → " + tile.HeldLayer;
+        var hotkey = Label(string.IsNullOrWhiteSpace(bindingLabel) ? L("Keine Belegung") : bindingLabel, 10, string.IsNullOrWhiteSpace(hotkeyError) ? "#AFC2C2" : "#FF9A91", true);
         hotkey.ToolTip = hotkeyError; bottom.Children.Add(hotkey);
         var stateText = running ? L("LÄUFT") : !string.IsNullOrWhiteSpace(hotkeyError) ? L("KONFLIKT") : !tile.Enabled ? L("AUS") : status;
         var stateColor = running ? "#67E0D4" : !string.IsNullOrWhiteSpace(hotkeyError) ? "#FF9A91" : !tile.Enabled ? "#F2B66D" : "#91A3A5";
@@ -772,7 +778,7 @@ public partial class MainWindow : Window
             detailStack.Children.Add(Label(LF($"Aktueller Fenstertitel: {EmptyAsDash(_controller.ForegroundWindowTitle)}"), 10, "#67D8CC", false, new Thickness(0, 3, 0, 0)));
             detailStack.Children.Add(Label(L("Prozessnamen ohne Pfad eintragen, z. B. premiere.exe."), 9, "#687A7C", false, new Thickness(0, 7, 0, 0)));
         }
-        details.Child = detailStack; Grid.SetColumn(details, 1); root.Children.Add(details); return root;
+        details.Child = detailStack; Grid.SetColumn(details, 1); root.Children.Add(details); return AdaptTwoColumnPage(root);
     }
 
     private DataTemplate ProfileTemplate()
@@ -873,7 +879,7 @@ public partial class MainWindow : Window
         d.Children.Add(Button(L("⇧ Konfiguration importieren"), ImportProfiles, false)); d.Children.Add(Button(L("⇩ Konfiguration exportieren"), () => _controller.Export(), false, 0, null, new Thickness(0, 8, 0, 0)));
         d.Children.Add(Label(L("Der Import wird vor dem Übernehmen geprüft. Export enthält Profile und Belegungen."), 10, "#718284", false, new Thickness(0, 12, 0, 0)));
         var privacy = new Border { Background = Brush("#192526"), CornerRadius = new CornerRadius(8), Padding = new Thickness(11), Margin = new Thickness(0, 18, 0, 0) };
-        privacy.Child = Label(L("DATENSCHUTZ\nKeine Cloud und keine Telemetrie. Der Verlauf enthält Aktionsstatus, aber keine eingegebenen Textinhalte."), 11, "#9EB1B2"); d.Children.Add(privacy); data.Child = d; Grid.SetColumn(data, 1); root.Children.Add(data); return root;
+        privacy.Child = Label(L("DATENSCHUTZ\nKeine Cloud und keine Telemetrie. Der Verlauf enthält Aktionsstatus, aber keine eingegebenen Textinhalte."), 11, "#9EB1B2"); d.Children.Add(privacy); data.Child = d; Grid.SetColumn(data, 1); root.Children.Add(data); return AdaptTwoColumnPage(root);
     }
 
     private UIElement BuildKeyboardPage(Profile? profile) => BuildKeyboardLayoutPage(profile);
@@ -1055,7 +1061,7 @@ public partial class MainWindow : Window
     }
     private void ShowError(Exception ex) { FooterStatus.Text = L(ex.Message); MessageBox.Show(this, L(ex.Message), L("Fehler"), MessageBoxButton.OK, MessageBoxImage.Warning); }
     private TextBlock Label(string text, double size = 12, string color = "#E8F0F1", bool bold = false, HorizontalAlignment alignment = HorizontalAlignment.Left)
-        => new() { Text = text, FontSize = size, Foreground = Brush(color), FontWeight = bold ? FontWeights.SemiBold : FontWeights.Normal, HorizontalAlignment = alignment, TextWrapping = TextWrapping.Wrap };
+        => new() { Text = text, FontSize = Math.Max(12, size), Foreground = Brush(color), FontWeight = bold ? FontWeights.SemiBold : FontWeights.Normal, HorizontalAlignment = alignment, TextWrapping = TextWrapping.Wrap };
     private TextBlock Label(string text, double size, string color, bool bold, Thickness margin)
     { var l = Label(text, size, color, bold); l.Margin = margin; return l; }
     private TextBlock FieldLabel(string text) { var t = Label(text, 9, "#829597", true); t.Margin = new Thickness(0, 9, 0, 3); return t; }

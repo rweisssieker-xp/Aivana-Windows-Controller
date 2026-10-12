@@ -55,7 +55,7 @@ public partial class MainWindow
         }
         var profile = ActiveProfile;
         var signature = _controller.Settings.KeyboardLayoutId + "|" + _controller.Settings.UiLanguage + "|" + _controller.Paused
-            + "|" + profile?.Name + "|" + string.Join(";", profile?.Tiles.Select(tile => $"{tile.Id}:{tile.Name}:{tile.Hotkey}:{tile.Enabled}:{tile.CorsairBinding}") ?? []);
+            + "|" + _controller.ActiveKeyLayer + "|" + profile?.Name + "|" + string.Join(";", profile?.Tiles.Select(tile => $"{tile.Id}:{tile.Name}:{tile.Hotkey}:{tile.Enabled}:{tile.CorsairBinding}:{tile.KeyboardBinding}:{tile.KeyGesture}:{tile.KeyLayer}:{tile.HeldLayer}") ?? []);
         if (_keyboardOverlaySignature != signature)
         {
             _keyboardOverlaySignature = signature;
@@ -78,6 +78,7 @@ public partial class MainWindow
         var header = new StackPanel { Margin = new Thickness(0, 0, 0, 12) };
         header.Children.Add(Label(L("Tastatur-Overlay") + " · " + profile?.Name + " · " + L(layout.DisplayName), 16, "#E8F0F1", true));
         header.Children.Add(Label(L("Ctrl+Alt+F1 halten · Overlay über die Befehlspalette ein-/ausblenden."), 11, "#91A3A5"));
+        if (!string.IsNullOrEmpty(_controller.ActiveKeyLayer)) header.Children.Add(Label(L("Tastengeste und Ebene") + ": " + _controller.ActiveKeyLayer, 11, "#67E0D4"));
         if (_controller.Paused) header.Children.Add(Label(L("PAUSIERT · Hotkeys sind pausiert"), 11, "#F2B66D"));
         DockPanel.SetDock(header, Dock.Top); root.Children.Add(header);
         var minX = layout.Keys.Min(key => key.X); var minY = layout.Keys.Min(key => key.Y);
@@ -88,7 +89,7 @@ public partial class MainWindow
         {
             var mapped = TryResolveKeyboardMapping(key, layout, out var mapping);
             var gKey = GetCorsairGKeyId(key.PhysicalKeyId);
-            var bindings = gKey != null ? profile?.Tiles.Where(tile => tile.Enabled && tile.CorsairBinding?.KeyId == gKey).ToList() ?? []
+            var bindings = gKey != null ? profile?.Tiles.Where(tile => tile.Enabled && tile.CorsairBinding?.KeyId == gKey && string.Equals((tile.KeyLayer ?? "").Trim(), _controller.ActiveKeyLayer.Trim(), StringComparison.OrdinalIgnoreCase)).ToList() ?? []
                 : mapped ? FindKeyboardHotkeyMatches(profile, mapping.VirtualKey, null) : [];
             var stack = new StackPanel { Margin = new Thickness(3) };
             stack.Children.Add(new TextBlock { Text = FormatPrintedLegend(key), FontSize = 10, Foreground = Brush("#DCE6E7"), TextTrimming = TextTrimming.CharacterEllipsis });

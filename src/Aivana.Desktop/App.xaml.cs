@@ -11,6 +11,8 @@ public partial class App : System.Windows.Application
 {
     private Mutex? _mutex;
     private Forms.NotifyIcon? _tray;
+    private System.Drawing.Icon? _activeIcon;
+    private System.Drawing.Icon? _pausedIcon;
     private DesktopController? _controller;
     private MainWindow? _window;
     private bool _exiting;
@@ -19,8 +21,8 @@ public partial class App : System.Windows.Application
         base.OnStartup(e);
         if (e.Args.Contains("--smoke-test")) { RunSmokeTest(); return; }
         _mutex = new Mutex(true, "Local\\Aivana.Windows.Controller", out var first);
-        if (!first) { System.Windows.MessageBox.Show(Localization.Translate("Aivana Controller läuft bereits. Öffne ihn über das Symbol im Infobereich."), "Aivana"); Shutdown(); return; }
-        DispatcherUnhandledException += (_, args) => { System.Windows.MessageBox.Show(args.Exception.Message, Localization.Translate("Aivana – Fehler")); args.Handled = true; };
+        if (!first) { System.Windows.MessageBox.Show(Localization.Translate("MAKRIVO läuft bereits. Öffne ihn über das Symbol im Infobereich."), "MAKRIVO"); Shutdown(); return; }
+        DispatcherUnhandledException += (_, args) => { System.Windows.MessageBox.Show(args.Exception.Message, Localization.Translate("MAKRIVO – Fehler")); args.Handled = true; };
         try
         {
             _controller = new DesktopController();
@@ -30,12 +32,14 @@ public partial class App : System.Windows.Application
             _window.SourceInitialized += (_, _) => _controller.Attach(new WindowInteropHelper(_window).Handle);
             _window.Closing += OnClosing;
             _controller.Changed += UpdateTray;
-            _tray = new Forms.NotifyIcon { Icon = System.Drawing.SystemIcons.Application, Text = "Aivana Controller", Visible = true };
+            _activeIcon = AppIcons.Load(); _pausedIcon = AppIcons.Load(paused: true);
+            _window.Icon = System.Windows.Media.Imaging.BitmapFrame.Create(new Uri("pack://application:,,,/Assets/makrivo.png"));
+            _tray = new Forms.NotifyIcon { Icon = _activeIcon, Text = "MAKRIVO", Visible = true };
             _tray.DoubleClick += (_, _) => ShowWindow();
             UpdateTray();
             _window.Show();
         }
-        catch (Exception ex) { System.Windows.MessageBox.Show(ex.Message, Localization.Translate("Aivana – Startfehler")); ExitApp(); }
+        catch (Exception ex) { System.Windows.MessageBox.Show(ex.Message, Localization.Translate("MAKRIVO – Startfehler")); ExitApp(); }
     }
     private void ShowWindow() { _window?.Show(); if (_window != null) { _window.WindowState = WindowState.Normal; _window.Activate(); } }
     private async void RunSmokeTest()
@@ -58,11 +62,13 @@ public partial class App : System.Windows.Application
             await DesktopControllerExecutionChecks.RunAsync();
             await controller.RunSpecialKeyCaptureChecksAsync();
             window.RunFunctionalRegressionChecks();
+            window.RunExtensionSmokeChecks((target, name) => SaveSnapshot(target, System.IO.Path.Combine(output, name + ".png")));
             window.RunKeyboardOverlaySmokeChecks();
             window.RunSpecialKeyWizardSmokeChecks();
             window.RunExecutionFeedbackSmokeChecks();
             window.RunUspVisualSmokeChecks((target, name) => SaveSnapshot(target, System.IO.Path.Combine(output, name + ".png")));
             window.RunUiSmokeChecks();
+            window.RunSixExtensionsSmokeChecks((target,name)=>SaveSnapshot(target,System.IO.Path.Combine(output,name+".png")));
             window.RunActionCatalogSmokeChecks((dialog, name) => SaveSnapshot(dialog, System.IO.Path.Combine(output, name + ".png")));
             window.RunLocalizationSmokeChecks((target, name) => SaveSnapshot(target, System.IO.Path.Combine(output, name + ".png")));
             controller.ActiveProfile.Name = "Smoke-Profil";
@@ -119,12 +125,15 @@ public partial class App : System.Windows.Application
         if (e.Cancel || _exiting || _controller == null) return;
         if (!_controller.Settings.CloseToTray) { e.Cancel = true; ExitApp(); return; }
         e.Cancel = true; _window?.Hide();
-        _tray?.ShowBalloonTip(2200, Localization.Translate("Aivana bleibt aktiv"), Localization.Translate("Hotkeys laufen weiter. Doppelklick auf das Symbol öffnet das Fenster."), Forms.ToolTipIcon.Info);
+        _tray?.ShowBalloonTip(2200, Localization.Translate("MAKRIVO bleibt aktiv"), Localization.Translate("Hotkeys laufen weiter. Doppelklick auf das Symbol öffnet das Fenster."), Forms.ToolTipIcon.Info);
     }
     private void UpdateTray()
     {
         if (!Dispatcher.CheckAccess()) { Dispatcher.BeginInvoke(UpdateTray); return; }
         if (_tray == null || _controller == null) return;
+        _tray.Icon = _controller.Paused ? _pausedIcon : _activeIcon;
+        var trayText = "MAKRIVO · " + (_controller.Paused ? Localization.Translate("Pausiert") : Localization.Translate("Aktiv")) + " · " + _controller.ActiveProfile.Name;
+        _tray.Text = trayText.Length > 63 ? trayText[..63] : trayText;
         var menu = new Forms.ContextMenuStrip();
         menu.Items.Add(Localization.Translate("Öffnen"), null, (_, _) => ShowWindow());
         menu.Items.Add(_controller.Paused ? Localization.Translate("Hotkeys aktivieren") : Localization.Translate("Hotkeys pausieren"), null, (_, _) => _controller.SetPaused(!_controller.Paused));
@@ -149,6 +158,6 @@ public partial class App : System.Windows.Application
     }
     protected override void OnExit(ExitEventArgs e)
     {
-        _controller?.Dispose(); _tray?.Dispose(); _mutex?.Dispose(); base.OnExit(e);
+        _controller?.Dispose(); _tray?.Dispose(); _activeIcon?.Dispose(); _pausedIcon?.Dispose(); _mutex?.Dispose(); base.OnExit(e);
     }
 }

@@ -70,6 +70,8 @@ internal static class CorsairSdkKeyChecks
     private static void CheckSyntheticKeyEdges(CorsairService service, CorsairMacroKeyBinding binding)
     {
         var events = new ConcurrentQueue<CorsairMacroKeyPress>();
+        var edges = new ConcurrentQueue<CorsairMacroKeyEdge>();
+        void OnEdge(CorsairMacroKeyEdge edge) => edges.Enqueue(edge);
         using var received = new ManualResetEventSlim();
         var requestedBindingsField = typeof(CorsairService).GetField("_requestedMacroKeyBindings", BindingFlags.Instance | BindingFlags.NonPublic)!;
         var previousRequestedBindings = requestedBindingsField.GetValue(service)!;
@@ -81,6 +83,7 @@ internal static class CorsairSdkKeyChecks
         }
 
         service.MacroKeyPressed += OnPress;
+        service.MacroKeyChanged += OnEdge;
         try
         {
             var serviceType = typeof(CorsairService);
@@ -117,7 +120,8 @@ internal static class CorsairSdkKeyChecks
                 Check(received.Wait(TimeSpan.FromSeconds(2)), "Synthetic SDK key-down callbacks should dispatch both press edges.");
                 Check(events.Count == 2 && events.All(press => press.DeviceId == binding.DeviceId && press.KeyId == binding.KeyId),
                     "Repeated key-down should dispatch once until release, and release itself should not dispatch.");
-                Console.WriteLine("iCUE key callback edge probe passed: repeat suppressed; release ignored.");
+                Check(edges.Select(e => e.IsPressed).SequenceEqual(new[] { true, false, true }), "Gesture callbacks must preserve ordered press/release edges and suppress repeats.");
+                Console.WriteLine("iCUE key callback edge probe passed: repeat suppressed; ordered release available for gestures.");
             }
             finally
             {
@@ -128,6 +132,7 @@ internal static class CorsairSdkKeyChecks
         finally
         {
             service.MacroKeyPressed -= OnPress;
+            service.MacroKeyChanged -= OnEdge;
             requestedBindingsField.SetValue(service, previousRequestedBindings);
         }
     }

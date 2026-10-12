@@ -1,4 +1,6 @@
-# Aivana Windows Controller
+# MAKRIVO
+
+**By Aivana.** [Current feature inventory and release limitations](docs/FEATURES.md) · [Extension test report](docs/testing/2026-10-12-six-extensions.md) · [Local AI assistant prototype](docs/testing/2026-10-12-local-meeting-assistant.md)
 
 **English (US)** | [Deutsch](README.de-DE.md) | [Français](README.fr-FR.md) | [Italiano](README.it-IT.md)
 
@@ -8,7 +10,7 @@ A local Windows hotkey controller with Stream Deck-style tiles, profiles, macros
 
 ## Getting started
 
-After publishing, the application is at `artifacts/win-x64/Aivana.Controller.exe`. Keep the entire output folder together; you can copy it elsewhere. Windows 11 x64 is the initial target. Build artifacts are excluded from Git; a source checkout does not include a prebuilt executable.
+After publishing, the application is at `artifacts/win-x64/MAKRIVO.exe`. Keep the entire output folder together; you can copy it elsewhere. Windows 11 x64 is the initial target. Build artifacts are excluded from Git; a source checkout does not include a prebuilt executable.
 
 Install the .NET 10 SDK specified in `global.json` to build and run from source:
 
@@ -108,4 +110,14 @@ The catalog includes six editable workflows: workspace, meeting, streaming, rese
 
 The **Wait for target window** step accepts a process name (with or without `.exe`), a case-insensitive title substring, and a timeout of 1–600,000 ms. At least one filter is required; both filters must match when supplied. The macro continues only after a matching visible window responds and reaches the foreground. Use a specific title when multiple windows share a process. Cancellation or timeout stops subsequent steps. Window readiness does not guarantee that a document has loaded or an external service such as OBS WebSocket is connected.
 
-Display brightness: search for **Increase screen brightness**, **Decrease screen brightness**, or **Screen brightness at 50 percent** in the action catalog. Relative actions change brightness by 10 percentage points; fixed values range from 0 to 100. Supported internal displays use WMI; compatible external monitors require DDC/CI enabled in their menu. The action affects all supported displays. Connections and docks can restrict support.
+Display brightness: search for **Increase screen brightness**, **Decrease screen brightness**, or **Screen brightness at 50 percent** in the action catalog. Relative actions change brightness by 10 percentage points; fixed values range from 0 to 100. Supported internal displays use WMI; compatible external monitors require DDC/CI enabled in their menu. By default, the action affects all supported displays; an explicit monitor can be selected in the editor. Connections and docks can restrict support.
+
+### Extended controls
+
+Open the command palette with **Ctrl+K while the app window has focus**. Search for **Workflow designer**, **Record macro**, **Synchronize profiles**, or **Key diagnostics** (the wording follows your selected language). The workflow designer edits the selected tile draft: file/process/window conditions, forward skip counts and stop/continue error handling. The recorder captures shortcut chords and waits, not ordinary typing; Escape stops recording. Review the result before adopting it.
+
+In a brightness step, select all supported displays or a specific monitor. An unavailable selected monitor produces an error rather than silently changing another display. The dashboard shows live brightness, audio and OBS readings when their respective integrations are available; an unavailable reading is not presented as a measured value.
+
+In the tile editor, assign a supported physical special key and choose immediate press, tap, hold or double tap. Held layer selectors temporarily activate another mapping and restore the previous layer on release. Gestures and layers apply to Corsair SDK G-keys and device-specific standard special keys, not ordinary global hotkeys. Standard-key capture supports F13–F24 and keyboard media keys. Proprietary Fn, profile and dial controls still require a compatible vendor adapter or a vendor mapping to a standard key. Raw Input observes the key and does not suppress its normal Windows behavior. Key diagnostics explains profile, pause, connection and binding problems.
+
+Profile synchronization exchanges files through a folder you choose, including a folder managed by your existing cloud client. Review the preview before importing; imports start disabled and remove hardware-specific mappings. Revisions prevent silent overwrites, and including action contents is an explicit choice. MAKRIVO does not supply a cloud account or retain cloud credentials. The tray now uses MAKRIVO’s own teal M icon and shows an amber pause badge when paused.

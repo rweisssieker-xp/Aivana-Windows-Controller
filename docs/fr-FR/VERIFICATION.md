@@ -27,7 +27,7 @@ dotnet build Aivana.slnx -c Release
 dotnet run --project tests/Aivana.Tests -c Release
 dotnet run --project tests/Aivana.Windows.Tests -c Release
 dotnet publish src/Aivana.Desktop -c Release -r win-x64 --self-contained true -o artifacts/win-x64
-& ./artifacts/win-x64/Aivana.Controller.exe --smoke-test
+& ./artifacts/win-x64/MAKRIVO.exe --smoke-test
 ```
 
 Le test GUI écrit le résultat et la capture d’écran dans `smoke`, à côté de l’EXE vérifié. Il s’agit d’un mode de diagnostic qui ne lance aucune instance d’arrière-plan permanente à la fin.
@@ -37,3 +37,5 @@ Le test GUI écrit le résultat et la capture d’écran dans `smoke`, à côté
 Vérifications supplémentaires : conditions de profil basées sur le processus et le titre de fenêtre, substitution de variables sans expansion récursive, aperçu de macro sans exécution, nouvelle validation d’action et compatibilité descendante des anciens fichiers JSON. Les contrôles natifs couvrent la palette de commandes avec enregistrement, conflits, distribution WM_HOTKEY et libération, ainsi que le découpage en moniteurs en lecture seule et la lecture du presse-papiers à la demande. Le test WPF ouvre et affiche la palette réelle, vérifie Annuler/Rétablir et les favoris, contrôle que les brouillons restent propres après le rendu et se termine correctement.
 
 Le verrouillage de Windows, les changements du presse-papiers et le déplacement de fenêtres n’ont pas été appliqués aux programmes de l’utilisateur pendant les tests. Les actions de fenêtre envoient des demandes Windows asynchrones ; le programme cible peut appliquer ses propres tailles minimales ou limites d’autorisation. Le verrouillage du profil et les statistiques d’exécution ne valent que pour la session en cours.
+
+Vérification des extensions du 12 octobre 2026 : 30 contrôles Core réussis ; contrôles Windows réussis, dont le relâchement pendant l’injection, l’identification des moniteurs en lecture seule et les simulations OBS. WPF vérifie adoption/annulation des flux, démarrage/arrêt de l’enregistreur, aperçu des échanges de profils, gestes et icônes. Localisation : 27 catalogues de 967 clés ; documentation : 84 pages en quatre langues. Les touches propriétaires hors Corsair n’ont pas été testées matériellement ; la prise en charge générique couvre F13–F24 et les événements multimédias standard par appareil. Le transport cloud utilise un dossier synchronisé choisi ; les imports restent soumis à vérification et désactivés.

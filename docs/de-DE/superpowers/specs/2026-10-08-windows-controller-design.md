@@ -1,4 +1,4 @@
-# Aivana Windows Controller – Entwurf
+# MAKRIVO – Entwurf
 
 [English (US)](../../../en-US/superpowers/specs/2026-10-08-windows-controller-design.md) | [Deutsch](../../../de-DE/superpowers/specs/2026-10-08-windows-controller-design.md) | [Français](../../../fr-FR/superpowers/specs/2026-10-08-windows-controller-design.md) | [Italiano](../../../it-IT/superpowers/specs/2026-10-08-windows-controller-design.md)
 

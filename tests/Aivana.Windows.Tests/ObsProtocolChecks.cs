@@ -49,6 +49,7 @@ internal static class ObsProtocolChecks
         RunProtocolExchangeAsync(rejectRequest: false).GetAwaiter().GetResult();
         RunProtocolExchangeAsync(rejectRequest: true).GetAwaiter().GetResult();
         RunDiscoveryExchangeAsync().GetAwaiter().GetResult();
+        RunDiscoveryExchangeAsync(liveStatus: true).GetAwaiter().GetResult();
 
         using var versionData = JsonDocument.Parse("""{"obsVersion":"31.0.0"}""");
         using var missingScenes = JsonDocument.Parse("""{}""");
@@ -144,7 +145,7 @@ internal static class ObsProtocolChecks
         await WaitForClientDisconnectAsync(socket, cancellationToken).ConfigureAwait(false);
     }
 
-    private static async Task RunDiscoveryExchangeAsync()
+    private static async Task RunDiscoveryExchangeAsync(bool liveStatus = false)
     {
         var portProbe = new TcpListener(IPAddress.Loopback, 0);
         portProbe.Start();
@@ -155,13 +156,21 @@ internal static class ObsProtocolChecks
         listener.Prefixes.Add($"http://127.0.0.1:{port}/");
         listener.Start();
         using var timeout = new CancellationTokenSource(TimeSpan.FromSeconds(5));
-        var server = HandleDiscoveryClientAsync(listener, timeout.Token);
+        var server = HandleDiscoveryClientAsync(listener, timeout.Token, liveStatus);
         try
         {
+            if (liveStatus)
+            {
+                var status = await ObsActionClient.ReadStatusAsync($"ws://127.0.0.1:{port}", timeout.Token).ConfigureAwait(false);
+                Check(status.Recording && !status.Streaming && status.Scene == "Main", "Live status must retain recording, streaming and current scene state.");
+            }
+            else
+            {
             var inventory = await ObsActionClient.DiscoverAsync($"ws://127.0.0.1:{port}", timeout.Token).ConfigureAwait(false);
             Check(inventory.Version == "31.0.0", "Discovery should return the OBS version.");
             Check(inventory.Scenes.SequenceEqual(["Main", "Guest"]), "Discovery should return scene names in server order.");
             Check(inventory.Inputs.SequenceEqual(["Mic/Aux", "Desktop Audio"]), "Discovery should return input names in server order.");
+            }
             await server.ConfigureAwait(false);
         }
         finally
@@ -170,7 +179,7 @@ internal static class ObsProtocolChecks
         }
     }
 
-    private static async Task HandleDiscoveryClientAsync(HttpListener listener, CancellationToken cancellationToken)
+    private static async Task HandleDiscoveryClientAsync(HttpListener listener, CancellationToken cancellationToken, bool liveStatus)
     {
         var context = await listener.GetContextAsync().WaitAsync(cancellationToken).ConfigureAwait(false);
         if (!context.Request.IsWebSocketRequest)
@@ -183,7 +192,12 @@ internal static class ObsProtocolChecks
         Check(identify.RootElement.GetProperty("op").GetInt32() == 1, "Discovery client must identify before requests.");
         await SendTextAsync(socket, """{"op":2,"d":{"negotiatedRpcVersion":1}}""", cancellationToken).ConfigureAwait(false);
 
-        var expected = new[]
+        var expected = liveStatus ? new[]
+        {
+            ("GetRecordStatus", """{"outputActive":true}"""),
+            ("GetStreamStatus", """{"outputActive":false}"""),
+            ("GetCurrentProgramScene", """{"currentProgramSceneName":"Main"}""")
+        } : new[]
         {
             ("GetVersion", """{"obsVersion":"31.0.0"}"""),
             ("GetSceneList", """{"scenes":[{"sceneName":"Main"},{"sceneName":"Guest"}]}"""),
@@ -196,7 +210,7 @@ internal static class ObsProtocolChecks
             Check(request.RootElement.GetProperty("op").GetInt32() == 6, "Discovery requests should use opcode 6.");
             var actualType = data.GetProperty("requestType").GetString();
             Check(actualType == requestType, $"Discovery should send {requestType} in sequence.");
-            Check(actualType is "GetVersion" or "GetSceneList" or "GetInputList", "Discovery must only send read-only requests.");
+            Check(actualType is "GetVersion" or "GetSceneList" or "GetInputList" or "GetRecordStatus" or "GetStreamStatus" or "GetCurrentProgramScene", "Discovery must only send read-only requests.");
             var requestId = data.GetProperty("requestId").GetString();
             var response = "{\"op\":7,\"d\":{\"requestType\":\"" + requestType + "\",\"requestId\":\"" + requestId +
                 "\",\"requestStatus\":{\"result\":true,\"code\":100},\"responseData\":" + responseData + "}}";

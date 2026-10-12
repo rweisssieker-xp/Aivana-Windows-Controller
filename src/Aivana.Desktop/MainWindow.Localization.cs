@@ -12,19 +12,19 @@ public partial class MainWindow
 
     private void LocalizeChrome()
     {
-        NavDashboard.Content = L("◫   Dashboard");
-        NavProfiles.Content = L("▦   Profile");
-        NavDevices.Content = L("⌨   Geräte");
-        NavSettings.Content = L("⚙   Einstellungen");
-        NavKeyboard.Content = L("⌗   Tastatur");
+        SetNavigationContent(NavDashboard, L("◫   Dashboard"), "M1,1 H7 V7 H1 Z M11,1 H17 V7 H11 Z M1,11 H7 V17 H1 Z M11,11 H17 V17 H11 Z");
+        SetNavigationContent(NavProfiles, L("▦   Profile"), "M1,4 H7 L9,7 H17 V17 H1 Z");
+        SetNavigationContent(NavDevices, L("⌨   Geräte"), "M1,3 H17 V15 H1 Z M4,7 H6 M9,7 H11 M14,7 H15 M4,11 H14");
+        SetNavigationContent(NavSettings, L("⚙   Einstellungen"), "M2,4 H16 M2,9 H16 M2,14 H16 M6,1 V7 M12,6 V12 M7,11 V17");
+        SetNavigationContent(NavKeyboard, L("⌗   Tastatur"), "M1,3 H17 V15 H1 Z M4,7 H6 M8,7 H10 M12,7 H14 M4,11 H14");
         SidebarHotkeysTitle.Text = L("HOTKEYS");
         WorkspaceLabel.Text = L("ARBEITSPLATZ");
-        BrandController.Text = L("CONTROLLER");
+        BrandController.Text = "by Aivana";
         SearchBox.ToolTip = L("Aktionen nach Name, Hotkey oder Typ filtern");
         ProfileLabel.Text = L("Profil");
         SearchLabel.Text = L("Suche");
-        PaletteButton.ToolTip = L("Alle Aktionen profileübergreifend suchen · Ctrl+K");
-        FooterBrand.Text = L("AIVANA  ·  WINDOWS CONTROLLER");
+        PaletteButton.ToolTip = LF($"⌕  Befehlspalette  {(string.IsNullOrWhiteSpace(_controller.Settings.PaletteHotkey) ? "Ctrl+K" : _controller.Settings.PaletteHotkey)}");
+        FooterBrand.Text = L("MAKRIVO  ·  AIVANA");
         PauseButton.Content = _controller.Paused ? L("▶  Hotkeys fortsetzen") : L("Ⅱ  Hotkeys pausieren");
         PaletteButton.Content = LF($"⌕  Befehlspalette  {(string.IsNullOrWhiteSpace(_controller.Settings.PaletteHotkey) ? "Ctrl+K" : _controller.Settings.PaletteHotkey)}");
         SidebarHotkeyState.Text = _controller.Paused ? L("Pausiert") : L("Aktiv");

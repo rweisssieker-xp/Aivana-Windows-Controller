@@ -1,0 +1,17 @@
+<Project>
+  <ItemGroup Condition="'$(MSBuildProjectName)' == 'Aivana.Desktop' Or '$(MSBuildProjectName)' == 'Aivana.Windows.Tests'">
+    <ProjectReference Include="$(MSBuildThisFileDirectory)src/Aivana.AutomationHost/Aivana.AutomationHost.csproj" ReferenceOutputAssembly="false" />
+    <ProjectReference Include="$(MSBuildThisFileDirectory)src/Aivana.MobileHost/Aivana.MobileHost.csproj" ReferenceOutputAssembly="false" />
+    <ProjectReference Include="$(MSBuildThisFileDirectory)src/Aivana.PluginHost/Aivana.PluginHost.csproj" ReferenceOutputAssembly="false" />
+  </ItemGroup>
+  <Target Name="CopyCompanionHosts" AfterTargets="Build" Condition="'$(MSBuildProjectName)' == 'Aivana.Desktop' Or '$(MSBuildProjectName)' == 'Aivana.Windows.Tests'">
+    <ItemGroup>
+      <Companion Include="$(MSBuildThisFileDirectory)src/Aivana.AutomationHost/bin/$(Configuration)/net10.0-windows/Aivana.AutomationHost.*" />
+      <Companion Include="$(MSBuildThisFileDirectory)src/Aivana.MobileHost/bin/$(Configuration)/net10.0-windows/Aivana.MobileHost.*" />
+      <Companion Include="$(MSBuildThisFileDirectory)src/Aivana.PluginHost/bin/$(Configuration)/net10.0/Aivana.PluginHost.*" />
+      <MobileAsset Include="$(MSBuildThisFileDirectory)src/Aivana.MobileHost/wwwroot/**/*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(Companion)" DestinationFolder="$(OutDir)" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(MobileAsset)" DestinationFiles="@(MobileAsset->'$(OutDir)wwwroot/%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
+  </Target>
+</Project>

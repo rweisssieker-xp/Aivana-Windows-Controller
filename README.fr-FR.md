@@ -1,4 +1,6 @@
-# Aivana Windows Controller
+# MAKRIVO
+
+**Par Aivana.** [Fonctionnalités et limites actuelles (DE)](docs/FEATURES.md) · [Tests des extensions (DE)](docs/testing/2026-10-12-six-extensions.md)
 
 [English (US)](README.md) | [Deutsch](README.de-DE.md) | **Français** | [Italiano](README.it-IT.md)
 
@@ -8,7 +10,7 @@ Un contrôleur local de raccourcis Windows avec des tuiles de type Stream Deck, 
 
 ## Démarrage
 
-Après publication, l’application se trouve dans `artifacts/win-x64/Aivana.Controller.exe`. Gardez tout le dossier de sortie ensemble ; vous pouvez le copier ailleurs. Windows 11 x64 est le système cible initial. Les artefacts de build sont exclus de Git ; un clone des sources ne comprend pas d’exécutable précompilé.
+Après publication, l’application se trouve dans `artifacts/win-x64/MAKRIVO.exe`. Gardez tout le dossier de sortie ensemble ; vous pouvez le copier ailleurs. Windows 11 x64 est le système cible initial. Les artefacts de build sont exclus de Git ; un clone des sources ne comprend pas d’exécutable précompilé.
 
 Installez le SDK .NET 10 spécifié dans `global.json` pour compiler et lancer l’application depuis les sources :
 
@@ -108,4 +110,14 @@ Le catalogue propose six workflows modifiables : espace de travail, réunion, st
 
 **Attendre la fenêtre cible** accepte un processus avec ou sans `.exe`, une partie du titre sans distinction de casse et un délai de 1 à 600 000 ms. Au moins un filtre est requis ; si les deux sont fournis, les deux doivent correspondre. La macro continue lorsque la fenêtre correspondante est visible, répond et passe au premier plan. Précisez le titre si plusieurs fenêtres partagent le même processus. Une annulation ou un dépassement du délai arrête les étapes suivantes. Une fenêtre prête ne garantit ni le chargement du document ni la connexion à un service externe tel qu’OBS WebSocket.
 
-Luminosité : rechercher **Augmenter la luminosité**, **Diminuer la luminosité** ou **Luminosité de l’écran à 50 pour cent** dans le catalogue. Les actions relatives ajustent la luminosité de 10 points de pourcentage ; les valeurs fixes vont de 0 à 100. Les écrans internes compatibles utilisent WMI ; les moniteurs externes compatibles nécessitent DDC/CI activé dans leur menu. Tous les écrans compatibles sont concernés. Les connexions et stations d’accueil peuvent limiter la prise en charge.
+Luminosité : rechercher **Augmenter la luminosité**, **Diminuer la luminosité** ou **Luminosité de l’écran à 50 pour cent** dans le catalogue. Les actions relatives ajustent la luminosité de 10 points de pourcentage ; les valeurs fixes vont de 0 à 100. Les écrans internes compatibles utilisent WMI ; les moniteurs externes compatibles nécessitent DDC/CI activé dans leur menu. Par défaut, tous les écrans compatibles sont concernés ; un écran précis peut être sélectionné dans l’éditeur. Les connexions et stations d’accueil peuvent limiter la prise en charge.
+
+### Commandes avancées
+
+Ouvrez la palette avec **Ctrl+K lorsque la fenêtre de l’application a le focus**. Recherchez l’**éditeur de séquences**, l’**enregistrement de macro**, la **synchronisation des profils** ou le **diagnostic des touches** ; les libellés suivent la langue choisie. L’éditeur modifie le brouillon de la tuile sélectionnée : conditions sur fichiers/processus/fenêtres, sauts vers l’avant et arrêt ou poursuite en cas d’erreur. L’enregistreur capture raccourcis et attentes, pas le texte ordinaire ; Échap arrête l’enregistrement. Examinez le résultat avant adoption.
+
+Dans une étape de luminosité, choisissez tous les écrans compatibles ou un écran précis. Une cible sélectionnée indisponible produit une erreur plutôt que de modifier un autre écran. Le tableau de bord affiche luminosité, audio et OBS lorsque les intégrations correspondantes sont disponibles ; une lecture absente n’est pas présentée comme une mesure.
+
+Dans l’éditeur de tuile, affectez une touche spéciale physique compatible et choisissez appui immédiat, court, maintenu ou double. Une touche de couche maintenue active temporairement d’autres affectations ; son relâchement rétablit la couche précédente. Gestes et couches concernent les touches G du SDK Corsair et les touches standard par périphérique, pas les raccourcis globaux ordinaires. La détection standard prend en charge F13–F24 et les touches multimédias du clavier. Les commandes propriétaires Fn, profil et molette nécessitent toujours un adaptateur constructeur compatible ou une affectation vers une touche standard. Raw Input observe sans supprimer le comportement Windows normal. Le diagnostic explique les problèmes de profil, pause, connexion et affectation.
+
+La synchronisation échange des fichiers via un dossier choisi, éventuellement géré par votre client cloud existant. Vérifiez l’aperçu avant importation : les actions importées sont désactivées et les affectations matérielles supprimées. Les révisions empêchent les écrasements silencieux ; inclure le contenu des actions est un choix explicite. MAKRIVO ne fournit pas de compte cloud et ne conserve aucun identifiant cloud. La zone de notification utilise désormais son icône M turquoise, avec badge de pause ambre.

@@ -13,6 +13,7 @@ namespace Aivana.Desktop;
 public sealed partial class DesktopController : IDisposable
 {
     private readonly ConfigStore _store;
+    public MeetingExperiment MeetingExperiment { get; }
     private readonly DeviceService _devices = new();
     private readonly CorsairService _corsair = new();
     private readonly MacroRunner _runner;
@@ -58,6 +59,7 @@ public sealed partial class DesktopController : IDisposable
     public DesktopController(string? configurationDirectory = null)
     {
         _store = new ConfigStore(configurationDirectory);
+        MeetingExperiment = new(Path.Combine(configurationDirectory ?? Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),"AivanaWindowsController"),"Experiments"));
         try { Settings = _store.Load(); }
         catch (InvalidDataException ex) when (configurationDirectory == null)
         {
@@ -90,8 +92,11 @@ public sealed partial class DesktopController : IDisposable
             });
         };
         _runner = new MacroRunner(_executor);
+        _runner.ProgressChanged += RecordMeetingExecution;
+        _runner.VerificationChanged += RecordVerification;
         InitializeExecutionFeedback();
         InitializeCorsairKeys();
+        ReloadKeyboardAdapters();
         _runner.StatusChanged += (id, status) => System.Windows.Application.Current.Dispatcher.BeginInvoke(() =>
         {
             if (_disposed) return;
@@ -108,6 +113,7 @@ public sealed partial class DesktopController : IDisposable
         _source = HwndSource.FromHwnd(hwnd);
         _source?.AddHook(WindowHook);
         _hotkeys = new HotkeyService(hwnd);
+        AttachGenericKeys(hwnd);
         _hotkeys.Triggered += id =>
         {
             var tile = ActiveProfile.Tiles.FirstOrDefault(t => t.Id == id);
@@ -119,17 +125,19 @@ public sealed partial class DesktopController : IDisposable
     }
     private IntPtr WindowHook(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
     {
+        _genericKeys.ProcessMessage(msg, wParam, lParam, _inputInjectionDepth > 0);
         if (_hotkeys?.ProcessMessage(msg, wParam, lParam) == true) handled = true;
-        if (msg is 0x219 or 0x00FE) RefreshDevices();
+        if (msg is 0x219 or 0x00FE) { ResetKeyGestures(); RefreshDevices(); }
         return IntPtr.Zero;
     }
     private void Register()
     {
+        RefreshGenericKeys();
         RefreshCorsairKeyBindings();
         if (_hotkeys == null) return;
         if (Paused) { _hotkeys.Clear(); HotkeyErrors = []; }
-        else HotkeyErrors = _hotkeys.Register(_inputInjectionDepth > 0 ? [] : ActiveProfile.Tiles,
-            Settings.CancelHotkey, _inputInjectionDepth > 0 ? "" : Settings.PaletteHotkey);
+        else HotkeyErrors = _hotkeys.Register(_inputInjectionDepth > 0 || _genericCapture is not null ? [] : ActiveProfile.Tiles,
+            Settings.CancelHotkey, _inputInjectionDepth > 0 || _genericCapture is not null ? "" : Settings.PaletteHotkey);
     }
     private async Task RestoreAfterInjectionAsync()
     {
@@ -159,6 +167,11 @@ public sealed partial class DesktopController : IDisposable
     public async Task ExecuteAsync(Tile tile)
     {
         if (!tile.Enabled || _disposed) return;
+        if (!string.IsNullOrWhiteSpace(tile.HeldLayer))
+        {
+            Log(tile.Name, Aivana.Core.Localization.Translate("Die Tastenebene wird durch Halten der zugeordneten Sondertaste aktiviert."));
+            return;
+        }
         if (!_pendingExecutions.TryCapture(out var pendingExecution)) return;
         using (pendingExecution)
         {
@@ -169,7 +182,7 @@ public sealed partial class DesktopController : IDisposable
             {
                 Id = tile.Id, Name = tile.Name, Icon = tile.Icon, Color = tile.Color,
                 Hotkey = tile.Hotkey, Enabled = tile.Enabled, Repeat = tile.Repeat, Favorite = tile.Favorite,
-                Steps = tile.Steps.Select(s => new ActionStep { Kind = s.Kind, Value = s.Value, Arguments = s.Arguments, WorkingDirectory = s.WorkingDirectory, AudioDeviceId = s.AudioDeviceId, DelayMs = s.DelayMs }).ToList()
+                Steps = tile.Steps.Select(s => new ActionStep { Plugin = s.Plugin, UiAutomation = s.UiAutomation, Verification = s.Verification is {} verification ? verification with {} : null, Kind = s.Kind, Value = s.Value, Arguments = s.Arguments, WorkingDirectory = s.WorkingDirectory, AudioDeviceId = s.AudioDeviceId, DisplayDeviceId = s.DisplayDeviceId, Condition = s.Condition is null ? null : s.Condition with { }, OnConditionFalseSkip = s.OnConditionFalseSkip, OnError = s.OnError, DelayMs = s.DelayMs }).ToList()
             };
             try
             {
@@ -192,8 +205,8 @@ public sealed partial class DesktopController : IDisposable
             finally { _executionProfile.Value = previousContext; }
         }
     }
-    public void CancelAll() { _pendingExecutions.CancelPending(); _runner.CancelAll(); Log(Aivana.Core.Localization.Translate("Ausführung"), Aivana.Core.Localization.Translate("Abbruch angefordert")); }
-    public void Cancel(Guid id) { _runner.Cancel(id); }
+    public void CancelAll() { ResetKeyGestures(); _pendingExecutions.CancelPending(); _runner.CancelAll(); Log(Aivana.Core.Localization.Translate("Ausführung"), Aivana.Core.Localization.Translate("Abbruch angefordert")); }
+    public void Cancel(Guid id) { ResetKeyGestures(); _runner.Cancel(id); }
     public void SetPaused(bool paused) { Paused = paused; if (paused) { _pendingExecutions.CancelPending(); _runner.CancelAll(); } Register(); Changed?.Invoke(); }
     public void SetProfileLocked(bool locked) { ProfileLocked = locked; Changed?.Invoke(); }
     public void RequestPalette()
@@ -285,7 +298,7 @@ public sealed partial class DesktopController : IDisposable
     }
     public void Import()
     {
-        var dialog = new OpenFileDialog { Filter = "Aivana Profile (*.json)|*.json", Title = Aivana.Core.Localization.Translate("Profile importieren") };
+        var dialog = new OpenFileDialog { Filter = "MAKRIVO Profile (*.json)|*.json", Title = Aivana.Core.Localization.Translate("Profile importieren") };
         if (dialog.ShowDialog() != true) return;
         var imported = _store.ReadImport(dialog.FileName);
         var tiles = imported.Profiles.Sum(p => p.Tiles.Count);
@@ -296,7 +309,7 @@ public sealed partial class DesktopController : IDisposable
     }
     public void Export()
     {
-        var dialog = new SaveFileDialog { Filter = "Aivana Profile (*.json)|*.json", FileName = "aivana-profile.json", Title = Aivana.Core.Localization.Translate("Profile exportieren") };
+        var dialog = new SaveFileDialog { Filter = "MAKRIVO Profile (*.json)|*.json", FileName = "makrivo-profile.json", Title = Aivana.Core.Localization.Translate("Profile exportieren") };
         if (dialog.ShowDialog() == true) _store.Export(Settings, dialog.FileName);
     }
     public void SetAutoStart(bool enabled)
@@ -318,11 +331,13 @@ public sealed partial class DesktopController : IDisposable
     public void Dispose()
     {
         if (_disposed) return; _disposed = true;
+        StopMobilePanel();
+        DisposeKeyboardAdapters();
         DisposeExecutionFeedback();
         _executionEpoch++;
         _pendingExecutions.Dispose();
         _timer.Stop(); _runner.CancelAll(); _hotkeys?.Dispose();
-        _source?.RemoveHook(WindowHook); _executor.Dispose(); DisposeCorsairKeys(); _corsair.Dispose();
+        _genericKeys.Dispose(); _source?.RemoveHook(WindowHook); _executor.Dispose(); DisposeCorsairKeys(); _corsair.Dispose();
     }
     [DllImport("user32.dll")] private static extern IntPtr GetForegroundWindow();
     [DllImport("user32.dll")] private static extern uint GetWindowThreadProcessId(IntPtr hwnd, out uint processId);

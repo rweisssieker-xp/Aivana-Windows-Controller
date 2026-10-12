@@ -1,5 +1,8 @@
 <Solution>
   <Folder Name="/src/">
+    <Project Path="src/Aivana.AutomationHost/Aivana.AutomationHost.csproj" />
+    <Project Path="src/Aivana.PluginHost/Aivana.PluginHost.csproj" />
+    <Project Path="src/Aivana.MobileHost/Aivana.MobileHost.csproj" />
     <Project Path="src/Aivana.Core/Aivana.Core.csproj" />
     <Project Path="src/Aivana.Desktop/Aivana.Desktop.csproj" />
     <Project Path="src/Aivana.Windows/Aivana.Windows.csproj" />

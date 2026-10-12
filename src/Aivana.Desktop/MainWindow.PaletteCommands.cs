@@ -7,12 +7,24 @@ public partial class MainWindow
 {
     private void AddPaletteCommands(List<PaletteEntry> entries)
     {
-        var app = new Profile { Name = "Aivana" };
+        var app = new Profile { Name = "MAKRIVO" };
         void Add(string name, string description, Action command, string terms = "") => entries.Add(
             new PaletteEntry(new Tile { Name = name }, app, description, false, "", L("BEREIT"), true,
                 Command: command, SearchTerms: terms));
         foreach (var section in new[] { "Dashboard", "Profile", "Geräte", "Einstellungen", "Tastatur" })
             Add(L(section), L(section), () => NavigateToSection(section), section);
+        Add(L("KI-Besprechungsassistent"), L("Lokal einen prüfbaren Besprechungsablauf entwerfen"), ShowMeetingAssistant, "ai ki meeting besprechung ollama outcome");
+        Add(L("Arbeitsplatz einrichten"), L("Geführte Einrichtung"), ShowWorkspaceWizard, "setup wizard workspace meeting streaming");
+        Add(L("Tastaturhersteller und SDKs"), L("Razer, Logitech, Wooting und weitere Hersteller"), ShowKeyboardAdapters, "razer razor logitech steelseries wooting qmk via keychron");
+        Add(L("Mobilpanel"), L("Telefon und Tablet lokal koppeln"), ShowMobilePanel, "mobile phone tablet panel");
+        Add(L("Erweiterungen"), L("Plugins importieren und verwalten"), ShowPlugins, "plugin packages integrations");
+        Add(L("UI-Ablauf aufnehmen"), L("Klicks auf UI-Elemente aufnehmen"), ShowUiRecorder, "uia recorder automation");
+        Add(L("UI-Automation"), L("Elemente auswählen und bedienen"), ShowUiAutomationDraft, "uia automation picker");
+        Add(L("Ausführungsprüfung"), L("Ergebnisse und Voraussetzungen"), ShowVerificationHistory, "verification history results");
+        Add(L("Ablaufeditor"), L("Bedingungen, Verzweigungen und Fehlerbehandlung"), ShowWorkflowDesigner, "workflow condition branch");
+        Add(L("Makro aufnehmen"), L("Tastenkombinationen und Wartezeiten aufnehmen"), ShowMacroRecorder, "record recorder");
+        Add(L("Profile synchronisieren"), L("Profile über einen gemeinsamen Ordner austauschen"), ShowProfileSync, "sync backup cloud");
+        Add(L("Tastendiagnose"), L("Geräte, Belegungen und Konflikte prüfen"), ShowDeviceDiagnostics, "diagnostics devices keys");
         Add(L("Aktionskatalog"), L("Alle Funktionen"), () => ShowActionCatalog(ActiveProfile));
         Add(L("Sondertasten-Assistent"), _controller.CorsairKeyStatus, ShowSpecialKeyWizard, "corsair G1 G2 G3 G4 G5 G6");
         Add(L("Tastatur-Overlay"), L("Ctrl+Alt+F1 halten · Overlay über die Befehlspalette ein-/ausblenden."), ToggleKeyboardOverlay, "overlay keyboard");

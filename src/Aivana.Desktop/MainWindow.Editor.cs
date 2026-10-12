@@ -151,6 +151,9 @@ public partial class MainWindow
             };
             corsairSection.Children.Add(corsairKeyPicker);
             content.Children.Add(corsairSection);
+            AddVendorBindingFields(content, tile);
+            AddGestureFields(content, tile);
+            AddGenericKeyFields(content, tile);
             var iconColor = new Grid { Margin = new Thickness(0, 8, 0, 0) };
             iconColor.ColumnDefinitions.Add(new ColumnDefinition());
             iconColor.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(126) });
@@ -198,6 +201,7 @@ public partial class MainWindow
             var stepButtons = new WrapPanel { HorizontalAlignment = HorizontalAlignment.Left, Margin = new Thickness(0, 5, 0, 0) };
             var add = Button(L("＋ Hinzufügen"), () => ShowActionCatalog(ActiveProfile, tile), false, 0);
             stepButtons.Children.Add(add);
+            stepButtons.Children.Add(Button(L("Ablaufeditor"), ShowWorkflowDesigner, false, 4));
             stepButtons.Children.Add(Button("⧉", () => DuplicateStep(tile), false, 4));
             stepButtons.Children.Add(Button("↑", () => MoveStep(tile, -1), false, 4));
             stepButtons.Children.Add(Button("↓", () => MoveStep(tile, 1), false, 4));
@@ -242,12 +246,18 @@ public partial class MainWindow
                     step.Kind = kind; step.Value = restored?.Value ?? DefaultStepValue(kind);
                     step.Arguments = restored?.Arguments ?? ""; step.WorkingDirectory = restored?.WorkingDirectory ?? "";
                     step.AudioDeviceId = restored?.AudioDeviceId;
+                    step.DisplayDeviceId = restored?.DisplayDeviceId;
+                    step.UiAutomation = restored?.UiAutomation; step.Plugin = restored?.Plugin;
                     step.DelayMs = kind == ActionKind.WaitWindow ? Math.Clamp(restored?.DelayMs ?? 15000, 1, 600000) : kind == ActionKind.Delay ? Math.Clamp(restored?.DelayMs ?? step.DelayMs, 0, 600000) : step.DelayMs;
                     Refresh(forceRender: true);
                 };
                 content.Children.Add(kindPicker);
                 content.Children.Add(Button(L("Funktion auswählen"), () => ShowActionCatalog(ActiveProfile, tile, replaceStep: true), false, 0));
                 AddStepFields(content, tile, step);
+                var verify = new CheckBox { Content = L("Ergebnis überprüfen"), IsChecked = step.Verification?.Enabled == true, Margin = new Thickness(0, 8, 0, 4) };
+                verify.Checked += (_, _) => { step.Verification = new(true, step.Verification?.TimeoutMs ?? 5000); ScheduleEditorHistoryCapture(); };
+                verify.Unchecked += (_, _) => { step.Verification = null; ScheduleEditorHistoryCapture(); };
+                content.Children.Add(verify);
             }
             var repeatRow = new DockPanel { Margin = new Thickness(0, 8, 0, 5) };
             repeatRow.Children.Add(Label(L("Makro-Wiederholungen (1–100)"), 12, "#B5C2C3"));
@@ -300,6 +310,9 @@ public partial class MainWindow
     private void AddStepFields(Panel target, Tile tile, ActionStep step)
     {
         var kind = step.Kind;
+        if (kind == ActionKind.VendorLighting) { AddVendorLightingFields(target, step); return; }
+        if (kind == ActionKind.Plugin) { AddPluginFields(target, step); return; }
+        if (kind == ActionKind.UiAutomation) { AddUiAutomationFields(target, step); return; }
         if (kind == ActionKind.Brightness)
         {
             target.Children.Add(FieldLabel(L("Bildschirmhelligkeit")));
@@ -311,6 +324,7 @@ public partial class MainWindow
             mode.SelectionChanged += (_, _) => { numeric.IsEnabled = mode.SelectedValue as string == "Set"; step.Value = numeric.IsEnabled ? "Set:" + percent : mode.SelectedValue as string ?? "Up"; Refresh(); };
             numeric.ValueChanged += value => { percent = value; step.Value = "Set:" + value; Refresh(); };
             target.Children.Add(mode); target.Children.Add(numeric);
+            AddDisplayBrightnessFields(target, step);
             target.Children.Add(Label(L("Wirkt auf unterstützte Displays. Externe Monitore benötigen DDC/CI; heller/dunkler ändert 10 Prozentpunkte."), 11, "#91A3A5"));
             return;
         }
@@ -538,6 +552,7 @@ public partial class MainWindow
         try
         {
             _controller.Save();
+            RecordMeetingDraft(saved:true);
             _draftBaseline = SerializeTile(_draftTile); _draftBaselineTileId = _draftTile.Id; _draftBaselineProfileId = _draftProfileId;
             ResetDraftHistory();
             _editorError = null;
@@ -554,6 +569,7 @@ public partial class MainWindow
 
     public void DiscardDraft()
     {
+        RecordMeetingDraft(saved:false);
         if (_capturing) FinishCapture(restoreOriginal: true);
         if (_draftProfileId is not { } profileId || _selectedTileId is not { } tileId) return;
         var persisted = _controller.Settings.Profiles.FirstOrDefault(p => p.Id == profileId)?.Tiles.FirstOrDefault(t => t.Id == tileId);

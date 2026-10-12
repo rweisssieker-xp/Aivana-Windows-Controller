@@ -5,10 +5,10 @@ namespace Aivana.Windows;
 
 internal static class DisplayBrightnessControl
 {
-    private sealed record Target(uint Minimum, uint Current, uint Maximum, Func<uint> Read, Action<uint> Write);
+    private sealed record Target(string Id, string Name, uint Minimum, uint Current, uint Maximum, Func<uint> Read, Action<uint> Write);
     internal static (uint Before, uint Changed, uint Restored)? LastRoundTrip { get; private set; }
 
-    internal static int Apply(BrightnessCommand command, CancellationToken token, bool probeOnly = false, bool roundTrip = false)
+    internal static int Apply(BrightnessCommand command, CancellationToken token, bool probeOnly = false, bool roundTrip = false, string? deviceId = null, List<DisplayBrightnessInfo>? displays = null)
     {
         var targets = new List<Target>();
         var handles = new List<IntPtr>();
@@ -16,19 +16,26 @@ internal static class DisplayBrightnessControl
         try
         {
             token.ThrowIfCancellationRequested();
-            ReadInternalTargets(targets, com);
+            ReadInternalTargets(targets, com, deviceId);
             EnumDisplayMonitors(IntPtr.Zero, IntPtr.Zero, (monitor, _, _, _) =>
             {
                 if (token.IsCancellationRequested) return false;
                 if (!GetNumberOfPhysicalMonitorsFromHMONITOR(monitor, out var count) || count is 0 or > 128) return true;
                 var physical = new PhysicalMonitor[count];
                 if (!GetPhysicalMonitorsFromHMONITOR(monitor, count, physical)) return true;
+                var monitorInfo = new MonitorInfo { Size = Marshal.SizeOf<MonitorInfo>() };
+                GetMonitorInfo(monitor, ref monitorInfo);
+                var index = 0;
                 foreach (var display in physical)
                 {
                     var handle = display.Handle;
+                    var device = new DisplayDevice { Size = Marshal.SizeOf<DisplayDevice>() };
+                    var hasDevice = EnumDisplayDevices(monitorInfo.Device, (uint)index, ref device, 1);
+                    var id = "ddc:" + (hasDevice && !string.IsNullOrEmpty(device.DeviceId) ? device.DeviceId : monitorInfo.Device) + ":" + index++;
+                    if (!string.IsNullOrEmpty(deviceId) && !string.Equals(deviceId, id, StringComparison.OrdinalIgnoreCase)) { handles.Add(handle); continue; }
                     handles.Add(handle);
-                    if (GetMonitorBrightness(handle, out var min, out var current, out var max) && max > min && current >= min && current <= max)
-                        targets.Add(new Target(min, current, max, () =>
+                    if (ReadBrightness(handle, token, out var min, out var current, out var max) && max > min && current >= min && current <= max)
+                        targets.Add(new Target(id, display.Description, min, current, max, () =>
                         {
                             if (!GetMonitorBrightness(handle, out _, out var value, out _)) throw new System.ComponentModel.Win32Exception(Marshal.GetLastWin32Error());
                             return value;
@@ -40,6 +47,7 @@ internal static class DisplayBrightnessControl
                 return true;
             }, IntPtr.Zero);
             token.ThrowIfCancellationRequested();
+            if (displays != null) displays.AddRange(targets.Select(t => new DisplayBrightnessInfo(t.Id, t.Name, (int)Math.Round((t.Current - (double)t.Minimum) * 100 / (t.Maximum - t.Minimum)))));
             if (probeOnly) return targets.Count;
             if (targets.Count == 0) throw new InvalidOperationException(Aivana.Core.Localization.Translate("Kein Display unterstützt die Helligkeitssteuerung. Bei externen Monitoren DDC/CI aktivieren."));
             if (roundTrip)
@@ -83,7 +91,19 @@ internal static class DisplayBrightnessControl
         }
     }
 
-    private static void ReadInternalTargets(List<Target> targets, List<object> resources)
+    private static bool ReadBrightness(IntPtr handle, CancellationToken token, out uint minimum, out uint current, out uint maximum)
+    {
+        minimum=current=maximum=0;
+        for(var attempt=0;attempt<3;attempt++)
+        {
+            if(token.IsCancellationRequested) return false;
+            if(GetMonitorBrightness(handle,out minimum,out current,out maximum)) return true;
+            if(attempt<2) token.WaitHandle.WaitOne(75);
+        }
+        return false;
+    }
+
+    private static void ReadInternalTargets(List<Target> targets, List<object> resources, string? deviceId)
     {
         object Keep(object value) { resources.Add(value); return value; }
         try
@@ -106,7 +126,9 @@ internal static class DisplayBrightnessControl
                 if (!levels.TryGetValue((string)method.InstanceName, out var current) || current > 100) continue;
                 object captured = method;
                 var instance = (string)method.InstanceName;
-                targets.Add(new Target(0, current, 100, () => ReadInternalCurrent(service, instance, resources), value =>
+                var id = "wmi:" + instance;
+                if (!string.IsNullOrEmpty(deviceId) && !string.Equals(deviceId, id, StringComparison.OrdinalIgnoreCase)) continue;
+                targets.Add(new Target(id, instance, 0, current, 100, () => ReadInternalCurrent(service, instance, resources), value =>
                 {
                     dynamic writer = captured;
                     if (Convert.ToUInt32(writer.WmiSetBrightness(0, (byte)value)) != 0)
@@ -130,6 +152,26 @@ internal static class DisplayBrightnessControl
         throw new InvalidOperationException("Display is no longer available.");
     }
 
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
+    private struct MonitorInfo
+    {
+        public int Size;
+        public int Left, Top, Right, Bottom, WorkLeft, WorkTop, WorkRight, WorkBottom;
+        public uint Flags;
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 32)] public string Device;
+    }
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
+    private struct DisplayDevice
+    {
+        public int Size;
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 32)] public string DeviceName;
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 128)] public string DeviceString;
+        public uint StateFlags;
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 128)] public string DeviceId;
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 128)] public string DeviceKey;
+    }
+    [DllImport("user32.dll", CharSet = CharSet.Unicode)] private static extern bool GetMonitorInfo(IntPtr monitor, ref MonitorInfo info);
+    [DllImport("user32.dll", CharSet = CharSet.Unicode)] private static extern bool EnumDisplayDevices(string device, uint number, ref DisplayDevice display, uint flags);
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
     private struct PhysicalMonitor
     {
