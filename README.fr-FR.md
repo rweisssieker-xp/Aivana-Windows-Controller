@@ -1,5 +1,7 @@
 # MAKRIVO
 
+[Documentation complète dans les 27 langues](docs/README.md) · [Manuel utilisateur complet](docs/fr-FR/HANDBOOK.md)
+
 **Par Aivana.** [Fonctionnalités et limites actuelles (DE)](docs/FEATURES.md) · [Tests des extensions (DE)](docs/testing/2026-10-12-six-extensions.md)
 
 [English (US)](README.md) | [Deutsch](README.de-DE.md) | **Français** | [Italiano](README.it-IT.md)
@@ -77,7 +79,7 @@ La détection Corsair s’appuie sur les informations disponibles du périphéri
 
 Les paramètres proposent 27 langues : allemand, anglais, français, espagnol, italien, portugais, néerlandais, polonais, tchèque, slovaque, hongrois, roumain, bulgare, grec, danois, suédois, norvégien, finnois, estonien, letton, lituanien, slovène, croate, ukrainien, russe, turc et serbe en alphabet latin. Le mode Automatique suit la langue d’affichage de Windows. Les traductions sont intégrées localement. Les dispositions, raccourcis et noms définis par l’utilisateur sont indépendants de la langue de l’interface.
 
-La documentation du dépôt est disponible en anglais américain (`en-US`), allemand (`de-DE`), français (`fr-FR`) et italien (`it-IT`). L’application accepte également ces quatre codes régionaux et utilise leurs formats numériques. Les codes de langue existants restent compatibles.
+La documentation complète est disponible dans les 27 langues de l’application via [l’index des langues](docs/README.md). Les traductions sont assistées par machine ; les sources originales et les contrôles structurels ne remplacent pas une révision linguistique. L’application accepte aussi les codes régionaux `en-US`, `de-DE`, `fr-FR` et `it-IT`. Les codes existants restent compatibles.
 
 ## Dispositions et recherche fabricants
 

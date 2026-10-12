@@ -1,3 +1,7 @@
+<!-- generated-doc locale=en-US source=docs/superpowers/specs/2026-10-12-controller-usps-design.md sha256=4c3b2dbedb83af6bd48917515ae6559012afb6318ce69d1e32fb2765e0793327 -->
+
+> Machine-assisted translation. Structure, code and links are checked; native-speaker and legal review are not implied. Historical reports retain their original dates and scope. [Original source](../../../superpowers/specs/2026-10-12-controller-usps-design.md)
+
 # MAKRIVO control extensions
 
 The user requested all nine proposed improvements and a recognizable tray icon. Existing configurations, particularly G1/G2 brightness, must remain compatible. Existing uncommitted branding and documentation edits belong to the shared workspace and must be preserved.

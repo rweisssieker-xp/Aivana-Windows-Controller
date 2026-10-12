@@ -25,13 +25,13 @@ Hersteller: **Aivana**. Stand: **12. Oktober 2026**. Dies ist der Entwicklungsst
 | Mobilpanel | Lokales HTTPS-Panel, Kopplung, ausgewählte Profile und Status-/Prüfverlauf | Reale Telefon-/Tablet-LAN-Abnahme noch offen; kein universelles Sensor-Dashboard. |
 | Herstelleradapter | Corsair, Logitech-G-SDK, Razer/SteelSeries-RGB und Wooting-Analogadapter | Modell-/SDK-abhängig; neue Adapter nicht vollständig mit realer Hardware validiert. Keine neuen proprietären SDK-DLLs gebündelt. |
 | Physische Tastaturzuordnung | Standardtasten anhand Gerät und Scan-Code erkennen | Raw Input unterdrückt die normale Windows-Eingabe nicht. |
-| Lokaler KI-Besprechungsassistent | Optionaler Ollama-Prototyp erzeugt begrenzte Entwürfe aus ausdrücklich ausgewählten Ressourcen | Standardmäßig aus; kein echter Modelltest und keine nachgewiesene Zeitersparnis; kein Cloud-API-Schlüssel erforderlich. |
+| Lokaler KI-Besprechungsassistent | Optionaler Prototyp für Ollama, LM Studio, llama.cpp und ONNX Runtime GenAI CPU erzeugt begrenzte Entwürfe aus ausdrücklich ausgewählten Ressourcen | Standardmäßig aus; native CPU-Laufzeit mit Zufallsmodell geprüft, aber keine belegte Planungsqualität oder Zeitersparnis; keine Modellgewichte enthalten. |
 
 ## Noch nicht als fertiges Verkaufsfeature anbieten
 
 - **Exklusive Zweittastatur/Makropad:** Ein signierter, lizenzierter und hardwaregeprüfter Filtertreiber fehlt. Normale Tasteneingaben können weiterhin Windows erreichen.
 - Vollständige Hardwareabnahme aller Herstelleradapter sowie reale Mobilgeräte-LAN-Tests.
-- Vollständige Prüfung bei 150/200 Prozent Windows-Skalierung und aller neuen Übersetzungen. Bestehende Oberfläche bietet 27 Sprachen; neue Dialoge sind überwiegend deutsch.
+- Echte gemischte Monitor-/DPI-Wechsel und fachliche Abnahme aller neuen Übersetzungen. PerMonitorV2 und simulierte 150/200-Prozent-Layouts wurden geprüft; reale Displaytests bleiben separat. Die Oberfläche bietet 27 Sprachen; ausführliche neue Texte sind noch nicht vollständig sprachlich abgenommen.
 - Signierter Verkaufsinstaller, endgültige EULA, geprüfte SDK-Vertriebsrechte und produktive Kauflizenz-/Checkout-Integration.
 
 ## Details und Nachweise
@@ -39,6 +39,8 @@ Hersteller: **Aivana**. Stand: **12. Oktober 2026**. Dies ist der Entwicklungsst
 - [Bedienungsdokumentation](de-DE/README.md)
 - [Erweiterungen: Funktionen, Tests und offene Grenzen](testing/2026-10-12-six-extensions.md)
 - [Lokaler KI-Assistent: Prototyp und Prüfstand](testing/2026-10-12-local-meeting-assistant.md)
+- [Lokale KI-Laufzeiten und Modellvoraussetzungen](testing/2026-10-12-local-ai-runtimes.md)
+- [DPI- und Skalierungsprüfung](testing/2026-10-12-dpi-scaling.md)
 - [Lizenzprüfung](licensing/2026-10-12-commercial-license-audit.md) – historische Bestandsaufnahme; das neue Publish-Skript ergänzt Runtime-Hinweise. Das endgültige Paket bleibt separat zu prüfen.
 - [Vertriebsplattformen](licensing/makrivo-vertriebsplattformen-2026-10-12.html) – Vergleichsstand; Stripe ist zusätzlich eine mögliche Zahlungsplattform, siehe aktuelle Anbieterbedingungen.
 

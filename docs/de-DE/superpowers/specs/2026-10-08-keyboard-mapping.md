@@ -1,6 +1,10 @@
+<!-- generated-doc locale=de-DE source=docs/superpowers/specs/2026-10-08-keyboard-mapping.md sha256=fb766a2a2b4698ae3e1c3f63b50bb4f5c605da3dd56c61c05fcc0832b5cf8aeb -->
+
+> Maschinell unterstützte Übersetzung. Struktur, Codebeispiele und Links werden geprüft; eine muttersprachliche oder juristische Abnahme ist damit nicht verbunden. Historische Berichte behalten ihr ursprüngliches Datum und ihren damaligen Umfang. [Originalquelle](../../../superpowers/specs/2026-10-08-keyboard-mapping.md)
+
 # Physische Tastaturansicht für Mapping
 
-[English (US)](../../../en-US/superpowers/specs/2026-10-08-keyboard-mapping.md) | [Deutsch](../../../de-DE/superpowers/specs/2026-10-08-keyboard-mapping.md) | [Français](../../../fr-FR/superpowers/specs/2026-10-08-keyboard-mapping.md) | [Italiano](../../../it-IT/superpowers/specs/2026-10-08-keyboard-mapping.md)
+[English (US)](2026-10-08-keyboard-mapping.md) | [Deutsch](2026-10-08-keyboard-mapping.md) | [Français](2026-10-08-keyboard-mapping.md) | [Italiano](2026-10-08-keyboard-mapping.md)
 
 ## Ziel
 

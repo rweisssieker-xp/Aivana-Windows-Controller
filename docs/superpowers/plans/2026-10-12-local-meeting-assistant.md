@@ -19,3 +19,9 @@ Ollama-Protokollquellen: https://docs.ollama.com/api/chat und https://docs.ollam
 - Release-Build null Warnungen/Fehler, alle Core-Gruppen und vollständige Windows-Suite ohne Skip grün. Native Fokusprüfung jetzt ebenfalls grün; vorhandene iCUE-Tastatur verbunden. Keine echten Nutzerprogramme durch Modell gestartet.
 - Kein Live-Ollama verfügbar; kein Modell/Dienst installiert und keine Cloud/Schlüssel verwendet. Qualität/Zeitersparnis bleiben experimentell.
 - Selfcontained-Paket mit Begleitprogrammen und neuen Bedien-/Prüfhinweisen unter artifacts/release-20261012-183635. Bestehende Artefakte und uncommittete Änderungen erhalten; kein Merge/Push.
+
+- Paket-Smoke zeigte Zugriff-verweigert bei ConfigStore atomarem File.Move; frischer Wiederholungslauf blieb später in einem vorhandenen Fehlerdialog hängen und wurde gezielt beendet. Regression mit FileShare.Read (Lesen erlaubt, Delete-Sharing verweigert) reproduziert den File.Move-Fehler. Bounded Retry nur für Win32 5/32/33 bis 500ms RED→GREEN; dauerhaft fehlende Rechte bleiben Fehler. Neuer Paketstand wird erneut geprüft.
+
+- Abschließender kompletter Windows-Wiederholungslauf scheitert erneut an verweigertem Fokuswechsel; kein neuer Compiler-/Modellfehler. Übrige Suite --skip-foreground-fixture grün. Kein stabiles Grün für den kontextabhängigen nativen Vordergrundtest behaupten. Aktueller Paketpfad artifacts/release-20261012-184105.
+
+- Aktuelles eigenständiges Paket artifacts/release-20261012-184105: WPF-Smoke einschließlich KI-Dialog, ungespeicherter Editorübergabe, Korrekturmessung und Verwerfen erfolgreich (Exit 0). Kein weiterer Code nach diesem Test geändert.

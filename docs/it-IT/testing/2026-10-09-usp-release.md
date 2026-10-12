@@ -1,20 +1,24 @@
-# Assistenza tastiera, overlay e feedback dell'esecuzione
+<!-- generated-doc locale=it-IT source=docs/testing/2026-10-09-usp-release.md sha256=96a5b23b67032ef07f2f5dd93e9585e7bab0a522e5096ffc9f4d020823c4264e -->
 
-[English (US)](../../en-US/testing/2026-10-09-usp-release.md) · [Deutsch](../../de-DE/testing/2026-10-09-usp-release.md) · [Français](../../fr-FR/testing/2026-10-09-usp-release.md) · [Italiano](../../it-IT/testing/2026-10-09-usp-release.md)
+> Traduzione assistita automaticamente. Struttura, esempi di codice e collegamenti vengono verificati; ciò non costituisce una revisione madrelingua o una convalida legale. I rapporti storici conservano le date e l'ambito originali. [Fonte originale](../../testing/2026-10-09-usp-release.md)
 
-Sono stati implementati nell'app Windows esistente i tre miglioramenti prioritari:
+# Assistenza da tastiera, overlay e feedback sull'esecuzione
 
-- Assistente per i tasti speciali: inventario reale di dispositivi/tasti supportati da iCUE, acquisizione temporanea dei tasti G, verifica del successo della configurazione, convalida dei conflitti e bozza di azione non salvata. Ripristino in caso di errore, invalidazione dei callback in coda e ripristino delle associazioni normali gestiscono gli errori e la chiusura della finestra di dialogo.
-- Overlay tastiera: geometria di riferimento fisica, associazioni del profilo attivo, aggiornamento in tempo reale di profilo/modifica ed evidenziazione dei normali tasti Windows. Tenere premuti Ctrl+Alt+F1 o attivare/disattivare tramite la tavolozza/la pagina Tastiera. Non attiva la finestra, lascia passare i clic e non compare nella barra delle applicazioni.
-- Feedback dell'esecuzione: fasi tipizzate Waiting/Running/Step/Completed/Cancelled/Failed/Rejected, avanzamento dei passaggi/ripetizioni e toast non attivante. Il feedback esclude il contenuto delle azioni e i messaggi di eccezione. L'annullamento dell'ultimo passaggio non può essere segnalato come completamento. Il completamento descrive l'esecuzione, non una verifica indipendente dello stato OBS.
+[English (US)](2026-10-09-usp-release.md) | [Deutsch](2026-10-09-usp-release.md) | [Français](2026-10-09-usp-release.md) | [Italiano](2026-10-09-usp-release.md)
+
+Implementati i tre miglioramenti prioritari nell'app Windows esistente:
+
+- Procedura guidata per chiavi speciali: inventario effettivo di dispositivi/chiavi supportati da iCUE, acquisizione temporanea di chiavi G, verifica della configurazione riuscita, convalida dei conflitti e bozza di azioni non salvate. Il rollback dell'acquisizione, l'invalidazione della richiamata in coda e il ripristino dell'associazione normale coprono gli errori e la chiusura della finestra di dialogo.
+- Overlay tastiera: geometria di riferimento fisico, associazioni del profilo attivo, aggiornamento del profilo live/modifica e normale evidenziazione dei tasti Windows. Tieni premuto Ctrl+Alt+F1 o scorri la pagina della tavolozza/tastiera. Non attivabile, cliccabile e assente dalla barra delle applicazioni.
+- Feedback sull'esecuzione: fasi digitate di Attesa/In esecuzione/Passaggio/Completato/Annullato/Non riuscito/Rifiutato, avanzamento del passaggio/ripetizione e un avviso di avviso non attivante. Il feedback esclude il contenuto dell'azione e i messaggi di eccezione. L'annullamento dell'ultimo passaggio non può segnalare il completamento. Il completamento descrive l'esecuzione, non una query di stato OBS indipendente.
 
 Verifica:
 
-- Superati 24 controlli Core, inclusi ordine delle fasi, esiti di errore/annullamento, annullamento dell'ultimo passaggio, isolamento delle eccezioni dei listener ed esclusione dei valori privati delle azioni.
-- Build della soluzione Release superata senza avvisi/errori.
-- Controlli Windows superati; la K100 collegata ha riportato G1–G6 e la configurazione/rilascio nativi sono riusciti. Gli endpoint audio sono stati esaminati senza modificarne lo stato.
-- Test smoke WPF superato con tutti i layout di riferimento dell'overlay, assistente/catalogo/conflitti/persistenza delle bozze, configurazione di acquisizione nativa dal vivo, inoltro dei callback, rifiuto dei callback obsoleti e ripristino delle associazioni in pausa. L'input del callback nativo è stato simulato; resta da verificare manualmente la pressione di un tasto G da parte di una persona.
-- Verificata l'invarianza della finestra in primo piano per il toast di esecuzione. Verificate le proprietà d'interazione e la visualizzazione/nascondimento dell'overlay; sono state renderizzate schermate per assistente, overlay e toast.
-- Le 27 lingue contengono tutte le 819 stringhe canoniche; la convalida offline di chiavi e segnaposto è stata superata.
+- 24 Controlli principali superati, inclusi l'ordinamento delle fasi, i risultati di errore/annullamento, l'annullamento del passaggio finale, l'isolamento delle eccezioni del listener e l'esclusione dei valori delle azioni private.
+- La build della soluzione di rilascio è stata completata senza avvisi/errori.
+- Windows controlli superati; il K100 connesso ha segnalato G1–G6 e la configurazione/rilascio nativo è riuscito. Gli endpoint audio sono stati ispezionati senza modificarne lo stato.
+- WPF fumo superato con tutti i layout di sovrapposizione di riferimento, procedura guidata/catalogo/conflitti/persistenza bozza, configurazione di acquisizione nativa in tempo reale, inoltro di richiamata, rifiuto di richiamata obsoleta e ripristino del collegamento in pausa. È stato simulato l'input di callback nativo; la pressione fisica del tasto G umano rimane un controllo manuale.
+- L'effettiva invarianza della finestra in primo piano è stata verificata per il brindisi dell'esecuzione. Sono state controllate le proprietà di interazione della sovrapposizione e mostra/nascondi; sono stati renderizzati gli screenshot per la procedura guidata, l'overlay e il toast.
+- Le lingue 27 contengono tutte le stringhe canoniche 819; segnaposto/convalida chiave offline superata.
 
-Snapshot e risultato GUI completo sono in artifacts/usp-win-x64/smoke. I test usano profili temporanei; le impostazioni di produzione vengono salvate e ne viene verificato l'hash durante la distribuzione.
+Le istantanee e il risultato completo della GUI si trovano in artifacts/usp-win-x64/smoke. I test utilizzano profili temporanei; viene eseguito il backup delle impostazioni di produzione e il controllo dell'hash durante la distribuzione.

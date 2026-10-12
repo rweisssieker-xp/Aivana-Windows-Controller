@@ -1,22 +1,23 @@
-# Plan d’amélioration de l’ergonomie et des capacités du contrôleur
+<!-- generated-doc locale=fr-FR source=docs/superpowers/plans/2026-10-08-controller-polish.md sha256=1a076a67eea31048f6305f30a121c474d592451d1ddcd9b46bc339fd8ec068f2 -->
 
-[English (en-US)](../../../en-US/superpowers/plans/2026-10-08-controller-polish.md) | [Deutsch (de-DE)](../../../de-DE/superpowers/plans/2026-10-08-controller-polish.md) | [Français (fr-FR)](2026-10-08-controller-polish.md) | [Italiano (it-IT)](../../../it-IT/superpowers/plans/2026-10-08-controller-polish.md)
+> Traduction assistée par machine. La structure, les exemples de code et les liens sont vérifiés ; cela ne constitue ni une révision par un locuteur natif ni une validation juridique. Les rapports historiques conservent leur date et leur portée d'origine. [Source originale](../../../superpowers/plans/2026-10-08-controller-polish.md)
 
-Demande de l’utilisateur : améliorer l’apparence, l’ergonomie et les fonctionnalités ; les demandes d’autorisation précédentes prévoyaient le maximum de sous-agents utiles et l’exécution autonome.
+# Plan d’utilisation et d’amélioration des capacités du contrôleur
 
-## Périmètre
+[English (US)](2026-10-08-controller-polish.md) | [Deutsch](2026-10-08-controller-polish.md) | [Français](2026-10-08-controller-polish.md) | [Italiano](2026-10-08-controller-polish.md)
 
-Préserver les profils existants et l’intégration SDK Corsair opérationnelle. Améliorer l’application WPF existante plutôt que de créer un prototype séparé.
+Demande de l'utilisateur : améliorer l'apparence, la convivialité et la fonctionnalité ; l'autorisation préalable demande le maximum de sous-agents utiles sur les modèles plus petits nécessaires et l'achèvement autonome.
 
-- [x] Responsable shell/tableau de bord : disposition réactive, navigation active, commandes lisibles, activité/état compacts, réorganisation des tuiles par glisser-déposer, états vides utiles et modèles. Responsable de MainWindow.xaml, MainWindow.xaml.cs et MainWindow.Dashboard.cs.
-- [x] Responsable éditeur : MainWindow.Editor.cs et fichiers partiels facultatifs réservés à l’éditeur. Modifications explicites en brouillon, Enregistrer/Abandonner, validation intégrée, liste de macros dédiée avec glisser-déposer, duplication des étapes, capture fiable des raccourcis et champs de fichiers/URL.
-- [x] Responsable Windows : validation native, noms de périphériques et capacités SDK robustes, attente bornée des modificateurs et injection sûre ; responsable de Windows et de ses tests.
-- [x] Parent : progression d’exécution centrale, interfaces du contrôleur, préservation de la configuration, tests d’intégration, captures réellement rendues, publication/paquet et remplacement de l’application en cours.
+## Portée
+Préservez les profils existants et l’intégration fonctionnelle du SDK Corsair. Améliorez l'application WPF existante plutôt que de créer un prototype distinct.
 
-## Contrat d’interface
+- [x] Travailleur Shell/tableau de bord : mise en page réactive, navigation active, commandes lisibles, activité/statut compact, réorganisation des vignettes par glisser-déposer, états et modèles vides utiles. Posséder MainWindow.xaml, MainWindow.xaml.cs et MainWindow.Dashboard.cs.
+- [x] Travailleur de l'éditeur : MainWindow.Editor.cs et fichiers partiels facultatifs réservés à l'éditeur. Modifications par étapes explicites, enregistrement/rejet, validation en ligne, liste de macros dédiée avec glisser-déposer, étapes en double, capture de raccourcis clavier fiable et champs de fichier/URL.
+- [x] Travailleur Windows : validation native, noms de périphériques et capacités SDK robustes, attentes de modificateur limitées et injection sécurisée ; propres tests Windows et Windows.
+- [x] Parent : progression de l'exécution du noyau, interfaces du contrôleur, préservation de la configuration, tests d'intégration, captures d'écran réelles rendues, publication/package et remplacement de l'application en cours d'exécution.
 
-Le contrôleur fournit les API existantes ainsi que string LastStatus, bool HasRunningActions, bool IsRunning(Guid), string GetTileStatus(Guid), string ForegroundProcess, bool CorsairAvailable, IReadOnlyList<CorsairKeyboardInfo> CorsairKeyboards, Task TestCorsairColorAsync(string) et void OpenIcue(). L’éditeur expose bool HasUnsavedChanges, void DiscardDraft(), bool CommitDraft() ; les noms de champs et méthodes existants restent disponibles dans les classes partielles.
+## Contrat d'interface
+Le contrôleur fournit les API existantes ainsi que la chaîne LastStatus, bool HasRunningActions, bool IsRunning(Guid), string GetTileStatus(Guid), string ForegroundProcess, bool CorsairAvailable, IReadOnlyList<CorsairKeyboardInfo> CorsairKeyboards, Task TestCorsairColorAsync(string), void OpenIcue(). L'éditeur expose bool HasUnsavedChanges, void DiscardDraft(), bool CommitDraft(); Les noms de champs/méthodes existants restent disponibles dans les classes partielles.
 
-## Critères d’acceptation
-
-Ne pas réinitialiser la configuration réelle de l’utilisateur ; les modifications en brouillon valides sont enregistrées en une seule fois, les brouillons invalides restent modifiables et l’abandon restaure les données enregistrées. Valider les alias de raccourcis natifs sans envoyer d’entrées de test dans des fenêtres sans rapport. Vérifier la réorganisation des tuiles et des macros ; le rendu de toutes les vues aux dimensions de bureau ; l’affichage des états en cours/échec/terminé ; l’affichage du modèle réel du périphérique SDK. Compilation/tests et test rapide après publication réussis, puis lancement de l’application mise à jour.
+## Acceptation
+Pas de réinitialisation de la configuration utilisateur réelle ; les modifications par étapes valides sont enregistrées une fois, les brouillons non valides restent modifiables, l'annulation restaure les données enregistrées. Alias ​​de raccourci clavier natifs validés sans injecter d’entrées de test dans des fenêtres non liées. Réorganisation des tuiles et des macros testée ; toutes les vues s'affichent à la taille d'un ordinateur de bureau ; état en cours d'exécution/échec/complet visible ; Le modèle réel du périphérique SDK est affiché. Construction/tests et passe de fumée publié, et l'application mise à jour est lancée.

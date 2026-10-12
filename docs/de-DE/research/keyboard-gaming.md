@@ -1,7 +1,10 @@
+<!-- generated-doc locale=de-DE source=docs/research/keyboard-gaming.md sha256=dd2a575750ec0d0943b62b6083e634a1b40e7b5538c43767aed62b545b3441f8 -->
+
+> Maschinell unterstützte Übersetzung. Struktur, Codebeispiele und Links werden geprüft; eine muttersprachliche oder juristische Abnahme ist damit nicht verbunden. Historische Berichte behalten ihr ursprüngliches Datum und ihren damaligen Umfang. [Originalquelle](../../research/keyboard-gaming.md)
+
 # Gaming-Tastaturen mit Sonderfunktionen und Integrationsschnittstellen
 
-[English (US)](../../en-US/research/keyboard-gaming.md) · [Deutsch](../../de-DE/research/keyboard-gaming.md) · [Français](../../fr-FR/research/keyboard-gaming.md) · [Italiano](../../it-IT/research/keyboard-gaming.md)
-
+[English (US)](keyboard-gaming.md) | [Deutsch](keyboard-gaming.md) | [Français](keyboard-gaming.md) | [Italiano](keyboard-gaming.md)
 
 Recherche vom 08.10.2026. Auswahl etablierter PC-Gaming-Marken, nicht jede Marke weltweit. „Sonderfunktion“ meint hier physische Makro-/Zusatzkeys, Ebenen, Knöpfe/Displays oder analoge/HE-Eingabe. SDK-Einstufungen beziehen sich auf öffentlich dokumentierte Hersteller-Schnittstellen; ein Konfigurationsprogramm allein ist kein öffentliches SDK. RGB-API erlaubt in der Regel Lichtsteuerung, keine Umbelegung oder Abfrage normaler Tasten.
 
@@ -25,4 +28,3 @@ Recherche vom 08.10.2026. Auswahl etablierter PC-Gaming-Marken, nicht jede Marke
 Für eigene App-Aktionen ist **Logitech G-Key Macro SDK** am konkretesten, wenn exakt die unterstützten G-Keys eines Logitech-Modells genutzt werden sollen. **Corsair iCUE SDK** ist interessant, wenn der Controller Beleuchtung oder Corsair-Macro-Key-Events adressiert; es setzt iCUE und passende Hardware voraus. **Elgato Stream Deck SDK** bietet einen echten Plugin-/Action-Ansatz, aber für Stream Decks, nicht beliebige Tastaturen. **SteelSeries GameSense**, **Razer Chroma**, **MSI Mystic Light** und **Corsair iCUE** sind nützliche Feedback-/RGB-Pfade, ihre Existenz sagt für sich genommen nichts über Tastenbelegung aus.
 
 Für markenübergreifende Hotkeys/Makros bleibt der robuste Basispfad Windows-HID/Standard-Tastatureingabe: Tasten erzeugen normale Scancodes, die App kann diese als Eingabe behandeln; herstellerspezifische Drehregler, OLEDs, Analogwerte und Zusatzkeys brauchen dagegen die konkrete App/API oder eine gerätespezifische Anbindung. Die öffentlich recherchierten Herstellerquellen belegen keine universelle API, mit der eine Dritt-App beliebige Makros aller Marken programmieren kann. „Nicht belegt“ heißt hier: In den recherchierten offiziellen Produkt-, Software- und Entwicklerseiten kein öffentliches SDK gefunden; kein Beweis, dass intern/partnergebunden gar keine Schnittstelle existiert.
-

@@ -1,19 +1,23 @@
+<!-- generated-doc locale=en-US source=docs/superpowers/plans/2026-10-08-controller-polish.md sha256=1a076a67eea31048f6305f30a121c474d592451d1ddcd9b46bc339fd8ec068f2 -->
+
+> Machine-assisted translation. Structure, code and links are checked; native-speaker and legal review are not implied. Historical reports retain their original dates and scope. [Original source](../../../superpowers/plans/2026-10-08-controller-polish.md)
+
 # Controller usability and capability improvement plan
 
-[English (US)](../../../en-US/superpowers/plans/2026-10-08-controller-polish.md) | [Deutsch](../../../de-DE/superpowers/plans/2026-10-08-controller-polish.md) | [Français](../../../fr-FR/superpowers/plans/2026-10-08-controller-polish.md) | [Italiano](../../../it-IT/superpowers/plans/2026-10-08-controller-polish.md)
+[English (US)](2026-10-08-controller-polish.md) | [Deutsch](2026-10-08-controller-polish.md) | [Français](2026-10-08-controller-polish.md) | [Italiano](2026-10-08-controller-polish.md)
 
-User request: improve appearance, usability, and functionality; prior authorization requests the maximum useful number of subagents on necessary smaller models and autonomous completion.
+User request: improve appearance, usability and functionality; prior authorization requests maximum useful subagents on necessary smaller models and autonomous completion.
 
 ## Scope
-Preserve existing profiles and the working Corsair SDK integration. Improve the existing WPF application rather than creating a separate prototype.
+Preserve existing profiles and working Corsair SDK integration. Improve the existing WPF application rather than creating a separate prototype.
 
-- [x] Shell/dashboard worker: responsive layout, active navigation, readable controls, compact activity/status, drag-and-drop tile reordering, helpful empty states and templates. Own MainWindow.xaml, MainWindow.xaml.cs, and MainWindow.Dashboard.cs.
-- [x] Editor worker: MainWindow.Editor.cs and optional editor-only partial files. Explicit staged edits, Save/Discard, inline validation, dedicated macro list with drag-and-drop, duplicate steps, reliable hotkey capture, and file/URL fields.
-- [x] Windows worker: native validation, robust device names and SDK capabilities, bounded modifier waits, and safe injection; own Windows and Windows tests.
-- [x] Parent: core execution progress, controller interfaces, configuration preservation, integration testing, actual rendered screenshots, publish/package, and replacement of the running application.
+- [x] Shell/dashboard worker: responsive layout, active navigation, readable controls, compact activity/status, drag-and-drop tile reorder, helpful empty states and templates. Own MainWindow.xaml, MainWindow.xaml.cs and MainWindow.Dashboard.cs.
+- [x] Editor worker: MainWindow.Editor.cs and optional editor-only partial files. Explicit staged edits, Save/Discard, validation inline, dedicated macro list with drag-and-drop, duplicate steps, reliable hotkey capture and file/URL fields.
+- [x] Windows worker: native validation, robust device names and SDK capabilities, bounded modifier waits and safe injection; own Windows and Windows tests.
+- [x] Parent: core execution progress, controller interfaces, configuration preservation, integration testing, actual rendered screenshots, publish/package and replacement of running application.
 
 ## Interface contract
-Controller provides existing APIs plus string LastStatus, bool HasRunningActions, bool IsRunning(Guid), string GetTileStatus(Guid), string ForegroundProcess, bool CorsairAvailable, IReadOnlyList<CorsairKeyboardInfo> CorsairKeyboards, Task TestCorsairColorAsync(string), and void OpenIcue(). Editor exposes bool HasUnsavedChanges, void DiscardDraft(), and bool CommitDraft(); existing field/method names remain available across partial classes.
+Controller provides existing APIs plus string LastStatus, bool HasRunningActions, bool IsRunning(Guid), string GetTileStatus(Guid), string ForegroundProcess, bool CorsairAvailable, IReadOnlyList<CorsairKeyboardInfo> CorsairKeyboards, Task TestCorsairColorAsync(string), void OpenIcue(). Editor exposes bool HasUnsavedChanges, void DiscardDraft(), bool CommitDraft(); existing field/method names remain available across partial classes.
 
 ## Acceptance
-No reset of real user configuration; valid staged changes save once, invalid drafts stay editable, and discard restores saved data. Native hotkey aliases are validated without injecting test inputs into unrelated windows. Tile and macro reordering is tested; all views render at desktop sizes; running/failed/complete status is visible; the actual SDK device model is displayed. Build/tests and published smoke pass, and the updated application is launched.
+No reset of real user configuration; valid staged changes save once, invalid drafts stay editable, discard restores saved data. Native hotkey aliases validated without injecting test inputs into unrelated windows. Tile and macro reorder tested; all views render at desktop sizes; running/failed/complete status visible; actual SDK device model displayed. Build/tests and published smoke pass, and updated application is launched.

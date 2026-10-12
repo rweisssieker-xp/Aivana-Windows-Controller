@@ -1,24 +1,28 @@
-# Verification — October 8, 2026
+<!-- generated-doc locale=en-US source=docs/VERIFICATION.md sha256=f19afb9e7b5ffac90c83167416ab3af0964a4481dd16b7357f8585480c6aae65 -->
 
-[English (US)](../en-US/VERIFICATION.md) | [Deutsch](../de-DE/VERIFICATION.md) | [Français](../fr-FR/VERIFICATION.md) | [Italiano](../it-IT/VERIFICATION.md)
+> Machine-assisted translation. Structure, code and links are checked; native-speaker and legal review are not implied. Historical reports retain their original dates and scope. [Original source](../VERIFICATION.md)
 
-The application was built on Windows x64 with the stable .NET SDK 10.0.202 and published as a standalone Windows x64 build.
+# Exam – 8. October 2026
 
-## Automated checks
+[English (US)](VERIFICATION.md) | [Deutsch](../de-DE/VERIFICATION.md) | [Français](../fr-FR/VERIFICATION.md) | [Italiano](../it-IT/VERIFICATION.md)
 
-- Full build: no warnings or errors.
-- 19 Core behavior tests: default configuration, validation, null/duplicate data, profile precedence, import/export and backup restoration, macro order and repetition, cancellation, duplicate triggering, serialization, immutable execution snapshot, and step failure.
-- Windows checks: hotkey normalization and aliases, native structure sizes, real keyboard device list, safe registration and unregistration, synthetic WM_HOTKEY for tile and cancellation, and disabled tile registration during input simulation.
-- The standalone EXE was started with `--smoke-test`: all five WPF views render, tiles can be created/copied/deleted, drafts survive refresh, configuration is saved and reloaded. This test uses an isolated temporary configuration directory and performs no text or media actions.
-- Dashboard, editor, and compact view (900 × 720) were visually inspected as actual WPF renderings. Draft saving, discarding, tile/macro ordering, German hotkey aliases, individual macro cancellation, and step progress were checked.
+The application was built on Windows x64 with the stable .NET SDK 10.0.202 and released as a standalone Windows-x64-Ausgabe.
 
-## Hardware-dependent limitations
+## Checked automatically
 
-The latest local run detected four Windows keyboard interfaces. This number describes HID/Windows interfaces, not necessarily four physical keyboards.
+- Overall build: no warnings and no errors.
+- 19 Core Behavior Tests: Default Configuration, Validation, Null/Duplicate Data, Profile Priority, Import/Export and Backup Restore, Macro Order and Retry, Abort, Double Trigger, Serialization, Immutable Execution Snapshot, and Step Failure.
+- Windows check: hotkey normalization and aliases, native structure sizes, real keyboard device list, secure registration and re-sharing, synthetic WM_HOTKEY for tile and cancel, disabled tile registration during input simulation.
+- The standalone EXE was started with `--smoke-test`: all five WPF views are rendered, tiles can be created/copied/deleted, drafts are retained during refresh, configuration is saved and reloaded. This test uses an isolated temporary configuration directory and does not perform any text or media actions.
+- Dashboard, editor and compact representation (900 × 720) were visually inspected as real WPF renderings. Draft saving, discarding, tile/macro order, German hotkey aliases, individual macro cancellations and step progress are checked.
 
-The official iCUE SDK is installed next to the EXE. The live test connects to iCUE and detects a Corsair keyboard with model and LED information. Lighting changes were not triggered automatically; model-specific special keys and other manufacturers have not been hardware-tested. Generic hotkeys apply across keyboards.
+## Hardware dependent limits
 
-Text/media input was not injected into other open user programs. Native data structures and error/release logic were checked; behavior in a specific target program also depends on its permission level, among other factors.
+The last local run detected four Windows keyboard interfaces. This number describes HID/Windows interfaces, not necessarily four physical keyboards.
+
+The official iCUE SDK is installed and is located next to the EXE. The live test connects to iCUE and detects a Corsair keyboard with model and LED information. Lighting changes were not triggered automatically; Model-dependent special keys and other manufacturers are not hardware tested. Generic hotkeys apply across keyboards.
+
+Text/media input was not injected into other open user agents. The native data structures and error/release logic were checked; The behavior in a specific target program depends, among other things, on its authorization level.
 
 ## Repeat
 
@@ -30,12 +34,14 @@ dotnet publish src/Aivana.Desktop -c Release -r win-x64 --self-contained true -o
 & ./artifacts/win-x64/MAKRIVO.exe --smoke-test
 ```
 
-The GUI test writes its result and screenshot to `smoke` next to the tested EXE. It is intended as a diagnostic mode and does not start a persistent background instance when it finishes.
+The GUI test writes result and screenshot to `smoke` next to the tested EXE. It is intended as a diagnostic mode and does not launch a persistent background instance upon completion.
 
-## Extended control
 
-Also checked: profile conditions using process and window title, variable substitution without recursive expansion, macro preview without execution, new action validation, and backward compatibility with old JSON files. Native checks cover the command palette registration, conflicts, WM_HOTKEY dispatch and release, as well as monitor-only layout and on-demand clipboard reads. The WPF test opens and renders the actual palette, checks undo/redo and favorites, checks clean drafts after rendering, and exits successfully.
+## Advanced controls
 
-Windows locking, clipboard changes, and window movement were not applied to user programs during testing. Window actions post asynchronous Windows requests; the target program may impose its own minimum sizes or permission boundaries. Profile locking and execution statistics apply to the current session.
+Additionally checked: profile conditions with process and window title, variable replacement without recursive expansion, macro preview without execution, new action validation and backwards compatibility of old JSON files. Native checks cover the command palette with registration, conflicts, WM_HOTKEY dispatch and release, as well as pure monitor splitting and on-demand clipboard read access. The WPF test opens and renders the actual palette, checks undo/redo and favorites, checks clean drafts after rendering, and completes the process successfully.
 
-2026-10-12 extension verification: 30 Core checks passed, Windows adapter checks passed (including release during input injection, read-only monitor identity and OBS status mocks), and WPF checks exercised workflow adoption/cancellation, recorder start/stop, profile exchange previews, gestures and icon resources. Localization: 27 catalogs with 967 keys each; documentation: 84 pages in four languages. Vendor-proprietary keys beyond Corsair were not hardware-tested; generic per-device support covers standard F13–F24 and media keyboard events. Cloud transport is provided by a user-selected synchronized folder; imports remain reviewed and disabled.
+Windows locking, clipboard changes, and window movement were not applied to user agents during testing. Post window actions Windows requests asynchronously; The specific target program can have its own minimum sizes or authorization limits. Profile lock and execution statistics apply to the current session.
+
+
+Extension exam from 12.10.2026: 30 core exams passed; Windows adapter including release during input injection, read-only monitor detection and OBS status mock passed. WPF checks flow commit/cancel, recorder start/stop, profile exchange preview, gestures and symbol resources. Localization: 27 catalogs each with 967 keys; Documentation: 84 pages in four languages. Proprietary buttons other than Corsair have not been tested on hardware; Generic support includes device-specific standard events F13–F24 and media keys. Cloud transport occurs via a selected synced folder; Imports are checked and remain disabled.

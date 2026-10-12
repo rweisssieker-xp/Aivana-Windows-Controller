@@ -1,32 +1,36 @@
+<!-- generated-doc locale=fr-FR source=docs/superpowers/plans/2026-10-08-windows-controller.md sha256=10a5ba49bbefc617bce40563c668e3c4628647822117087deba766713fb9b3af -->
+
+> Traduction assistée par machine. La structure, les exemples de code et les liens sont vérifiés ; cela ne constitue ni une révision par un locuteur natif ni une validation juridique. Les rapports historiques conservent leur date et leur portée d'origine. [Source originale](../../../superpowers/plans/2026-10-08-windows-controller.md)
+
 # Plan de mise en œuvre du contrôleur Windows
 
-[English (en-US)](../../../en-US/superpowers/plans/2026-10-08-windows-controller.md) | [Deutsch (de-DE)](../../../de-DE/superpowers/plans/2026-10-08-windows-controller.md) | [Français (fr-FR)](2026-10-08-windows-controller.md) | [Italiano (it-IT)](../../../it-IT/superpowers/plans/2026-10-08-windows-controller.md)
+[English (US)](2026-10-08-windows-controller.md) | [Deutsch](2026-10-08-windows-controller.md) | [Français](2026-10-08-windows-controller.md) | [Italiano](2026-10-08-windows-controller.md)
 
-> Pour les agents chargés du travail : utiliser des responsabilités parallèles et isolées ; l’utilisateur a explicitement demandé une mise en œuvre complète avec le nombre maximal de sous-agents utiles.
+> Pour les travailleurs agents : utilisez une propriété parallèle isolée ; l'utilisateur a explicitement demandé une implémentation complète avec un maximum de sous-agents utiles.
 
-**Objectif :** livrer le panneau natif de raccourcis Windows selon la conception approuvée.
-**Architecture :** configuration centrale et exécution annulable ; adaptateurs Windows ; application de bureau WPF.
-**Technologies :** .NET 10, WPF, Win32, JSON. Aucune dépendance payante.
-**Spécification :** ../specs/2026-10-08-windows-controller-design.md
+**Objectif : ** Fournir le panneau de raccourcis clavier natif Windows dans la conception approuvée.
+**Architecture :** Configuration de base et exécution annulable ; Adaptateurs Windows ; Composition de bureau WPF.
+**Tech Stack : ** .NET 10, WPF, Win32, JSON. Pas de dépendances payantes.
+**Spec:** ../specs/2026-10-08-windows-controller-design.md
 
-## Contraintes générales
-Interface en allemand ; stockage local ; Windows x64 ; état des capacités matérielles fidèle à la réalité ; aucune journalisation du clavier ; aucun démarrage automatique par défaut.
+## Contraintes mondiales
+Interface utilisateur allemande ; stockage local ; Windowsx64 ; état véridique des capacités matérielles ; pas de journalisation du clavier ; pas de démarrage automatique par défaut.
 
-## Points de vérification
-Les imports mal formés ne doivent pas remplacer les paramètres enregistrés ; les modificateurs maintenus ne doivent pas contaminer la sortie ; le débranchement d’un périphérique ne doit pas provoquer de plantage ; la fermeture doit préserver la disponibilité dans la zone de notification ; les macros annulées doivent libérer les ressources.
+## Objectif de l'examen
+Les importations mal formées ne doivent pas remplacer les paramètres enregistrés ; les modificateurs retenus ne doivent pas contaminer la sortie ; le matériel débranché ne doit pas planter ; la fermeture doit préserver la disponibilité des plateaux ; les macros annulées doivent libérer des ressources.
 
-## Tâches et responsabilités
-- [x] Agent Core : src/Aivana.Core et tests/Aivana.Tests. Modèles, persistance JSON, validation, sélection de profil et MacroRunner. Lancer les tests comportementaux en échec, implémenter, puis exécuter tous les tests du cœur.
-- [x] Agent Windows : src/Aivana.Windows. RegisterHotKey, inventaire des périphériques, SendInput, processus au premier plan et adaptateur facultatif d’éclairage Corsair. Vérifier les tailles des structures natives et le nettoyage de l’enregistrement avec des tests rapides sûrs.
-- [x] Agent GUI : src/Aivana.Desktop/MainWindow.xaml et .cs, ainsi que les seuls assistants d’interface. Tableau de bord sombre, éditeur complet, profils, périphériques, paramètres, vue clavier et éditeur de macros. Compiler lorsque les contrats existent.
-- [x] Parent : contrats partagés, fichiers de projet, composition DesktopController, cycle de vie de l’application et de la zone de notification, dialogues d’import/export, documentation, vérifications d’intégration, publication et test rapide de l’application lancée.
+## Tâches et propriété
+- [x] Agent principal : src/Aivana.Core et tests/Aivana.Tests. Modèles, persistance JSON, validation, sélection de profil et MacroRunner. Exécutez les tests comportementaux ayant échoué, puis implémentez et exécutez tous les tests de base.
+- [x] Agent Windows : src/Aivana.Windows. RegisterHotKey, inventaire des appareils, SendInput, processus de premier plan et adaptateur d'éclairage Corsair en option. Vérifiez les tailles de structure natives et le nettoyage des enregistrements avec des tests de fumée sécurisés.
+- [x] Agent GUI : src/Aivana.Desktop/MainWindow.xaml et .cs plus assistants d'interface utilisateur uniquement. Tableau de bord sombre, éditeur complet, profils, appareils, paramètres, aperçu du clavier et éditeur de macros. Construire une fois que les contrats existent.
+- [x] Parent : contrats partagés, fichiers de projet, composition de DesktopController, cycle de vie des applications/plateaux d'état, boîtes de dialogue d'importation/exportation, documentation, contrôles d'intégration, test de fumée de publication et d'exécution de l'application.
 
 ## Interfaces partagées
-Les contrats se trouvent dans Core/Models.cs. L’implémentation du contrôleur se trouve dans Desktop/DesktopController.cs. L’interface appelle les méthodes du contrôleur par cette classe concrète. Les agents reçoivent les signatures exactes dans leurs tâches. Chacun possède des fichiers distincts. Le parent résout les problèmes entre projets après la fin des agents.
+Les contrats résident dans Core/Models.cs. L’implémentation du contrôleur réside dans Desktop/DesktopController.cs. L'interface utilisateur appelle les méthodes du contrôleur via cette classe concrète. Les agents reçoivent des signatures exactes dans leurs tâches. Chacun possède des fichiers séparés. Le parent résout les échecs entre projets une fois que tous les agents ont terminé.
 
 ## Vérification et livraison
-- [x] dotnet build Aivana.slnx -c Release : aucune erreur.
-- [x] dotnet run --project tests/Aivana.Tests -c Release : vérifications comportementales réussies.
-- [x] dotnet publish src/Aivana.Desktop -c Release -r win-x64 --self-contained true -o artifacts/win-x64.
-- [x] Lancer l’exécutable publié, inspecter l’interface Windows et la stabilité du processus, puis vérifier un parcours sûr de profil, édition et persistance.
-- [x] Rédiger le README avec les instructions de compilation et de démarrage, ainsi que les limites matérielles ; consigner les vérifications et les tests matériels restant à effectuer.
+- [x] dotnet build Aivana.slnx -c Release : zéro erreur.
+- [x] dotnet run --project tests/Aivana.Tests -c Release : les vérifications comportementales réussissent.
+- [x] dotnet publier src/Aivana.Desktop -c Release -r win-x64 --self-contained true -oartefacts/win-x64.
+- [x] Lancez l'exécutable publié, inspectez l'interface utilisateur de Windows et la stabilité des processus, exercez un flux de profil/édition/persistance sécurisé.
+- [x] Écrivez un fichier README avec les instructions de construction/démarrage et les limitations matérielles ; les vérifications d'enregistrement et les tests restants uniquement sur le matériel.

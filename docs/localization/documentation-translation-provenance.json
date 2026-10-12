@@ -1,0 +1,38 @@
+{
+  "repo": "JustFrederik/m2m_100_418m_ct2_int8",
+  "revision": "1aeed44db4dd61a486bba44acf54c76507082a2c",
+  "upstream": "https://huggingface.co/facebook/m2m100_418M",
+  "license": "MIT",
+  "files": {
+    "config.json": {
+      "bytes": 158,
+      "sha256": "531f7f8d8bf8b73a1580b73c04b58bf134ac490284f4f7af6c20ad238499ae37"
+    },
+    "shared_vocabulary.txt": {
+      "bytes": 1159930,
+      "sha256": "bd440aa21b8ca3453fc792a0018a1f3fe68b3464aadddd4d16a4b72f73c86d8c"
+    },
+    "spm.128k.model": {
+      "bytes": 2423393,
+      "sha256": "d8f7c76ed2a5e0822be39f0a4f95a55eb19c78f4593ce609e2edbc2aea4d380a"
+    },
+    "README.md": {
+      "bytes": 1218,
+      "sha256": "f40ae40395c600985618b5dd658e61762dd236a95b89cc5fcddb07e021053ec2"
+    },
+    "model.bin": {
+      "bytes": 490667638,
+      "sha256": "6c8ef4e814a02d5947ab80710f93f3d4e776bf4b668ab3bb7996ff050b69d111"
+    }
+  },
+  "scope": "Build-only documentation translation; not an app dependency or recommended meeting model",
+  "onlineProvider": "Google public translation endpoint, as used by existing localization tooling",
+  "localTools": {
+    "ctranslate2": "4.8.2",
+    "sentencepiece": "0.2.2",
+    "nvidia-cublas-cu12": "12.9.2.10 (optional isolated tooling)",
+    "nvidia-cuda-nvrtc-cu12": "12.9.86 (optional isolated tooling)"
+  },
+  "approval": "Machine-assisted drafts; no native-speaker or legal approval",
+  "localCompute": "CPU int8 initially; CUDA float16 for the remaining translations"
+}

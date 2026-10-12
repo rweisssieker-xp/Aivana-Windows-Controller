@@ -1,21 +1,25 @@
-# OBS-Studio-Integration
+<!-- generated-doc locale=de-DE source=docs/research/obs-integration.md sha256=a4e6ca4368b28daa73ffbdda4fb817863e3fa15d52da00d26bbd32ce1f05f9b7 -->
 
-[English (US)](../../en-US/research/obs-integration.md) · [Deutsch](../../de-DE/research/obs-integration.md) · [Français](../../fr-FR/research/obs-integration.md) · [Italiano](../../it-IT/research/obs-integration.md)
+> Maschinell unterstützte Übersetzung. Struktur, Codebeispiele und Links werden geprüft; eine muttersprachliche oder juristische Abnahme ist damit nicht verbunden. Historische Berichte behalten ihr ursprüngliches Datum und ihren damaligen Umfang. [Originalquelle](../../research/obs-integration.md)
 
-Aivana verwendet das OBS-Studio-Protokoll obs-websocket v5 über ClientWebSocket und installiert keine OBS-Clientbibliothek eines Drittanbieters. Der Protokollablauf beginnt mit Hello vom Server (Opcode 0). Darauf antwortet der Client mit Identify (Opcode 1), wartet auf Identified (Opcode 2), sendet eine freigegebene Anfrage (Opcode 6) und ordnet die RequestResponse (Opcode 7) anhand der Request-ID zu. Die Passwortauthentifizierung folgt der von OBS dokumentierten zweistufigen SHA-256-Challenge-Berechnung.
+# OBS Studio-Integration
 
-Aktiviere in OBS **Werkzeuge → WebSocket-Servereinstellungen**. Der Standardendpunkt lautet **ws://127.0.0.1:4455**. Trage für einen anderen Endpunkt im Feld **OBS-WebSocket-Adresse** der Aktion den gewünschten Wert ein. Ein entfernter Endpunkt muss wss:// verwenden; unverschlüsseltes ws:// wird nur für eine Loopback-Adresse akzeptiert. Der Endpunkt kann außerdem einen Pfad oder einen benutzerdefinierten Port enthalten. Aivana lehnt Zugangsdaten ab, die in der URL eingebettet sind.
+[English (US)](obs-integration.md) | [Deutsch](obs-integration.md) | [Français](obs-integration.md) | [Italiano](obs-integration.md)
 
-Wenn die OBS-Authentifizierung aktiviert ist, speichere das Passwort im OBS-Aktionseditor. Aivana legt es im Anmeldeinformations-Manager des aktuellen Windows-Benutzers als generische Anmeldeinformation mit dem Namen **Aivana.OBS:<normalisierter Endpunkt>** ab. Es wird nie in einer Aktion oder Einstellungsdatei gespeichert. Für verwaltete Installationen steht **AIVANA_OBS_PASSWORD** als Rückfalloption bereit, wenn für den Endpunkt kein Passwort gespeichert ist. OBS kann auch ohne Authentifizierung betrieben werden; dann wird keines der beiden Verfahren benötigt. Vermeide Passwortargumente in der Befehlszeile, da Prozessbefehlszeilen einsehbar sein können.
+Aivana verwendet das Protokoll OBS Studio obs-websocket v5 über ClientWebSocket; Es wird keine OBS-Clientbibliothek eines Drittanbieters installiert. Das Protokoll öffnet sich mit Server Hello (Opcode 0), antwortet mit Identify (Opcode 1), wartet auf Identified (Opcode 2), sendet eine Whitelist-Anfrage (Opcode 6) und ordnet dann seine RequestResponse (Opcode 7) der Anforderungs-ID zu. Die Passwortauthentifizierung folgt der dokumentierten zweistufigen SHA-256-Challenge-Berechnung von OBS.
 
-Der Controllerkatalog und die Konfiguration unterstützen **StartRecord**, **StopRecord**, **ToggleRecord**, **PauseRecord**, **ResumeRecord**, **StartStream**, **StopStream**, **ToggleStream**, **SetCurrentProgramScene** und **ToggleInputMute**. Die ersten acht benötigen keine Argumente. SetCurrentProgramScene verwendet den im Editor eingegebenen Szenennamen; ToggleInputMute den dort eingegebenen Eingabenamen. Der Protokollclient akzeptiert dieselbe Freigabeliste.
+Aktivieren Sie **Tools → WebSocket Server Settings** in OBS. Der Standardendpunkt ist **ws://127.0.0.1:4455**. Legen Sie das Feld **OBS-WebSocket-Adresse** der Aktion für einen anderen Endpunkt fest. Ein Remote-Endpunkt muss wss:// verwenden; unverschlüsseltes ws:// wird nur für eine Loopback-Adresse akzeptiert. Der Endpunkt kann auch einen Pfad oder einen benutzerdefinierten Port enthalten. Aivana lehnt eingebettete URL-Anmeldeinformationen ab.
 
-Jede Aktion öffnet eine neue Verbindung mit einem Zeitlimit von 10 Sekunden und ohne automatische Wiederholung. Das ist bei Umschaltbefehlen wichtig: Nach dem Senden einer Anfrage kann ein Timeout oder ein Verbindungsabbruch zu einem unbekannten Ergebnis führen. Eine Wiederholung könnte den Zustand ein zweites Mal umschalten. OBS-Anfragefehler werden mit Statuscode und, sofern vorhanden, Serverkommentar zurückgegeben.
+Wenn für OBS die Authentifizierung aktiviert ist, speichern Sie das Kennwort im Aktionseditor OBS. Aivana speichert es im Anmeldeinformations-Manager des aktuellen Windows-Benutzers als generische Anmeldeinformationen mit dem Namen **Aivana.OBS:<normalisierter Endpunkt>**. Es wird niemals in eine Aktions- oder Einstellungsdatei geschrieben. Für verwaltete Bereitstellungen bleibt **AIVANA_OBS_PASSWORD** als Fallback verfügbar, wenn der Endpunkt kein gespeichertes Passwort hat. OBS bleibt möglicherweise nicht authentifiziert. In diesem Fall ist keines von beidem erforderlich. Vermeiden Sie Befehlszeilenargumente für das Kennwort, da Prozessbefehlszeilen überprüft werden können.
+
+Der Controller-Katalog und die Konfiguration unterstützen **StartRecord**, **StopRecord**, **ToggleRecord**, **PauseRecord**, **ResumeRecord**, **StartStream**, **StopStream**, **ToggleStream**, **SetCurrentProgramScene** und **ToggleInputMute**. Die ersten acht akzeptieren keine Argumente. SetCurrentProgramScene verwendet den Szenennamen des Editors; ToggleInputMute verwendet seinen Eingabenamen. Der Protokoll-Client akzeptiert dieselbe Zulassungsliste.
+
+Jede Aktion erhält eine neue Verbindung mit einer 10-Sekunden-Grenze und ohne automatischen Wiederholungsversuch. Dies ist für Umschaltbefehle wichtig: Nachdem die Anfrage gesendet wurde, kann eine Zeitüberschreitung oder eine unterbrochene Verbindung dazu führen, dass das Ergebnis unbekannt bleibt, und ein erneuter Versuch könnte den Status erneut umschalten. OBS-Anforderungsfehler werden mit ihrem Statuscode und (falls angegeben) einem Serverkommentar zurückgegeben.
 
 Protokollreferenzen:
 
-- [OBS-WebSocket-v5-Protokollspezifikation](https://github.com/obsproject/obs-websocket/blob/master/docs/generated/protocol.md)
-- [OBS-WebSocket-Authentifizierungsformel und Nachrichten-Opcodes](https://github.com/obsproject/obs-websocket/blob/master/docs/generated/protocol.md#creating-an-authentication-string)
-- [Implementierung der OBS-WebSocket-Medieneingabeanfrage und zulässige Aktions-Enumwerte](https://github.com/obsproject/obs-websocket/blob/master/src/requesthandler/RequestHandler_MediaInputs.cpp)
+- [OBS WebSocket V5 Protokoll Spezifikation](https://github.com/obsproject/obs-websocket/blob/master/docs/generated/protocol.md)
+- [OBS WebSocket Authentifizierung Formel und Nachricht Opcodes](https://github.com/obsproject/obs-websocket/blob/master/docs/generated/protocol.md#creating-an-authentication-string)
+- [OBS WebSocket Verpflichtung zur Umsetzung von Medieninträgen und akzeptierte Aktionswerte](https://github.com/obsproject/obs-websocket/blob/master/src/requesthandler/RequestHandler_MediaInputs.cpp)
 
-Die Protokollhinweise und Operationsnamen wurden am 8. Oktober 2026 mit der Dokumentation des OBS-Projekts abgeglichen.
+Die Protokollnotizen und Operationsnamen wurden anhand der Projektdokumentation OBS auf 2026-10-08 überprüft.

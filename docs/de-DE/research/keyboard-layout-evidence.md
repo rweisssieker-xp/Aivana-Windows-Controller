@@ -1,7 +1,10 @@
+<!-- generated-doc locale=de-DE source=docs/research/keyboard-layout-evidence.md sha256=701a4b190fd53a45f235635f8eef535f84affd64e6389c9ccdaf2e3cfec1391a -->
+
+> Maschinell unterstützte Übersetzung. Struktur, Codebeispiele und Links werden geprüft; eine muttersprachliche oder juristische Abnahme ist damit nicht verbunden. Historische Berichte behalten ihr ursprüngliches Datum und ihren damaligen Umfang. [Originalquelle](../../research/keyboard-layout-evidence.md)
+
 # Physische Layouts und Varianten: Stream-Deck-artige Tastaturkontrollen
 
-[English (US)](../../en-US/research/keyboard-layout-evidence.md) · [Deutsch](../../de-DE/research/keyboard-layout-evidence.md) · [Français](../../fr-FR/research/keyboard-layout-evidence.md) · [Italiano](../../it-IT/research/keyboard-layout-evidence.md)
-
+[English (US)](keyboard-layout-evidence.md) | [Deutsch](keyboard-layout-evidence.md) | [Français](keyboard-layout-evidence.md) | [Italiano](keyboard-layout-evidence.md)
 
 Recherche: 08.10.2026. Dieses Blatt dokumentiert Varianten, die für eine gerätegetreue Windows-Oberfläche relevant sind. Die Produktseiten belegen, dass ein Layout oder Modul existiert; sie ersetzen kein gerätespezifisches, maßstäbliches Bild. Keine Positionskoordinaten oder Tastenformen ergänzen, wenn die gewählte SKU-/Regionsabbildung sie nicht belegt.
 
@@ -28,4 +31,3 @@ Normquellen: [Microsoft USB_DEVICE_DESCRIPTOR](https://learn.microsoft.com/en-us
 - Bei GALLEON muss die 12er-LCD-Steuerfläche im eigenen Bereich dargestellt werden; die UK-/US-/JP-Tastenanzahl unterscheidet sich laut Corsair QSG. Screen-Tasten sind keine 12 zusätzlichen normalen alphanumerischen HID-Tasten.
 - Bei Dark Mount und Everest Max kann das Numpad die Seite wechseln. Ein Screenshot oder Schema muss die gewählte Seite zeigen und darf die abnehmbare Media Dock-/Numpad-Position nicht als unveränderliche Standardgeometrie vortäuschen.
 - Für K100 wird das linke G-Key-Bank- und obere Medien-Steuercluster als modellbezogen belegt; nur die Haupttastenfläche folgt der ANSI-/ISO-Variante. Das verhindert, dass eine generische ISO-Zeichnung versehentlich die falsche Enter-Form oder eine fehlende Zusatzkey neben Left Shift zeigt.
-

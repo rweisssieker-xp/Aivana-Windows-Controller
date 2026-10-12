@@ -1,3 +1,7 @@
+<!-- generated-doc locale=en-US source=docs/superpowers/plans/2026-10-12-controller-usps.md sha256=b7af0d36209e04b458ce64a5db78ab7e552a84c5e9b450ea0bd97179a4eb7f68 -->
+
+> Machine-assisted translation. Structure, code and links are checked; native-speaker and legal review are not implied. Historical reports retain their original dates and scope. [Original source](../../../superpowers/plans/2026-10-12-controller-usps.md)
+
 # Controller extension implementation plan
 
 **Goal:** Implement the requested monitor, gesture, workflow, recording, device diagnosis, portable profile exchange and tray improvements.

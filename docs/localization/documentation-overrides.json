@@ -1,0 +1,175 @@
+{
+  "de-DE": {
+    "Machine-assisted translation. Structure, code and links are checked; native-speaker and legal review are not implied. Historical reports retain their original dates and scope.": "Maschinell unterstützte Übersetzung. Struktur, Codebeispiele und Links werden geprüft; eine muttersprachliche oder juristische Abnahme ist damit nicht verbunden. Historische Berichte behalten ihr ursprüngliches Datum und ihren damaligen Umfang.",
+    "User handbook": "Benutzerhandbuch",
+    "Detailed action reference": "Ausführliche Funktionsreferenz",
+    "Feature inventory and limitations": "Funktionsübersicht und Einschränkungen",
+    "Manufacturer research": "Herstellerrecherche",
+    "Verification and test reports": "Prüfungen und Testberichte",
+    "Historical development plans": "Historische Entwicklungspläne",
+    "Licensing and distribution": "Lizenzierung und Vertrieb",
+    "Build and documentation checks": "Build- und Dokumentationsprüfung",
+    "Documentation snapshot": "Dokumentationsstand",
+    "Original source": "Originalquelle",
+    "MAKRIVO user handbook": "MAKRIVO – Benutzerhandbuch",
+    "Installation and first launch": "Installation und erster Start",
+    "Tiles, actions and the command palette": "Kacheln, Aktionen und Befehlspalette",
+    "Profiles and workplace setup": "Profile und Arbeitsplatz-Assistent",
+    "Macros, conditions and recording": "Makros, Bedingungen und Aufnahme",
+    "Keyboards, gestures and layers": "Tastaturen, Gesten und Ebenen",
+    "Result verification and execution history": "Ergebnisprüfung und Ausführungsverlauf",
+    "UI automation and click recording": "UI-Automation und Klickaufnahme",
+    "Local AI meeting assistant": "Lokaler KI-Besprechungsassistent",
+    "Import, export, synchronization and backup": "Import, Export, Synchronisierung und Sicherung",
+    "Troubleshooting": "Fehlerhilfe",
+    "Building, testing and packaging": "Build, Tests und Paketerstellung",
+    "Licensing, privacy and release status": "Lizenzierung, Datenschutz und Freigabestand",
+    "Manufacturer: **Aivana**. Documentation snapshot: **2026-10-12**. This handbook describes the current working-tree implementation. Experimental integrations and hardware-dependent functions are identified explicitly. Historical reports describe their dated snapshot, not a guarantee for a newer build.": "Hersteller: **Aivana**. Dokumentationsstand: **2026-10-12**. Dieses Handbuch beschreibt die Implementierung in der aktuellen Arbeitskopie. Experimentelle Integrationen und hardwareabhängige Funktionen sind ausdrücklich gekennzeichnet. Historische Berichte gelten für den jeweils beschriebenen Stand und sind keine Garantie für neuere Builds.",
+    "Standard global hotkeys apply across keyboards. Device-specific Raw Input bindings observe a particular device and scan code, including supported function and media keys. **Raw Input does not suppress ordinary Windows input. An exclusive second keyboard is not production-ready.** A signed, licensed and tested filter-driver backend is still required; none is installed by MAKRIVO.": "Normale globale Hotkeys gelten für alle Tastaturen. Gerätespezifische Raw-Input-Zuordnungen erkennen ein bestimmtes Gerät und dessen Scan-Code, einschließlich unterstützter Funktions- und Medientasten. **Raw Input unterdrückt die normale Windows-Eingabe nicht. Eine exklusive Zweittastatur ist noch nicht produktionsreif.** Dafür fehlt ein signierter, lizenzierter und geprüfter Filtertreiber. MAKRIVO installiert keinen solchen Treiber.",
+    "Actions launched from the UI can target the last external application. If the target disappears or Windows blocks foreground activation, manually activate the target and retry. Successful key delivery does not prove that the target completed its task.": "Über die Oberfläche gestartete Aktionen können sich an die zuletzt aktive externe Anwendung richten. Wenn das Ziel geschlossen wurde oder Windows den Vordergrundwechsel blockiert, aktiviere das Zielfenster manuell und versuche es erneut. Die erfolgreiche Zustellung eines Tastendrucks belegt nicht, dass die Zielanwendung ihre Aufgabe erledigt hat.",
+    "Maintaining all documentation languages": "Pflege aller Dokumentationssprachen",
+    "The documentation inventory follows all 27 UI languages. The generated folders use regional codes; Norwegian maps to `nb-NO` and Serbian Latin to `sr-Latn`. Each folder contains an index, handbook, detailed action reference, feature inventory, verification notes, research including its CSV, historical plans and licensing analysis.": "Die Dokumentation umfasst alle 27 Sprachen der Oberfläche. Die erzeugten Ordner verwenden regionale Sprachcodes; Norwegisch erhält `nb-NO`, Serbisch in lateinischer Schrift `sr-Latn`. Jeder Ordner enthält einen Index, das Handbuch, die ausführliche Funktionsreferenz, die Funktionsübersicht, Prüfnachweise, Recherchen einschließlich CSV, historische Pläne und Lizenzanalysen.",
+    "Source of truth": "Maßgebliche Quellen",
+    "Edit the root `README.md`, `docs/HANDBOOK.md`, `docs/FEATURES.md`, `docs/VERIFICATION.md`, this page, or the original files under `docs/research`, `docs/testing`, `docs/superpowers` and `docs/licensing`. Do not rewrite a historical report to imply it validates a later version. Keep implementation, simulation, real-device acceptance and commercial approval distinct.": "Bearbeite die zentrale `README.md`, `docs/HANDBOOK.md`, `docs/FEATURES.md`, `docs/VERIFICATION.md`, diese Seite oder die Originaldateien unter `docs/research`, `docs/testing`, `docs/superpowers` und `docs/licensing`. Historische Berichte dürfen nicht nachträglich als Prüfung einer neueren Version dargestellt werden. Unterscheide Implementierung, Simulation, echte Geräteabnahme und kommerzielle Freigabe.",
+    "Generate and validate": "Erzeugen und prüfen",
+    "The optional online generator sends documentation prose to Google's public translation endpoint, following the existing localization tooling. It does not read user configuration, secrets or model files. Only run it on documentation suitable for that service. Code blocks, inline code, URLs, table structure and technical identifiers are protected. Translation caches and a frozen source snapshot are stored under ignored `artifacts/documentation-translation`.": "Der optionale Online-Generator sendet Dokumentationstexte an den öffentlichen Übersetzungsendpunkt von Google, wie die vorhandenen Lokalisierungswerkzeuge. Er liest keine Benutzerkonfiguration, Geheimnisse oder Modelldateien. Verwende ihn nur für Texte, die an diesen Dienst übermittelt werden dürfen. Codeblöcke, Inline-Code, URLs, Tabellenstruktur und technische Kennungen sind geschützt. Übersetzungscache und eingefrorener Quellenstand liegen im ignorierten Verzeichnis `artifacts/documentation-translation`.",
+    "Without `--refresh-sources`, a run resumes its frozen snapshot. Use the refresh option after editing originals. Cached segments are reused. A partial run can select locale codes using `--locales`; finish all locales before publishing. Interrupted runs do not silently substitute untranslated prose for a failed translation.": "Ohne `--refresh-sources` setzt ein Lauf den eingefrorenen Quellenstand fort. Verwende die Aktualisierungsoption nach Änderungen an Originalen. Vorhandene Übersetzungen werden wiederverwendet. Mit `--locales` lassen sich einzelne Sprachen auswählen; vor der Veröffentlichung müssen alle Sprachen fertig sein. Bei Übersetzungsfehlern werden fehlende Texte nicht stillschweigend durch unübersetzte Originale ersetzt.",
+    "Publication and packages": "Veröffentlichung und Pakete",
+    "Publish the documentation, generator and checker together. Preserve original third-party license terms; translated license analysis is informational. Build artifacts, translation cache and local orchestration files do not belong in Git. A source-documentation release does not itself publish a Windows installer.": "Veröffentliche Dokumentation, Generator und Prüfer gemeinsam. Bewahre die ursprünglichen Lizenzbedingungen Dritter; übersetzte Lizenzanalysen dienen nur der Information. Build-Ergebnisse, Übersetzungscache und lokale Orchestrierungsdateien gehören nicht in Git. Eine Veröffentlichung der Quelldokumentation veröffentlicht noch keinen Windows-Installer.",
+    "User-facing app translations are separate JSON catalogs under `src/Aivana.Core/Localization`. Documentation generation does not modify those catalogs. An app build and its documentation should share a versioned snapshot; newly described experimental runtime support may precede an installed package.": "Die App-Übersetzungen liegen getrennt als JSON-Kataloge unter `src/Aivana.Core/Localization`. Die Dokumentationserstellung verändert diese Kataloge nicht. App-Build und Dokumentation sollten denselben versionierten Stand beschreiben; neu dokumentierte experimentelle Laufzeitunterstützung kann einem installierten Paket voraus sein.",
+    "Maintaining the documentation": "Dokumentation pflegen",
+    "When the online provider is rate limited, `tools/translate_documentation_local.py` fills the same cache using an explicitly supplied local M2M100 CTranslate2 model. The 2026-10-12 snapshot uses the MIT-licensed facebook/m2m100_418M model, converted as JustFrederik/m2m_100_418m_ct2_int8 at revision `1aeed44db4dd61a486bba44acf54c76507082a2c`. CTranslate2 4.8.2 and `SentencePiece` 0.2.2 are build-only tools. No model weights or translation dependencies are shipped with MAKRIVO. Run the generator with `--cache-only` after filling the cache to render without network requests. The local helper does not download or execute remote model code.": "Wenn der Online-Anbieter Anfragen begrenzt, füllt `tools/translate_documentation_local.py` denselben Cache mit einem ausdrücklich bereitgestellten lokalen M2M100-CTranslate2-Modell. Der Stand vom 2026-10-12 verwendet das MIT-lizenzierte Modell facebook/m2m100_418M, konvertiert als JustFrederik/m2m_100_418m_ct2_int8 in Revision `1aeed44db4dd61a486bba44acf54c76507082a2c`. CTranslate2 4.8.2 und `SentencePiece` 0.2.2 dienen nur der Dokumentationserstellung. MAKRIVO enthält keine Gewichte oder Abhängigkeiten dieses Übersetzungsmodells. Nach dem Füllen des Caches erzeugt der Generator mit `--cache-only` die Dateien ohne Netzwerkanfragen. Das lokale Hilfsprogramm lädt keinen entfernten Modellcode herunter und führt solchen Code nicht aus.",
+    "Add a UI Automation step, select the operation and capture the target under the pointer after the displayed delay. Capture alone executes nothing. Check the selector and require a unique match. Supported operations include `Invoke`, `Select`, `Toggle`, `Focus`, `SetValue` and `WaitState`. Password fields, disabled controls and ambiguous selectors are rejected.": "Füge einen Schritt für die UI-Automation hinzu, wähle die Operation und erfasse das Ziel unter dem Mauszeiger nach der angezeigten Verzögerung. Die Erfassung allein führt keine Aktion aus. Prüfe den Selektor und verlange einen eindeutigen Treffer. Unterstützte Operationen sind `Invoke`, `Select`, `Toggle`, `Focus`, `SetValue` und `WaitState`. Passwortfelder, deaktivierte Bedienelemente und mehrdeutige Selektoren werden abgewiesen.",
+    "The manifest records every source and generated file with SHA-256 fingerprints of normalized UTF-8 text: LF line endings and no byte-order mark. The offline checker verifies complete per-language coverage, fingerprints, local links, code examples, table/CSV structure, source URLs and unreplaced placeholders. It rejects stale sources. A passing structural check is not a native-speaker review or legal approval. Generated pages carry this qualification visibly.": "Das Manifest erfasst jede Quell- und Zieldatei mit SHA-256-Prüfsummen des normalisierten UTF-8-Textes: LF-Zeilenenden, keine Byte-Order-Markierung. Der Offline-Prüfer kontrolliert die vollständige Abdeckung jeder Sprache, Prüfsummen, lokale Links, Codebeispiele, Tabellen- und CSV-Struktur, Quellen-URLs und nicht aufgelöste Platzhalter. Veraltete Quellenstände werden zurückgewiesen. Eine erfolgreiche Strukturprüfung ersetzt keine muttersprachliche oder juristische Prüfung. Dieser Hinweis steht sichtbar auf den erzeugten Seiten.",
+    "Full user handbook": "Vollständiges Benutzerhandbuch",
+    "**By Aivana.**": "**Von Aivana.**",
+    "Current feature inventory and release limitations": "Aktuelle Funktionsübersicht und Freigabegrenzen",
+    "Local AI assistant prototype": "Prototyp des lokalen KI-Assistenten",
+    "Extension test report": "Testbericht zu den Erweiterungen"
+  },
+  "fr-FR": {
+    "Machine-assisted translation. Structure, code and links are checked; native-speaker and legal review are not implied. Historical reports retain their original dates and scope.": "Traduction assistée par machine. La structure, les exemples de code et les liens sont vérifiés ; cela ne constitue ni une révision par un locuteur natif ni une validation juridique. Les rapports historiques conservent leur date et leur portée d'origine.",
+    "MAKRIVO user handbook": "MAKRIVO — Manuel d’utilisation",
+    "User handbook": "Manuel d’utilisation"
+  },
+  "it-IT": {
+    "Machine-assisted translation. Structure, code and links are checked; native-speaker and legal review are not implied. Historical reports retain their original dates and scope.": "Traduzione assistita automaticamente. Struttura, esempi di codice e collegamenti vengono verificati; ciò non costituisce una revisione madrelingua o una convalida legale. I rapporti storici conservano le date e l'ambito originali.",
+    "MAKRIVO user handbook": "MAKRIVO — Manuale utente",
+    "User handbook": "Manuale utente"
+  },
+  "es-ES": {
+    "Machine-assisted translation. Structure, code and links are checked; native-speaker and legal review are not implied. Historical reports retain their original dates and scope.": "Traducción asistida por máquina. Se comprueban la estructura, los ejemplos de código y los enlaces; esto no constituye una revisión por hablantes nativos ni una aprobación jurídica. Los informes históricos conservan sus fechas y alcance originales.",
+    "MAKRIVO user handbook": "MAKRIVO — Manual de usuario",
+    "User handbook": "Manual de usuario"
+  },
+  "pt-PT": {
+    "Machine-assisted translation. Structure, code and links are checked; native-speaker and legal review are not implied. Historical reports retain their original dates and scope.": "Tradução assistida por máquina. A estrutura, os exemplos de código e as ligações são verificados; isto não constitui revisão por um falante nativo nem aprovação jurídica. Os relatórios históricos mantêm as datas e o âmbito originais.",
+    "MAKRIVO user handbook": "MAKRIVO — Manual do utilizador",
+    "User handbook": "Manual do utilizador"
+  },
+  "nl-NL": {
+    "Machine-assisted translation. Structure, code and links are checked; native-speaker and legal review are not implied. Historical reports retain their original dates and scope.": "Machinaal ondersteunde vertaling. Structuur, codevoorbeelden en links worden gecontroleerd; dit is geen taalkundige controle door een moedertaalspreker of juridische goedkeuring. Historische rapporten behouden hun oorspronkelijke datum en reikwijdte.",
+    "MAKRIVO user handbook": "MAKRIVO — Gebruikershandleiding",
+    "User handbook": "Gebruikershandleiding"
+  },
+  "pl-PL": {
+    "Machine-assisted translation. Structure, code and links are checked; native-speaker and legal review are not implied. Historical reports retain their original dates and scope.": "Tłumaczenie wspomagane maszynowo. Struktura, przykłady kodu i linki są sprawdzane; nie oznacza to weryfikacji przez rodzimego użytkownika języka ani zatwierdzenia prawnego. Raporty historyczne zachowują pierwotne daty i zakres.",
+    "MAKRIVO user handbook": "MAKRIVO — Podręcznik użytkownika",
+    "User handbook": "Podręcznik użytkownika"
+  },
+  "cs-CZ": {
+    "Machine-assisted translation. Structure, code and links are checked; native-speaker and legal review are not implied. Historical reports retain their original dates and scope.": "Strojově podporovaný překlad. Struktura, příklady kódu a odkazy jsou kontrolovány; nejde o kontrolu rodilým mluvčím ani o právní schválení. Historické zprávy zachovávají původní data a rozsah.",
+    "MAKRIVO user handbook": "MAKRIVO — Uživatelská příručka",
+    "User handbook": "Uživatelská příručka"
+  },
+  "sk-SK": {
+    "Machine-assisted translation. Structure, code and links are checked; native-speaker and legal review are not implied. Historical reports retain their original dates and scope.": "Strojovo podporovaný preklad. Štruktúra, príklady kódu a odkazy sa kontrolujú; nejde o kontrolu rodeným hovoriacim ani o právne schválenie. Historické správy si zachovávajú pôvodné dátumy a rozsah.",
+    "MAKRIVO user handbook": "MAKRIVO — Používateľská príručka",
+    "User handbook": "Používateľská príručka"
+  },
+  "hu-HU": {
+    "Machine-assisted translation. Structure, code and links are checked; native-speaker and legal review are not implied. Historical reports retain their original dates and scope.": "Gépi fordítással készült dokumentáció. A szerkezetet, kódpéldákat és hivatkozásokat ellenőrizzük; ez nem jelent anyanyelvi lektorálást vagy jogi jóváhagyást. A korábbi jelentések megőrzik eredeti dátumukat és hatókörüket.",
+    "MAKRIVO user handbook": "MAKRIVO — Felhasználói kézikönyv",
+    "User handbook": "Felhasználói kézikönyv"
+  },
+  "ro-RO": {
+    "Machine-assisted translation. Structure, code and links are checked; native-speaker and legal review are not implied. Historical reports retain their original dates and scope.": "Traducere asistată automat. Structura, exemplele de cod și linkurile sunt verificate; aceasta nu reprezintă o revizuire de către un vorbitor nativ sau o aprobare juridică. Rapoartele istorice își păstrează datele și domeniul inițial.",
+    "MAKRIVO user handbook": "MAKRIVO — Manual de utilizare",
+    "User handbook": "Manual de utilizare"
+  },
+  "bg-BG": {
+    "Machine-assisted translation. Structure, code and links are checked; native-speaker and legal review are not implied. Historical reports retain their original dates and scope.": "Машинно подпомогнат превод. Структурата, примерите за код и връзките се проверяват; това не означава проверка от носител на езика или правно одобрение. Историческите доклади запазват първоначалните си дати и обхват.",
+    "MAKRIVO user handbook": "MAKRIVO — Ръководство за потребителя",
+    "User handbook": "Ръководство за потребителя"
+  },
+  "el-GR": {
+    "Machine-assisted translation. Structure, code and links are checked; native-speaker and legal review are not implied. Historical reports retain their original dates and scope.": "Μετάφραση με μηχανική υποβοήθηση. Η δομή, τα παραδείγματα κώδικα και οι σύνδεσμοι ελέγχονται· αυτό δεν αποτελεί έλεγχο από φυσικό ομιλητή ή νομική έγκριση. Οι ιστορικές αναφορές διατηρούν τις αρχικές ημερομηνίες και το πεδίο τους.",
+    "MAKRIVO user handbook": "MAKRIVO — Εγχειρίδιο χρήσης",
+    "User handbook": "Εγχειρίδιο χρήσης"
+  },
+  "da-DK": {
+    "Machine-assisted translation. Structure, code and links are checked; native-speaker and legal review are not implied. Historical reports retain their original dates and scope.": "Maskinassisteret oversættelse. Struktur, kodeeksempler og links kontrolleres; dette er ikke en gennemgang af en modersmålstalende eller en juridisk godkendelse. Historiske rapporter bevarer deres oprindelige datoer og omfang.",
+    "MAKRIVO user handbook": "MAKRIVO — Brugervejledning",
+    "User handbook": "Brugervejledning"
+  },
+  "sv-SE": {
+    "Machine-assisted translation. Structure, code and links are checked; native-speaker and legal review are not implied. Historical reports retain their original dates and scope.": "Maskinassisterad översättning. Struktur, kodexempel och länkar kontrolleras; detta innebär inte granskning av en modersmålstalare eller juridiskt godkännande. Historiska rapporter behåller sina ursprungliga datum och omfattning.",
+    "MAKRIVO user handbook": "MAKRIVO — Användarhandbok",
+    "User handbook": "Användarhandbok"
+  },
+  "nb-NO": {
+    "Machine-assisted translation. Structure, code and links are checked; native-speaker and legal review are not implied. Historical reports retain their original dates and scope.": "Maskinassistert oversettelse. Struktur, kodeeksempler og lenker kontrolleres; dette innebærer ikke gjennomgang av en morsmålsbruker eller juridisk godkjenning. Historiske rapporter beholder sine opprinnelige datoer og omfang.",
+    "MAKRIVO user handbook": "MAKRIVO — Brukerhåndbok",
+    "User handbook": "Brukerhåndbok"
+  },
+  "fi-FI": {
+    "Machine-assisted translation. Structure, code and links are checked; native-speaker and legal review are not implied. Historical reports retain their original dates and scope.": "Koneavusteinen käännös. Rakenne, koodiesimerkit ja linkit tarkistetaan; tämä ei tarkoita äidinkielisen tarkistajan arviota tai oikeudellista hyväksyntää. Historialliset raportit säilyttävät alkuperäiset päivämääränsä ja rajauksensa.",
+    "MAKRIVO user handbook": "MAKRIVO — Käyttöopas",
+    "User handbook": "Käyttöopas"
+  },
+  "et-EE": {
+    "Machine-assisted translation. Structure, code and links are checked; native-speaker and legal review are not implied. Historical reports retain their original dates and scope.": "Masintõlke abil koostatud dokumentatsioon. Struktuuri, koodinäiteid ja linke kontrollitakse; see ei tähenda emakeelse toimetaja kontrolli ega õiguslikku heakskiitu. Ajaloolised aruanded säilitavad algsed kuupäevad ja ulatuse.",
+    "MAKRIVO user handbook": "MAKRIVO — Kasutusjuhend",
+    "User handbook": "Kasutusjuhend"
+  },
+  "lv-LV": {
+    "Machine-assisted translation. Structure, code and links are checked; native-speaker and legal review are not implied. Historical reports retain their original dates and scope.": "Mašīntulkošanas atbalstīts tulkojums. Struktūra, koda piemēri un saites tiek pārbaudītas; tas nenozīmē dzimtās valodas lietotāja pārbaudi vai juridisku apstiprinājumu. Vēsturiskie pārskati saglabā sākotnējos datumus un tvērumu.",
+    "MAKRIVO user handbook": "MAKRIVO — Lietotāja rokasgrāmata",
+    "User handbook": "Lietotāja rokasgrāmata"
+  },
+  "lt-LT": {
+    "Machine-assisted translation. Structure, code and links are checked; native-speaker and legal review are not implied. Historical reports retain their original dates and scope.": "Mašininio vertimo pagalba parengtas vertimas. Tikrinama struktūra, kodo pavyzdžiai ir nuorodos; tai nereiškia gimtakalbio peržiūros ar teisinio patvirtinimo. Istorinės ataskaitos išlaiko pradines datas ir apimtį.",
+    "MAKRIVO user handbook": "MAKRIVO — Naudotojo vadovas",
+    "User handbook": "Naudotojo vadovas"
+  },
+  "sl-SI": {
+    "Machine-assisted translation. Structure, code and links are checked; native-speaker and legal review are not implied. Historical reports retain their original dates and scope.": "Strojno podprt prevod. Struktura, primeri kode in povezave se preverjajo; to ne pomeni pregleda maternega govorca ali pravne odobritve. Zgodovinska poročila ohranijo izvirne datume in obseg.",
+    "MAKRIVO user handbook": "MAKRIVO — Uporabniški priročnik",
+    "User handbook": "Uporabniški priročnik"
+  },
+  "hr-HR": {
+    "Machine-assisted translation. Structure, code and links are checked; native-speaker and legal review are not implied. Historical reports retain their original dates and scope.": "Strojno potpomognut prijevod. Struktura, primjeri koda i poveznice provjeravaju se; to ne znači pregled izvornog govornika ili pravno odobrenje. Povijesna izvješća zadržavaju izvorne datume i opseg.",
+    "MAKRIVO user handbook": "MAKRIVO — Korisnički priručnik",
+    "User handbook": "Korisnički priručnik"
+  },
+  "uk-UA": {
+    "Machine-assisted translation. Structure, code and links are checked; native-speaker and legal review are not implied. Historical reports retain their original dates and scope.": "Переклад за допомогою машинних засобів. Структура, приклади коду та посилання перевіряються; це не означає перевірки носієм мови або юридичного схвалення. Історичні звіти зберігають початкові дати та обсяг.",
+    "MAKRIVO user handbook": "MAKRIVO — Посібник користувача",
+    "User handbook": "Посібник користувача"
+  },
+  "ru-RU": {
+    "Machine-assisted translation. Structure, code and links are checked; native-speaker and legal review are not implied. Historical reports retain their original dates and scope.": "Перевод с помощью машинных средств. Структура, примеры кода и ссылки проверяются; это не означает проверки носителем языка или юридического одобрения. Исторические отчёты сохраняют исходные даты и область охвата.",
+    "MAKRIVO user handbook": "MAKRIVO — Руководство пользователя",
+    "User handbook": "Руководство пользователя"
+  },
+  "tr-TR": {
+    "Machine-assisted translation. Structure, code and links are checked; native-speaker and legal review are not implied. Historical reports retain their original dates and scope.": "Makine destekli çeviri. Yapı, kod örnekleri ve bağlantılar kontrol edilir; bu, ana dili konuşan birinin incelemesi veya hukuki onay anlamına gelmez. Geçmiş raporlar özgün tarihlerini ve kapsamlarını korur.",
+    "MAKRIVO user handbook": "MAKRIVO — Kullanım kılavuzu",
+    "User handbook": "Kullanım kılavuzu"
+  },
+  "sr-Latn": {
+    "Machine-assisted translation. Structure, code and links are checked; native-speaker and legal review are not implied. Historical reports retain their original dates and scope.": "Mašinski potpomognut prevod. Struktura, primeri koda i veze se proveravaju; to ne znači pregled izvornog govornika ili pravno odobrenje. Istorijski izveštaji zadržavaju izvorne datume i obim.",
+    "MAKRIVO user handbook": "MAKRIVO — Korisničko uputstvo",
+    "User handbook": "Korisničko uputstvo"
+  }
+}

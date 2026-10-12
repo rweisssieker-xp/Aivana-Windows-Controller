@@ -1,7 +1,10 @@
+<!-- generated-doc locale=de-DE source=docs/research/tastaturhersteller-sonderfunktionen.md sha256=531ab8901be0cbcae5542de1dde95416a8d1c040a63cb7a3386f695b925de782 -->
+
+> Maschinell unterstützte Übersetzung. Struktur, Codebeispiele und Links werden geprüft; eine muttersprachliche oder juristische Abnahme ist damit nicht verbunden. Historische Berichte behalten ihr ursprüngliches Datum und ihren damaligen Umfang. [Originalquelle](../../research/tastaturhersteller-sonderfunktionen.md)
+
 # Tastaturhersteller und Sonderfunktionen – Inventar für einen Windows-Controller
 
-[English (US)](../../en-US/research/tastaturhersteller-sonderfunktionen.md) · [Deutsch](../../de-DE/research/tastaturhersteller-sonderfunktionen.md) · [Français](../../fr-FR/research/tastaturhersteller-sonderfunktionen.md) · [Italiano](../../it-IT/research/tastaturhersteller-sonderfunktionen.md)
-
+[English (US)](tastaturhersteller-sonderfunktionen.md) | [Deutsch](tastaturhersteller-sonderfunktionen.md) | [Français](tastaturhersteller-sonderfunktionen.md) | [Italiano](tastaturhersteller-sonderfunktionen.md)
 
 Stand: 8. Oktober 2026. Dieses breite, quellengebundene Inventar umfasst 74 Marken-/Herstellerzeilen aus drei Recherchegruppen und 14 ergänzten Marken. Es ist **keine vollständige Weltliste** und keine Verfügbarkeitsgarantie; Produktstände, Revisionen, Treiber und Firmware können variieren. ASRock Phantom Gaming wurde geprüft, aber in den ausgewerteten offiziellen Quellen nicht als eigenständige Tastaturmarke bestätigt und daher nicht als Herstellerzeile gezählt. Corsair/Elgato bleibt als Tastatur-/Zubehörmarke enthalten; Stream-Deck-Hardware und deren SDK werden separat betrachtet.
 

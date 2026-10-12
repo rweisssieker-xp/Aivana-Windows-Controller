@@ -1,19 +1,23 @@
-# Plan zur Verbesserung der Bedienbarkeit und Funktionen des Controllers
+<!-- generated-doc locale=de-DE source=docs/superpowers/plans/2026-10-08-controller-polish.md sha256=1a076a67eea31048f6305f30a121c474d592451d1ddcd9b46bc339fd8ec068f2 -->
 
-[English (US)](../../../en-US/superpowers/plans/2026-10-08-controller-polish.md) | [Deutsch](../../../de-DE/superpowers/plans/2026-10-08-controller-polish.md) | [Français](../../../fr-FR/superpowers/plans/2026-10-08-controller-polish.md) | [Italiano](../../../it-IT/superpowers/plans/2026-10-08-controller-polish.md)
+> Maschinell unterstützte Übersetzung. Struktur, Codebeispiele und Links werden geprüft; eine muttersprachliche oder juristische Abnahme ist damit nicht verbunden. Historische Berichte behalten ihr ursprüngliches Datum und ihren damaligen Umfang. [Originalquelle](../../../superpowers/plans/2026-10-08-controller-polish.md)
 
-Anfrage des Nutzers: Erscheinungsbild, Bedienbarkeit und Funktionen verbessern; die vorherige Freigabe verlangt die größtmögliche sinnvolle Zahl von Subagents mit den erforderlichen kleineren Modellen sowie die autonome Fertigstellung.
+# Plan zur Verbesserung der Benutzerfreundlichkeit und Funktionalität des Controllers
+
+[English (US)](2026-10-08-controller-polish.md) | [Deutsch](2026-10-08-controller-polish.md) | [Français](2026-10-08-controller-polish.md) | [Italiano](2026-10-08-controller-polish.md)
+
+Benutzerwunsch: Aussehen, Benutzerfreundlichkeit und Funktionalität verbessern; Vorherige Genehmigung fordert maximal nützliche Subagenten für notwendige kleinere Modelle und autonome Vervollständigung.
 
 ## Umfang
-Bestehende Profile und die funktionierende Corsair-SDK-Integration erhalten. Die bestehende WPF-Anwendung verbessern, statt einen separaten Prototyp zu erstellen.
+Behalten Sie vorhandene Profile und die funktionierende Corsair SDK-Integration bei. Verbessern Sie die vorhandene WPF-Anwendung, anstatt einen separaten Prototyp zu erstellen.
 
-- [x] Shell-/Dashboard-Worker: responsives Layout, aktive Navigation, gut lesbare Steuerelemente, kompakte Aktivitäts-/Statusanzeige, Kachel-Neuanordnung per Drag-and-drop, hilfreiche leere Zustände und Vorlagen. Zuständig für MainWindow.xaml, MainWindow.xaml.cs und MainWindow.Dashboard.cs.
-- [x] Editor-Worker: MainWindow.Editor.cs und optionale Editor-Partial-Dateien. Explizite Entwurfsänderungen, Speichern/Verwerfen, Validierung direkt im Editor, eigene Makroliste mit Drag-and-drop, Schritte duplizieren, zuverlässige Hotkey-Aufnahme sowie Datei-/URL-Felder.
-- [x] Windows-Worker: native Validierung, robuste Gerätenamen und SDK-Funktionen, begrenztes Warten auf Modifikatoren und sichere Eingabesimulation; zuständig für Windows und Windows-Tests.
-- [x] Parent: Fortschritt der Kern-Ausführung, Controller-Schnittstellen, Erhalt der Konfiguration, Integrationstests, tatsächlich gerenderte Screenshots, Veröffentlichung/Paketierung und Austausch der laufenden Anwendung.
+- [x] Shell-/Dashboard-Worker: reaktionsfähiges Layout, aktive Navigation, lesbare Steuerelemente, kompakte Aktivität/Status, Neuordnung der Kacheln per Drag-and-Drop, hilfreiche leere Status und Vorlagen. Eigene MainWindow.xaml, MainWindow.xaml.cs und MainWindow.Dashboard.cs.
+- [x] Editor-Worker: MainWindow.Editor.cs und optionale Nur-Editor-Teildateien. Explizite gestaffelte Bearbeitungen, Speichern/Verwerfen, Inline-Validierung, dedizierte Makroliste mit Drag-and-Drop, duplizierte Schritte, zuverlässige Hotkey-Erfassung und Datei-/URL-Felder.
+- [x] Windows-Worker: native Validierung, robuste Gerätenamen und SDK-Funktionen, begrenzte Modifikatorwartezeiten und sichere Injektion; eigene Windows- und Windows-Tests.
+- [x] Übergeordnet: Kernausführungsfortschritt, Controller-Schnittstellen, Konfigurationserhaltung, Integrationstests, tatsächlich gerenderte Screenshots, Veröffentlichung/Paket und Ersetzung der laufenden Anwendung.
 
 ## Schnittstellenvertrag
-Der Controller stellt die vorhandenen APIs sowie string LastStatus, bool HasRunningActions, bool IsRunning(Guid), string GetTileStatus(Guid), string ForegroundProcess, bool CorsairAvailable, IReadOnlyList<CorsairKeyboardInfo> CorsairKeyboards, Task TestCorsairColorAsync(string) und void OpenIcue() bereit. Der Editor stellt bool HasUnsavedChanges, void DiscardDraft() und bool CommitDraft() bereit; vorhandene Feld- und Methodennamen bleiben über Partial-Klassen hinweg verfügbar.
+Der Controller stellt vorhandene APIs sowie die Zeichenfolge LastStatus, bool HasRunningActions, bool IsRunning(Guid), string GetTileStatus(Guid), string ForegroundProcess, bool CorsairAvailable, IReadOnlyList<CorsairKeyboardInfo> CorsairKeyboards, Task TestCorsairColorAsync(string), void OpenIcue() bereit. Editor macht bool HasUnsavedChanges, void DiscardDraft(), bool CommitDraft(); Vorhandene Feld-/Methodennamen bleiben über Teilklassen hinweg verfügbar.
 
-## Abnahmekriterien
-Die reale Benutzerkonfiguration wird nicht zurückgesetzt; gültige Entwurfsänderungen werden einmal gespeichert, ungültige Entwürfe bleiben bearbeitbar und Verwerfen stellt die gespeicherten Daten wieder her. Native Hotkey-Aliase werden validiert, ohne Testeingaben in fremde Fenster zu senden. Kachel- und Makro-Neuanordnung wird geprüft; alle Ansichten werden in Desktopgrößen gerendert; Status für laufende, fehlgeschlagene und abgeschlossene Aktionen ist sichtbar; das tatsächliche SDK-Gerätemodell wird angezeigt. Build-/Tests und veröffentlichter Smoke-Test bestehen, und die aktualisierte Anwendung wird gestartet.
+## Akzeptanz
+Kein Zurücksetzen der tatsächlichen Benutzerkonfiguration; Gültige bereitgestellte Änderungen werden einmal gespeichert, ungültige Entwürfe bleiben bearbeitbar, Verwerfen stellt gespeicherte Daten wieder her. Native Hotkey-Aliase werden validiert, ohne dass Testeingaben in nicht verwandte Fenster eingefügt werden. Kachel- und Makro-Neuordnung getestet; alle Ansichten werden in Desktop-Größen gerendert; Status läuft/fehlgeschlagen/abgeschlossen sichtbar; tatsächliches SDK-Gerätemodell angezeigt. Erstellen/Testen und veröffentlichter Rauchpass, und aktualisierte Anwendung wird gestartet.

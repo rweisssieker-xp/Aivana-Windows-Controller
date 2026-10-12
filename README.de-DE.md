@@ -1,5 +1,7 @@
 # MAKRIVO
 
+[Vollständige Dokumentation in allen 27 Sprachen](docs/README.md) · [Vollständiges Benutzerhandbuch](docs/de-DE/HANDBOOK.md)
+
 **Von Aivana.** [Aktuelle Featureliste und offene Freigaben](docs/FEATURES.md) · [Prüfstand der Erweiterungen](docs/testing/2026-10-12-six-extensions.md) · [Lokaler KI-Assistent als Prototyp](docs/testing/2026-10-12-local-meeting-assistant.md)
 
 [English (US)](README.md) | **Deutsch** | [Français](README.fr-FR.md) | [Italiano](README.it-IT.md)

@@ -1,7 +1,10 @@
+<!-- generated-doc locale=de-DE source=docs/research/keyboard-productivity.md sha256=3b7c3f728d4fd050b6695532feccb872c6ce39c3b69f1970420c6e53c75856e4 -->
+
+> Maschinell unterstützte Übersetzung. Struktur, Codebeispiele und Links werden geprüft; eine muttersprachliche oder juristische Abnahme ist damit nicht verbunden. Historische Berichte behalten ihr ursprüngliches Datum und ihren damaligen Umfang. [Originalquelle](../../research/keyboard-productivity.md)
+
 # Sonderfunktionen von Tastaturen und Zusatz-Keypads
 
-[English (US)](../../en-US/research/keyboard-productivity.md) · [Deutsch](../../de-DE/research/keyboard-productivity.md) · [Français](../../fr-FR/research/keyboard-productivity.md) · [Italiano](../../it-IT/research/keyboard-productivity.md)
-
+[English (US)](keyboard-productivity.md) | [Deutsch](keyboard-productivity.md) | [Français](keyboard-productivity.md) | [Italiano](keyboard-productivity.md)
 
 Recherche aus offiziellen Herstellerseiten, Produktdatenblättern und Handbüchern (Stand: 8. Oktober 2026). Das ist eine Funktions- und Integrationsübersicht, keine Verfügbarkeitsgarantie: Bei älteren Produkten kann Software noch als Download angeboten werden, obwohl das Gerät selbst abgekündigt oder nur noch gebraucht erhältlich ist.
 

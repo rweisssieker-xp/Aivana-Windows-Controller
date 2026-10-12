@@ -1,8 +1,12 @@
+<!-- generated-doc locale=en-US source=docs/superpowers/plans/2026-10-08-windows-controller.md sha256=10a5ba49bbefc617bce40563c668e3c4628647822117087deba766713fb9b3af -->
+
+> Machine-assisted translation. Structure, code and links are checked; native-speaker and legal review are not implied. Historical reports retain their original dates and scope. [Original source](../../../superpowers/plans/2026-10-08-windows-controller.md)
+
 # Windows Controller Implementation Plan
 
-[English (US)](../../../en-US/superpowers/plans/2026-10-08-windows-controller.md) | [Deutsch](../../../de-DE/superpowers/plans/2026-10-08-windows-controller.md) | [Français](../../../fr-FR/superpowers/plans/2026-10-08-windows-controller.md) | [Italiano](../../../it-IT/superpowers/plans/2026-10-08-windows-controller.md)
+[English (US)](2026-10-08-windows-controller.md) | [Deutsch](2026-10-08-windows-controller.md) | [Français](2026-10-08-windows-controller.md) | [Italiano](2026-10-08-windows-controller.md)
 
-> For agentic workers: use parallel isolated ownership; the user explicitly requested complete implementation with the maximum useful number of subagents.
+> For agentic workers: use parallel isolated ownership; the user explicitly requested complete implementation with maximum useful subagents.
 
 **Goal:** Deliver the native Windows hotkey panel in the approved design.
 **Architecture:** Core configuration and cancellable execution; Windows adapters; WPF desktop composition.
@@ -16,17 +20,17 @@ German UI; local storage; Windows x64; truthful hardware capability status; no k
 Malformed imports must not replace saved settings; held modifiers must not contaminate output; unplugged hardware must not crash; closing must preserve tray availability; cancelled macros must release resources.
 
 ## Tasks and ownership
-- [x] Core agent: src/Aivana.Core and tests/Aivana.Tests. Models, JSON persistence, validation, profile selection, and MacroRunner. Run failing behavioral tests, then implement and run all core tests.
-- [x] Windows agent: src/Aivana.Windows. RegisterHotKey, device inventory, SendInput, foreground process, and optional Corsair lighting adapter. Verify native struct sizes and registration cleanup with safe smoke tests.
-- [x] GUI agent: src/Aivana.Desktop/MainWindow.xaml and .cs plus UI helpers only. Dark dashboard, full editor, profiles, devices, settings, keyboard overview, and macro editor. Build once contracts exist.
-- [x] Parent: shared contracts, project files, DesktopController composition, application/tray lifecycle, import/export dialogs, documentation, integration checks, publish, and running-app smoke test.
+- [x] Core agent: src/Aivana.Core and tests/Aivana.Tests. Models, JSON persistence, validation, profile selection and MacroRunner. Run failing behavioral tests then implement and run all core tests.
+- [x] Windows agent: src/Aivana.Windows. RegisterHotKey, device inventory, SendInput, foreground process and optional Corsair lighting adapter. Verify native struct sizes and registration cleanup with safe smoke tests.
+- [x] GUI agent: src/Aivana.Desktop/MainWindow.xaml and .cs plus UI helpers only. Dark dashboard, full editor, profiles, devices, settings, keyboard overview and macro editor. Build once contracts exist.
+- [x] Parent: shared contracts, project files, DesktopController composition, application/tray lifecycle, import/export dialogs, documentation, integration checks, publish and running-app smoke test.
 
 ## Shared interfaces
-Contracts live in Core/Models.cs. Controller implementation lives in Desktop/DesktopController.cs. UI calls controller methods through that concrete class. Agents receive exact signatures in their tasks. Each agent owns separate files. Parent resolves cross-project failures after all agents finish.
+Contracts live in Core/Models.cs. Controller implementation lives in Desktop/DesktopController.cs. UI calls controller methods through that concrete class. Agents receive exact signatures in their tasks. Each owns separate files. Parent resolves cross-project failures after all agents finish.
 
 ## Verification and delivery
 - [x] dotnet build Aivana.slnx -c Release: zero errors.
 - [x] dotnet run --project tests/Aivana.Tests -c Release: behavioral checks pass.
 - [x] dotnet publish src/Aivana.Desktop -c Release -r win-x64 --self-contained true -o artifacts/win-x64.
-- [x] Launch the published executable, inspect the Windows UI and process stability, and exercise safe profile/editing/persistence flows.
-- [x] Write the README with build/start instructions and hardware limitations; record checks and remaining hardware-only tests.
+- [x] Launch published executable, inspect Windows UI and process stability, exercise safe profile/editing/persistence flow.
+- [x] Write README with build/start instructions and hardware limitations; record checks and remaining hardware-only tests.

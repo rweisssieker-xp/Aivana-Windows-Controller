@@ -1,7 +1,10 @@
+<!-- generated-doc locale=de-DE source=docs/research/keyboard-custom.md sha256=b8030b7a433e6c6513985b2a057c66d8184979f027f3e9fe8cda8e40ffd9faf4 -->
+
+> Maschinell unterstützte Übersetzung. Struktur, Codebeispiele und Links werden geprüft; eine muttersprachliche oder juristische Abnahme ist damit nicht verbunden. Historische Berichte behalten ihr ursprüngliches Datum und ihren damaligen Umfang. [Originalquelle](../../research/keyboard-custom.md)
+
 # Tastaturmarken mit Sonderfunktionen – Recherche für Windows-Controller
 
-[English (US)](../../en-US/research/keyboard-custom.md) · [Deutsch](../../de-DE/research/keyboard-custom.md) · [Français](../../fr-FR/research/keyboard-custom.md) · [Italiano](../../it-IT/research/keyboard-custom.md)
-
+[English (US)](keyboard-custom.md) | [Deutsch](keyboard-custom.md) | [Français](keyboard-custom.md) | [Italiano](keyboard-custom.md)
 
 Stand: 8. Oktober 2026. Stichprobe von 24 angefragten Marken, kein vollständiges Weltverzeichnis. „Sonderfunktion“ meint hier hardware-/firmwareseitige Analog- bzw. Hall-/TMR-Erkennung, Rapid Trigger, dynamische Tastenfunktionen, Makros, Ebenen, Knöpfe, Displays oder vergleichbare Konfiguration. Links führen primär zu Herstellerprodukt-, Support- oder Downloadseiten.
 

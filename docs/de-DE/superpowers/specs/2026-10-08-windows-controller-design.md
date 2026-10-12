@@ -1,6 +1,10 @@
+<!-- generated-doc locale=de-DE source=docs/superpowers/specs/2026-10-08-windows-controller-design.md sha256=f36d496c6af5190889e9a31487a8fc6afdeba5af18facdd600639ede5ddbd169 -->
+
+> Maschinell unterstützte Übersetzung. Struktur, Codebeispiele und Links werden geprüft; eine muttersprachliche oder juristische Abnahme ist damit nicht verbunden. Historische Berichte behalten ihr ursprüngliches Datum und ihren damaligen Umfang. [Originalquelle](../../../superpowers/specs/2026-10-08-windows-controller-design.md)
+
 # MAKRIVO – Entwurf
 
-[English (US)](../../../en-US/superpowers/specs/2026-10-08-windows-controller-design.md) | [Deutsch](../../../de-DE/superpowers/specs/2026-10-08-windows-controller-design.md) | [Français](../../../fr-FR/superpowers/specs/2026-10-08-windows-controller-design.md) | [Italiano](../../../it-IT/superpowers/specs/2026-10-08-windows-controller-design.md)
+[English (US)](2026-10-08-windows-controller-design.md) | [Deutsch](2026-10-08-windows-controller-design.md) | [Français](2026-10-08-windows-controller-design.md) | [Italiano](2026-10-08-windows-controller-design.md)
 
 Stand: 8. Oktober 2026. Status: zur Prüfung vor Implementierung.
 

@@ -1,5 +1,7 @@
 # MAKRIVO
 
+[Documentazione completa in tutte le 27 lingue](docs/README.md) · [Manuale utente completo](docs/it-IT/HANDBOOK.md)
+
 **Di Aivana.** [Funzionalità e limiti attuali (DE)](docs/FEATURES.md) · [Test delle estensioni (DE)](docs/testing/2026-10-12-six-extensions.md)
 
 [English (US)](README.md) | [Deutsch](README.de-DE.md) | [Français](README.fr-FR.md) | **Italiano**
@@ -77,7 +79,7 @@ Il rilevamento Corsair usa le informazioni disponibili sul dispositivo. Il contr
 
 Le Impostazioni offrono 27 lingue: tedesco, inglese, francese, spagnolo, italiano, portoghese, olandese, polacco, ceco, slovacco, ungherese, rumeno, bulgaro, greco, danese, svedese, norvegese, finlandese, estone, lettone, lituano, sloveno, croato, ucraino, russo, turco e serbo in alfabeto latino. «Automatica» segue la lingua di visualizzazione di Windows. Le traduzioni sono incluse localmente. Layout, hotkey e nomi creati dall'utente sono indipendenti dalla lingua dell'interfaccia.
 
-La documentazione del repository è disponibile in inglese statunitense (`en-US`), tedesco (`de-DE`), francese (`fr-FR`) e italiano (`it-IT`). L'app accetta anche questi quattro codici regionali e usa i relativi formati numerici. I codici lingua esistenti restano compatibili.
+La documentazione completa è disponibile nelle 27 lingue dell'app. Le traduzioni sono assistite automaticamente e richiedono una revisione linguistica madrelingua; codice, struttura e collegamenti vengono verificati.
 
 ## Layout e ricerca sui produttori
 

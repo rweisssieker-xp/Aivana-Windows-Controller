@@ -1,5 +1,7 @@
 # MAKRIVO
 
+[Complete documentation in all 27 languages](docs/README.md) · [Full user handbook](docs/en-US/HANDBOOK.md)
+
 **By Aivana.** [Current feature inventory and release limitations](docs/FEATURES.md) · [Extension test report](docs/testing/2026-10-12-six-extensions.md) · [Local AI assistant prototype](docs/testing/2026-10-12-local-meeting-assistant.md)
 
 **English (US)** | [Deutsch](README.de-DE.md) | [Français](README.fr-FR.md) | [Italiano](README.it-IT.md)
@@ -77,7 +79,7 @@ Corsair detection uses available device information. RGB control requires compat
 
 Settings offers 27 languages: German, English, French, Spanish, Italian, Portuguese, Dutch, Polish, Czech, Slovak, Hungarian, Romanian, Bulgarian, Greek, Danish, Swedish, Norwegian, Finnish, Estonian, Latvian, Lithuanian, Slovenian, Croatian, Ukrainian, Russian, Turkish, and Serbian in Latin script. Automatic follows the Windows display language. Translations are bundled locally. Layouts, hotkeys, and user-created names are independent of the interface language.
 
-Repository documentation is available in US English (`en-US`), German (`de-DE`), French (`fr-FR`), and Italian (`it-IT`). The app also accepts these four regional language codes and uses their number formats. Existing language codes remain compatible.
+Complete repository documentation is available in all 27 application languages through the [language index](docs/README.md). Translations are machine-assisted, with original-source links and structural checks; native-speaker review is separate. The app also accepts the regional codes `en-US`, `de-DE`, `fr-FR` and `it-IT` and uses their number formats. Existing language codes remain compatible.
 
 ## Layouts and manufacturer research
 

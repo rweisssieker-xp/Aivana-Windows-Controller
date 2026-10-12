@@ -1,17 +1,21 @@
-# Implementierungsplan der Steuerungserweiterungen
+<!-- generated-doc locale=de-DE source=docs/superpowers/plans/2026-10-12-controller-usps.md sha256=b7af0d36209e04b458ce64a5db78ab7e552a84c5e9b450ea0bd97179a4eb7f68 -->
 
-Die angeforderten Monitor-, Gesten-, Ablauf-, Aufnahme-, Diagnose-, Profilaustausch- und Symbolfunktionen umsetzen.
+> Maschinell unterstützte Übersetzung. Struktur, Codebeispiele und Links werden geprüft; eine muttersprachliche oder juristische Abnahme ist damit nicht verbunden. Historische Berichte behalten ihr ursprüngliches Datum und ihren damaligen Umfang. [Originalquelle](../../../superpowers/plans/2026-10-12-controller-usps.md)
 
-Die bestehenden Core-/Windows-/Desktop-Schichten erweitern. Reine Zustandsautomaten und portable Konfiguration gehören in Core, native Anbindungen in Windows und modale Entwurfseditoren in Desktop. Vorhandene lokale Änderungen und die bereitgestellte Nutzerkonfiguration erhalten.
+# Implementierungsplan für die Controller-Erweiterung
+
+**Goal:** Implementieren Sie die angeforderten Verbesserungen bei Monitor, Geste, Arbeitsablauf, Aufzeichnung, Gerätediagnose, tragbarem Profilaustausch und Fach.
+
+**Architecture:** Erweitern Sie die vorhandenen Core/Windows/Desktop-Ebenen. Reine Zustandsmaschinen und portable Konfigurationslogik leben in Core, native Integrationen in Windows und modale Entwurfseditoren in Desktop. Behalten Sie vorhandene Dirty-Workspace-Änderungen und bereitgestellte Benutzerkonfigurationen bei.
 
 **Spec:** ../specs/2026-10-12-controller-usps-design.md
 
-- [x] Monitordienst, Zielpersistenz und asynchroner Live-Zustand; fehlende IDs und Abbruch prüfen.
-- [x] Gestenautomat und gehaltene Ebenen; Flanken, Wiederholung, Rücksetzen und Sofortbelegung prüfen.
-- [x] Ablaufbedingungen, Vorwärtsverzweigungen und Fehlerregeln; Momentaufnahmen und Abbruch prüfen.
-- [x] Explizite Aufnahme von Tastenkombinationen mit Entwurfsprüfung; Filter und Hook-Freigabe prüfen.
-- [x] Profilaustausch über gemeinsame Ordner mit Revisionen und Vorschauen; Konflikte und portable Zuordnungen prüfen.
-- [x] Gerätebezogene Standard-Sondertasten und Diagnose; Verarbeitung, doppelte Belegung und Pause prüfen.
-- [x] Ressourcen für Infobereich-, Fenster- und Programmsymbol sowie Pausendarstellung; veröffentlichtes Programm prüfen.
-- [x] Alle Palette-/Editor-Einstiege und Übersetzungen integrieren; Core-, Windows- und WPF-Prüfungen ausführen.
-- [x] In getrennten Staging-Ordner veröffentlichen, Nutzereinstellungen erhalten und aktualisierte App starten.
+- [x] Überwachen Sie den Dienst, die Zielpersistenz und den asynchronen Live-Status. Testen Sie nicht verfügbare IDs und Stornierungen.
+- [x] Gestenzustandsmaschine und gehaltene Ebenen; Testkanten, Wiederholen, Zurücksetzen und vorhandene Sofortbindungen.
+- [x] Workflow-Bedingungen, Weiterleitungszweige und Fehlerrichtlinie; Testschnappschüsse und Abbruch.
+- [x] Explizite Verknüpfungsaufzeichnung mit Entwurfsüberprüfung; Testfilterung und Hakenentsorgung.
+- [x] Austausch von Profilen für freigegebene Ordner mit Revisionsprüfungen und Vorschauen; Testkonflikte und portable Mappings.
+- [x] Generische Standard-Sondertasten und -Diagnose pro Gerät; Testparsing, doppelte Zuordnungen und Pausenverhalten.
+- [x] Ressourcen für Taskleisten-/Fenster-/ausführbare Symbolsymbole und pausierte Darstellung; Überprüfen Sie die Ressourcen in der veröffentlichten ausführbaren Datei.
+- [x] Alle Paletten-/Editor-Einstiegspunkte und lokalisierten Text integrieren; Führen Sie die Core-, Windows- und WPF-Prüfungen aus.
+- [x] In einem separaten Staging-Verzeichnis veröffentlichen, Benutzereinstellungen beibehalten und die aktualisierte App neu starten.

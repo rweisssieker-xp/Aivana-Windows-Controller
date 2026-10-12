@@ -1,18 +1,22 @@
-# MAKRIVO: Erweiterungen der Steuerung
+<!-- generated-doc locale=de-DE source=docs/superpowers/specs/2026-10-12-controller-usps-design.md sha256=4c3b2dbedb83af6bd48917515ae6559012afb6318ce69d1e32fb2765e0793327 -->
 
-Der Nutzer hat alle neun vorgeschlagenen Verbesserungen und ein erkennbares Symbol im Infobereich angefordert. Bestehende Konfigurationen, insbesondere die Helligkeitsbelegung auf G1/G2, müssen kompatibel bleiben. Bereits vorhandene, nicht eingecheckte Änderungen an Marke und Dokumentation bleiben erhalten.
+> Maschinell unterstützte Übersetzung. Struktur, Codebeispiele und Links werden geprüft; eine muttersprachliche oder juristische Abnahme ist damit nicht verbunden. Historische Berichte behalten ihr ursprüngliches Datum und ihren damaligen Umfang. [Originalquelle](../../../superpowers/specs/2026-10-12-controller-usps-design.md)
 
-## Ergebnisse und Grenzen
+# MAKRIVO-Steuererweiterungen
 
-1. Helligkeitsaktionen wählen alle unterstützten Monitore oder eine stabile Monitor-ID. Fehlende explizite Ziele führen zu sichtbaren Fehlern. Das Dashboard liest Helligkeit, Ausgabelautstärke, Mikrofon- und OBS-Zustand asynchron mit begrenztem Aufwand aus.
-2. Sondertasten unterstützen Sofortdruck, kurzen Druck, Halten und Doppeldruck mit Wiederholungsunterdrückung. Eine gehaltene Ebenentaste wechselt vorübergehend die Belegung; Loslassen stellt sie wieder her. Vorhandene Sofortbelegungen bleiben kompatibel. Pause, Profilwechsel, Trennung und Abbruch löschen ausstehende Gesten.
-3. Der Ablaufeditor bearbeitet Bedingungen, Vorwärtsverzweigungen und Fehlerregeln (Stoppen/Fortsetzen) innerhalb eines Kachelentwurfs. Bedingungen prüfen Dateien, laufende Prozesse und Fenstertitel. Unbegrenzte Sprungzyklen sind ausgeschlossen.
-4. Die ausdrücklich gestartete Aufnahme erfasst Tastenkombinationen und Wartezeiten, ignoriert injizierte Eingaben und endet mit Escape. Vor der Übernahme werden die Aktionen geprüft; normaler Text wird nicht aufgezeichnet.
-5. Gerätebezogene Standard-Sondertasten anderer Hersteller verwenden Windows Raw Input. Proprietäre Tasten benötigen eine unterstützte Hersteller-API oder eine Herstellerzuordnung zu einer Standardtaste. Nicht unterstützte Funktionen werden ehrlich gekennzeichnet. Die Diagnose erklärt Profil, Pause, Belegungskonflikte und tatsächlichen Adapterzustand.
-6. Der Profilaustausch nutzt einen gewählten gemeinsamen Ordner, auch einen durch einen vorhandenen Cloud-Client synchronisierten Ordner. Revisionsprüfungen verhindern stilles Überschreiben. Vor dem Abrufen erscheint eine Vorschau; importierte Aktionen sind deaktiviert und Hardwarezuordnungen entfernt. Aktionsinhalte werden nur ausdrücklich eingeschlossen. MAKRIVO speichert keine Cloud-Zugangsdaten.
-7. Oberflächentexte gehören in die bestehenden 27 Sprachkataloge; DE/EN/FR/IT bleiben die mindestens geprüften Dokumentationssprachen. Übersetzungslücken müssen benannt werden.
-8. Ein türkises M-Tastatursymbol ersetzt das allgemeine Windows-Symbol im Infobereich. Im Pausenmodus erscheint ein bernsteinfarbenes Pausenzeichen. Programm und Fenster verwenden dasselbe Symbol. Der Hinweistext enthält Zustand und Profil.
+Der Benutzer forderte alle neun vorgeschlagenen Verbesserungen und ein erkennbares Taskleistensymbol. Bestehende Konfigurationen, insbesondere die Helligkeit G1/G2, müssen kompatibel bleiben. Vorhandene, nicht festgeschriebene Branding- und Dokumentationsänderungen gehören zum freigegebenen Arbeitsbereich und müssen beibehalten werden.
 
-## Prüfung
+## Leistungen und Grenzen
 
-Core-Prüfungen umfassen Rückwärtskompatibilität, Momentaufnahmen, Abbruch, Gestenzeiten, Verzweigungen/Fehler, Aufnahmefilter und Synchronisationskonflikte. Windows-Prüfungen umfassen das reine Auslesen der Monitore, SDK-Loslassereignisse und Raw-Input-Verarbeitung. WPF-Prüfungen decken neue Einstiege und Ressourcen ab, ohne reale Monitorhelligkeit zu ändern, in andere Anwendungen zu tippen oder Nutzerprofile zu überschreiben. Die Bereitstellung bewahrt eine Sicherung und die G1/G2-Konfiguration.
+1. Helligkeitsaktionen wählen alle unterstützten Monitore oder eine stabile spezifische Monitor-ID aus. Das Fehlen expliziter Ziele scheitert sichtbar. Das Dashboard zeigt die aktuelle Helligkeit, Ausgangslautstärke, den Mikrofonstatus und den OBS-Status durch begrenzte asynchrone Lesevorgänge an.
+2. Sondertasten unterstützen sofortiges Drücken, Tippen, Halten und Doppeltippen mit Wiederholungsunterdrückung. Ein gehaltener Layer-Selektor ändert vorübergehend die aktive Zuordnung und wird durch die Freigabe wiederhergestellt. Vorhandene unmittelbare Bindungen behalten ihr Verhalten bei. Anhalten, Profiländerungen, Verbindungsabbrüche und Löschung ausstehender Gesten.
+3. Der Workflow-Designer bearbeitet Bedingungen, Weiterleitungsverzweigungen und Stopp-/Fortsetzungsfehlerrichtlinien transaktional in einem Kachelentwurf. Bedingungen umfassen Dateien, laufende Prozesse und Fenstertitel. Keine unbegrenzten Sprungzyklen.
+4. Die explizite Aufnahme erfasst Tastenkombinationen und Wartezeiten, ignoriert eingegebene Eingaben und stoppt bei Escape. Aufgezeichnete Maßnahmen werden vor der Annahme überprüft; Normaler Text wird nicht aufgezeichnet.
+5. Gerätespezifische Standard-Sonderschlüssel anderer Hersteller verwenden Windows Raw Input. Proprietäre Schlüssel erfordern eine unterstützte Anbieter-API oder eine Anbieterzuordnung zu einem Standardschlüssel. Nicht unterstützte Funktionalität wird ehrlich dargestellt. Die Diagnose erläutert Profil, Pause, Bindungskonflikte und den tatsächlichen Adapterstatus.
+6. Der Profilaustausch verwendet einen vom Benutzer ausgewählten freigegebenen Ordner (einschließlich Ordnern, die von einem vorhandenen Cloud-Client synchronisiert wurden). Revisionsprüfungen verhindern stille Überschreibungen. Pull zeigt Änderungen in der Vorschau an und importiert deaktivierte Aktionen mit entfernten Hardwarezuordnungen. Die Einbeziehung von Aktionsinhalten ist explizit. Von MAKRIVO werden keine Cloud-Anmeldeinformationen gespeichert.
+7. UI-Strings gehören zu den vorhandenen 27-Sprachkatalogen; DE/EN/FR/IT bleiben die mindestens geprüften Dokumentationssprachen. Übersetzungslücken müssen offengelegt werden, statt Anspruch auf Vollständigkeit zu erheben.
+8. Eine erkennbare blaugrüne M-Tastaturmarkierung ersetzt das allgemeine Taskleistensymbol Windows. Der Pausenmodus verfügt über ein gelbes Pausenzeichen. Beim Branding von ausführbaren Dateien/Fenstern wird die gleiche Marke verwendet. Der Tooltip enthält Status und Profil.
+
+## Überprüfung
+
+Kernprüfungen umfassen Abwärtskompatibilität, Snapshots, Abbruch, Gesten-Timing, Workflow-Verzweigungen/-Fehler, Rekorderfilterung und Synchronisierungskonflikte. Windows-Prüfungen umfassen die schreibgeschützte Anzeigeaufzählung, SDK-Release-Ereignisse und Raw Input-Analyse. WPF Smoke Checks decken neue Einstiegspunkte und Ressourcen ab, ohne die tatsächliche Monitorhelligkeit zu ändern, in eine andere Anwendung einzugeben oder Benutzerprofile zu überschreiben. Bei der Bereitstellung werden ein Backup und die G1/G2-Konfiguration beibehalten.

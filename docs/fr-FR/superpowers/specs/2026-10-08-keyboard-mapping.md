@@ -1,26 +1,30 @@
-# Vue de clavier physique pour l’affectation
+<!-- generated-doc locale=fr-FR source=docs/superpowers/specs/2026-10-08-keyboard-mapping.md sha256=fb766a2a2b4698ae3e1c3f63b50bb4f5c605da3dd56c61c05fcc0832b5cf8aeb -->
 
-[English (en-US)](../../../en-US/superpowers/specs/2026-10-08-keyboard-mapping.md) | [Deutsch (de-DE)](../../../de-DE/superpowers/specs/2026-10-08-keyboard-mapping.md) | [Français (fr-FR)](2026-10-08-keyboard-mapping.md) | [Italiano (it-IT)](../../../it-IT/superpowers/specs/2026-10-08-keyboard-mapping.md)
+> Traduction assistée par machine. La structure, les exemples de code et les liens sont vérifiés ; cela ne constitue ni une révision par un locuteur natif ni une validation juridique. Les rapports historiques conservent leur date et leur portée d'origine. [Source originale](../../../superpowers/specs/2026-10-08-keyboard-mapping.md)
 
-## Objectif
+# Vue du clavier physique pour le mappage
 
-La vue de clavier doit afficher les positions réelles des touches lors de l’affectation d’actions. Des rangées de largeur uniforme ne suffisent pas : Entrée, Maj, Espace, navigation, pavé numérique et commandes supplémentaires du fabricant ont des formes différentes.
+[English (US)](2026-10-08-keyboard-mapping.md) | [Deutsch](2026-10-08-keyboard-mapping.md) | [Français](2026-10-08-keyboard-mapping.md) | [Italiano](2026-10-08-keyboard-mapping.md)
+
+## Cible
+
+La vue du clavier est destinée à afficher les positions clés réelles lors de l'attribution d'actions. Les lignes de même largeur ne suffisent pas : Entrée, Maj, Espace, Navigation, pavé numérique et commandes supplémentaires du fabricant diffèrent.
 
 ## Mise en œuvre
 
-- Catalogue avec identifiants physiques distincts, géométrie exprimée en unités de touche, légendes imprimées et codes d’entrée Windows.
-- ISO-DE et ANSI-US en format complet et TKL ; ajout du Corsair K100 RGB, reconnu comme modèle connecté via iCUE.
-- Touche Entrée ISO en forme de L, pavé numérique avec touches Plus et Entrée hautes et touche zéro large ; touches de navigation et flèches à leurs positions propres.
-- Sélection explicite du modèle/de la disposition. VID/PID USB et nom de modèle ne prouvent pas la variante de langue. Les profils génériques et ceux modélisés à partir de documents du fabricant portent des libellés distincts ; aucune garantie de dimensions au millimètre ni de compatibilité du micrologiciel.
-- Associer le scancode à la disposition d’entrée Windows active pour qu’un clic sur une touche physique n’affecte pas par erreur une autre touche, par exemple Y/Z lors du passage de l’anglais américain à l’allemand.
-- L’affectation ouvre un brouillon dans l’éditeur d’action existant. L’enregistrement, la vérification des conflits et l’abandon conservent les mécanismes existants. Les clics ne lancent aucune action.
-- Les touches G propriétaires, les touches Profil/Verrouillage et la molette iCUE sont représentées, mais n’émettent pas de raccourcis Windows ordinaires sans adaptateur d’entrée implémenté. Les raccourcis configurables du fabricant restent une possibilité.
-- Les affectations restent des raccourcis Windows globaux ; une vue par périphérique ne signifie ni suppression propre au périphérique, ni affectation exclusive à un clavier physique donné.
+- Catalogue avec identifiants physiques séparés, géométrie en unités clés, légendes imprimées et codes d'entrée Windows.
+- ISO-DE et ANSI-US chacun en format complet et TKL ; en outre Corsair K100 RGB, qui a été reconnu comme modèle connecté via iCUE.
+- Entrée ISO en forme de L, clavier numérique avec touches plus/entrée hautes et zéro large ; Navigation et flèches dans leurs propres positions.
+- Sélectionnez explicitement le modèle/la mise en page. USB VID/PID et le nom du modèle ne prouvent pas la variante linguistique. Les profils génériques et les profils modélisés sur la base des documents du fabricant sont clairement étiquetés différemment ; aucune échelle millimétrique ni garantie de compatibilité du micrologiciel.
+- Mappez le scancode à la disposition d'entrée Windows active afin qu'un clic sur une touche physique n'occupe pas accidentellement une autre touche, telle que Y/Z lors du basculement entre les États-Unis et l'Allemagne.
+- L'affectation ouvre un brouillon dans l'éditeur d'actions existant. La sauvegarde, la vérification des conflits et la suppression restent les mécanismes existants. Les clics ne déclenchent pas d'actions.
+- Les touches G propriétaires, les touches de profil/verrouillage et la molette iCUE sont représentées, mais ne sont pas émises comme les touches de raccourci Windows normales sans un adaptateur d'entrée implémenté. Les raccourcis constructeur configurables restent une voie possible.
+- Les affectations restent des raccourcis clavier globaux Windows ; une vue de périphérique n'implique pas la suppression spécifique au périphérique ou l'affectation exclusive d'un seul clavier physique.
 
-## Références
+## Preuve
 
-[Guide K100 présentant les commandes](https://assets.corsair.com/image/upload/corsairmedia/sys_master/productcontent/AP_K100_RGB_Mechanical_QSG_AD.pdf), [explication Corsair des dispositions ANSI/ISO](https://www.corsair.com/au/en/explorer/gamer/keyboards/ansi-vs-iso-whats-the-best-keyboard-layout/).
+[K100-Handbuch avec des éléments de commande](https://assets.corsair.com/image/upload/corsairmedia/sys_master/productcontent/AP_K100_RGB_Mechanical_QSG_AD.pdf), [Corsair Déclaration ANSI / ISO](https://www.corsair.com/au/en/explorer/gamer/keyboards/ansi-vs-iso-whats-the-best-keyboard-layout/).
 
-## Vérification
+## Examen
 
-Tests de géométrie, de variantes et de codes d’entrée ; compilations et tests Core/Windows existants ; test rapide WPF du rendu et des affectations sans exécution ni modification de la configuration réelle de l’utilisateur. La recherche fabricant documente d’autres exigences liées aux modèles/SKU, indépendamment du catalogue de dispositions actuellement implémenté.
+tests de géométrie, de variantes et de code d'entrée ; Builds et tests de base/Windows existants ; WPF fume pour l'affichage et la cartographie sans exécuter ni modifier la configuration utilisateur réelle. La recherche du fabricant documente les exigences supplémentaires en matière de modèle/SKU indépendamment du catalogue de présentation actuellement mis en œuvre.

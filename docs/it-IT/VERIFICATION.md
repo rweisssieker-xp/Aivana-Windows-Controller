@@ -1,26 +1,30 @@
-# Verifica — 8 ottobre 2026
+<!-- generated-doc locale=it-IT source=docs/VERIFICATION.md sha256=f19afb9e7b5ffac90c83167416ab3af0964a4481dd16b7357f8585480c6aae65 -->
 
-[English (US)](../en-US/VERIFICATION.md) · [Deutsch](../de-DE/VERIFICATION.md) · [Français](../fr-FR/VERIFICATION.md) · [Italiano](../it-IT/VERIFICATION.md)
+> Traduzione assistita automaticamente. Struttura, esempi di codice e collegamenti vengono verificati; ciò non costituisce una revisione madrelingua o una convalida legale. I rapporti storici conservano le date e l'ambito originali. [Fonte originale](../VERIFICATION.md)
 
-L'applicazione è stata compilata su Windows x64 con .NET SDK stabile 10.0.202 e pubblicata come pacchetto autonomo per Windows x64.
+# Esame – 8. Ottobre 2026
 
-## Controlli automatizzati
+[English (US)](../en-US/VERIFICATION.md) | [Deutsch](../de-DE/VERIFICATION.md) | [Français](../fr-FR/VERIFICATION.md) | [Italiano](VERIFICATION.md)
 
-- Build completa: nessun avviso o errore.
-- 19 test comportamentali Core: configurazione predefinita, convalida, dati nulli/duplicati, priorità dei profili, import/export e ripristino del backup, ordine e ripetizione delle macro, annullamento, attivazioni duplicate, serializzazione, snapshot di esecuzione immutabile ed errori nei passaggi.
-- Verifica Windows: normalizzazione degli hotkey e nomi alias, dimensioni delle strutture native, elenco reale dei dispositivi tastiera, registrazione sicura e nuovo rilascio, WM_HOTKEY sintetico per riquadro e annullamento, registrazione disattivata dei riquadri durante la simulazione dell'input.
-- L'EXE autonoma è stata avviata con `--smoke-test`: vengono renderizzate tutte e cinque le viste WPF; si possono creare, copiare ed eliminare riquadri; le bozze restano dopo l'aggiornamento; la configurazione viene salvata e ricaricata. Il test usa una directory temporanea isolata per la configurazione e non esegue azioni di testo o multimediali.
-- Dashboard, editor e vista compatta (900 × 720) sono stati esaminati visivamente tramite rendering WPF reale. Sono stati verificati salvataggio delle bozze, scarto, ordine di riquadri/macro, alias hotkey tedeschi, annullamenti singoli di macro e avanzamento dei passaggi.
+L'applicazione è stata creata su Windows x64 con l'SDK .NET stabile 10.0.202 e rilasciata come Windows-x64-Ausgabe autonomo.
 
-## Limiti legati all'hardware
+## Controllato automaticamente
+
+- Costruzione complessiva: nessun avviso e nessun errore.
+- 19 Test di comportamento principali: configurazione predefinita, convalida, dati nulli/duplicati, priorità del profilo, importazione/esportazione e ripristino del backup, ordine e nuovo tentativo di macro, interruzione, doppio trigger, serializzazione, istantanea di esecuzione immutabile e errore di passaggio.
+- Controllo Windows: normalizzazione e alias dei tasti di scelta rapida, dimensioni della struttura nativa, elenco dei dispositivi della tastiera reale, registrazione sicura e ricondivisione, WM_HOTKEY sintetico per riquadro e annullamento, registrazione piastrella disabilitata durante la simulazione dell'input.
+- L'EXE autonomo è stato avviato con `--smoke-test`: viene eseguito il rendering di tutte e cinque le visualizzazioni WPF, i riquadri possono essere creati/copiati/eliminati, le bozze vengono conservate durante l'aggiornamento, la configurazione viene salvata e ricaricata. Questo test utilizza una directory di configurazione temporanea isolata e non esegue alcuna azione di testo o multimediale.
+- Dashboard, editor e rappresentazione compatta (900 × 720) sono stati ispezionati visivamente come rendering WPF reali. Vengono controllati il ​​salvataggio delle bozze, l'eliminazione, l'ordine dei riquadri/macro, gli alias dei tasti di scelta rapida tedeschi, le singole cancellazioni delle macro e l'avanzamento dei passaggi.
+
+## Limiti dipendenti dall'hardware
 
 L'ultima esecuzione locale ha rilevato quattro interfacce tastiera Windows. Questo numero descrive le interfacce HID/Windows, non necessariamente quattro tastiere fisiche.
 
-L'SDK ufficiale iCUE è installato e si trova accanto all'EXE. Il test dal vivo si collega a iCUE e rileva una tastiera Corsair con informazioni sul modello e sui LED. Le modifiche all'illuminazione non sono state attivate automaticamente; i tasti speciali specifici dei modelli e quelli di altri produttori non sono stati testati sull'hardware. Gli hotkey generici valgono per tutte le tastiere.
+L'SDK ufficiale iCUE è installato e si trova accanto all'EXE. Il test live si connette a iCUE e rileva una tastiera Corsair con informazioni sul modello e sul LED. I cambiamenti di illuminazione non venivano attivati ​​automaticamente; Le chiavi speciali dipendenti dal modello e da altri produttori non vengono testate sull'hardware. I tasti di scelta rapida generici si applicano a tutte le tastiere.
 
-Gli input di testo/multimediali non sono stati inviati ad altri programmi utente aperti. Sono state controllate le strutture dati native e la logica di errore/rilascio; il comportamento in uno specifico programma di destinazione dipende anche dal suo livello di autorizzazione.
+L'input di testo/media non è stato inserito in altri programmi utente aperti. Sono state verificate le strutture dati native e la logica di errore/rilascio; Il comportamento in un determinato programma di destinazione dipende tra l'altro dal suo livello di autorizzazione.
 
-## Ripetere i controlli
+## Ripeti
 
 ```powershell
 dotnet build Aivana.slnx -c Release
@@ -30,12 +34,14 @@ dotnet publish src/Aivana.Desktop -c Release -r win-x64 --self-contained true -o
 & ./artifacts/win-x64/MAKRIVO.exe --smoke-test
 ```
 
-Il test GUI scrive risultati e screenshot in `smoke`, accanto all'EXE verificata. È una modalità diagnostica e al termine non avvia un'istanza permanente in background.
+Il test della GUI scrive il risultato e lo screenshot in `smoke` accanto all'EXE testato. È inteso come modalità diagnostica e non avvia un'istanza in background persistente al termine.
 
-## Controlli estesi
 
-Inoltre sono stati verificati: condizioni del profilo con processo e titolo della finestra, sostituzione delle variabili senza espansione ricorsiva, anteprima delle macro senza esecuzione, nuova convalida delle azioni e compatibilità con i vecchi file JSON. I controlli nativi includono la tavolozza dei comandi con registrazione, conflitti, dispatch e rilascio di WM_HOTKEY, la sola suddivisione dei monitor e la lettura degli appunti su richiesta. Il test WPF apre e renderizza la tavolozza reale, verifica Annulla/Ripristina e preferiti, controlla che le bozze restino pulite dopo il rendering e termina correttamente il processo.
+## Controlli avanzati
 
-Durante i test non sono stati applicati a programmi dell'utente il blocco di Windows, modifiche agli appunti o spostamenti delle finestre. Le azioni finestra inviano richieste asincrone a Windows; il programma di destinazione può imporre dimensioni minime o limiti di autorizzazione. Il blocco del profilo e le statistiche di esecuzione valgono per la sessione corrente.
+Inoltre controllati: condizioni del profilo con titolo del processo e della finestra, sostituzione delle variabili senza espansione ricorsiva, anteprima macro senza esecuzione, convalida di nuove azioni e compatibilità con le versioni precedenti dei vecchi file JSON. I controlli nativi coprono la tavolozza dei comandi con registrazione, conflitti, invio e rilascio di WM_HOTKEY, nonché la pura suddivisione del monitor e l'accesso in lettura agli appunti su richiesta. Il test WPF apre ed esegue il rendering della tavolozza effettiva, controlla l'annullamento/ripristino e i preferiti, controlla le bozze pulite dopo il rendering e completa il processo con successo.
 
-Verifica delle estensioni del 12 ottobre 2026: superati 30 controlli Core e i controlli Windows, inclusi rilascio durante l’iniezione, identificazione dei monitor in sola lettura e simulazioni OBS. WPF verifica adozione/annullamento dei flussi, avvio/arresto del registratore, anteprime dello scambio profili, gesti e icone. Localizzazione: 27 cataloghi da 967 chiavi; documentazione: 84 pagine in quattro lingue. I tasti proprietari oltre Corsair non sono stati verificati su hardware; il supporto generico copre F13–F24 ed eventi multimediali standard per dispositivo. Il trasporto cloud usa una cartella sincronizzata scelta; le importazioni richiedono revisione e rimangono disabilitate.
+Il blocco Windows, le modifiche agli appunti e lo spostamento delle finestre non sono stati applicati agli user agent durante i test. Azioni della finestra di pubblicazione Windows richiede in modo asincrono; Il programma di destinazione specifico può avere dimensioni minime o limiti di autorizzazione propri. Il blocco del profilo e le statistiche di esecuzione si applicano alla sessione corrente.
+
+
+Esame di estensione da 12.10.2026: Esami fondamentali 30 superati; Adattatore Windows incluso rilascio durante l'iniezione dell'input, rilevamento del monitor di sola lettura e simulazione dello stato OBS superato. WPF controlla il commit/annullamento del flusso, l'avvio/arresto del registratore, l'anteprima dello scambio del profilo, i gesti e le risorse dei simboli. Localizzazione: cataloghi 27 ciascuno con chiavi 967; Documentazione: 84 pagine in quattro lingue. I pulsanti proprietari diversi da Corsair non sono stati testati sull'hardware; Il supporto generico include eventi standard specifici del dispositivo F13–F24 e chiavi multimediali. Il trasporto nel cloud avviene tramite una cartella sincronizzata selezionata; Le importazioni vengono controllate e rimangono disabilitate.

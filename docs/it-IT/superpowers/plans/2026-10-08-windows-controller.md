@@ -1,32 +1,36 @@
-# Piano di implementazione del controller Windows
+<!-- generated-doc locale=it-IT source=docs/superpowers/plans/2026-10-08-windows-controller.md sha256=10a5ba49bbefc617bce40563c668e3c4628647822117087deba766713fb9b3af -->
 
-[English (US)](../../../en-US/superpowers/plans/2026-10-08-windows-controller.md) · [Deutsch](../../../de-DE/superpowers/plans/2026-10-08-windows-controller.md) · [Français](../../../fr-FR/superpowers/plans/2026-10-08-windows-controller.md) · [Italiano](../../../it-IT/superpowers/plans/2026-10-08-windows-controller.md)
+> Traduzione assistita automaticamente. Struttura, esempi di codice e collegamenti vengono verificati; ciò non costituisce una revisione madrelingua o una convalida legale. I rapporti storici conservano le date e l'ambito originali. [Fonte originale](../../../superpowers/plans/2026-10-08-windows-controller.md)
 
-> Per chi lavora tramite agenti: usare ownership isolata e parallela; l'utente ha richiesto esplicitamente l'implementazione completa con il massimo numero utile di subagenti.
+# Windows Piano di implementazione del controllore
 
-**Obiettivo:** distribuire il pannello hotkey nativo per Windows secondo il design approvato.
-**Architettura:** configurazione Core ed esecuzione annullabile; adattatori Windows; composizione desktop WPF.
+[English (US)](2026-10-08-windows-controller.md) | [Deutsch](2026-10-08-windows-controller.md) | [Français](2026-10-08-windows-controller.md) | [Italiano](2026-10-08-windows-controller.md)
+
+> Per i lavoratori tramite agenti: utilizzare la proprietà isolata parallela; l'utente ha esplicitamente richiesto l'implementazione completa con il massimo degli agenti secondari utili.
+
+**Obiettivo:** Fornire il pannello di tasti di scelta rapida nativo Windows nel design approvato.
+**Architettura:** Configurazione core ed esecuzione cancellabile; Adattatori Windows; WPF composizione da scrivania.
 **Stack tecnologico:** .NET 10, WPF, Win32, JSON. Nessuna dipendenza a pagamento.
-**Specifica:** ../specs/2026-10-08-windows-controller-design.md
+**Spec:** ../specs/2026-10-08-windows-controller-design.md
 
 ## Vincoli globali
-Interfaccia in tedesco; archiviazione locale; Windows x64; stato delle capacità hardware veritiero; nessuna registrazione della tastiera; avvio automatico disattivato per impostazione predefinita.
+interfaccia utente tedesca; archiviazione locale; Windowsx64; stato di capacità hardware veritiero; nessuna registrazione da tastiera; nessun avvio automatico predefinito.
 
-## Aspetti della revisione
-Gli import non validi non devono sostituire le impostazioni salvate; i modificatori premuti non devono contaminare l'output; lo scollegamento dell'hardware non deve causare arresti anomali; la chiusura deve mantenere disponibile l'area di notifica; le macro annullate devono rilasciare le risorse.
+## Rivedi Focus
+Le importazioni non valide non devono sostituire le impostazioni salvate; i modificatori trattenuti non devono contaminare l'output; l'hardware scollegato non deve bloccarsi; la chiusura deve preservare la disponibilità del vassoio; le macro annullate devono liberare risorse.
 
-## Attività e responsabilità
-- [x] Agente Core: src/Aivana.Core e tests/Aivana.Tests. Modelli, persistenza JSON, convalida, selezione dei profili e MacroRunner. Eseguire i test comportamentali in errore, poi implementare ed eseguire tutti i test Core.
-- [x] Agente Windows: src/Aivana.Windows. RegisterHotKey, inventario dispositivi, SendInput, processo in primo piano e adattatore facoltativo per l'illuminazione Corsair. Verificare le dimensioni delle strutture native e la pulizia della registrazione con test smoke sicuri.
-- [x] Agente GUI: src/Aivana.Desktop/MainWindow.xaml e .cs, oltre ai soli helper UI. Dashboard scura, editor completo, profili, dispositivi, impostazioni, panoramica tastiera ed editor macro. Eseguire la build quando i contratti sono disponibili.
-- [x] Responsabile principale: contratti condivisi, file di progetto, composizione DesktopController, ciclo di vita dell'app/area di notifica, finestre di dialogo per import/export, documentazione, controlli d'integrazione, pubblicazione e test smoke dell'app in esecuzione.
+## Compiti e proprietà
+- [x] Agente principale: src/Aivana.Core e tests/Aivana.Tests. Modelli, persistenza JSON, validazione, selezione del profilo e MacroRunner. Esegui test comportamentali falliti, quindi implementa ed esegui tutti i test principali.
+- [x] Windows agente: src/Aivana.Windows. RegisterHotKey, inventario dispositivi, SendInput, processo in primo piano e adattatore di illuminazione Corsair opzionale. Verifica le dimensioni delle strutture native e la pulizia della registrazione con test del fumo sicuri.
+- [x] Agente GUI: src/Aivana.Desktop/MainWindow.xaml e .cs più solo helper dell'interfaccia utente. Dashboard scuro, editor completo, profili, dispositivi, impostazioni, panoramica della tastiera ed editor di macro. Costruisci una volta che esistono i contratti.
+- [x] Elemento principale: contratti condivisi, file di progetto, composizione di DesktopController, ciclo di vita di applicazioni/vassoi, finestre di dialogo di importazione/esportazione, documentazione, controlli di integrazione, test del fumo di pubblicazione ed esecuzione delle app.
 
 ## Interfacce condivise
-I contratti sono in Core/Models.cs. L'implementazione del controller è in Desktop/DesktopController.cs. L'interfaccia utente chiama i metodi del controller tramite questa classe concreta. Gli agenti ricevono le firme esatte nelle rispettive attività. Ognuno gestisce file distinti. Il responsabile principale risolve gli errori tra progetti dopo il completamento degli agenti.
+I contratti risiedono in Core/Models.cs. L'implementazione del controller si trova in Desktop/DesktopController.cs. L'interfaccia utente chiama i metodi del controller tramite quella classe concreta. Gli agenti ricevono firme esatte nei loro compiti. Ciascuno possiede file separati. Il genitore risolve gli errori tra progetti al termine di tutti gli agenti.
 
 ## Verifica e consegna
-- [x] dotnet build Aivana.slnx -c Release: zero errori.
-- [x] dotnet run --project tests/Aivana.Tests -c Release: test comportamentali superati.
-- [x] dotnet publish src/Aivana.Desktop -c Release -r win-x64 --self-contained true -o artifacts/win-x64.
-- [x] Avviare l'eseguibile pubblicato, esaminare l'interfaccia Windows e la stabilità del processo, provare un flusso sicuro di profilo/modifica/persistenza.
-- [x] Scrivere il README con istruzioni di build/avvio e limiti hardware; registrare i controlli e i test hardware ancora necessari.
+- [x] dotnet build Aivana.slnx -c Versione: zero errori.
+- [x] dotnet run --project tests/Aivana.Tests -c Release: controlli comportamentali superati.
+- [x] dotnet pubblicare src/Aivana.Desktop -c Release -r win-x64 --self-contenuto true -o artifacts/win-x64.
+- [x] Avviare l'eseguibile pubblicato, ispezionare l'interfaccia utente Windows e la stabilità del processo, esercitare un flusso sicuro di profilo/modifica/persistenza.
+- [x] Scrivi README con istruzioni di compilazione/avvio e limitazioni hardware; registrare i controlli e i restanti test solo hardware.

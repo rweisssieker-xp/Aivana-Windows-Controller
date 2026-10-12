@@ -1,20 +1,24 @@
-# Assistance clavier, superposition et retour d’exécution
+<!-- generated-doc locale=fr-FR source=docs/testing/2026-10-09-usp-release.md sha256=96a5b23b67032ef07f2f5dd93e9585e7bab0a522e5096ffc9f4d020823c4264e -->
 
-[English (en-US)](../../en-US/testing/2026-10-09-usp-release.md) | [Deutsch (de-DE)](../../de-DE/testing/2026-10-09-usp-release.md) | [Français (fr-FR)](2026-10-09-usp-release.md) | [Italiano (it-IT)](../../it-IT/testing/2026-10-09-usp-release.md)
+> Traduction assistée par machine. La structure, les exemples de code et les liens sont vérifiés ; cela ne constitue ni une révision par un locuteur natif ni une validation juridique. Les rapports historiques conservent leur date et leur portée d'origine. [Source originale](../../testing/2026-10-09-usp-release.md)
 
-Les trois améliorations prioritaires ont été mises en œuvre dans l’application Windows existante :
+# Assistance clavier, superposition et retour d'exécution
 
-- Assistant des touches spéciales : inventaire réel des périphériques et touches pris en charge par iCUE, capture temporaire des touches G, vérification de la réussite de la configuration, validation des conflits et brouillon d’action non enregistré. L’annulation de la capture, l’invalidation des rappels en attente et la restauration des affectations normales couvrent les erreurs et la fermeture de la boîte de dialogue.
-- Superposition du clavier : géométrie de référence physique, affectations du profil actif, actualisation en direct du profil et des modifications, et mise en évidence des touches Windows ordinaires. Maintenez Ctrl+Alt+F1 ou activez/désactivez la vue via la palette ou la page clavier. Elle ne prend pas le focus, laisse passer les clics et n’apparaît pas dans la barre des tâches.
-- Retour d’exécution : phases typées Waiting/Running/Step/Completed/Cancelled/Failed/Rejected, progression des étapes et répétitions, et notification sans prise de focus. Le retour exclut le contenu des actions et les messages d’exception. L’annulation à la dernière étape ne peut pas signaler une réussite. La fin indique la fin de l’exécution, sans interroger séparément l’état OBS.
+[English (US)](2026-10-09-usp-release.md) | [Deutsch](2026-10-09-usp-release.md) | [Français](2026-10-09-usp-release.md) | [Italiano](2026-10-09-usp-release.md)
 
-Vérification :
+Implémentation des trois améliorations prioritaires dans l'application Windows existante :
 
-- 24 contrôles Core réussis, notamment l’ordre des phases, les résultats d’échec/d’annulation, l’annulation à la dernière étape, l’isolation des exceptions des écouteurs et l’exclusion des valeurs d’action privées.
-- Compilation Release de la solution réussie sans avertissements ni erreurs.
-- Contrôles Windows réussis ; le K100 connecté a signalé G1–G6 et la configuration/libération native a réussi. Les points de terminaison audio ont été inspectés sans modifier leur état.
-- Test rapide WPF réussi avec toutes les dispositions de superposition de référence, assistant/catalogue/conflits/persistance des brouillons, configuration de capture native en direct, transfert des rappels, rejet des rappels périmés et restauration des affectations après la pause. L’entrée des rappels natifs a été simulée ; l’appui humain sur une touche G reste à vérifier manuellement.
-- L’absence d’effet sur la fenêtre au premier plan a été vérifiée pour la notification d’exécution. Les propriétés d’interaction de la superposition et son affichage/masquage ont été vérifiés ; des captures ont été générées pour l’assistant, la superposition et la notification.
-- Les 27 langues contiennent les 819 chaînes canoniques ; la validation hors ligne des espaces réservés et des clés a réussi.
+- Assistant de clé spéciale : inventaire réel des périphériques/clés pris en charge par iCUE, capture temporaire de la clé G, vérification de la réussite de la configuration, validation des conflits et brouillon d'action non enregistré. L’annulation de capture, l’invalidation du rappel en file d’attente et la restauration de liaison normale couvrent les erreurs et la fermeture de la boîte de dialogue.
+- Superposition de clavier : géométrie de référence physique, liaisons de profil actif, actualisation de profil/modification en direct et mise en surbrillance des touches Windows ordinaires. Maintenez Ctrl+Alt+F1 ou parcourez la page palette/clavier. Non activable, cliquable et absent de la barre des tâches.
+- Retour d'information sur l'exécution : phases tapées En attente/En cours d'exécution/Étape/Terminé/Annulé/Échec/Rejeté, progression de l'étape/répétition et un toast non activant. Les commentaires excluent le contenu des actions et les messages d’exception. L'annulation de la dernière étape ne peut pas signaler l'achèvement. L'achèvement décrit l'exécution, et non une requête d'état OBS indépendante.
 
-Les captures et le résultat GUI complet se trouvent dans artifacts/usp-win-x64/smoke. Les tests utilisent des profils temporaires ; les paramètres de production sont sauvegardés et leur empreinte est vérifiée lors du déploiement.
+Vérification :
+
+- 24 Vérifications principales réussies, y compris l'ordre des phases, les résultats d'échec/annulation, l'annulation de l'étape finale, l'isolement des exceptions d'écoute et l'exclusion des valeurs d'action privée.
+- Version de la solution publiée réussie sans avertissements/erreurs.
+- Windows contrôles réussis ; le K100 connecté a signalé G1–G6 et la configuration/libération native a réussi. Les points de terminaison audio ont été inspectés sans changer leur état.
+- WPF smoke a été transmis avec toutes les dispositions de superposition de référence, la persistance de l'assistant/catalogue/conflits/brouillon, la configuration de capture native en direct, le transfert de rappel, le rejet de rappel obsolète et la restauration de liaison en pause. L'entrée de rappel native a été simulée ; une pression humaine physique sur la touche G reste une vérification manuelle.
+- L'invariance réelle de la fenêtre de premier plan a été vérifiée pour le toast d'exécution. Les propriétés d'interaction de superposition et afficher/masquer ont été vérifiées ; des captures d'écran ont été rendues pour l'assistant, la superposition et le toast.
+- Les langages 27 contiennent toutes les chaînes canoniques 819 ; Validation de l'espace réservé/de la clé hors ligne réussie.
+
+Les instantanés et le résultat complet de l'interface graphique se trouvent dans Artefacts/usp-win-x64/smoke. Les tests utilisent des profils temporaires ; les paramètres de production sont sauvegardés et vérifiés lors du déploiement.

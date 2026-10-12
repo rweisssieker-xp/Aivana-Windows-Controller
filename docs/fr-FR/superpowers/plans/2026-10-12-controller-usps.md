@@ -1,17 +1,21 @@
-# Plan de mise en œuvre des extensions
+<!-- generated-doc locale=fr-FR source=docs/superpowers/plans/2026-10-12-controller-usps.md sha256=b7af0d36209e04b458ce64a5db78ab7e552a84c5e9b450ea0bd97179a4eb7f68 -->
 
-Réaliser les fonctions demandées : écrans, gestes, séquences, enregistrement, diagnostic, échange portable de profils et icône.
+> Traduction assistée par machine. La structure, les exemples de code et les liens sont vérifiés ; cela ne constitue ni une révision par un locuteur natif ni une validation juridique. Les rapports historiques conservent leur date et leur portée d'origine. [Source originale](../../../superpowers/plans/2026-10-12-controller-usps.md)
 
-Étendre les couches Core/Windows/Desktop existantes. Les automates purs et la configuration portable restent dans Core, les intégrations natives dans Windows et les éditeurs modaux de brouillons dans Desktop. Conserver les modifications locales et la configuration déployée.
+# Plan de mise en œuvre de l'extension du contrôleur
+
+**Objectif : ** Mettre en œuvre le moniteur, les gestes, le flux de travail, l'enregistrement, le diagnostic de l'appareil, l'échange de profils portables et les améliorations demandées.
+
+**Architecture :** Étendre les couches Core/Windows/Desktop existantes. Les machines à états purs et la logique de configuration portable résident dans Core, les intégrations natives dans Windows et les éditeurs de brouillons modaux dans Desktop. Conservez les modifications existantes de l’espace de travail modifié et la configuration utilisateur déployée.
 
 **Spec:** ../specs/2026-10-12-controller-usps-design.md
 
-- [x] Service des écrans, persistance des cibles et état asynchrone ; vérifier identifiants absents et annulation.
-- [x] Automate de gestes et couches maintenues ; vérifier transitions, répétition, réinitialisation et affectations immédiates.
-- [x] Conditions, branches vers l’avant et règles d’erreur ; vérifier instantanés et annulation.
-- [x] Enregistrement explicite des raccourcis avec révision du brouillon ; vérifier filtrage et libération des hooks.
-- [x] Échange par dossier partagé avec révisions et aperçus ; vérifier conflits et affectations portables.
-- [x] Touches standard par périphérique et diagnostic ; vérifier traitement, doublons et pause.
-- [x] Ressources des icônes et apparence en pause ; vérifier l’exécutable publié.
-- [x] Intégrer les accès palette/éditeur et les traductions ; exécuter les contrôles Core, Windows et WPF.
-- [x] Publier dans un dossier intermédiaire séparé, préserver les paramètres et redémarrer l’application.
+- [x] Surveiller le service, la persistance de la cible et l'état en direct asynchrone ; tester les identifiants indisponibles et l’annulation.
+- [x] Machine à états gestuelle et couches maintenues ; tester les bords, répéter, réinitialiser et les liaisons immédiates existantes.
+- [x] Conditions de flux de travail, branches transférées et politique d'erreur ; Test des instantanés et annulation.
+- [x] Enregistrement de raccourci explicite avec révision du brouillon ; tester le filtrage et l’élimination des crochets.
+- [x] Échange de profils de dossiers partagés avec vérifications de révision et aperçus ; tester les conflits et les mappages portables.
+- [x] Clés spéciales et diagnostics standards génériques par appareil ; tester l'analyse, les mappages en double et le comportement de pause.
+- [x] Ressources d'icônes de barre d'état/fenêtre/exécutable et apparence en pause ; vérifier les ressources dans l'exécutable publié.
+- [x] Intégrer tous les points d'entrée de la palette/éditeur et le texte localisé ; exécutez les vérifications Core, Windows et WPF.
+- [x] Publiez dans un répertoire intermédiaire distinct, conservez les paramètres utilisateur et redémarrez l'application mise à jour.
