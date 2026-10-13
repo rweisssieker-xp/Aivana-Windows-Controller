@@ -19,7 +19,7 @@ Klienci HTTP nie korzystają z serwerów proxy i nie korzystają z przekierowań
 
 ## ONNX
 
-W dialogie genai_config.json wybierz. folder musi zawierać tokenizer.json i szablon czatu. chat_template jest obsługiwany jako łańcuch znaków, określony szablon podanego (Array lub Słownik) oraz oddzielny chat_template.jinja, jeśli nie ma szablonu w trybie lub jest to zero. 65536 Znaki. popularne pliki .onnx, modele wizji/włączenia lub czyste eksporty GPU/NPU nie są modelami spotkań.
+W oknie dialogowym wybierz genai_config.json. Folder musi zawierać tokenizer.json i szablon czatu. Obsługiwane są chat_template jako ciąg znaków, szablon nazwany default (tablica lub słownik) oraz osobny chat_template.jinja, jeśli szablonu wbudowanego brakuje lub ma wartość null. Szablony niejednoznaczne są odrzucane; limit wynosi 65536 znaków. Dowolne pliki .onnx, modele wizyjne/osadzeń lub eksporty przeznaczone wyłącznie dla GPU/NPU nie są modelami do obsługi spotkań.
 
 W pakiecie: Microsoft.ML.OnnxRuntimeGenAI 0.17.1, procesor. Konfiguracja dostawcy została zresetowana do procesora. Bez pobierania i bez ciężarów modeli w pakiecie. Nie wymaga instalacji Pythona. Używaj tylko pakietów zaufanych modeli; oddzielny proces stanowi granicę awarii/przerwania, a nie bezpieczną piaskownicę.
 
@@ -28,7 +28,7 @@ Limity: 90 sekundy obejmujące ładowanie modelu, maksymalna liczba tokenów pod
 ## Weryfikacja
 
 - Pakiet podstawowy, testy transportu pętli zwrotnej z symulowanymi odpowiedziami LM-Studio/llama.cpp/Ollama, sprawdzanie schematu/przerwania/zasobu.
-- Regresja protokołu Unicode z maksymalnie długimi celami i nazwami zasobów 24.
+- Test regresji protokołu Unicode z celami o maksymalnej długości i 24 nazwami zasobów.
 - Prawdziwe natywne wnioskowanie o procesorze z oficjalnym tiny-random-gpt2-fp32-Testgraph z Microsoft/onnxruntime-genai, zatwierdź 5c19002edce50beaa3a5c7eeefd8fe5269ee8d19. Dodano szablon testowy i dostosowano tokenizator bajtów do małego losowego wykresu. Ten losowy model nie sprawdza jakości i nie jest dostępny w sprzedaży.
 - Powtarzalny natywny test środowiska wykonawczego: Tools/check-onnx-runtime.ps1 -ModelDirectory <folder modelu GenAI>.
 - WPF-Smoke sprawdza wybór wszystkich czterech dostawców i stanowisko testowe; Sam wybór nie generuje żądania modelu.
@@ -48,10 +48,10 @@ Test końcowy: wydanie kompilacji bez ostrzeżeń/błędów; Przeszedł pełny r
 
 ## Kontynuacja: prawdziwa jakość i modele
 
-Dodatkowe biegi CPU allama-ai/SmolLM-360M-Instruct-onnx-int4, Revision 82a3d1a8a86c8053f2a859a90ed4d344fc0725b0: native Inference przetrwał. Modellgewichte-SHA25648e9c4ef12f7f995ca11fc7020b39990aa27bc67cc0fe1160676a000a04429. eksportowanie społeczności tylko w strefie testowej, nie w wydaniu.
+Dodatkowy test CPU z allama-ai/SmolLM-360M-Instruct-onnx-int4, rewizja 82a3d1a8a86c8053f2a859a90ed4d344fc0725b0: natywne wnioskowanie zakończone powodzeniem. SHA256 wag modelu: 48e9c4ef12f7f995ca11fc7020b39990aa27bc67cc0fe116067676a000a04429. Eksport społecznościowy wyłącznie w obszarze testowym, poza wydaniem.
 
-Cztery prawdziwe testy planowania (w języku niemieckim/ang. document, program, wyraźny mikrofon): **0/4 Istotne plany**; JsonException w przypadku rygorystycznego badania odpowiedzi. 63501, 6376, 72118 i 6774 ms. Nie wykonuje się żadnych działań. ten mały model nie spełnia umowy planowania i nie jest zalecany jako odpowiedni. raport: artifacts/local-ai-evaluation/smollm360-results.json. Windows-Test --evaluate-onnx <modelowy porządek> <porządek raportu>. funkcja czasu pracy nie potwierdza jakości modelu.
+Cztery rzeczywiste testy planowania (niemiecki/angielski, dokument, program, jawne wyciszenie mikrofonu): **0/4 prawidłowych planów**; w każdym przypadku JsonException podczas ścisłej walidacji odpowiedzi. Czasy wykonania: 63501, 6376, 72118 i 6774 ms. Nie wykonano żadnych akcji. Ten mały model nie spełnia kontraktu planowania i nie jest zalecany jako odpowiedni. Raport: artifacts/local-ai-evaluation/smollm360-results.json. Odtworzenie: Windows-Tests --evaluate-onnx <Modellordner> <Berichtspfad>. Działanie środowiska wykonawczego nie dowodzi jakości modelu.
 
-Narzędzia nawigacji i raporty testowe zostały dodatkowo w każdym 27 Tłumaczenie katalogów językowych. długie teksty i odbiór językowy pozostają otwarte. regresja szablonów sprawdza również fałszywe typy JSON, puste/wiele-długie/długie szablony i zero z Jinja Fallback.
+Nawigację narzędzi i raport z testów dodatkowo przetłumaczono we wszystkich 27 katalogach językowych. Długie teksty i weryfikacja językowa pozostają do wykonania. Testy regresji szablonów sprawdzają także błędne typy JSON, szablony puste/niejednoznaczne/zbyt długie oraz wartość null z zastępczym szablonem Jinja.
 
-Aktualizacja pakietu: Artifacts/Release-20261012-201134Pakiet WPFSmoke na 12.10.2026 O 20:12 przetrwał; native CPU referencyjnie z oddzielnym modelem testowym Instruct w połączonym Worker. Windows-Test KI przeszedł; buduje bez ostrzeżeń/błędu. jakość planowania modelu kontynuować 0/4.
+Zaktualizowany pakiet: artifacts/release-20261012-201134. Test WPF-Smoke spakowanej aplikacji zakończył się powodzeniem 12.10.2026 o 20:12; natywne wnioskowanie CPU z osobnym testowym modelem Instruct w dołączonym procesie roboczym również zakończyło się powodzeniem. Testy Core i Windows-KI przeszły; kompilacja bez ostrzeżeń/błędów. Jakość planowania modelu nadal 0/4.

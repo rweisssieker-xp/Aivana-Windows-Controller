@@ -10,13 +10,13 @@
 
 ** Angļu valoda ** | [Deutsch](../de-DE/REFERENCE.md) | [Français](../fr-FR/REFERENCE.md) | [Italiano](../it-IT/REFERENCE.md)
 
-Vietējais Windows karstā atslēga kontrolieris ar Stream Deck stila plankumiem, profiliem, makro un tastatūras detekciju. Interfeiss atbalsta 27 valodas. Nekas nav nepieciešams ikdienas lietošanai.
+Vietējs Windows saīšņu kontrolleris ar Stream Deck stila elementiem, profiliem, makro un tastatūru noteikšanu. Saskarne atbalsta 27 valodas. Ikdienas lietošanai nav vajadzīgs konts vai mākoņsavienojums.
 
 [Dokumentācija](README.md) · [Pārbaude](VERIFICATION.md) · [Feature pārbaudes ziņojums](testing/2026-10-09-usp-release.md)
 
 ## Sākt
 
-Pēc publicēšanas pieteikums ir `artifacts/win-x64/MAKRIVO.exe`. Saglabājiet visu iznākuma mapi kopā; to var kopēt citur. Windows 11 x64 ir sākotnējais mērķis. Build artefakti ir izslēgti no Git; avota pārbaude neietver iepriekš izgatavotu.
+Pēc publicēšanas lietotne atrodas `artifacts/win-x64/MAKRIVO.exe`. Saglabājiet visu izvades mapi kopā; to var kopēt citur. Sākotnējā mērķplatforma ir Windows 11 x64. Būvējuma artefakti ir izslēgti no Git; pirmkoda kopijā nav iepriekš izveidota izpildfaila.
 
 Instalēt .NET 10 SDK, kas norādīts `global.json`, lai izveidotu un veiktu no avota:
 
@@ -36,66 +36,66 @@ dotnet publish src/Aivana.Desktop -c Release -r win-x64 --self-contained true -o
 1. Izvēlieties profilu un izveidojiet rīcības lapu.
 2. Ievadiet savu nosaukumu, ikonu, krāsu un tastatūras īsziņu. Ctrl/Alt/Shift kombinācijas samazina nejaušu aktivizāciju.
 3. Pievienojiet vienu vai vairākus soļus: lietojumprogrammas, faili, tīmekļa vietnes, teksts, īsziņas, plašsaziņas līdzekļi, profila maiņa vai kavēšanās.
-4. glābt Izmaiņas paliek projektā, līdz tiek glabāta; atgriež glabāto versiju. Tīkls Spēlēt un tā atslēga izmanto to pašu izpildes ceļu.
+4. Saglabājiet. Līdz saglabāšanai izmaiņas paliek melnrakstā; atmešana atjauno saglabāto versiju. Elementa Play poga un tā saīsne izmanto vienu un to pašu izpildes ceļu.
 5. Reorder tilti un makro soļi ar drag-and-drop vai pīles pogu. Šablonis vienkāršojas. Macros var atkārtot līdz 100 reizēm. Atcerieties, izmantojot interfeisu, sistēmu tray meniu vai Ctrl+Alt+Escape par nosacījumu.
 
-Pieteikuma profili izmanto procesu nosaukumu bez tā pilnas maršrutas. Profila pasūtījums pārtrauc saites; default profils ir atgriešanās. Automātiska profila izvēle jāatbilst iestatījumiem.
+Lietotnei specifiskie profili izmanto procesa nosaukumu bez pilnā ceļa. Ja atbilst vairāki profili, izvēli nosaka to secība; noklusējuma profils ir rezerves izvēle. Automātiskā profila izvēle jāiespējo Settings.
 
-Galvenā loga slēgšana saglabā programmu sistēmā. Divkārši noklikšķiniet uz tā tray ikonu, lai to atvērtu; izmantojiet tray meniu, lai iziet. Startup ar Windows ir opcionāls un atslēgts par nosacījumu. Hotkeys var pārtraukt centrāli.
+Aizverot galveno logu, lietotne pēc noklusējuma paliek sistēmas paziņojumu apgabalā. Atveriet to ar dubultklikšķi uz ikonas; iziešanai izmantojiet ikonas izvēlni. Palaišana kopā ar Windows ir izvēles iespēja un pēc noklusējuma atspējota. Saīsnes var centrāli apturēt.
 
 ## Akcijas un komandas paletes
 
-Pievienojiet rīcību, atverot meklējamu katalogu ar 90 priekšrakstām astoņās kategorijās. Katram ir apraksts un priekšstats. Makro redaktors izmanto to pašu katalogu, lai pievienotu vai aizstātu soļus. Izvēloties iepriekšējo sadaļu šajā redaktora darba plūsmā, tiek izveidots projekts bez izpildes.
+Add Action atver meklējamu katalogu ar 90 sagatavēm astoņās kategorijās. Katrai ir apraksts un priekšskatījums. Makro redaktors izmanto to pašu katalogu, lai pievienotu vai aizstātu soļus. Sagataves izvēle šajā rediģēšanas darbplūsmā izveido melnrakstu bez izpildes.
 
-Komandas palete atveras no virsraksta vai ar Ctrl+K aplikācijas iekšpusē. Tas meklē ietaupītus pasākumus caur profiliem, katalogu iepriekšējos noteikumos, profilu pārslēgšanas, navigācijas, pārtraukuma/receses, makro atcelšanas un importēšanas/eksportēšanas. Filtrējiet ar glabātiem pasākumiem, kataloga funkcijām vai lietojumprogrammas komandām. Izvēlies atslēgas, aktivizē Enter, Ctrl+Enter rediģē rediģējamu ievadījumu un slēdz Escape. Pirmkārt parādās mīļākie. Gatavi lietošanai katalogs komandu var veikt nekavējoties; priekšnoteikumi, kas prasa iestatījumu atvērt projektu. Iestatījumi var definēt globālu paletes īsziņu. Jaunas konfigurācijas izmanto Ctrl+Shift+Space; esošās konfigurācijas automātiski nesaņem jaunu globālo īsziņu.
+Komandu palete atveras no galvenes vai ar Ctrl+K lietotnē. Tā meklē saglabātās darbības visos profilos, kataloga sagataves, profilu pārslēgšanu, navigāciju, pauzi/atsākšanu, makro atcelšanu un importu/eksportu. Filtrējiet pēc saglabātajām darbībām, kataloga funkcijām vai lietotnes komandām. Bulttaustiņi izvēlas, Enter aktivizē, Ctrl+Enter rediģē rediģējamu ierakstu un Escape aizver. Izlase parādās pirmā. Gatavās kataloga komandas var izpildīties uzreiz; sagataves, kam vajadzīga iestatīšana, atver melnrakstu. Settings var noteikt globālu paletes saīsni. Jaunās konfigurācijās lieto Ctrl+Shift+Space; esošās konfigurācijas jaunu globālu saīsni automātiski nesaņem.
 
-Audio darbība nosaka apjomu tieši no 0 līdz 100 procentiem un mute, bezmute vai toggle iznākumu un mikrofonu ierīces. Izvēlieties konkrētu galamērķi vai atstāj to Windows defaultā. Neizmantots glabāts galamērķis rada kļūdu, nevis kontrolē citu ierīci. Atjaunināt ierīces uzlādē savienotās ierīces.
+Audio darbības precīzi iestata skaļumu no 0 līdz 100 procentiem un izslēdz, ieslēdz vai pārslēdz skaņu izvades un mikrofona ierīcēm. Izvēlieties konkrētu galapunktu vai atstājiet to nenorādītu, lai izmantotu Windows noklusējumu. Nepieejams saglabātais galapunkts rada kļūdu, nevis vada citu ierīci. Refresh Devices atkārtoti ielādē pievienotās ierīces.
 
-OBS Studio izmanto WebSocket v5: start/stop/toggle/pause/resume ierakstu; start/stop /toggle plūsmu; mainīt scenārijus; toggle ieejas mute. Ievērojiet WebSocket serveri, kas ir iekļauta Tools OBS un ievietojiet tā galamērķi redaktorā. Pārbaudiet savienojumu un uzlādes nosaukumus, izlasot OBS versiju, skatu un ievades bez ierakstīšanas vai plūsmas. Izvēlieties vārdus no saraksta vai ievadiet tos manuāli. Paroles var glabāt Windows Uzticības pārvaldītājs un ir izslēgts no eksportētajām konfigurācijām. Neizdevīgā OBS saites ziņo par kļūdu.
+OBS Studio izmanto WebSocket v5: ierakstīšanas sākšana/apturēšana/pārslēgšana/pauze/atsākšana; straumēšanas sākšana/apturēšana/pārslēgšana; ainu maiņa; ievades skaņas izslēgšanas pārslēgšana. Iespējojiet WebSocket serveri OBS izvēlnē Tools un iestatiet galapunktu redaktorā. Check Connection and Load Names nolasa OBS versiju, ainas un ievades, nesākot ierakstīšanu vai straumēšanu. Izvēlieties nosaukumus sarakstā vai ievadiet manuāli. Paroles var saglabāt Windows Credential Manager, un tās netiek iekļautas eksportētajās konfigurācijās. Nepieejami OBS savienojumi ziņo par kļūdu.
 
-Profili var atbilst procesa nosaukumam un lauka nosaukuma daļai. Abām nosacījumiem jābūt saderīgām. Lock Profile novērš sesijas automātisko pārtraukšanu. Pieņemšanas nosacījumi no Foreground izmanto pēdējo koncentrēto ārējo pieteikumu.
+Profili var atbilst procesa nosaukumam un loga virsraksta daļai. Abiem norādītajiem nosacījumiem jāatbilst. Lock Profile novērš automātisku pārslēgšanu sesijas laikā. Capture Conditions from Foreground izmanto pēdējo fokusēto ārējo lietotni.
 
-Teksta un klipu atbalsts `{{date}}`, `{{time}}`, `{{datetime}}`, `{{clipboard}}`, `{{profile}}`, `{{process}}`, un `{{user}}`. Datu izmantošana `yyyy-MM-dd`; Laika izmantošana `HH:mm`. Nezināmas vietas paliek nemainīgas. `{{profile}}` Identificē uzsāktās darbības profilu; `{{process}}` identificē ārējo aplikācijas kontekstu.Clipboard saturs tiek lasīts tikai tad, ja tiek izmantots tas vietnieks.Klipboard rīcība raksta tekstu, bet ne automātiski.
+Teksta un starpliktuves darbības atbalsta `{{date}}`, `{{time}}`, `{{datetime}}`, `{{clipboard}}`, `{{profile}}`, `{{process}}` un `{{user}}`. Datumi izmanto `yyyy-MM-dd`; laiki izmanto `HH:mm`. Nezināmi vietturi paliek nemainīti. `{{profile}}` identificē palaistās darbības profilu; `{{process}}` identificē ārējās lietotnes kontekstu. Starpliktuves saturs tiek lasīts tikai tad, kad izmanto attiecīgo vietturi. Starpliktuves darbība ieraksta tekstu, bet automātiski neielīmē.
 
 Windows darbības samazina, maksimāli atjauno vai organizē logu uz kreisās / labās puses tās monitoru darba zonā. Sistēmas darbības slēgšana Windows. Šie pasākumi tiek veikti tikai tad, ja tie ir skaidri pieprasīti.
 
-Priekšizrāde parādīs soļus, atkārtojumus un mainīgos bez izpildes. Undo un Redo saglabā līdz 100 dizaina statusu; teksta kastes saglabā oriģinālu Ctrl+Z rediģēšanu. Marķējiet mīļākos redaktorā vai tile izvēlnē un filtrējiet tos uz plāksnes. Izpildes rādītāji attiecas tikai uz pašreizējo sesiju.
+Preview rāda soļus, atkārtojumus un mainīgos bez izpildes. Undo un Redo saglabā līdz 100 melnraksta stāvokļiem; teksta lauki saglabā parasto Ctrl+Z rediģēšanu. Atzīmējiet izlasi redaktorā vai elementa izvēlnē un filtrējiet informācijas panelī. Izpildes skaitītāji attiecas tikai uz pašreizējo sesiju.
 
-Teksta, īsziņas un logu darbības, kas izlaistas no saskarnes, aktivizē pēdējo ārējo mērķa logu. Šīs paletes atspoguļo šo mērķa kontekstu. Ja mērķis ir slēgts vai Windows atteicās aktivizēt, izpilde apstājas ar ziņojumu.
+Saskarnē palaistās teksta, saīšņu un logu darbības aktivizē pēdējo ārējo mērķa logu. Palete rāda mērķa kontekstu. Ja mērķis ir aizvērts vai Windows atsaka aktivizēšanu, izpilde apstājas ar paziņojumu.
 
 ## Keyboard palīdzība un feedback
 
-Special-Key Wizard ir klaviatūras lapā un paletē. Tas norāda uz G-slēgvārdiem, kas ziņoti par iCUE. Detect Key Press pagaidu tos ieguva, neizpildot to piešķirto darbību. Normālas saites atgriežas pēc atklāšanas, atcelšanas vai slēgšanas. Katala funkcija un atlasītais atslēga tiek atvērta kā nepieejams projekts; pārbaudīti duplikāti.
+Special-Key Wizard atrodas tastatūras lapā un paletē. Tas uzskaita iCUE paziņotos G taustiņus. Detect Key Press tos īslaicīgi fiksē, neizpildot piešķirtās darbības. Parastās piesaistes atjaunojas pēc noteikšanas, atcelšanas vai aizvēršanas. Kataloga funkcija un izvēlētais taustiņš atveras kā nesaglabāts melnraksts; tiek pārbaudītas dublētas piesaistes.
 
-Keyboard Overlay rāda izvēlēto atsauces izkārtojumu un aktīvās saites. Ievadiet Ctrl+Alt+F1 vai izslēdziet to no paletes vai tastatūras lapas. Tas neuzņemas uzmanību un ļauj gultas klikšķi caur. Profila un saistošu izmaiņu atjaunināšana, kamēr redzams; parastās Windows atslēgas tiek uzsvērtas. Ražotāja specifiskās kontroles nedrīkst sniegt ekvivalentu Windows atslēgvārdu.
+Keyboard Overlay rāda izvēlēto paraugizkārtojumu un aktīvās piesaistes. Turiet Ctrl+Alt+F1 vai pārslēdziet to paletē vai tastatūras lapā. Tas nepārņem fokusu un ļauj peles klikšķiem iziet cauri. Profila un piesaistu izmaiņas atjauninās, kamēr tas redzams; parastie Windows taustiņu nospiedieni tiek izcelti. Ražotāja īpašie vadības elementi var nenodrošināt atbilstošu Windows taustiņa signālu.
 
-Izpildes atsauksmes liecina par gaidīšanas, soli / atkārtošanās progresu, pabeigšanu, anulēšanu vai neveiksmi bez koncentrēšanās vai iesniegšanas ievadā tekstā. Komandas izpildīts apstiprina komandas izpildi, nevis neatkarīgi pieprasīto dzīvo stāvokli trešās puses pieteikumā. kļūdas detaļas parādās aktivitātes logā.
+Izpildes atgriezeniskā saite rāda gaidīšanu, soļa/atkārtojuma progresu, pabeigšanu, atcelšanu vai kļūmi, nepārņemot fokusu un neatklājot ievadīto tekstu. Commands Executed apstiprina komandas izpildi, nevis neatkarīgi nolasītu reāllaika stāvokli trešās puses lietotnē. Kļūdu detaļas redzamas darbību žurnālā.
 
 ## Ierīces un Corsair
 
-Corsair G1 – G6 var piešķirt tieši caur oficiālo iCUE SDK. Izvēlieties ierīci un atslēgu rīcības redaktorā un saglabājiet to vai sagatavojiet projektu no K100 tastatūras skatījuma. Saistības attiecas uz izvēlēto ierīci un aktīvo profilu; pauze tos arī izslēdz. iCUE ir jāveic un jāļauj piekļūt. Fn, iCUE riteņu, profila un slēgšanas kontroles nevar mapēt caur šo G-slēga API.
+Corsair G1–G6 var piešķirt tieši ar oficiālo iCUE SDK. Darbību redaktorā izvēlieties ierīci un taustiņu un saglabājiet vai sagatavojiet melnrakstu K100 tastatūras skatā. Piesaistes attiecas uz izvēlēto ierīci un aktīvo profilu; pauze atspējo arī tās. iCUE jādarbojas un jāatļauj piekļuve. Fn, iCUE ritenīša, profila un bloķēšanas vadīklas nevar piesaistīt caur šo G-key API.
 
 Ierīces lapa norāda Windows tastatūras saskarnes un periodiski atjaunojas un kad ierīces ir savienotas. Fiziskā tastatūra var izraisīt vairākas HID saskarnes. Standarta globālie hotkeys darbojas starp ražotājiem.
 
-Corsair detekcija izmanto pieejamo ierīces informāciju. RGB kontrolē nepieciešama saderīga aparatūra, kas darbojas iCUE un oficiālais iCUE SDK; lietojumprogramma ziņo par faktisko pieejamību. Citi ražotāji pašlaik saņem detekciju un standarta pasākumus. Ārpus Corsair G atslēgas integrācijas, īpašumtiesību kontroles darbojas, kad Windows saņem tos kā regulāras ieejas. Programma neinstalē tastatūras vadītāju.
+Corsair noteikšana izmanto pieejamo ierīces informāciju. RGB vadībai vajadzīga saderīga aparatūra, darbojošs iCUE un oficiālais iCUE SDK; lietotne ziņo par faktisko pieejamību. Citiem ražotājiem pašlaik pieejama noteikšana un standarta darbības. Ārpus Corsair G-key integrācijas īpašie vadības elementi darbojas, ja Windows tos saņem kā parastu ievadi. Lietotne neinstalē tastatūras draiveri.
 
 ## valodas
 
-Iestatījumi piedāvā 27 valodas: vācu, angļu, franču, itāļu, portugāļu, holandiešu, ķīniešu, slovāku, ungāru, bulgāru, grieķu, dāņu, zviedru, norvēģu, finiešu, estoniešu, latviešu, lituāņu, slovēņu, ukraiņu, krievu, turku un serbu latīņu rakstos. Automātiski seko Windows displeja valoda. Tulkojumi tiek veikti vietēji. Layouts, hotkeys un lietotāja radītie nosaukumi ir neatkarīgi no saskarnes valodas.
+Settings piedāvā 27 valodas: vācu, angļu, franču, spāņu, itāļu, portugāļu, nīderlandiešu, poļu, čehu, slovāku, ungāru, rumāņu, bulgāru, grieķu, dāņu, zviedru, norvēģu, somu, igauņu, latviešu, lietuviešu, slovēņu, horvātu, ukraiņu, krievu, turku un serbu latīņu rakstībā. Automātiskais režīms izmanto Windows displeja valodu. Tulkojumi ir iekļauti lokāli. Izkārtojumi, saīsnes un lietotāja veidotie nosaukumi nav atkarīgi no saskarnes valodas.
 
 Pilna reģistra dokumentacija ir pieejama visās 27 pieteikuma valodās, izmantojot [valodas indekss](README.md)Ģeogrāfija Tulkojumi ir mašīnsaistīti, ar oriģinālo avotu saiti un strukturālo pārbaudi; dzimtā runātāja pārskats ir atsevišķs. Programma pieņem arī reģionālos kodus `en-US`, `de-DE`, `fr-FR` un `it-IT` un izmanto to numuru formātus. Pastāvošie valodas kodi paliek saderīgi.
 
 ## Layouts un ražotāja pētījumi
 
-Tastāvoklis nodrošina pilnīgu un bezjēdzīgu ISO-DE/ANSI-US atsauces plus Corsair K100 RGB izkārtojumu. Geometrija pārstāv pozīcijas, plašas / skaņas atslēgas un ISO Enter. Standarta izkārtojumi ir ģenētiski atsauces. K100 izkārtojums seko dokumentētiem kontroles veidiem, neuzskatoties par milimetru precīziem izmēriem. Izvēlieties pareizo valodu/geometrijas variantu: modeļa nosaukums vai USB VID/PID nav noteikts konkrēts variants.
+Tastatūras skats nodrošina pilna izmēra un bez cipartastatūras ISO-DE/ANSI-US paraugus, kā arī Corsair K100 RGB izkārtojumus. Ģeometrija attēlo pozīcijas, platus/augstus taustiņus un ISO Enter. Standarta izkārtojumi ir vispārīgi paraugi. K100 izkārtojumi atbilst dokumentētajām vadīklām, neapgalvojot milimetra precizitāti. Izvēlieties pareizo valodas/ģeometrijas variantu: modeļa nosaukums vai USB VID/PID nenosaka konkrētu variantu.
 
-Mapping risina fiziskās skenēšanas kodus, izmantojot aktīvo Windows ieejas izkārtojumu. Darba plūsma sagatavo projektu un saglabā glabāšanas/konfliktu pārbaudes. Standarta savienojumi ir globālie Windows sildītāji, kas nav izolēti no vienas savienotas tastatūras. Corsair G1 – G6 izmanto ierīces specifisko iCUE integrāciju. Citas īpašumtiesības prasa adapteru vai ražotāja konfigurētus īsziņas. Main Enter un numeric-keypad Enter dalās ar virtuālo atslēgu identitāti globālajiem atslēgvārdiem.
+Piesaiste nosaka fiziskos skenēšanas kodus, izmantojot aktīvo Windows ievades izkārtojumu. Darbplūsma sagatavo melnrakstu un saglabā saglabāšanas/konfliktu pārbaudes. Standarta piesaistes ir globālas Windows saīsnes, nevis izolētas vienai pievienotai tastatūrai. Corsair G1–G6 izmanto ierīcei specifisku iCUE integrāciju. Citiem īpašajiem vadības elementiem vajadzīgs adapters vai ražotāja konfigurētas saīsnes. Galvenajam Enter un cipartastatūras Enter globālajās saīsnēs ir viena virtuālā taustiņa identitāte.
 
 Tās [Ražotājs pētījums](research/tastaturhersteller-sonderfunktionen.md) un [CSV](research/tastaturhersteller-sonderfunktionen.csv) 74 zīmola / ražotāja grupas, kas atšķiras no konfiguratoriem, ieejas SDK un apgaismojuma API. [Layout pierādījumi](research/keyboard-layout-evidence.md) ierakstu modelis, SKU un moduļu atšķirības. Pētniecības apkopojums nenozīmē, ka tiek īstenota aparatūras atbalsts.
 
 ## Dati
 
-Konfigurācija tiek glabāta vietējos pieteikuma datos. Imports / eksports izmanto JSON. Imports paredz konfigurāciju, aizstāj pašreizējo konfigurāciju pēc apstiprināšanas un izslēdz importētos savienojumus līdz manuāli. Teksta darbības saturs netiek savākts kā atslēgvārds. Patiesības vadītāju paroles ir atdalītas no eksportētiem profiliem.
+Konfigurācija tiek glabāta vietējos lietotnes datos. Imports/eksports izmanto JSON. Imports parāda konfigurācijas priekšskatījumu, pēc apstiprināšanas aizstāj pašreizējo konfigurāciju un atspējo importētās piesaistes līdz manuālai iespējošanai. Teksta darbību saturs netiek apkopots kā taustiņu nospiedienu žurnāls. Credential Manager paroles ir atsevišķi no eksportētajiem profiliem.
 
 ## Pārbaude
 
@@ -104,26 +104,26 @@ dotnet run --project tests/Aivana.Tests -c Release
 dotnet run --project tests/Aivana.Windows.Tests -c Release
 ```
 
-Windows pārbaudes var pārbaudīt aparatūru un pagaidu konfigurēt/izlaiž atbalstītos iCUE savienojumus. Izveidojiet tos bez cita kontroliera, izmantojot šos savienojumus. Audio endpoint pārbaudes nesamazina dzīvo apjomu vai mute iestatījumus.
+Windows pārbaudes var pārbaudīt aparatūru un īslaicīgi konfigurēt/atbrīvot atbalstītās iCUE piesaistes. Palaidiet tās, kad cits kontrolleris neizmanto šīs piesaistes. Audio galapunktu pārbaudes nemaina pašreizējo skaļumu vai skaņas izslēgšanas iestatījumus.
 
-Nāves ieņēmumi nevar pārsniegt Windows privilēģijas. Parasti uzsākts kontrolieris nevar sūtīt ievadi administratora pieteikumam. Aizsargāti vai aizņemti hotkeys parādās kā konflikti.
+Vietējā ievade nevar apiet Windows privilēģijas. Parasti palaists kontrolleris var nespēt nosūtīt ievadi administratora lietotnei. Rezervētas vai aizņemtas saīsnes tiek parādītas kā konflikti.
 
 Tās [Dokumentācijas indekss](README.md) saites ar vēsturiskiem dizainiem, plāniem, pētījumiem un datētajiem testa ziņojumiem. Vēsturiskie plāni apraksta to ierakstīto apjomu, nevis pašreizējo funkciju atbalsta garantiju.
 
 ### Darba plūsmas veidnes un mērķa logu gaita
 
-Katalogs ietver sešas rediģējamas darba plūsmas: darba telpa, tikšanās, strīds, pētniecība, projekta pārslēgšana un teksta snippet. Meklēt `workflow.` katalogā vai komandas paletē. Izvēloties darba plūsmu, tiek atvērts nepieejams projekts; tas nekad nedarbojas nekavējoties. Visi soļi tiek saglabāti, pievienojot darba plūsmu esošajam makram vai piešķirot to Corsair atslēgam. Iestatīt piemēru URL, programmas ceļus, profili un OBS skatuves pirms ietaupīšanas.
+Katalogā ir sešas rediģējamas darbplūsmas: darbavieta, sanāksme, straumēšana, pētniecība, projekta pārslēgšana un teksta fragments. Katalogā vai komandu paletē meklējiet `workflow.`. Darbplūsmas izvēle atver nesaglabātu melnrakstu; tā nekad neizpildās uzreiz. Visi soļi saglabājas, pievienojot darbplūsmu esošam makro vai piešķirot Corsair taustiņam. Pirms saglabāšanas konfigurējiet parauga URL, programmu ceļus, profilus un OBS ainas.
 
-**Cilvēka logam ** pakāpe pieņem procesu nosaukumu (ar vai bez `.exe`), gadījuma necilvēcīgu nosaukuma substrāciju un 1–600,000 ms laiku. Ir nepieciešams vismaz viens filtrs; abiem filtriem ir jāatbilst, kad tie tiek piegādāti. Makrons turpina tikai pēc tam, kad atbilst redzamais loga un sasniedz priekšpusi. Izmantojiet konkrētu nosaukumu, kad vairāki logi dalās ar procesu. Atcelšana vai laika izbeigšana aptur turpmākos soļus. Windows gatavība negarantē, ka ir uzlādēts dokuments vai ir savienots ārējs pakalpojums, piemēram, OBS WebSocket.
+Solis **Wait for target window** pieņem procesa nosaukumu (ar vai bez `.exe`), reģistrnejutīgu virsraksta apakšvirkni un taimautu 1–600000 ms. Vajadzīgs vismaz viens filtrs; ja norādīti abi, jāatbilst abiem. Makro turpinās tikai pēc tam, kad atbilstošs redzams logs reaģē un nonāk priekšplānā. Izmantojiet konkrētu virsrakstu, ja vienam procesam ir vairāki logi. Atcelšana vai taimauts aptur turpmākos soļus. Loga gatavība negarantē dokumenta ielādi vai ārēja pakalpojuma, piemēram, OBS WebSocket, savienojumu.
 
-Ekrāna spilgtums: meklēt **Skrāsa spilgtumu**, **Skrāss spilgtumu ** vai **Skrāsas spilgtumu par 50 procentiem** darbību katalogā. Relatīvo rīcību skaidrība mainās 10 procentuālos punktos; fiksētās vērtības svārstās no 0 līdz 100. Atbalstītie iekšējie displeji izmanto WMI; savietojamiem ārējiem monitoriem to izvēlnē ir nepieciešams DDC/CI. Parasti darbība ietekmē visus atbalstītos displejus; redaktorā var izvēlēties skaidru monitoru. Saistības un doki var ierobežot atbalstu.
+Displeja spilgtums: darbību katalogā meklējiet **Increase screen brightness**, **Decrease screen brightness** vai **Screen brightness at 50 percent**. Relatīvās darbības maina spilgtumu par 10 procentpunktiem; fiksētās vērtības ir no 0 līdz 100. Atbalstītie iekšējie displeji izmanto WMI; saderīgu ārējo monitoru izvēlnē jābūt iespējotam DDC/CI. Pēc noklusējuma darbība ietekmē visus atbalstītos displejus; redaktorā var izvēlēties konkrētu monitoru. Savienojumi un dokstacijas var ierobežot atbalstu.
 
 ### Paplašinātas kontroles
 
-Atveriet komandas paleti **Ctrl+K, kamēr aplikācijas logs ir fokusēts**. Meklēt **Darba plūsmas dizaineri**, **Makro ierakstu**, **Sinkronizēt profilu**, vai **Galvenais diagnoze** (darba plūsmas dizainers rediģē izvēlētās plūsmas projektu: faila/procesu/vēstures nosacījumus, tālāk skan un pārtrauc/turpina kļūdu apstrādi. ieraksts ieraksta īsziņas un gaida, nevis parasta rakstīšana; Escape pārtrauks ierakstu..
+Atveriet komandu paleti ar **Ctrl+K, kamēr lietotnes logs ir fokusā**. Meklējiet **Workflow designer**, **Record macro**, **Synchronize profiles** vai **Key diagnostics** (formulējums atbilst izvēlētajai valodai). Darbplūsmas veidotājs rediģē izvēlētā elementa melnrakstu: faila/procesa/loga nosacījumus, uz priekšu izlaižamo soļu skaitu un apstāšanos/turpināšanu kļūdas gadījumā. Ierakstītājs fiksē taustiņu kombinācijas un gaidīšanu, nevis parastu rakstīšanu; Escape aptur ierakstīšanu. Pirms pieņemšanas pārskatiet rezultātu.
 
-Izvēlieties visu atbalstošo displeju vai konkrētu monitoru. Neizmantots izvēlētais monitors rada kļūdu, nevis klusi mainot citu displeju. Līcīte rāda dzīvu spilgtu, audio un OBS lasījumu, kad ir pieejamas attiecīgās integrācijas; nepieejams lasījums netiek prezentēts kā mērīts vērtība.
+Spilgtuma solī izvēlieties visus atbalstītos displejus vai konkrētu monitoru. Nepieejams izvēlētais monitors rada kļūdu, nevis klusi maina citu displeju. Informācijas panelis rāda spilgtuma, audio un OBS reāllaika rādījumus, ja attiecīgās integrācijas ir pieejamas; nepieejams rādījums netiek parādīts kā izmērīta vērtība.
 
-Tīkls redaktorā piešķir atbalstošu fizisko īpašo atslēgu un izvēlieties tūlītēju nospiedumu, nospiedumus, aizturēšanu vai dubultus nospiedumiem. Held slāņa izvēlētāji pagaidu aktivizē vēl vienu mapēšanu un atjauno iepriekšējo slāni atbrīvošanas laikā. Gesti un slāņi attiecas uz Corsair SDK G atslēgām un ierīces specifiskajiem īpašiem atslēgiem, nevis parastajiem globālajiem atslēgumiem. Standarta atslēga atbalsta F13–F24 un tastatūras mediju atslēgas. Īpašuma Fn, profila un dial kontroles joprojām prasa saderīgu piegādātāja adapteru vai piegādātājs, kas kartē uz standarta atslēgu. Raw Input novēro atslēgu un nepieļauj tās normālu uzvedību Windows. Galvenās diagnozes izskaidro profilu, pārtraukumu, savienojumu un saistošo problēmu.
+Elementa redaktorā piešķiriet atbalstītu fizisko īpašo taustiņu un izvēlieties tūlītēju nospiešanu, īsu nospiešanu, turēšanu vai dubultnospiešanu. Turētie slāņa atlasītāji īslaicīgi aktivizē citu piesaisti un pēc atlaišanas atjauno iepriekšējo slāni. Žesti un slāņi attiecas uz Corsair SDK G taustiņiem un ierīcei specifiskiem standarta īpašajiem taustiņiem, nevis parastajām globālajām saīsnēm. Standarta taustiņu fiksēšana atbalsta F13–F24 un tastatūras multivides taustiņus. Īpašajiem Fn, profila un grozāmajiem vadības elementiem joprojām vajadzīgs saderīgs ražotāja adapters vai piesaiste standarta taustiņam ražotāja rīkā. Raw Input novēro taustiņu un nenomāc tā parasto Windows darbību. Taustiņu diagnostika izskaidro profila, pauzes, savienojuma un piesaistes problēmas.
 
-Profila sinhronizācija apmainās ar failiem, kuru izvēlaties, tostarp failu, ko pārvalda jūsu esošais mākoņa klients. Pārskatiet iepriekšējo skatījumu pirms importēšanas; imports sāk izslēgt un noņemt aparatūras specifiskas mapēšanas. Revīzijas novērš klusā pārrakstīšanu, un ietver rīcības saturu ir skaidra izvēle. MAKRIVO nesniedz mākoņu kontu vai saglabā mākoņu autentifikācijas. Šobrīd traja izmanto MAKRIVO pašu teju M ikonu un parādās amber pārtraukuma zīme, kad pārtrauc.
+Profilu sinhronizācija apmainās ar failiem izvēlētā mapē, tostarp esošā mākoņklienta pārvaldītā mapē. Pirms importēšanas pārskatiet priekšskatījumu; importētās piesaistes sākotnēji ir atspējotas, un aparatūrai specifiskās piesaistes tiek noņemtas. Revīzijas novērš klusu pārrakstīšanu, un darbību satura iekļaušana ir skaidra izvēle. MAKRIVO nenodrošina mākoņkontu un nesaglabā mākoņa akreditācijas datus. Paziņojumu apgabalā tagad izmanto paša MAKRIVO zilganzaļo M ikonu ar dzintarkrāsas pauzes atzīmi, kad darbība apturēta.

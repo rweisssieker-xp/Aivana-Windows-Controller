@@ -10,6 +10,6 @@
 - Filter djelovanja se pojavljuje samo na Dashboardu. Izbor profila i pretraživanje imaju jasna imena za pomoćne tehnologije. Opis područja je kontrastniji.
 - Test za dijalog uključuje pregled alata i dijaloge proširenja u 560 × 440 kao i normalne veličine; postojeći testovi za snimanje i ispitivanje jezika prilagođeni su strukturi skraćenja.
 
-Sljedeći Članak Kompaktne prozore nisu zamjena za stvarne Windows-DPI testovi 150/200 Novi njemački tekstovi još nisu potpuni za sve 27 Ne postoji nova hardverska validacija i nema izjave o mjerenoj korisnosti.
+Ograničenja: kompaktni prozori ne zamjenjuju stvarne testove Windows-DPI pri 150/200 posto. Novi njemački tekstovi još nisu potpuno prevedeni na svih 27 jezika. Nema nove provjere hardvera ni tvrdnje o izmjerenoj uporabljivosti.
 
 Ispitivanje: Izgradnja izdanja bez upozorenja / pogrešaka; provedeno ispitivanje WPF smoke, uključujući kompaktne alate i dijaloge proširenja, kao i ispitivanje promjena jezika. Git diff - provjerite.

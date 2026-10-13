@@ -11,7 +11,7 @@
 - Kabileler, küresel hotkeys, komut paleti, favori ve uygulama bağlı profilleri.
 - Birden fazla adım, tekrarlama, duraklama ve öngörme ile makro.
 - Programları, dosyaları ve web sitelerini açın; metin, aralığı ve kısaltma kullanın.
-- Pencereleri düzenleyin, Windows kilitleyin, ses çıkışlarını ve mikrofonları kontrol edin ve destekli arayüzler üzerinden ekran parlaklığını değiştirin.
+- Pencereleri düzenleme, Windows oturumunu kilitleme, ses çıkışlarını ve mikrofonları kontrol etme ve desteklenen arayüzlerle ekran parlaklığını değiştirme.
 - OBS-WebSocket-v5-Anbindung sahneler, kayıt, akış ve ses için.
 - Şablonlar, çalışma alanı asistanı, cihaz tanıma ve klavye aşırı.
 - Profil yapılandırmalarının ithalatı ve ihraç edilmesi; Tasarım kontrolü ve çatışma tespiti.
@@ -24,19 +24,19 @@
 | Sonuç incelemesi | Ön inceleme, inceleme ve inceleme | Sadece doğrulanabilir etkileri doğrulamak; başarılı bir düğme basıncı hedef etkisi kanıtlamaz. |
 | Çalışma Asistanı | Seçilen programlardan, dosyaların, URL'lerin ve diğer eylemlerden profilleri ve işlemleri hazırlamak | Önizleme ve depolama gereklidir; kurulum hiçbir şey yapmaz. |
 | Makro ve Workflows | Kayıt, koşullar, hareketler ve yerel profil senkronizasyonu | Davranış ve sınırlar uygulama ve test raporlarında belgelendirilmiştir. |
-| UI otomatik | Hedefleri seçin, seçmenleri inceleyin, eylemleri ve sınırlı tıklama akışlarını girin | Ayrı çalışanlar; çok kelime, devre dışı bırakılmış ve şifre hedefleri reddedilir; genel metin girişleri yoktur. |
+| UI otomatik | Hedefleri seçin, seçmenleri inceleyin, eylemleri ve sınırlı tıklama akışlarını girin | Ayrı çalışan işlem; belirsiz, devre dışı ve parola alanı hedefleri reddedilir; genel metin girişi kaydı yoktur. |
 | Genişletmeler | Paketlerin incelenmesi, ithal edilmesi, açıkça güvenilir hale getirilmesi, ihraç edilmesi ve geri dönüştürülmesi | Süreç yalıtımı bir kum kutusu değildir; bir kamu eklenti pazarı değildir. |
-| Mobil Panel | Yerel HTTPS paneli, bağlantı, seçilmiş profiller ve durum/sınav geçmişi | Gerçek telefon/tablet LAN indirme hala açık; hiçbir evrensel sensör tablosu. |
+| Mobil Panel | Yerel HTTPS paneli, bağlantı, seçilmiş profiller ve durum/sınav geçmişi | Gerçek telefon/tablet ile LAN kabul testleri henüz tamamlanmamıştır; evrensel bir sensör panosu değildir. |
 | Üretici Adaptörü | Corsair, Logitech-G-SDK, Razer/SteelSeries-RGB ve Wooting-Analogadapter | Model / SDK bağımlı; yeni adaptörler gerçek donanım ile tam olarak doğrulanmamıştır. Yeni özel SDK'lar birleştirilmemiştir. |
 | Fiziksel Düzenleme | Standart düğmeleri cihaz ve tarama kodu ile tespit etmek | Raw Input normal Windows girişini bastırmaz. |
-| Yerel AI danışman yardımcısı | Opsiyonel Prototype Ollama, LM Studio, llama.cpp ve ONNX Runtime Yorumları GenAI CPU, açıkça seçilmiş kaynaklardan sınırlı tasarımlar üretir | Standart olarak; yerli CPU çalışma süresi tesadüfi model ile kontrol edilir, ancak kanıtlanmış planlama kalitesi veya zaman tasarrufu yoktur; hiçbir model ağırlığı içerir. |
+| Yerel AI danışman yardımcısı | Opsiyonel Prototype Ollama, LM Studio, llama.cpp ve ONNX Runtime Yorumları GenAI CPU, açıkça seçilmiş kaynaklardan sınırlı tasarımlar üretir | Varsayılan olarak kapalıdır; yerel CPU çalışma zamanı rastgele modelle test edilmiştir, ancak planlama kalitesi veya zaman tasarrufu kanıtlanmamıştır; model ağırlıkları dahil değildir. |
 
 ## Satışa hazır olarak henüz teklif etmeyin
 
-- **Sadece İkinci Düzenleme/Makropad: ** Bir imzalanmış, lisanslı ve donanım kontrolü filtre sürücüsü eksik. Normal düğme girişleri Windows ulaşmaya devam edebilir.
-- Tüm üretici adaptörlerinin tam donanım alımı ve gerçek mobil cihazlar için LAN testleri.
+- **Özel kullanımlı ikinci klavye/makro tuş takımı:** İmzalı, lisanslı ve donanımda test edilmiş filtre sürücüsü eksiktir. Normal tuş girişleri Windows’a ulaşmaya devam edebilir.
+- Tüm üretici bağdaştırıcıları için tam donanım kabulü ve gerçek mobil cihaz LAN testleri.
 - Gerçek karışık monitör/DPI değişiklikleri ve tüm yeni çevirilerin profesyonel çekimi. PerMonitorV2 ve simüle edilmiş 150/200-Prozent-Layouts kontrol edildi; gerçek ekran testleri ayrı kalır. Yüzey 27 dil sunar; ayrıntılı yeni metinler henüz tam olarak dilde alınmamıştır.
-- Sigortalı satış kurucusu, nihai EULA, denetlenmiş SDK satış hakları ve üretken satın alma lisansı / çekme entegrasyonu.
+- İmzalı ticari kurulum programı, nihai EULA, doğrulanmış SDK dağıtım hakları ve üretimde satın alma lisansı/ödeme entegrasyonu.
 
 ## Detaylar ve kanıtlar
 

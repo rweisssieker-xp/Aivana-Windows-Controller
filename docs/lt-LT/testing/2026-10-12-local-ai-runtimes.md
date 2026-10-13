@@ -19,7 +19,7 @@ HTTP klientai nenaudoja proksų ir nesilaiko tolesnių gairių. Vietiniai server
 
 ## ONNX
 
-Dialoge pasirinkite genai_config.json. Slapukas turi būti tokenizer.json ir pokalbių šablonas. Chat_template palaikomas kaip ženklo grandinė, vadinamasis numatytuoju pavyzdžiu (Array arba žodynas), taip pat atskiras chat_templates.jinja, jei nėra inline pavyzdžio arba jis yra nulinis. Daugiafunkcinių pavyzdžių atmetama; maksimalus 65536 ženklas. Populiariausi .onnx failai, vizijos / įtraukimo modeliai arba grynos GPU / NPU eksportai nėra susitikimo modeliai.
+Dialoge pasirinkite genai_config.json. Aplanke turi būti tokenizer.json ir pokalbio šablonas. Palaikomi chat_template kaip eilutė, pavadintas default šablonas (masyvas arba žodynas), taip pat atskiras chat_template.jinja, jei įterpto šablono nėra arba jo reikšmė yra null. Nevienareikšmiai šablonai atmetami; daugiausia 65536 simboliai. Bet kokie .onnx failai, regos/įterpinių modeliai ar vien GPU/NPU eksportai nėra susitikimų modeliai.
 
 Sujungtas: Microsoft.ML.OnnxRuntimeGenAI 0.17.1, CPU. Pardavėjo konfigūracija grąžinama į CPU. Nėra atsisiuntimo ir jokių modelio svorį. Nereikalaujama Python įdiegimo. Naudokite tik patikimus modelio paketus; atskiras procesas yra griovimo / griovimo riba, o ne saugos sandėlis.
 
@@ -28,7 +28,7 @@ Ribos: 90 sekundės, įskaitant modelio įkrovimą, didžiausią 3072 prompto to
 ## Tikrinimas
 
 - Core Suite, Loopback transporto testai su simuliuotais LM studijos / llama.cpp / Ollama atsakymais, schema / atnaujinimas / išteklių patikrinimas.
-- Unicode protokolo regresija su didžiausiais tikslais ir 24 išteklių pavadinimais.
+- Unicode protokolo regresijos testas su didžiausio ilgio tikslais ir 24 išteklių pavadinimais.
 - Tikras gimtoji CPU su oficialiu tiny-random-gpt2-fp32-Testgraph iš Microsoft/onnxruntime-genai, Commit 5c19002edce50beaa3a5c7eeefd8fe5269ee8d19. Bandymo šablonas papildomas ir byto tokenizatorius pritaikytas prie mažo atsitiktinio grafiko. Šis atsitiktinis modelis nekelia kokybės ir nėra išleidžiamas.
 - Reproduktyvus gimtojo paleidimo testas: tools/check-onnx-runtime.ps1 -ModelDirectory <GenAI modelis>.
 - WPF Smoke nagrinėja visų keturių tiekėjų pasirinkimą ir bandomąją padėtį; vienintelis pasirinkimas nesukelia modelio paklausos.
@@ -44,14 +44,14 @@ Hardware/Smartphone/Tablet/Monitor keitimo testai vis dar reikalingi. Išskirtin
 - https://lmstudio.ai/docs/developer/openai-compat/chat-completions
 - https://github.com/ggml-org/llama.cpp/blob/master/tools/server/README.md
 
-Galutinis bandymas: išleidimas be įspėjimų / klaidų; pilnas pagrindinis ir Windows rinkinys, įskaitant gimtąjį fokusą, HTTPS, UIA, "Plugin" IPC ir suderinamus AI transporto testus. Naujas paketas išleidimas20261012-190618: WPF nuovargis (19:07 laikrodis), susietas ONNX CPU su testų grafika. Nepriklausomas apžvalga: Unicode protokolo riba ištaisyta, jokių papildomų konkrečių rezultatų. Nėra fizinio gamintojo / telefono / monitoriaus nuostolių.
+Galutinė patikros būsena: Release-Build be įspėjimų/klaidų; visos Core ir Windows testų rinkinių patikros sėkmingos, įskaitant savąją fokuso bandymų aplinką, HTTPS, UIA, Plugin-IPC ir suderinamų AI transportų testus. Naujas paketas release-20261012-190618: WPF-Smoke sėkmingas (19:07), įtrauktos ONNX-CPU aplinkos išvedimas su bandymų grafu sėkmingas. Nepriklausoma peržiūra: Unicode protokolo riba pataisyta, kitų konkrečių radinių nėra. Tai nepatvirtina fizinės gamintojų aparatūros/telefonų/monitorių priėmimo.
 
 ## Toliau: tikroji kokybė ir modeliai
 
-Papildomas CPU paleidimas su allama-ai/SmolLM-360M-Instruct-onnx-int4, peržiūra 82a3d1a8a86c8053f2a859a90ed4d344fc0725b0: gimtoji infuzija. Modellgewichte-SHA256: 48e9c4ef12f7f995ca11fc7020b39990aa27bc67cc0fe116067676a000a04429. Bendrijos eksportas tik bandymo srityje, o ne išleidimo.
+Papildomas CPU vykdymas su allama-ai/SmolLM-360M-Instruct-onnx-int4, revizija 82a3d1a8a86c8053f2a859a90ed4d344fc0725b0: savasis išvedimas sėkmingas. Modelio svorių SHA256: 48e9c4ef12f7f995ca11fc7020b39990aa27bc67cc0fe116067676a000a04429. Bendruomenės eksportas naudojamas tik bandymų srityje, ne leidime.
 
-Keturi tikri planavimo testai (vokietiškai / anglų kalba, dokumentas, programa, aiškus mikrofonas): **0/4 Galiojantys planai**; kiekvienas JsonException griežtas atsakymo patikrinimas. 63501, 6376, 72118 ir 6774 Šis mažas modelis neatitinka planavimo sutarties ir nerekomenduojamas kaip tinkamas. ataskaita: artifacts/local-ai-evaluation/smollm360-results.json.: Windows-Testai --evaluate-onnx <modelų tvarkyklė> <reporto kelias>. Funkcija negali įrodyti modelio kokybės.
+Keturi tikri planavimo bandymai (vokiečių/anglų kalbomis, dokumentas, programa, aiškiai prašomas mikrofono nutildymas): **0/4 galiojantys planai**; kiekvienu atveju griežtai tikrinant atsakymą kilo JsonException. Vykdymo laikai: 63501, 6376, 72118 ir 6774 ms. Jokie veiksmai nevykdyti. Šis mažas modelis neatitinka planavimo sutarties ir nerekomenduojamas kaip tinkamas. Ataskaita: artifacts/local-ai-evaluation/smollm360-results.json. Atkūrimas: Windows-Tests --evaluate-onnx <Modellordner> <Berichtspfad>. Vykdymo aplinkos veikimas neįrodo modelio kokybės.
 
-Įrankis navigacija ir bandymų ataskaitos buvo išversti į visus 27 kalbų katalogus. Ilgų tekstų ir kalbų atsisakymas lieka atviras. Šablonų regresija taip pat tikrina klaidingus JSON tipus, tuščias / daugialypės / pernelyg ilgas šablonus ir nulį su Jinja Fallback.
+Įrankių navigacija ir patikros ataskaita papildomai išverstos visuose 27 kalbų kataloguose. Ilgieji tekstai ir kalbinis patvirtinimas dar nebaigti. Šablonų regresijos testas taip pat tikrina neteisingus JSON tipus, tuščius/nevienareikšmius/per ilgus šablonus ir null su atsarginiu Jinja šablonu.
 
-Atnaujintas paketas: artifaktai / išleidimas 20261012-201134. Pakuotės WPF smoke išliko 12.10.2026 aplink 20:12; gimtoji CPU infuzija su atskira instrukcijos bandymo modeliu buvo sujungtas darbuotojas. Pagrindiniai ir Windows KI testai buvo atlikti; Build be įspėjimų / klaidų. Modelio planavimo kokybė tęsiasi 0/4.
+Atnaujintas paketas: artifacts/release-20261012-201134. Supakuotas WPF-Smoke bandymas sėkmingas 12.10.2026 20:12; savasis CPU išvedimas su atskiru Instruct bandymų modeliu įtrauktame darbiniame procese sėkmingas. Core ir Windows-KI testai sėkmingi; surinkta be įspėjimų/klaidų. Modelio planavimo kokybė vis dar 0/4.

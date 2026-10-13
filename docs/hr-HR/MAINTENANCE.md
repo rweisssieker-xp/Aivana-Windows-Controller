@@ -4,11 +4,11 @@
 
 # Održavanje svih jezika dokumentacije
 
-Dokumentarni popis slijedi sve 27 UI jezike. generirane dosjee koriste regionalne koda; Norveška zemlja za `nb-NO` Srpska latinski jezik `sr-Latn`. Svaki folder sadrži indeks, rukovodstvo, detaljnu referenciju za akciju, inventariju značajki, beleške za provjeru, istraživanje uključujući CSV, povijesne planove i analizu licencija.
+Dokumentacija obuhvaća svih 27 jezika sučelja. Generirane mape koriste regionalne kodove; norveški odgovara `nb-NO`, a srpski na latinici `sr-Latn`. Svaka mapa sadrži kazalo, priručnik, detaljnu referencu radnji, pregled funkcija, bilješke o provjeri, istraživanja s datotekom CSV, povijesne planove i analizu licenci.
 
 ## Izvor istine
 
-Edit je korijen `README.md`, `docs/HANDBOOK.md`, `docs/FEATURES.md`, `docs/VERIFICATION.md`, Ova stranica ili originalni datoteci ispod `docs/research`, `docs/testing`, `docs/superpowers` i `docs/licensing`. Nemojte ponovno pisati povijesni izvještaj koji podrazumijeva da potvrđuje kasniju verziju. zadržite implementaciju, simulaciju, prihvaćanje stvarnog uređaja i komercijalnu odobrenje odvojeno.
+Uredite korijenski `README.md`, `docs/HANDBOOK.md`, `docs/FEATURES.md`, `docs/VERIFICATION.md`, ovu stranicu ili izvorne datoteke u `docs/research`, `docs/testing`, `docs/superpowers` i `docs/licensing`. Ne prepravljajte povijesno izvješće tako da sugerira provjeru kasnije verzije. Razlikujte implementaciju, simulaciju, prihvatno testiranje stvarnih uređaja i komercijalno odobrenje.
 
 ## Proizvoditi i validirati
 
@@ -17,9 +17,9 @@ python tools/localize_documentation.py --refresh-sources
 python tools/check_documentation.py
 ```
 
-Opcionalni online generator šalje dokumentaciju na Googleovo krajnje točko prijevoda, u skladu s postojećim alatima za lokaliziranje. Ne čita korisničke konfiguracije, tajne ili datoteke modela. Samo ga provodite na dokumentaciji koja je prikladna za tu uslugu. Bloki koda, inline koda, URL-ovi, struktura tablice i tehnički identifikatori su zaštićeni. Prevođenje cache i zamrznuti izvor snapshot su pohranjeni pod ignoriranim `artifacts/documentation-translation`.
+Neobvezni mrežni generator šalje tekst dokumentacije na Googleovo javno sučelje za prevođenje u skladu s postojećim alatima za lokalizaciju. Ne čita korisničku konfiguraciju, tajne ni datoteke modela. Pokrećite ga samo na dokumentaciji prikladnoj za tu uslugu. Blokovi koda, kod unutar retka, URL-ovi, struktura tablica i tehnički identifikatori su zaštićeni. Predmemorije prijevoda i zamrznuto stanje izvora pohranjuju se u zanemarenom `artifacts/documentation-translation`.
 
-Kada je internetski pružatelj ograničen, `tools/translate_documentation_local.py` ispunjava istu cache pomoću izričito isporučenog M2M100 CTranslate2 Modeli – to je 2026-10-12 Snapshot koristi MIT licencu facebook/m2m100_418M Modeli, pretvoreni u JustFrederik/m2m_100_418m_ct2_int8 u reviziji `1aeed44db4dd61a486bba44acf54c76507082a2c`. CTranslate2 4.8.2 i `SentencePiece` 0.2.2 Ne isporučuju se nijedna težina modela ili ovisnosti o prijevodu MAKRIVO. Provedite generator s `--cache-only` nakon ispunjavanja cache-a da se prenese bez mrežnih zahtjeva. lokalni pomoćnik ne preuzima ili izvršava kod daljinskog modela.
+Kada mrežni pružatelj ograniči učestalost zahtjeva, `tools/translate_documentation_local.py` puni istu predmemoriju izričito dostavljenim lokalnim modelom M2M100 CTranslate2. Stanje od 2026-10-12 koristi model facebook/m2m100_418M s licencom MIT, pretvoren kao JustFrederik/m2m_100_418m_ct2_int8 u reviziji `1aeed44db4dd61a486bba44acf54c76507082a2c`. CTranslate2 4.8.2 i `SentencePiece` 0.2.2 alati su samo za izgradnju. MAKRIVO ne isporučuje težine modela ni ovisnosti za prevođenje. Nakon punjenja predmemorije pokrenite generator s `--cache-only` za izradu stranica bez mrežnih zahtjeva. Lokalni pomoćnik ne preuzima niti izvršava udaljeni kod modela.
 
 ```powershell
 python -m pip install ctranslate2==4.8.2 sentencepiece==0.2.2
@@ -28,12 +28,12 @@ python tools/localize_documentation.py --cache-only
 python tools/check_documentation.py
 ```
 
-Bez `--refresh-sources`, trka ponovno zamrzava svoj snapshot. Koristite opciju osvježavanja nakon uređivanja originalnih. Preuzeti segmenti se ponovno koriste. Djelomično pokretanje može odabrati lokalne kode pomoću `--locales`; završiti sve lokalne prije objavljivanja. Prekinuti tečajevi ne zamjenjuju neprovedene prose za neuspješni prijevod.
+Bez `--refresh-sources` izvršavanje nastavlja svoje zamrznuto stanje izvora. Koristite osvježavanje nakon uređivanja izvornika. Predmemorirani segmenti ponovno se koriste. Djelomično izvršavanje može odabrati regionalne kodove pomoću `--locales`; dovršite sve jezike prije objavljivanja. Prekinuta izvršavanja ne zamjenjuju neuspjeli prijevod neprimjetno neprevedenim tekstom.
 
-Manifesto zapisuje svaki izvor i generirani datoteka s SHA-256 otisci prstiju normaliziranog UTF-8 teksta: LF linije završetak i bez znakova narudžbe. Offline provjerava cjelovitu pokrivenost po jeziku, otiske prstiju, lokalne poveznice, primjere koda, strukturu tablice/CSV-a, izvorne URL-ove i nepovratne lokacije. Odbijaju stalne izvore. Stručna provjera nije pregled rodnog govornika ili pravno odobrenje. Stranice koje su stvorene imaju ovu kvalifikaciju vidljivo.
+Manifest bilježi svaki izvorni i generirani dokument s otiscima SHA-256 normaliziranog teksta UTF-8: završeci redaka LF i bez oznake redoslijeda bajtova. Izvanmrežni provjerivač provjerava cjelovitu pokrivenost svih jezika, otiske, lokalne poveznice, primjere koda, strukturu tablica/CSV-a, izvorne URL-ove i nezamijenjena rezervirana mjesta. Odbija zastarjele izvore. Uspješna strukturna provjera nije pregled izvornog govornika ili pravno odobrenje. Generirane stranice vidljivo navode tu ogradu.
 
 ## Objavljivanje i paketi
 
-Objavljujte dokumentaciju, generator i provjernik zajedno. Održavajte originalne licencijske uvjete treće strane; prevedeno je licencijsko analizu. Izgradnja artefakata, cache prijevoda i lokalnih orkestra datoteke ne pripadaju Git. Izdanje izvora dokumentacije ne objavljuje sam Windows instalator.
+Objavite dokumentaciju, generator i provjerivač zajedno. Sačuvajte izvorne uvjete licenci trećih strana; prevedena analiza licenci informativna je. Rezultati izgradnje, predmemorija prijevoda i lokalne datoteke za orkestraciju ne pripadaju u Git. Izdanje izvorne dokumentacije samo po sebi ne objavljuje instalacijski program Windows.
 
-Prevođenje aplikacija za korisnike je odvojeno JSON kataloga pod `src/Aivana.Core/Localization`. Dokumentarna generacija ne mijenja te kataloge. Izgradnja aplikacije i njezina dokumentacija trebaju podijeliti verziju snimke; novo opisana eksperimentalna podrška može biti prethodna instaliranom paketu.
+Prijevodi korisničkog sučelja aplikacije zasebni su katalozi JSON u `src/Aivana.Core/Localization`. Generiranje dokumentacije ne mijenja te kataloge. Izgradnja aplikacije i njezina dokumentacija trebaju dijeliti isto verzionirano stanje; novoopisana eksperimentalna podrška izvršnog okruženja može prethoditi instaliranom paketu.

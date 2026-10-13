@@ -6,7 +6,7 @@
 
 The main pages are based on the usable content width, not a fixed window width. Under 900 DIPs content width, the dashboard and editor are one below the other. Under 620 DIPs, key figures are in two columns. The sidebar is collapsed under 820 DIPs window width. Minimum size: 640 × 480 DIPs.
 
-Profile and settings panes and keyboard controls switch their columns based on the actual grid width. Existing controls are rearranged instead of creating new entries. Action cards divide the available line width. Toolbars break. The keyboard side is reachable vertically, the physical keyboard retains its proportions.
+Profile and settings areas and keyboard controls change their column layout based on the actual grid width. Existing controls are rearranged, preserving their input. Action cards divide the available row width. Toolbars wrap. The keyboard page is vertically accessible, and the physical keyboard retains its proportions.
 
 Automatic WPF test: all five main pages at 640 × 480, 900 × 620 and 1440 × 900; Screenshots per page; Column change in both directions with checking of the received text. DIPs are logical WPF units. True Windows scaling at 150/200 percent and multiple monitors are not yet validated.
 

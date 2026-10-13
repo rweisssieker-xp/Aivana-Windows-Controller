@@ -4,7 +4,7 @@
 
 # Visos dokumentų kalbos
 
-Dokumentų sąrašas yra visų 27 UI kalbos. generuojami failai naudoja regioninius kodus; Norvegijos žemėlapiai `nb-NO` Serbietiška kalba `sr-Latn`. Kiekvienoje aplinkoje yra indekso, rankraščio, išsamios veiksmų nuorodos, funkcijų inventoriaus, patikrinimo notų, tyrimų, įskaitant CSV, istorinių planų ir licencijų analizės.
+Dokumentacija apima visas 27 sąsajos kalbas. Sugeneruotų aplankų pavadinimuose naudojami regioniniai kodai; norvegų kalbai atitinka `nb-NO`, serbų kalbai lotyniškais rašmenimis — `sr-Latn`. Kiekviename aplanke yra rodyklė, vadovas, išsamus veiksmų žinynas, funkcijų sąrašas, tikrinimo pastabos, tyrimai su CSV, istoriniai planai ir licencijavimo analizė.
 
 ## Tiesos šaltinis
 

@@ -4,108 +4,108 @@
 
 # MAKRIVO — Kasutusjuhend
 
-Tootja: **Aivana**. Dokumentatsioon snapshot: **2026-10-12**. See käsiraamat kirjeldab praegust tööpuu rakendamist. eksperimentaalsed integratsioonid ja hardware-sõltuvad funktsioonid on selgelt kindlaks määratud. ajaloolised aruanded kirjeldavad nende kuupäeva, mitte uue ehituse tagatist.
+Tootja: **Aivana**. Dokumentatsiooni seis: **2026-10-12**. Käsiraamat kirjeldab praeguse tööpuu teostust. Eksperimentaalsed integratsioonid ja riistvarast sõltuvad funktsioonid on selgelt märgitud. Ajaloolised aruanded kirjeldavad oma kuupäeva seisu ega anna garantiid uuema järgu kohta.
 
 ## Dokumentatsioon ja keeled
 
-Kasutage dokumendi keele valiku, et avada täielik käsiraamat, funktsioonide loend, probleemide lahendamine, arendusteave, teadusuuringud ja ajaloolised testide aruanded mis tahes 27 rakenduskeeltes. Loodud tõlked on masinabi ja neil on struktuurikontrolli; nad ei ole kõik saanud emakeele ülevaateid. Tehnilised tunnused ja rakendatavad näited jäävad muutumatuks. Originaalne allikas on võrreldav. Tõlgitud litsentsianalüüs on informatiivne ja ei asenda esialgseid kolmandate osapoolte õiguslikke tingimusi ega lõplikku EULA-d.
+Dokumentatsiooni keelevalik avab täieliku käsiraamatu, funktsioonide loendi, tõrkeotsingu, arendusmärkmed, uuringud ja ajaloolised testiaruanded ükskõik millises rakenduse 27 keelest. Loodud tõlked on masintoega ja läbinud struktuurikontrolli; kõiki ei ole emakeelse toimetaja poolt kontrollitud. Tehnilised tunnused ja käivitatavad näited jäävad muutmata. Algallikas on võrdlemiseks kättesaadav. Tõlgitud litsentsianalüüs on teavitav ega asenda kolmandate osapoolte algseid õiguslikke tingimusi ega lõplikku EULA-t.
 
 ## Installatsioon ja esimene käivitamine
 
-Algne eesmärk on Windows 11 x64. hoida kõik failid ja alldirektiivid koos. `MAKRIVO.exe`. Allikate kontrollimine ei ole installatsioon. isekontoleeritud pakendid hõlmavad oma .NET-i käivitusaega; raamistiku sõltuvad pakendid vajavad sobivat .NET-d 10 Desktop ja ASP.NET käivitamine. ONNX ja kaaslased peavad olema oma vastavate funktsioonide jaoks kaasatud.
+Esialgne sihtplatvorm on Windows 11 x64. Hoidke kõik levituspaketi failid ja alamkataloogid koos. Käivitage `MAKRIVO.exe`. Lähtekoodi väljavõte ei ole paigaldusprogramm. Iseseisvad paketid sisaldavad oma .NET-i käituskeskkonda; raamistikust sõltuvad paketid vajavad sobivaid .NET 10 Desktop ja ASP.NET käituskeskkondi. ONNX-i ja vastavate funktsioonide abiprotsesside käivitusprogrammid peavad olema paketis kaasas.
 
-1. Alustage MAKRIVO ja valige Settings'is vahe keele. Automaatne järgimine Windows Keyboard layout on eraldi seade.
-2. Valige profiil ja lisage seejärel otsitav tegevuskataloog. Andke talle tunnustatud nimi ja valige oma tegevused.
-3. Vaadake sammud ja vajadusel lühidalt. Vältige kombinatsioone, mida on juba kasutatud Windows või teie sihipärane rakendus.
-4. Päästa plaani. Salvestamata muudatused ei ole salvestatud konfiguratsioon.
+1. Käivitage MAKRIVO ja valige Settings jaotises kasutajaliidese keel. Automaatne valik järgib Windows keelt. Klaviatuuripaigutus on eraldi seadistus.
+2. Valige profiil ning lisage paan otsinguga toimingukataloogi kaudu. Andke sellele äratuntav nimi ja valige toimingud.
+3. Kontrollige samme ja vajaduse korral määrake kiirklahv. Vältige kombinatsioone, mida Windows või sihtrakendus juba kasutab.
+4. Salvestage mustand. Salvestamata muudatused ei kuulu salvestatud konfiguratsiooni.
 5. Proovige kahjutu tegevus, näiteks dokumendi avamine ja täitmise tagasiside kontrollimine.
 
-Peamine akna sulgemine jätab tavaliselt taotluse teavitamispiirkonnas. Kaksklõpsake oma tray ikoon, et seda uuesti avada või kasutage trey menüü välja. Alustamine Windows on valikuline ja algselt puudulik. Pause kontroll peatab sidemeid; ikoon näitab pausi. Tühistada käivitusmakrood läbi UI, tray või konfigureeritud tühistamise lühend; nõutav on `Ctrl+Alt+Escape`.
+Peaakna sulgemisel jääb rakendus tavaliselt teavitusalale tööle. Uuesti avamiseks tehke salveikoonil topeltklõps; väljumiseks kasutage selle menüüd. Koos Windows käivitumine on valikuline ja algselt keelatud. Pausinupp peatab klahviseosed; ikoonile ilmub pausimärk. Töötavaid makrosid saab tühistada kasutajaliidese, salve või seadistatud tühistamise kiirklahvi kaudu; vaikimisi on see `Ctrl+Alt+Escape`.
 
 ## Tüübid, tegevused ja komanda palett
 
-Tilid kuuluvad profiilidele ja võivad sisaldada mitu tellitud sammu. Redaktsioon toetab salvestamist/välja, eelvaadet, undo/redo ja sammu ümberkorraldamist. Kataloog pakub programmide, dokumentide, URL-ide, teksti, klippekäigu, meedia, audio, akna, süsteemi tegevuse ja toetatud integreerimise eelkohad. Parameetrite nõudmisega eelnõu avatakse.
+Paanid kuuluvad profiilidele ja võivad sisaldada mitut järjestatud sammu. Redaktor toetab salvestamist/loobumist, eelvaadet, tagasivõtmist/uuestitegemist ja sammude ümberjärjestamist. Kataloog pakub eelseadistusi programmide, dokumentide, URL-ide, teksti, lõikelaua, kiirklahvide, meedia, heli, akende, süsteemitoimingute ja toetatud integratsioonide jaoks. Parameetreid nõudev eelseadistus avaneb mustandina.
 
-Avage palett `Ctrl+K` ja MAKRIVO on keskendunud. Otsingud salvestatud tegevused, eelnevalt, profiili vahetamine ja tööriistad. Valige löögi võtmed; Sisestage aktiveerib; `Ctrl+Enter` redigeerib toetatut elementi; Väljumine sulgeb. Mõned valmis käskud täidetakse kohe, samal ajal kui konfigureeritud toimingud nõuavad läbivaatamist. Eraldi globaalse palli lühend saab konfigureerida; uued konfiguratsioonid kasutavad `Ctrl+Shift+Space`.
+Avage palett klahvidega `Ctrl+K`, kui MAKRIVO on fookuses. Otsige salvestatud toiminguid, eelseadistusi, profiilivahetust ja tööriistu. Nooleklahvid valivad; Enter aktiveerib; `Ctrl+Enter` redigeerib toetatud üksust; Escape sulgeb. Mõni valmiskäsk käivitub kohe, kuid seadistatud toimingud nõuavad kontrollimist. Eraldi globaalse paleti kiirklahvi saab seadistada; uutes konfiguratsioonides on see `Ctrl+Shift+Space`.
 
-Teksti ja clipboard meetodid `{{date}}`, `{{time}}`, `{{datetime}}`, `{{clipboard}}`, `{{profile}}`, `{{process}}` ja `{{user}}`. Kuupäeva vormistamine on `yyyy-MM-dd`; Aegade vormistamine on `HH:mm`. Tuntud muutused jäävad muutumatuks. klippide lugemine toimub ainult siis, kui seda taotletakse. klippid kirjeldavad teksti ilma automaatselt kohandamata.
+Teksti- ja lõikelauasammud toetavad muutujaid `{{date}}`, `{{time}}`, `{{datetime}}`, `{{clipboard}}`, `{{profile}}`, `{{process}}` ja `{{user}}`. Kuupäevavorming on `yyyy-MM-dd`; kellaajavorming on `HH:mm`. Tundmatud muutujad jäävad muutmata. Lõikelauda loetakse ainult taotluse korral. Lõikelauatoiming kirjutab teksti lõikelauale ilma seda automaatselt kleepimata.
 
-UI poolt käivitatud tegevused võivad suunata viimast välist rakendust. Kui sihtmärk kaob või Windows blokeerib esialgset aktiveerimist, aktiveerige manuaalselt sihtmärg ja taganeme. Edukas võtme tarnimine ei tõenda, et eesmärk on oma ülesande täitnud.
+Kasutajaliidesest käivitatud toimingud võivad sihtida viimast välist rakendust. Kui sihtmärk kaob või Windows blokeerib esiplaanile toomise, aktiveerige sihtmärk käsitsi ja proovige uuesti. Klahvisisestuse edukas edastamine ei tõenda sihtrakenduse ülesande täitmist.
 
 ## Profiilid ja töökohtade seadistamine
 
-Profiilid võivad vastata protsessi nimele ja akna pealkirja osale. Kui mõlemad on kokku pandud, peavad mõlemad olema kooskõlas. Profiili korraldus lahendab võistlevaid mänge; default profiil on langemine. Võimalik automaatne valik. Lock Profile takistab praeguse istungi automaatseid muudatusi.
+Profiilid võivad vastata protsessi nimele ja akna pealkirja osale. Kui määratud on mõlemad, peavad mõlemad vastama. Mitme vaste korral määrab valiku profiilide järjekord; vaste puudumisel kasutatakse vaikeprofiili. Automaatne valik tuleb eraldi lubada. Lock Profile takistab käimasoleva seansi automaatseid profiilivahetusi.
 
-Avatud töökoha seadistamine tööriistadest või palettist. Valige programmid, dokumendid, veebisaidid, audio/display eesmärk või OBS stseen. Assistent valmistab ette töökoha, kohtumiste, voogude, teadusuuringute või projektiprofiilide. Kontrollige tekkinud sammud enne säästmist. Seade ei täida ettevalmistatud tegevusi.
+Avage Workplace Setup menüüst Tools või paletist. Valige programmid, dokumendid, veebisaidid, heli-/kuvasihtmärk või OBS stseen. Assistent valmistab ette töökoha-, koosoleku-, voogedastus-, uurimis- või projektiprofiilid. Enne salvestamist kontrollige loodud samme. Seadistamine ei käivita ettevalmistatud toiminguid.
 
 ## Makro, tingimused ja salvestamine
 
-Macros täidab oma sammud järjekorras ja toetab ootusi, korduvusi ja tühistamist. Üldine korduvus on 100. Kasutage eelvaadet, enne kui teete teisi rakendusi või süsteemi seisundit.
+Makrod täidavad samme järjekorras ning toetavad ootamisi, kordusi ja tühistamist. Üldine korduspiir on 100. Kasutage eelvaadet enne toiminguid, mis sisestavad teksti teise rakendusse või muudavad süsteemi olekut.
 
-Oodake sihtpinda aktsepteerib protsessi, pealkiri ja aja väljalülitamist 1 kuni 600,000 ms. Vajalik on vähemalt üks filtr. Kooskõlas nähtav aken peab reageerima ja muutuma esiküljel, enne kui järgmised sammud jätkuvad. Valmis aken ei tõenda, et dokument või teenus on laaditud.
+Wait for Target Window võtab protsessi, pealkirja alamstringi ja ajalõpu vahemikus 1 kuni 600000 ms. Vähemalt üks filter on nõutav. Sobiv nähtav aken peab reageerima ja muutuma esiplaaniaknaks, enne kui järgmised sammud jätkuvad. Valmis aken ei tõenda dokumendi või teenuse laadimise lõppemist.
 
-Töövoo redigeerija lisab failid, protsessi käivitamine ja akna pealkirja tingimused. Vale seisund viib sammu ja võib edasi lükata täiendavaid samme. Keelduda tingimusest väljendada alternatiivset rühma. Valige tahtlikult viga või jätkuv viga; jätkamine võib jätta edasisi samme ilma nende eeldatavate tingimustega.
+Töövooredaktor lisab faili olemasolu, protsessi töötamise ja akna pealkirja tingimused. Väär tingimus jätab sammu vahele ja võib jätta vahele ka täiendavaid järgnevaid samme. Alternatiivse haru väljendamiseks pöörake tingimus vastupidiseks. Valige teadlikult, kas vea korral peatuda või jätkata; jätkamisel võivad hilisemate sammude eeldused olla täitmata.
 
-Tegevusrekord võtab lühikesed koorid ja ootavad, mitte tavalised trükkimised. See toetab modifitseerivaid lühendusi ja funktsiooni võtmeid. Põgenemine lõpetab salvestamise. Vaadake nimekirja ja võtke selle kui salvestamata tile eelnõu, seejärel salvestage selgelt. UI klõpsamine on allpool kirjeldatud eraldi tööriist.
+Toimingusalvesti jäädvustab kiirklahvikombinatsioone ja ootamisi, mitte tavalist teksti sisestamist. See toetab muuteklahvidega kombinatsioone ja funktsiooniklahve. Escape lõpetab salvestamise. Kontrollige loendit ja võtke see kasutusele salvestamata paanimustandina, seejärel salvestage eraldi. Kasutajaliidese klõpsusalvesti on allpool kirjeldatud eraldi tööriist.
 
 ## Märksõnad, gestid ja kihid
 
-Keyboard leht loetleb tuvastatud liidesid ja viiteartikleid. Üks füüsiline klaviatuur võib esitada mitmeid vahendeid. Valige õige keel ja geomeetria; ainult toote nimi ei tuvasta ISO või ANSI paigutust.
+Klaviatuurileht loetleb tuvastatud liidesed ja näidispaigutused. Üks füüsiline klaviatuur võib pakkuda mitut liidest. Valige õige keel ja geomeetria; tootenimi üksi ei määra ISO või ANSI paigutust.
 
-Standard globaalsed hotkeys kehtivad klaviatuuride vahel. seadme-spetsiifiline Raw Input sidemed jälgivad konkreetset seadet ja skaneerimiskodi, sealhulgas toetatud funktsiooni ja meedia võtmeid. **Raw Input ei takista tavapärast Windows Exkluentne teine klaviatuur ei ole tootmiseks valmis.** Allkirjastatud, litsentseeritud ja katsetatud filtreerimisseadme tagasiside on veel vajalik; ükski ei ole installitud MAKRIVO.
+Tavalised globaalsed kiirklahvid kehtivad kõigil klaviatuuridel. Seadmepõhised Raw Input seosed jälgivad kindlat seadet ja skannimiskoodi, sealhulgas toetatud funktsiooni- ja meediaklahve. **Raw Input ei tõkesta tavalist Windows sisendit. Ainult makrodeks kasutatav teine klaviatuur ei ole tootmiskasutuseks valmis.** Endiselt on vaja allkirjastatud, litsentsitud ja testitud filtridraiveri taustsüsteemi; MAKRIVO ei paigalda ühtegi sellist draiverit.
 
-Toetatavad spetsiaalsed võtmed võivad kasutada kohe trükkimist, trükkimise, hooldamise või topelttrükkimist. Held-layer võtmed valivad ajutiselt teise kaardistamise ja taastavad vabastatud põhikihti; Layer-selector võtmed ei tööta oma makro. 150 Teda 5,000 MS; kahekordne aken 150 Teda 1,000 MS. Need kaardid eristavad tavalistest globaalsetest hotkeys.
+Toetatud eriklahviseosed võivad kasutada kohest vajutust, lühivajutust, allhoidmist või topeltvajutust. Allhoitavad kihiklahvid valivad ajutiselt teise vastenduse ja taastavad vabastamisel põhikihi; kihivalikuklahvid ei käivita oma makrot. Allhoidmise läved on 150 kuni 5000 ms; topeltvajutuse ajavahemikud 150 kuni 1000 ms. Need vastendused erinevad tavalistest globaalsetest kiirklahvidest.
 
-Spetsiaalne võti tuvastab ühilduvad võtted ilma nende määratud tegevuste täitmata. Diagnoosid selgitavad kättesaamatuid seadmeid, katkestatud sidemeid, profiili ebaõnnestumisi ja konflikte. Ülekoormus näitab valitud paigutust ja sidemeid; selle eelnevalt lühendatud on `Ctrl+Alt+F1`.
+Eriklahvide viisard tuvastab ühilduvad klahvid ilma neile määratud toiminguid jäädvustamise ajal käivitamata. Diagnostika selgitab kättesaamatuid seadmeid, peatatud seoseid, profiilide mittevastavusi ja konflikte. Ülekate näitab valitud paigutust ja seoseid; selle vaikimisi allhoitav kiirklahv on `Ctrl+Alt+F1`.
 
 | Integratsioon | Nõuded ja piirangud |
 | --- | --- |
-| Corsair | Running iCUE, SDK juurdepääs ja ühilduv mudel. G1–G6 ja toetatavad RGB funktsioonid; omandatud Fn, rattad, lukud ja profiili kontrollid ei ole üldiselt G-lõuna API. |
-| Logitech G | Originaalne x64 G-key/LED SDK raamatukogud vajavad selgelt heakskiitu. G-tähelehted ei tuvasta ainulaadselt mitmeid identseid füüsilisi võti. |
-| Razer | Chroma RGB ja standardse sisendiga; kaardi omandatud kontrollid Synapse vajaduse korral. |
-| SteelSeries | GameSense RGB ja standardse sisendiga; kaardi omandi kontrollid GG vajaduse korral. |
-| Wooting | Ühilduv originaal x64 SDK analoogväärtuste ja piirmäärade jaoks; normaalne HID sisend jääb aktiivseks. |
-| Muud võti | Standardne hotkeys või toetatakse füüsilise skaneerimise koodi sidemed. Fn ja omandirežiimid sõltuvad mudeli ja müüja konfiguratsioonist. |
+| Corsair | Töötav iCUE, SDK-juurdepääs ja ühilduv mudel. G1–G6 ja toetatud RGB-funktsioonid; tootjapõhised Fn-, ratta-, lukustus- ja profiilijuhtelemendid ei ole üldjuhul G-key API kaudu kättesaadavad. |
+| Logitech G | Algupärased kohalikud x64 G-key/LED SDK-teegid vajavad selgesõnalist heakskiitu. G-key sündmused ei erista üheselt mitut identset füüsilist klaviatuuri. |
+| Razer | Chroma RGB ja standardsisend; vajaduse korral vastendage tootjapõhised juhtelemendid Synapse kaudu. |
+| SteelSeries | GameSense RGB ja standardsisend; vajaduse korral vastendage tootjapõhised juhtelemendid GG kaudu. |
+| Wooting | Ühilduv algupärane kohalik x64 SDK analoogväärtuste ja lävede jaoks; tavaline HID-sisend jääb aktiivseks. |
+| Muud võti | Tavalised kiirklahvid või toetatud füüsiliste skannimiskoodide seosed. Fn ja tootjapõhised juhtelemendid sõltuvad mudelist ning tootja seadistusest. |
 
-Tootja uuring kirjeldab dokumenteeritud võimeid, mis ei ole rakendatud või testitud ühtekuuluvust iga loetletud seade. Uued adapterid vajavad endiselt tegelikku hardware aktsepteerimist. Ärge allalaadige SDK-d ebakindlatest allikatest; SDK-i jaotusõigused on eraldatud tehnilise ühilduvusest.
+Tootjauuringud kirjeldavad dokumenteeritud võimalusi, mitte iga loetletud seadme rakendatud või testitud ühilduvust. Uued adapterid vajavad endiselt tegeliku riistvara vastuvõtuteste. Ärge laadige SDK binaarfaile alla ebausaldusväärsetest allikatest; SDK levitamisõigused on tehnilisest ühilduvusest eraldi.
 
 ## Audio, ekraanid ja OBS
 
-Audio sammud määrata maht 0 kuni 100 protsenti ja mute/mute/toggle toetatakse väljund või mikrofoni lõpppunktid. Valige konkreetne lõpppunkt või kasutage Windows nõuet. Puudunud salvestatud eesmärk tekitab vea, mitte vaikselt teise seadme kontrollimist. Värskendavad seadmed pärast taasühendamist. Endpoint Control ei ole sõltumatu rakendusvahendite toetuse nõue.
+Helisammud määravad helitugevuse vahemikus 0 kuni 100 protsenti ning vaigistavad/lülitavad vaigistuse välja/vahetavad vaigistuse olekut toetatud väljund- või mikrofoniseadmetel. Valige kindel lõpp-punkt või kasutage Windows vaikeseadet. Puuduv salvestatud sihtmärk põhjustab vea, mitte teise seadme vaikset juhtimist. Pärast taasühendamist kasutage Refresh Devices. Lõpp-punkti juhtimine ei tähenda sõltumatu rakendusepõhise helimikseri tuge.
 
-Näita toimingud suurendavad/vähendavad heledust 10 protsendipunktidega või määrata väärtus 0 kuni 100. Sisemised ekraanid kasutavad toetatavaid WMI-vahendeid; välised monitorid vajavad toetust DDC/CI ja tavaliselt oma monitor-menüü seade. Dokid, adapterid ja kaablid võivad blokeerida. Valige kõik toetatud ekraanid või üks monitor. Taastamine võib muuta olemasolevaid identiteete; vaadata päästetud eesmärk. Puuduvad lugemised on näidatud puudulikuks, mitte mõõdetud väärtusteks.
+Kuvatoimingud suurendavad/vähendavad heledust 10 protsendipunkti võrra või määravad väärtuse vahemikus 0 kuni 100. Siseekraanid kasutavad toetatud WMI-liideseid; välismonitorid nõuavad DDC/CI tuge ja tavaliselt selle sisselülitamist monitori menüüs. Dokid, adapterid ja kaablid võivad juhtimist takistada. Valige kõik toetatud ekraanid või üks monitor. Taasühendamine võib muuta saadaolevaid tunnuseid; kontrollige salvestatud sihtmärki. Puuduvad näidud kuvatakse kättesaamatuna, mitte mõõdetud väärtustena.
 
-OBS nõuab WebSocket v5 kättesaadavaks OBS tööriistad. Määrake lõpppunkti, proovige ühendust ja laadige sissetuleku nimed enne salvestamist. Toetatavad meetmed hõlmavad stseenide vahetamist, voolu/rekordit algust/jäätmist/tagustamist, pausi/resume ja sissetuleku muti. Paroolid saab salvestada Windows Credential Manageris ja need on konfigureerimiseksportist välja jäetud. Edukad OBS juhised ei kehtesta iga allveelaevade efekti.
+OBS vajab OBS Tools jaotises lubatud WebSocket v5 ühendust. Seadistage lõpp-punkt, testige ühendust ja laadige enne salvestamist stseenide/sisendite nimed. Toetatud on stseenivahetus, voogedastuse/salvestamise alustamine/peatamine/ümberlülitamine, salvestamise paus/jätkamine ja sisendi vaigistamine. Paroole saab hoida Windows Credential Manageris ja need jäetakse konfiguratsioonieksportidest välja. Edukas OBS käsk ei tõenda kõigi järgnevate voogedastuse mõjude toimumist.
 
 ## Tulemuste kontrollimise ja täitmise ajalugu
 
-Võimalik kontrollida tulemusi sobivate sammudega. Rakendus eristab eelvaateid, kinnitatud efekte, ebaõnnestumisi, tühistamist ja efekte, mida ei saa kontrollida. Protsessi olemasolu ei tähenda rakendamise valmisolekut. Suhtelised muudatused, lühidised ja teksti sissepääs ei saa edu avaldust. Kontrollige tegevuse ajakirja ja kontrollimise ajalugu, kui tegevus ebaõnnestub. Konfigureerimise vigu tuleks parandada enne täieliku makro ümberlülitamist.
+Lubage sobivatel sammudel Verify Result. Rakendus eristab eelkontrolli, kinnitatud mõjusid, tõrkeid, tühistamist ja mõjusid, mida ei saa kontrollida. Protsessi olemasolu ei tähenda rakenduse valmisolekut. Suhtelisi muudatusi, kiirklahve ega tekstisisestust ei saa üldiselt edukaks kuulutada. Tõrke korral kontrollige tegevuslogi ja kontrolliajalugu. Enne kogu makro uuesti käivitamist parandage konfiguratsioonivead.
 
 ## UI automatiseerimine ja klõpsamine
 
-Lisage kasutajaliides automaatse samm, valige operatsioon ja võta eesmärk näitajas pärast näidatud viivitust. Üks pildistamine ei toimu midagi. Kontrollige valiku ja vajate ainulaadset kokkulepet. `Invoke`, `Select`, `Toggle`, `Focus`, `SetValue` ja `WaitState`. Paroolid, keelatud kontrollid ja ebamäärased valijad on keeldutud.
+Lisage UI Automation samm, valige toiming ja jäädvustage kursori all olev sihtmärk pärast kuvatud viivitust. Üksnes jäädvustamine ei käivita midagi. Kontrollige selektorit ja nõudke üheselt määratud vastet. Toetatud toimingud on `Invoke`, `Select`, `Toggle`, `Focus`, `SetValue` ja `WaitState`. Parooliväljad, keelatud juhtelemendid ja mitmetähenduslikud selektorid lükatakse tagasi.
 
-UI automatiseerimine toimub piiratud kaasajaga. See sõltub sihtotstarbelise rakenduse Windows kättesaadavuse toetamisest ja loadest. Klõpsur salvestab toetatud tegevusi ja pausi; see ei salvestata üldist teksti sissetulekut. Vaadake ja kinnitage oma eelnõu enne selle vastuvõtmist. Välise rakenduse UI muudatused võivad valikuid tühistada. Protsessi isolatsioon piirab õnnetusi ja tühistamist, kuid see ei ole turvakoti.
+Kasutajaliidese automatiseerimine töötab piiratud abiprotsessis. See sõltub sihtrakenduse Windows ligipääsetavustoest ja õigustest. Klõpsusalvesti jäädvustab toetatud toiminguid ja pause, mitte üldist tekstisisestust. Enne kasutuselevõttu kontrollige ja valideerige mustand. Välise rakenduse kasutajaliidese muutused võivad selektorid kehtetuks muuta. Protsessiisolatsioon piirab krahhide mõju ja võimaldab tühistamist, kuid ei ole turvaliiva­kast.
 
 ## Pluginid
 
-Avage laiendused pakendi kontrollimiseks enne importi. Pakendi struktuur, manifest ja hashid on kontrollitud. Impordi algab puuetega. Loe deklareeritud tegevusi ja usaldage selgelt väljaandjat enne lubamist. Plugins töötavad teie kasutaja loa eraldi protsessis; see protsess on ** mitte liivakasti**. Kasutage ainult pakette, millele usaldate.
+Avage Extensions ja kontrollige paketti enne importimist. Kontrollitakse paketi struktuuri, manifesti ja räsisid. Imporditud laiendus on algselt keelatud. Lugege deklareeritud toiminguid ja usaldage enne lubamist avaldajat selgesõnaliselt. Pluginad töötavad teie kasutajaõigustega eraldi protsessis; see protsess **ei ole liivakast**. Paigaldage ainult usaldusväärseid pakette.
 
-Juhendaja toetab varasemate versioonide eksporti, deaktiivsust, eemaldamist ja taastamist. Puuduvad sõltuvused blokeerivad. Näiteks pakett annab arvutamise ja kohaliku riigi tegevuse. Toetatav skeem on dokumenteeritud JSON-Schema allüksus, mitte kõik võimalikud JSON-Skeemi funktsioonid. Plugin turul ei ole.
+Haldur toetab eksportimist, keelamist, eemaldamist ning eelmise versiooni taastamist/hülgamist. Puuduvad sõltuvused takistavad käivitamist. Näidispakett pakub pöördloenduse ja kohaliku oleku toiminguid. Toetatud skeem on dokumenteeritud JSON-Schema alamhulk, mitte kõik võimalikud JSON-Schema funktsioonid. Avalikku pluginaturgu ei ole.
 
 ## Mobiilne paneel
 
-1. Avatud mobiilseadme, valige kohalik IP ja selgesõnaliselt välja profiilid. Eeldatava loopback-aadress on saadaval ainult arvutis; valige sobiv LAN-aadress telefoni või tahvelarvuti jaoks.
-2. Alusta paneeli ja loe selle HTTPS-aadress, sertifitseerige sõrmejälgi ja ühe kasutamise kuue numbri paari koodi.
-3. Ühes võrgus olevas seadmes avage aadress. Võrdle SHA-256 sõrmejälgi usaldusväärse kanali kaudu enne kohaliku sertifikaadi usaldamist. Rakendus ei installita usaldusväärset sertifikaati automaatselt.
-4. Paari, kasutades näidatud koodi ja testida ühe kahjutu tile. Manuaalne Windows tuletõrje luba võib olla vajalik LAN-i juurdepääsuks. Ära pane sadamat internetile.
-5. Lõpetage paneel, kui see on lõpetatud, või tühistage kliendid rakenduse kaudu.
+1. Avage Mobile Panel, valige kohalik IP ja määrake selgesõnaliselt jagatavad profiilid. Vaikimisi loopback-aadress on kättesaadav ainult arvutis endas; telefoni või tahvelarvuti jaoks valige sobiv LAN-aadress.
+2. Käivitage paneel ja lugege selle HTTPS-aadressi, sertifikaadi sõrmejälge ning ühekordset kuuekohalist sidumiskoodi.
+3. Avage aadress seadmes, mis on samas usaldusväärses võrgus. Enne kohaliku sertifikaadi usaldamist võrrelge SHA-256 sõrmejälge usaldusväärse kanali kaudu. Rakendus ei paigalda usaldatud sertifikaati automaatselt.
+4. Siduge seade kuvatud koodi abil ja testige üht ohutut paani. LAN-juurdepääs võib nõuda Windows Firewalli käsitsi antud luba. Ärge tehke porti internetist kättesaadavaks.
+5. Lõpetamisel peatage paneel või tühistage seotud klientide luba rakenduses.
 
-Privaatsed serveri võtmed on kaitstud Windows DPAPI; kliendi tunnused salvestatakse hashtidena. IP muutmine või sertifikaadi uuendamine võib nõuda usalduse uuendamist. Paneel näitab tegevuse ja kontrollimise seisundit, mitte kõiki võimalikke elusandreid. Kaubamärk ja kohalikud HTTPS-kontrolli ei asenda reaalset telefoni/tabletti LAN-i aktsepteerimist.
+Serveri privaatvõtmeid kaitseb Windows DPAPI; klientide autentimisandmed salvestatakse räsidena. IP muutmine või sertifikaadi uuendamine võib nõuda uut usaldamist. Paneel näitab toimingute ja kontrolli olekuid, mitte kõiki võimalikke reaalajaandureid. Brauseripaigutuse ja kohaliku HTTPS-i kontrollid ei asenda tegelike telefonide/tahvelarvutite LAN-vastuvõtuteste.
 
 ## Kohalik assistent
 
-See vabatahtlik eksperimentaalne assistent on default. Avage see tööriistadest, aktiveerige seda selgelt, valige tööaeg / mudel ja lisage ainult ressursid, mida soovite kaaluda. Pane eesmärk, luua eelnõu, kontrollida lahendamata taotlusi ja edastada tulemus tavalisele redigeerijale. Miski ei toimu automaatselt; säästmine ja käivitamine jäävad selgeks. Automaatne rünnak ei ole olemas.
+See valikuline eksperimentaalne assistent on vaikimisi keelatud. Avage see Tools menüüst, lubage see selgesõnaliselt, valige käituskeskkond/mudel ja lisage ainult ressursid, mida soovite arvesse võtta. Sõnastage eesmärk, looge mustand, kontrollige lahendamata taotlusi ja viige tulemus tavalisse redaktorisse. Midagi ei käivitata automaatselt; salvestamine ja käivitamine jäävad selgesõnalisteks toiminguteks. Automaatset üleminekut teisele käituskeskkonnale ei ole.
 
 | jooksmine | Sissejuhatus |
 | --- | --- |
@@ -114,21 +114,21 @@ See vabatahtlik eksperimentaalne assistent on default. Avage see tööriistadest
 | llama.cpp | Kohalik `llama-server` ja ühilduv mudel JSON-kava toetusega `127.0.0.1:8080`. |
 | ONNX käivitusaeg GenAI CPU | Usaldusväärne kohalik GenAI teksti mudeli faili; valige `genai_config.json`. Inference kasutab kombineeritud kaaslase protsessi ilma HTTP-i. |
 
-HTTP kliendid kasutavad ainult loopback, ei kasuta proxy ja ei jälgita ümber suuniseid. MAKRIVO ei saa usaldusväärselt kindlaks teha, kas sobiv kohalik server siseselt helistab kaugteenust. Autentsed kohalikud serverid ei ole selles versioonis konfigureeritavad. Mudeli kaalud, Python ja kohalikud inferents serverid ei ole automaatselt alla laaditud või installitud.
+HTTP-kliendid kasutavad ainult loopback-ühendusi, ei kasuta puhverservereid ega järgi ümbersuunamisi. MAKRIVO ei saa usaldusväärselt tuvastada, kas ühilduv kohalik server pöördub sisemiselt kaugteenuse poole. Autentimisega kohalikke servereid ei saa selles versioonis seadistada. Mudelikaale, Pythonit ega kohalikke inferentsiservereid ei laadita alla ega paigaldata automaatselt.
 
-ONNX Pakendid on vajalikud `tokenizer.json` ja kehtiv vestlusvorm. toetatud templite vormid `tokenizer_config.json` See on string `chat_template`, Sõnaraamat koos stringiga `default`, või kahtlemata nimetatud/default templite nimekiri. kui templit puudub või null, `chat_template.jinja` Kasutatakse tagasilöökuna. tühjad, ebamäärased, ülekaalulised või valesti kirjutatud templid on keeldutud. ONNX failid, sisseehitatud/nägemismudelid ja GPU-i pakendid ei ole ühilduvad GenAI Kirjeldus: Ühendatud GenAI Runtime versioon on 0.17.1, Kasutage ainult usaldusväärseid mudeleid; protsessi eraldamine ei ole liivakasti.
+ONNX paketid vajavad `tokenizer.json` faili ja kehtivat vestlusmalli. Failis `tokenizer_config.json` toetatakse stringi `chat_template`, stringiga `default` sõnastikku või üheselt määratud nimega/vaikemallide loendit. Kui mall puudub või on null, kasutatakse varulahendusena `chat_template.jinja`. Tühjad, mitmetähenduslikud, liiga suured või vale tüübiga mallid lükatakse tagasi. Suvalised ONNX-failid, vektor-/nägemismudelid ja ainult GPU-le mõeldud paketid ei asenda ühilduvaid GenAI tekstimudeleid. Kaasasoleva GenAI käituskeskkonna versioon on 0.17.1, CPU. Kasutage ainult usaldusväärseid mudeleid; protsesside eraldamine ei ole liivakast.
 
-Assistent toetab valitud programme ilma argumentideta, valitud dokumente ja veebisaite ning mikrofon mute kui see on sõnaselgelt nõutav. See ei loe sõnumeid, kuupäevi, tahtlikke skripte, tasuta klõpsu, allalaadimised või headseti vahetamine. Eesmärk ja ressursside nimed saadetakse valitud kohalikule tööajale; ressursitöö ja faili sisu ei esine eraldi. Kasutaja poolt määratud eesmärk võib sisaldada isikuandmeid. Kohaliku käitumisajaga võrgustiku käitumine jääb kasutaja vastutuseks.
+Assistent toetab valitud programme ilma argumentideta, valitud dokumente ja veebisaite ning mikrofoni vaigistamist selgesõnalise taotluse korral. See ei loo sõnumeid, kohtumisi, suvalisi skripte, vabu klõpse, allalaadimisi ega peakomplekti vahetust. Eesmärk ja ressursinimed saadetakse valitud kohalikule käituskeskkonnale; ressursiteid ja failisisu eraldi ei edastata. Kasutaja sisestatud eesmärk võib ise sisaldada isikuandmeid. Kohaliku käituskeskkonna võrgukäitumine jääb kasutaja vastutuseks.
 
-ONNX nõudmise eelarve on 90 sekundi, sealhulgas mudeli laadimine, kuni 3,072 kiireloomulised tokenid ja 1,024 genereeritud tokenid, samuti piiratud mudeli konteksti. Tühjendatud/pikkunud JSON ja tundmatu ressursi IDid on tagasi lükatud. Tühistada või lõpetada taotlus. Juhuslik mudel tööaeg test määrab täitmise, mitte kasulikku planeerimise kvaliteeti või aja säästmist. Kohalikud eksperimendi logid sisaldavad sündmuste identifitseerimist ja ajakava, mitte sihtteksti või dokumendi sisu; neid ei laadita automaatselt.
+ONNX päringu ajapiirang on 90 sekundit koos mudeli laadimisega; lubatud on kuni 3072 sisendtokenit ja 1024 genereeritud tokenit, lisaks kehtib mudeli kontekstipiirang. Vigane/kärbitud JSON ja tundmatud ressursi-ID-d lükatakse tagasi. Päringu lõpetamiseks tühistage see või sulgege aken. Juhumudeliga käituskeskkonna test tõendab käivitumist, mitte kasulikku planeerimiskvaliteeti ega ajasäästu. Kohalikud katselogid sisaldavad sündmuste tunnuseid ja ajamõõtmisi, mitte eesmärgi teksti ega dokumentide sisu; neid ei laadita automaatselt üles.
 
-Hiljem toimunud väikese Instrukt-mudeli hindamine toodi neljas saksa/inglise uuringus null-valid plaanid. Native inference töötas, kuid mudel ebaõnnestus ranget planeerimiskokkulepet. See on negatiivne kvaliteet, mitte soovitatav mudel või tõestatud kasulik assistent. Vaata kuupäeva kohaliku käitumisajaga testide aruannet täpseks mudeli läbivaatamiseks ja piiranguteks.
+Hilisem väikese Instruct-mudeli hindamine andis neljas saksa/inglise katses null kehtivat plaani. Natiivne inferents töötas, kuid mudel ei täitnud ranget planeerimislepingut. See on negatiivne kvaliteeditulemus, mitte mudelisoovitus ega tõend kasulikust assistendist. Täpse mudelirevisjoni ja piirangute kohta vaadake kuupäevastatud kohaliku käituskeskkonna testiaruannet.
 
 ## Impordi, ekspordi, sünkroniseerimise ja backup
 
-Vaadake impordi prognoose enne konfiguratsiooni asendamist. Impordi toimingud hakkavad välja lülitama ja kaasaskantav sünkroonimine eemaldab hardware-spetsiifilised sidemed. Taastage seadmed ja võimaldage meetmeid tahtlikult pärast kontrollimist. Vaadake teksti/tegevuse sisu enne ekspordi jagamist; parooli välistamine ei tee kõik kasutaja loodud tegevuse sisu ebameeldivaks.
+Enne konfiguratsiooni asendamist kontrollige impordi eelvaadet. Imporditud toimingud on algselt keelatud ning teisaldatav sünkroonimine eemaldab riistvarapõhised seosed. Pärast kontrollimist määrake seadmed uuesti ja lubage toimingud teadlikult. Enne ekspordi jagamist kontrollige teksti/toimingute sisu; paroolide väljajätmine ei muuda kogu kasutaja loodud toimingute sisu mittetundlikuks.
 
-Profiili sünkroniseerimine vahetab failid valitud failis, valikuliselt teie olemasoleva pilvkliendi poolt. MAKRIVO ei anna pilvkonto ja ei salvestata pilvlood. Revisioonid takistavad vaikseid ülekirjutusi. Tegevuse sisu sisaldamine on selge valik. Tagasi oma konfigureerimist enne asendamise importi. Eeldatav konfigureerimine on `%LOCALAPPDATA%\AivanaWindowsController\settings.json`; ühilduvuseks säilitatakse ajalooline direktori nimi. Sulge rakendus enne selle manuaalset kopeerimist / taastamist. Salvestatud SDK-i kinnitused ja OS-kaitse all olevad loendid võivad olla vajalikud uuesti uuendamiseks mõnes teises arvutis.
+Profiilide sünkroonimine vahetab faile valitud kaustas, mida võib hallata teie olemasolev pilveklient. MAKRIVO ei paku pilvekontot ega salvesta pilve autentimisandmeid. Revisjonid takistavad vaikseid ülekirjutusi. Toimingusisu kaasamine on selgesõnaline valik. Enne asendavat importi varundage konfiguratsioon. Vaikimisi konfiguratsioon on `%LOCALAPPDATA%\AivanaWindowsController\settings.json`; ajalooline kaustanimi on säilitatud ühilduvuseks. Enne käsitsi kopeerimist/taastamist sulgege rakendus. Salvestatud SDK-heakskiidud ja operatsioonisüsteemi kaitstud autentimisandmed võib teises arvutis vaja olla uuesti luua.
 
 ## Probleemide lahendamine
 
@@ -146,7 +146,7 @@ Profiili sünkroniseerimine vahetab failid valitud failis, valikuliselt teie ole
 | Taotlused ebaõnnestuvad | Õige valitud kohalik käitumisajaga, teenus / mudel valmis, toetatud JSON skeem, usaldusväärne vastav mudeli faili ja nõudmise piirid. |
 | Layout või tekst tundub valesti | Eraldage kasutajaliides keelt klaviatuuri geomeetrist; vaadake akna, vaadake ekraani suurust ja teatage täpsest lehtest / keelt / ehitusest. |
 
-Kasuliku viga aruande jaoks on Windows versioon, rakenduse ülesehitus/kommitsioon, keel, ekraani skaalimine, tarkvara mudel, minimaalne järjekord ja asjakohane redigeeritud log. Eemaldage isiklikud teed, tegevuse sisu ja loendid enne avaldamist.
+Kasulik veaaruanne sisaldab Windows versiooni, rakenduse järku/kommitit, keelt, kuva skaleerimist, riistvaramudelit, minimaalset sammujada ja asjakohast puhastatud logi. Enne avaldamist eemaldage isiklikud failiteed, toimingusisu ja autentimisandmed.
 
 ## Ehitus, testimine ja pakendamine
 
@@ -161,14 +161,14 @@ dotnet run --project src/Aivana.Desktop -c Release -- --smoke-test
 python tools/check_documentation.py
 ```
 
-Windows integreerimise testid võivad avada isoleeritud aknad ja ajutiselt konfigureerida / vabastada toetatud tarnija sidemed. Juurdepääs neile ilma teist kontrollija, kellel on need sidemed. Eeldatavad heledus- ja heliproovid on loetavad ainult; selged hardware ringtrip testid on eraldatud. Mock protokollid, renderitud ekraani ja juhuslikud viitekirjad ei tohi esindada reaalset hardware / mudeli kvaliteedi aktsepteerimist.
+Windows integratsioonitestid võivad avada isoleeritud aknaid ning ajutiselt seadistada/vabastada toetatud tootjate klahviseoseid. Käivitage need ilma teise neid seoseid haldava kontrollerita. Vaikimisi heleduse/heli proovikontrollid on ainult lugemiseks; selgesõnalised riistvara edasi-tagasi testid on eraldi. Imiteeritud protokolle, renderdatud kuvatõmmiseid ja juhuslikke inferentsigraafe ei tohi esitada tegeliku riistvara või mudelikvaliteedi vastuvõtutestidena.
 
-Kogu väljaandja koondab kaaslased, mobiilsed varad, näidisplugin, ONNX käivitusaeg ja kättesaadavad sõltuvuse teated. Hoidke oma subdirektorid. Edukas ehitus ei ole allkirjastatud paigaldaja või seadusliku vabastamise heakskiit. Allikas ja ehitused võivad areneda eraldi; võrdle dokumendi pilti ja pühenduge installitud versioonile.
+Täielik avaldamisskript koondab abiprotsesside käivitusprogrammid, mobiilseadmefailid, näidisplugina, ONNX-käituskeskkonna ja saadaolevad sõltuvuste teated. Säilitage alamkataloogid. Edukas ehitus ei ole allkirjastatud paigaldusprogramm ega õiguslik väljalaske heakskiit. Lähtekood ja järgud võivad areneda eraldi; võrrelge dokumentatsiooni seisu ja kommitit paigaldatud versiooniga.
 
 ## Litsentsimine, privaatsus ja vabastamise seisund
 
-Ettevalmistatud kaubandussüsteem on üheaegne ostmine, mille ostetud suurversioon on pidevalt kasutusel; lõpphind, seadme maksumus ja uuendamise tingimused tuleb sätestada tegelikes müügitingimustes. Tootmise ostu / aktiveerimise süsteem ei ole käesolevas käsiraamatus kehtestatud. Igapäevaseks kontrollimiseks ei ole vaja pilvakontot.
+Kavandatud ärimudel on ühekordne ost koos ostetud põhiversiooni tähtajatu kasutamisega; lõpphind, lubatud seadmete arv ja uuendustingimused tuleb määrata tegelikes müügitingimustes. See käsiraamat ei tõenda toimiva ostu-/aktiveerimissüsteemi olemasolu. Igapäevaseks juhtimiseks pole pilvekonto nõutav.
 
-Ärge levitage omandatud SDK-d ilma tõestatud loata. Säilitage litsents ja kolmandate osapoolte teated iga saadetud sõltuvuse, sealhulgas .NET ja ONNX pakendid. Mudelil on oma kehtivus. Kuupäevane litsentside auditi käivitab mõned uued sõltuvused ja ei ole nende lisade vabastamine. Avalik salvestus ei anna ise üldise avatud lähtekoodiga litsentsi.
+Ärge levitage tootja omandiõigusega SDK binaarfaile ilma tõendatud loata. Säilitage kõigi tarnitavate sõltuvuste litsentsid ja kolmandate osapoolte teated, sealhulgas .NET ja ONNX pakettide omad. Mudelikaaludel on oma tingimused. Kuupäevastatud litsentsiaudit tehti enne mõne uue sõltuvuse lisamist ega anna nende lisanduste levitamiseks heakskiitu. Avalik repositoorium ei anna iseenesest üldist avatud lähtekoodi litsentsi.
 
-Tõeline tarnija hardware, telefon / tahvelarvuti LAN operatsioon, segatud monitor / DPI üleminekud, pikaajaline kasutamine, täielik keeleline läbivaatamine, eksklusiivne juhtimise tugi ja kasulik AI planeerimise kvaliteet jäävad eraldi aktsepteerimise töö. Ma ei anna kunagi heakskiitu üksinda.
+Tegelik tootjate riistvara, telefonide/tahvelarvutite LAN-töö, eri monitoride/DPI-de vahelised üleminekud, pikaajaline kasutamine, täielik keelekontroll, eksklusiivse draiveri tugi ja kasulik AI planeerimiskvaliteet vajavad endiselt eraldi vastuvõtuteste. Ärge järeldage heakskiitu üksnes funktsiooni olemasolust.

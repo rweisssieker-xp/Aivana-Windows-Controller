@@ -22,18 +22,18 @@ Gamintojas: **Aivana**. Standas: **12. Spalio mėn. 2026**. Tai yra vystymosi b�
 | sritis | Funkcijos apimtis | sienos |
 | --- | --- | --- |
 | Rezultatų patikrinimas | Išankstinis patikrinimas, peržiūra ir bandymai | Tik patikrinamas poveikis patvirtina; sėkmingas mygtukas neparodo tikslinio poveikio. |
-| Darbo padėjėjas | Paruošti pasirinktų programų, failų, URL ir kitų veiksmų profilį ir procesus | Reikalingas iš anksto stebėjimas ir saugojimas; įrenginys nieko nedaro. |
+| Darbo padėjėjas | Paruošti pasirinktų programų, failų, URL ir kitų veiksmų profilį ir procesus | Būtina peržiūra ir išsaugojimas; sąranka nieko nevykdo. |
 | Makro įvedimas ir darbo srautas | Įrašas, sąlygos, gestai ir vietinis profiliavimas | Elgesys ir apribojimai pateikiami įgyvendinimo ir bandymų ataskaitose. |
-| UI automatizavimas | Rinkti tikslus, patikrinti rinkinius, imtis veiksmų ir ribotų spustelėjimų | Atskiri darbuotojai; daugiafunkciniai, išjungti ir slaptažodžiai yra atmesti; nėra bendro teksto įrašų. |
+| UI automatizavimas | Rinkti tikslus, patikrinti rinkinius, imtis veiksmų ir ribotų spustelėjimų | Atskiras darbinis procesas; nevienareikšmiai, išjungti ir slaptažodžių tikslai atmetami; bendras teksto įvedimas neįrašomas. |
 | Išplėtimas | Pažymėti, importuoti, aktyvuoti, eksportuoti ir grąžinti paketus, aiškiai pasitikėdami | Procesinė izoliacija nėra smėlio dėžutė; nėra viešo rinkos plokštės. |
-| Mobilusis panelis | Vietinis HTTPS plokštė, jungimas, pasirinkti profiliai ir statusas / bandymo istorija | Tikrasis telefonas / planšetinis LAN atsisiuntimas vis dar atviras; nėra universalaus jutiklinio kompiuterio. |
+| Mobilusis panelis | Vietinis HTTPS plokštė, jungimas, pasirinkti profiliai ir statusas / bandymo istorija | Tikri telefonų/planšetinių kompiuterių LAN priėmimo bandymai dar neatlikti; tai nėra universalus jutiklių skydelis. |
 | Gamintojas adapteris | Corsair, Logitech-G SDK, Razer/SteelSeries-RGB ir Wooting-Analogadapteriai | Modelis / SDK priklausomybė; naujas adapteris nėra visiškai patvirtintas su realiu aparatūra. Nėra naujų savarankiškų SDK DLL. |
 | Fizinė klaviatūra | Standartiniai mygtukai nustatomi naudojant įrenginį ir skenavimo kodą | Raw Input netrukdo įprastam Windows įvedimui. |
-| Vietinis AI konsultavimo asistentas | Galutinis prototipas Ollama, LM Studio, llama.cpp ir ONNX paleidimo laikas GenAI CPU gamina ribotas dizainas iš aiškiai pasirinktų išteklių | Standartiniu būdu; Native CPU trukmė patikrinama atsitiktine modeliu, tačiau nėra įrodyta planavimo kokybė ar laiko taupymas; nėra modelio svorio. |
+| Vietinis AI konsultavimo asistentas | Galutinis prototipas Ollama, LM Studio, llama.cpp ir ONNX paleidimo laikas GenAI CPU gamina ribotas dizainas iš aiškiai pasirinktų išteklių | Pagal numatytuosius nustatymus išjungta; savoji CPU vykdymo aplinka patikrinta atsitiktiniu modeliu, bet planavimo kokybė ar laiko taupymas neįrodyti; modelio svoriai neįtraukti. |
 
 ## Nėra pardavimo, kaip pardavimo
 
-- **Išskirtinis antrasis kompiuteris/makropadas: ** Nėra pasirašyto, licencijuoto ir įrangos patikrinimo filtravimo įrenginio. Normalios klaviatūros gali ir toliau pasiekti Windows.
+- **Išskirtinė antroji klaviatūra/makropultas:** trūksta pasirašytos, licencijuotos ir aparatūroje patikrintos filtro tvarkyklės. Įprasta klavišų įvestis vis dar gali pasiekti Windows.
 - Visiškas visų gamintojų adapterio aparatūros nutekėjimas, taip pat realios mobiliųjų prietaisų LAN testavimas.
 - Tikroji mišri monitorių / DPI keitimas ir visų naujų vertimų profesionalus atskaitymas. PerMonitorV2 ir simuliuojami 150/200-Prozent-Layouts buvo patikrinta; tikrieji ekranai išlieka atskiri. Šioje srityje yra 27 kalbų; išsami nauji tekstai dar nėra visiškai kalbėti.
 - Pasirašytas pardavimo įrenginys, galutinis EULA, patikrintos SDK pardavimo teisės ir produktyvi pirkimo licencija / patikrinimas.

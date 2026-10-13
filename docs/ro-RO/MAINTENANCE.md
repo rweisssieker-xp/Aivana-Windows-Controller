@@ -2,9 +2,9 @@
 
 > Traducere asistată automat. Structura, exemplele de cod și linkurile sunt verificate; aceasta nu reprezintă o revizuire de către un vorbitor nativ sau o aprobare juridică. Rapoartele istorice își păstrează datele și domeniul inițial. [Sursă originală](../MAINTENANCE.md)
 
-# Mâncarea tuturor limbajelor de documentare
+# Întreținerea tuturor limbilor documentației
 
-Inventarea documentelor urmează toate 27 limbi de utilizare a UI. Folderile generate folosesc coduri regionale; hărți norvegiană la `nb-NO` și latină la `sr-Latn`. Fiecare folder conține un index, manual, referință detaliată de acțiune, inventari de caracteristici, note de verificare, cercetare inclusiv CSV, planuri istorice și analize de licență.
+Inventarul documentației acoperă toate cele 27 de limbi ale interfeței. Folderele generate folosesc coduri regionale; norvegiana corespunde `nb-NO`, iar sârba cu alfabet latin `sr-Latn`. Fiecare folder conține index, manual, referință detaliată a acțiunilor, inventar de funcții, note de verificare, cercetare inclusiv CSV, planuri istorice și analiză de licențiere.
 
 ## Sursă de adevăr
 
@@ -17,9 +17,9 @@ python tools/localize_documentation.py --refresh-sources
 python tools/check_documentation.py
 ```
 
-Generatorul online opțional trimite proza de documentare la punctul final public de traducere al Google, în funcție de instrumentul de localizare existent. Nu citește configurația utilizatorului, secretele sau fișierele de modelare. Folosește doar documentele potrivite pentru acest serviciu. Blocurile de cod, codul inline, URL-urile, structura tabelului și identificatorii tehnici sunt protejați. Cache-urile de traducere și o imagine de surse înghețate sunt stocate sub ignorate `artifacts/documentation-translation`.
+Generatorul online opțional trimite textul documentației către punctul public de traducere Google, urmând instrumentele de localizare existente. Nu citește configurația utilizatorului, secretele sau fișierele modelelor. Rulați-l numai pe documentație adecvată acelui serviciu. Blocurile de cod, codul inline, URL-urile, structura tabelelor și identificatorii tehnici sunt protejate. Cache-ul traducerilor și un instantaneu înghețat al surselor sunt stocate în `artifacts/documentation-translation`, ignorat de Git.
 
-Atunci când furnizorul on-line este rată limitată, `tools/translate_documentation_local.py` umple același cache folosind un model local explicit M2M100 CTranslate2. 2026-10-12 utilizează modelul licențiat de MIT facebook/m2m100_418M, convertit ca JustFrederik/m2m_100_418m_ct2_int8 la revizuire `1aeed44db4dd61a486bba44acf54c76507082a2c`. CTranslate2 4.8.2 și `SentencePiece` 0.2.2 sunt doar instrumente de construcție. Nu sunt trimise greutăți de model sau dependențe de traducere cu MAKRIVO. Executați generatorul cu `--cache-only` după umplerea cache-ului pentru a furniza fără cereri de rețea. Ajutorul local nu descarcă sau execută codul de model la distanță.
+Când furnizorul online limitează rata cererilor, `tools/translate_documentation_local.py` completează același cache cu un model local M2M100 CTranslate2 furnizat explicit. Instantaneul 2026-10-12 folosește modelul facebook/m2m100_418M cu licență MIT, convertit ca JustFrederik/m2m_100_418m_ct2_int8 la revizia `1aeed44db4dd61a486bba44acf54c76507082a2c`. CTranslate2 4.8.2 și `SentencePiece` 0.2.2 sunt instrumente numai pentru construire. Nu sunt distribuite ponderi de model sau dependențe de traducere cu MAKRIVO. Rulați generatorul cu `--cache-only` după completarea cache-ului pentru generare fără cereri de rețea. Instrumentul auxiliar local nu descarcă și nu execută cod de model la distanță.
 
 ```powershell
 python -m pip install ctranslate2==4.8.2 sentencepiece==0.2.2
@@ -28,12 +28,12 @@ python tools/localize_documentation.py --cache-only
 python tools/check_documentation.py
 ```
 
-Fără `--refresh-sources`, un curs își reînnoiește fotografiile înghețate. Utilizați opțiunea de refresh după editarea originalelor. Se reutilizează segmentele ascunse. Un curs parțial poate selecta coduri locale folosind `--locales`; terminarea tuturor locurilor înainte de publicare. Runsurile întrerupte nu înlocuiesc în tăcere proza neinterpretată pentru o traducere eșuată.
+Fără `--refresh-sources`, execuția continuă de la instantaneul surselor înghețat anterior. Folosiți opțiunea de actualizare după editarea originalelor. Segmentele din cache sunt reutilizate. O execuție parțială poate selecta codurile de limbă cu `--locales`; finalizați toate limbile înainte de publicare. Execuțiile întrerupte nu înlocuiesc pe ascuns o traducere eșuată cu text netradus.
 
-Manifestul înregistrează fiecare sursă și fișier generat cu SHA-256 degetele din textul normalizat UTF-8: LF liniile de terminare și fără semnul de comanda. Checkerul offline verifică acoperirea completă pe limbă, amprentele, link-urile locale, exemplele de cod, structura tabelului/CSV, URL-urile de sursă și locațiile neînlocuite. El respinge sursele de fier. O verificare structurală care trece nu este o revizuire a vorbitorului nativ sau aprobarea legală. Paginile generate poartă această calificare vizibil.
+Manifestul înregistrează fiecare fișier sursă și generat cu amprente SHA-256 ale textului UTF-8 normalizat: sfârșituri de linie LF și fără marcaj de ordine a octeților. Verificatorul offline verifică acoperirea completă pentru fiecare limbă, amprentele, linkurile locale, exemplele de cod, structura tabelelor/CSV, URL-urile sursă și substituenții neînlocuiți. Respinge sursele neactualizate. Trecerea verificării structurale nu este o revizuire de către un vorbitor nativ sau o aprobare juridică. Paginile generate afișează vizibil această precizare.
 
 ## Publicații și pachete
 
 Publicați documentul, generatorul și checkerul împreună. Păstrați termenii de licență de la terți; analiza licenței traduse este informativă. Articole de construcție, cache de traducere și fișiere de orchestrare locale nu aparțin Git. O ediție de documentare de sursă nu publică în sine un instalator Windows.
 
-Traducerile de aplicații sunt cataloguri JSON separate sub `src/Aivana.Core/Localization`. Generația de documentare nu modifică aceste cataloguri. O aplicație construită și documentația sa ar trebui să împărtășească o imagine de scurtă durată; suportul experimental recent descrise poate precede un pachet instalat.
+Traducerile interfeței aplicației sunt cataloage JSON separate în `src/Aivana.Core/Localization`. Generarea documentației nu modifică aceste cataloage. Versiunea compilată și documentația ar trebui să aibă același instantaneu versionat; suportul experimental nou descris pentru mediul de execuție poate preceda pachetul instalat.

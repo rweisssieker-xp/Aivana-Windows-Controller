@@ -10,6 +10,6 @@
 - A cselekvési szűrő csak a képernyőn jelenik meg. A profilválasztás és a keresés kifejezett neveket tartalmaz a segédtechnológiák számára.
 - A Dialógus-Smoke teszt magában foglalja az eszköz áttekintését és a 560 × 440 kiterjesztési dialógusokat, valamint a normál méreteket; a meglévő rögzítő- és nyelvvizsgálatokat a Scroll szerkezethez igazították.
 
-Határok: A kompakt ablakok nem helyettesítik a valódi Windows DPI tesztet 150/200 százalékkal. Az új német szövegek még nem fordultak teljes mértékben minden 27 nyelvre. Nincs új hardver validáció és nincs nyilatkozat a mérett használhatóságról.
+Korlátok: A kompakt ablakok nem helyettesítik a valódi Windows-DPI-teszteket 150/200 százalékos skálázással. Az új német szövegek még nincsenek teljesen lefordítva mind a 27 nyelvre. Nincs új hardvervalidálás vagy állítás a mért használhatóságról.
 
 Tesztállomás: Kiadás-építés figyelmeztetések/hibák nélkül; teljes WPF smoke tesztet, beleértve a kompakt eszköz- és kiterjesztési párbeszédeket, valamint a nyelvi változások tesztelését. git diff --check

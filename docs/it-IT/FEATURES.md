@@ -4,7 +4,7 @@
 
 # MAKRIVO – Panoramica delle funzionalità
 
-Produttore: **Aivana**. Stato: **12. Ottobre 2026**. Questo è lo stato di sviluppo, non una vendita o una versione hardware.
+Produttore: **Aivana**. Stato al **12. ottobre 2026**. Questo è lo stato di sviluppo, non un'approvazione alla vendita o una convalida hardware.
 
 ## Controllo Windows
 
@@ -12,7 +12,7 @@ Produttore: **Aivana**. Stato: **12. Ottobre 2026**. Questo è lo stato di svilu
 - Macro multi-passaggio, ripetizione, pausa, annullamento e anteprima.
 - Aprire programmi, file e siti Web; Utilizza testo, appunti e scorciatoie da tastiera.
 - Disponi le finestre, blocca Windows, controlla le uscite audio e i microfoni e modifica la luminosità dello schermo tramite le interfacce supportate.
-- OBS-WebSocket-v5-Anbindung per scene, registrazione, streaming e audio.
+- Integrazione OBS WebSocket v5 per scene, registrazione, streaming e audio.
 - Modelli, Workplace Assistant, Rilevamento dispositivi e Overlay tastiera.
 - Importazione ed esportazione delle configurazioni del profilo; Revisione del progetto e rilevamento dei conflitti.
 - Impostazioni salvate localmente; nessun account richiesto per l'uso quotidiano.
@@ -22,20 +22,20 @@ Produttore: **Aivana**. Stato: **12. Ottobre 2026**. Questo è lo stato di svilu
 | zona | Gamma di funzioni | Confini |
 | --- | --- | --- |
 | Controllo dei risultati | Pre-ispezione, post-ispezione e cronologia dei test | Confermare solo gli effetti verificabili; Una pressione di tasto riuscita non dimostra l'effetto target. |
-| Assistente sul posto di lavoro | Prepara profili e processi da programmi, file, URL e altre azioni selezionati | Anteprima e salvataggio richiesti; L'installazione non fa nulla. |
+| Assistente sul posto di lavoro | Prepara profili e processi da programmi, file, URL e altre azioni selezionati | Anteprima e salvataggio richiesti; la configurazione non esegue alcuna azione. |
 | Registrazione macro e flussi di lavoro | Registrazione, condizioni, gesti e sincronizzazione del profilo locale | Comportamento e limiti sono documentati nei rapporti di implementazione e di test. |
 | Automazione dell'interfaccia utente | Seleziona target, controlla selettori, registra azioni e sequenze di clic limitate | Lavoratore separato; gli obiettivi ambigui, disabilitati e con password vengono rifiutati; nessuna registrazione generale dell'immissione di testo. |
 | Estensioni | Ispeziona, importa, attiva in base alla fiducia esplicita, esporta e ripristina i pacchetti | L'isolamento del processo non è una sandbox; non un mercato di plugin pubblico. |
 | Pannello mobile | Pannello HTTPS locale, abbinamento, profili selezionati e cronologia stato/controllo | L'accettazione della LAN reale per telefono/tablet è ancora aperta; nessun cruscotto con sensore universale. |
-| Adattatore del produttore | Adattatore analogico Corsair, Logitech-G-SDK, Razer/SteelSeries-RGB e Wooting | Dipendente dal modello/SDK; nuovi adattatori non completamente convalidati con hardware reale. Nessuna nuova DLL SDK proprietaria in bundle. |
-| Mappatura della tastiera fisica | Riconoscere le chiavi standard in base al dispositivo e al codice di scansione | Raw Input non sopprime il normale ingresso Windows. |
-| Assistente alla riunione AI locale | Prototipo opzionale per Ollama, LM Studio, llama.cpp e ONNX Runtime GenAI La CPU produce progetti limitati da risorse esplicitamente selezionate | Disattivato per impostazione predefinita; runtime nativo della CPU testato con modello casuale, ma nessuna qualità di pianificazione comprovata o risparmio di tempo; nessun peso del modello incluso. |
+| Adattatore del produttore | Corsair, SDK Logitech G, RGB Razer/SteelSeries e adattatore analogico Wooting | Dipendente dal modello/SDK; nuovi adattatori non completamente convalidati con hardware reale. Nessuna nuova DLL SDK proprietaria in bundle. |
+| Mappatura della tastiera fisica | Riconoscere i tasti standard in base al dispositivo e al codice di scansione | Raw Input non sopprime il normale ingresso Windows. |
+| Assistente alla riunione AI locale | Prototipo facoltativo per Ollama, LM Studio, llama.cpp e ONNX Runtime GenAI CPU che genera bozze limitate a partire da risorse selezionate esplicitamente | Disattivato per impostazione predefinita; runtime nativo della CPU testato con modello casuale, ma nessuna qualità di pianificazione comprovata o risparmio di tempo; nessun peso del modello incluso. |
 
 ## Non ancora disponibile come funzionalità di vendita finita
 
 - **Tastiera secondaria/tastiera macro esclusiva:** Manca un driver del filtro firmato, concesso in licenza e testato dall'hardware. Le normali sequenze di tasti possono comunque raggiungere Windows.
 - Completa accettazione hardware di tutti gli adattatori del produttore, nonché test LAN reali sui dispositivi mobili.
-- Vere modifiche miste monitor/DPI e approvazione tecnica di tutte le nuove traduzioni. Sono stati controllati PerMonitorV2 e 150/200-Prozent-Layouts simulato; I test di visualizzazione reali rimangono separati. L'interfaccia offre le lingue 27; Nuovi testi dettagliati non sono ancora stati completamente approvati dal punto di vista linguistico.
+- Passaggi reali tra monitor con DPI diversi e convalida tecnica di tutte le nuove traduzioni. Sono stati verificati PerMonitorV2 e layout simulati al 150/200 percento; i test su display reali rimangono separati. L'interfaccia offre 27 lingue; i nuovi testi dettagliati non sono ancora tutti convalidati linguisticamente.
 - Programma di installazione al dettaglio firmato, EULA finale, diritti di distribuzione dell'SDK verificati e integrazione di licenza/checkout di acquisto produttivo.
 
 ## Dettagli e prove

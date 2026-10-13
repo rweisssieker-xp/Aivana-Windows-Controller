@@ -10,6 +10,6 @@
 - Filtr akcí se zobrazí pouze na řídicím panelu. Výběr profilu a vyhledávání mají explicitní názvy pro asistenční technologie. Popisky polí jsou kontrastnější.
 - Dialogový test kouře obsahuje přehled nástrojů a rozšiřující dialogy v 560 × 440 a normální velikosti; Stávající záznamové a jazykové testy byly přizpůsobeny struktuře posouvání.
 
-Omezení: Kompaktní okna nenahrazují skutečné testy Windows DPI s procenty 150/200. Nové německé texty ještě nebyly plně přeloženy do všech jazyků 27. Žádné nové ověřování hardwaru a žádné prohlášení o měřené použitelnosti.
+Omezení: kompaktní okna nenahrazují skutečné testy Windows-DPI při 150/200 procentech. Nové německé texty ještě nejsou úplně přeloženy do všech 27 jazyků. Nejde o novou validaci hardwaru ani tvrzení o změřené použitelnosti.
 
 Testovací stolice: Uvolněte sestavení bez varování/chyb; Prošel úplným kouřovým testem WPF, včetně kompaktních nástrojů a rozšiřujících dialogů a kontrol přepínání jazyků. git diff --kontrola prošla.

@@ -10,6 +10,6 @@
 - Toimintasuodattimet näkyvät vain Dashboardissa. Profiilin valinta ja etsiminen ovat nimenomaisia avustavien teknologioiden nimiä. Maan kuvaukset ovat kontrastiä.
 - Dialog-Smoke-testi sisältää työkalu- ja laajennusdialogeja 560 × 440 sekä normaali koko; olemassa olevat tallentajat ja kielikokeet on räätälöity Scroll-rakenteeseen.
 
-Pienet ikkunat eivät korvaa todellisia Windows-DPI-testejä 150/200 prosentilla. Uudet saksalaiset tekstit eivät ole vielä täysin käännetty kaikille kielille 27. Ei uutta laitteiston validointia eikä ilmoitusta mitatusta käytettävyydestä.
+Rajoitukset: Pienikokoiset ikkunat eivät korvaa todellisia Windows-DPI-testejä skaalauksilla 150/200 prosenttia. Uusia saksankielisiä tekstejä ei ole vielä kokonaan käännetty kaikille 27 kielelle. Ei uutta laitteistovalidointia eikä väitettä mitatusta käytettävyydestä.
 
 Testitilanne: Release-rakennus ilman varoituksia/virheitä; täydellinen WPF kokeilu, mukaan lukien kompakti työkalu- ja laajennusdialogeja sekä kielenvaihdon testit. Git diff - tarkistaa

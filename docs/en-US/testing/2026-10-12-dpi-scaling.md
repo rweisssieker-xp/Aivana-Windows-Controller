@@ -16,4 +16,4 @@ Microsoft documentation: https://learn.microsoft.com/en-us/windows/win32/hidpi/s
 
 Visual inspection: The dashboard also switches to the stacked display under 650 DIPs window height so that maps and editor are not squeezed into a middle area that is too small.
 
-Test bench: Release build without errors/warnings; Passed full WPF smoke test including actual PerMonitorV2-Fensterkontext and simulated 150/200-Prozent-Renderings. The 200-Prozent-Dashboardaufnahme was visually inspected after the height adjustment. git diff --check passed.
+Test state: Release build without errors/warnings; full WPF smoke test passed, including the actual PerMonitorV2 window context and simulated 150/200-percent renderings. The 200-percent dashboard image was visually checked after the height adjustment. git diff --check passed.

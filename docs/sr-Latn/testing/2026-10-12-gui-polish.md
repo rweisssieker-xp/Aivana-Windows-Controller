@@ -10,6 +10,6 @@
 - Filter se pojavljuje samo na tastaturi. Izbor profila i pretraga imaju jasne imena za pomoćne tehnologije. Poljski opisi su kontrastniji.
 - Test dijaloga uključuje pregled alata i dijaloge proširenja u 560 × 440, kao i u normalnoj veličini; postojeći testovi za snimanje i ispitivanje jezika su prilagođeni strukturi pregledanja.
 
-Ograničenja: kompaktne prozore nisu zamena za stvarne Windows DPI testove sa 150/200 procenat. Novi nemački tekstovi još nisu potpuno prevedeni na sve 27 jezike. Nema novih hardverskih validacija i nema izjave o merenoj korisnosti.
+Ograničenja: kompaktni prozori ne zamenjuju stvarne testove Windows-DPI pri 150/200 procenata. Novi nemački tekstovi još nisu potpuno prevedeni na svih 27 jezika. Nema nove provere hardvera ni tvrdnje o izmerenoj upotrebljivosti.
 
 Test stanje: Izgradnja izlaza bez upozorenja / grešaka; potpuni WPF test za mršavljenje, uključujući kompaktne dijaloge sa alatima i proširenjem, kao i testove za menjanje jezika. Git dif - proverite.

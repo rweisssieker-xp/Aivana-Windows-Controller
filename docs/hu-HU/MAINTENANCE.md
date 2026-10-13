@@ -4,11 +4,11 @@
 
 # Minden dokumentációs nyelv megőrzése
 
-A dokumentációt az összes 27 UI nyelvet követik.A generált mappák regionális kódokat használnak; Norvég térképek `nb-NO` és Szerb latin `sr-Latn`.Minden mappában index, kézikönyv, részletes cselekvési referencia, funkciók készlet, ellenőrzési jegyzetek, kutatás, beleértve a CSV-t, történelmi tervek és engedélyezési elemzések.
+A dokumentációs állomány mind a 27 felületi nyelvet követi. A generált mappák regionális kódokat használnak; a norvég kódja `nb-NO`, a latin betűs szerbé `sr-Latn`. Minden mappa tartalmaz indexet, kézikönyvet, részletes műveletreferenciát, funkciójegyzéket, ellenőrzési jegyzeteket, kutatást annak CSV-jével, korábbi terveket és licencelemzést.
 
 ## Az igazság forrása
 
-Edit a gyökér `README.md`, `docs/HANDBOOK.md`, `docs/FEATURES.md`, `docs/VERIFICATION.md`, Az eredeti oldal, vagy az alábbi `docs/research`, `docs/testing`, `docs/superpowers` és `docs/licensing`. Ne írjon újra egy történelmi jelentést, ami azt jelenti, hogy egy későbbi verzió érvényesül. Tartsa a végrehajtást, a szimulációt, a valós eszköz elfogadását és a kereskedelmi jóváhagyást külön.
+A gyökérben található `README.md`, a `docs/HANDBOOK.md`, `docs/FEATURES.md`, `docs/VERIFICATION.md`, ez az oldal, illetve a `docs/research`, `docs/testing`, `docs/superpowers` és `docs/licensing` alatti eredeti fájlok szerkeszthetők. Ne írjon át korábbi jelentést úgy, mintha egy későbbi verziót validálna. Különítse el a megvalósítást, szimulációt, valódi eszközös átvételt és kereskedelmi jóváhagyást.
 
 ## Generál és érvényesít
 
@@ -17,9 +17,9 @@ python tools/localize_documentation.py --refresh-sources
 python tools/check_documentation.py
 ```
 
-Az opcionális online generátor dokumentációt küld a Google nyilvános fordítási végpontjába, a meglévő lokalizációs eszközökkel összhangban. Nem olvassa el a felhasználói konfigurációt, titkait vagy modellek fájlokat. Csak a szolgáltatáshoz megfelelő dokumentációra futtatja. A kód blokkja, az inline kód, az URL-k, a táblázat szerkezete és a műszaki azonosító védett. A fordítási cache és a fagyasztott forrás képei figyelmen kívül hagyva tárolódnak `artifacts/documentation-translation`.
+Az opcionális online generátor a meglévő lokalizációs eszközöket követve a dokumentáció prózáját a Google nyilvános fordítási végpontjára küldi. Nem olvas felhasználói konfigurációt, titkokat vagy modellfájlokat. Csak az adott szolgáltatáshoz alkalmas dokumentáción futtassa. A kódblokkok, soron belüli kód, URL-ek, táblázatszerkezet és technikai azonosítók védettek. A fordítási gyorsítótárak és a rögzített forráspillanatkép a verziókezelésből kizárt `artifacts/documentation-translation` alatt tárolódnak.
 
-Ha az online szolgáltató korlátozott, `tools/translate_documentation_local.py` A cache-t egy kifejezetten megadott helyi M2M100 CTranslate2 A modell 2026-10-12 A Snapshot a MIT-licencet használja facebook/m2m100_418M A modell, amelyet JustFrederik/m2m_100_418m_ct2_int8 A felülvizsgálat `1aeed44db4dd61a486bba44acf54c76507082a2c`. CTranslate2 4.8.2 és `SentencePiece` 0.2.2 nem épül-csak eszközök. nem modell súlyok vagy fordítási függőségek szállítják MAKRIVO. A generátor futtatása `--cache-only` a cache kitöltésével a hálózati kérések nélkül. a helyi segéd nem tölt le vagy fut a távoli modellek kódját.
+Ha az online szolgáltató korlátozza a kérések gyakoriságát, a `tools/translate_documentation_local.py` ugyanazt a gyorsítótárat tölti fel egy külön megadott helyi M2M100 CTranslate2 modellel. A 2026-10-12 pillanatkép az MIT-licencű facebook/m2m100_418M modellt használja, JustFrederik/m2m_100_418m_ct2_int8 formára konvertálva, a `1aeed44db4dd61a486bba44acf54c76507082a2c` revízión. A CTranslate2 4.8.2 és a `SentencePiece` 0.2.2 csak buildeszközök. A MAKRIVO nem tartalmaz modellsúlyokat vagy fordítási függőségeket. A gyorsítótár feltöltése után futtassa a generátort `--cache-only` kapcsolóval a hálózati kérések nélküli előállításhoz. A helyi segéd nem tölt le és nem futtat távoli modellkódot.
 
 ```powershell
 python -m pip install ctranslate2==4.8.2 sentencepiece==0.2.2
@@ -28,12 +28,12 @@ python tools/localize_documentation.py --cache-only
 python tools/check_documentation.py
 ```
 
-Nincs `--refresh-sources`, a futás újra fagyott képe. Használja a frissítési lehetőséget az eredeti szerkesztés után. A rejtett szegmensek újra használhatók. A részleges futás kiválaszthatja a helyi kódokat a `--locales` használatával; befejezi az összes helyi közzététel előtt. A megszakított futások nem csendesen helyettesítik a nem fordított prózát a hibás fordításhoz.
+A `--refresh-sources` nélkül a futtatás a rögzített pillanatképből folytatódik. Az eredetik szerkesztése után használja a frissítési kapcsolót. A gyorsítótárazott szegmensek újra felhasználhatók. Részleges futtatásnál a `--locales` kapcsolóval választhat nyelvkódokat; közzététel előtt fejezze be az összes nyelvet. A megszakított futtatások nem helyettesítik észrevétlenül a sikertelen fordítást lefordítatlan szöveggel.
 
-A manifesztus minden forrás és a generált fájl rögzítése SHA-256 ujjlenyomatok normalizált UTF-8 szöveg: LF vonal vége és nincs bajt-rendelési jel. Az offline ellenőrző teljes nyelvi lefedettséget, ujjlenyomatokat, helyi linkeket, kódmintákat, táblázat/CSV szerkezetet, forrás URL-ket és helyettesíthetetlen helytartókat ellenőrzi. Az acélforrások elutasítása. A strukturális ellenőrzés nem a szülőszöveg felülvizsgálata vagy jogi jóváhagyása. A generált oldalak ezt a képesítést szemlélhetően hordozzák.
+A jegyzék minden forrás- és generált fájl normalizált UTF-8 szövegének SHA-256 ujjlenyomatát rögzíti: LF sorvégek, bájtsorrendjel nélkül. Az offline ellenőrző vizsgálja a teljes nyelvenkénti lefedettséget, ujjlenyomatokat, helyi hivatkozásokat, kódpéldákat, táblázat-/CSV-szerkezetet, forrás-URL-eket és a ki nem cserélt helyőrzőket. Az elavult forrásokat elutasítja. A sikeres szerkezeti ellenőrzés nem anyanyelvi lektorálás vagy jogi jóváhagyás. A generált oldalak láthatóan feltüntetik ezt a korlátozást.
 
 ## Közzététel és csomagolás
 
-Közzéteszi a dokumentációt, a generátor és a checker együtt. Megtartja az eredeti harmadik fél licenc feltételeit; a lefordított licenc elemzése informatív. Építsen művek, a fordítás cache és a helyi orchestrációs fájlok nem tartoznak a Git. A forrás-dokumentációs kiadás nem közzéteszi magát egy Windows telepítő.
+A dokumentációt, generátort és ellenőrzőt együtt tegye közzé. Őrizze meg a harmadik felek eredeti licencfeltételeit; a lefordított licencelemzés tájékoztató jellegű. A buildtermékek, fordítási gyorsítótár és helyi vezérlőfájlok nem tartoznak Git verziókezelésbe. A forrásdokumentáció kiadása önmagában nem tesz közzé Windows-telepítőt.
 
-A felhasználó-szemléletű alkalmazás fordításai külön JSON katalógusok alatt `src/Aivana.Core/Localization`. A dokumentáció generációja nem módosítja ezeket a katalógusokat. Az alkalmazás építésének és dokumentációjának meg kell osztania a verziózású képeit; az újonnan leírt kísérleti futási idő támogatása előbbre léphet egy telepített csomagot.
+Az alkalmazás felhasználói fordításai külön JSON-katalógusok a `src/Aivana.Core/Localization` alatt. A dokumentáció generálása nem módosítja ezeket. Az alkalmazás buildjének és dokumentációjának közös, verziózott pillanatképhez kell tartoznia; az újonnan ismertetett kísérleti futtatókörnyezet-támogatás megelőzheti a telepített csomagot.

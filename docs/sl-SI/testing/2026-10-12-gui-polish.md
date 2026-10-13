@@ -10,6 +10,6 @@
 - Akcijski filter se prikaže samo na plošči. Izbira profila in iskanje imajo jasne imena za pomožne tehnologije. Opisi so bolj kontrastni.
 - Diagramski test vključuje pregled orodij in razširitve v 560 × 440 ter normalno velikost; obstoječi testi in jezikov so bili prilagojeni strukturo prehodov.
 
-Omejitve: Kompaktna okna niso nadomestilo za resnične Windows teste DPI z 150/200 odstotkom. Novi nemški besedila še niso v celoti preneseni v vse jezike 27. Nobenih novih strojev in nobenih izjav o merjeni uporabnosti.
+Omejitve: kompaktna okna ne nadomestijo pravih preizkusov Windows-DPI s 150/200 odstotki. Nova nemška besedila še niso v celoti prevedena v vseh 27 jezikov. Brez novega preverjanja strojne opreme ali trditve o izmerjeni uporabnosti.
 
 Preizkušeni položaj: Izdelava brez opozoril/grešav; preizkušena polna WPF smoke, vključno z kompaktnimi orodji in razširjenimi dialogi ter preizkušnjami za spreminjanje jezika. Git diff - preverjanje je bilo.

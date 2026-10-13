@@ -4,108 +4,108 @@
 
 # MAKRIVO — Naudotojo vadovas
 
-Gamintojas: **Aivana**. Dokumentinis snapshot: **2026-10-12**. Šis vadovas apibūdina dabartinę darbo medžio įgyvendinimą. eksperimentinės integracijos ir įrangos funkcijos yra aiškiai identifikuojamos. Istoriniai pranešimai apibūdino jų datą, o ne naujos statybos garantiją.
+Gamintojas: **Aivana**. Dokumentacijos būsena: **2026-10-12**. Šis vadovas aprašo dabartinio darbo medžio realizaciją. Eksperimentinės integracijos ir nuo aparatūros priklausančios funkcijos aiškiai pažymėtos. Istorinės ataskaitos aprašo būseną savo datos metu, bet negarantuoja naujesnės versijos veikimo.
 
 ## Dokumentas ir kalbos
 
-Naudokite dokumentacijos kalbos pasirinktuvą, kad atidarytumėte visą vadybą, funkcijų inventorą, problemų sprendimą, plėtros įrašus, tyrimus ir istorinius bandymų pranešimus bet kurioje iš 27 taikomųjų kalbų. Gaminti vertimai yra mašinų pagalba ir turi struktūrinius patikrinimus; ne visi jie gavo gimtojo kalbos peržiūrą. Techniniai identifikatoriai ir vykdomieji pavyzdžiai lieka nekeičiami. Originalus šaltinis yra palyginamas. Vertimo licencijavimo analizė yra informatyvi ir nepakeičia originalių trečiųjų šalių teisinės sąlygos ar galutinį EULA.
+Dokumentacijos kalbos parinkiklis leidžia atidaryti visą vadovą, funkcijų sąrašą, trikčių šalinimą, kūrimo pastabas, tyrimus ir istorines bandymų ataskaitas bet kuria iš 27 programos kalbų. Sugeneruoti vertimai parengti mašininiu būdu ir patikrinti struktūriškai; ne visus peržiūrėjo gimtakalbiai. Techniniai identifikatoriai ir vykdomieji pavyzdžiai lieka nepakeisti. Originalus šaltinis prieinamas palyginimui. Išversta licencijavimo analizė yra informacinė ir nepakeičia originalių trečiųjų šalių teisinių sąlygų ar galutinės EULA.
 
 ## Įrengimas ir pirmasis paleidimas
 
-Pradinis tikslas yra Windows 11 x64. Laikykite visus failus ir subdirektorių kartu. Išleisti `MAKRIVO.exe` Šaltinis patikrinimas nėra įrenginys. Savarankiškai turimi paketai apima savo .NET paleidimo laiką; rėmuo priklausantys paketai reikalauja atitinkamų .NET 10 darbalaukės ir ASP.NET paleidimų laikotarpių. ONNX ir bendradarbiaujantys hostai turi būti įtraukti į jų atitinkamas funkcijas.
+Pradinė tikslinė platforma yra Windows 11 x64. Visus platinimo paketo failus ir poaplankius laikykite kartu. Paleiskite `MAKRIVO.exe`. Pirmkodo kopija nėra diegimo programa. Savarankiški paketai turi savo .NET vykdymo aplinką; nuo sistemos priklausomiems paketams reikia atitinkamų .NET 10 Desktop ir ASP.NET vykdymo aplinkų. ONNX ir pagalbinių procesų vykdymo programos turi būti įtrauktos, kad veiktų atitinkamos funkcijos.
 
-1. Pradėkite MAKRIVO ir pasirinkite sąsajos kalbą nustatymuose. Automatinis sekimas Windows Keyboard layout yra atskiras nustatymas.
-2. Pasirinkite profilį, tada įdėkite plokštelę per paieškos veiksmų katalogą. Duokite jam pripažįstamą vardą ir pasirinkite jo veiksmus.
-3. Patikrinkite žingsnius ir, jei reikia, paskirkite trumpalaikį. Venkite kombinacijų, kurias jau naudoja Windows arba jūsų tikslinė programa.
-4. Išsaugokite projektą. Nesugrįžtamas pokyčiai nėra išsaugotas konfigūracija.
+1. Paleiskite MAKRIVO ir Settings pasirinkite sąsajos kalbą. Automatinis režimas naudoja Windows kalbą. Klaviatūros išdėstymas nustatomas atskirai.
+2. Pasirinkite profilį, tada pridėkite plytelę per veiksmų katalogą su paieška. Suteikite jai atpažįstamą pavadinimą ir pasirinkite veiksmus.
+3. Peržiūrėkite veiksmus ir, jei reikia, priskirkite spartųjį klavišą. Venkite derinių, kuriuos jau naudoja Windows arba tikslinė programa.
+4. Išsaugokite juodraštį. Neišsaugoti pakeitimai nėra išsaugota konfigūracija.
 5. Išbandykite nekenksmingą veiksmą, pavyzdžiui, atidaryti dokumentą ir patikrinti vykdymo atsiliepimus.
 
-Pagrindinio lango uždarymas paprastai palieka paraišką pranešimo srityje. Dvigubai paspauskite jo tray ikoną, kad atsidarytumėte arba naudokite tray meniu. Pradedant nuo Windows yra pasirinktinis ir iš pradžių neįmanomas. Pertraukos kontrolė sustabdo ryšius; ikona rodo pertrauką. Atšaukite paleisti makrus per IU, tray arba konfigūruotą atšaukimo trumpą; numatyta `Ctrl+Alt+Escape`.
+Uždarius pagrindinį langą, programa paprastai lieka veikti pranešimų srityje. Dukart spustelėkite jos piktogramą, kad vėl atidarytumėte langą, arba išeikite per piktogramos meniu. Paleidimas kartu su Windows yra pasirenkamas ir iš pradžių išjungtas. Pristabdymo valdiklis sustabdo klavišų susiejimus; piktogramoje rodoma pristabdymo žyma. Vykdomas makrokomandas atšaukite sąsajoje, pranešimų srities meniu arba nustatytu atšaukimo sparčiuoju klavišu; numatytasis yra `Ctrl+Alt+Escape`.
 
 ## Įsakymai, veiksmai ir komandos paletė
 
-Tiltai priklauso profiliai ir gali būti keli užsakomi žingsniai. Redaktorius palaiko išsaugoti / atsisakyti, peržiūrėti, undo /redo ir pakartotinai. Katalogas teikia programų, dokumentų, URL, teksto, klipų, sutrumpinimų, žiniasklaidos, garso, langų, sistemos veiksmų ir palaikytų integracijų pranašumus. Pirmasis nustatymas, reikalaujantis parametrų, atidaromas kaip projektas.
+Plytelės priklauso profiliams ir gali turėti kelis nuoseklius veiksmus. Redaktorius palaiko išsaugojimą/atmetimą, peržiūrą, atšaukimą/pakartojimą ir veiksmų tvarkos keitimą. Kataloge yra programų, dokumentų, URL, teksto, iškarpinės, sparčiųjų klavišų, medijos, garso, langų, sistemos veiksmų ir palaikomų integracijų ruošiniai. Parametrų reikalaujantis ruošinys atidaromas kaip juodraštis.
 
-Atidarykite paletę su `Ctrl+K` tuo tarpu MAKRIVO turi dėmesį. Ieškoti išsaugotų veiksmų, preliminarių, profilio keitimo ir įrankių. Rinkti raktus; Įveskite aktyvuoja; `Ctrl+Enter` redaguoja palaikytą elementą; pabėgti uždaroma. Kai kurie paruošti įsakymai atliekami nedelsiant, o konfigūruoti veiksmai reikalauja peržiūrėti. Galima konfigūruoti atskirą pasaulinę paletę; naudojamos naujos konfigūracijos `Ctrl+Shift+Space`.
+Atidarykite paletę su `Ctrl+K`, kai MAKRIVO turi įvesties fokusą. Ieškokite išsaugotų veiksmų, ruošinių, profilių perjungimo ir įrankių. Rodyklių klavišai parenka; Enter aktyvina; `Ctrl+Enter` redaguoja palaikomą elementą; Escape uždaro. Kai kurios paruoštos komandos vykdomos iš karto, o sukonfigūruotus veiksmus reikia peržiūrėti. Galima nustatyti atskirą visuotinį paletės spartųjį klavišą; naujose konfigūracijose naudojamas `Ctrl+Shift+Space`.
 
-Teksto ir klipų palaikymas `{{date}}`, `{{time}}`, `{{datetime}}`, `{{clipboard}}`, `{{profile}}`, `{{process}}` ir `{{user}}`. Datų formavimas `yyyy-MM-dd`; Laikas formatuojamas `HH:mm`. Nežinomos kintamosios lieka nepasikeičiamos. „Clipboard“ skaitymo procesas vyksta tik tada, kai paprašoma. „Clickboard“ veiksmas rašo tekstą be to, kad jis automatiškai atitiktų.
+Teksto ir iškarpinės veiksmai palaiko `{{date}}`, `{{time}}`, `{{datetime}}`, `{{clipboard}}`, `{{profile}}`, `{{process}}` ir `{{user}}`. Datos formatas yra `yyyy-MM-dd`; laiko formatas yra `HH:mm`. Nežinomi kintamieji lieka nepakeisti. Iškarpinė skaitoma tik paprašius. Iškarpinės veiksmas įrašo tekstą, bet jo automatiškai neįklijuoja.
 
-Veiksmai, pradėti iš IU, gali būti nukreipti į paskutinį išorinį programą. Jei tikslas išnyksta arba Windows blokuoja aktivaciją, rankiniu būdu aktyvuokite tikslą ir atsitraukite. Sėkmingas raktų pristatymas neparodo, kad tikslas baigė savo užduotį.
+Iš sąsajos paleisti veiksmai gali būti nukreipti į paskutinę išorinę programą. Jei tikslas dingsta arba Windows blokuoja aktyvinimą pirmame plane, aktyvinkite jį rankiniu būdu ir bandykite dar kartą. Sėkmingas klavišų įvesties perdavimas neįrodo, kad tikslinė programa atliko užduotį.
 
 ## Profiliai ir darbo vieta
 
-Profiliai gali atitikti proceso pavadinimą ir lango pavadinimo dalį. Kai abu yra sudarytos, abu turi atitikti. Profilio tvarka išsprendžia konkurencinius rungtynes; numatytas profilis yra atgal. Automatinis atrankos pasirinkimas. Lock Profile neleidžia automatiškai keisti dabartinę sesiją.
+Profiliai gali atitikti proceso pavadinimą ir lango antraštės dalį. Jei nustatyti abu, turi atitikti abu. Kai atitinka keli profiliai, pasirinkimą lemia jų tvarka; numatytasis profilis naudojamas, kai kitų atitikmenų nėra. Automatinį parinkimą reikia aiškiai įjungti. Lock Profile neleidžia automatiškai keisti profilio dabartiniame seanse.
 
-Atviros darbo vietos nustatymas iš įrankių arba paletės. Pasirinkite programas, dokumentus, svetaines, garso / ekrano tikslą arba OBS scenos. Asistentas rengia darbo vietą, susitikimus, streiką, mokslinius tyrimus ar projektus. Įsitikinkite, kad prieš išsaugojdami žingsnius. Įrenginys neveikia parengtų veiksmų.
+Atidarykite Workplace Setup per Tools arba paletę. Pasirinkite programas, dokumentus, svetaines, garso/ekrano tikslą arba OBS sceną. Asistentas parengia darbo vietos, susitikimo, transliacijos, tyrimo arba projekto profilius. Prieš išsaugodami patikrinkite sugeneruotus veiksmus. Sąranka nevykdo parengtų veiksmų.
 
 ## Makros, sąlygos ir įrašai
 
-"Macros" vykdo savo žingsnius ir palaiko laukti, kartojimą ir atšaukimą. Bendras pakartotinis ribas yra 100. Naudokite „Preview“ prieš paleidžiant veiksmus, kurias įveskite į kitą programą arba pakeiskite sistemos būseną.
+Makrokomandos vykdo veiksmus eilės tvarka ir palaiko laukimą, kartojimą bei atšaukimą. Bendras kartojimo limitas yra 100. Prieš vykdydami veiksmus, kurie įveda tekstą į kitą programą arba keičia sistemos būseną, naudokite peržiūrą.
 
-Laukiama, kad tikslinis langas priima procesą, pavadinimo substrą ir laiko išleidimą nuo 1 iki 600,000 ms. Reikia bent vieno filtro. Atitinkamas matomas langas turi atsiliepti ir tapti priekabiavimu, kol tolimesni žingsniai tęsiasi. Pasirengęs langas neįrodo, kad dokumentas ar paslauga baigėsi.
+Wait for Target Window priima procesą, antraštės poeilutę ir laukimo limitą nuo 1 iki 600000 ms. Būtinas bent vienas filtras. Atitinkantis matomas langas turi reaguoti ir tapti pirmojo plano langu, kad būtų tęsiami kiti veiksmai. Parengtas langas neįrodo, kad dokumentas ar paslauga baigė įkėlimą.
 
-Darbo srauto redaktorius prideda failų egzistavimą, procesą ir lango pavadinimo sąlygas. Neteisingas būklė laipina žingsnį ir gali praeiti papildomų žingsnių. Atsisakyti sąlygos, kad būtų išreikštas alternatyvus sklypas. Išsirinkite „stop-on-error“ arba „continu-on- error“ sąmoningai; tęsinys gali palikti vėlesnius žingsnius be jų numatytų sąlygų.
+Darbo eigos redaktorius prideda failo buvimo, veikiančio proceso ir lango antraštės sąlygas. Netenkinama sąlyga praleidžia veiksmą ir gali praleisti papildomus tolesnius veiksmus. Alternatyviai šakai išreikšti paneikite sąlygą. Sąmoningai pasirinkite sustabdymą arba tęsimą įvykus klaidai; tęsiant gali būti netenkinamos vėlesnių veiksmų prielaidos.
 
-Veiksmų įrašytojas užfiksuoja trumpalaikius kodus ir laukia, o ne įprastą rašymą. Jis palaiko modifikuojančius trumpalaikius ir funkcinius raktus. Pabėgimas nustoja įrašyti. Persvarstykite sąrašą ir priimkite jį kaip nepagrįstą plokštelės projektą, tada aiškiai išsaugokite. UI spustelėjimo įrašymas yra atskiras įrankis, aprašytas žemiau.
+Veiksmų įrašymo priemonė fiksuoja sparčiųjų klavišų derinius ir laukimą, o ne įprastą teksto rašymą. Ji palaiko derinius su modifikavimo klavišais ir funkcinius klavišus. Escape sustabdo įrašymą. Peržiūrėkite sąrašą ir priimkite jį kaip neišsaugotą plytelės juodraštį, tada aiškiai išsaugokite. Sąsajos paspaudimų įrašymas yra atskiras toliau aprašytas įrankis.
 
 ## Pagrindiniai ženklai, gestai ir sluoksniai
 
-Klaviatūros puslapis apibūdina aptiktas sąsajas ir nuorodų išdėstymus. Vienas fizinis klaviatūra gali atskleisti keletą sąsajų. Pasirinkite teisingą kalbą ir geometriją; vien produktų pavadinimas nepaaiškina ISO ar ANSI aprašymo.
+Klaviatūros puslapyje pateikiamos aptiktos sąsajos ir pavyzdiniai išdėstymai. Viena fizinė klaviatūra gali pateikti kelias sąsajas. Pasirinkite tinkamą kalbą ir geometriją; vien produkto pavadinimas nenustato ISO ar ANSI išdėstymo.
 
-Standartiniai pasauliniai raktai taikomi per klaviatūras. Raw Input ryšiai stebėti tam tikrą įrenginį ir skenavimo kodą, įskaitant palaikomą funkciją ir žiniasklaidos raktus. **Raw Input Neįmanoma slopinti įprasto Windows Išskirtinė antroji klaviatūra nėra paruošta.** Pasirašytas, licencijuotas ir išbandytas filtro vairuotojo rinkinys vis dar reikalingas; nė vienas nėra įdiegtas MAKRIVO.
+Standartiniai visuotiniai spartieji klavišai galioja visoms klaviatūroms. Įrenginiui būdingi Raw Input susiejimai stebi konkretų įrenginį ir skenavimo kodą, įskaitant palaikomus funkcinius ir medijos klavišus. **Raw Input neslopina įprastos Windows įvesties. Išskirtinai makrokomandoms naudojama antroji klaviatūra nėra parengta produkciniam naudojimui.** Vis dar reikia pasirašytos, licencijuotos ir išbandytos filtro tvarkyklės sistemos; MAKRIVO tokios tvarkyklės neįdiegia.
 
-Palaikomi specialūs raktiniai ryšiai gali naudoti nedelsiant spausdinti, paspausti, laikyti arba dvigubai paspausti. įdėtojo sluoksnio raktai laikinai pasirinkti kitą žemėlapį ir atkurti bazinį sluoksnį; įdėtasis raktas neveikia savo makro. 150 Į 5,000 MS; dvigubas langas iš 150 Į 1,000 MS. Šie žemėlapiai skiriasi nuo įprastų pasaulinių šaldiklių.
+Palaikomi specialiųjų klavišų susiejimai gali naudoti tiesioginį paspaudimą, trumpą paspaudimą, laikymą arba dvigubą paspaudimą. Laikomo sluoksnio klavišai laikinai parenka kitą susiejimą ir atleidus atkuria pagrindinį sluoksnį; sluoksnio parinkimo klavišai nepaleidžia savo makrokomandos. Laikymo slenksčiai yra nuo 150 iki 5000 ms; dvigubo paspaudimo intervalai – nuo 150 iki 1000 ms. Šie susiejimai skiriasi nuo įprastų visuotinių sparčiųjų klavišų.
 
-Specialus raktas stebuklas atpažįsta suderinamus raktus be jų paskirtų veiksmų užfiksuojant. Diagnozė paaiškina neįmanomas prietaisus, sustojimus, profilio sutrikimus ir konfliktus. Viršutinė plokštė rodo pasirinktą išdėstymą ir jungiamumą; jo numatyta trumparegystė yra `Ctrl+Alt+F1`.
+Specialiųjų klavišų vedlys aptinka suderinamus klavišus, fiksavimo metu nevykdydamas jiems priskirtų veiksmų. Diagnostika paaiškina nepasiekiamus įrenginius, pristabdytus susiejimus, profilio neatitikimus ir konfliktus. Perdanga rodo pasirinktą išdėstymą ir susiejimus; numatytasis jos laikomas spartusis klavišas yra `Ctrl+Alt+F1`.
 
 | Integracija | Reikalavimai ir apribojimai |
 | --- | --- |
-| Corsair | Veiksmas iCUE, prieiga prie SDK ir suderinamas modelis. G1–G6 ir palaikomos RGB funkcijos; savarankiškas Fn, ratai, užraktai ir profilių kontrolės paprastai nėra išdėstytos G raktų API. |
-| Logitech G | Originalūs x64 G raktas / LED SDK biblioteka reikalauja aiškios patvirtinimo. G raktų renginiai nevienodai identifikuoja keletą identiškų fizinių klaviatūrų. |
-| Razer | Chroma RGB ir standartinis įvedimas; žemėlapio nuosavybės kontrolės Synapse kai reikia. |
-| SteelSeries | GameSense RGB ir standartinis įvedimas; žemėlapio nuosavybės kontrolės GG, kai reikia. |
-| Wooting | Originalus x64 SDK suderinamas su analoginėmis vertėmis ir ribomis; normalus HID įvedimas išlieka aktyvus. |
-| Kitos klaviatūros | Standartiniai šildytuvai arba palaikomi fiziniai kodai. Fn ir nuosavybės kontrolės priklauso nuo modelio ir pardavėjo konfigūracijos. |
+| Corsair | Veikiantis iCUE, SDK prieiga ir suderinamas modelis. G1–G6 ir palaikomos RGB funkcijos; gamintojo Fn, ratuko, užrakto ir profilio valdikliai paprastai nepateikiami per G-key API. |
+| Logitech G | Originalioms vietinėms x64 G-key/LED SDK bibliotekoms reikia aiškaus patvirtinimo. G-key įvykiai vienareikšmiškai neatskiria kelių vienodų fizinių klaviatūrų. |
+| Razer | Chroma RGB ir standartinė įvestis; prireikus susiekite gamintojo valdiklius per Synapse. |
+| SteelSeries | GameSense RGB ir standartinė įvestis; prireikus susiekite gamintojo valdiklius per GG. |
+| Wooting | Suderinamas originalus vietinis x64 SDK analoginėms reikšmėms ir slenksčiams; įprasta HID įvestis lieka aktyvi. |
+| Kitos klaviatūros | Standartiniai spartieji klavišai arba palaikomi fizinių skenavimo kodų susiejimai. Fn ir gamintojo valdikliai priklauso nuo modelio bei gamintojo konfigūracijos. |
 
-Gamintojo tyrimai apibūdina įrodytuosius gebėjimus, kurių suderinamumas su kiekvienu išvardytu įrenginiu nebuvo įgyvendintas ar išbandytas. Nauji adapteriai vis dar reikalauja realaus priėmimo. Negalima atsisiųsti SDK binarų iš nepatikimų šaltinių; SDK platinimo teisės yra atskiriamos nuo techninės suderinamumo.
+Gamintojų tyrimai aprašo dokumentuotas galimybes, o ne įgyvendintą ar išbandytą suderinamumą su kiekvienu išvardytu įrenginiu. Naujiems adapteriams vis dar reikia tikros aparatūros priėmimo bandymų. Neatsisiųskite SDK dvejetainių failų iš nepatikimų šaltinių; SDK platinimo teisės yra atskiros nuo techninio suderinamumo.
 
 ## Audio, ekranai ir OBS
 
-Garso žingsniai nustato tūrį nuo 0 iki 100 procentų ir mute / unmute / Toggle palaikomas kilmės arba mikrofonų galutiniai taškai. Pasirinkite konkrečią tašką arba naudokite numatytuosius Windows. Prarastas tikslas sukelia klaidą, o ne tyliai kontroliuoja kitą įrenginį. Atnaujinkite įrenginius po atnaujinimo. Galutinio taško kontrolė nėra nepriklausomos per paraišką mišrio paramos reikalavimas.
+Garso veiksmai nustato garsumą nuo 0 iki 100 procentų ir nutildo/įjungia garsą/perjungia nutildymą palaikomuose išvesties arba mikrofono galiniuose taškuose. Pasirinkite konkretų galinį tašką arba Windows numatytąjį. Jei išsaugoto tikslo nėra, pateikiama klaida, užuot tyliai valdžius kitą įrenginį. Prijungę iš naujo naudokite Refresh Devices. Galinio taško valdymas nereiškia nepriklausomo kiekvienos programos garso maišytuvo palaikymo.
 
-Rodyti veiksmus padidinti / sumažinti ryškumą 10 procentinių taškų arba nustatyti vertę nuo 0 iki 100. Vidiniai ekranai naudoja palaikytus WMI sąsajas; išoriniams monitoriams reikalinga DDC/CI parama ir paprastai monitorių meniu nustatymas. Dėžutės, adapteriai ir kabeliai gali blokuoti kontrolę. Pasirinkite visus palaikomus ekranus arba vieną monitorių. Atnaujinimas gali pakeisti turimas tapatybes; peržiūrėti išsaugotą tikslą. Trūksta skaitymo rodoma kaip neįmanoma, o ne matuojamos vertės.
+Ekrano veiksmai padidina/sumažina ryškumą 10 procentinių punktų arba nustato vertę nuo 0 iki 100. Vidiniai ekranai naudoja palaikomas WMI sąsajas; išoriniams monitoriams reikia DDC/CI palaikymo ir paprastai jo įjungimo monitoriaus meniu. Dokai, adapteriai ir kabeliai gali blokuoti valdymą. Pasirinkite visus palaikomus ekranus arba vieną monitorių. Prijungus iš naujo gali pasikeisti galimi identifikatoriai; peržiūrėkite išsaugotą tikslą. Trūkstami rodmenys rodomi kaip nepasiekiami, o ne kaip išmatuotos vertės.
 
-OBS reikalauja WebSocket v5 įdiegti OBS įrankius. Nustatykite galutinį tašką, išbandykite ryšį ir įkrovimo scenos / įvedimo pavadinimus prieš išsaugodami. Palaikomi veiksmai apima scenos keitimą, srauto / įrašymo pradžią / sustojimą / atnaujinimą, atsipalaidavimo / atnaujinimo įrašymą ir įvedimo mute. Slapukai gali būti saugomi Windows Įtikinimo vadybininkas ir yra išjungti iš konfigūracijos eksporto. Sėkmingas OBS komandos nenustato kiekvieno nuotolinio srauto poveikio.
+OBS reikia įjungto WebSocket v5 per OBS Tools. Nustatykite galinį tašką, išbandykite ryšį ir prieš išsaugodami įkelkite scenų/įvesčių pavadinimus. Palaikomi scenų perjungimas, transliacijos/įrašymo pradėjimas/sustabdymas/perjungimas, įrašymo pristabdymas/tęsimas ir įvesties nutildymas. Slaptažodžius galima saugoti Windows Credential Manager ir jie neįtraukiami į konfigūracijos eksportus. Sėkminga OBS komanda nepatvirtina visų tolesnių transliacijos poveikių.
 
 ## Rezultatų tikrinimas ir vykdymo istorija
 
-Galite patikrinti rezultatus tinkamais veiksmais. Programoje atskiriami išankstiniai patikrinimai, patvirtinti poveikiai, gedimai, atšaukimas ir poveikiai, kurių neįmanoma patikrinti. Procedūros egzistavimas yra ne paraiškos pasirengimas. Santykiniai pakeitimai, trumpos ir teksto įrašas negali gauti sėkmės formos. Atkreipkite dėmesį į veiklos logą ir tikrinimo istoriją, kai veiksmas nesėkmingas. Konfiguravimo klaidos turi būti ištaisyta prieš atnaujinant visą makrą.
+Tinkamiems veiksmams įjunkite Verify Result. Programa atskiria išankstines patikras, patvirtintus poveikius, nesėkmes, atšaukimą ir poveikius, kurių neįmanoma patikrinti. Proceso buvimas nereiškia programos parengties. Santykiniams pakeitimams, spartiesiems klavišams ir teksto įvedimui negalima bendrai patvirtinti sėkmės. Veiksmui nepavykus peržiūrėkite veiklos žurnalą ir tikrinimo istoriją. Prieš iš naujo vykdydami visą makrokomandą ištaisykite konfigūracijos klaidas.
 
 ## UI automatizavimas ir spustelėjimas įrašymas
 
-Pridėkite UI automatizavimo žingsnį, pasirinkite operaciją ir užfiksuokite tikslą po rodomo vėlavimo. pačios užfiksuojimas nieko neveikia. `Invoke`, `Select`, `Toggle`, `Focus`, `SetValue` ir `WaitState`. Slapukų laukai, neįgalūs kontrolieriai ir abejingi pasirinkėjai yra atmesti.
+Pridėkite UI Automation veiksmą, pasirinkite operaciją ir po rodomo delsos laiko užfiksuokite objektą po pelės žymikliu. Vien fiksavimas nieko nevykdo. Patikrinkite parinkiklį ir reikalaukite vienintelio atitikmens. Palaikomos operacijos: `Invoke`, `Select`, `Toggle`, `Focus`, `SetValue` ir `WaitState`. Slaptažodžių laukai, išjungti valdikliai ir nevienareikšmiai parinkikliai atmetami.
 
-UI automatizavimas vyksta ribotame partnerio procese. Tai priklauso nuo tikslinės programos Windows prieinamumo paramos ir leidimų. Spustelėjimo įrašas užfiksuoja remiamas veiksmus ir pertraukas; jis nesirašo bendro teksto įvedimo. Peržiūrėkite ir patvirtinkite jo projektą prieš jį priimdami. Išorinės programos pakeitimai gali neįtraukti pasirinkėjų. Proceso izoliacija apriboja avarijas ir atšaukimą, tačiau tai nėra saugos smėlio dėžė.
+Sąsajos automatizavimas veikia ribotame pagalbiniame procese. Jis priklauso nuo tikslinės programos Windows pritaikymo neįgaliesiems palaikymo ir leidimų. Paspaudimų įrašymo priemonė fiksuoja palaikomus veiksmus ir pauzes, bet ne bendrą teksto įvedimą. Prieš priimdami peržiūrėkite ir patikrinkite juodraštį. Išorinės programos sąsajos pakeitimai gali padaryti parinkiklius netinkamus. Proceso izoliavimas riboja strigčių poveikį ir palaiko atšaukimą, tačiau nėra saugumo smėlio dėžė.
 
 ## Pluginas
 
-Atidarykite plėtinius, kad patikrintumėte pakuotę prieš importuojant ją. Pakuotės struktūra, manifestas ir hashai yra tikrinami. Importuojamas neįgaliųjų skaičius. Perskaitykite paskelbtas veiksmus ir aiškiai pasitikėkite leidėjais prieš suteikiant galimybę. Plugins veikia su jūsų naudotojo leidimais atskirame procese; šis procesas yra **ne smėlio dėžutė**. Tik įdiegti paketą, kuriuo pasitiki.
+Atidarykite Extensions ir prieš importuodami patikrinkite paketą. Tikrinama paketo struktūra, manifestas ir maišos reikšmės. Importuotas plėtinys iš pradžių yra išjungtas. Perskaitykite deklaruotus veiksmus ir prieš įjungdami aiškiai patvirtinkite pasitikėjimą leidėju. Papildiniai veikia atskirame procese su jūsų naudotojo teisėmis; šis procesas **nėra smėlio dėžė**. Diekite tik patikimus paketus.
 
-Vadybininkas palaiko ankstesnės versijos eksportą, išjungimą, atkūrimą ir atsigavimą. Pritrūkstamos priklausomybės blokuoja invokaciją. Pavyzdinis paketas suteikia skaičiavimą ir vietos valstybės veiksmus. Palaikoma schema yra dokumentuota JSON schemos subsetė, o ne visos galimos JSON schemas funkcijos. Nėra jokio viešojo „plugin“ rinkos.
+Tvarkyklė palaiko eksportavimą, išjungimą, pašalinimą ir ankstesnės versijos atkūrimą/atmetimą. Trūkstamos priklausomybės blokuoja iškvietimą. Pavyzdinis paketas pateikia atgalinio skaičiavimo ir vietinės būsenos veiksmus. Palaikoma schema yra dokumentuotas JSON-Schema poaibis, ne visos galimos JSON-Schema funkcijos. Viešos papildinių prekyvietės nėra.
 
 ## Mobilusis panelis
 
-1. Atidarykite mobiliąją plokštelę, pasirinkite vietinį IP ir aiškiai pasirinkite profilį. Išimtinį atgalinį adresą galima pasiekti tik pačiame kompiuteryje; pasirinkite tinkamą LAN adresą telefonu ar planšetiniame kompiuteryje.
-2. Pradėkite panelį ir perskaitykite jo HTTPS adresą, sertifikatą ir vienkartinį šešių skaitmenų kodą.
-3. Viename įrenginyje toje pačioje patikimoje tinkle, atidarykite adresą. Palyginkite SHA-256 pirštų atspaudą per patikimą kanalą prieš pasitikėdami vietos sertifikatu. Programa automatiškai neįdiegia patikimo sertifikato.
-4. Pora naudojant rodytą kodą ir išbandykite vieną nekenksmingą plokštelę. Manual Windows Firewall leidimas gali būti reikalingas LAN prieigai. Nenaudokite uosto prie interneto.
-5. Pasibaigus paneliui arba atšaukite klientus per programą.
+1. Atidarykite Mobile Panel, pasirinkite vietinį IP ir aiškiai nurodykite bendrinamus profilius. Numatytasis loopback adresas pasiekiamas tik pačiame kompiuteryje; telefonui ar planšetiniam kompiuteriui pasirinkite tinkamą LAN adresą.
+2. Paleiskite skydelį ir perskaitykite jo HTTPS adresą, sertifikato kontrolinį atspaudą bei vienkartinį šešių skaitmenų susiejimo kodą.
+3. Atidarykite adresą įrenginyje tame pačiame patikimame tinkle. Prieš pasitikėdami vietiniu sertifikatu palyginkite SHA-256 kontrolinį atspaudą patikimu kanalu. Programa automatiškai neįdiegia patikimo sertifikato.
+4. Susiekite įrenginį naudodami rodomą kodą ir išbandykite vieną nekenksmingą plytelę. LAN prieigai gali reikėti rankinio Windows Firewall leidimo. Neatidarykite prievado internetui.
+5. Baigę sustabdykite skydelį arba programoje atšaukite susietų klientų prieigą.
 
-Privatūs serverių raktai yra apsaugoti Windows DPAPI; kliento autentiškumas saugomas kaip hashas. Pakeisti IP arba atnaujinti sertifikatą gali reikėti atnaujinti pasitikėjimą. Panelis rodo veiksmo ir tikrinimo būdus, o ne visus galimus gyvus jutiklius. Interneto naršyklė ir vietiniai HTTPS patikrinimai nepakeičia realaus telefono / planšetinio LAN priėmimo.
+Serverio privačiuosius raktus saugo Windows DPAPI; klientų prisijungimo duomenys saugomi kaip maišos reikšmės. Pakeitus IP arba atnaujinus sertifikatą gali reikėti iš naujo patvirtinti pasitikėjimą. Skydelis rodo veiksmų ir tikrinimo būsenas, o ne visus galimus tiesioginius jutiklius. Naršyklės išdėstymo ir vietinio HTTPS patikros nepakeičia tikrų telefonų/planšetinių kompiuterių LAN priėmimo bandymų.
 
 ## Vietos asistentų susitikimas
 
-Šis pasirinktas eksperimentinis asistentas yra neįgalus. Atidarykite jį iš įrankių, aiškiai įjungkite jį, pasirinkite darbo laiką / modelį ir pridėkite tik resursus, kuriuos norite apsvarstyti. Įveskite tikslą, sukurkite projektą, patikrinti neišspręstus prašymus ir perduoti rezultatą įprastam redaktoriui. Nėra nieko, kas automatiškai vykdoma; taupymas ir vykdymas išlieka aiškūs veiksmai. Nėra automatinio paleidimo laiko.
+Šis pasirenkamas eksperimentinis asistentas pagal numatytuosius nustatymus išjungtas. Atidarykite jį per Tools, aiškiai įjunkite, pasirinkite vykdymo aplinką/modelį ir pridėkite tik tuos išteklius, kuriuos norite įtraukti. Nurodykite tikslą, sukurkite juodraštį, patikrinkite neišspręstas užklausas ir perkelkite rezultatą į įprastą redaktorių. Niekas nevykdoma automatiškai; išsaugojimą ir paleidimą reikia atlikti aiškiai. Automatinio perėjimo į kitą vykdymo aplinką nėra.
 
 | Laiko bėgimas | Įdiegti |
 | --- | --- |
@@ -114,21 +114,21 @@ Privatūs serverių raktai yra apsaugoti Windows DPAPI; kliento autentiškumas s
 | llama.cpp | Vietinis `llama-server` ir suderinamas modelis su JSON schemos palaikymu `127.0.0.1:8080`. |
 | ONNX Veikimo laikas GenAI CPU | Pasitikima vietos GenAI teksto modelio aplanką; pasirinkite `genai_config.json`. „Inference“ naudoja bendradarbiavimą be HTTP. |
 
-HTTP klientai naudoja tik loopback, nenaudoja proxy ir ne sekti peržiūros. MAKRIVO negali patikimai nustatyti, ar suderinamas vietinis serveris vidaus skambina nuotolinę paslaugą. Autentizuoti vietiniai serveriai šioje versijoje neįmanomi. Modelio svoris, Python ir vietiniai indėlių serveriai automatiškai nuskambinami ar įdiegti.
+HTTP klientai naudoja tik loopback ryšius, nenaudoja tarpinių serverių ir neseka peradresavimų. MAKRIVO negali patikimai nustatyti, ar suderinamas vietinis serveris viduje kreipiasi į nuotolinę paslaugą. Autentifikuojamų vietinių serverių šioje versijoje negalima konfigūruoti. Modelių svoriai, Python ir vietiniai išvedimo serveriai nėra automatiškai atsisiunčiami ar įdiegiami.
 
-ONNX paketai reikalauja `tokenizer.json` ir galiojančio pokalbio šabloną. Palaikomi šablonų formos `tokenizer_config.json` yra eilutė `chat_template`, žodynas su eilutėmis `default` arba nesąžiningas pavadinimas / numatytoji šablonas sąrašas. Jei šablonas trūksta arba nulis, `chat_template.jinja` naudojamas kaip atgal. Tušti, abejingi, per dideli arba netinkamai įrašiami šablonai yra atmesti. Arbitrinių ONNX failų, įterpimo/vizijos modelių ir GPU vien pakuotės negali būti keičiamos su suderinamomis GenAI tekstiniais modelais. Susieta versija GenAI yra 0.17.1, CPU. Naudokite tik patikimus modelius; proceso atskyrimas nėra smėlio dėžutė.
+ONNX paketams reikia `tokenizer.json` ir tinkamo pokalbio šablono. Faile `tokenizer_config.json` palaikoma eilutė `chat_template`, žodynas su eilute `default` arba vienareikšmis pavadintų/numatytųjų šablonų sąrašas. Jei šablono nėra arba jis null, kaip atsarginis naudojamas `chat_template.jinja`. Tušti, nevienareikšmiai, per dideli arba netinkamo tipo šablonai atmetami. Bet kokie ONNX failai, įterpinių/regos modeliai ir vien GPU paketai negali pakeisti suderinamų GenAI teksto modelių. Įtrauktos GenAI vykdymo aplinkos versija yra 0.17.1, CPU. Naudokite tik patikimus modelius; procesų atskyrimas nėra smėlio dėžė.
 
-Asistentas palaiko pasirinktas programas be argumentų, pasirinktus dokumentus ir svetaines, o mikrofoną, kai tai aiškiai paprašyta. Jis nesukuria pranešimų, pasimatymų, savavališkų scenarijų, nemokamų spustelėjimų, atsisiuntimų ar ausinių keitimo. Tikslas ir išteklių pavadinimai siunčiami į pasirinktą vietos darbo laiką; išteklių maršrutai ir failų turinys nėra atskirai. Naudotojo nustatyta paskirtis pati gali turėti asmens duomenis. Vietinio darbo laiko tinklo elgesys lieka naudotojo atsakomybė.
+Asistentas palaiko pasirinktas programas be argumentų, pasirinktus dokumentus ir svetaines bei mikrofono nutildymą aiškiai paprašius. Jis nekuria pranešimų, susitikimų, savavališkų scenarijų, laisvų paspaudimų, atsisiuntimų ar ausinių perjungimo. Tikslas ir išteklių pavadinimai siunčiami pasirinktai vietinei vykdymo aplinkai; išteklių keliai ir failų turinys atskirai nepateikiami. Naudotojo įvestame tiksle gali būti asmens duomenų. Už vietinės vykdymo aplinkos tinklo elgesį atsako naudotojas.
 
-Į The ONNX Prašymas dėl biudžeto 90 2 sekundės, įskaitant modelį, iki 3,072 Skubiai įtempti ir 1,024 generuojami tokenai, taip pat ribotas modelio kontekste. klaidingi / iškraipyti JSON ir nežinomi šaltinio ID yra atmesti. Atšaukti arba netoli užbaigti prašymą. Atsitiktinis modelio vykdymo laikas testas nustato vykdymą, nenaudingą planavimo kokybę ar laiko taupymą. Vietiniai eksperimentiniai logai turi įvykių identifikatorius ir laiką, ne tikslinį tekstą ar dokumentą; jie nėra automatiškai įkelti.
+ONNX užklausos laiko limitas yra 90 sekundžių, įskaitant modelio įkėlimą; leidžiama iki 3072 užklausos įvesties žetonų ir 1024 sugeneruotų žetonų, taip pat taikomas modelio konteksto limitas. Netaisyklingas/nukirstas JSON ir nežinomi išteklių ID atmetami. Užklausai baigti ją atšaukite arba uždarykite langą. Vykdymo aplinkos bandymas su atsitiktiniu modeliu patvirtina vykdymą, bet ne naudingą planavimo kokybę ar laiko taupymą. Vietiniuose eksperimentų žurnaluose yra įvykių identifikatoriai ir laiko matavimai, o ne tikslo tekstas ar dokumentų turinys; jie nėra automatiškai įkeliami.
 
-Vėliau mažas "Instrukt" modelio vertinimas sukūrė nulinius galiojančius planus keturiuose Vokietijos / Anglų tyrimuose. Kilmės išvada dirbo, bet modelis nesugebėjo griežto planavimo sutarties. Tai neigiamas kokybės rezultatas, o ne rekomenduojamas modelis ar įrodytas naudingas asistentas. Žiūrėkite datavimą vietos paleidimo laiko bandymų ataskaitą tiksliam modelio peržiūrimui ir apribojimams.
+Vėlesnis mažo Instruct modelio vertinimas per keturis vokiečių/anglų bandymus nesukūrė nė vieno galiojančio plano. Savasis išvedimas veikė, bet modelis neatitiko griežtos planavimo sutarties. Tai neigiamas kokybės rezultatas, o ne modelio rekomendacija ar asistento naudingumo įrodymas. Tiksli modelio revizija ir ribos pateiktos datuotoje vietinės vykdymo aplinkos bandymų ataskaitoje.
 
 ## Importuoti, eksportuoti ir sinchronizuoti
 
-Peržiūrėkite importo prognozes prieš pakeičiant konfigūraciją. Importuoti veiksmai prasideda išjungti, o nešiojamas sinchronizavimas pašalina aparatūros specifinius ryšius. Atskirkite prietaisus ir leiskite veiksmus sąmoningai po patikrinimo. Peržiūrėkite tekstą / veiksmų turinį prieš dalijant eksportu; slaptažodžių neįtraukimas daro visus naudotojo sukurtus veiksmų turinius ne jautrus.
+Prieš pakeisdami konfigūraciją peržiūrėkite importo peržiūrą. Importuoti veiksmai iš pradžių išjungti, o perkeliamasis sinchronizavimas pašalina aparatūrai būdingus susiejimus. Patikrinę iš naujo priskirkite įrenginius ir sąmoningai įjunkite veiksmus. Prieš dalydamiesi eksportu peržiūrėkite tekstą/veiksmų turinį; slaptažodžių neįtraukimas nereiškia, kad visas naudotojo sukurtų veiksmų turinys nėra konfidencialus.
 
-Profilų sinchronizavimas keičia failus pasirinktoje aplinkoje, kurį valdo jūsų esamas debesijos klientas. MAKRIVO nėra debesijos sąskaitos ir nėra debesijos autentifikavimo. Apžvalgos užkerta kelią tyliai perrašyti. Veiksmo turinys yra aiškus pasirinkimas. Atsisiųskite konfigūraciją prieš importuojant pakeitimą. Įprasta konfigūracija yra `%LOCALAPPDATA%\AivanaWindowsController\settings.json`; istorinis adreso pavadinimas išlieka suderinamumui. Uždarykite programą prieš rankiniu būdu kopijuojant / atkurdami ją. Įsaugoti SDK patvirtinimai ir OS apsaugoti autentifikatoriai gali prireikti atkurti kitoje kompiuteryje.
+Profilių sinchronizavimas keičiasi failais pasirinktame aplanke, kurį pasirinktinai gali valdyti esamas debesijos klientas. MAKRIVO nesuteikia debesijos paskyros ir nesaugo debesijos prisijungimo duomenų. Revizijos apsaugo nuo tylaus perrašymo. Veiksmų turinio įtraukimas yra aiškus pasirinkimas. Prieš pakeičiamąjį importą sukurkite konfigūracijos atsarginę kopiją. Numatytoji konfigūracija yra `%LOCALAPPDATA%\AivanaWindowsController\settings.json`; istorinis aplanko pavadinimas paliktas suderinamumui. Prieš rankiniu būdu kopijuodami/atkurdami uždarykite programą. Išsaugotus SDK patvirtinimus ir OS apsaugotus prisijungimo duomenis kitame kompiuteryje gali reikėti sukurti iš naujo.
 
 ## Problemos sprendimas
 
@@ -146,7 +146,7 @@ Profilų sinchronizavimas keičia failus pasirinktoje aplinkoje, kurį valdo jū
 | Prašymas nesėkmingas | Tinkamai parinktas vietinis darbo laikas, paruoštas aptarnavimas / modelis, palaikoma JSON schema, patikima suderinama modelių aplinka ir prašymo ribos. |
 | Layout arba tekstas atrodo neteisingas | Atskiriate žiniatinklio kalbą nuo klaviatūros geometrijos; peržiūrėkite langą, patikrinkite ekrano skalę ir praneškite tikslią puslapį / kalbą / statybą. |
 
-Naudinga klaidų ataskaita apima Windows versiją, programėlę / komitetą, kalbą, ekrano skalavimą, aparatūros modelį, minimalią seką ir atitinkamą redakciją. Ištrinkite asmeninius kelius, veiksmo turinį ir autentiškumą prieš paskelbdami.
+Naudingoje klaidos ataskaitoje nurodykite Windows versiją, programos versiją/komitą, kalbą, ekrano mastelį, aparatūros modelį, minimalią veiksmų seką ir atitinkamą nuasmenintą žurnalą. Prieš skelbdami pašalinkite asmeninius kelius, veiksmų turinį ir prisijungimo duomenis.
 
 ## Statybos, bandymų ir pakavimo
 
@@ -161,14 +161,14 @@ dotnet run --project src/Aivana.Desktop -c Release -- --smoke-test
 python tools/check_documentation.py
 ```
 
-Windows integravimo bandymai gali atidaryti izoliuotus langus ir laikinai konfigūruoti / išleisti palaikomus tiekėją. Jie veikia be kito valdytojo, turinčio tuos ryšius. Išimtiniai ryškumas / garso bandymai yra skaitomi vien; aiškios aparatūros apvalios bandymai yra atskiri. Mock protokolai, atrankos ekranai ir atsitiktiniai grafikai neturėtų būti pateikiami kaip tikras aparatūros / modelio kokybės priėmimas.
+Windows integracijos testai gali atidaryti izoliuotus langus ir laikinai nustatyti/atlaisvinti palaikomus gamintojų susiejimus. Vykdykite juos, kai kitas valdiklis nevaldo šių susiejimų. Numatytosios ryškumo/garso patikros tik skaito; aiškiai pasirenkami aparatūros būsenos pakeitimo ir atkūrimo testai yra atskiri. Imituoti protokolai, sugeneruotos ekrano kopijos ir atsitiktiniai išvedimo grafai negali būti pateikiami kaip tikros aparatūros/modelio kokybės priėmimas.
 
-Visiškas leidėjas renka kompanionus, mobiliuosius turtus, pavyzdinį priedą, ONNX darbo laiką ir prieinamas priklausomybės pranešimus. Laikykitės savo vadovų. Sėkmingas statymas nėra pasirašytas installeris ar teisinis leidimas. Šaltiniai ir statiniai gali išsivystyti atskirai; palyginkite dokumentacijos nuotrauką ir įsipareigoti su įdiegta versija.
+Visas publikavimo scenarijus surenka pagalbinių procesų programas, mobiliuosius išteklius, pavyzdinį papildinį, ONNX vykdymo aplinką ir turimus priklausomybių pranešimus. Išsaugokite poaplankius. Sėkmingas surinkimas nėra pasirašyta diegimo programa ar teisinis leidimo patvirtinimas. Pirmkodas ir versijos gali vystytis atskirai; palyginkite dokumentacijos būseną ir komitą su įdiegta versija.
 
 ## Licencija, privatumas ir išleidimo būklė
 
-Numatytas komercinis modelis yra vienkartinis pirkimas su nuolatine įsigyta pagrindine versija; galutinė kaina, prietaiso leidimas ir atnaujinimo sąlygos turi būti nustatytos faktinėse pardavimo sąlygose. Produkcijos pirkimo / aktyvavimo sistema nėra nustatyta šioje knygoje. Nėra reikalaujamo debesijos paskyros kasdieniniam valdymo.
+Numatytas komercinis modelis yra vienkartinis pirkimas su neribotos trukmės įsigytos pagrindinės versijos naudojimu; galutinė kaina, leidžiamas įrenginių skaičius ir naujinimo sąlygos turi būti nustatytos tikrosiose pardavimo sąlygose. Šis vadovas nepatvirtina veikiančios produkcinės pirkimo/aktyvinimo sistemos. Kasdieniam valdymui debesijos paskyra neprivaloma.
 
-Nenaudokite savarankiškų SDK binarų be įrodytos leidimo. Išsaugokite licenciją ir trečiųjų šalių pranešimus kiekvienai siunčiamai priklausomybei, įskaitant .NET ir ONNX paketus. Modelių svoris turi savo terminus. Atnaujintas licencijos auditas išduoda kai kurias naujas priklausomybes ir nėra tų papildymų nuoseklumas. Viešas saugykla pati nesuteikia bendros atviros šaltinio licencijos.
+Neplatinkite nuosavybinių SDK dvejetainių failų be įrodyto leidimo. Išsaugokite kiekvienos platinamos priklausomybės, įskaitant .NET ir ONNX paketus, licencijas ir trečiųjų šalių pranešimus. Modelių svoriams taikomos atskiros sąlygos. Datuotas licencijų auditas atliktas prieš pridedant kai kurias naujas priklausomybes ir nėra šių papildymų patvirtinimas. Vieša saugykla savaime nesuteikia bendros atvirojo kodo licencijos.
 
-Tikrasis tiekėjas, telefonas / planšetinis LAN veikimas, mišri monitorių / DPI perėjimai, ilgas naudojimas, išsami kalbos apžvalga, išskirtinė vairuotojo parama ir naudingas AI planavimo kokybė lieka atskira priėmimo darbas. Niekada nepateikiu sutikimo iš vienos nuosavybės.
+Tikra gamintojų aparatūra, telefonų/planšetinių kompiuterių LAN veikimas, perėjimai tarp skirtingų monitorių/DPI, ilgalaikis naudojimas, išsami kalbinė peržiūra, išskirtinės tvarkyklės palaikymas ir naudinga AI planavimo kokybė vis dar reikalauja atskiro priėmimo. Niekada nespręskite apie patvirtinimą vien pagal funkcijos buvimą.

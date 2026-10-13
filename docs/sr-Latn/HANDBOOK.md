@@ -4,153 +4,153 @@
 
 # MAKRIVO — Korisničko uputstvo
 
-Proizvođač: **Aivana**. Dokumentacija Snapshot: **2026-10-12**. Ova ručka opisuje trenutnu implementaciju radnog drveta. Eksperimentalne integracije i hardverske funkcije su izričito identifikovane. Istorijski izveštaji opisuju svoj datum, a ne garanciju za novije građevine.
+Proizvođač: **Aivana**. Stanje dokumentacije: **2026-10-12**. Ovaj priručnik opisuje trenutnu implementaciju u radnom stablu. Eksperimentalne integracije i funkcije zavisne od hardvera izričito su označene. Istorijski izveštaji opisuju stanje na navedeni datum i nisu garancija za noviju verziju izgradnje.
 
 ## Dokumentacija i jezici
 
-Koristite selektor jezika dokumentacije da biste otvorili kompletnu ručku, inventar funkcija, rešavanje problema, izveštaje o razvoju, istraživanje i istorijske testove na bilo kom od 27 aplikacionih jezika. Generisani prevodi su mašinski asistirani i imaju strukturne provere; nisu svi dobili pregled rodnog govornika. Tehnički identifikatori i izvršni primeri ostaju nepromenjeni. Originalni izvor ostaje dostupan za poređenje. Prevedena licencijska analiza je informativna i ne zamenjuje originalne pravne uslove treće strane ili konačnu EULA.
+Izborom jezika dokumentacije otvorite potpun priručnik, pregled funkcija, rešavanje problema, razvojne beleške, istraživanja i istorijske izveštaje o testiranju na bilo kom od 27 jezika aplikacije. Generisani prevodi su mašinski potpomognuti i strukturno provereni; nisu sve pregledali izvorni govornici. Tehnički identifikatori i izvršivi primeri ostaju nepromenjeni. Izvorni tekst ostaje dostupan za poređenje. Prevedena analiza licenci je informativna i ne zamenjuje izvorne pravne uslove trećih strana ili konačni EULA.
 
 ## Instalacija i prvi lansiranje
 
-Prvobitni cilj je Windows 11 x64. Držite svaki datoteku i poddirektorijum distribucije zajedno. Pokretanje `MAKRIVO.exe` Izvor čeckaut nije instalator. Samokontentovani paketi uključuju svoj .NET radni vremenski period; paketi koji zavise od okvira zahtevaju odgovarajuće radni vremenske periode .NET 10 i ASP.NET. ONNX i hosteri saputnika moraju biti uključeni za njihove relevantne funkcije.
+Početna ciljna platforma je Windows 11 x64. Sve datoteke i poddirektorijume distribucije držite zajedno. Pokrenite `MAKRIVO.exe`. Kopija izvornog koda nije instalacioni program. Samostalni paketi uključuju svoje izvršno okruženje .NET; paketi zavisni od razvojnog okvira zahtevaju odgovarajuća izvršna okruženja .NET 10 Desktop i ASP.NET. ONNX i prateći procesi moraju biti uključeni za pripadajuće funkcije.
 
-1. Pokrenite MAKRIVO i izaberite jezik interfejsa u podešavanjama. Automatski sledeći Windows Klaviranje je odvojeno podešavanje.
-2. Izaberite profil, a zatim dodajte talas kroz katalog za pretragu. Dajte joj prepoznatljivo ime i izaberite njegove akcije.
-3. Proverite korake i unesite kratak korak ako je potrebno. Izbegavajte kombinacije koje su već korišćene od strane Windows ili vaše ciljne aplikacije.
-4. Sačuvaj ovaj projekt. Nespasene promene nisu spasena konfiguracija.
-5. Testirajte bezvrednim akcijama, kao što je otvaranje dokumenta, i proverite povratne informacije o izvršenju.
+1. Pokrenite MAKRIVO i u podešavanjima izaberite jezik interfejsa. Automatski izbor prati Windows. Raspored tastature je zasebno podešavanje.
+2. Izaberite profil, pa dodajte pločicu putem kataloga radnji sa pretragom. Dajte joj prepoznatljivo ime i izaberite njene radnje.
+3. Pregledajte korake i po potrebi dodelite prečicu. Izbegavajte kombinacije koje već koristi Windows ili ciljna aplikacija.
+4. Sačuvajte nacrt. Nesačuvane promene nisu deo sačuvane konfiguracije.
+5. Testirajte bezopasnom radnjom, kao što je otvaranje dokumenta, i proverite povratne informacije o izvršavanju.
 
-Zatvaranje glavnog prozora obično ostavlja aplikaciju u području obaveštenja. Dvostruko kliknite na ikonu trajanja da biste je ponovo otvorili, ili koristite meni trajanja za izlazak. Počinje sa Windows je opcionalno i prvobitno invalidirano. Kontrola pauze suspenduje veze; ikona pokazuje znak pauze. Otkazivanje makrosa kroz UI, trai ili konfigurisani otkaz kratak; podrazumevani je `Ctrl+Alt+Escape`.
+Zatvaranje glavnog prozora obično ostavlja aplikaciju u oblasti obaveštenja. Dvaput kliknite na njenu ikonu da biste je ponovo otvorili ili koristite meni ikone za izlaz. Pokretanje uz Windows nije obavezno i početno je onemogućeno. Dugme za pauzu privremeno obustavlja dodele tastera; ikona prikazuje oznaku pauze. Aktivne makroe otkažite putem interfejsa, oblasti obaveštenja ili podešene prečice za otkazivanje; podrazumevana je `Ctrl+Alt+Escape`.
 
-## Tile, akcije i komandna paleta
+## Pločice, radnje i paleta komandi
 
-Tilovi pripadaju profilima i mogu da sadrže više naručenih koraka. Redaktor podržava sačuvanje / odbacivanje, pregled, undo /redo i korak reorganizacije. Katalog pruža presete za programe, dokumente, URL-a, tekst, klipbord, skraćenice, medije, audio, prozorke, sistemske akcije i podržane integracije. Preseta koja zahteva parametre otvara se kao nacrt.
+Pločice pripadaju profilima i mogu da sadrže više koraka određenim redosledom. Uređivač podržava čuvanje/odbacivanje, pregled, poništavanje/ponavljanje i promenu redosleda koraka. Katalog nudi šablone za programe, dokumente, URL adrese, tekst, ostavu, prečice, medije, zvuk, prozore, sistemske radnje i podržane integracije. Šablon koji zahteva parametre otvara se kao nacrt.
 
-Otvorite paletu sa `Ctrl+K` dok MAKRIVO ima fokus. Pretraživanje spasenih akcija, preseta, pretvaranja profila i alata. Izaberite ključeve; Unesite aktivira; `Ctrl+Enter` uređuje podržani element; Evakuacija se zatvara. Neke spremne komande izvršavaju odmah, dok konfigurisane akcije zahtevaju pregled. Odvojena globalna paleta može se konfigurisati; nove konfiguracije koriste `Ctrl+Shift+Space`.
+Otvorite paletu pomoću `Ctrl+K` dok MAKRIVO ima fokus. Pretražite sačuvane radnje, šablone, promenu profila i alate. Tasteri sa strelicama biraju; Enter aktivira; `Ctrl+Enter` uređuje podržanu stavku; Escape zatvara. Neke spremne komande izvršavaju se odmah, dok podešene radnje zahtevaju pregled. Može se podesiti zasebna globalna prečica za paletu; nove konfiguracije koriste `Ctrl+Shift+Space`.
 
-Tekst i klipbord koraka podrška `{{date}}`, `{{time}}`, `{{datetime}}`, `{{clipboard}}`, `{{profile}}`, `{{process}}` i `{{user}}`. Datum formatiranja je `yyyy-MM-dd`; Vreme za formatiranje je `HH:mm`. Nepoznate promenljive ostaju nepromenjene. čitanje klipova se javlja samo kada je potrebno. akcija klipova piše tekst bez automatskog uklanjanja.
+Koraci za tekst i ostavu podržavaju `{{date}}`, `{{time}}`, `{{datetime}}`, `{{clipboard}}`, `{{profile}}`, `{{process}}` i `{{user}}`. Format datuma je `yyyy-MM-dd`; format vremena je `HH:mm`. Nepoznate promenljive ostaju nepromenjene. Ostava se čita samo na zahtev. Radnja ostave upisuje tekst bez automatskog lepljenja.
 
-Akcije pokrenute iz II-a mogu biti usmerene na poslednju aplikaciju. Ako cilj nestane ili Windows blokira avangardno aktiviranje, ručno aktivirati cilj i povlačiti. Uspešna isporuka ključa ne dokazuje da je cilj završio svoj zadatak.
+Radnje pokrenute iz interfejsa mogu da ciljaju poslednju spoljnu aplikaciju. Ako cilj nestane ili Windows blokira aktiviranje u prvom planu, ručno aktivirajte cilj i pokušajte ponovo. Uspešna isporuka pritiska tastera ne dokazuje da je cilj završio zadatak.
 
 ## Profili i podešavanje radnog mesta
 
-Profili mogu odgovarati ime procesa i deo naslova prozora. Kada su obe postavljene, oba moraju da se takmiče. Profilni poredak rešava takmičenje; defolt profil je padanje. Omogućava se automatski izbor. Lock Profile sprečava automatske promene za trenutnu sesiju.
+Profili mogu da odgovaraju imenu procesa i delu naslova prozora. Kada su postavljena oba uslova, oba moraju da se poklapaju. Redosled profila razrešava više istovremenih poklapanja; podrazumevani profil koristi se kada nema drugih poklapanja. Izričito omogućite automatski izbor. Zaključavanje profila sprečava automatske promene tokom trenutne sesije.
 
-Otvoreno radno mesto iz alata ili palete. Izaberite programe, dokumente, veb-sajtove, audio / ekran cilj ili OBS scenu. Asistent priprema radno mesto, sastanak, striming, istraživanje ili profile projekta. Proverite generisane korake pre nego što uštedite. Ustav ne izvršava pripremljene akcije.
+Otvorite podešavanje radnog mesta iz alata ili palete. Izaberite programe, dokumente, veb-sajtove, ciljni audio-uređaj/ekran ili scenu OBS. Pomoćnik priprema profile za radno mesto, sastanke, striming, istraživanje ili projekte. Pregledajte generisane korake pre čuvanja. Podešavanje ne izvršava pripremljene radnje.
 
-## Makros, uslove i snimanje
+## Makroi, uslovi i snimanje
 
-Makros izvršava svoje korake u redu i podržava čekanja, ponavljanja i anulacije. Opšta granica ponavljanja je 100. Koristite Pregled pre pokretanja akcija koje unose u drugu aplikaciju ili menjaju sistemski status.
+Makroi izvršavaju korake redom i podržavaju čekanja, ponavljanja i otkazivanje. Opšte ograničenje ponavljanja je 100. Koristite pregled pre pokretanja radnji koje unose tekst u drugu aplikaciju ili menjaju stanje sistema.
 
-Čekajte za Calcet Vindovs prihvata proces, naslov substrat i vreme izlazak od 1 do 600,000 ms. Potreban je najmanje jedan filter. Pogodni vidljiv prozor mora da odgovori i postane predgrađen pre nego što se sledeći koraci nastavljaju. Pripremljeno prozor ne dokazuje da je dokument ili usluga završena.
+Čekanje ciljnog prozora prihvata proces, podnisku naslova i vremensko ograničenje od 1 do 600000 ms. Potreban je bar jedan filter. Odgovarajući vidljivi prozor mora da odgovori i postane prozor u prvom planu pre nastavka narednih koraka. Spreman prozor ne dokazuje da je dokument ili usluga završila učitavanje.
 
-Redaktor radnog toka dodaje uslove datoteke, procesa i naslova. Falsifikovani uslov prolazi kroz korak i može propustiti dodatne korake napred. Odbijanje uslova za izražavanje alternativne grane. Izaberite stop-on-error ili continu-on-err namerno; nastavak može ostaviti kasnije korake bez očekivanih uslova.
+Uređivač toka rada dodaje uslove za postojanje datoteke, pokrenuti proces i naslov prozora. Neispunjen uslov preskače korak i može da preskoči dodatne korake unapred. Negirajte uslov da biste izrazili alternativnu granu. Promišljeno izaberite zaustavljanje ili nastavak nakon greške; nastavak može da ostavi kasnije korake bez očekivanih preduslova.
 
-Action rekorder uhvati kratke kodove i čeka, a ne obično štampanje. Podržava promenljive skraćenice i funkcione ključeve. Bežanje prestaje da snima. Pregledajte listu i usvojite je kao nezaštićeni dizajn, a zatim izričito sačuvate. UI klik snimanje je poseban alat opisan ispod.
+Snimač radnji beleži kombinacije tastera za prečice i čekanja, a ne obično kucanje. Podržava prečice sa modifikatorskim tasterima i funkcijske tastere. Escape zaustavlja snimanje. Pregledajte listu i preuzmite je kao nesačuvan nacrt pločice, pa je izričito sačuvajte. Snimanje klikova interfejsa je zaseban alat opisan u nastavku.
 
-## Ključne tabele, gestovi i slojevi
+## Tastature, gestovi i slojevi
 
-Tastatura liste otkrivenih interfejsa i referentnih rasporeda. Jedna fizička tastatura može izložiti nekoliko interfejsa. Izaberite pravi jezik i geometriju; samo ime proizvoda ne identifikuje ISO ili ANSI raspored.
+Stranica tastature navodi otkrivene interfejse i referentne rasporede. Jedna fizička tastatura može da izloži više interfejsa. Izaberite ispravan jezik i geometriju; samo ime proizvoda ne određuje raspored ISO ili ANSI.
 
-Standardni globalni hotkei se primenjuju preko tastatura. Raw Input veze posmatraju određeni uređaj i skeniranje koda, uključujući funkcije podržane i medijske ključeve. **Raw Input Ne potiskuje obično Windows Ekskluzivna druga tastatura nije spremna za proizvodnju.** Potpisan, licenciran i testiran filter-driver je još uvek potreban; niko nije instaliran MAKRIVO.
+Standardne globalne prečice važe na svim tastaturama. Dodele Raw Input za određeni uređaj prate taj uređaj i sken-kod, uključujući podržane funkcijske i medijske tastere. **Raw Input ne potiskuje običan unos u Windows. Isključiva druga tastatura nije spremna za produkcionu upotrebu.** Još je potrebna potpisana, licencirana i testirana pozadinska komponenta sa filterskim drajverom; MAKRIVO ne instalira nijednu.
 
-Podržani specijalni ključ veze mogu koristiti odmah pritisak, tapanje, drženje ili dvostruko tapanje. Held-klajer ključevi privremeno izabrati još jedan mapiranje i vratiti osnovni sloj na oslobađanju; sloj-izbornik ključeve ne rade svoje makro. 150 da 5,000 MS; dvostruki prozor od 150 da 1,000 MS. Ovi mapi su različiti od običnih globalnih hotkeisa.
+Podržane dodele posebnih tastera mogu da koriste trenutni pritisak, kratak pritisak, držanje ili dvostruki pritisak. Tasteri privremenog sloja tokom držanja biraju drugo mapiranje i vraćaju osnovni sloj pri otpuštanju; tasteri za izbor sloja ne pokreću sopstveni makro. Pragovi držanja kreću se od 150 do 5000 ms; vremenski prozori dvostrukog pritiska od 150 do 1000 ms. Ta mapiranja su odvojena od običnih globalnih prečica.
 
-Specijalni ključ čarobnjak otkriva kompatibilne ključeve bez izvršenja njihovih dodeljenih akcija tokom uhvati. Dijagnoza objašnjava nedostupne uređaje, prekinute veze, neispravnosti profila i konflikte. Preopterećenje pokazuje izabrani raspored i veze; njegov podrazumevani kratak je `Ctrl+Alt+F1`.
+Čarobnjak za posebne tastere otkriva kompatibilne tastere bez izvršavanja dodeljenih radnji tokom snimanja. Dijagnostika objašnjava nedostupne uređaje, pauzirane dodele, nepoklapanje profila i sukobe. Preklopni prikaz pokazuje izabrani raspored i dodele; podrazumevana prečica koja se drži za prikaz je `Ctrl+Alt+F1`.
 
 | Integracija | Potrebe i ograničenja |
 | --- | --- |
-| Corsair | Radeći iCUE, SDK pristup i kompatibilan model. G1-G6 i podržane RGB funkcije; vlasnički Fn, točkovi, zaključak i kontrole profila obično nisu izloženi G-che API. |
-| Logitech G | Originalne lokalne KSNUMKS-Ključ / LED SDK biblioteke zahtevaju izričito odobrenje. G-key događaji ne mogu jedinstveno da identifikuju nekoliko identičnih fizičkih tipkovnica. |
-| Razer | Hroma RGB i standardni ulaz; mapa posebne kontrole u Synapse gde je potrebno. |
-| SteelSeries | GameSense RGB i standardni ulaz; mapa vlasnički kontrole u GG gde je potrebno. |
-| Wooting | Kompatibilan originalni x64 SDK za analogne vrednosti i pragove; normalni HID ulaz ostaje aktivan. |
-| Drugi tastatura | Standardni hotkei ili podržani fizički skeniranje kodova. Fn i kontrole za vlasništvo zavise od modela i konfiguracije prodavca. |
+| Corsair | Pokrenut iCUE, pristup SDK-u i kompatibilan model. G1–G6 i podržane RGB funkcije; vlasničke kontrole Fn, točkića, zaključavanja i profila uglavnom nisu dostupne preko G-key API-ja. |
+| Logitech G | Izvorne lokalne biblioteke x64 G-key/LED SDK zahtevaju izričito odobrenje. Događaji G-key ne omogućavaju jednoznačno razlikovanje više identičnih fizičkih tastatura. |
+| Razer | Chroma RGB i standardni unos; po potrebi mapirajte vlasničke kontrole u Synapse. |
+| SteelSeries | GameSense RGB i standardni unos; po potrebi mapirajte vlasničke kontrole u GG. |
+| Wooting | Kompatibilni izvorni lokalni SDK x64 za analogne vrednosti i pragove; uobičajeni unos HID ostaje aktivan. |
+| Ostale tastature | Standardne prečice ili podržane fizičke dodele sken-kodova. Fn i vlasničke kontrole zavise od modela i podešavanja proizvođača. |
 
-Istraživanje proizvođača opisuje dokumentisane sposobnosti, ne sprovedene ili testirane kompatibilnosti sa svakim navedenim uređajima. Novi adapteri i dalje trebaju stvarnu hardversku prihvatanje. Nemojte preuzeti SDK binarne iz nesigurnih izvora; SDK distribucija prava su odvojena od tehničke kompatibilnosti.
+Istraživanje proizvođača opisuje dokumentovane mogućnosti, a ne implementiranu ili testiranu kompatibilnost sa svakim navedenim uređajem. Novi adapteri još zahtevaju prihvatno testiranje na stvarnom hardveru. Ne preuzimajte binarne datoteke SDK-a iz nepouzdanih izvora; prava distribucije SDK-a odvojena su od tehničke kompatibilnosti.
 
-## Audio, ekrani i OBS
+## Zvuk, ekrani i OBS
 
-Audio koraci postavljaju volumen od 0 do 100 procenata i mute/neumute/togle podržava izlaz ili mikrofon krajnje tačke. Izaberite određenu tačku ili koristite defolt Windows. Nedostatak spasenog cilja proizvodi grešku umesto da tiho kontroliše drugo uređaj. Ponovo osvetlite uređaje nakon povratka. Kontrola krajnjeg tačaka nije zahtev za nezavisnu podršku po aplikaciji.
+Zvučni koraci postavljaju jačinu zvuka od 0 do 100 procenata i isključuju, uključuju ili menjaju stanje utišavanja podržanih izlaznih ili mikrofonskih krajnjih tačaka. Izaberite određenu krajnju tačku ili podrazumevanu u Windows. Nedostupan sačuvani cilj izaziva grešku umesto neprimetnog upravljanja drugim uređajem. Nakon ponovnog povezivanja osvežite uređaje. Upravljanje krajnjim tačkama ne podrazumeva podršku za nezavisni mikser svake aplikacije.
 
-Pokazati akcije povećanje / smanjenje svetlosti sa 10 procentnih tačaka ili postavljanje vrednosti od 0 do 100. Unutrašnji ekrani koriste podržane VMI interfejse; spoljni monitori zahtevaju podršku DDC/CI i obično njegov meni podešavanje. Dock, adapter i kabl mogu blokirati kontrolu. Izaberite sve podržane ekrane ili jedan monitor. Ponovo povezivanje može da promeni dostupne identitete; pregledanje spasenog cilja. Nedostatak čitanja pokazuje se kao nedostupna umesto merenih vrednosti.
+Radnje ekrana povećavaju/smanjuju osvetljenost za 10 procentnih poena ili postavljaju vrednost od 0 do 100. Unutrašnji ekrani koriste podržane interfejse WMI; spoljni monitori zahtevaju podršku DDC/CI i obično njeno uključivanje u meniju monitora. Priključne stanice, adapteri i kablovi mogu da blokiraju upravljanje. Izaberite sve podržane ekrane ili jedan monitor. Ponovno povezivanje može da promeni dostupne identifikatore; proverite sačuvani cilj. Nedostupna očitavanja prikazuju se kao nedostupna, a ne kao izmerene vrednosti.
 
-OBS zahteva WebSocket v5 uključen u OBS alati. Postavite krajnju tačku, testirajte povezivanje i nanosite imena / ulaza pre nego što sačuvate. Podržane akcije uključuju prebacivanje scene, pokretanje / snimanje / zaustavljanje / snimanje, snimanje pauze / rezime i ulazak mute. Paroli se mogu čuvati u Windows Kreditni menadžer i isključuju se iz konfiguracije izvoza. Uspešna komanda OBS ne utvrđuje svaki efekt ispod struje.
+OBS zahteva omogućen WebSocket v5 u alatima OBS. Podesite krajnju tačku, testirajte vezu i učitajte imena scena/ulaza pre čuvanja. Podržane radnje uključuju promenu scene, pokretanje/zaustavljanje/prebacivanje striminga i snimanja, pauziranje/nastavak snimanja i utišavanje ulaza. Lozinke mogu da se čuvaju u Windows Credential Manager i izostavljaju se iz izvoza konfiguracije. Uspešna komanda OBS ne dokazuje sve dalje efekte striminga.
 
-## Rezultat verifikacije i istorija izvršenja
+## Provera rezultata i istorija izvršavanja
 
-Moguće je proveriti rezultat za odgovarajuće korake. Aplikacija razlikuje preflage, potvrđene efekte, neuspjehe, anulacije i efekte koji se ne mogu proveriti. Proces postojanja nije spremnost za primenu. Relativne promene, skraćenja i tekst ulazak ne mogu dobiti tvrdnju o uspehu. Inspektirajte istoriju aktivnosti i verifikacije kada akcija ne uspe. Pogrešnosti konfiguracije treba ispraviti pre nego što se ukloni kompletni makro.
+Omogućite proveru rezultata za odgovarajuće korake. Aplikacija razlikuje prethodne provere, potvrđene efekte, greške, otkazivanje i efekte koji se ne mogu proveriti. Postojanje procesa nije spremnost aplikacije. Relativnim promenama, prečicama i unosu teksta ne može se pripisati opšte zagarantovan uspeh. Kada radnja ne uspe, pregledajte dnevnik aktivnosti i istoriju provere. Ispravite greške konfiguracije pre ponovnog pokretanja celog makroa.
 
-## UI automatizacija i klik snimanje
+## Automatizacija interfejsa i snimanje klikova
 
-Dodajte korak za automatizaciju interneta, izaberite operaciju i uhvatite cilj ispod indikatora nakon što se pojavljuje kašnjenje. `Invoke`, `Select`, `Toggle`, `Focus`, `SetValue` i `WaitState`. Polje lozinke, onemogućeni kontroli i nedvosmisleni selektori su odbijeni.
+Dodajte korak automatizacije interfejsa, izaberite operaciju i nakon prikazanog odlaganja snimite cilj ispod pokazivača. Samo snimanje ništa ne izvršava. Proverite selektor i zahtevajte jednoznačno poklapanje. Podržane operacije uključuju `Invoke`, `Select`, `Toggle`, `Focus`, `SetValue` i `WaitState`. Polja lozinki, onemogućene kontrole i dvosmisleni selektori odbijaju se.
 
-UI automatizacija radi u ograničenom procesu. To zavisi od podrške i dozvola za pristupačnost ciljne aplikacije Windows. Klik snimač uhvati podržane akcije i pauze; on ne zapisuje opštu tekstualnu unos. Pregledajte i validirajte svoj projekat pre nego što ga usvojite. Promene u internetu u spoljnoj aplikaciji mogu nemoguće. Proces izolacije ograničava nesreće i anulaciju, ali nije bezbednosna peska.
+Automatizacija interfejsa radi u ograničenom pratećem procesu. Zavisi od podrške ciljne aplikacije za pristupačnost Windows i dozvola. Snimač klikova beleži podržane radnje i pauze; ne snima opšti unos teksta. Pregledajte i proverite nacrt pre preuzimanja. Promene interfejsa spoljne aplikacije mogu da ponište valjanost selektora. Izolacija procesa ograničava posledice rušenja i omogućava ograničavanje izvršavanja pri otkazivanju, ali nije bezbednosni sandbox.
 
-## Plugine
+## Dodaci
 
-Otvorite proširenja da biste proverili paket pre nego što ga uvozite. Struktura paketa, manifest i haševi su provereni. Uvoz je počeo sa invaliditetom. Pročitajte deklarisane akcije i izričito poverite izdavaču pre nego što omogućite. Plugini rade sa vašim korisničkim dozvolima u odvojenom procesu; taj proces je **a ne pesak**. Samo instalirajte pakete koje verujete.
+Otvorite proširenja i pregledajte paket pre uvoza. Proveravaju se struktura paketa, manifest i heš-vrednosti. Uvezeni dodatak početno je onemogućen. Pročitajte navedene radnje i izričito potvrdite poverenje izdavaču pre omogućavanja. Dodaci rade sa vašim korisničkim dozvolama u zasebnom procesu; taj proces **nije sandbox**. Instalirajte samo pakete kojima verujete.
 
-Menadžer podržava izvoz, deaktiviranje, deinstalaciju i obnovu / otklanjanje prethodne verzije. Nedostatak zavisnosti blokira poziv. Primer paketa obezbeđuje računanje i lokalno-državne akcije. Podržana shema je dokumentirana podseta JSON-Shema, a ne svaka moguća funkcija JSON. Ne postoji javni Plugin tržište.
+Upravljač podržava izvoz, onemogućavanje, deinstalaciju i vraćanje/odbacivanje prethodne verzije. Nedostajuće zavisnosti blokiraju pozivanje. Primer paketa nudi odbrojavanje i radnje lokalnog stanja. Podržana šema je dokumentovani podskup JSON-Schema, a ne sve moguće funkcije JSON-Schema. Ne postoji javno tržište dodataka.
 
 ## Mobilni panel
 
-1. Otvorite mobilni panel, izaberite lokalni IP i izričito izaberite profile koje ćete izložiti. Po pravilu, obratna adresa je dostupna samo na samom PC-u; izaberite odgovarajuću LAN adresu za telefon ili tablet.
-2. Pokrenite panel i pročitajte njegovu HTTPS adresu, sertifikat prstiju i jednokratni šestocifreni parovi kod.
-3. Na uređaju u istoj poverenoj mreži, otvorite adresu. Poređenje prstiju SHA-256 kroz pouzdani kanal pre nego što poverite lokalnom sertifikatu. Aplikacija ne instalira pouzdani sertifikat automatski.
-4. Koristite prikazan kod i testirajte jednu bezvrednu taliju. Ručna dozvola Windows može biti potrebna za LAN pristup. Nemojte izložiti port na internet.
-5. Zaustavite panel kada je završen, ili povucite plaćene klijente kroz aplikaciju.
+1. Otvorite mobilni panel, izaberite lokalni IP i izričito izaberite profile koji će biti dostupni. Podrazumevana adresa loopback dostupna je samo na samom računaru; za telefon ili tablet izaberite odgovarajuću adresu LAN.
+2. Pokrenite panel i pročitajte njegovu adresu HTTPS, otisak sertifikata i jednokratni šestocifreni kod za uparivanje.
+3. Na uređaju u istoj pouzdanoj mreži otvorite adresu. Uporedite otisak SHA-256 putem pouzdanog kanala pre prihvatanja lokalnog sertifikata. Aplikacija ne instalira pouzdan sertifikat automatski.
+4. Uparite uređaj prikazanim kodom i testirajte jednu bezopasnu pločicu. Za pristup preko LAN možda je potrebna ručna dozvola u Windows Firewall. Ne izlažite mrežni port internetu.
+5. Zaustavite panel kada završite ili putem aplikacije opozovite pristup uparenim klijentima.
 
-Privatni serverski ključevi su zaštićeni sa Windows DPAPI; Klientske identifikacije se čuvaju kao haševi. Promena IP ili obnavljanje sertifikata može zahtevati obnovu poverenja. Panel prikazuje stavove akcije i verifikacije, a ne sve moguće žive senzore. Pretraživač raspored i lokalni HTTPS proveri ne zamenjuju stvarnu telefon / tablet LAN prihvatanje.
+Privatni ključevi servera zaštićeni su pomoću Windows DPAPI; akreditivi klijenata čuvaju se kao heš-vrednosti. Promena IP ili obnova sertifikata može da zahteva ponovno uspostavljanje poverenja. Panel prikazuje stanja radnji i provera, a ne sve moguće senzore uživo. Provere rasporeda u pregledaču i lokalnog HTTPS ne zamenjuju prihvatno testiranje stvarnog telefona/tableta preko LAN.
 
-## Pomoćnik lokalnog sastanaka
+## Lokalni AI pomoćnik za sastanke
 
-Ovaj opcionalni eksperimentalni asistent je deaktiviran po podrazumevanju. Otvorite ga iz Alat, eksplicitno ga aktivirajte, izaberite radno vreme / model i dodajte samo resurse koje želite da razmotrite. Stavite cilj, kreirajte nacrt, inspektirajte nerešene zahteve i prenesite rezultat u normalan urednik. Ništa se ne izvršava automatski; spasavanje i pokretanje ostaju eksplicitne akcije. Nema automatskog pada vremena.
+Ovaj neobavezni eksperimentalni pomoćnik podrazumevano je onemogućen. Otvorite ga iz alata, izričito omogućite, izaberite izvršno okruženje/model i dodajte samo resurse koje želite da razmotri. Navedite cilj, napravite nacrt, pregledajte nerešene zahteve i prenesite rezultat u obični uređivač. Ništa se ne izvršava automatski; čuvanje i pokretanje ostaju izričite radnje. Nema automatskog prelaska na drugo izvršno okruženje.
 
-| Rantime | Uspostavljanje |
+| Izvršno okruženje | Podešavanje |
 | --- | --- |
-| Ollama | Odvojena lokalna usluga i lokalno instaliran model na `127.0.0.1:11434`. Oglašeni udaljeni / oblačni modeli su odbijeni. |
-| LM Studio | Lokalni server sa lokalnim modelama i podrškom za JSON shemu na `127.0.0.1:1234`. Ne dozvolite daljinsko rutiranje za lokalnu obradu. |
-| llama.cpp | Lokalni `llama-server` i kompatibilan model sa podrškom za Shemu JSON na `127.0.0.1:8080`. |
-| ONNX Ranjeno vreme GenAI CPU | Pouzdani kompatibilni lokalni GenAI tekstualni model fascikla; izaberite `genai_config.json`. Inferencija koristi kombinovani proces kompanije bez HTTP. |
+| Ollama | Zasebna lokalna usluga i lokalno instaliran model na `127.0.0.1:11434`. Deklarisani udaljeni modeli/modeli u oblaku odbijaju se. |
+| LM Studio | Lokalni server sa lokalno učitanim modelom i podrškom za šemu JSON na `127.0.0.1:1234`. Ne omogućavajte udaljeno rutiranje za lokalnu obradu. |
+| llama.cpp | Lokalni `llama-server` i kompatibilni model sa podrškom za šemu JSON na `127.0.0.1:8080`. |
+| ONNX Runtime GenAI CPU | Pouzdana kompatibilna lokalna fascikla tekstualnog modela GenAI; izaberite `genai_config.json`. Izvođenje modela koristi priloženi prateći proces bez HTTP. |
 
-HTTP klijenti koriste samo loupback, ne koriste proksije i ne prate preusmeravanja. MAKRIVO ne može pouzdano utvrditi da li kompatibilan lokalni server unutra poziva na udaljenu uslugu. Autentirani lokalni serveri nisu konfigurisani u ovoj verziji. Model težine, Python i lokalni inferencijski serveri se ne preuzimaju ili instaliraju automatski.
+Klijenti HTTP koriste samo loopback, ne koriste proksije i ne prate preusmeravanja. MAKRIVO ne može pouzdano da utvrdi da li kompatibilni lokalni server interno poziva udaljenu uslugu. Lokalni serveri sa autentifikacijom ne mogu da se podese u ovoj verziji. Težine modela, Python i lokalni serveri za izvođenje modela ne preuzimaju se niti instaliraju automatski.
 
-ONNX pakovanja trebaju `tokenizer.json` i važeći šablon za razgovor. Podržani obrasci šablona u `tokenizer_config.json` su rečnik `chat_template`, rečnik sa rečnikom `default`, ili nedvosmislena lista imenovanih/defolt šablona. Ako je šablon nedostajao ili nula, `chat_template.jinja` se koristi kao padanje. Prazni, nedvosmisleni, prekomerni ili pogrešno označeni šabloni se odbacuju. Arbitražni ONNX datoteke, ugrađeni/vizijski modeli i samo GPU paketi nisu zamene sa kompatibilnim GenAI tekstualnim modelima. Ugrađena verzija GenAI je 0.17.1, CPU. Koristite samo pouzdane modele; proces odvajanja nije peska.
+Paketi ONNX zahtevaju `tokenizer.json` i važeći šablon razgovora. Podržani oblici šablona u `tokenizer_config.json` jesu string `chat_template`, rečnik sa stringom `default` ili nedvosmislena lista imenovanih/podrazumevanih šablona. Ako šablon nedostaje ili je null, kao zamena koristi se `chat_template.jinja`. Prazni, dvosmisleni, preveliki šabloni i šabloni pogrešnog tipa podataka odbijaju se. Proizvoljne datoteke ONNX, modeli vektorskih reprezentacija/vida i paketi samo za GPU nisu zamenjivi sa kompatibilnim tekstualnim modelima GenAI. Priložena verzija izvršnog okruženja GenAI je 0.17.1, CPU. Koristite samo pouzdane modele; razdvajanje procesa nije sandbox.
 
-Pomoćnik podržava izabrane programe bez argumenata, izabrane dokumente i veb stranice, a mikrofon mut kada je izričito zatraženo. To ne stvara poruke, sastanak, proizvoljne skripte, besplatne klikove, preuzimanja ili prebacivanje slušalica. Cilj i imena resursa se šalju na izabrani lokalni radni vremenski period; resursi i sadržaj datoteke se ne isporučuju odvojeno. Cilj koji je korisnik sam po sebi može da sadrži lične podatke. Ponašanje lokalnog mrežnog ponašanja ostaje odgovornost korisnika.
+Pomoćnik podržava izabrane programe bez argumenata, izabrane dokumente i veb-sajtove i utišavanje mikrofona kada je izričito zatraženo. Ne pravi poruke, sastanke, proizvoljne skripte, proizvoljne klikove, preuzimanja niti prebacivanje slušalica. Cilj i imena resursa šalju se izabranom lokalnom izvršnom okruženju; putanje resursa i sadržaj datoteka ne dostavljaju se zasebno. Cilj koji korisnik unese može sam da sadrži lične podatke. Mrežno ponašanje lokalnog izvršnog okruženja ostaje odgovornost korisnika.
 
-U tom ONNX Zahtev budžeta je 90 2 sekunde, uključujući i model, do 3,072 Brzi token i 1,024 generisani tokeni, takođe ograničeni kontekstom modela. Zloformisani / prekinuti JSON i nepoznati ID se odbacuju. Otkazivanje ili blizu završetka zahteva. Slučajni model ispitivanja određuje izvršenje, ne korisno planiranje kvalitet ili vreme štednje. Lokalni eksperimentalni zapisi sadrže identifikatore događaja i rasporede, ne cilj tekstu ili sadržaj dokumenta; oni se ne automatski preuzimaju.
+Vremensko ograničenje zahteva ONNX je 90 sekundi, uključujući učitavanje modela, uz najviše 3072 ulazna tokena i 1024 generisana tokena, dodatno ograničena kontekstom modela. Neispravan/odsečen JSON i nepoznati identifikatori resursa odbijaju se. Zahtev završite otkazivanjem ili zatvaranjem. Test izvršnog okruženja sa nasumičnim modelom dokazuje izvršavanje, a ne korisni kvalitet planiranja ili uštedu vremena. Lokalni dnevnici eksperimenata sadrže identifikatore događaja i vremena, a ne tekst cilja ili sadržaj dokumenata; ne šalju se automatski na server.
 
-Kasnije male evaluacije Instrukt-modela proizvele su nule važeće planove u četiri nemačke / engleske ispitivanja. Narodna inferencija je radila, ali model je neuspeo u strogom planiranju. Ovo je negativan rezultat kvaliteta, a ne preporučen model ili dokazano koristan asistent. Pogledajte datum lokalnog testa za tačnu reviziju modela i granice.
+Naknadna procena malog modela Instruct nije proizvela nijedan važeći plan u četiri nemačka/engleska testa. Nativno izvođenje modela radilo je, ali model nije zadovoljio stroge zahteve planiranja. To je negativan rezultat kvaliteta, a ne preporuka modela ili dokazano koristan pomoćnik. Za tačnu reviziju modela i ograničenja pogledajte datirani izveštaj o testu lokalnog izvršnog okruženja.
 
-## Import, izvoz, sinhronizacija i rezervna kopija
+## Uvoz, izvoz, sinhronizacija i rezervne kopije
 
-Pregledajte prognoze uvoza pre nego što zamenite konfiguraciju. Importirane akcije počinju da se deaktiviraju, a prenosiva sinhronizacija uklanja hardverske specifične veze. Ponovo rasporediti uređaje i omogućiti akcije namerno nakon inspekcije. Pregledajte sadržaj teksta / akcije pre nego što podelite izvoz; isključivanje lozinke ne čini sve sadržaje akcije koje korisnik stvara neosetljivim.
+Pregledajte prikaz uvoza pre zamene konfiguracije. Uvezene radnje početno su onemogućene, a prenosiva sinhronizacija uklanja dodele zavisne od hardvera. Nakon pregleda ponovo dodelite uređaje i promišljeno omogućite radnje. Pregledajte tekst/sadržaj radnji pre deljenja izvoza; izostavljanje lozinki ne znači da sav korisnički sadržaj radnji nema osetljive podatke.
 
-Profil sinhronizacija razmjenjuje datoteke u odabranom fasciklu, opcionalno jedan upravlja vaš postojeći klijent oblaka. MAKRIVO ne isporučuje oblačni nalog i ne čuva oblačne identifikacije. Revizije sprečavaju tihi prepisi. Uključivanje akcionog sadržaja je eksplicitan izbor. Povratak konfiguracije pre uvoza zamena. Standardna konfiguracija je `%LOCALAPPDATA%\AivanaWindowsController\settings.json`; istorijsko ime direktorije se čuva za kompatibilnost. Zatvorite aplikaciju pre nego što je ručno kopirate / vratite. Skladišteni SDK odobrenja i OS-zaštićene autentifikacije mogu biti potrebne za rekreaciju na drugom računaru.
+Sinhronizacija profila razmenjuje datoteke u izabranoj fascikli, kojom po želji upravlja postojeći klijent za oblak. MAKRIVO ne pruža nalog u oblaku i ne čuva akreditive za oblak. Revizije sprečavaju neprimetno prepisivanje. Uključivanje sadržaja radnji je izričit izbor. Napravite rezervnu kopiju konfiguracije pre zamenskog uvoza. Podrazumevana konfiguracija je `%LOCALAPPDATA%\AivanaWindowsController\settings.json`; istorijsko ime direktorijuma zadržano je radi kompatibilnosti. Zatvorite aplikaciju pre ručnog kopiranja/vraćanja. Sačuvana odobrenja SDK-a i akreditive zaštićene operativnim sistemom možda treba ponovo napraviti na drugom računaru.
 
-## Problemi rešavanje
+## Rešavanje problema
 
-| Simptomi | Šta da proverim |
+| Simptom | Šta proveriti |
 | --- | --- |
-| Kratko ništa ne radi | Aplikacija radi, veze nisu prekinute, pravilno aktivni profil, sačuvan/omogućen talas, konflikti kratka i dostupni cilj. |
-| Ciljni prozor ne može da aktivira | Ručno ga aktivirajte. Windows pregrade ograničenja i privilegijske razlike mogu blokirati automatizaciju. |
-| Specijalni ključ nije otkriven | Podrška za prodavače / SDK / model; konfigurišete kontrole za izdavanje standardnog ključa, ako je moguće. |
-| Druga tastatura takođe normalno | Očekuje se da će Raw Input Ekskluzivno suzbijanje se ne primenjuje za proizvodnju. |
-| Audio ili svetlost nije dostupna | Obnoviti uređaje; inspektirati izabrane identitete, sesije krajnjeg tačaka, podršku VMI/DDC/CI i ograničenja dock/kabela. |
-| OBS ofline | WebSocket v5 je uključen, ispravna krajnja tačka / lozinka, dostupna usluga i važeći nazivi scene / ulaza. |
-| Neuspeh automatizacije | Pridruživanje domaćin uključen, jedinstveni važeći selektor, pristupačni omogućeni cilj, podržana kontrola i dozvole. Vratite prelazni vremenski period samo nakon pregleda cilja. |
-| Mobilni panel nepristupačan | LAN umesto lopback adrese, iste mreže, server radi, odobreni profili, sertifikat prstiju / poverenje i ručne dozvole za vatre. |
-| Plugin ne uspe | Integritet paketa, eksplicitno poverenje / omogućeno stanje, zavisnosti, kompatibilnost protokola i izvršenje dnevnika. |
-| Zahtev ne uspeva | Pravilno odabrani lokalni radni vreme, servis / model spreman, podržana JSON shema, poverena kompatibilna fascikla i ograničenja zahteva. |
-| Layout ili tekst izgleda pogrešno | Odvojiti jezik korisnike od geometrije tastature; preusmeriti prozor, proveriti skalu prikazivanja i izveštavati tačnu stranicu / jezik / izgradnju. |
+| Prečica ništa ne radi | Aplikacija radi, dodele nisu pauzirane, ispravan aktivni profil, sačuvana/omogućena pločica, sukobi prečica i dostupan cilj. |
+| Ciljni prozor ne može da se aktivira | Ručno ga aktivirajte. Ograničenja aktiviranja u prvom planu u Windows i razlike u ovlašćenjima mogu da blokiraju automatizaciju. |
+| Poseban taster nije otkriven | Podrška usluge proizvođača/SDK-a/modela; ako je moguće, podesite vlasničke kontrole tako da šalju podržani standardni taster. |
+| Druga tastatura takođe normalno unosi tekst | To je očekivano uz Raw Input. Isključivo potiskivanje unosa nije implementirano za produkcionu upotrebu. |
+| Zvuk ili osvetljenost nisu dostupni | Osvežite uređaje; proverite izabrani identifikator, sesije krajnjih tačaka, podršku WMI/DDC/CI i ograničenja priključne stanice/kabla. |
+| OBS ofline | Omogućen WebSocket v5, ispravna krajnja tačka/lozinka, dostupna usluga i važeća imena scena/ulaza. |
+| Automatizacija interfejsa ne uspeva | Prateći proces je uključen, jednoznačan važeći selektor, pristupačan omogućen cilj, podržana kontrola i dozvole. Nakon privremenog isteka vremena pokušajte ponovo tek nakon provere cilja. |
+| Mobilni panel nije dostupan | Adresa LAN umesto loopback, ista mreža, pokrenut server, odobreni profili, otisak sertifikata/poverenje i ručne dozvole zaštitnog zida. |
+| Dodatak ne uspeva | Integritet paketa, izričito poverenje/omogućeno stanje, zavisnosti, kompatibilnost protokola i dnevnik izvršavanja. |
+| AI zahtev ne uspeva | Ispravno izabrano lokalno izvršno okruženje, spremna usluga/model, podržana šema JSON, pouzdana kompatibilna fascikla modela i ograničenja zahteva. |
+| Raspored ili tekst izgledaju pogrešno | Razlikujte jezik interfejsa od geometrije tastature; promenite veličinu prozora, proverite skaliranje ekrana i prijavite tačnu stranicu/jezik/verziju izgradnje. |
 
-Za korisni izveštaj o greškama uključuje verziju Windows, aplikaciju graditi/poručiti, jezik, skaliranje prikazivanja, hardverski model, minimalnu sekvenciju i relevantno uređeni dnevnik. Uklonite lične puteve, sadržaj akcije i poverenja pre objavljivanja.
+Za koristan izveštaj o grešci navedite verziju Windows, verziju izgradnje aplikacije/reviziju koda, jezik, skaliranje ekrana, model hardvera, minimalni niz koraka i relevantni dnevnik sa uklonjenim osetljivim podacima. Pre objavljivanja uklonite lične putanje, sadržaj radnji i akreditive.
 
 ## Izgradnja, testiranje i pakovanje
 
-Koristite SDK u `global.json`. Od repozitorija korena:
+Koristite SDK čija je verzija određena u `global.json`. Iz korenskog direktorijuma repozitorijuma:
 
 ```powershell
 dotnet build Aivana.slnx -c Release
@@ -161,14 +161,14 @@ dotnet run --project src/Aivana.Desktop -c Release -- --smoke-test
 python tools/check_documentation.py
 ```
 
-Windows testovi integracije mogu otvoriti izolovane prozore i privremeno konfigurisati / oslobađati podrške provajdera. Ispostavite ih bez drugog kontrolera koji poseduje ove veze. Standardni testovi svetlosti/audio su samo čitanje; eksplicitni testovi hardvera su odvojeni. Mock protokoli, renderirani snimaci i slučajni grafik ne moraju biti predstavljeni kao stvarna hardverska / model kvaliteta prihvatanja.
+Integracioni testovi Windows mogu da otvore izolovane prozore i privremeno podese/oslobode podržane dodele proizvođača. Pokrenite ih bez drugog kontrolera koji koristi te dodele. Podrazumevane provere osvetljenosti/zvuka samo čitaju podatke; izričiti testovi promene i vraćanja hardverskog stanja su zasebni. Simulirani protokoli, iscrtani snimci ekrana i nasumični grafovi izvođenja modela ne smeju se predstavljati kao prihvatno testiranje stvarnog hardvera ili kvaliteta modela.
 
-Potpuni izdavač sakuplja hostere kompanije, mobilne imovine, primjer plugin, radno vreme ONNX i dostupne zavisnosti. Držite svoje poddirektorije. Uspešna izgradnja nije potpisana instalacija ili odobrenje za oslobađanje. Izvor i zgrade mogu se razvijati odvojeno; uporedite snimak dokumentacije i angažovati sa instaliranom verzijom.
+Potpuni postupak pravljenja paketa okuplja prateće procese, resurse mobilnog panela, primer dodatka, izvršno okruženje ONNX i dostupna obaveštenja o zavisnostima. Sačuvajte njegove poddirektorijume. Uspešna izgradnja nije potpisani instalacioni program niti pravno odobrenje izdavanja. Izvorni kod i verzije izgradnje mogu da se razvijaju zasebno; uporedite stanje dokumentacije i reviziju koda sa instaliranom verzijom.
 
-## Licenzije, privatnost i status oslobađanja
+## Licenciranje, privatnost i status izdanja
 
-Predviđeni komercijalni model je jednokratna kupovina sa trajnom upotrebom kupljene velike verzije; konačna cena, pribor i uslovi za ažuriranje moraju biti postavljeni u stvarnim uslovima prodaje. Sistem kupovine / aktivacije proizvodnje nije utvrđen ovim rukovodstvom. Ne postoji potreban oblačni račun za svakodnevni kontrolu.
+Predviđeni komercijalni model je jednokratna kupovina sa trajnom upotrebom kupljene glavne verzije; konačna cena, dozvoljeni broj uređaja i uslovi nadogradnje moraju se utvrditi u stvarnim uslovima prodaje. Ovaj priručnik ne uspostavlja produkcioni sistem kupovine/aktivacije. Za svakodnevno upravljanje nije potreban nalog u oblaku.
 
-Ne distribuirajte vlasničke SDK binarne bez dokazanog dozvola. Sačuvajte licence i obaveštenja treće strane za svaku isporučenu zavisnost, uključujući .NET i ONNX pakete. Model težine imaju svoje uslove. Datum licence revizije prenosi neke nove zavisnosti i nije klirancija za te dodavanja. Repozitorijum koji je javni ne daje opštu licencu otvorenog izvora.
+Ne distribuirajte vlasničke binarne datoteke SDK-a bez dokazane dozvole. Sačuvajte licence i obaveštenja trećih strana za svaku isporučenu zavisnost, uključujući pakete .NET i ONNX. Težine modela imaju sopstvene uslove. Datirana revizija licenci prethodi nekim novim zavisnostima i ne predstavlja odobrenje za te dodatke. Javna dostupnost repozitorijuma sama po sebi ne daje opštu licencu otvorenog koda.
 
-Realni hardver prodavača, telefon / tablet LAN operacija, mešani monitor / DPI tranzicije, dugotrajna upotreba, kompletna lingvistička revizija, ekskluzivna podrška vozača i korisna kvalitet AI planiranja ostaju odvojeni rad prihvatanja. Nikada ne dobijam odobrenje samo od prisustva.
+Stvarni hardver proizvođača, rad telefona/tableta preko LAN, prelazi između različitih monitora/DPI, dugotrajna upotreba, potpun jezički pregled, podrška isključivog drajvera i korisni kvalitet AI planiranja ostaju predmet zasebnog prihvatnog testiranja. Nikada ne zaključujte da je nešto odobreno samo zato što funkcija postoji.

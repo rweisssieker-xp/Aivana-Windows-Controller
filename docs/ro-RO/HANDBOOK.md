@@ -4,153 +4,153 @@
 
 # MAKRIVO — Manual de utilizare
 
-Producător: **Aivana**. Documentare snapshot: **2026-10-12**. Acest manual descrie implementarea curentă a copacului de lucru. Integrările experimentale și funcțiile dependente de hardware sunt identificate în mod explicit. rapoartele istorice descrie fotografiile lor date, nu o garanție pentru o nouă construcție.
+Producător: **Aivana**. Instantaneul documentației: **2026-10-12**. Acest manual descrie implementarea curentă din arborele de lucru al depozitului. Integrările experimentale și funcțiile dependente de hardware sunt identificate explicit. Rapoartele istorice descriu starea de la data lor, nu o garanție pentru o versiune mai nouă.
 
 ## Documentare și limbi
 
-Utilizați selectorul de limbă pentru a deschide manualul complet, inventariul de caracteristici, rezolvarea problemelor, notele de dezvoltare, cercetarea și rapoartele de testare istorică în oricare dintre limbile de aplicare 27. Traducerile generate sunt asistate cu mașină și au controale structurale; nu toate au primit o revizuire a vorbitorului nativ. Identificările tehnice și exemplele executabile rămân neîncărcate. Sursă originală rămâne disponibilă pentru comparație. Analiza de licență tradusă este informativă și nu înlocuiește termenii legali originali sau un EULA final.
+Folosiți selectorul limbii documentației pentru a deschide manualul complet, inventarul funcțiilor, depanarea, notele de dezvoltare, cercetarea și rapoartele istorice de testare în oricare dintre cele 27 de limbi ale aplicației. Traducerile generate sunt asistate automat și verificate structural; nu toate au fost revizuite de vorbitori nativi. Identificatorii tehnici și exemplele executabile rămân neschimbate. Sursa originală rămâne disponibilă pentru comparație. Analiza tradusă a licențelor este informativă și nu înlocuiește termenii juridici originali ai terților sau EULA finală.
 
 ## Instalare și lansare
 
-Obiectivul inițial este Windows 11 x64. Păstrați fiecare fișier și subdirector de distribuție împreună. Înfiinţare `MAKRIVO.exe` Un checkout de sursă nu este un instalator. Pachetele auto conținute includ timpul de funcționare .NET; pachetele dependente de cadru necesită timpul de funcționare .NET 10 corespunzător pentru desktop și ASP.NET. ONNX și hosturile companiei trebuie incluse pentru funcțiile lor respective.
+Ținta inițială este Windows 11 x64. Păstrați împreună toate fișierele și subdirectoarele distribuției. Lansați `MAKRIVO.exe`. O copie a codului sursă din depozit nu este un program de instalare. Pachetele autonome includ mediul de execuție .NET; pachetele dependente de framework necesită mediile de execuție .NET 10 Desktop și ASP.NET corespunzătoare. ONNX și programele gazdă auxiliare trebuie incluse pentru funcțiile respective.
 
-1. Începeți MAKRIVO și alegeți limba interfață în Setări. Se efectuează automat Windows. Layout-ul este o setare separată.
-2. Alegeți un profil, apoi adăugați o pagină prin catalogul de acțiune căutat. Dă-i un nume recunoscut și alegeți acțiunile sale.
-3. Revizuiți pașii și atribuiți o scurtare dacă este necesar. Evitați combinațiile deja utilizate de Windows sau aplicația dvs. țintă.
-4. Salvează proiectul. Modificările neînregistrate nu sunt configurarea salvată.
+1. Porniți MAKRIVO și alegeți limba interfeței din Setări. Opțiunea Automat urmează limba Windows. Dispunerea tastaturii este o setare separată.
+2. Alegeți un profil, apoi adăugați o dală prin catalogul de acțiuni cu funcție de căutare. Dați-i un nume ușor de recunoscut și alegeți acțiunile.
+3. Revizuiți pașii și atribuiți o comandă rapidă dacă este necesar. Evitați combinațiile deja folosite de Windows sau de aplicația țintă.
+4. Salvați schița. Modificările nesalvate nu fac parte din configurația salvată.
 5. Testează cu o acțiune inofensivă, cum ar fi deschiderea unui document și inspectează feedback-ul execuției.
 
-Închiderea fereastră principală lasă în mod normal aplicația în zona de notificare. Faceți dublu clic pe pictograma pentru a o deschide din nou sau folosiți meniul pentru a ieși. Începând cu Windows este opțional și inițial disabil. Controlul pauzelor suspendă legăturile; pictograma afișează un semn de pauză. Anulează macro-urile care funcționează prin intermediul interfață, tray sau a scurtei de anulare configurate; standardul este `Ctrl+Alt+Escape`.
+Închiderea ferestrei principale lasă de obicei aplicația în zona de notificare. Faceți dublu clic pe pictograma ei pentru redeschidere sau folosiți meniul pictogramei pentru ieșire. Pornirea odată cu Windows este opțională și inițial dezactivată. Comanda de pauză suspendă asocierile; pictograma afișează un indicator de pauză. Anulați macrocomenzile în curs din interfață, din zona de notificare sau cu scurtătura configurată pentru anulare; implicit este `Ctrl+Alt+Escape`.
 
-## Tile, acțiuni și paleta de comandă
+## Dale, acțiuni și paleta de comenzi
 
-Tile aparțin profilurilor și pot conține mai multe pași comandate. Editorul susține salvare/descarcare, preview, undo/redo și reordinează pasul. Catalogul furnizează prețuri pentru programe, documente, URL-uri, text, clipboard, scurtături, media, audio, ferestre, acțiuni de sistem și integrări susținute. Un preset care necesită parametri se deschide ca un proiect.
+Dalele aparțin profilurilor și pot conține mai mulți pași ordonați. Editorul permite salvarea/renunțarea, previzualizarea, anularea/refacerea și reordonarea pașilor. Catalogul oferă presetări pentru programe, documente, URL-uri, text, clipboard, comenzi rapide, media, audio, ferestre, acțiuni de sistem și integrări acceptate. O presetare care necesită parametri se deschide ca schiță.
 
-Deschideți paleta cu `Ctrl+K` în timp ce MAKRIVO are un accent. Caută acțiuni salvate, pre-sete, schimbați profil și instrumente. Selectați cheile de aruncă; Enter activate; `Ctrl+Enter` editează un element susținut; Escape se închide. Unele comenzi pregătite de utilizare se execută imediat, în timp ce acțiunile configurate necesită o revizuire. O scurtătură de paletă globală separată poate fi configurată; utilizează noi configurații `Ctrl+Shift+Space`.
+Deschideți paleta cu `Ctrl+K` când MAKRIVO are focalizarea. Căutați acțiuni salvate, presetări, schimbarea profilului și instrumente. Săgețile selectează; Enter activează; `Ctrl+Enter` editează un element acceptat; Escape închide. Unele comenzi gata de utilizare rulează imediat, iar acțiunile configurate necesită revizuire. Se poate configura o scurtătură globală separată pentru paletă; configurațiile noi folosesc `Ctrl+Shift+Space`.
 
-Text și clipboard pași de suport `{{date}}`, `{{time}}`, `{{datetime}}`, `{{clipboard}}`, `{{profile}}`, `{{process}}` şi `{{user}}`. Datele de formare sunt `yyyy-MM-dd`; Timpul de formare este `HH:mm`. Variații necunoscuți rămân neschimbate.Clipboard-ul se întâmplă numai atunci când este solicitat.O acțiune clipboard scrie text fără a se potrivi automat.
+Pașii de text și clipboard acceptă `{{date}}`, `{{time}}`, `{{datetime}}`, `{{clipboard}}`, `{{profile}}`, `{{process}}` și `{{user}}`. Formatul datei este `yyyy-MM-dd`; formatul orei este `HH:mm`. Variabilele necunoscute rămân neschimbate. Clipboardul este citit numai la cerere. O acțiune de clipboard scrie text fără să îl lipească automat.
 
-Acțiunile lansate de la UI pot fi vizate de ultima aplicație externă. În cazul în care obiectivul dispare sau Windows blochează activarea prealabilă, activați manual obiectivul și retrageți-l. Livrarea de cheie de succes nu dovedește că obiectivul și-a îndeplinit sarcina.
+Acțiunile lansate din interfață pot viza ultima aplicație externă. Dacă ținta dispare sau Windows blochează activarea în prim-plan, activați ținta manual și încercați din nou. Transmiterea cu succes a tastelor nu dovedește că ținta și-a încheiat sarcina.
 
 ## Profiluri și setări de locuri de muncă
 
-Profile pot corespunde unui nume de proces și unei părți a unui titlu de fereastră. Când ambele sunt stabilite, ambele trebuie să se potrivească. Ordinul de profil rezolvă meciurile concurențiale; profilul standard este declinul. Permite selectarea automată explicită. Lock Profile împiedică modificările automate ale sesiunii curente.
+Profilurile pot corespunde unui nume de proces și unei părți din titlul ferestrei. Dacă sunt definite ambele, ambele trebuie să corespundă. Ordinea profilurilor decide între potriviri concurente; profilul implicit se folosește în lipsa unei potriviri. Activați explicit selectarea automată. Lock Profile împiedică schimbările automate în sesiunea curentă.
 
-Setarea locului de muncă deschis din Tools sau din paleta. Selectați programe, documente, site-uri web, un obiectiv audio/display sau o scenă OBS. Asistentul pregătește site-ul de lucru, întâlnirea, streamingul, cercetarea sau profilurile de proiect. Verificați pașii generati înainte de a economisi. Instalația nu execută acțiunile pregătite.
+Deschideți Configurarea spațiului de lucru din Instrumente sau paletă. Selectați programe, documente, site-uri, o țintă audio/ecran sau o scenă OBS. Asistentul pregătește profiluri de lucru, întâlnire, streaming, cercetare sau proiect. Inspectați pașii generați înainte de salvare. Configurarea nu execută acțiunile pregătite.
 
 ## Macro, condiții și înregistrare
 
-Macros își execută pașii în ordine și susține așteptările, repetările și anularea. Limita de repetare este 100. Utilizați Preview înainte de a efectua acțiunile care se încadrează într-o altă aplicație sau schimbarea stării sistemului.
+Macrocomenzile execută pașii în ordine și acceptă așteptări, repetări și anulare. Limita generală de repetare este 100. Folosiți Previzualizare înainte de acțiuni care tastează în altă aplicație sau modifică starea sistemului.
 
-Așteptați pentru Fereastră de țintă acceptă un proces, un substrare de titlu și un timout de la 1 la 600,000 ms. Cel puțin un filtru este necesar. O fereastră vizibilă care se potrivește trebuie să răspundă și să devină prealabilă înainte de următoarele etape. O fereastră pregătită nu dovedește că un document sau un serviciu a terminat încărcarea.
+Așteptare fereastră țintă acceptă un proces, un fragment de titlu și un timp de expirare între 1 și 600000 ms. Este necesar cel puțin un filtru. O fereastră vizibilă corespunzătoare trebuie să răspundă și să ajungă în prim-plan înainte de continuarea pașilor. O fereastră pregătită nu dovedește că documentul sau serviciul a terminat încărcarea.
 
-Editorul fluxului de lucru adaugă fișier-exista, proces-currență și condiții de titlu. O stare falsă scapă pasul și poate trece mai departe. Refuză condiția de a exprima o ramură alternativă. Alegeți deliberat stop-on-error sau continu-on-error; continuarea poate lăsa pași ulterioare fără condițiile lor de așteptare.
+Editorul fluxului de lucru adaugă condiții privind existența fișierelor, rularea proceselor și titlul ferestrei. O condiție falsă omite pasul și poate omite și alți pași următori. Negați condiția pentru a exprima o ramură alternativă. Alegeți deliberat oprirea sau continuarea la eroare; continuarea poate lăsa pașii ulteriori fără condițiile prealabile așteptate.
 
-Recordul de acțiune captează coduri și așteaptă, nu tipărirea obișnuită. Acesta susține modificările și cheile funcționale. Scapă încetează înregistrarea. Revizuiți lista și adoptați-o ca un proiect de țesătură nesădată, apoi salvați explicit. Înregistrarea UI click este un instrument separat descris mai jos.
+Înregistratorul de acțiuni capturează combinații de taste rapide și așteptări, nu tastarea obișnuită. Acceptă comenzi rapide cu taste modificatoare și taste funcționale. Escape oprește înregistrarea. Revizuiți lista și preluați-o ca schiță nesalvată de dală, apoi salvați explicit. Înregistrarea clicurilor din interfață este un instrument separat, descris mai jos.
 
 ## Keyboards, gesturi și straturi
 
-Pagina de tastatură conține interfețe detectate și layout-uri de referință. O singură tastatură fizică poate expune mai multe interfețe. Alegeți limba și geometria potrivită; un singur nume de produs nu identifică ISO sau ANSI.
+Pagina tastaturii listează interfețele detectate și dispunerile de referință. O singură tastatură fizică poate expune mai multe interfețe. Selectați limba și geometria corecte; numele produsului singur nu identifică dispunerea ISO sau ANSI.
 
-Hotkeys globale standard se aplică peste tastatură. Raw Input legăturile observă un anumit dispozitiv și codul de scanare, inclusiv funcția susținută și cheile media. **Raw Input Nu suprimă regulile Windows Un tastatură exclusivă nu este pregătită pentru producție.** Un backend semnat, licențiat și testat este încă necesar; nu este instalat de către MAKRIVO.
+Comenzile rapide globale standard se aplică tuturor tastaturilor. Asocierile Raw Input specifice dispozitivului urmăresc un anumit dispozitiv și cod de scanare, inclusiv tastele funcționale și media acceptate. **Raw Input nu suprimă introducerea obișnuită în Windows. O a doua tastatură exclusivă nu este pregătită pentru utilizare în producție.** Este încă necesar un backend cu driver de filtrare semnat, licențiat și testat; MAKRIVO nu instalează niciunul.
 
-Conectările cu cheie specială pot folosi presiune imediată, tap, hold sau dublu tap. Cheile de strat selectați selectați temporar o altă mapare și restabiliți stratul de bază la eliberare; cheile de strat selectați nu își desfășoară propriul macro. Păstrează pragurile de la 150 la 5,000 ms; dublu-tap ferestre de la 150 la 1,000 ms. Aceste hărți sunt diferite de hotkeys obișnuiți.
+Asocierile acceptate pentru taste speciale pot folosi apăsare imediată, atingere, menținere sau atingere dublă. Tastele de strat menținute selectează temporar altă mapare și restabilesc stratul de bază la eliberare; tastele de selectare a stratului nu rulează propria macrocomandă. Pragurile de menținere sunt între 150 și 5000 ms; ferestrele de atingere dublă între 150 și 1000 ms. Aceste mapări sunt distincte de comenzile rapide globale obișnuite.
 
-Special-key-ul detectează cheile compatibile fără a-și executa acțiunile atribuite în timpul captării. Diagnosticul explică dispozitivele inaccesibile, legăturile pauzate, defectele de profil și conflictele. Suprafața afișează layout-ul selectat și legăturile; scurtarea sa de preferință este `Ctrl+Alt+F1`.
+Asistentul pentru taste speciale detectează tastele compatibile fără a executa acțiunile atribuite în timpul capturării. Diagnosticarea explică dispozitivele indisponibile, asocierile suspendate, nepotrivirile profilurilor și conflictele. Suprapunerea afișează dispunerea și asocierile selectate; scurtătura implicită de menținut apăsată este `Ctrl+Alt+F1`.
 
 | Integrare | Cerințe și limite |
 | --- | --- |
-| Corsair | Running iCUE, acces SDK și un model compatibil. G1-G6 și funcții RGB susținute; Fn proprietare, roata, blocul și controlul de profil nu sunt, în general, expuse de API-ul G-key. |
-| Logitech G | Bibliotecile locale x64 G-key/LED necesită aprobarea explicită. Evenimentele de cheie G nu identifică în mod unic mai multe tastatură fizică identică. |
-| Razer | Chroma RGB și intrarea standardă; controlul proprietății în Synapse acolo unde este necesar. |
-| SteelSeries | GameSense RGB și intrare standard; controlul proprietății de hartă în GG acolo unde este necesar. |
-| Wooting | Compatibilă cu SDK-ul local original x64 pentru valori și praguri analogice; intrarea HID normală rămâne activă. |
-| Alte tastatură | Hotkeys standard sau coduri de scan fizic susținute. Fn și controlul proprietății depind de model și de configurația vânzătorului. |
+| Corsair | iCUE în funcțiune, acces SDK și un model compatibil. G1–G6 și funcțiile RGB acceptate; comenzile proprietare Fn, rotiță, blocare și profil nu sunt în general expuse de G-key API. |
+| Logitech G | Bibliotecile SDK locale originale x64 G-key/LED necesită aprobare explicită. Evenimentele G-key nu identifică unic mai multe tastaturi fizice identice. |
+| Razer | Chroma RGB și intrare standard; mapați comenzile proprietare în Synapse unde este necesar. |
+| SteelSeries | GameSense RGB și intrare standard; mapați comenzile proprietare în GG unde este necesar. |
+| Wooting | SDK local original x64 compatibil pentru valori și praguri analogice; intrarea HID normală rămâne activă. |
+| Alte tastaturi | Comenzi rapide standard sau asocieri acceptate prin coduri fizice de scanare. Fn și comenzile proprietare depind de model și de configurația furnizorului. |
 
-Cercetarea producătorului descrie capacitățile documentate, compatibilitatea nu este implementată sau testată cu fiecare dispozitiv enumerat. Noile adaptoare au nevoie de acceptare hardware reală. Nu descărcați binarile SDK din surse nesigure; drepturile de distribuție SDK sunt separate de compatibilitate tehnică.
+Cercetarea producătorilor descrie capabilități documentate, nu compatibilitate implementată sau testată cu fiecare dispozitiv enumerat. Noile adaptoare necesită încă acceptanță cu hardware real. Nu descărcați binare SDK din surse nesigure; drepturile de distribuție SDK sunt separate de compatibilitatea tehnică.
 
 ## Audio, afișare și OBS
 
-Etapele audio stabilesc volumul de la 0 la 100 procente și punctele de ieșire mute/unmute/toggle susținute sau microfon. Alegeți un punct specific sau utilizați standardul Windows. O țintă salvată lipsită produce o eroare în loc să controleze în tăcere un alt dispozitiv. Reîncărcați dispozitivele după reconectare. Controlul punctului final nu este o cerere de sprijin independent pe aplicație.
+Pașii audio setează volumul între 0 și 100 procente și dezactivează/activează/comută sunetul punctelor finale de ieșire sau microfon acceptate. Alegeți un punct final specific sau pe cel implicit Windows. Lipsa țintei salvate produce o eroare în loc să controleze discret alt dispozitiv. Reîmprospătați dispozitivele după reconectare. Controlul punctelor finale nu implică suport pentru mixer independent per aplicație.
 
-Acțiunile de afișare cresc / scad luminozitatea cu 10 puncte procentuale sau stabilește o valoare de la 0 la 100. Dispozitivele interne folosesc interfețe WMI susținute; monitorele externe necesită suport DDC/CI și, de obicei, setarea de meniu a monitorului. Docurile, adaptorii și cablurile pot bloca controlul. Alegeți toate ecranele suportate sau un singur monitor. Reconectarea poate schimba identitățile disponibile; revizuirea obiectivului salvat. Citirea lipsită este dovedită ca fiind inaccesibilă în loc de valori măsurate.
+Acțiunile de ecran cresc/scad luminozitatea cu 10 puncte procentuale sau stabilesc o valoare între 0 și 100. Ecranele interne folosesc interfețe WMI acceptate; monitoarele externe necesită DDC/CI și de obicei activarea din meniul monitorului. Stațiile de andocare, adaptoarele și cablurile pot bloca controlul. Selectați toate ecranele acceptate sau un monitor. Reconectarea poate schimba identitățile disponibile; verificați ținta salvată. Citirile lipsă apar ca indisponibile, nu ca valori măsurate.
 
-OBS necesită WebSocket v5 activat în OBS Instrumente. Configurați punctul final, testați conexiunea și încărcați numele de scenă / intrare înainte de a salva. Acțiunile susținute includ schimbarea scenei, înregistrarea start/stop/toggle, înregistrarea pauzei/resumei și mute de intrare. Parolele pot fi stocate în Windows Credential Manager și sunt excluse din exporturile de configurare. O comandă de succes OBS nu stabilește fiecare efect de streaming.
+OBS necesită activarea WebSocket v5 din Instrumentele OBS. Configurați punctul final, testați conexiunea și încărcați numele scenelor/intrărilor înainte de salvare. Sunt acceptate schimbarea scenei, pornirea/oprirea/comutarea transmisiei și înregistrării, întreruperea/reluarea înregistrării și dezactivarea sunetului de intrare. Parolele pot fi stocate în Windows Credential Manager și sunt excluse din exporturile configurației. O comandă OBS reușită nu confirmă toate efectele ulterioare ale transmisiei.
 
 ## Verificarea rezultatelor și istoria executării
 
-Permiteți verificarea rezultatelor pentru pașii potriviți. Aplicația distinge controalele prealabile, efectele confirmate, eșecurile, anularea și efectele care nu pot fi verificate. Existența procesului nu este pregătirea de aplicare. Modificările relative, scurtăturile și intrarea textului nu pot primi o cerere de succes. Verificați istoricul activității și verificați atunci când o acțiune eșuează. Erorile de configurare trebuie corectate înainte de a rerunde macro-ul complet.
+Activați Verificare rezultat pentru pașii potriviți. Aplicația distinge verificările preliminare, efectele confirmate, eșecurile, anularea și efectele neverificabile. Existența procesului nu înseamnă că aplicația este pregătită. Modificările relative, comenzile rapide și introducerea textului nu pot primi o confirmare generală de succes. Inspectați jurnalul activității și istoricul verificărilor când o acțiune eșuează. Corectați erorile de configurare înainte de rerularea întregii macrocomenzi.
 
 ## Automatizarea și înregistrarea clicurilor
 
-Adăugați o etapă de automatizare a UI, selectați operațiunea și captați ținta sub indicator după întârzierea afișată. capturarea nu execută nimic. verificați selectorul și necesită un match unic. `Invoke`, `Select`, `Toggle`, `Focus`, `SetValue` şi `WaitState`. Câmpurile de parolă, controlele disabilizate și selectorii ambigu sunt respinse.
+Adăugați un pas UI Automation, selectați operația și capturați ținta de sub indicator după întârzierea afișată. Capturarea singură nu execută nimic. Verificați selectorul și impuneți o potrivire unică. Sunt acceptate `Invoke`, `Select`, `Toggle`, `Focus`, `SetValue` și `WaitState`. Câmpurile de parolă, controalele dezactivate și selectorii ambigui sunt respinși.
 
-Automatizarea UI se desfășoară într-un proces de companie limitat. Depinde de sprijinul și permisiunile de accesibilitate Windows ale aplicației țintă. Înregistratorul de clic captează acțiunile și pauzele susținute; nu înregistrează intrarea generală a textului. revizuirea și validarea proiectului înainte de a-l adopta. Modificările de UI într-o aplicație externă pot dezactiva selectorii. Procesul de izolare limitează accidentele și anularea, dar nu este o cutie de nisip de securitate.
+Automatizarea interfeței rulează într-un proces auxiliar cu limite. Depinde de suportul de accesibilitate Windows și de permisiunile aplicației țintă. Înregistratorul de clicuri capturează acțiunile acceptate și pauzele, nu introducerea generală de text. Revizuiți și validați schița înainte de preluare. Schimbările interfeței aplicației externe pot invalida selectorii. Izolarea proceselor limitează efectele blocărilor și delimitează anularea, dar nu este un sandbox de securitate.
 
 ## Plug-uri
 
-Deschideți extinderi pentru a verifica un pachet înainte de import. Structura pachetului, manifestul și hash-urile sunt verificate. Importul începe cu dizabilităţi. Citiți acțiunile declarate și încredințați explicit editorului înainte de a permite. Plug-in-ul funcționează cu permisiunile utilizatorului într-un proces separat; acest proces este **nu o cutie de nisip**. Instalați doar pachete pe care le încred.
+Deschideți Extensii pentru a inspecta un pachet înainte de import. Se verifică structura pachetului, manifestul și valorile hash. După import, pachetul este dezactivat. Citiți acțiunile declarate și acordați explicit încredere editorului înainte de activare. Pluginurile rulează cu permisiunile utilizatorului într-un proces separat; acest proces **nu este un sandbox**. Instalați numai pachete în care aveți încredere.
 
-Managerul susține exportul, dezactivarea, dezinstalarea și restabilirea unei versiuni anterioare. Dependența lipsită blochează invocarea. Pachetul de exemplu oferă conturi și acțiuni locale-stat. Schema susținută este un subset documentat al schemei JSON, nu toate caracteristicile posibile ale schemei JSON. Nu există piață publică plugin.
+Managerul permite exportul, dezactivarea, dezinstalarea și restaurarea/eliminarea unei versiuni anterioare. Dependențele lipsă blochează invocarea. Pachetul exemplu oferă acțiuni de numărătoare inversă și stare locală. Schema acceptată este un subset documentat al JSON-Schema, nu toate funcțiile posibile ale JSON-Schema. Nu există o piață publică de pluginuri.
 
-## Panourile mobile
+## Panou mobil
 
-1. Deschideţi Panourile mobile, selectaţi un IP local şi selectaţi în mod explicit profilurile de expunere. Adresa de tip default este accesibilă numai pe PC-ul însuși; selectați adresa LAN corespunzătoare pentru un telefon sau tabletă.
-2. Începeți panourile și citiți adresa HTTPS, amprenta degetului și codul de pereche de șase cifre de unică utilizare.
+1. Deschideți Panoul mobil, selectați un IP local și alegeți explicit profilurile de expus. Adresa implicită loopback este accesibilă numai de pe PC; selectați adresa LAN potrivită pentru telefon sau tabletă.
+2. Porniți panoul și citiți adresa HTTPS, amprenta certificatului și codul de asociere de șase cifre, de unică folosință.
 3. Pe un dispozitiv din aceeași rețea de încredere, deschideți adresa. Comparați amprenta SHA-256 printr-un canal de încredere înainte de a încred în certificatul local. Aplicația nu instala automat un certificat de încredere.
-4. Se utilizează codul afișat și se testează o țesătură inofensive. O permisiune manuală Windows Firewall poate fi necesară pentru accesul la LAN. Nu expuneți portul la internet.
-5. Închideți panourile după finalizare sau revocați clienții plătiți prin intermediul aplicației.
+4. Asociați folosind codul afișat și testați o dală inofensivă. Poate fi necesară o permisiune manuală Windows Firewall pentru acces LAN. Nu expuneți portul la internet.
+5. Opriți panoul la final sau revocați clienții asociați din aplicație.
 
-Cheile de server private sunt protejate cu Windows DPAPI; credențialele clientului sunt stocate ca hashuri. Modificarea IP sau reînnoirea certificatului poate necesita o încredere reînnoită. Panelul afișează stările de acțiune și de verificare, nu toate posibilele senzori live. Layout-ul browserului și verificările locale HTTPS nu înlocuiesc acceptarea reală a telefonului/tabletului LAN.
+Cheile private ale serverului sunt protejate cu Windows DPAPI; acreditările clienților sunt stocate ca hashuri. Schimbarea IP-ului sau reînnoirea certificatului poate necesita reînnoirea încrederii. Panoul afișează stările acțiunilor și verificărilor, nu orice senzor live posibil. Verificările aspectului în browser și HTTPS local nu înlocuiesc acceptanța LAN cu telefoane/tablete reale.
 
-## Ajutor de întâlnire
+## Asistent AI local pentru întâlniri
 
-Acest asistent experimental opțional este disabilizat prin default. Deschideți-l din Instrumente, activați-l explicit, selectați un timp de lucru / model și adăugați doar resursele pe care doriți să le luați în considerare. Stabiliți obiectivul, creați un proiect, inspectați solicitările nerezolvate și transmiteți rezultatul editorului normal. Nimic nu se execută automat; salvarea și funcționarea rămân acțiuni explicite. Nu există o ruptura automată.
+Acest asistent experimental opțional este dezactivat implicit. Deschideți-l din Instrumente, activați-l explicit, selectați mediul de execuție/modelul și adăugați numai resursele dorite. Definiți obiectivul, creați o schiță, inspectați solicitările nerezolvate și transferați rezultatul în editorul normal. Nimic nu se execută automat; salvarea și rularea rămân acțiuni explicite. Nu există trecere automată la un mediu de execuție alternativ.
 
-| Război | setare |
+| Mediu de execuție | setare |
 | --- | --- |
 | Ollama | Servicii locale separate și un model instalat local la `127.0.0.1:11434`. Modelele de distanță / cloud declarate sunt respinse. |
-| LM Studio | Serverul local cu un model încărcat local și suport pentru schema JSON la `127.0.0.1:1234`. Nu permiteți rotirea la distanță pentru prelucrarea locală. |
-| llama.cpp | Modelul local `llama-server` și compatibil cu suportul schemei JSON la `127.0.0.1:8080` |
-| ONNX Timpul de funcționare GenAI CPU | Folderul de model de text compatibil GenAI; selectați `genai_config.json`. Inference utilizează un proces de companie fără HTTP. |
+| LM Studio | Server local cu model încărcat local și suport de schemă JSON la `127.0.0.1:1234`. Nu activați rutarea la distanță pentru procesare locală. |
+| llama.cpp | `llama-server` local și model compatibil cu suport de schemă JSON la `127.0.0.1:8080`. |
+| ONNX Timpul de funcționare GenAI CPU | Folder local de model text GenAI compatibil și de încredere; selectați `genai_config.json`. Inferența folosește un proces auxiliar inclus, fără HTTP. |
 
-Clienții HTTP folosesc doar loopback, nu folosesc proxy-uri și nu urmăresc redirecționări. MAKRIVO nu pot stabili cu încredere dacă un server local compatibil apelă intern la un serviciu la distanță. Serverele locale autentificate nu pot fi configurate în această versiune. Pesoarele de model, Python și serverele de inferență locale nu sunt descărcate sau instalate automat.
+Clienții HTTP folosesc numai loopback, nu folosesc proxy-uri și nu urmăresc redirecționări. MAKRIVO nu poate stabili în mod fiabil dacă un server local compatibil apelează intern un serviciu la distanță. Serverele locale care necesită autentificare nu pot fi configurate în această versiune. Ponderile modelelor, Python și serverele locale de inferență nu sunt descărcate sau instalate automat.
 
-ONNX pachete au nevoie de `tokenizer.json` și un templu de chat valabil. Formularele de șablon susținute în `tokenizer_config.json` sunt un string `chat_template`, un dicționar cu un string `default`, sau o listă de șablonuri numite/default neambigu. Dacă șablonul este lipsit sau zero, `chat_template.jinja` este utilizat ca o descărcare. Modelele goale, ambigu, exagerate sau tipate incorect sunt respinse. Fișierele arbitrare ONNX, modelele de încorporare/vizualizare și pachetul GPU nu pot fi schimbate cu modelele de text GenAI compatibile. Versiunea de lucru GenAI este 0.17.1, CPU. Folosiți doar modele de încredere; separarea procesului nu este o cutie de nisip.
+Pachetele ONNX necesită `tokenizer.json` și un șablon de conversație valid. Formele acceptate în `tokenizer_config.json` sunt un șir `chat_template`, un dicționar cu un șir `default` sau o listă neambiguă de șabloane denumite/implicite. Dacă șablonul lipsește sau este null, se folosește `chat_template.jinja` ca alternativă. Șabloanele goale, ambigue, supradimensionate sau cu tip incorect sunt respinse. Fișierele ONNX arbitrare, modelele de embeddings/viziune și pachetele exclusiv GPU nu pot înlocui modelele de text GenAI compatibile. Versiunea mediului GenAI inclus este 0.17.1, CPU. Folosiți numai modele de încredere; separarea proceselor nu este un sandbox.
 
-Asistentul susține programe selectate fără argumente, documente selectate și site-uri web și microfon mute la cerere expresă. Nu creează mesaje, întâlniri, scripte arbitrare, clicuri gratuite, descărcări sau schimbări de headset. Obiectivul și numele resurselor sunt trimise la timpul de funcționare local selectat; căile de resurse și conținutul fișierului nu sunt furnizate separat. Un scop tipizat de utilizator poate conține în sine date cu caracter personal. Comportamentul propriu al unui runtime local rămâne responsabilitatea utilizatorului.
+Asistentul acceptă programele selectate fără argumente, documentele și site-urile selectate și dezactivarea microfonului numai la cerere explicită. Nu creează mesaje, programări, scripturi arbitrare, clicuri libere, descărcări sau comutarea căștilor. Obiectivul și numele resurselor sunt trimise mediului local selectat; căile resurselor și conținutul fișierelor nu sunt furnizate separat. Obiectivul tastat de utilizator poate conține el însuși date personale. Comportamentul propriu de rețea al mediului local rămâne responsabilitatea utilizatorului.
 
-Bugetul de cerere ONNX este 90 secunde, inclusiv încărcarea modelului, până la 3,072 tokenuri rapide și 1,024 generate, de asemenea, limitat de contextul modelului. ID-urile de resurse necunoscute și JSON defavorizate sunt respinse. Anulează sau se apropie de finalizarea unei cereri. Un test de timp aleator stabilește executarea, nu calitatea de planificare utilă sau economisirea timpului. Log-urile locale de experimente conțin identificatori de evenimente și orare, nu conținut text țintă sau document; acestea nu sunt încărcate automat.
+Limita cererii ONNX este de 90 de secunde, inclusiv încărcarea modelului, până la 3072 tokenuri de intrare și 1024 tokenuri generate, în limita contextului modelului. JSON malformat/trunchiat și ID-urile de resurse necunoscute sunt respinse. Anulați sau închideți pentru a termina cererea. Un test de execuție cu un model aleator dovedește execuția, nu o calitate utilă a planificării sau economii de timp. Jurnalele locale de experimente conțin identificatori de evenimente și durate, nu textul obiectivului sau conținutul documentelor; nu sunt încărcate automat.
 
-Evaluarea ulterioară a modelului Instruct a produs planuri valabile zero în patru teste germane/angleze. Inferența nativă a lucrat, dar modelul a eşuat contractul de planificare strictă. Acesta este un rezultat negativ, nu un model recomandat sau un asistent util dovedit. Vezi raportul de testare în timp local pentru revizuirea exactă a modelului și limitele.
+Evaluarea ulterioară a unui model Instruct mic a produs zero planuri valide în patru probe în germană/engleză. Inferența nativă a funcționat, dar modelul nu a respectat contractul strict de planificare. Acesta este un rezultat negativ de calitate, nu un model recomandat sau un asistent cu utilitate demonstrată. Consultați raportul datat de testare a mediului local pentru revizia exactă a modelului și limite.
 
 ## Import, export, sincronizare și backup
 
-Verificați previziunile de import înainte de a înlocui o configurație. Acțiunile importate încep să fie dezactivate, iar sincronizarea portabilă îndepărtează legăturile specifice hardware-ului. Reîncărcați dispozitivele și permiteți acțiunile deliberate după inspecție. Revizuirea conținutului text/acțiune înainte de a împărtăși un export; excluderea parolelor nu face toate conținutul de acțiune creat de utilizator necorespunzător.
+Revizuiți previzualizările importului înainte de înlocuirea configurației. Acțiunile importate sunt inițial dezactivate, iar sincronizarea portabilă elimină asocierile specifice hardware-ului. Reatribuiți dispozitivele și activați deliberat acțiunile după inspecție. Revizuiți textele/acțiunile înainte de partajarea exportului; excluderea parolelor nu face ca tot conținutul acțiunilor create de utilizator să fie nesensibil.
 
-Sincronizarea profilului schimbă fișierele într-o folderă selectată, opțional gestionată de clientul dvs. cloud existent. MAKRIVO nu furnizează conturi cloud și nu stocă credențiale cloud. Revizuirea previne supraîncărcarea tăcută. Includerea conținutului de acțiune este o alegere explicită. Întoarceți configurația înainte de a efectua o importare de schimb. Configurația standard este `%LOCALAPPDATA%\AivanaWindowsController\settings.json`; numele istoric al directoriei este păstrat pentru compatibilitate. Închideți aplicația înainte de a o copia / restabili manual. Autorizațiile SDK stocate și credențialele protejate de OS pot fi necesare pentru a fi recreate pe un alt PC.
+Sincronizarea profilurilor schimbă fișiere într-un folder selectat, opțional administrat de clientul cloud existent. MAKRIVO nu oferă cont cloud și nu stochează acreditări cloud. Reviziile împiedică suprascrierile neanunțate. Includerea conținutului acțiunilor este o alegere explicită. Faceți backup configurației înainte de importul care o înlocuiește. Configurația implicită este `%LOCALAPPDATA%\AivanaWindowsController\settings.json`; numele istoric al directorului se păstrează pentru compatibilitate. Închideți aplicația înainte de copierea/restaurarea manuală. Aprobările SDK salvate și acreditările protejate de sistemul de operare pot necesita recreare pe alt PC.
 
 ## rezolvarea problemelor
 
 | Simptomele | Ce să verifice |
 | --- | --- |
-| Shortcut nu face nimic | Aplicația funcționează, legăturile nu sunt pauzate, profilul activ corect, tile salvate / activate, conflicte de scurtă durată și obiectivele disponibile. |
-| Fereastra nu poate fi activata | Activarea manuală. Windows restricțiile de frontieră și diferențele de privilegiu pot bloca automatizarea. |
+| Shortcut nu face nimic | Aplicația pornită, asocieri nesuspendate, profil activ corect, dală salvată/activată, conflicte de comenzi rapide și țintă disponibilă. |
+| Fereastra nu poate fi activata | Activați manual. Restricțiile Windows pentru prim-plan și diferențele de privilegii pot bloca automatizarea. |
 | Cheia specială nu este detectată | Serviciul de furnizare/SDK/modele de suport; Configurați controlul proprietății pentru a emite un cheie standard susținut, dacă este posibil. |
-| Al doilea tip de tastatură este de asemenea normal | Se așteaptă Raw Input Suprimarea exclusivă nu este implementată pentru producție. |
-| Audio sau luminozitate nu este disponibilă | Reîncărcați dispozitivele; verificați identitatea selectată, sesiunile de finisare, suportul WMI/DDC/CI și restricțiile de dotare/kablu. |
+| A doua tastatură introduce și text normal | Comportament așteptat cu Raw Input. Suprimarea exclusivă nu este implementată pentru producție. |
+| Audio sau luminozitate indisponibile | Reîmprospătați dispozitivele; verificați identitatea selectată, sesiunile punctelor finale, suportul WMI/DDC/CI și restricțiile stației de andocare/cablului. |
 | OBS offline | WebSocket v5 activat, punctul final corect / parola, serviciul accesibil și numele de scenă / intrare valabile. |
-| Automatizarea eșuează | Companion găzduiește, selector valabil unic, accesibil obiectiv, control susținut și permisiuni. Retrageți o perioadă tranzitorie numai după revizuirea obiectivului. |
-| Panouri mobile inaccesibile | LAN, în loc de adresa de întoarcere, aceeași rețea, funcționarea serverului, profilurile aprobate, certificarea de amprenta / încredere și permisiunile firewall-ului manual. |
+| Automatizarea eșuează | Program gazdă auxiliar inclus, selector valid unic, țintă accesibilă și activată, control acceptat și permisiuni. Reîncercați după o expirare tranzitorie numai după verificarea țintei. |
+| Panoul mobil nu este accesibil | Adresă LAN în loc de loopback, aceeași rețea, server pornit, profiluri aprobate, amprenta/încrederea certificatului și permisiuni manuale de firewall. |
 | Plug-ul eșuează | Integritatea pachetului, statul explicit de încredere/autorizat, dependențele, compatibilitatea protocolului și logul de executare. |
 | Cererea eșuează | Timpul de funcționare local selectat corect, serviciul / modelul gata, schema JSON susținută, folderul de model compatibil și limitele de cerere. |
-| Layout sau text pare greșit | Separați limba UI de geometria tastaturii; revizuiți fereastra, verificați scara afișării și raportați pagina / limbă / construcție exactă. |
+| Dispunerea sau textul par greșite | Distingeți limba interfeței de geometria tastaturii; redimensionați fereastra, verificați scalarea ecranului și raportați pagina/limba/versiunea exactă. |
 
-Pentru un raport util, se includ versiunea Windows, construirea / comiterea aplicațiilor, limba, scala de afișare, modelul de hardware, o secvență minimă și jurnalul redactat relevant. Îndepărtează căile personale, conținutul de acțiune și credențiale înainte de publicare.
+Pentru un raport util includeți versiunea Windows, versiunea/commitul aplicației, limba, scalarea ecranului, modelul hardware, o secvență minimă și jurnalul relevant cu datele sensibile eliminate. Eliminați căile personale, conținutul acțiunilor și acreditările înainte de publicare.
 
 ## Construcție, testare și ambalare
 
-Foloseste SDK-ul in `global.json`. Din rădăcinile de la Robotic:
+Folosiți versiunea SDK fixată în `global.json`. Din rădăcina depozitului:
 
 ```powershell
 dotnet build Aivana.slnx -c Release
@@ -161,14 +161,14 @@ dotnet run --project src/Aivana.Desktop -c Release -- --smoke-test
 python tools/check_documentation.py
 ```
 
-Testele de integrare Windows pot deschide ferestrele izolate și pot configura / elibera temporar legăturile furnizorului susținute. Luați-le fără un alt controlor care deține aceste legături. Testele de luminozitate/audio ale standardului sunt doar citite; testele de hardware explicite sunt separate. Protocolele de rezoluție, imaginile de ecran și graficele de inferență aleatorie nu trebuie reprezentate ca acceptare reală a hardware-ului/modelului.
+Testele de integrare Windows pot deschide ferestre izolate și pot configura/elibera temporar asocierile acceptate ale furnizorilor. Rulați-le fără alt controler care deține aceste asocieri. Sondările implicite de luminozitate/audio sunt numai de citire; testele explicite de modificare și restabilire a hardware-ului sunt separate. Protocoalele simulate, capturile randate și grafurile aleatorii de inferență nu trebuie prezentate ca acceptanță reală a hardware-ului/calității modelului.
 
-Editorul complet colectează host-urile companiei, activele mobile, plugin-ul de exemplu, timpul de funcționare ONNX și notificările de dependență disponibile. Păstrează subdirectoarele. O construcție de succes nu este o aprobare de instalare semnată sau legală. Sursă și structuri pot evolua separat; comparați snapshot-ul documentării și comandați-vă cu versiunea instalată.
+Instrumentul complet de publicare reunește programele gazdă auxiliare, resursele mobile, pluginul exemplu, mediul ONNX și notificările disponibile pentru dependențe. Păstrați subdirectoarele. O compilare reușită nu constituie un instalator semnat sau aprobare juridică de lansare. Sursele și versiunile compilate pot evolua separat; comparați instantaneul documentației și commitul cu versiunea instalată.
 
 ## Licență, confidențialitate și statutul de eliberare
 
-Modelul comercial intenționat este o achiziție de o singură dată cu utilizarea permanentă a versiunii majore achiziționate; prețul final, permisiunea dispozitivului și termenii de actualizare trebuie să fie stabilite în termenii de vânzare efectivi. Un sistem de achiziție / activare nu este stabilit de acest manual. Nu este necesar un cont cloud pentru controlul zilnic.
+Modelul comercial intenționat este o achiziție unică pentru utilizarea perpetuă a versiunii majore cumpărate; prețul final, numărul permis de dispozitive și condițiile de upgrade trebuie stabilite în termenii efectivi de vânzare. Acest manual nu stabilește existența unui sistem de achiziție/activare în producție. Nu este necesar cont cloud pentru controlul zilnic.
 
-Nu distribuiți binare SDK proprietate fără permisiunea dovedită. Păstrați licențe și notificări de la terți pentru fiecare dependență trimisă, inclusiv pachete .NET și ONNX. Modele de greutate au propriile termene. Auditul de licență datat prezintă unele noi dependențe și nu este o clauză pentru aceste aditivi. Repostitorul nu acordă în sine o licență generală de sursă deschisă.
+Nu distribuiți fișiere binare SDK proprietare fără permisiune dovedită. Păstrați licențele și notificările terților pentru fiecare dependență distribuită, inclusiv pachetele .NET și ONNX. Ponderile modelelor au propriii termeni. Auditul de licență datat precedă unele dependențe noi și nu constituie autorizare pentru aceste adăugiri. Faptul că depozitul este public nu acordă în sine o licență generală open-source.
 
-Hardware-ul real al furnizorului, operațiunile telefonice / tabletă LAN, tranzițiile mixte-monitor/DPI, utilizarea pe termen lung, revizuirea lingvistică completă, suportul exclusiv al conducătorului și calitatea de planificare AI rămân lucrări separate de acceptare. Niciodată să nu dau aprobarea numai de la prezența de caracter.
+Hardware-ul real al furnizorilor, operarea LAN pe telefoane/tablete, tranzițiile între monitoare/DPI diferite, utilizarea îndelungată, revizuirea lingvistică completă, suportul driverului pentru exclusivitate și calitatea utilă a planificării AI rămân activități separate de acceptanță. Nu deduceți aprobarea doar din prezența unei funcții.

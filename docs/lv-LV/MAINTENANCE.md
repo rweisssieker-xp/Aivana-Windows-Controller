@@ -4,7 +4,7 @@
 
 # Visu dokumentācijas valodu saglabāšana
 
-Dokumentācija seko visiem 27 UI valodas. ģenerētie faili izmanto reģionālos kodus; Norvēģijas kartes `nb-NO` Latīņamerikāņu valodā `sr-Latn`. Katra mape satur indeksu, rokasgrāmatu, detalizētu rīcības atsauci, funkciju inventāru, verifikācijas piezīmes, pētījumus, tostarp CSV, vēsturiskos plānus un licencēšanas analīzi.
+Dokumentācija aptver visas 27 saskarnes valodas. Ģenerētajās mapēs izmanto reģionālos kodus; norvēģu valodai atbilst `nb-NO`, bet serbu valodai latīņu rakstībā — `sr-Latn`. Katrā mapē ir rādītājs, rokasgrāmata, detalizēta darbību uzziņa, funkciju saraksts, pārbaudes piezīmes, pētījumi ar CSV, vēsturiskie plāni un licencēšanas analīze.
 
 ## Patiesības avots
 

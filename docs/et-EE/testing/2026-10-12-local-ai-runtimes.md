@@ -19,7 +19,7 @@ HTTP kliendid ei kasuta proksid ja ei jälgi edasisid suuniseid. Kohalikud serve
 
 ## ONNX
 
-Dialoogis valige genai_config.json. Kaardil peab olema tokenizer.json ja vestlusvormi. Toetatakse chat_template kui märgikett, nimetatud standardvormi (array või sõnaraamat) ja eraldi chat_t template.jinja, kui see ei ole olemas või see on null. Mitmekülgsed näidised on keeldutud; maksimaalselt 65536 märgid. Populaarsed .onnx failid, nägemis- ja kaasamudelid või puhtad GPU/NPU ekspordid ei ole kohtumismudelid.
+Valige dialoogis genai_config.json. Kaust peab sisaldama tokenizer.json faili ja vestlusmalli. Toetatud on chat_template stringina, nimega default-mall (massiiv või sõnastik) ning eraldi chat_template.jinja, kui sisseehitatud mall puudub või on null. Mitmetähenduslikud mallid lükatakse tagasi; piirang on 65536 märki. Suvalised .onnx-failid, nägemis-/vektorimudelid või ainult GPU-/NPU-ekspordid ei ole koosolekumudelid.
 
 Ühendatud: Microsoft.ML.OnnxRuntimeGenAI 0.17.1, CPU. Pakkuja konfigureerimine tagastatakse CPU-le. Ei ole allalaadimist ega mudeli kaalu pakendis. Ei ole vaja Python installimist. Kasutage ainult usaldusväärseid mudelipakete; eraldi protsess on katkestamise/katkestamise piir, mitte turvavöö.
 
@@ -28,7 +28,7 @@ Piirangud: 90 sekundid, mis hõlmavad mudeli laadimist, maksimaalselt 3072 promp
 ## Kontrollimine
 
 - Core-Suite, Loopback transpordi testid simuleeritud LM-studio-/llama.cpp-/Ollama vastused, skeem/lülitus/ressursside kontrollimine.
-- Unicode-protokollregressioon maksimaalsete eesmärkide ja 24 ressursside nimedega.
+- Unicode-protokolli regressioonitest maksimaalse pikkusega eesmärkide ja 24 ressursinimega.
 - Tõeline native CPU infosüsteem ametliku tiny-random-gpt2-fp32-Testgraph Microsofti/onnxruntime-genai, Commit 5c19002edce50beaa3a5c7eeefd8fe5269ee8d19. Testiproovi täiendamine ja byte tokenizer kohandatud väikese juhuslik graaf. See juhuslik mudel ei kontrolli kvaliteeti ja ei ole vabastamisel.
 - Reproduktiivne native koormuse testi: tools/check-onnx-runtime.ps1 -ModelDirectory <GenAI mudeli režiim>.
 - WPF-Smoke kontrollib kõiki nelja pakkuja valikut ja kontrollitavat seisundit; valik üksi ei tekita mudeli nõudlust.
@@ -44,14 +44,14 @@ Hardware/Smartphone/Tablet/Monitor muutus on jätkuvalt vajalik. Eksklusiivne kl
 - https://lmstudio.ai/docs/developer/openai-compat/chat-completions
 - https://github.com/ggml-org/llama.cpp/blob/master/tools/server/README.md
 
-Lõplik test: Release-Build ilma hoiatuste/veadeta; täielik Core ja Windows suites, sealhulgas native Focus Fixture, HTTPS, UIA, Plugin IPC ja ühilduvad AI transpordi testid. Uus pakett vabastamine20261012-190618: WPF-Smoke kestis (19:07 tund), ühendatud ONNX-CPU infektsioon testgraph kestis. Sõltumatu ülevaade: Unicode protokoll piirmäära parandatud, ei ole rohkem konkreetseid avastusi. Sellest ei tulene füüsiline tootja/telefon/monitor.
+Lõplik kontrolliseis: Release-Build ilma hoiatuste/vigadeta; täielikud Core ja Windows testikomplektid läbitud, sealhulgas natiivse fookuse testkeskkond, HTTPS, UIA, Plugin-IPC ja ühilduvate AI-transpordiliideste testid. Uus pakett release-20261012-190618: WPF-Smoke läbitud (19:07), kaasasoleva ONNX-CPU inferents testgraafiga läbitud. Sõltumatu ülevaatus: Unicode-protokolli piir parandatud, muid konkreetseid leide ei olnud. Sellest ei järeldata füüsilise tootjariistvara/telefoni/monitori heakskiitu.
 
 ## Järgmine: tõeline mudel kvaliteet ja mudelid
 
-Täiendav CPU käivitamine allama-ai/SmolLM-360M-Instruct-onnx-int4, Revision 82a3d1a8a86c8053f2a859a90ed4d344fc0725b0: native infertsioon. Modellgewichte-SHA256: 48e9c4ef12f7f995ca11fc7020b39990aa27bc67cc0fe116067676a000a04429. Ühenduse eksportimine ainult katsetamispiirkonnas, mitte vabastamisel.
+Täiendav CPU-käivitus mudeliga allama-ai/SmolLM-360M-Instruct-onnx-int4, revisjon 82a3d1a8a86c8053f2a859a90ed4d344fc0725b0: natiivne inferents läbitud. Mudelikaalude SHA256: 48e9c4ef12f7f995ca11fc7020b39990aa27bc67cc0fe116067676a000a04429. Kogukonna eksport on ainult testialas, mitte väljalaskes.
 
-Nelja tegelikku planeerimistesti ( saksa/inglise, dokumendi, programmi, selge mikrofon): **0/4 kehtivad plaanid**; JsonException rangelt vastuse kontrollimisel. 63501, 6376, 72118 ja 6774 See väike mudel ei vasta planeerimislepingule ja seda ei soovitata sobivaks. aruanded: artifacts/local-ai-evaluation/smollm360-results.json.: Windows-Testid --evaluate-onnx <Modeli režiim> <Raportti tee>..
+Neli tegelikku planeerimistesti (saksa/inglise keeles, dokument, programm, selgesõnaline mikrofoni vaigistamine): **0/4 kehtivat plaani**; iga kord tekkis vastuse rangel kontrollimisel JsonException. Käitusajad olid 63501, 6376, 72118 ja 6774 ms. Ühtegi toimingut ei käivitatud. See väike mudel ei vasta planeerimislepingule ja seda ei soovitata sobivana. Aruanne: artifacts/local-ai-evaluation/smollm360-results.json. Kordamine: Windows-Tests --evaluate-onnx <Modellordner> <Berichtspfad>. Käituskeskkonna toimimine ei tõenda mudeli kvaliteeti.
 
-Tööriistade navigatsioon ja testide aruanded on tõlgitud kõigis 27 keelekataloogides. Pikad tekstid ja keelekogumised jäävad avatuks. Kaardimängude regressioon kontrollib ka vale JSON-tüüpe, tühja/mõõduka/pikkuse mudelid ja null Jinja Fallbackiga.
+Tööriistade navigeerimine ja kontrolliaruanne tõlgiti lisaks kõigis 27 keelekataloogis. Pikad tekstid ja keeleline heakskiit on endiselt lõpetamata. Mallide regressioonitest kontrollib ka valesid JSON-tüüpe, tühje/mitmetähenduslikke/liiga pikki malle ning null-väärtust koos Jinja-varulahendusega.
 
-Uuendatud pakett: artifaktid/release-20261012-201134 Pakendatud WPF paksud 12.10.2026 umbes 20:12; kodumaine CPU infektsioon koos eraldi Instruct testimudel ühendatud töötaja. Core ja Windows KI testid läbi; ehitada ilma hoiatuste/veadeta. Mudeli kvaliteet jätkub 0/4.
+Uuendatud pakett: artifacts/release-20261012-201134. Pakendatud WPF-Smoke läbitud 12.10.2026 kell 20:12; natiivne CPU-inferents eraldi Instruct-testmudeliga komplektis olevas abiprotsessis läbitud. Core ja Windows-KI testid läbitud; ehitus ilma hoiatuste/vigadeta. Mudeli planeerimiskvaliteet endiselt 0/4.

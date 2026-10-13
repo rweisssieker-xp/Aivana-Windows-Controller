@@ -22,4 +22,4 @@ A jegyzőkönyv referenciái:
 - [OBS WebSocket hitelesítési képlet és üzenet kódok](https://github.com/obsproject/obs-websocket/blob/master/docs/generated/protocol.md#creating-an-authentication-string)
 - [OBS WebSocket média beviteli kérelem végrehajtása és elfogadott cselekvési enum értékek](https://github.com/obsproject/obs-websocket/blob/master/src/requesthandler/RequestHandler_MediaInputs.cpp)
 
-A jegyzőkönyvjegyzékeket és a működési neveket ellenőrizte a OBS projektdokumentációt a 2026-10-08 oldalon.
+A protokolljegyzeteket és műveletneveket az OBS projekt dokumentációjával vetették össze 2026-10-08 napján.

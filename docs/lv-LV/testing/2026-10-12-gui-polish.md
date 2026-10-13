@@ -10,6 +10,6 @@
 - Tas ir ļoti svarīgi, jo tas ir ļoti svarīgs jautājums. Tādēļ, ja jūs esat gatavs, jums ir jāizvēlas, kāpēc jums ir nepieciešams, lai iegūtu informāciju par to, kas jums ir. Tātad, ja jūs esat gatavs, tad jums ir nepieciešams, lai to izdarītu.
 - Dialogu pārbaude ietver rīku pārskatu un paplašināšanās dialogu 560 × 440, kā arī normālu izmēru; esošie ierakstu un valodas pārbaudes ir pielāgotas skrūvēšanas struktūrai.
 
-Tādēļ, ja jūs esat gatavs, jums ir jāizvēlas, kāpēc jūs varat izvairīties no tā, ka jūs varat izturēties pret to, kas jums ir. Windows-DPI testēšana 150/200 Tādēļ, ja jūs esat pārliecināts par to, ka jums ir nepieciešams, jums ir jāpārbauda, vai jums ir nepieciešams. 27 Tātad, ja jūs esat gatavs, tad jums ir jāizvēlas, kāpēc jūs varat izvairīties no tā, ka jūs varat izturēties pret to, kas jums ir..
+Ierobežojumi: kompakti logi neaizstāj īstus Windows DPI testus ar 150/200 procentiem. Jaunie vācu teksti vēl nav pilnībā iztulkoti visās 27 valodās. Nav jaunas aparatūras validācijas un nav apgalvojumu par izmērītu lietojamību.
 
 Pārbaudes stāvoklis: atbrīvošanas konstrukcija bez brīdinājumiem / kļūdām; pilnīgāks WPF-Tādēļ, ja jūs esat gatavs, jums ir jāizvēlas, kāpēc jūs varat izvairīties no tā, ka jūs esat droši..

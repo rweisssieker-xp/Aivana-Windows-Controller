@@ -4,11 +4,11 @@
 
 # Udržovanie všetkých jazykov dokumentácie
 
-Dokumentácia obsahuje všetky 27 UI jazyky. generované priečinky používajú regionálne kódy; Norské mapy na `nb-NO` a latinsky pre `sr-Latn`Každý priečinok obsahuje index, manuál, podrobné referencie akcie, inventár funkcií, overovací poznámky, výskum vrátane CSV, historické plány a analýzu licencií.
+Súbor dokumentácie pokrýva všetkých 27 jazykov rozhrania. Generované priečinky používajú regionálne kódy; nórčine zodpovedá `nb-NO` a srbčine v latinke `sr-Latn`. Každý priečinok obsahuje index, príručku, podrobnú referenciu akcií, súpis funkcií, poznámky k overeniu, výskum vrátane súboru CSV, historické plány a analýzu licencií.
 
 ## Zdroj pravdy
 
-Editovať koreň `README.md`, `docs/HANDBOOK.md`, `docs/FEATURES.md`, `docs/VERIFICATION.md`, táto stránka, alebo pôvodné súbory pod `docs/research`, `docs/testing`, `docs/superpowers` a `docs/licensing`Neprepíšte historickú správu, ktorá znamená, že potvrdzuje neskoršiu verziu. udržať implementáciu, simuláciu, skutočné zariadenie a komerčné schválenie odlišné.
+Upravujte koreňový `README.md`, `docs/HANDBOOK.md`, `docs/FEATURES.md`, `docs/VERIFICATION.md`, túto stránku alebo pôvodné súbory v `docs/research`, `docs/testing`, `docs/superpowers` a `docs/licensing`. Neprepisujte historickú správu tak, aby naznačovala overenie neskoršej verzie. Rozlišujte implementáciu, simuláciu, akceptáciu skutočného zariadenia a komerčné schválenie.
 
 ## Vytvorte a validujte
 
@@ -17,9 +17,9 @@ python tools/localize_documentation.py --refresh-sources
 python tools/check_documentation.py
 ```
 
-Voliteľný online generátor odošle dokumentáciu do verejného prekladu Googlu, podľa existujúceho nástroja na lokalizáciu. Nečítá používateľskú konfiguráciu, tajomstvá alebo modelové súbory. Len ju spustite na dokumentácii vhodnej pre túto službu. Kódové bloky, inline kód, URL, tabuľková štruktúra a technické identifikátory sú chránené. Prekladové cache a zmrazený zdrojový snapshot sú uložené pod ignorovaným `artifacts/documentation-translation`.
+Voliteľný online generátor odosiela text dokumentácie na verejný prekladový endpoint Google v súlade s existujúcimi lokalizačnými nástrojmi. Nečíta používateľskú konfiguráciu, tajné údaje ani súbory modelov. Spúšťajte ho iba pre dokumentáciu vhodnú pre túto službu. Bloky kódu, kód v texte, URL, štruktúra tabuliek a technické identifikátory sú chránené. Prekladová cache a zmrazená snímka zdrojov sa ukladajú do ignorovaného adresára `artifacts/documentation-translation`.
 
-Keď je online poskytovateľ limitovaný, `tools/translate_documentation_local.py` vyplní rovnakú cache pomocou explicitne dodaného lokálneho M2M100 CTranslate2 Modelka - The 2026-10-12 Snapshot používa MIT licencované facebook/m2m100_418M Model, ktorý sa konvertoval ako JustFrederik/m2m_100_418m_ct2_int8 Pri revízii `1aeed44db4dd61a486bba44acf54c76507082a2c`. CTranslate2 4.8.2 a `SentencePiece` 0.2.2 sú postavené len nástroje. žiadne hmotnosti modelu alebo závislosť na preklade nie sú odoslané s MAKRIVO. Spustiť generátor s `--cache-only` po vyplnení cache bez požiadaviek na sieť. miestny pomocník nedodáva alebo neuskutoční vzdialený modelový kód.
+Keď online poskytovateľ obmedzuje počet požiadaviek, `tools/translate_documentation_local.py` naplní rovnakú cache pomocou výslovne dodaného lokálneho modelu M2M100 CTranslate2. Snímka z 2026-10-12 používa model facebook/m2m100_418M s licenciou MIT, prevedený ako JustFrederik/m2m_100_418m_ct2_int8 v revízii `1aeed44db4dd61a486bba44acf54c76507082a2c`. CTranslate2 4.8.2 a `SentencePiece` 0.2.2 sú nástroje iba na zostavenie. S MAKRIVO sa nedodávajú váhy modelov ani prekladové závislosti. Po naplnení cache spustite generátor s `--cache-only` na vykreslenie bez sieťových požiadaviek. Lokálny pomocník nesťahuje ani nespúšťa vzdialený kód modelov.
 
 ```powershell
 python -m pip install ctranslate2==4.8.2 sentencepiece==0.2.2
@@ -28,12 +28,12 @@ python tools/localize_documentation.py --cache-only
 python tools/check_documentation.py
 ```
 
-Bez `--refresh-sources`, spustenie obnovuje zmrazené snapshot. Použite možnosť obnovenia po úprave originálov. skryté segmenty sú opätovne použité. `--locales`- ukončenie všetkých lokalít pred publikáciou. prerušené preteky ticho nahrádza nepreložené prose pre neúspešný preklad.
+Bez `--refresh-sources` beh pokračuje so zmrazenou snímkou. Po úprave originálov použite možnosť obnovenia. Segmenty z cache sa znova používajú. Čiastočný beh môže vybrať kódy jazykov pomocou `--locales`; pred publikovaním dokončite všetky jazyky. Prerušené behy nenahrádzajú neúspešný preklad potichu nepreloženým textom.
 
-Manifest zaznamenáva každý zdroj a generovaný súbor s SHA-256 odtlačkov normalizovaného UTF-8 textu: LF line ends a žiadny byte-order mark. Offline kontrolér overuje úplné jazykové pokrytie, odtlačky prstov, lokálne odkazy, kódy príklady, tabuľky/CSV štruktúra, zdrojové URL a nenahradené umiestnenie. Odmieta sa oceľových zdrojov. Prechod štrukturálnej kontroly nie je domáci prehľad alebo právne schválenie. Generované stránky majú túto kvalifikáciu viditeľne.
+Manifest zaznamenáva všetky zdrojové a generované súbory s odtlačkami SHA-256 normalizovaného textu UTF-8: konce riadkov LF a žiadna značka poradia bajtov. Offline kontrola overuje úplné pokrytie každého jazyka, odtlačky, miestne odkazy, príklady kódu, štruktúru tabuliek/CSV, zdrojové URL a nenahradené zástupné symboly. Odmieta zastarané zdroje. Úspešná štrukturálna kontrola nie je revíziou rodeného hovoriaceho ani právnym schválením. Generované stránky toto obmedzenie viditeľne uvádzajú.
 
 ## Publikácia a balíky
 
-Publikovať dokumentáciu, generátor a kontrolér spolu. Zachovať pôvodné licenčné podmienky tretích strán; preklad licenčnej analýzy je informatívny. Build artefakty, preklad cache a lokálne orchestrácie súbory nepatria do Git. Windows Inštalácia →
+Publikujte dokumentáciu, generátor a kontrolný nástroj spoločne. Zachovajte pôvodné licenčné podmienky tretích strán; preložená analýza licencií je informatívna. Artefakty zostavenia, prekladová cache a miestne orchestračné súbory nepatria do Git. Vydanie zdrojovej dokumentácie samo osebe nepublikuje inštalačný program Windows.
 
-Preklady aplikácií sú oddelené katalógy JSON pod `src/Aivana.Core/Localization`Dokumentácia generácia nemení tieto katalógy. aplikácia budovanie a jeho dokumentácia by mali zdieľať verziu snapshot; novopísaná experimentálna prevádzková podpora môže predchádzať inštalovaným balíkom.
+Preklady rozhrania aplikácie sú samostatné katalógy JSON v `src/Aivana.Core/Localization`. Generovanie dokumentácie tieto katalógy nemení. Zostavenie aplikácie a jeho dokumentácia by mali zdieľať verziovanú snímku; novo opísaná experimentálna podpora runtime prostredia môže predchádzať nainštalovanému balíčku.

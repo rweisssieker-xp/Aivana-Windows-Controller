@@ -2,155 +2,155 @@
 
 > Gépi fordítással készült dokumentáció. A szerkezetet, kódpéldákat és hivatkozásokat ellenőrizzük; ez nem jelent anyanyelvi lektorálást vagy jogi jóváhagyást. A korábbi jelentések megőrzik eredeti dátumukat és hatókörüket. [eredeti forrás](../HANDBOOK.md)
 
-# MAKRIVO — Felhasználói kézikönyv
+# MAKRIVO felhasználói kézikönyv
 
-Gyártó: **Aivana**. Dokumentáció snapshot: **2026-10-12**. Ez a kézikönyv leírja a jelenlegi munka-fák végrehajtását. A kísérleti integrációk és a hardver-függő funkciók kifejezetten azonosulnak. A történelmi jelentések megjelennek a dátumos képekről, nem garantálják az új építkezést.
+Gyártó: **Aivana**. Dokumentációs pillanatkép: **2026-10-12**. Ez a kézikönyv a munkafa jelenlegi megvalósítását írja le. A kísérleti integrációkat és a hardverfüggő funkciókat külön jelöljük. A korábbi jelentések a saját dátumozott állapotukat írják le, nem garantálják az újabb buildek működését.
 
 ## Dokumentáció és nyelvek
 
-A dokumentációs nyelvválasztó segítségével nyissa meg a teljes kézikönyv, a funkciók feljegyzését, a problémamegoldást, a fejlesztési jegyzeteket, a kutatást és a történelmi tesztjelentéseket bármely 27 alkalmazási nyelven. A generált fordítások gépi segítséget nyújtanak és szerkezeti ellenőrzéseket tartanak fenn; nem mindegyikük kapta meg a szülőszót. A műszaki azonosítókat és a végrehajtható példákat változatlanul tartják fenn. Az eredeti forrás a hasonlósághoz elérhető. A fordított engedélyezési elemzés informatív és nem helyettesíti az eredeti harmadik fél jogi feltételeit vagy végső EULA-t.
+A dokumentáció nyelvválasztójával a teljes kézikönyv, funkciójegyzék, hibaelhárítás, fejlesztési jegyzetek, kutatás és korábbi tesztjelentések megnyithatók az alkalmazás 27 nyelvének bármelyikén. A generált fordítások gépi segítséggel készültek, és szerkezeti ellenőrzésen estek át; nem mindegyiket lektorálta anyanyelvi beszélő. A technikai azonosítók és futtatható példák változatlanok. Az eredeti forrás összehasonlításra továbbra is elérhető. A lefordított licencelemzés tájékoztató jellegű, és nem helyettesíti a harmadik felek eredeti jogi feltételeit vagy a végleges EULA-t.
 
 ## Beállítás és első indítás
 
-Az eredeti cél Windows 11 x64. Tartsa az összes fájlt és alszámot a forgalmazás együtt. indítás `MAKRIVO.exe`. A forráscsökkentő nem egy telepítő. önálló tartalmú csomagok magukban foglalják a .NET futtatási időt; keretrendszer-függő csomagok igényelnek a megfelelő .NET 10 asztali és ASP.NET futtatási időt. ONNX és társas hostek kell szerepelni a megfelelő funkciók.
+A kezdeti célkörnyezet Windows 11 x64. Tartsa együtt a terjesztési csomag összes fájlját és alkönyvtárát. Indítsa el a `MAKRIVO.exe` fájlt. A forráskód helyi másolata nem telepítő. Az önálló csomagok tartalmazzák a .NET futtatókörnyezetet; a keretrendszerfüggő csomagokhoz a megfelelő .NET 10 Desktop és ASP.NET futtatókörnyezet szükséges. Az ONNX és a kísérő hosztfolyamatok a megfelelő funkciók használatához szükségesek a csomagban.
 
-1. Kezdje a MAKRIVO és válassza ki a beállítások interfész nyelvét. automatikusan követik Windows.
-2. Válasszon egy profilot, majd adjon hozzá egy lapot a kereshető cselekvési katalóguson keresztül. adjon meg egy felismerhető nevet, és válassza ki a cselekvési címet.
-3. Ellenőrizze a lépéseket, és adott esetben rövidítse meg. Kerülje a már használt kombinációkat Windows vagy a cél alkalmazás.
-4. A mentett változások nem a mentett konfiguráció.
+1. Indítsa el a MAKRIVO alkalmazást, és válassza ki a felület nyelvét a Beállításokban. Az automatikus beállítás a Windows nyelvét követi. A billentyűzetkiosztás külön beállítás.
+2. Válasszon profilt, majd adjon hozzá csempét a kereshető műveletkatalógusból. Adjon neki felismerhető nevet, és válassza ki a műveleteit.
+3. Ellenőrizze a lépéseket, és szükség esetén rendeljen hozzá gyorsbillentyűt. Kerülje a Windows vagy a célalkalmazás által már használt kombinációkat.
+4. Mentse a vázlatot. A nem mentett módosítások nem részei a mentett konfigurációnak.
 5. Teszteljünk egy ártalmatlan akcióval, például egy dokumentum megnyitásával, és ellenőrizzük a végrehajtás visszajelzését.
 
-A fő ablak zárása általában elhagyja az alkalmazást a bejelentési területen. Kétszeres kattintással nyissa meg a nyomaték ikonját, hogy újra megnyissa, vagy használja a nyomaték menüt, hogy kijusson. A Windows kezdődik opcionális és kezdetben kikapcsolva. A szünet vezérlő felfüggesztette a kötéseket; a ikon egy szünet jelet mutat. A futó makrok az UI, a nyomaték vagy a konfigurált törlés rövidítése; a szabványos `Ctrl+Alt+Escape`.
+A főablak bezárása általában az értesítési területen hagyja az alkalmazást. Dupla kattintással nyissa meg újra a tálcaikonról, vagy a tálcamenüből lépjen ki. A Windows rendszerrel való indítás opcionális és kezdetben letiltott. A szüneteltetés felfüggeszti a hozzárendeléseket; az ikon szünetjelzést mutat. A futó makrókat a felületről, a tálcáról vagy a beállított megszakító gyorsbillentyűvel szakíthatja meg; az alapértelmezés `Ctrl+Alt+Escape`.
 
-## Tilták, akciók és a parancs palettája
+## Csempék, műveletek és parancspaletta
 
-A fülbevalók profilokhoz tartoznak, és több megrendelt lépést tartalmazhatnak. A szerkesztő támogatja a mentést/megoldást, a előrejelzést, a undo/redo és a lépés újrarendelését. A katalógus előzetes programokat, dokumentumokat, URL-eket, szöveget, billentyűzeteket, rövidítéseket, média, hang, ablakokat, rendszerintézkedéseket és támogatott integrációkat tartalmaz. A paramétereket igénylő előzetes beállítások tervezetként megnyílik.
+A csempék profilokhoz tartoznak, és több sorrendbe rendezett lépést tartalmazhatnak. A szerkesztő támogatja a mentést/elvetést, előnézetet, visszavonást/újraalkalmazást és a lépések átrendezését. A katalógus előbeállításokat biztosít programokhoz, dokumentumokhoz, URL-ekhez, szöveghez, vágólaphoz, gyorsbillentyűkhöz, médiához, hanghoz, ablakokhoz, rendszerműveletekhez és támogatott integrációkhoz. A paramétert igénylő előbeállítás vázlatként nyílik meg.
 
-Nyissa meg a palettát `Ctrl+K` miközben MAKRIVO összpontosít. Keresés mentett akciók, előzetes, profil váltás és eszközök. A kulcsok kiválasztása; A beállítás aktiválja; `Ctrl+Enter` szerkeszt egy támogatott elem; Escape zárja. Néhány készen áll a használathoz parancsokat fut azonnal, míg a konfigurált akciók felülvizsgálatot igényelnek. Külön globális palettát rövidítés lehet konfigurálni; új konfigurációk használata `Ctrl+Shift+Space`.
+Nyissa meg a parancspalettát a `Ctrl+K` billentyűkkel, amikor a MAKRIVO van fókuszban. Keressen mentett műveleteket, előbeállításokat, profilváltást és eszközöket. A nyílbillentyűk választanak; az Enter aktivál; a `Ctrl+Enter` szerkeszti a támogatott elemet; az Escape bezár. Egyes kész parancsok azonnal futnak, míg a konfigurált műveleteket ellenőrizni kell. Külön globális palettagyorsbillentyű állítható be; új konfigurációknál ez `Ctrl+Shift+Space`.
 
-Text és clipboard lépések támogatása `{{date}}`, `{{time}}`, `{{datetime}}`, `{{clipboard}}`, `{{profile}}`, `{{process}}` és `{{user}}`. A dátum formázása `yyyy-MM-dd`; Az időformátum `HH:mm`. A nem ismert változók változatlanok maradnak. a klipboard olvasása csak akkor történik, ha kérésre kerül sor. a klipboard akció szövegét írja automatikusan, anélkül, hogy megfelelne.
+A szöveg- és vágólaplépések támogatják a `{{date}}`, `{{time}}`, `{{datetime}}`, `{{clipboard}}`, `{{profile}}`, `{{process}}` és `{{user}}` változókat. A dátumformátum `yyyy-MM-dd`; az időformátum `HH:mm`. Az ismeretlen változók változatlanok maradnak. A vágólap olvasása csak kérésre történik. A vágólapművelet szöveget ír a vágólapra, de nem illeszti be automatikusan.
 
-Az interfészből indított akciók az utolsó külső alkalmazást célzhatják. ha a cél eltűnik vagy Windows blokkolja az előzmény aktiválását, manuálisan aktiválja a célt és visszavonja.
+A felületről indított műveletek az utolsó külső alkalmazást célozhatják. Ha a cél eltűnik vagy a Windows blokkolja az előtérbe hozást, aktiválja kézzel a célt, és próbálja újra. A billentyűk sikeres továbbítása nem bizonyítja a célfeladat befejezését.
 
-## Profilok és munkahely beállítások
+## Profilok és munkahely-beállítás
 
-A profilok egy folyamat neve és egy ablak címe egy része. Amikor mindkettő be van állítva, mindkettőnek meg kell felelnie. A profilrendelés a versenyző mérkőzéseket oldja meg; a szabványos profil a visszaesés. Az automatikus kiválasztás kifejezetten engedélyezhető.
+A profilok folyamatnévre és ablakcímrészletre illeszthetők. Ha mindkettő meg van adva, mindkettőnek egyeznie kell. Több egyezés esetén a profilok sorrendje dönt; egyezés hiányában az alapértelmezett profil érvényes. Az automatikus kiválasztást külön engedélyezze. A profil zárolása az aktuális munkamenetben megakadályozza az automatikus váltást.
 
-Nyissa meg a munkahelyet az Eszközökből vagy a palettából. Válasszon programokat, dokumentumokat, weboldalakot, egy hang/képernyő célpontot vagy egy OBS jelenetet. A munkahely, a találkozó, a streaming, a kutatás vagy a projekt profiljait készíti el. Ellenőrizze a létrehozott lépéseket, mielőtt menteni.
+Nyissa meg a munkahely-beállító varázslót az Eszközök menüből vagy a palettáról. Válasszon programokat, dokumentumokat, webhelyeket, hang-/kijelzőcélt vagy OBS-jelenetet. A varázsló munkahelyi, értekezleti, közvetítési, kutatási vagy projektprofilokat készít elő. Mentés előtt ellenőrizze a generált lépéseket. A beállítás nem hajtja végre az előkészített műveleteket.
 
-## Macros, feltételek és felvétel
+## Makrók, feltételek és rögzítés
 
-A macrosok a lépéseket rendben hajtják végre, és támogatják a várakozást, a megismétléseket és a törléseket. Az általános ismétlődési határ 100. Használja a Preview-t, mielőtt olyan lépéseket futtatna, amelyek egy másik alkalmazásba vagy rendszerállapotba kerülnek.
+A makrók sorrendben hajtják végre lépéseiket, és támogatják a várakozást, ismétlést és megszakítást. Az általános ismétlési korlát 100. Használjon előnézetet a másik alkalmazásba gépelő vagy rendszerállapotot módosító műveletek futtatása előtt.
 
-A Célnyílás elfogadja a folyamatot, a cím-alávet és a 1 és 600,000 m-es időtartamot. Legalább egy szűrő szükséges. Egy megfelelõ látható ablaknak válaszolnia kell, és előre kell lépnie, mielőtt a következő lépések folytatódnak.
+A célablakra várakozás folyamatszűrőt, az ablakcím részletét és 1 és 600000 ms közötti időkorlátot fogad el. Legalább egy szűrő szükséges. Az illeszkedő látható ablaknak válaszolnia kell, és előtérbe kell kerülnie, mielőtt a következő lépések folytatódnak. Az ablak készenléte nem bizonyítja a dokumentum vagy szolgáltatás betöltésének befejezését.
 
-A munkafolyamat szerkesztő hozzáadja a fájl- létező, folyamat- futás és ablak-titkok feltételei. Egy hamis állapot megszakítja a lépést, és elmozdíthatja a további lépéseket előre. Elutasítsa a feltétel, hogy kifejezzék egy alternatív ág. Válassza ki a stop-on-error vagy continu-on-error szándékosan; folytatás hagyhatja a későbbi lépéseket várt előfeltételek nélkül.
+A munkafolyamat-szerkesztőben a fájl létezésére, a folyamat futására és az ablak címére vonatkozó feltételek adhatók meg. A hamis feltétel kihagyja a lépést, és további későbbi lépéseket is kihagyhat. Alternatív ág kifejezéséhez tagadja a feltételt. Tudatosan válasszon a hibánál leállítás és a hiba utáni folytatás között; folytatáskor a későbbi lépések szükséges előfeltételei hiányozhatnak.
 
-A cselekvési rögzítő rögzíti a rövidnadrágokat és várja, nem a szokásos nyomtatást. támogatja a módosító rövidnadrágokat és a funkció kulcsokat. Escape megáll a rögzítés. Ellenőrizze a listát és elfogadja azt, mint egy mentetlen tile tervezet, majd kifejezetten mentse. UI-click rögzítés külön eszköz, amely le van írva alább.
+A műveletrögzítő billentyűkombinációkat és várakozásokat rögzít, nem szokásos gépelést. Támogatja a módosítóbillentyűs kombinációkat és a funkcióbillentyűket. Az Escape leállítja a rögzítést. Ellenőrizze a listát, majd vegye át nem mentett csempevázlatként, és külön mentse el. A felület kattintásainak rögzítése külön eszköz, amelyet alább ismertetünk.
 
-## Kulcsszavak, gesztusok és rétegek
+## Billentyűzetek, gesztusok és rétegek
 
-A billentyűzet a felfedezett interfészek és a referenciakörzetek listáját tartalmazza. Egyetlen fizikai billentyűzet több interfészet mutathat be. Válassza ki a helyes nyelvet és a geometriát; egyedül a termék neve nem azonosítja az ISO vagy az ANSI elrendezést.
+A billentyűzetoldal felsorolja az észlelt eszközinterfészeket és a referenciakiosztásokat. Egy fizikai billentyűzet több interfészt is biztosíthat. Válassza ki a megfelelő nyelvet és geometriát; a terméknév önmagában nem határozza meg az ISO vagy ANSI kiosztást.
 
-A szabványos globális kulcsok a billentyűzeteken keresztül alkalmazandók.A készülék-specifikus Raw Input kötések egy adott eszköz és szkennelési kódot követnek, beleértve a támogatott funkciókat és a média kulcsokat. **Raw Input nem szűnik meg a szokásos Windows bevitelt. Egy kizárólagos második billentyűzet nem kész a gyártásra.** Egy aláírt, engedélyezett és tesztelt szűrővezeték-backend még mindig szükséges; egyetlen sem telepíthető MAKRIVO.
+A szokásos globális gyorsbillentyűk minden billentyűzetre érvényesek. Az eszközspecifikus Raw Input hozzárendelések egy adott eszközt és scan-kódot figyelnek, beleértve a támogatott funkció- és médiabillentyűket. **A Raw Input nem nyomja el a szokásos Windows bevitelt. A kizárólagos második billentyűzet nem kész éles használatra.** Továbbra is szükséges egy aláírt, licencelt és tesztelt szűrőillesztőprogram-háttérrendszer; a MAKRIVO ilyet nem telepít.
 
-A támogatott speciális kulcskapcsolatok azonnal nyomtathatók, tapadhatók, tarthatók vagy dupla tapadhatók. a Held-layer kulcsok ideiglenesen kiválasztják a másik mappát és helyreállítják a bázisréteget a felszabadításon; a layer-selector kulcsok nem futnak saját makro-t. A határértékeket tartsa 150 és 5,000 ms között; a dupla tapadhatók ablakai 150 és 1,000 ms között.
+A támogatott speciális billentyűhozzárendelések azonnali lenyomást, rövid lenyomást, nyomva tartást vagy dupla lenyomást használhatnak. A nyomva tartott rétegváltó billentyű ideiglenesen másik kiosztást választ, felengedéskor pedig visszaállítja az alapréteget; a rétegválasztó billentyűk nem futtatják saját makrójukat. A nyomva tartás küszöbe 150 és 5000 ms közötti, a dupla lenyomás időablaka 150 és 1000 ms közötti. Ezek a hozzárendelések különböznek a szokásos globális gyorsbillentyűktől.
 
-A speciális kulcsbűvész a rögzítés során kijelölt akciók végrehajtása nélkül azonosítja a kompatibilis kulcsokat. A diagnózis a nem elérhető eszközöket, a szünetelt kötéseket, a profil hibákat és a konfliktusokat magyarázza. A túlterhelés a kiválasztott elrendezést és a kötéseket mutatja; a szabványos tartás rövidítése `Ctrl+Alt+F1`.
+A speciális billentyűk varázslója felismeri a kompatibilis billentyűket anélkül, hogy rögzítés közben végrehajtaná a hozzájuk rendelt műveleteket. A diagnosztika megmagyarázza az elérhetetlen eszközöket, szüneteltetett hozzárendeléseket, profileltéréseket és ütközéseket. A fedvény megjeleníti a kiválasztott kiosztást és hozzárendeléseket; az alapértelmezett nyomva tartandó gyorsbillentyű `Ctrl+Alt+F1`.
 
 | integráció | Kötelezettségek és korlátozások |
 | --- | --- |
-| Corsair | A futás iCUE, az SDK hozzáférés és a kompatibilis modell. G1–G6 és a támogatott RGB funkciók; a saját Fn, kerék, zár és profil vezérlők általában nem kerülnek ki a G-key API. |
-| Logitech G | Az eredeti x64 G-key/LED SDK könyvtárak kifejezett jóváhagyást igényelnek.G-key események nem azonosítják egyedül több azonos fizikai billentyűzetet. |
-| Razer | Chroma RGB és szabványos beviteli; térkép tulajdonos ellenőrzése a Synapse ahol szükséges. |
-| SteelSeries | GameSense RGB és szabványos beviteli; térkép tulajdonos ellenőrzése a GG ahol szükséges. |
-| Wooting | Kompatibilis eredeti x64 SDK az analóg értékek és küszöbértékek számára; a normál HID beviteli folyamat aktív marad. |
-| Egyéb kulcsszavak | Standard hotkeys vagy támogatott fizikai szkennelési kód kötések. Fn és tulajdonos ellenőrzések függ a modell és a szállító konfiguráció. |
+| Corsair | Futó iCUE, SDK-hozzáférés és kompatibilis modell. G1–G6 és támogatott RGB-funkciók; a gyártóspecifikus Fn-, görgő-, zárolási és profilvezérlők általában nem érhetők el a G-key API-n keresztül. |
+| Logitech G | Az eredeti helyi x64 G-key/LED SDK-könyvtárakhoz kifejezett jóváhagyás szükséges. A G-key események nem azonosítanak egyértelműen több azonos fizikai billentyűzetet. |
+| Razer | Chroma RGB és szokásos bevitel; szükség esetén rendelje hozzá a gyártóspecifikus vezérlőket a Synapse alkalmazásban. |
+| SteelSeries | GameSense RGB és szokásos bevitel; szükség esetén rendelje hozzá a gyártóspecifikus vezérlőket a GG alkalmazásban. |
+| Wooting | Kompatibilis eredeti helyi x64 SDK az analóg értékekhez és küszöbökhöz; a normál HID-bevitel aktív marad. |
+| Egyéb billentyűzetek | Szokásos gyorsbillentyűk vagy támogatott fizikai scan-kód-hozzárendelések. Az Fn és a gyártóspecifikus vezérlők a modelltől és a gyártói konfigurációtól függenek. |
 
-A gyártó kutatása dokumentált képességeket ír le, nem valósították meg vagy tesztelték a kompatibilitást minden felsorolt eszközzel. Új adaptereknek még mindig valódi hardver elfogadása van. Ne töltse le az SDK binárisokat bizalmatlan forrásokból; az SDK terjesztési jogai a műszaki kompatibilitástól elkülönítve vannak.
+A gyártói kutatás dokumentált képességeket ír le, nem minden felsorolt eszközzel megvalósított vagy tesztelt kompatibilitást. Az új adapterekhez továbbra is valódi hardveres átvételi teszt szükséges. Ne töltsön le SDK-binárisokat nem megbízható forrásból; az SDK terjesztési jogai külön kérdést jelentenek a technikai kompatibilitástól.
 
 ## Audio, kijelzők és OBS
 
-A hang lépések a 0 és 100 százalékos és a mut/unmute/toggle támogatott kimenetel vagy mikrofon végpontok. Válasszon egy adott végpontot vagy használja a Windows előzetes. Egy hiányzó mentett cél okoz hibát ahelyett, hogy csendesen ellenőrizni egy másik eszköz.
+A hangműveletek 0 és 100 százalék közötti hangerőt állítanak be, és a támogatott kimeneti vagy mikrofon-végpontokat némítják, feloldják a némítást, illetve átváltják annak állapotát. Válasszon konkrét végpontot vagy használja a Windows alapértelmezését. A hiányzó mentett cél hibát okoz, ahelyett hogy észrevétlenül másik eszközt vezérelne. Újracsatlakoztatás után frissítse az eszközlistát. A végpontvezérlés nem jelent önálló alkalmazásonkénti keverőtámogatást.
 
-A kijelző akciók növelése/csökkenése fényesség 10 százalékpontok vagy beállítása értéke 0 100. A belső kijelzők használják támogatott WMI interfészek; a külső monitorok igényelnek DDC/CI támogatást és általában a monitor menü beállítása. Docks, adapterek és kábelek blokkolhatják a vezérlés. Válassza ki az összes támogatott kijelző vagy egy monitor. A újra csatlakozás megváltoztathatja a rendelkezésre álló azonosítók; felülvizsgálja a mentett célt.
+A kijelzőműveletek 10 százalékponttal növelik vagy csökkentik a fényerőt, illetve 0 és 100 közötti értéket állítanak be. A belső kijelzők támogatott WMI interfészeket használnak; a külső monitorokhoz DDC/CI támogatás kell, amelyet általában a monitor menüjében is engedélyezni kell. Dokkolók, adapterek és kábelek blokkolhatják a vezérlést. Válassza az összes támogatott kijelzőt vagy egy monitort. Újracsatlakoztatáskor az elérhető azonosítók változhatnak; ellenőrizze a mentett célt. A hiányzó leolvasások nem elérhetőként jelennek meg, nem mért értékként.
 
-OBS szükséges WebSocket v5 beállított OBS eszközök. beállítja a végpontot, teszteli a kapcsolatot és a terhelési jelenet / beviteli nevek mentése előtt. támogatott akciók közé tartozik a jelenet váltás, áram / rekord indulás / megállás / beviteli, rögzítés szünet / visszajelzés és beviteli változás. jelszavak tárolható a Windows hitelminősítő és kizárva a konfigurációs exportok. sikeres OBS parancs nem állapítja meg minden áramlatos hatást.
+Az OBS használatához engedélyezni kell a WebSocket v5 szolgáltatást az OBS Eszközök menüjében. Állítsa be a végpontot, tesztelje a kapcsolatot, és mentés előtt töltse be a jelenetek/bemenetek neveit. A támogatott műveletek közé tartozik a jelenetváltás, a közvetítés/felvétel indítása, leállítása és átváltása, a felvétel szüneteltetése/folytatása és a bemenet némítása. A jelszavak a Windows hitelesítőadat-kezelőjében tárolhatók, és kimaradnak a konfigurációexportból. Egy sikeres OBS-parancs nem igazolja a közvetítési lánc összes további hatását.
 
-## Az eredmény ellenőrzése és végrehajtása története
+## Eredményellenőrzés és végrehajtási előzmények
 
-A program megkülönbözteti a prefix ellenőrzéseket, a megerősített hatásokat, a törléseket és a hatásokat, amelyek nem igazolhatók. A folyamat létezését nem alkalmazás készenlét. Relatív változások, rövidítések és szövegbejegyzések nem kapnak sikertörténet. Ellenőrizze a tevékenység naplóját és a verifikációs történetet, amikor egy cselekvés kudarc. A konfigurációs hibák ki kell javítani, mielőtt a teljes makrot.
+A megfelelő lépéseknél engedélyezze az eredmény ellenőrzését. Az alkalmazás megkülönbözteti az előzetes ellenőrzéseket, az igazolt hatásokat, a hibákat, a megszakítást és a nem ellenőrizhető hatásokat. A folyamat létezése nem jelenti az alkalmazás készenlétét. A relatív változások, gyorsbillentyűk és szövegbevitel nem kaphatnak általános sikervisszaigazolást. Hibánál ellenőrizze a tevékenységnaplót és az ellenőrzési előzményeket. A teljes makró újrafuttatása előtt javítsa ki a konfigurációs hibákat.
 
-## UI automatizálás és kattintás felvétel
+## Felületautomatizálás és kattintásrögzítés
 
-Adjon hozzá egy UI automatizálási lépést, válassza ki a műveletet, és rögzíti a célt a mutató alatt a megjelenített késés után. A rögzítés egyedül nem hajt végre semmit. Ellenőrizze a kiválasztót, és egyedi mérkőzést igényel. `Invoke`, `Select`, `Toggle`, `Focus`, `SetValue` és `WaitState`. A jelszó mezők, a kikapcsolódott ellenőrzések és az egyértelmű kiválasztók elutasításra kerülnek.
+Adjon hozzá UI Automation lépést, válassza ki a műveletet, majd a kijelzett késleltetés után rögzítse a mutató alatti célt. A cél rögzítése önmagában nem hajt végre semmit. Ellenőrizze a szelektort, és követeljen meg egyetlen egyértelmű találatot. Támogatott műveletek: `Invoke`, `Select`, `Toggle`, `Focus`, `SetValue` és `WaitState`. A jelszómezők, letiltott vezérlők és nem egyértelmű szelektorok elutasításra kerülnek.
 
-Az UI automatizálása korlátozott társalapú folyamatban zajlik. attól függ, hogy a cél alkalmazás Windows hozzáférhetőség támogatás és engedélyek. A kattintás rögzítő rögzíti a támogatott akciókat és szüneteket; nem rögzíti az általános szövegbevételt. felülvizsgálja és érvényesíti a tervezetet, mielőtt elfogadja azt. A külső alkalmazás változásait a kiválasztók törölhetik. A folyamat szigetelése korlátozza a baleseteket és a törléseket, de nem biztonsági homokdoboz.
+A felületautomatizálás korlátozott kísérő folyamatban fut. A célalkalmazás Windows akadálymentesítési támogatásától és a jogosultságoktól függ. A kattintásrögzítő támogatott műveleteket és szüneteket rögzít, általános szövegbevitelt nem. Átvétel előtt ellenőrizze és érvényesítse a vázlatot. A külső alkalmazás felületének változásai érvényteleníthetik a szelektorokat. A folyamatizoláció korlátozza az összeomlások és a megszakítás hatásait, de nem biztonsági sandbox.
 
-## Plugin
+## Bővítmények
 
-Nyissa meg a bővítményeket, hogy ellenőrizze a csomagot, mielőtt importálná. A csomag szerkezete, a manifeszt és a hashek ellenőrizni. A import elkezdődik. Olvassa el a bejelentett akciókat, és kifejezetten bízza a kiadó előtt. Plugins fut a felhasználói engedélyek egy külön folyamatban; ez a folyamat **nem egy homokdoboz**. Csak telepíti a csomagokat, amelyeket bízol.
+Az importálás előtt nyissa meg a bővítménykezelőt és vizsgálja meg a csomagot. Ellenőrzésre kerül a csomagszerkezet, a jegyzék és a hashértékek. Az importált bővítmény kezdetben letiltott. Olvassa el a deklarált műveleteket, és engedélyezés előtt kifejezetten jelölje megbízhatónak a kiadót. A bővítmények az Ön felhasználói jogosultságaival futnak külön folyamatban; ez a folyamat **nem sandbox**. Csak megbízható csomagot telepítsen.
 
-A menedzser támogatja az export, a letiltás, a letiltás és a visszaállítás/megoldás egy korábbi verzió. Elveszett függőségek blokkolja a hívást. A példa csomag biztosítja a számlázás és a helyi állam intézkedések. A támogatott rendszer egy dokumentált JSON-Számlázó aljzat, nem minden lehetséges JSON-Számlázó funkció. Nincs nyilvános plugin piacon.
+A kezelő támogatja az exportálást, letiltást, eltávolítást és egy korábbi verzió visszaállítását vagy elvetését. A hiányzó függőségek blokkolják a meghívást. A példacsomag visszaszámlálási és helyi állapotkezelő műveleteket biztosít. A támogatott séma a JSON-Schema dokumentált részhalmaza, nem az összes lehetséges JSON-Schema funkció. Nincs nyilvános bővítménypiactér.
 
 ## Mobil panelek
 
-1. Nyissa meg a mobilpanelt, válasszon egy helyi IP-t, és kifejezetten válassza ki a profilokat, amelyeket ki kell mutatni. A szabványos loopback-cím csak a PC-n érhető el; válassza ki a megfelelő LAN-címet egy telefonra vagy táblagépre.
-2. Indítsa el a panelet, és olvassa el a HTTPS címét, tanúsítsa meg az ujjlenyomatot és egyhangú hat számjegyű páros kódot.
-3. Egy eszközön ugyanazon megbízható hálózatban, nyissa meg az címet. Összehasonlítsa a SHA-256 ujjlenyomatot egy megbízható csatornán keresztül, mielőtt megbízható a helyi tanúsítványt.
-4. A megjelenített kódot használja, és egy ártalmatlan lapot tesztel. A LAN-hozzáféréshez kézi Windows tűzfal engedélyre lehet szükség.
-5. A panel befejezése után állítsa le, vagy visszavonja az alkalmazáson keresztül a csomagolt ügyfeleket.
+1. Nyissa meg a mobilpanelt, válasszon helyi IP-címet, és kifejezetten jelölje ki a megosztandó profilokat. Az alapértelmezett loopback-cím csak magán a PC-n érhető el; telefonhoz vagy tablethez válassza a megfelelő LAN-címet.
+2. Indítsa el a panelt, és olvassa le a HTTPS-címét, a tanúsítvány ujjlenyomatát és az egyszer használatos, hatjegyű párosítási kódot.
+3. Az ugyanazon megbízható hálózaton lévő eszközön nyissa meg a címet. A helyi tanúsítvány megbízhatónak jelölése előtt hasonlítsa össze a SHA-256 ujjlenyomatot megbízható csatornán. Az alkalmazás nem telepít automatikusan megbízható tanúsítványt.
+4. Párosítson a kijelzett kóddal, és teszteljen egy ártalmatlan csempét. LAN-hozzáféréshez kézi Windows tűzfalengedélyre lehet szükség. Ne tegye elérhetővé a portot az internet felől.
+5. Ha végzett, állítsa le a panelt, vagy vonja vissza a párosított kliensek hozzáférését az alkalmazásban.
 
-A magánszolgáltató kulcsok Windows DPAPI védelmet kapnak; az ügyfél hitelesítéseket hashekként tárolják. az IP módosítása vagy a tanúsítvány megújítása megújulhat. a panel megmutatja a cselekvési és ellenőrzési állapotokat, nem minden lehetséges élő érzékelő. a böngésző elrendezése és a helyi HTTPS ellenőrzések nem helyettesítik a valós telefon/tablet LAN elfogadását.
+A kiszolgáló privát kulcsait a Windows DPAPI védi; a kliens hitelesítő adatai hashként tárolódnak. Az IP módosítása vagy a tanúsítvány megújítása új bizalmi jóváhagyást igényelhet. A panel művelet- és ellenőrzési állapotokat mutat, nem minden lehetséges élő érzékelőt. A böngészőelrendezés és a helyi HTTPS ellenőrzése nem helyettesíti a valódi telefonos/tabletes LAN átvételi tesztet.
 
-## Helyi asszisztensek találkozása
+## Helyi AI-értekezletasszisztens
 
-Ez az opcionális kísérleti asszisztens alapértelmezett. Nyissa meg az eszközt, kifejezetten engedélyezze azt, válasszon egy futamidőt/modellt, és csak az erőforrásokat adja hozzá, amelyeket figyelembe kíván. Állítsa meg a célt, hozzon létre egy tervezetet, ellenőrizze a megoldatlan kéréseket és továbbítsa az eredményt a normál szerkesztőnek. Semmi sem fut automatikusan; mentés és futás marad kifejezett akciók. Nincs automatikus futamidőt.
+Ez az opcionális kísérleti asszisztens alapértelmezés szerint le van tiltva. Nyissa meg az Eszközök menüből, külön engedélyezze, válasszon futtatókörnyezetet és modellt, majd csak a figyelembe venni kívánt erőforrásokat adja hozzá. Fogalmazza meg a célt, készítsen vázlatot, vizsgálja meg a megoldatlan kéréseket, és vigye át az eredményt a szokásos szerkesztőbe. Semmi sem fut automatikusan; a mentés és futtatás külön művelet marad. Nincs automatikus áttérés másik futtatókörnyezetre.
 
-| Runtime | beállítása |
+| Futtatókörnyezet | Beállítás |
 | --- | --- |
 | Ollama | Külön helyi szolgáltatás és egy helyi telepített modell a `127.0.0.1:11434`. A kijelölt távoli/felhő modellek elutasítják. |
-| LM Studio | Helyi szerver, amely helyi terhelésű modellvel és JSON-kiszámoló támogatásával rendelkezik `127.0.0.1:1234`. Nem engedélyezhető a távoli útvonal a helyi feldolgozáshoz. |
-| llama.cpp | Helyi `llama-server` és kompatibilis modell JSON-kód támogatásával a `127.0.0.1:8080`. |
-| ONNX futási idő GenAI CPU | Hiteles kompatibilis GenAI szövegmodell mappát; válassza ki `genai_config.json`. |
+| LM Studio | Helyi kiszolgáló helyileg betöltött modellel és JSON-sématámogatással a `127.0.0.1:1234` címen. Helyi feldolgozáshoz ne engedélyezze a távoli útválasztást. |
+| llama.cpp | Helyi `llama-server` és kompatibilis, JSON-sémát támogató modell a `127.0.0.1:8080` címen. |
+| ONNX Runtime GenAI CPU | Megbízható, kompatibilis helyi GenAI-szövegmodellmappa; válassza a `genai_config.json` fájlt. A következtetés a mellékelt kísérő folyamatban, HTTP nélkül fut. |
 
-A HTTP-kliensek csak loopback-t használnak, nem használnak proxy-t és nem követnek átirányításokat. MAKRIVO nem tudja megbízhatóan megállapítani, hogy egy kompatibilis helyi szerver belsőleg távoli szolgáltatást hív., Python A helyi bevezető szerverek nem letölthetők vagy telepíthetők automatikusan.
+A HTTP-kliensek csak loopback-címeket használnak, nem használnak proxyt, és nem követnek átirányításokat. A MAKRIVO nem tudja megbízhatóan megállapítani, hogy egy kompatibilis helyi kiszolgáló belsőleg távoli szolgáltatást hív-e. Hitelesítést igénylő helyi kiszolgálók ebben a verzióban nem konfigurálhatók. A modellsúlyok, a Python és a helyi következtetési kiszolgálók nem töltődnek le és nem települnek automatikusan.
 
-ONNX csomagok szükség `tokenizer.json` és érvényes chat templom. támogatott templomok `tokenizer_config.json` A string `chat_template`, Szótár egy szálkal `default`, vagy egy kétértelmű nevű/név alatti sablon listája. ha a sablon hiányzik vagy null, `chat_template.jinja` üres, kétértelmű, túlzott vagy helytelenül megadott minták elutasítják. ONNX fájlok, beépített/nézet modellek és GPU-k nem cserélhető kompatibilis GenAI A szövegek, a csomagolás GenAI A runtime verzió 0.17.1, CPU: Csak megbízható modellek használata; a folyamat szétválasztása nem egy homokdoboz.
+Az ONNX csomagokhoz `tokenizer.json` és érvényes csevegősablon szükséges. A `tokenizer_config.json` támogatott sablonformái: szöveges `chat_template`, szöveges `default` értéket tartalmazó szótár, vagy egyértelmű névvel/alapértelmezéssel rendelkező sablonlista. Ha a sablon hiányzik vagy null, tartalékként a `chat_template.jinja` használatos. Az üres, többértelmű, túlméretes vagy hibás típusú sablonok elutasításra kerülnek. Tetszőleges ONNX fájlok, beágyazási/képfeldolgozó modellek és kizárólag GPU-n futó csomagok nem helyettesítik a kompatibilis GenAI szövegmodelleket. A mellékelt GenAI futtatókörnyezet verziója 0.17.1, CPU. Csak megbízható modelleket használjon; a folyamatok szétválasztása nem sandbox.
 
-A segédprogram támogatja a kiválasztott programokat érvek nélkül, kiválasztott dokumentumok és weboldalak, és a mikrofon mut, amikor kifejezetten kéri. Nem hoz létre üzeneteket, találkozók, önkényes skriptek, ingyenes kattintások, letöltések vagy fejhallgató váltás. A cél és a forrás nevek küldnek a kiválasztott helyi futási idő; forrás útvonalak és fájl tartalmak nem szállítják külön. A cél által írva a felhasználó magában tartalmazhat személyes adatokat. A helyi futási idő saját hálózati viselkedését a felhasználó felelőssége marad.
+Az asszisztens a kiválasztott programokat argumentumok nélkül, a kiválasztott dokumentumokat és webhelyeket, valamint kifejezett kérésre a mikrofon némítását támogatja. Nem hoz létre üzeneteket, időpontokat, tetszőleges szkripteket, szabad kattintásokat vagy letöltéseket, és nem vált headsetet. A cél és az erőforrások neve a kiválasztott helyi futtatókörnyezethez kerül; az erőforrások elérési útja és a fájltartalom nem kerül külön átadásra. A felhasználó által beírt cél önmagában tartalmazhat személyes adatot. A helyi futtatókörnyezet saját hálózati viselkedése továbbra is a felhasználó felelőssége.
 
-A ONNX kérés költségvetése 90 másodperc, beleértve a modell töltését, legfeljebb 3,072 prompt tokens és 1,024 generált tokens, szintén korlátozott a modell kontextus. rosszindulatú/csúszott JSON és ismeretlen erőforrás-azonosító elutasítják. törölje vagy közel véget ér egy kérés. A véletlenszerű modell futási idő teszt megállapítja a végrehajtást, nem hasznos tervezési minőség vagy időmegtakarítások. A helyi kísérleti naplók tartalmaznak esemény azonosítók és időpontok, nem cél szöveg vagy dokumentum tartalmak; nem automatikusan feltöltött.
+Az ONNX kérés időkerete a modell betöltésével együtt 90 másodperc, legfeljebb 3072 bemeneti és 1024 generált tokennel; a modell kontextusmérete szintén korlátozza ezeket. A hibás vagy csonkolt JSON és az ismeretlen erőforrás-azonosítók elutasításra kerülnek. Megszakítással vagy bezárással fejezze be a kérést. A véletlen modellel végzett futtatókörnyezet-teszt a végrehajtást igazolja, nem a tervezés hasznosságát vagy az időmegtakarítást. A helyi kísérleti naplók eseményazonosítókat és időzítési adatokat tartalmaznak, nem célszöveget vagy dokumentumtartalmat; nem töltődnek fel automatikusan.
 
-A későbbi kis Instruct-modell értékelés nulláról érvényes tervekből állt négy német/angol vizsgálatban. a szülői következtetés működött, de a modell nem sikerült a szigorú tervezési szerződésben. Ez negatív minőség eredménye, nem ajánlott modell vagy bizonyított hasznos asszisztens. lásd a pontos helyi futási idő tesztjelentést a modell felülvizsgálatára és korlátaira.
+A kis Instruct-modell későbbi értékelése négy német/angol próbában nulla érvényes tervet eredményezett. A natív következtetés működött, de a modell nem teljesítette a szigorú tervezési szerződést. Ez negatív minőségi eredmény, nem modellajánlás vagy bizonyítottan hasznos asszisztens. A pontos modellrevíziót és korlátokat a dátummal ellátott helyi futtatókörnyezet-tesztjelentés tartalmazza.
 
-## Import, export, szinkronizálás és biztonsági mentés
+## Importálás, exportálás, szinkronizálás és biztonsági mentés
 
-A behozott akciók beállítását megelőzően felülvizsgálják.A behozott akciók kikapcsolódnak, a hordozható szinkronizáció eltávolítja a hardver-specifikus kötéseket.A készülékek újra felosztása és a vizsgálat után a cselekvések engedélyezése.A szöveg/cselekvés tartalmának felülvizsgálata az export megosztása előtt; a jelszavak kizárása nem teszi az összes felhasználó által létrehozott cselekvés tartalmát érzékenyebbé.
+A konfiguráció cseréje előtt ellenőrizze az importálás előnézetét. Az importált műveletek kezdetben letiltottak, a hordozható szinkronizálás pedig eltávolítja a hardverspecifikus hozzárendeléseket. Ellenőrzés után rendelje újra hozzá az eszközöket, és tudatosan engedélyezze a műveleteket. Export megosztása előtt vizsgálja meg a szövegek és műveletek tartalmát; a jelszavak kizárása nem teszi az összes felhasználó által létrehozott művelettartalmat érzéketlenné.
 
-A profilszinkronizáció a fájlokat egy kiválasztott mappában cseréli, amelyeket opcionálisan a meglévő felhőkliens kezeli. MAKRIVO nem szállít felhőfiókot és nem tárolja felhőbejegyzéseket. A felülvizsgálatok megakadályozzák a csendes feliratokat. Az akció tartalmának beépítése egyértelmű választás. A konfiguráció helyettesítése előtt. A szabványos konfiguráció `%LOCALAPPDATA%\AivanaWindowsController\settings.json`; a történelmi címkével kapcsolatos kompatibilitás érdekében. Az alkalmazás bezárása, mielőtt manuálisan másolja/visszaállítja.
+A profilszinkronizálás fájlokat cserél egy kiválasztott mappában, amelyet opcionálisan a meglévő felhőkliens kezelhet. A MAKRIVO nem biztosít felhőfiókot és nem tárol felhős hitelesítő adatokat. A revíziók megakadályozzák az észrevétlen felülírást. A művelettartalom bevonása kifejezett választás. Cserélő importálás előtt készítsen biztonsági mentést a konfigurációról. Az alapértelmezett konfiguráció: `%LOCALAPPDATA%\AivanaWindowsController\settings.json`; a korábbi könyvtárnév a kompatibilitás érdekében megmarad. Kézi másolás vagy visszaállítás előtt zárja be az alkalmazást. Másik PC-n a mentett SDK-jóváhagyásokat és az operációs rendszer által védett hitelesítő adatokat újra létre kellhet hozni.
 
 ## Problémák megoldása
 
 | tünetek | Mit kell ellenőrizni |
 | --- | --- |
-| A rövidítés nem | Az alkalmazás fut, a kötelékek nem szüntettek, a helyes aktív profil, a mentett/engedélyezett tál, a rövidítések és a rendelkezésre álló célok. |
-| A cél ablak nem aktiválható | Kézi aktiválása. Windows előzmény korlátozások és a kiváltságok különbségek blokkolhatják az automatizálást. |
-| Különleges kulcs nem észlelhető | Eladó szolgáltatás/SDK/modell támogatás; konfigurálja a tulajdonos vezérlőket, hogy a támogatott szabványos kulcsot lehetővé tegye. |
-| A második billentyűzet is normálisan | A Raw Input értékkel várhatóan a kizárólagos szűrés nem történik a gyártáshoz. |
-| Audio vagy fény nem elérhető | A készülékek frissítése; a kiválasztott azonosítás, a végpont ülések, a WMI/DDC/CI támogatás és a dokk/kábel korlátozások ellenőrzése. |
+| A gyorsbillentyű nem csinál semmit | Az alkalmazás fusson, a hozzárendelések ne legyenek szüneteltetve, legyen megfelelő az aktív profil, a csempe legyen mentve/engedélyezve; ellenőrizze a gyorsbillentyű-ütközéseket és a cél elérhetőségét. |
+| A cél ablak nem aktiválható | Aktiválja kézzel. A Windows előtérkorlátozásai és a jogosultságkülönbségek blokkolhatják az automatizálást. |
+| A speciális billentyűt nem ismeri fel | Gyártói szolgáltatás-/SDK-/modelltámogatás; ha lehetséges, konfigurálja a gyártóspecifikus vezérlőket támogatott szabványos billentyű küldésére. |
+| A második billentyűzet is normálisan gépel | Raw Input esetén ez várható. A kizárólagos bevitelelnyomás nincs megvalósítva éles használatra. |
+| Audio vagy fény nem elérhető | Frissítse az eszközöket; ellenőrizze a kiválasztott azonosítót, végpontmunkameneteket, WMI/DDC/CI támogatást és a dokkoló-/kábelkorlátokat. |
 | OBS offline | WebSocket v5 aktiválva, helyes végpont/jelszó, elérhető szolgáltatás és érvényes jelenet/bejárati név. |
-| Az automatizálás nem sikerül | A társaság tárhelye tartalmazza, egyedi érvényes kiválasztót, hozzáférhető engedélyezett célt, támogatott ellenőrzéseket és engedélyeket. |
-| Mobil panel elérhetetlenné vált | LAN helyett loopback cím, ugyanaz a hálózat, a kiszolgáló fut, jóváhagyott profilok, tanúsított ujjlenyomat / bizalom és kézi tűzfal engedélyek. |
-| Plugin hibás | A csomag integritása, a bizalom/engedélyezett állapot, a függőségek, a protokollkompatibilitás és a végrehajtás naplója. |
-| A kérés nem sikerül | A helyes kiválasztott helyi futási idő, a szolgáltatás/modell készen áll, a JSON rendszer támogatása, a megbízható kompatibilis modellek és a kérési határértékek. |
-| A szöveg vagy a szöveg tévesnek tűnik | Különböző nyelvet használ a billentyűzet geometriájától; átirányítsa az ablakot, ellenőrizze a kijelző méretét, és jelentse a pontos oldalt / nyelvet / építkezést. |
+| A felületautomatizálás hibás | A kísérő hoszt legyen mellékelve; egyedi érvényes szelektor, hozzáférhető és engedélyezett cél, támogatott vezérlő és megfelelő jogosultságok. Átmeneti időtúllépést csak a cél ellenőrzése után próbáljon újra. |
+| A mobilpanel nem érhető el | LAN-cím loopback-cím helyett, azonos hálózat, futó kiszolgáló, jóváhagyott profilok, tanúsítvány-ujjlenyomat/megbízhatóság és kézi tűzfalengedélyek. |
+| Plugin hibás | Csomagintegritás, kifejezett bizalom/engedélyezett állapot, függőségek, protokollkompatibilitás és végrehajtási napló. |
+| Az AI-kérés sikertelen | Megfelelő kiválasztott helyi futtatókörnyezet, kész szolgáltatás/modell, támogatott JSON-séma, megbízható kompatibilis modellmappa és kérési korlátok. |
+| A kiosztás vagy a szöveg hibásnak tűnik | Különítse el a felület nyelvét a billentyűzet geometriájától; méretezze át az ablakot, ellenőrizze a kijelzőskálázást, és jelentse a pontos oldalt, nyelvet és buildet. |
 
-A hasznos hibajelentéshez a Windows verzió, az alkalmazás építése/megrendelése, a nyelv, a kijelző skálázása, a hardvermodell, a minimális sorrend és a releváns szerkesztett napló.
+Hasznos hibajelentéshez adja meg a Windows verzióját, az alkalmazás buildjét/commitját, nyelvét, kijelzőskálázását, hardvermodelljét, minimális lépéssorát és a releváns, érzékeny adatoktól megtisztított naplót. Közzététel előtt távolítsa el a személyes elérési utakat, művelettartalmakat és hitelesítő adatokat.
 
-## Építés, tesztelés és csomagolás
+## Buildelés, tesztelés és csomagolás
 
-Használja az SDK-t `global.json`. A raktár gyökere:
+Használja a `global.json` fájlban rögzített SDK-t. A tároló gyökeréből:
 
 ```powershell
 dotnet build Aivana.slnx -c Release
@@ -161,14 +161,14 @@ dotnet run --project src/Aivana.Desktop -c Release -- --smoke-test
 python tools/check_documentation.py
 ```
 
-Windows integrációs tesztek nyitott ablakok és ideiglenesen konfigurálni / kiadni támogatott szállító kötések. futtatni őket anélkül, hogy egy másik vezérlő, amely rendelkezik ezekkel a kötésekkel. A szabványos fényesség / hangvizsgálatokat olvasható; kifejezett hardver körvonalas tesztek vannak elválasztva. Mock protokollok, rendered képernyőfelvételek és véletlenszerű következtetési grafikonok nem kell képviselni, mint a valódi hardver / modell-minőség elfogadás.
+A Windows integrációs tesztek elkülönített ablakokat nyithatnak, és ideiglenesen konfigurálhatják/felszabadíthatják a támogatott gyártói hozzárendeléseket. Úgy futtassa őket, hogy más vezérlő ne birtokolja ezeket. Az alapértelmezett fényerő-/hangvizsgálatok csak olvasnak; a kifejezett hardveres módosítási/visszaállítási tesztek különállók. A szimulált protokollok, renderelt képernyőképek és véletlen következtetési gráfok nem tüntethetők fel valódi hardveres vagy modellminőségi átvételként.
 
-A teljes kiadó társalapokat, mobil eszközöket, példamegoldót, a ONNX futási időt és a rendelkezésre álló függőség értesítéseket gyűjti össze. Tartsa az al-irányítványait. Egy sikeres építmény nem aláírt telepítő vagy jogi kiadás jóváhagyása. Forrás és építmények külön alakulhatnak ki; összehasonlítsa a dokumentációt és követi a telepített verzióval.
+A teljes csomagkészítő összeállítja a kísérő hosztokat, mobil erőforrásokat, példabővítményt, ONNX futtatókörnyezetet és az elérhető függőségi értesítéseket. Tartsa meg az alkönyvtárakat. A sikeres build nem aláírt telepítő vagy jogi kiadási jóváhagyás. A forrás és a buildek külön fejlődhetnek; hasonlítsa össze a dokumentáció pillanatképét és commitját a telepített verzióval.
 
-## Licenc, magánélet és szabadon bocsátás
+## Licencelés, adatvédelem és kiadási állapot
 
-A tervezett kereskedelmi modell egy egyszer vásárolt, a megvásárolt fő verzió folyamatos használatával; a végső ár, a készülék támogatása és a frissítési feltételek be kell állítani a tényleges értékesítési feltételek. A gyártási vásárlás / aktiválási rendszer nem állapítható meg ebben a kézikönyvben.
+A tervezett kereskedelmi modell egyszeri vásárlás, a megvásárolt főverzió tartós használati jogával; a végleges árat, megengedett eszközszámot és frissítési feltételeket a tényleges értékesítési feltételekben kell rögzíteni. Ez a kézikönyv nem igazol éles vásárlási/aktiválási rendszert. A mindennapi vezérléshez nem szükséges felhőfiók.
 
-Ne osztja meg a tulajdonos SDK bináris engedély nélkül. Tartsa meg a licencet és a harmadik fél értesítéseket minden küldött függőség, beleértve a .NET és a ONNX csomagokat. A modell súlyai saját feltételeikkel rendelkeznek. Az adott licenc audit néhány új függőséget ad, és nem egy tisztázás az ilyen hozzáadásokra. A nyilvános tároló nem ad általános nyílt forráskódú licencet.
+Igazolt engedély nélkül ne terjesszen zárt SDK-binárisokat. Őrizze meg minden szállított függőség licencét és harmadik féltől származó értesítéseit, beleértve a .NET és ONNX csomagokat. A modellsúlyokra saját feltételek vonatkoznak. A dátumozott licencaudit egyes új függőségeknél korábbi, és nem jelent engedélyt ezek hozzáadására. A tároló nyilvánossága önmagában nem biztosít általános nyílt forráskódú licencet.
 
-Valódi szállító hardver, telefon/tablet LAN működése, vegyes monitor/DPI átmenetek, hosszú távú használat, teljes nyelvi felülvizsgálat, kizárólagos vezetőtámogatás és hasznos AI tervezési minőség továbbra is külön elfogadási munka.
+A valódi gyártói hardver, telefonos/tabletes LAN-működés, eltérő monitorok/DPI-k közötti átmenetek, tartós használat, teljes nyelvi lektorálás, kizárólagos illesztőprogram-támogatás és hasznos AI-tervezési minőség továbbra is külön átvételi munkát igényel. Egy funkció meglétéből soha ne következtessen jóváhagyásra.

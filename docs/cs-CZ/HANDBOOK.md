@@ -4,15 +4,15 @@
 
 # MAKRIVO — Uživatelská příručka
 
-Výrobce: **Aivana**. Snímek dokumentace: **2026-10-12**. Tato příručka popisuje současnou implementaci pracovního stromu. Experimentální integrace a funkce závislé na hardwaru jsou explicitně identifikovány. Historické zprávy popisují jejich datovaný snímek, nejsou zárukou pro novější sestavení.
+Výrobce: **Aivana**. Stav dokumentace: **2026-10-12**. Tato příručka popisuje aktuální implementaci v pracovním stromu. Experimentální integrace a funkce závislé na hardwaru jsou výslovně označeny. Historické zprávy popisují stav k uvedenému datu, nikoli záruku pro novější sestavení.
 
 ## Dokumentace a jazyky
 
-Pomocí voliče jazyka dokumentace otevřete kompletní příručku, soupis funkcí, řešení problémů, poznámky k vývoji, zprávy o výzkumu a historických testech v kterémkoli z aplikačních jazyků 27. Generované překlady jsou strojově asistované a mají strukturální kontroly; ne všechny obdržely recenzi rodilým mluvčím. Technické identifikátory a spustitelné příklady zůstávají nezměněny. Původní zdroj zůstává k dispozici pro srovnání. Přeložená analýza licencí je informativní a nenahrazuje původní právní podmínky třetích stran ani konečnou smlouvu EULA.
+Voličem jazyka dokumentace otevřete úplnou příručku, soupis funkcí, řešení problémů, vývojové poznámky, průzkum a historické testovací zprávy v kterémkoli z 27 jazyků aplikace. Generované překlady jsou strojově podporované a strukturálně kontrolované; ne všechny prošly revizí rodilého mluvčího. Technické identifikátory a spustitelné příklady zůstávají nezměněny. Původní zdroj je k dispozici pro porovnání. Přeložená analýza licencí je informativní a nenahrazuje původní právní podmínky třetích stran ani konečnou smlouvu EULA.
 
 ## Instalace a první spuštění
 
-Počáteční cíl je Windows 11 x64. Udržujte všechny soubory a podadresáře distribuce pohromadě. Spusťte `MAKRIVO.exe`. Pokladna zdroje není instalační program. Samostatné balíčky zahrnují jejich .NET runtime; balíčky závislé na frameworku vyžadují příslušné běhové prostředí .NET 10 Desktop a ASP.NET. ONNX a doprovodní hostitelé musí být zahrnuti pro jejich příslušné funkce.
+Počáteční cílovou platformou je Windows 11 x64. Uchovávejte všechny soubory a podadresáře distribuce pohromadě. Spusťte `MAKRIVO.exe`. Pracovní kopie zdrojového repozitáře není instalační program. Samostatné balíčky obsahují běhové prostředí .NET; balíčky závislé na frameworku vyžadují příslušná běhová prostředí .NET 10 Desktop a ASP.NET. Pro odpovídající funkce musí být přibaleny ONNX a doprovodní hostitelé.
 
 1. Spusťte MAKRIVO a vyberte jazyk rozhraní v Nastavení. Automaticky následuje Windows. Rozložení klávesnice je samostatné nastavení.
 2. Vyberte profil a poté přidejte dlaždici prostřednictvím prohledávatelného katalogu akcí. Dejte mu rozpoznatelné jméno a zvolte jeho akce.
@@ -20,43 +20,43 @@ Počáteční cíl je Windows 11 x64. Udržujte všechny soubory a podadresáře
 4. Uložte koncept. Neuložené změny nejsou uloženou konfigurací.
 5. Otestujte pomocí neškodné akce, jako je otevření dokumentu, a zkontrolujte zpětnou vazbu k provedení.
 
-Zavřením hlavního okna normálně zůstane aplikace v oznamovací oblasti. Poklepáním na ikonu na hlavním panelu jej znovu otevřete nebo pro ukončení použijte nabídku na hlavním panelu. Spouštění na Windows je volitelné a zpočátku je zakázáno. Ovládací prvek pauzy pozastaví vazby; ikona zobrazuje odznak pozastavení. Zrušení spouštění maker prostřednictvím uživatelského rozhraní, zásobníku nebo nakonfigurované zkratky pro zrušení; výchozí je `Ctrl+Alt+Escape`.
+Zavření hlavního okna obvykle ponechá aplikaci v oznamovací oblasti. Dvojklikem na její ikonu okno znovu otevřete nebo aplikaci ukončete z nabídky ikony. Spouštění s Windows je volitelné a zpočátku zakázané. Ovládání pauzy pozastaví vazby; ikona zobrazí značku pozastavení. Běžící makra zrušte v rozhraní, nabídce ikony nebo nastavenou zkratkou pro zrušení; výchozí je `Ctrl+Alt+Escape`.
 
 ## Dlaždice, akce a paleta příkazů
 
 Dlaždice patří k profilům a mohou obsahovat více uspořádaných kroků. Editor podporuje uložení/zahození, náhled, vrácení/znovu a změnu pořadí kroků. Katalog poskytuje předvolby pro programy, dokumenty, adresy URL, text, schránku, zástupce, média, zvuk, okna, systémové akce a podporované integrace. Předvolba vyžadující parametry se otevře jako koncept.
 
-Otevřete paletu pomocí `Ctrl+K`, zatímco MAKRIVO má fokus. Vyhledávejte uložené akce, předvolby, přepínání profilů a nástroje. Výběr pomocí šipek; Enter aktivuje; `Ctrl+Enter` upravuje podporovanou položku; Útěk se zavře. Některé příkazy připravené k použití se provádějí okamžitě, zatímco nakonfigurované akce vyžadují kontrolu. Lze nakonfigurovat samostatnou zkratku globální palety; nové konfigurace používají `Ctrl+Shift+Space`.
+Otevřete paletu pomocí `Ctrl+K`, když má MAKRIVO fokus. Vyhledávejte uložené akce, předvolby, přepínání profilů a nástroje. Šipky vybírají položku; Enter ji aktivuje; `Ctrl+Enter` upravuje podporovanou položku; Escape paletu zavře. Některé hotové příkazy se provádějí ihned, zatímco nakonfigurované akce vyžadují kontrolu. Lze nastavit samostatnou globální zkratku palety; nové konfigurace používají `Ctrl+Shift+Space`.
 
 Podpora kroků textu a schránky `{{date}}`, `{{time}}`, `{{datetime}}`, `{{clipboard}}`, `{{profile}}`, `{{process}}` a `{{user}}`. Formátování data je `yyyy-MM-dd`; formátování času je `HH:mm`. Neznámé proměnné zůstávají nezměněny. Čtení schránky probíhá pouze na vyžádání. Akce schránky zapíše text bez jeho automatického vkládání.
 
-Akce spouštěné z uživatelského rozhraní mohou cílit na poslední externí aplikaci. Pokud cíl zmizí nebo Windows blokuje aktivaci popředí, aktivujte cíl ručně a zkuste to znovu. Úspěšné doručení klíče nedokazuje, že cíl splnil svůj úkol.
+Akce spuštěné z rozhraní mohou cílit na poslední externí aplikaci. Pokud cíl zmizí nebo Windows zablokuje jeho aktivaci na popředí, aktivujte jej ručně a zkuste to znovu. Úspěšné doručení stisku klávesy nedokazuje, že cíl dokončil úkol.
 
 ## Profily a nastavení pracoviště
 
-Profily mohou odpovídat názvu procesu a části názvu okna. Když jsou nastaveny oba, musí se oba shodovat. Pořadí profilu řeší konkurenční zápasy; výchozí profil je záložní. Explicitně povolit automatický výběr. Lock Profile zabraňuje automatickým změnám pro aktuální relaci.
+Profily mohou odpovídat názvu procesu a části názvu okna. Pokud jsou nastavena obě kritéria, musí platit obě. Pořadí profilů rozhoduje při více shodách; výchozí profil se použije, pokud žádná shoda není. Automatický výběr výslovně povolte. Zámek profilu brání automatickým změnám v aktuální relaci.
 
-Otevřete Nastavení pracoviště z Nástroje nebo palety. Vyberte programy, dokumenty, webové stránky, cíl zvuku/zobrazení nebo scénu OBS. Asistent připravuje profily pracoviště, setkání, streamingu, výzkumu nebo projektu. Před uložením zkontrolujte vygenerované kroky. Instalační program neprovede připravené akce.
+Otevřete nastavení pracoviště z nabídky Nástroje nebo palety. Vyberte programy, dokumenty, weby, cílové zvukové zařízení/displej nebo scénu OBS. Průvodce připraví profily pracoviště, schůzky, streamování, výzkumu nebo projektu. Před uložením zkontrolujte vygenerované kroky. Nastavení připravené akce neprovádí.
 
 ## Makra, podmínky a nahrávání
 
 Makra provádějí své kroky v pořadí a podporují čekání, opakování a zrušení. Obecný limit opakování je 100. Před spuštěním akcí, které zadávají do jiné aplikace nebo mění stav systému, použijte Náhled.
 
-Wait for Target Window přijímá proces, podřetězec názvu a časový limit od 1 do 600,000 ms. Je vyžadován alespoň jeden filtr. Odpovídající viditelné okno musí reagovat a stát se popředím, než budou pokračovat následující kroky. Připravené okno nedokazuje, že dokument nebo služba dokončila načítání.
+Wait for Target Window přijímá proces, část názvu a časový limit od 1 do 600000 ms. Je vyžadován alespoň jeden filtr. Odpovídající viditelné okno musí reagovat a přejít do popředí, než budou pokračovat další kroky. Připravené okno nedokazuje, že načítání dokumentu nebo služby skončilo.
 
-Editor pracovních postupů přidává podmínky existence souboru, běhu procesu a názvu okna. Nesprávná podmínka přeskočí krok a může přeskočit další kroky vpřed. Negujte podmínku pro vyjádření alternativní větve. Záměrně vyberte stop-on-error nebo continue-on-error; pokračování může ponechat pozdější kroky bez jejich očekávaných předpokladů.
+Editor pracovních postupů přidává podmínky existence souboru, běžícího procesu a názvu okna. Nepravdivá podmínka přeskočí krok a může přeskočit další následující kroky. Negací podmínky vyjádříte alternativní větev. Vědomě zvolte zastavení nebo pokračování při chybě; při pokračování mohou pozdějším krokům chybět očekávané předpoklady.
 
-Akční záznamník zachycuje zkratkové akordy a čeká, ne obyčejné psaní. Podporuje modifikační zkratky a funkční klávesy. Escape zastaví nahrávání. Zkontrolujte seznam a přijměte jej jako neuložený koncept dlaždice a poté jej explicitně uložte. Záznam kliknutí uživatelského rozhraní je samostatný nástroj popsaný níže.
+Záznamník akcí zachycuje kombinace klávesových zkratek a prodlevy, nikoli běžné psaní. Podporuje zkratky s modifikačními klávesami a funkční klávesy. Escape záznam zastaví. Zkontrolujte seznam, převezměte jej jako neuložený koncept dlaždice a poté jej výslovně uložte. Záznam kliknutí v uživatelském rozhraní je samostatný nástroj popsaný níže.
 
 ## Klávesnice, gesta a vrstvy
 
 Stránka klávesnice uvádí zjištěná rozhraní a referenční rozvržení. Jedna fyzická klávesnice může odhalit několik rozhraní. Vyberte správný jazyk a geometrii; samotný název produktu neidentifikuje rozložení ISO nebo ANSI.
 
-Standardní globální klávesové zkratky platí pro všechny klávesnice. Vazby Raw Input specifické pro zařízení sledují konkrétní zařízení a skenují kód, včetně podporovaných funkčních a mediálních kláves. **Raw Input nepotlačuje běžný vstup Windows. Exkluzivní druhá klávesnice není připravena na výrobu.** Stále je vyžadován podepsaný, licencovaný a testovaný backend ovladače filtru; žádný není nainstalován pomocí MAKRIVO.
+Standardní globální klávesové zkratky platí napříč klávesnicemi. Vazby Raw Input pro konkrétní zařízení sledují dané zařízení a skenovací kód včetně podporovaných funkčních a multimediálních kláves. **Raw Input nepotlačuje běžný vstup Windows. Výhradní použití druhé klávesnice není připraveno pro produkční provoz.** Stále je nutný podepsaný, licencovaný a otestovaný backend filtrovacího ovladače; MAKRIVO žádný takový ovladač neinstaluje.
 
-Podporované speciální klávesové vazby mohou využívat okamžité stisknutí, klepnutí, podržení nebo dvojité klepnutí. Klávesy podržené vrstvy dočasně vyberou jiné mapování a obnoví základní vrstvu při uvolnění; klávesy pro výběr vrstvy nespouštějí vlastní makro. Prahové hodnoty přidržení se pohybují od 150 do 5,000 ms; dvojitá okna od 150 do 1,000 ms. Tato mapování se liší od běžných globálních klávesových zkratek.
+Podporované vazby speciálních kláves mohou používat okamžité stisknutí, krátké stisknutí, podržení nebo dvojité stisknutí. Klávesy aktivující vrstvu při podržení dočasně vyberou jiné mapování a po uvolnění obnoví základní vrstvu; klávesy výběru vrstvy nespouštějí vlastní makro. Prahové hodnoty podržení jsou od 150 do 5000 ms a časová okna dvojitého stisknutí od 150 do 1000 ms. Tato mapování se liší od běžných globálních klávesových zkratek.
 
-Průvodce speciálními klíči detekuje kompatibilní klíče, aniž by během zachycení provedl jejich přiřazené akce. Diagnostika vysvětluje nedostupná zařízení, pozastavené vazby, neshody profilů a konflikty. Překrytí zobrazuje vybrané rozvržení a vazby; jeho výchozí klávesová zkratka je `Ctrl+Alt+F1`.
+Průvodce speciálními klávesami detekuje kompatibilní klávesy, aniž by během zachycení prováděl jejich přiřazené akce. Diagnostika vysvětluje nedostupná zařízení, pozastavené vazby, neshody profilů a konflikty. Překryv zobrazuje vybrané rozložení a vazby; výchozí zkratka pro zobrazení při podržení je `Ctrl+Alt+F1`.
 
 | Integrace | Požadavky a omezení |
 | --- | --- |
@@ -67,31 +67,31 @@ Průvodce speciálními klíči detekuje kompatibilní klíče, aniž by během 
 | Wooting | Kompatibilní originální místní x64 SDK pro analogové hodnoty a prahové hodnoty; normální HID vstup zůstává aktivní. |
 | Ostatní klávesnice | Standardní klávesové zkratky nebo podporované fyzické vazby skenovacího kódu. Fn a proprietární ovládací prvky závisí na modelu a konfiguraci dodavatele. |
 
-Výzkum výrobce popisuje zdokumentované možnosti, nikoli implementovanou nebo testovanou kompatibilitu s každým uvedeným zařízením. Nové adaptéry stále vyžadují skutečné přijetí hardwaru. Nestahujte binární soubory SDK z nedůvěryhodných zdrojů; Distribuční práva SDK jsou oddělena od technické kompatibility.
+Průzkum výrobců popisuje zdokumentované možnosti, nikoli implementovanou nebo otestovanou kompatibilitu s každým uvedeným zařízením. Nové adaptéry stále vyžadují přejímací testy na skutečném hardwaru. Nestahujte binární soubory SDK z nedůvěryhodných zdrojů; distribuční práva SDK jsou oddělena od technické kompatibility.
 
 ## Zvuk, displeje a OBS
 
-Audio kroky nastavení objemu 0 Na 100 procent a úhlová/úhlová/úhlová podpora výstupu nebo mikrofonu. Vyberte konkrétní koncový bod nebo použijte Windows Předběžné. chybějící uložené cíle produkuje chybu namísto tiché kontroly jiného zařízení. Odstraňte zařízení po opětovném připojení. Kontrola koncového bodu není nárok na nezávislou podporu mixéru pro aplikaci.
+Zvukové kroky nastavují hlasitost od 0 do 100 procent a ztlumují, obnovují zvuk nebo přepínají ztlumení podporovaných výstupních či mikrofonních koncových bodů. Vyberte konkrétní koncový bod nebo použijte výchozí zařízení Windows. Chybějící uložený cíl způsobí chybu namísto tichého ovládání jiného zařízení. Po opětovném připojení obnovte seznam zařízení. Ovládání koncových bodů neznamená podporu nezávislého směšovače pro jednotlivé aplikace.
 
-Akce displeje zvyšují/snižují jas o 10 procentuální body nebo nastavte hodnotu od 0 do 100. Interní displeje používají podporovaná rozhraní WMI; externí monitory vyžadují podporu DDC/CI a obvykle nastavení nabídky monitoru. Doky, adaptéry a kabely mohou blokovat ovládání. Vyberte všechny podporované displeje nebo jeden monitor. Opětovné připojení může změnit dostupné identity; zkontrolovat uložený cíl. Chybějící naměřené hodnoty jsou zobrazeny spíše jako nedostupné než naměřené hodnoty.
+Akce displeje zvýší/sníží jas o 10 procentních bodů nebo nastaví hodnotu od 0 do 100. Interní displeje používají podporovaná rozhraní WMI; externí monitory vyžadují podporu DDC/CI a obvykle její zapnutí v nabídce monitoru. Doky, adaptéry a kabely mohou ovládání blokovat. Vyberte všechny podporované displeje nebo jeden monitor. Opětovné připojení může změnit dostupné identifikátory; zkontrolujte uložený cíl. Chybějící odečty se zobrazují jako nedostupné, nikoli jako naměřené hodnoty.
 
-OBS vyžaduje WebSocket v5 povolenou v nástrojích OBS. Před uložením nakonfigurujte koncový bod, otestujte připojení a načtěte názvy scén/vstupů. Mezi podporované akce patří přepínání scén, spuštění/zastavení/přepnutí streamu/nahrávání, pozastavení/obnovení nahrávání a ztlumení vstupu. Hesla mohou být uložena v Windows Credential Manager a jsou vyloučena z exportů konfigurace. Úspěšný příkaz OBS nestanoví každý efekt streamování po proudu.
+OBS vyžaduje povolený WebSocket v5 v nabídce Nástroje OBS. Před uložením nakonfigurujte koncový bod, otestujte připojení a načtěte názvy scén/vstupů. Podporované akce zahrnují přepínání scén, spuštění/zastavení/přepnutí streamování či nahrávání, pozastavení/obnovení nahrávání a ztlumení vstupu. Hesla lze ukládat do Windows Credential Manager a jsou vyloučena z exportů konfigurace. Úspěšný příkaz OBS nepotvrzuje všechny navazující účinky streamování.
 
 ## Ověření výsledků a historie provedení
 
-Pro vhodné kroky povolte Ověřit výsledek. Aplikace rozlišuje předletové kontroly, potvrzené efekty, selhání, zrušení a efekty, které nelze ověřit. Existence procesu není připravenost aplikace. Relativní změny, zkratky a zadávání textu nemohou získat paušální nárok na úspěch. Když se akce nezdaří, zkontrolujte protokol aktivit a historii ověření. Chyby konfigurace by měly být opraveny před opětovným spuštěním úplného makra.
+U vhodných kroků zapněte ověření výsledku. Aplikace rozlišuje předběžné kontroly, potvrzené účinky, selhání, zrušení a účinky, které nelze ověřit. Existence procesu neznamená připravenost aplikace. Relativním změnám, zkratkám a zadávání textu nelze paušálně přiznat potvrzený úspěch. Když akce selže, zkontrolujte protokol aktivit a historii ověření. Před opětovným spuštěním celého makra opravte chyby konfigurace.
 
 ## Automatizace uživatelského rozhraní a záznam kliknutí
 
-Přidejte krok UI Automatizace, vyberte operaci a po zobrazeném zpoždění zachyťte cíl pod ukazatelem. `Invoke`, `Select`, `Toggle`, `Focus`, `SetValue` a `WaitState`. Pole hesla, ovladače a nesmyslné selektory jsou odmítnuty.
+Přidejte krok UI Automation, vyberte operaci a po zobrazené prodlevě zachyťte cíl pod ukazatelem. Samotné zachycení nic neprovádí. Zkontrolujte selektor a vyžadujte jednoznačnou shodu. Podporované operace zahrnují `Invoke`, `Select`, `Toggle`, `Focus`, `SetValue` a `WaitState`. Pole pro hesla, zakázané ovládací prvky a nejednoznačné selektory jsou odmítnuty.
 
 Automatizace uživatelského rozhraní běží v omezeném doprovodném procesu. Závisí to na podpoře usnadnění přístupu Windows cílové aplikace a na oprávněních. Záznamník kliknutí zachycuje podporované akce a pauzy; nezaznamenává obecný textový vstup. Zkontrolujte a ověřte jeho návrh před jeho přijetím. Změny uživatelského rozhraní v externí aplikaci mohou zneplatnit selektory. Izolace procesů omezuje pády a zrušení, ale není karanténou zabezpečení.
 
 ## Pluginy
 
-Otevřete Rozšíření a zkontrolujte balíček před importem. Kontroluje se struktura balíčku, manifest a hash. Spustí se import zakázán. Před povolením si přečtěte deklarované akce a výslovně důvěřujte vydavateli. Pluginy běží s vašimi uživatelskými oprávněními v samostatném procesu; ten proces je **není sandbox**. Instalujte pouze balíčky, kterým důvěřujete.
+Otevřete Rozšíření a před importem zkontrolujte balíček. Kontroluje se struktura balíčku, manifest a hashe. Importovaný balíček je zpočátku zakázán. Před povolením si přečtěte deklarované akce a výslovně označte vydavatele jako důvěryhodného. Pluginy běží s vašimi uživatelskými oprávněními v samostatném procesu; tento proces **není sandbox**. Instalujte pouze balíčky, kterým důvěřujete.
 
-Správce podporuje export, zakázání, odinstalaci a obnovení/zahození předchozí verze. Chybějící vyvolání bloku závislostí. Ukázkový balíček poskytuje odpočítávání a akce místního stavu. Podporované schéma je zdokumentovaná podmnožina schématu JSON, ne všechny možné funkce schématu JSON. Neexistuje žádný veřejný trh s pluginy.
+Správce podporuje export, zakázání, odinstalaci a obnovení/zahození předchozí verze. Chybějící závislosti blokují vyvolání. Ukázkový balíček poskytuje akce odpočítávání a místního stavu. Podporované schéma je zdokumentovanou podmnožinou JSON-Schema, nikoli všemi možnými funkcemi JSON-Schema. Veřejné tržiště pluginů neexistuje.
 
 ## Mobilní panel
 
@@ -105,7 +105,7 @@ Klíče soukromého serveru jsou chráněny pomocí Windows DPAPI; přihlašovac
 
 ## Místní asistent setkání AI
 
-Tento volitelný experimentální asistent je ve výchozím nastavení zakázán. Otevřete jej z Nástroje, explicitně jej povolte, vyberte runtime/model a přidejte pouze prostředky, které chcete, aby zvážil. Stanovte cíl, vytvořte koncept, zkontrolujte nevyřešené požadavky a přeneste výsledek do běžného editoru. Nic se neprovede automaticky; ukládání a spuštění zůstávají explicitními akcemi. Neexistuje žádná automatická záloha za běhu.
+Tento volitelný experimentální asistent je ve výchozím nastavení zakázán. Otevřete jej z nabídky Nástroje, výslovně jej povolte, vyberte běhové prostředí/model a přidejte jen prostředky, které má zohlednit. Zadejte cíl, vytvořte koncept, zkontrolujte nevyřešené požadavky a přeneste výsledek do běžného editoru. Nic se neprovádí automaticky; uložení a spuštění zůstávají výslovnými akcemi. Neexistuje automatické přepnutí na náhradní běhové prostředí.
 
 | Doba běhu | Nastavení |
 | --- | --- |
@@ -114,21 +114,21 @@ Tento volitelný experimentální asistent je ve výchozím nastavení zakázán
 | llama.cpp | Místní `llama-server` a kompatibilní model s podporou schématu JSON na `127.0.0.1:8080`. |
 | ONNX Doba běhu GenAI CPU | Důvěryhodná kompatibilní místní složka textového modelu GenAI; vyberte `genai_config.json`. Inference používá svázaný doprovodný proces bez HTTP. |
 
-HTTP klienti používají pouze zpětnou smyčku, nepoužívají proxy a nesledují přesměrování. MAKRIVO nemůže spolehlivě zjistit, zda kompatibilní místní server interně volá vzdálenou službu. Ověřené místní servery nelze v této verzi konfigurovat. Hmotnosti modelů, Python a místní inferenční servery se automaticky nestahují ani neinstalují.
+Klienti HTTP používají pouze zpětnou smyčku, nepoužívají proxy a nenásledují přesměrování. MAKRIVO nedokáže spolehlivě zjistit, zda kompatibilní místní server interně volá vzdálenou službu. Místní servery vyžadující ověření nelze v této verzi konfigurovat. Váhy modelů, Python ani místní inferenční servery se automaticky nestahují ani neinstalují.
 
-ONNX Pakety potřebují `tokenizer.json` a platný chatový šablona. podporované šablony v `tokenizer_config.json` Je to string `chat_template`Slovník s řádkem `default`, nebo nesporný seznam jmenovaných/podmíněných šablon. pokud šablona chybí nebo nula, `chat_template.jinja` Používá se jako padák. prázdné, ambigové, nadměrné nebo nesprávně vytisknuté šablony jsou odmítnuty. ONNX soubory, modely vkladu/vidění a balíčky GPU nejsou s kompatibilním GenAI Textové modely - Zbavení GenAI Runtime verze je 0.17.1Použijte pouze důvěryhodné modely; procesní oddělení není písečný box.
+Balíčky ONNX potřebují `tokenizer.json` a platnou šablonu chatu. Podporované podoby šablon v `tokenizer_config.json` jsou řetězec `chat_template`, slovník s řetězcem `default` nebo jednoznačný seznam pojmenovaných/výchozích šablon. Pokud šablona chybí nebo má hodnotu null, jako náhradní řešení se použije `chat_template.jinja`. Prázdné, nejednoznačné, příliš velké šablony nebo šablony nesprávného typu jsou odmítnuty. Libovolné soubory ONNX, embeddingové/vizuální modely a balíčky určené pouze pro GPU nejsou zaměnitelné s kompatibilními textovými modely GenAI. Přibalené běhové prostředí GenAI má verzi 0.17.1 a používá CPU. Používejte pouze důvěryhodné modely; oddělení procesů není sandbox.
 
-Asistent podporuje vybrané programy bez argumentů, vybrané dokumenty a webové stránky a na výslovné vyžádání ztlumí mikrofon. Nevytváří zprávy, schůzky, libovolné skripty, bezplatná kliknutí, stahování ani přepínání náhlavních souprav. Názvy cílů a prostředků jsou odeslány do vybraného místního běhového prostředí; cesty k prostředkům a obsah souborů nejsou dodávány samostatně. Cíl zadaný uživatelem může sám o sobě obsahovat osobní údaje. Vlastní síťové chování místního runtime zůstává odpovědností uživatele.
+Asistent podporuje vybrané programy bez argumentů, vybrané dokumenty a weby a ztlumení mikrofonu na výslovné vyžádání. Nevytváří zprávy, schůzky, libovolné skripty, libovolná kliknutí, stahování ani přepínání náhlavních souprav. Cíl a názvy prostředků se odesílají do vybraného místního běhového prostředí; cesty k prostředkům a obsah souborů nejsou poskytovány zvlášť. Cíl napsaný uživatelem může sám obsahovat osobní údaje. Za vlastní síťové chování místního běhového prostředí odpovídá uživatel.
 
-Rozpočet požadavku ONNX je 90 sekund včetně načítání modelu, až do 3,072 tokenů výzvy a 1,024 generovaných tokenů, rovněž omezených kontextem modelu. Poškozený/zkrácený JSON a neznámá ID zdrojů jsou odmítnuta. Zrušením nebo zavřením ukončíte požadavek. Náhodný model runtime test stanoví provedení, nikoli užitečnou kvalitu plánování nebo úsporu času. Lokální protokoly experimentů obsahují identifikátory a časování událostí, nikoli text cíle nebo obsah dokumentu; nejsou automaticky nahrány.
+Limit požadavku ONNX je 90 sekund včetně načtení modelu, nejvýše 3072 tokenů vstupu a 1024 vygenerovaných tokenů, navíc omezených kontextem modelu. Chybně utvořený/zkrácený JSON a neznámá ID prostředků jsou odmítnuty. Zrušením nebo zavřením požadavek ukončíte. Test běhového prostředí s náhodným modelem prokazuje provedení, nikoli užitečnou kvalitu plánování nebo úsporu času. Místní protokoly experimentů obsahují identifikátory událostí a časové údaje, nikoli text cíle či obsah dokumentů; automaticky se neodesílají.
 
-Později malá hodnocení modelu Instruct produkovala nulové platné plány ve čtyřech německých/anglických zkouškách. Native inference fungovala, ale model neuspěl přísnou plánovací smlouvu. To je negativní výsledek kvality, ne doporučený model nebo prokázaný užitečný asistent.
+Pozdější vyhodnocení malého modelu Instruct poskytlo nula platných plánů ve čtyřech německých/anglických pokusech. Nativní inference fungovala, ale model nesplnil přísný kontrakt plánování. Jde o negativní výsledek hodnocení kvality, nikoli o doporučený model ani prokazatelně užitečného asistenta. Přesnou revizi modelu a omezení uvádí datovaná zpráva o testu místního běhového prostředí.
 
 ## Import, export, synchronizace a zálohování
 
-Před výměnou konfigurace zkontrolujte náhledy importu. Spuštění importovaných akcí je zakázáno a přenosná synchronizace odstraní hardwarově specifické vazby. Přiřaďte zařízení a povolte akce záměrně po kontrole. Před sdílením exportu zkontrolujte obsah textu/akce; vyloučení hesel neznamená, že veškerý obsah akcí vytvořených uživatelem nebude citlivý.
+Před nahrazením konfigurace zkontrolujte náhled importu. Importované akce jsou zpočátku zakázané a přenosná synchronizace odstraní vazby specifické pro hardware. Po kontrole záměrně znovu přiřaďte zařízení a povolte akce. Před sdílením exportu zkontrolujte text a obsah akcí; vyloučení hesel neznamená, že veškerý obsah uživatelských akcí není citlivý.
 
-Synchronizace profilu výměnu souborů v vybrané složce, volitelně jedna spravovaná vašim stávajícím cloudovým klientem. MAKRIVO neposkytuje žádný cloudový účet a nezachovává žádné cloudové autentifikace. Revize zabraňují tichým přepisům. Zahrnutí obsahu akce je výslovnou volbou. Zadejte si konfiguraci před importem náhrad. `%LOCALAPPDATA%\AivanaWindowsController\settings.json`• historické název adresáře je zachován pro kompatibilitu.Zatáhněte aplikaci před ručně kopírováním/obnovováním.Zachovávány schválení SDK a OS-ochráněné autentifikace mohou být nutné obnovit na jiném PC.
+Synchronizace profilů vyměňuje soubory ve vybrané složce, případně spravované vaším stávajícím cloudovým klientem. MAKRIVO neposkytuje cloudový účet a neukládá cloudové přihlašovací údaje. Revize zabraňují tichému přepsání. Zahrnutí obsahu akcí je výslovná volba. Před importem nahrazujícím konfiguraci ji zálohujte. Výchozí konfigurace je `%LOCALAPPDATA%\AivanaWindowsController\settings.json`; historický název adresáře je zachován kvůli kompatibilitě. Před ručním kopírováním/obnovením aplikaci zavřete. Uložená schválení SDK a přihlašovací údaje chráněné operačním systémem může být nutné na jiném PC vytvořit znovu.
 
 ## Odstraňování problémů
 
@@ -161,14 +161,14 @@ dotnet run --project src/Aivana.Desktop -c Release -- --smoke-test
 python tools/check_documentation.py
 ```
 
-Integrační testy Windows mohou otevřít izolovaná okna a dočasně nakonfigurovat/uvolnit podporované vazby dodavatele. Spusťte je, aniž by tyto vazby vlastnil jiný řadič. Výchozí jas/audio sondy jsou pouze pro čtení; explicitní hardwarové okružní testy jsou samostatné. Falešné protokoly, vykreslené snímky obrazovky a grafy náhodných odvození nesmí být reprezentovány jako skutečné přijetí hardwaru/modelové kvality.
+Integrační testy Windows mohou otevírat izolovaná okna a dočasně konfigurovat/uvolňovat podporované vazby výrobců. Spouštějte je bez jiného řadiče, který tyto vazby vlastní. Výchozí sondy jasu/zvuku jsou pouze pro čtení; výslovné hardwarové testy změny a obnovení stavu jsou samostatné. Simulované protokoly, vykreslené snímky obrazovky a náhodné inferenční grafy nesmějí být vydávány za skutečnou přejímku hardwaru nebo kvality modelu.
 
-Kompletní vydavatel sestavuje doprovodné hostitele, mobilní prostředky, vzorový plugin, běhové prostředí ONNX a dostupná oznámení o závislostech. Udržujte jeho podadresáře. Úspěšné sestavení není podepsaný instalační program nebo právní schválení vydání. Zdroj a sestavení se mohou vyvíjet samostatně; porovnejte snímek dokumentace a potvrďte s nainstalovanou verzí.
+Kompletní publikační skript sestaví doprovodné hostitele, mobilní prostředky, ukázkový plugin, běhové prostředí ONNX a dostupná oznámení o závislostech. Zachovejte jeho podadresáře. Úspěšné sestavení není podepsaný instalační program ani právní schválení vydání. Zdrojové soubory a sestavení se mohou vyvíjet odděleně; porovnejte snímek dokumentace a commit s nainstalovanou verzí.
 
 ## Licencování, soukromí a stav vydání
 
-Zamýšlený komerční model je jednorázový nákup s trvalým používáním zakoupené hlavní verze; konečná cena, povolenky na zařízení a podmínky upgradu musí být stanoveny ve skutečných podmínkách prodeje. Systém nákupu/aktivace výroby není touto příručkou stanoven. Pro každodenní ovládání není vyžadován žádný cloudový účet.
+Zamýšlený obchodní model je jednorázový nákup s trvalým používáním zakoupené hlavní verze; konečná cena, počet povolených zařízení a podmínky upgradu musí být stanoveny ve skutečných podmínkách prodeje. Tato příručka nedokládá produkční systém nákupu/aktivace. Pro každodenní ovládání není vyžadován cloudový účet.
 
-Nešiřte proprietární binární soubory SDK bez prokázaného povolení. Zachovejte licenční upozornění a upozornění třetích stran pro každou dodávanou závislost, včetně balíčků .NET a ONNX. Modelové váhy mají své vlastní podmínky. Datovaný licenční audit předchází některým novým závislostem a není povolením pro tyto dodatky. Veřejné úložiště samo o sobě neuděluje obecnou open-source licenci.
+Nešiřte proprietární binární soubory SDK bez doloženého povolení. Zachovejte licenční oznámení a oznámení třetích stran pro každou dodávanou závislost včetně balíčků .NET a ONNX. Váhy modelů mají vlastní podmínky. Datovaný licenční audit předchází některým novým závislostem a není povolením pro tyto dodatky. Veřejný repozitář sám o sobě neuděluje obecnou open-source licenci.
 
-Hardware skutečných dodavatelů, provoz v síti LAN na telefonu/tabletu, přechody se smíšeným monitorem/DPI, dlouhodobé používání, kompletní jazyková revize, exkluzivní podpora ovladačů a užitečná kvalita plánování umělé inteligence zůstávají samostatnou prací při přijímání. Nikdy nevyvozujte schválení pouze z přítomnosti funkce.
+Skutečný hardware výrobců, provoz telefonu/tabletu v síti LAN, přechody mezi různými monitory/DPI, dlouhodobé používání, úplná jazyková revize, výhradní podpora pomocí ovladače a užitečná kvalita plánování AI stále vyžadují samostatné přejímací testy. Nikdy nevyvozujte schválení pouze z přítomnosti funkce.

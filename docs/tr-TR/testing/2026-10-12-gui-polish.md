@@ -10,6 +10,6 @@
 - Aksiyon filtresi yalnızca Dashboard'da görünür. Profil seçimi ve arama, yardımcı teknolojiler için açık isimler içerir. Alan tanımları daha çelişkili.
 - Dialog Smooke testi, 560 × 440 boyutunda araç incelemesini ve genişleme diyaloglarını içerir; mevcut kayıt ve dil testleri kaydırma yapısına göre ayarlanmıştır.
 
-Sınırlar: Kompakt pencereler gerçek Windows DPI testleri için bir yedek değildir 150/200 yüzde. Yeni Alman metinleri henüz tüm 27 diller için tam olarak tercüme edilmemiştir. Yeni bir donanım doğrulaması ve ölçülen kullanılabilirlik hakkında hiçbir açıklama yok.
+Sınırlar: Küçük pencereler 150/200 yüzde ölçeğinde gerçek Windows DPI testlerinin yerini almaz. Yeni Almanca metinler henüz 27 dilin tamamına tam çevrilmemiştir. Yeni donanım doğrulaması ve ölçülmüş kullanılabilirlik iddiası yoktur.
 
 Sınav Durumu: Uyarı / hata olmadan yayın yapımı; kompakt araç ve uzantı diyalogları ve dil değişikliği testleri de dahil olmak üzere tam WPF koku testi geçti. git diff - kontrolü devam etti.

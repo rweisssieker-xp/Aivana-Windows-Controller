@@ -4,7 +4,7 @@
 
 # MAKRIVO – Feature overview
 
-Manufacturer: **Aivana**. Status: **12. October 2026**. This is the development status, not a sales or hardware release.
+Manufacturer: **Aivana**. As of **12 October 2026**. This describes the development state, not approval for sale or hardware compatibility.
 
 ## Windows control
 
@@ -12,41 +12,41 @@ Manufacturer: **Aivana**. Status: **12. October 2026**. This is the development 
 - Multi-step, repeat, pause, cancel and preview macros.
 - Open programs, files and websites; Use text, clipboard and keyboard shortcuts.
 - Arrange windows, lock Windows, control audio outputs and microphones, and change screen brightness via supported interfaces.
-- OBS-WebSocket-v5-Anbindung for scenes, recording, streaming and audio.
+- OBS WebSocket v5 integration for scenes, recording, streaming and audio.
 - Templates, Workplace Assistant, Device Discovery and Keyboard Overlay.
-- Import and export of profile configurations; Design review and conflict detection.
+- Import and export profile configurations; review drafts and detect conflicts.
 - Locally saved settings; no account required for everyday use.
 
 ## Advanced features in current source code
 
-| area | Range of functions | Boundaries |
+| Area | Capabilities | Limitations |
 | --- | --- | --- |
-| Results check | Pre-inspection, post-inspection and test history | Only confirm verifiable effects; A successful key press does not prove the target effect. |
-| Workplace Assistant | Prepare profiles and processes from selected programs, files, URLs and other actions | Preview and save required; Setup does nothing. |
+| Result verification | Preflight checks, post-execution checks and verification history | Confirm only verifiable effects; a successful key press does not prove the intended result. |
+| Workplace assistant | Prepare profiles and workflows from selected programs, files, URLs and other actions | Preview and saving are required; setup executes no actions. |
 | Macro recording and workflows | Recording, conditions, gestures and local profile synchronization | Behavior and limits are documented in the implementation and test reports. |
-| UI automation | Select targets, check selectors, record actions and limited click sequences | Separate worker; ambiguous, disabled and password targets are rejected; no general text input recording. |
-| Extensions | Inspect, import, activate based on explicit trust, export and roll back packages | Process isolation is not a sandbox; not a public plugin marketplace. |
+| UI automation | Select targets, check selectors, record actions and limited click sequences | Separate worker; ambiguous selectors, disabled controls and password fields are rejected; no general text-input recording. |
+| Extensions | Inspect, import, enable after explicit trust, export and roll back packages | Process isolation is not a sandbox; not a public plugin marketplace. |
 | Mobile panel | Local HTTPS panel, pairing, selected profiles and status/audit history | Real phone/tablet LAN acceptance still open; no universal sensor dashboard. |
-| Manufacturer adapter | Corsair, Logitech-G-SDK, Razer/SteelSeries-RGB and Wooting analog adapter | Model/SDK dependent; new adapters not fully validated with real hardware. No new proprietary SDK DLLs bundled. |
-| Physical keyboard mapping | Recognize standard keys based on device and scan code | Raw Input does not suppress normal Windows input. |
-| Local AI meeting assistant | Optional prototype for Ollama, LM Studio, llama.cpp and ONNX Runtime GenAI CPU produces limited designs from explicitly selected resources | Off by default; native CPU runtime tested with random model, but no proven planning quality or time savings; no model weights included. |
+| Manufacturer adapters | Corsair, Logitech-G-SDK, Razer/SteelSeries-RGB and Wooting analog adapter | Model/SDK dependent; new adapters not fully validated with real hardware. No new proprietary SDK DLLs bundled. |
+| Physical keyboard mapping | Recognize standard keys by device and scan code | Raw Input does not suppress normal Windows input. |
+| Local AI meeting assistant | Optional prototype for Ollama, LM Studio, llama.cpp and ONNX Runtime GenAI CPU; produces constrained drafts from explicitly selected resources | Disabled by default; native CPU runtime tested with a random model, but planning quality and time savings are unproven; no model weights included. |
 
-## Not yet available as a finished sales feature
+## Not yet ready to offer as finished commercial features
 
 - **Exclusive secondary keyboard/macro pad:** A signed, licensed and hardware-tested filter driver is missing. Normal keystrokes can still reach Windows.
 - Complete hardware acceptance of all manufacturer adapters as well as real mobile device LAN tests.
-- True mixed monitor/DPI changes and technical approval of all new translations. PerMonitorV2 and simulated 150/200-Prozent-Layouts were checked; Real display tests remain separate. The interface offers 27 languages; Detailed new texts have not yet been completely linguistically approved.
-- Signed retail installer, final EULA, verified SDK distribution rights, and productive purchase license/checkout integration.
+- Real transitions between monitors with different DPI settings and specialist review of all new translations. PerMonitorV2 and simulated 150/200-percent layouts were checked; physical display tests remain separate. The interface provides 27 languages; detailed new text has not yet received complete linguistic review.
+- Signed retail installer, final EULA, verified SDK redistribution rights and production purchase-license/checkout integration.
 
 ## Details and evidence
 
-- [Service documentation](README.md)
+- [User documentation](README.md)
 - [Extensions: features, tests and open boundaries](testing/2026-10-12-six-extensions.md)
 - [Local AI Assistant: Prototype and Testing](testing/2026-10-12-local-meeting-assistant.md)
-- [Local AI times and model requirements](testing/2026-10-12-local-ai-runtimes.md)
-- [DPI and Scalation Testing](testing/2026-10-12-dpi-scaling.md)
-- [license examination](licensing/2026-10-12-commercial-license-audit.md) – historic recording; the new publish script supplements runtime instructions. The final package remains to be examined separately.
-- [Platforms of sale](licensing/makrivo-vertriebsplattformen-2026-10-12.html) – comparison status; Stripe is an additional possible payment platform, see current provider terms.
+- [Local AI runtimes and model requirements](testing/2026-10-12-local-ai-runtimes.md)
+- [DPI and scaling checks](testing/2026-10-12-dpi-scaling.md)
+- [License review](licensing/2026-10-12-commercial-license-audit.md) – historical inventory; the new publishing script adds runtime notices. The final package still requires a separate review.
+- [Sales platforms](licensing/makrivo-vertriebsplattformen-2026-10-12.html) – comparison snapshot; Stripe is also a possible payment platform; consult the current provider terms.
 
 ## Generate complete development package
 
@@ -54,4 +54,4 @@ Manufacturer: **Aivana**. Status: **12. October 2026**. This is the development 
 ./tools/publish-complete.ps1 -SelfContained
 ```
 
-The package includes desktop app, UI automation worker, mobile host, browser files, sample plugin and runtime license notes. Build artifacts are not checked into Git. A GitHub source code version is not yet a published Windows installer.
+The package contains the desktop app, UI automation worker, mobile host, browser files, example plugin and runtime license notices. Build artifacts are not committed to Git. A GitHub source revision is not a published Windows installer.

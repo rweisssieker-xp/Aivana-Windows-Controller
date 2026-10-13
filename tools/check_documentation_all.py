@@ -19,6 +19,11 @@ def without_fences(text): return re.sub(r"^```[^\n]*\n.*?^```\s*$", "", text, fl
 def links(text): return re.findall(r"\[[^\]\n]*\]\(([^)\n]+)\)", text)
 def urls(text): return set(re.findall(r"https?://[^\s<>\)\]\";,]+", text))
 
+def missing_hash_identifiers(source, translation):
+    """Hashes and commit revisions must survive even outside Markdown code."""
+    pattern = r"(?<![0-9a-f])[0-9a-f]{20,64}(?![0-9a-f])"
+    return set(re.findall(pattern, source)) - set(re.findall(pattern, translation))
+
 class HtmlStructure(HTMLParser):
     def __init__(self):
         super().__init__(); self.tags, self.styles, self.in_style = [], [], False
@@ -95,6 +100,8 @@ def main():
             a, b = HtmlStructure(), HtmlStructure(); a.feed(original); b.feed(structure_content)
             if a.tags != b.tags or a.styles != b.styles: issues.append(f"HTML structure/styles changed: {target}")
         if urls(original) - urls(content): issues.append(f"External source URL missing: {target}")
+        for identifier in sorted(missing_hash_identifiers(original, content)):
+            issues.append(f"Technical hash/revision changed or missing: {target}: {identifier}")
     for locale, available in translated.items():
         for missing in sorted(recorded - available): issues.append(f"Missing {locale} translation: {missing}")
         index = ROOT / "docs" / locale / "README.md"

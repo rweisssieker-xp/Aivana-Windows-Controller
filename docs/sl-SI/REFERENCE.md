@@ -4,19 +4,19 @@
 
 # MAKRIVO
 
-[Popolna dokumentacija v vseh jezikih 27](README.md) · [Popolna uporabniška knjiga](HANDBOOK.md)
+[Celotna dokumentacija v vseh 27 jezikih](README.md) · [Celoten uporabniški priročnik](HANDBOOK.md)
 
-**z Aivana.** [Trenutni podatki in omejitve za izdajo](FEATURES.md) · [Razširitev testnega poročila](testing/2026-10-12-six-extensions.md) · [Lokalni asistentski prototip](testing/2026-10-12-local-meeting-assistant.md)
+**Avtor: Aivana.** [Trenutni pregled funkcij in omejitve izdaje](FEATURES.md) · [Poročilo o preizkusu razširitev](testing/2026-10-12-six-extensions.md) · [Prototip lokalnega pomočnika z umetno inteligenco](testing/2026-10-12-local-meeting-assistant.md)
 
 ** Angleščina (ZDA) ** | [Deutsch](../de-DE/REFERENCE.md) | [Français](../fr-FR/REFERENCE.md) | [Italiano](../it-IT/REFERENCE.md)
 
-Lokalni kontrolor Windows s strehom ploščic, profilov, makrov in zaznavanje tipkovnice. Vmesnik podpira 27 jezike. Za vsakodnevno uporabo ni potrebe po računu ali povezavi v oblaku.
+Lokalni upravljalnik bližnjic Windows s ploščicami v slogu Stream Deck, profili, makri in zaznavanjem tipkovnic. Vmesnik podpira 27 jezikov. Za vsakodnevno uporabo ne potrebujete računa ali povezave z oblakom.
 
 [Dokumentacija](README.md) · [preverjanje](VERIFICATION.md) · [Funkcijska testna poročila](testing/2026-10-09-usp-release.md)
 
 ## Začetek
 
-Po objavi je prijava na `artifacts/win-x64/MAKRIVO.exe`. Celotno izhodno mapo držite skupaj; lahko jo kopirate drugje. Windows 11 x64 je začetni cilj. Izguba predmetov je izključena iz Git; vir preverjanja ne vključuje predizvedljive.
+Po pripravi distribucije je aplikacija na `artifacts/win-x64/MAKRIVO.exe`. Celotno izhodno mapo ohranite skupaj; kopirate jo lahko drugam. Začetna ciljna platforma je Windows 11 x64. Rezultati gradnje so izključeni iz Git; kopija izvorne kode ne vsebuje vnaprej zgrajene izvedljive datoteke.
 
 Namestite .NET 10 SDK, ki je določen v `global.json` za gradnjo in zagon iz viru:
 
@@ -34,12 +34,12 @@ dotnet publish src/Aivana.Desktop -c Release -r win-x64 --self-contained true -o
 ## Osnovni delovni tok
 
 1. Izberite profil in ustvarite akcijsko ploščo.
-2. Nastavite ime, ikono, barvo in kratko tipkovnico. Kombinacije Ctrl/Alt/Shift zmanjšujejo naključno aktiviranje med vpisom.
-3. Dodajte eno ali več korakov: aplikacije, datoteke, spletne strani, besedilo, skrajšane, medije, količino, preklapljanje profila ali zamude.
-4. in reševati. Spremembe ostanejo osnutek, dokler ni shranjen; diskard obnovlja shranjeno različico. Tile gumb za igranje in njegov hotkey uporablja isto izvedbo poti.
+2. Nastavite ime, ikono, barvo in bližnjico na tipkovnici. Kombinacije Ctrl/Alt/Shift zmanjšajo nenamerno aktiviranje med tipkanjem.
+3. Dodajte enega ali več korakov: aplikacije, datoteke, spletna mesta, besedilo, bližnjice, predstavnost, glasnost, preklapljanje profilov ali zakasnitve.
+4. Shranite. Spremembe ostanejo osnutek, dokler jih ne shranite; zavračanje obnovi shranjeno različico. Gumb za predvajanje na ploščici in njena bližnjica uporabljata isto pot izvajanja.
 5. Ponovno naročite ploščice in makro korake z gumbom za vlečenje ali puščico. Šabloni poenostavijo nastavitev. Makro lahko ponovi do 100 krat. Preklicajte prek vmesnika, sistemskega menija ali Ctrl+Alt+Escape po predvidenem načinu.
 
-Profili, ki so specifični za aplikacijo, uporabljajo ime procesa brez polnega potovanja. Profilni ukaz razbije povezave; privzeto profil je padec. Samodejni izbor profila mora biti omogočen v nastavitvah.
+Profili za posamezne aplikacije uporabljajo ime procesa brez polne poti. Vrstni red profilov razreši enakovredna ujemanja; privzeti profil je nadomestni. Samodejno izbiro profila morate omogočiti v nastavitvah.
 
 Zapiranje glavnega okna ohranja aplikacijo v sistemu privzeto. Dvakrat kliknite ikono traja, da jo znova odprete; uporabite meniju traja za izhod. Začetek z Windows je opcijski in onemogočen po predvidenem načinu. Hotkeys se lahko ustavijo osredotočeno.
 
@@ -47,55 +47,55 @@ Zapiranje glavnega okna ohranja aplikacijo v sistemu privzeto. Dvakrat kliknite 
 
 Dodajanje ukrepa odpre iskalni katalog z 90 prednastavitve v osmih kategorijah. vsaka ima opis in predogled. makro urednik uporablja isti katalog za dodajanje ali nadomestitev korakov. Izbira prednastave v tem delovnem toku urednika ustvari načrt brez izvajanja.
 
-Poveljni paleti se odprejo iz naslova ali s Ctrl+K znotraj aplikacije. Iskanje shranjenih ukrepov na profili, katalog prednastavitve, profil spreminjanje, navigacijo, odmora/resume, makro razveljavitev in uvoz/eksport. Filter z shranjenimi dejanji, katalognimi funkcijami ali aplikacijami. Izberite vrstice, aktivirate vnos, Ctrl+Enter urejate urejljivo vnos in se zapre Escape. Najprej se pojavijo priljubljeni. Pripravljeni na uporabo katalog zapovedi lahko takoj; prednastavitve, ki zahtevajo nastavitev odpreti osnutek. Nastavitve lahko opredelijo globalno paleto. Nova konfiguracija uporablja Ctrl+Shift+Space; obstoječe konfiguracije ne prejmejo novega globalnega skrajšanja samodejno.
+Ukazna paleta se odpre iz glave ali s Ctrl+K znotraj aplikacije. Išče shranjena dejanja v vseh profilih, prednastavitve kataloga, preklapljanje profilov, navigacijo, premor/nadaljevanje, preklic makrov in uvoz/izvoz. Filtrirajte po shranjenih dejanjih, funkcijah kataloga ali ukazih aplikacije. Smerne tipke izbirajo, Enter aktivira, Ctrl+Enter ureja element, ki ga je mogoče urejati, Escape pa zapre. Priljubljene postavke so prve. Pripravljeni ukazi kataloga se lahko izvedejo takoj; prednastavitve, ki zahtevajo nastavitev, odprejo osnutek. V nastavitvah lahko določite globalno bližnjico palete. Nove konfiguracije uporabljajo Ctrl+Shift+Space; obstoječe konfiguracije nove globalne bližnjice ne dobijo samodejno.
 
-Zvočni ukrepi določijo volumen natančno od 0 do 100 odstotkov in mute, nemute ali toggle izhod in mikrofonske naprave. Izberite določeno končno točko ali jo zapustite za privzeto Windows. Neuporabna shranjena končna točka povzroča napako namesto nadzora druge naprave. Naprave osvežijo povezane naprave.
+Zvočna dejanja nastavijo glasnost natančno od 0 do 100 odstotkov ter utišajo, vklopijo zvok ali preklopijo utišanje izhodnih in mikrofonskih naprav. Izberite določeno končno točko ali pustite nenastavljeno za privzeto napravo Windows. Nedostopna shranjena končna točka povzroči napako namesto upravljanja druge naprave. Osveževanje naprav znova naloži priključene naprave.
 
-OBS Studio uporablja WebSocket v5: start/stop/toggle/pause/resume snemanje; start/stop /toggle pretakanje; spreminjanje prizorišča; toggle vnos mute. Omogočite strežnik WebSocket pod orodji v OBS in nastavite končno točko v uredniku. Preverjanje povezave in prenosa imena bere različico OBS, prizore in vnose brez začetka snemanja ali pretoka. Izberite imena iz seznama ali jih vnesite ročno. Besedila se lahko shranijo v Windows Credential Manager in so izključena iz izvoženih konfiguracij. Neposredne povezave OBS poročajo o napaki.
+OBS Studio uporablja WebSocket v5: zagon/ustavitev/preklop/premor/nadaljevanje snemanja; zagon/ustavitev/preklop pretakanja; spreminjanje scen; preklop utišanja vhoda. V OBS pod orodji omogočite strežnik WebSocket in v urejevalniku nastavite njegovo končno točko. Preverjanje povezave in nalaganje imen prebere različico OBS, scene in vhode brez zagona snemanja ali pretakanja. Imena izberite s seznama ali jih vnesite ročno. Gesla lahko shranite v Windows Credential Manager in so izključena iz izvoženih konfiguracij. Nedostopne povezave OBS javijo napako.
 
-Profili se lahko ujemajo z imenom procesa in delom naslova okna. Obe pogoji se morajo ujemati. Lock Profile preprečuje samodejno preklapljanje za sejo. Uvodne pogoje iz Foreground uporabljajo zadnjo osredotočeno zunanjo aplikacijo.
+Profili se lahko ujemajo z imenom procesa in delom naslova okna. Oba določena pogoja se morata ujemati. Zaklep profila prepreči samodejno preklapljanje med sejo. Zajem pogojev iz ospredja uporabi zadnjo zunanjo aplikacijo s fokusom.
 
-Podpora za besedilo in klipboard `{{date}}`, `{{time}}`, `{{datetime}}`, `{{clipboard}}`, `{{profile}}`, `{{process}}`, in `{{user}}`. Datum uporabe `yyyy-MM-dd`; Čas uporabe `HH:mm`. Neznanci ostanejo nespremenjeni. `{{profile}}` Ugotovite profil sproženega dela; `{{process}}` opredeljuje zunanji kontekst aplikacije. vsebina klipa se bere le, ko se ta lokacija uporablja. akcija klipa piše besedilo, vendar ne prilepi samodejno.
+Dejanja za besedilo in odložišče podpirajo `{{date}}`, `{{time}}`, `{{datetime}}`, `{{clipboard}}`, `{{profile}}`, `{{process}}` in `{{user}}`. Datumi uporabljajo `yyyy-MM-dd`; časi uporabljajo `HH:mm`. Neznana nadomestna polja ostanejo nespremenjena. `{{profile}}` označuje profil zagnanega dejanja; `{{process}}` označuje kontekst zunanje aplikacije. Vsebina odložišča se bere samo ob uporabi tega nadomestnega polja. Dejanje odložišča zapiše besedilo, vendar ga ne prilepi samodejno.
 
-Akcije oken zmanjšati, povečati, obnoviti ali urediti okno na levi / desni strani delovne površine svojega monitorja. Sistemski akcijski blok Windows. Te ukrepe se izvajajo le, če so izrecno pozvani.
+Dejanja oken minimizirajo, maksimizirajo, obnovijo ali razporedijo okno na levo/desno stran delovnega območja njegovega monitorja. Sistemsko dejanje zaklene Windows. Ta dejanja se izvedejo samo ob izrecnem klicu.
 
-Pregled prikazuje korake, ponavljanja in spremenljivke brez izvajanja. Undo in Redo ohranjajo do 100 oblikovalskih stanj; besedilna škatla ohranjajo native Ctrl+Z urejanje. Označite priljubljene v urejevalniku ali meniju in jih filtrirajte na plošči. Izvedbeni račun velja le za sedanje seje.
+Predogled prikaže korake, ponovitve in spremenljivke brez izvajanja. Razveljavitev in ponovitev hranita do 100 stanj osnutka; besedilna polja ohranijo običajno urejanje s Ctrl+Z. Priljubljene označite v urejevalniku ali meniju ploščice in jih filtrirajte na nadzorni plošči. Števci izvajanj veljajo samo za trenutno sejo.
 
 Besedilo, skrajšanje in akcije okna, ki se začnejo iz vmesnika, aktivirajo zadnje zunanje ciljno okno. Ta paleta prikazuje ta ciljni kontekst. Če je cilj zaprt ali Windows zavrne aktivacijo, se izvedba ustavi z sporočilom.
 
 ## Ključna pomoč in povratne informacije
 
-Special-Key Wizard je na strani in na paleti. Na seznamu G ključov je navedeno iCUE. Detect Key Press jih začasno ujame, ne da bi izvedli svoje ukrepe. Običajne vezave se vrnejo po odkrivanju, preklicu ali zaprtju. Funkcija kataloga in izbran ključ se odprejo kot nepovratni projekt; preverjajo se podvojene vezave.
+Čarovnik za posebne tipke je na strani tipkovnice in v paleti. Navaja tipke G, ki jih sporoči iCUE. Zaznavanje pritiska tipke jih začasno zajame brez izvajanja dodeljenih dejanj. Običajne vezave se obnovijo po zaznavi, preklicu ali zapiranju. Funkcija kataloga in izbrana tipka se odpreta kot neshranjen osnutek; podvojene vezave se preverjajo.
 
-Površina tipkovnice prikazuje izbrano postavitev reference in aktivne vezave. Držite Ctrl+Alt+F1 ali ga odstranite iz palete ali tipkovnice. Ne vzame osredotočenosti in omogoča, da mišične kliki prehajajo. Posodobitev profila in obveznih sprememb, medtem ko je vidna; navadni Windows ključni pritiski so poudarjeni. Proizvajalec-specifični kontrolniki ne morejo zagotavljati enakovrednega ključnega signala Windows.
+Prekrivni prikaz tipkovnice kaže izbrano referenčno razporeditev in aktivne vezave. Držite Ctrl+Alt+F1 ali ga preklopite v paleti oziroma na strani tipkovnice. Ne prevzame fokusa in prepušča klike miške. Spremembe profilov in vezav se posodabljajo, ko je viden; običajni pritiski tipk Windows so poudarjeni. Kontrolniki proizvajalcev morda ne oddajajo enakovrednega signala tipke Windows.
 
-Izvedbeni povratni podatki kažejo čakanje, korak / ponovitev napredka, dokončanje, preklic ali neuspeh, ne da bi se osredotočili ali izpostavili vnesenem besedilu. Commands Executed potrjuje izvedbo ukaza, ne neodvisno želeno stanje v aplikaciji tretje osebe. Podrobnosti o napaki se prikažejo v dnevniku aktivnosti.
+Povratne informacije o izvajanju kažejo čakanje, napredek korakov/ponovitev, dokončanje, preklic ali napako brez prevzemanja fokusa ali razkrivanja vnesenega besedila. Izvedeni ukazi potrjujejo izvajanje ukazov, ne neodvisno pridobljenega sprotnega stanja v aplikaciji tretje osebe. Podrobnosti napak so v dnevniku dejavnosti.
 
 ## Naprave in Corsair
 
-Corsair G1 – G6 se lahko dodeli neposredno prek uradnega iCUE SDK. Izberite napravo in ključ v urejevalniku ukrepov in shranite ali pripravite predlog iz pogleda na tipkovnici K100. Povezave se uporabljajo za izbrano napravo in aktivni profil; pauza jih tudi onemogoča. iCUE mora biti delovana in omogočati dostop. Fn, iCUE kolesa, profila in ključavnice ni mogoče mapirati skozi to G-klic API.
+Corsair G1–G6 lahko neposredno dodelite prek uradnega SDK iCUE. V urejevalniku dejanj izberite napravo in tipko ter shranite ali pripravite osnutek iz prikaza tipkovnice K100. Vezave veljajo za izbrano napravo in aktivni profil; premor jih tudi onemogoči. iCUE mora delovati in dovoliti dostop. Fn, koleščka iCUE ter kontrolnikov profila in zaklepanja ni mogoče preslikati prek tega API-ja G-key.
 
 Stran naprave na seznamu Windows tipkovnice in se redno posodablja in ko se naprave povežejo. Fizična tipkovnica lahko razkriva več HID vmesnikov. Standardni globalni hotkeys delujejo med proizvajalci.
 
-Corsair detekcija uporablja razpoložljive podatke o napravi. RGB nadzor zahteva združljivo strojno opremo, ki deluje iCUE in uradni iCUE SDK; aplikacija poroča o dejanski razpoložljivosti. Drugi proizvajalci trenutno prejemajo odkrivanje in standardne ukrepe. Zunaj integracije Corsair delujejo lastniški kontrolniki, ko jih Windows prejmejo kot redni vnos. Aplikacija ne namesti tipkovnice.
+Zaznavanje Corsair uporablja razpoložljive podatke o napravi. Upravljanje RGB zahteva združljivo strojno opremo, zagnan iCUE in uradni SDK iCUE; aplikacija sporoča dejansko razpoložljivost. Drugi proizvajalci trenutno dobijo zaznavanje in standardna dejanja. Zunaj integracije Corsair G-key lastniški kontrolniki delujejo, ko jih Windows prejme kot običajni vnos. Aplikacija ne namesti gonilnika tipkovnice.
 
 ## Jeziki
 
-Nastavitve ponujajo 27 jezikov: nemščina, angleščina, francoščina, španščina, italijanščina, portugalščina, nizozemščina, češčina, slovenščina, madžarščina, bugarščina, grščina, danščina, švedščina, norveščina, finščina, estonščina, latvijščina, litovščina, slovenska, hrvaška, ukrajinska, ruska, turška in srbščina v latinskem pismu. Samodejno sledi jeziku Windows zaslona. Prevajanje je lokalno. Nastavitve, hotkeys in uporabniško ustvarjena imena so neodvisna od jezika vmesnika.
+Nastavitve ponujajo 27 jezikov: nemščino, angleščino, francoščino, španščino, italijanščino, portugalščino, nizozemščino, poljščino, češčino, slovaščino, madžarščino, romunščino, bolgarščino, grščino, danščino, švedščino, norveščino, finščino, estonščino, latvijščino, litovščino, slovenščino, hrvaščino, ukrajinščino, ruščino, turščino in srbščino v latinici. Samodejna izbira sledi jeziku prikaza Windows. Prevodi so priloženi lokalno. Razporeditve, bližnjice in uporabniška imena so neodvisni od jezika vmesnika.
 
-Popolna dokumentacija je na voljo v vseh jezikih 27 [Jezikovni indeks](README.md)in Prevajanja so strojno podprta, z izvornimi povezavami in strukturnimi preverjanji; pregled domačega govornika je ločen. Aplikacija sprejme tudi regionalne kode `en-US`, `de-DE`, `fr-FR` in `it-IT` ter uporablja njihove številke. Obstoječi jezikovni kodi so združljivi.
+Celotna dokumentacija repozitorija je na voljo v vseh 27 jezikih aplikacije prek [Jezikovni indeks](README.md). Prevodi so strojno podprti, s povezavami na izvirne vire in strukturnimi preverjanji; pregled maternih govorcev je ločen. Aplikacija sprejema tudi regionalne kode `en-US`, `de-DE`, `fr-FR` in `it-IT` ter uporablja njihove oblike števil. Obstoječe jezikovne kode ostajajo združljive.
 
 ## Raziskave in raziskave proizvajalcev
 
-Na tipkovnici so v celoti razširjene in brezhibne reference ISO-DE/ANSI-US plus Corsair K100 RGB postavitve. Geometrija predstavlja pozicije, širok/različni ključ in ISO Enter. Standardne postavitve so splošne reference. K100 postavitve sledijo dokumentiranim nadzorom, ne da bi zahtevali natančne dimenzije milimetra. Izberite pravilno različico jezika/geometrije: ime modela ali USB VID/PID ne določa posebne različice.
+Prikaz tipkovnice ponuja referenčne razporeditve ISO-DE/ANSI-US polne velikosti in brez številskega dela ter razporeditve Corsair K100 RGB. Geometrija predstavlja položaje, široke/visoke tipke in ISO Enter. Standardne razporeditve so splošne reference. Razporeditve K100 sledijo dokumentiranim kontrolnikom brez trditve o milimetrski natančnosti. Izberite pravo jezikovno/geometrijsko različico: ime modela ali USB VID/PID ne določa točne različice.
 
-Zemljevid rešuje fizične kodo skeniranja z aktivnim nastavitvijo vnosa Windows. Delovni tok pripravi osnutek in ohranja ščitnice/konflikte. Standardne vezave so globalni Windows hotkeys, ki niso izolirani na eni povezani tipkovnici. Corsair G1–G6 uporaba naprave-specific iCUE integracija. Drugi lastniški kontrolniki zahtevajo adapter ali proizvajalec-konfigurirane skrajšave. Glavni Enter in številčni tipkovnica Enter delijo virtualno ključno identiteto za globalne hotkeys.
+Preslikava razreši fizične kode tipk z aktivno razporeditvijo vnosa Windows. Potek dela pripravi osnutek in ohrani preverjanja shranjevanja/sporov. Standardne vezave so globalne bližnjice Windows in niso omejene na eno priključeno tipkovnico. Corsair G1–G6 uporabljajo integracijo iCUE za posamezno napravo. Drugi lastniški kontrolniki zahtevajo adapter ali bližnjice, nastavljene pri proizvajalcu. Glavni Enter in Enter številskega dela imata za globalne bližnjice isto identiteto navidezne tipke.
 
-V tem primeru [Proizvajalec raziskave](research/tastaturhersteller-sonderfunktionen.md) in [CSV](research/tastaturhersteller-sonderfunktionen.csv) pokriva 74 skupine blagovnih znamk / proizvajalcev, ki razlikujejo konfiguracije, vnosne SDK in svetlobne API. [Layout dokazov](research/keyboard-layout-evidence.md) Model zapisov, SKU in module razlike. Raziskovalno pokritost ne pomeni, da je izvedena strojna podpora.
+V tem primeru [Proizvajalec raziskave](research/tastaturhersteller-sonderfunktionen.md) in [CSV](research/tastaturhersteller-sonderfunktionen.csv) pokriva 74 skupine blagovnih znamk / proizvajalcev, ki razlikujejo konfiguracije, vnosne SDK in svetlobne API. [Layout dokazov](research/keyboard-layout-evidence.md) beleži razlike med modeli, SKU in moduli. Raziskovalna pokritost ne pomeni implementirane podpore strojne opreme.
 
 ## Podatki
 
-Konfiguracija je shranjena v lokalnih aplikacijah. Uvoz / izvoz uporablja JSON. Uvoz predvideva konfiguracijo, nadomešča trenutno konfiguracijo po potrditvi in onemogoča uvožene vezave, dokler ni ročno omogočena. Vsebina besedilnega delovanja ni prikazana kot ključni dnevnik. Besedila za upravljavce so ločena od izvoženih profilov.
+Konfiguracija je shranjena v lokalnih podatkih aplikacije. Uvoz/izvoz uporabljata JSON. Uvoz prikaže predogled konfiguracije, po potrditvi nadomesti trenutno konfiguracijo in onemogoči uvožene vezave do ročnega omogočanja. Vsebina besedilnih dejanj se ne zbira kot dnevnik pritiskov tipk. Gesla upravljalnika poverilnic so ločena od izvoženih profilov.
 
 ## preverjanje
 
@@ -106,24 +106,24 @@ dotnet run --project tests/Aivana.Windows.Tests -c Release
 
 Windows preverjanja lahko preverja strojno opremo in začasno konfigurira/oddajati podprte iCUE vezave. Uporabljajte jih brez drugega upravljavca, ki uporablja te vezave. Avdio končni kontrolniki ne spreminjajo v živo ali mute nastavitve.
 
-Domači vnos ne more presegati Windows privilegij. Običajno zagonski upravljavec ne more poslati vnosov za aplikacijo upravljavca. Rezervirani ali zasedeni hotkeji se pojavijo kot konflikti.
+Nativni vnos ne more obiti pravic Windows. Običajno zagnani upravljalnik morda ne more poslati vnosa aplikaciji, zagnani kot skrbnik. Rezervirane ali zasedene bližnjice so prikazane kot spori.
 
 V tem primeru [Dokumentacijski indeks](README.md) Povezava zgodovinskih načrtov, načrtov, raziskav in datiranih testnih poročil. Zgodovinski načrti opisujejo njihovo doseganje, ne pa trenutno garancijo podpore.
 
 ### Delovni tokovi in ciljno okno čakajo
 
-Katalog vsebuje šest urejljivih delovnih tokov: delovni prostor, srečanje, pretok, raziskave, projektni preklop in besedilni snip. Poiščite `workflow.` v katalogu ali ukazni paleti. Izbira delovnega toka odpre nezahtevni načrt; nikoli ne poteka takoj. Vsi koraki se ohranijo, ko dodate delovni tok obstoječemu makru ali ga dodelite ključu Corsair. Nastavite primerne URL-je, programske poti, profili in OBS prizore pred shranjevanjem.
+Katalog vsebuje šest potekov dela, ki jih lahko urejate: delovni prostor, sestanek, pretakanje, raziskovanje, preklop projekta in besedilni izsek. V katalogu ali ukazni paleti iščite `workflow.`. Izbira poteka odpre neshranjen osnutek; nikoli se ne zažene takoj. Vsi koraki se ohranijo pri dodajanju poteka obstoječemu makru ali dodelitvi tipki Corsair. Pred shranjevanjem nastavite vzorčne URL-je, poti programov, profile in scene OBS.
 
-V tem primeru **Čakajte na ciljno okno** korak sprejme ime postopka (z ali brez `.exe`), neoznačen naslov, in časovni izhod 1–600,000 ms. najmanj en filter je potreben; oba filtra morajo ustrezati, ko so na voljo. makro se nadaljuje le, ko ustreza vidno okno in doseže predogled. Uporabite določen naslov, ko več oken delijo proces. preklic ali časovni izhod ustavi naslednje korake. OBS WebSocket je povezana.
+Korak **Čakanje na ciljno okno** sprejme ime procesa (z `.exe` ali brez), podniz naslova brez razlikovanja velikih in malih črk ter časovno omejitev 1–600000 ms. Potreben je vsaj en filter; če sta navedena oba, se morata oba ujemati. Makro se nadaljuje šele, ko se ujemajoče vidno okno odzove in pride v ospredje. Pri več oknih istega procesa uporabite določen naslov. Preklic ali časovna prekoračitev ustavi naslednje korake. Pripravljenost okna ne zagotavlja, da se je dokument naložil ali da je povezana zunanja storitev, kot je OBS WebSocket.
 
 Razsvetljava zaslona: iskanje **Vzgoja svetlosti zaslona**, **Zmanjšanje svetlosti zaslonov** ali **Vzgoje zaslona na 50 odstotkov** v katalogu delovanja. Relativna dejanja spreminjajo svetlost z 10 odstotkovnimi točkami; fiksne vrednosti se gibljejo od 0 do 100. Podprti notranji zasloni uporabljajo WMI; združljivi zunanji monitorji zahtevajo omogočanje DDC/CI v meniju. Po navadi dejanje vpliva na vse podprte zaslone; v uredniku je mogoče izbrati izrecen monitor. Povezave in doki lahko omejijo podporo.
 
 ### Razširjena kontrola
 
-Odprite ukazno paleto z **Ctrl+K, ko je okno aplikacije osredotočeno**. Iskanje za **Delovni tok oblikovalca**, **Rekordna makro**, **Sinkronizacija profilov**, ali **Ključna diagnostika** (oblikovalec delovnega toka ureja izbran načrt ploščice: datoteke / postopka / pogoje oken, napoveduje število in stop / nadaljuje obdelavo napak..
+Odprite ukazno paleto s **Ctrl+K, ko ima okno aplikacije fokus**. Iščite **Oblikovalnik poteka dela**, **Snemanje makra**, **Sinhronizacija profilov** ali **Diagnostika tipk** (besedilo sledi izbranemu jeziku). Oblikovalnik ureja izbrani osnutek ploščice: pogoje datotek/procesov/oken, število korakov za preskok naprej in ustavitev/nadaljevanje ob napaki. Snemalnik zajema kombinacije bližnjic in čakanja, ne običajnega tipkanja; Escape ustavi snemanje. Pred prevzemom preglejte rezultat.
 
 V koraku svetlosti izberite vse podprte zaslone ali določen monitor. Na voljo izbran monitor povzroči napako namesto da tiho spremeni drugo zaslon. Ploščica prikazuje svetlost, avdio in OBS branja, ko so na voljo njihove povezave; neuporabna branja ni predstavljena kot merjena vrednost.
 
-V urejevalniku ploščice dodelite podprt fizični posebni ključ in izberite takojšnjo tiskanje, tap, držo ali dvojno tap. Held sloj selektorji začasno aktivirajo drugo mapiranje in obnoviti prejšnji sloj na sproščanje. Gesti in sloji se uporabljajo za Corsair SDK G ključe in posebne ključe, ki so specifične za napravo, ne običajne globalne ključe. Standardni ključ ujemanja podpira F13–F24 in tipkovnice medijske ključe. Lastni Fn, profil in dial kontrolniki še vedno zahtevajo združljiv adapter ponudnika ali ponudnik, ki mapira na standardni ključ. Raw Input opazuje ključ in ne zavira njegovega normalnega vedenja Windows. Ključne diagnoze pojasnjujejo profil, odmor, povezave in vezane težave.
+V urejevalniku ploščic dodelite podprto fizično posebno tipko in izberite takojšen pritisk, kratek pritisk, držanje ali dvojni pritisk. Izbirniki plasti med držanjem začasno aktivirajo drugo preslikavo in ob sprostitvi obnovijo prejšnjo plast. Geste in plasti veljajo za tipke G SDK Corsair ter standardne posebne tipke posamezne naprave, ne za običajne globalne bližnjice. Zajem standardnih tipk podpira F13–F24 in predstavnostne tipke tipkovnice. Lastniški kontrolniki Fn, profila in vrtljivega gumba še vedno zahtevajo združljiv adapter proizvajalca ali njegovo preslikavo v standardno tipko. Raw Input opazuje tipko in ne prepreči običajnega vedenja Windows. Diagnostika tipk pojasni težave profilov, premora, povezave in vezav.
 
-Sinkronizacija profila izmenja datoteke skozi mapo, ki jo izberete, vključno z mapo, s katero upravlja vaš obstoječi odjemalec v oblaku. Preverite predogled pred uvozom; uvoz se začne onemogočiti in odstranite strojno-specifične zemljevidov. Revizije preprečujejo tiho prepisovanje, vključno z vsebino dejanja pa je izrecna izbira. MAKRIVO ne zagotavlja računa v oblaku ali ohranja potrdila v oblaku. Trak zdaj uporablja lastno ikono M teal MAKRIVO in prikazuje amber odmor znak, ko je prekinjen.
+Sinhronizacija profilov izmenjuje datoteke prek izbrane mape, tudi mape, ki jo upravlja vaš obstoječi odjemalec za oblak. Pred uvozom preglejte predogled; uvožene vezave so sprva onemogočene in preslikave posamezne strojne opreme se odstranijo. Revizije preprečijo tiho prepisovanje, vključitev vsebine dejanj pa je izrecna izbira. MAKRIVO ne zagotavlja računa v oblaku ali hrani poverilnic za oblak. Ikona v območju za obvestila zdaj uporablja lastno modrozeleno ikono M MAKRIVO in med premorom pokaže oranžnorjavo oznako premora.

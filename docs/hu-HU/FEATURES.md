@@ -24,17 +24,17 @@ Gyártó: **Aivana**. állapot: **12. október 2026**. Ez a fejlesztési állapo
 | Az eredményvizsgálat | Elővizsgálat, ellenőrzés és vizsgálat | Csak ellenőrizhető hatások megerősítik; a sikeres billentyűzet nem bizonyítja a célt. |
 | Munkahely asszisztens | A kiválasztott programokból, fájlokból, URL-kból és egyéb akciókból származó profilok és folyamatok elkészítése | Előrejelzés és tárolás szükséges; a létesítmény nem vezet ki. |
 | Makrofelvételek és munkafolyamatok | Felvételek, feltételek, gesztusok és helyi profilszinkronizáció | A magatartás és a korlátok a végrehajtási és tesztjelentésekben vannak dokumentálva. |
-| UI automatizálás | A célok kiválasztása, a kiválasztók megvizsgálása, a cselekvések és a korlátozott kattintások rögzítése | Külön munkavállalók; többnyelvű, kikapcsolt és jelszó célkitűzések elutasítják; nincs általános szövegbevétel. |
+| UI automatizálás | A célok kiválasztása, a kiválasztók megvizsgálása, a cselekvések és a korlátozott kattintások rögzítése | Külön munkafolyamat; a többértelmű, letiltott és jelszócélok elutasításra kerülnek; nincs általános szövegbevitel-rögzítés. |
 | kiterjesztések | A csomagok ellenőrzése, importálása, kifejezett bizalommal történő aktiválása, exportálása és visszahívása | A folyamatszigetelés nem egy homokdoboz; nem egy nyilvános plug-in piac. |
-| mobilpanel | Helyi HTTPS panel, összekapcsolás, kiválasztott profilok és állapot/vizsgálati történelem | Valódi telefon/tablett LAN eltávolítása még mindig nyitva van; nincs egyetemes érzékelő táblázat. |
-| Gyártóadapter | Corsair, Logitech-G-SDK, Razer/SteelSeries-RGB és Wooting-Analogadapter | Modell/SDK függő; az új adapter nem teljes mértékben validált valós hardver. Nincs új tulajdonos SDK DLL-k kombinálva. |
+| mobilpanel | Helyi HTTPS panel, összekapcsolás, kiválasztott profilok és állapot/vizsgálati történelem | A valódi telefonos/tabletes LAN átvételi teszt még hátravan; nem univerzális érzékelő-műszerfal. |
+| Gyártóadapter | Corsair, Logitech-G-SDK, Razer/SteelSeries-RGB és Wooting-Analogadapter | Modell-/SDK-függő; az új adaptereket nem validálták teljesen valódi hardveren. Új, zárt SDK-DLL-ek nincsenek mellékelve. |
 | Fizikai billentyűzet | Standard gombok a készülék és a szkennelési kód felismerése | Raw Input nem csökkenti a normál Windows bevitelt. |
-| Helyi AI megbeszélő asszisztens | Az opcionális prototípus Ollama, LM Studio, llama.cpp és ONNX futási idő GenAI a CPU kifejezetten kiválasztott erőforrásokból korlátozott tervezéseket hoz létre | Alapértelmezés szerint; a nemzeti CPU-t véletlenszerűen tesztelték, de nem bizonyított tervezési minőség vagy időmegtakarítás; nem tartalmazza a modell súlyát. |
+| Helyi AI megbeszélő asszisztens | Az opcionális prototípus Ollama, LM Studio, llama.cpp és ONNX futási idő GenAI a CPU kifejezetten kiválasztott erőforrásokból korlátozott tervezéseket hoz létre | Alapértelmezés szerint kikapcsolva; a natív CPU futtatókörnyezetet véletlen modellel tesztelték, de nincs igazolt tervezési minőség vagy időmegtakarítás; modellsúlyokat nem tartalmaz. |
 
 ## Még nem kínálnak kész értékesítési funkciókat
 
 - **Exkluzív második lemez / makropád:** Egy aláírt, engedélyezett és hardver ellenőrzött szűrőprogram hiányzik. A szokásos billentyűzetek továbbra is Windows elérés.
-- Teljes hardver eltávolítása minden gyártó adapter, valamint a valós mobil eszközök LAN tesztelés.
+- Az összes gyártói adapter teljes hardveres átvételi vizsgálata és a valódi mobileszközös LAN-tesztek.
 - Valódi vegyes monitor/DPI váltás és az összes új fordítás szakmai eltávolítása. PerMonitorV2 és a szimulált 150/200-Prozent-Layouts ellenőriztek; a valós kijelzővizsgálatok külön maradnak. A felület 27 nyelvet kínál; a részletes új szövegek még nem teljes nyelvi eltávolításra kerültek.
 - Aláírt értékesítési telepítő, végleges EULA, ellenőrzött SDK értékesítési jogok és produktív vásárlási engedély / ellenőrzés integráció.
 
@@ -54,4 +54,4 @@ Gyártó: **Aivana**. állapot: **12. október 2026**. Ez a fejlesztési állapo
 ./tools/publish-complete.ps1 -SelfContained
 ```
 
-A csomag tartalmaz egy asztali alkalmazást, UI automatizálási munkát, mobilhostot, böngészőfájlokat, példaplugintot és futási engedélyt. Az építési tényeket nem ellenőrizzük a Git-ben. A GitHub forráskódot még nem közzétett Windows telepítő.
+A csomag tartalmazza az asztali alkalmazást, az UI-automatizálás munkafolyamatát, a mobilhosztot, a böngészőfájlokat, a példabővítményt és a futtatókörnyezet licencértesítéseit. A buildtermékek nem kerülnek Git verziókezelésbe. A GitHub forráskódállapota még nem közzétett Windows-telepítő.

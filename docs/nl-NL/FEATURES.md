@@ -24,12 +24,12 @@ Fabrikant: **Aivana**. Status: **12. Oktober 2026**. Dit is de ontwikkelingsstat
 | Resultatencontrole | Pre-inspectie, post-inspectie en testgeschiedenis | Bevestig alleen verifieerbare effecten; Een succesvolle toetsaanslag bewijst niet het doeleffect. |
 | Werkplaats assistent | Bereid profielen en processen voor van geselecteerde programma's, bestanden, URL's en andere acties | Voorbeeld en opslaan vereist; Instellen doet niets. |
 | Macro-opname en workflows | Opname, voorwaarden, gebaren en lokale profielsynchronisatie | Gedrag en grenzen worden gedocumenteerd in de implementatie- en testrapporten. |
-| UI-automatisering | Selecteer doelen, controleer selectors, registreer acties en beperkte klikreeksen | Aparte werknemer; dubbelzinnige, uitgeschakelde en wachtwoorddoelen worden afgewezen; geen algemene tekstinvoeropname. |
+| UI-automatisering | Selecteer doelen, controleer selectors, registreer acties en beperkte klikreeksen | Afzonderlijke worker; niet-eenduidige, uitgeschakelde en wachtwoorddoelen worden afgewezen; geen opname van algemene tekstinvoer. |
 | Extensies | Pakketten inspecteren, importeren, activeren op basis van expliciet vertrouwen, exporteren en terugdraaien | Procesisolatie is geen sandbox; geen openbare plug-inmarktplaats. |
 | Mobiel paneel | Lokaal HTTPS-paneel, koppeling, geselecteerde profielen en status-/auditgeschiedenis | Echte LAN-acceptatie voor telefoons/tablets is nog steeds open; geen universeel sensordashboard. |
 | Fabrikant adapter | Corsair, Logitech-G-SDK, Razer/SteelSeries-RGB en Wooting analoge adapter | Afhankelijk van model/SDK; nieuwe adapters niet volledig gevalideerd met echte hardware. Geen nieuwe eigen SDK-DLL's gebundeld. |
 | Fysieke toetsenbordtoewijzing | Herken standaardsleutels op basis van apparaat- en scancode | Raw Input onderdrukt de normale Windows-invoer niet. |
-| Lokale AI-vergaderassistent | Optioneel prototype voor Ollama, LM Studio, llama.cpp en ONNX Runtime GenAI CPU produceert beperkte ontwerpen van expliciet geselecteerde bronnen | Standaard uitgeschakeld; native CPU-runtime getest met willekeurig model, maar geen bewezen planningskwaliteit of tijdbesparing; geen modelgewichten inbegrepen. |
+| Lokale AI-vergaderassistent | Optioneel prototype voor Ollama, LM Studio, llama.cpp en ONNX Runtime GenAI CPU produceert beperkte ontwerpen van expliciet geselecteerde bronnen | Standaard uitgeschakeld; native CPU-runtime getest met een willekeurig model, maar geen bewezen planningskwaliteit of tijdwinst; geen modelgewichten meegeleverd. |
 
 ## Nog niet beschikbaar als voltooide verkoopfunctie
 

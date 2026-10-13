@@ -22,18 +22,18 @@ Tootjad: **Aivana**. Jätkake: **12. oktoober 2026**. See on arengu seisund, mit
 | Piirkond | Funktsionaalne ulatus | Piirid |
 | --- | --- | --- |
 | Tulemuste kontrollimine | Eelkontrolli, jälgimise ja läbivaatamise protsess | Ainult kontrollitavad tulemused kinnitavad; edukas nuppu ei näita sihtotstarbelist mõju. |
-| Töökoha assistent | Ettevalmistada profiilid ja protsessid valitud programmidest, failidest, URL-idest ja muudest tegevustest | Eesmärk ja salvestamine on vajalik; asutus ei tee midagi. |
+| Töökoha assistent | Ettevalmistada profiilid ja protsessid valitud programmidest, failidest, URL-idest ja muudest tegevustest | Eelvaade ja salvestamine on nõutavad; seadistamine ei käivita midagi. |
 | Makro ja töövoodid | Registreerimine, tingimused, gestid ja kohalik profiili sünkroonimine | Käitumine ja piirangud on dokumenteeritud rakendus- ja testide aruannetes. |
-| UI automatiseerimine | Eesmärkide valimine, valijate kontrollimine, tegevuste ja piiratud kliki käigud | Eraldi töötajad; mitmekülgsed, deaktiivsed ja parooli eesmärgid on keeldunud; üldine teksti sisestamine ei ole. |
+| UI automatiseerimine | Eesmärkide valimine, valijate kontrollimine, tegevuste ja piiratud kliki käigud | Eraldi abiprotsess; mitmetähenduslikud, keelatud ja paroolisihtmärgid lükatakse tagasi; üldist tekstisisestust ei salvestata. |
 | Laiendused | Pakendite kontrollimine, importimine, selgesõnaliselt usaldatav aktiveerimine, eksportimine ja tagasipöördumine | Protsessisolatsioon ei ole liivakasti; ei ole avalik turg. |
-| Mobiilpaneel | Kohalik HTTPS-paneel, ühendus, valitud profiilid ja staatus/testi ajalugu | Reaalne telefoni/tabletti LAN-i eemaldamine on veel avatud; universaalne sensor. |
+| Mobiilpaneel | Kohalik HTTPS-paneel, ühendus, valitud profiilid ja staatus/testi ajalugu | Tegelike telefonide/tahvelarvutite LAN-vastuvõtutestid on veel tegemata; see ei ole universaalne andurite töölaud. |
 | Tootja Adapter | Corsair, Logitech-G-SDK, Razer/SteelSeries-RGB ja Wooting-Analogadapter | mudeli/SDK sõltuvuses; uus adapter ei ole täielikult valideeritud reaalse seadmega. Ei ole uusi omandatud SDK-dLLs ühendatud. |
 | Füüsiline klaviatuur | Seadme ja skaneerimiskodi abil | Raw Input ei pärsita normaalset Windows sisestamist. |
-| Kohalik AI-nõustaja | Valikuline prototüüp Ollama, LM Studio, llama.cpp ja ONNX käivitusaeg GenAI CPU toodab piiratud disainid selgelt valitud ressurssidest | Standardne; kodumaine CPU tööaeg juhuslikult testitud, kuid ei ole kindlaksmääratud planeerimise kvaliteet või aja säästmine; ei sisalda mudeli kaalu. |
+| Kohalik AI-nõustaja | Valikuline prototüüp Ollama, LM Studio, llama.cpp ja ONNX käivitusaeg GenAI CPU toodab piiratud disainid selgelt valitud ressurssidest | Vaikimisi välja lülitatud; natiivset CPU-käituskeskkonda on testitud juhumudeliga, kuid planeerimiskvaliteeti ega ajasäästu ei ole tõendatud; mudelikaale ei ole kaasas. |
 
 ## Ei ole veel valmis müügi
 
-- **Ekslusiivne teise seadme/makropood: ** allkirjastatud, litsentseeritud ja tarkvara kontrollitud filtreerijad puuduvad. Tavalised klaviatuuri sissemakseid saab jätkata Windows.
+- **Eksklusiivne teine klaviatuur/makropult:** puudub allkirjastatud, litsentsitud ja riistvaral testitud filtridraiver. Tavalised klahvisisestused võivad endiselt jõuda Windows süsteemi.
 - Täielikku seadme eemaldamist kõik tootja adapterid, samuti reaalne mobiilside LAN testid.
 - Tõeline segatud monitor/DPI vahetus ja kõik uued tõlked. PerMonitorV2 ja simuleeritud 150/200-Prozent-Layouts on kontrollitud; reaalne ekraani testimine jääb eraldi. Ülevaade pakub 27 keeli; üksikasjalikud uued tekstid ei ole veel täielikult keeleline.
 - Allkirjastatud müügiinstalleerijad, lõplik EULA, kontrollitud SDK müügiõigused ja produktiivne ostulitsentsi/kontrolli integreerimine.

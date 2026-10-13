@@ -19,7 +19,7 @@ Klienti HTTP nepoužívají proxy a nesledují přesměrování. Lokální serve
 
 ## ONNX
 
-V dialogu genai_config.json vyberte. složka musí obsahovat tokenizer.json a šablonu chat. chat_template je podporován jako znakový řetězec, předvolený vzor (Array nebo slovník) a samostatný chat_template.jinja, pokud neexistuje žádná vnitřní vzor nebo je nulová. víceúčelové šablony jsou odmítnuty; maximálně 65536 Známky. populární soubory .onnx, modely Vision/Embedding nebo čisté GPU/NPU exporty nejsou modely schůzky.
+V dialogu vyberte genai_config.json. Složka musí obsahovat tokenizer.json a šablonu chatu. Podporován je chat_template jako řetězec, pojmenovaná šablona default (pole nebo slovník) a samostatný chat_template.jinja, pokud vložená šablona chybí nebo má hodnotu null. Nejednoznačné šablony jsou odmítnuty; maximum je 65536 znaků. Libovolné soubory .onnx, vizuální/embeddingové modely nebo exporty pouze pro GPU/NPU nejsou modely pro schůzky.
 
 Balení: Microsoft.ML.OnnxRuntimeGenAI 0.17.1, CPU. Konfigurace poskytovatele je resetována na CPU. Bez stahování a bez modelových závaží v balení. Není nutná žádná instalace Pythonu. Používejte pouze balíčky důvěryhodných modelů; samostatný proces je hranice zhroucení/zrušení, nikoli bezpečnostní karanténa.
 
@@ -28,7 +28,7 @@ Limity: 90 sekund včetně načítání modelu, maximální počet tokenů výzv
 ## Ověření
 
 - Základní sada, testy přenosu zpětné smyčky se simulovanými odpověďmi LM-Studio/llama.cpp/Ollama, kontrola schématu/zrušení/zdroje.
-- Regrese protokolu Unicode s maximálními dlouhými cíli a názvy prostředků 24.
+- Regresní test protokolu Unicode s cíli maximální délky a 24 názvy prostředků.
 - Skutečné nativní odvození CPU s oficiálním tiny-random-gpt2-fp32-Testgraph od microsoft/onnxruntime-genai, commit 5c19002edce50beaa3a5c7eeefd8fe5269ee8d19. Přidána testovací šablona a bajtový tokenizér přizpůsobený malému náhodnému grafu. Tento náhodný model nekontroluje kvalitu a není v prodeji.
 - Reprodukovatelný nativní test běhu: tools/check-onnx-runtime.ps1 -ModelDirectory <GenAI modelová složka>.
 - WPF-Smoke kontroluje výběr všech čtyř poskytovatelů a testovací stolice; Samotný výběr negeneruje požadavek na model.
@@ -48,10 +48,10 @@ Závěrečný test: vydání sestavení bez varování/chyb; Prošel úplným j�
 
 ## Další: Reálná kvalita a vzorky
 
-Další CPU běh allama-ai/SmolLM-360M-Instruct-onnx-int4Revize 82a3d1a8a86c8053f2a859a90ed4d344fc0725b0: Native Inference přežil. Modellgewichte-SHA25648e9c4ef12f7f995ca11fc7020b39990aa27bc67cc0fe1160676a000a04429.
+Dodatečný běh na CPU s allama-ai/SmolLM-360M-Instruct-onnx-int4, revize 82a3d1a8a86c8053f2a859a90ed4d344fc0725b0: nativní inference úspěšná. SHA256 vah modelu: 48e9c4ef12f7f995ca11fc7020b39990aa27bc67cc0fe116067676a000a04429. Komunitní export pouze v testovacím prostoru, nikoli ve vydání.
 
-Čtyři skutečné testy plánování (němčina/angličtina, dokument, program, výslovné mikrofonové zvukové nastavení): **0/4 Platné plány**JsonException při přísném zkoušení odpovědi. 63501, 6376, 72118 a 6774 MS. Žádné akce nejsou provedeny. Tento malý model nesplňuje plánovací smlouvu a není doporučen jako vhodný. Zpráva: artifacts/local-ai-evaluation/smollm360-results.json. WindowsTestování --evaluate-onnx <modelový řádek> <přesvědčení>. funkce času neprokázala kvalitu modelu.
+Čtyři skutečné testy plánování (němčina/angličtina, dokument, program, výslovné ztlumení mikrofonu): **0/4 platných plánů**; pokaždé JsonException při přísné kontrole odpovědi. Doby běhu 63501, 6376, 72118 a 6774 ms. Žádné akce nebyly provedeny. Tento malý model nesplňuje kontrakt plánování a není doporučen jako vhodný. Zpráva: artifacts/local-ai-evaluation/smollm360-results.json. Reprodukce: Windows-Tests --evaluate-onnx <Modellordner> <Berichtspfad>. Fungování běhového prostředí nedokládá kvalitu modelu.
 
-Navigační nástroje a zkušební zprávy byly navíc ve všech 27 Překlady jazyků. dlouhé texty a jazykové snížení zůstávají otevřené. regresní vzorky také zkoumají falešné typy JSON, prázdné/více dlouhé/překlady a nulové s Jinja Fallback.
+Navigace nástrojů a testovací zpráva byly navíc přeloženy ve všech 27 jazykových katalozích. Dlouhé texty a jazykové schválení zůstávají otevřené. Regresní test šablon kontroluje také nesprávné typy JSON, prázdné/nejednoznačné/příliš dlouhé šablony a null s náhradní šablonou Jinja.
 
-Aktualizace: Artifacts / Release20261012-201134• balení WPFSmoke na 12.10.2026 O 20:12 Native CPU reference s odděleným testovacím modelem v propojeném Workeru. Windows-Přešel testy KI; Stavět bez upozornění/chyb. 0/4.
+Aktualizovaný balíček: artifacts/release-20261012-201134. WPF-Smoke zabalené aplikace prošel dne 12.10.2026 v 20:12; nativní inference na CPU se samostatným testovacím modelem Instruct v přibaleném workeru prošla. Testy Core a Windows-KI prošly; sestavení bez varování/chyb. Kvalita plánování modelu nadále 0/4.

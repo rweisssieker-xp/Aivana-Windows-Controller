@@ -19,7 +19,7 @@ Los clientes HTTP no utilizan proxies y no siguen redireccionamientos. Los propi
 
 ## ONNX
 
-En el diálogo genai_config.json. el paquete debe contener tokenizer.json y un modelo de chat. se apoyan chat_template como una cadena de caracteres, un modelo de nombre (Array o Diccionario) y un chat_template.jinja separado, si no hay una muestra en línea o no. Se rechazan los modelos multiplicados; 65536 Los archivos .onnx, los modelos de visión/embedón o las exportaciones puras de GPU/NPU no son modelos de reunión.
+En el diálogo, seleccione genai_config.json. La carpeta debe contener tokenizer.json y una plantilla de chat. Se admiten chat_template como cadena, una plantilla llamada default (matriz o diccionario) y un archivo chat_template.jinja independiente si no existe una plantilla integrada o si esta es null. Se rechazan las plantillas ambiguas; máximo 65536 caracteres. Los archivos .onnx arbitrarios, los modelos de visión/embeddings o las exportaciones exclusivas para GPU/NPU no son modelos para el asistente de reuniones.
 
 Incluye: Microsoft.ML.OnnxRuntimeGenAI 0.17.1, CPU. La configuración del proveedor se restablece a la CPU. Sin descargas ni pesos de modelo en el paquete. No se requiere instalación de Python. Utilice únicamente paquetes de modelos confiables; el proceso separado es un límite de bloqueo/aborto, no un entorno limitado de seguridad.
 
@@ -48,10 +48,10 @@ Prueba final: versión de lanzamiento sin advertencias ni errores; Pasó el núc
 
 ## Seguimiento: Real calidad y modelos
 
-Más CPU con allama-ai/SmolLM-360M-Instruct-onnx-int4Revisión 82a3d1a8a86c8053f2a859a90ed4d344fc0725b0: Inferencia nativa. Modellgewichte-SHA256: 48e9c4ef12f7f995ca11fc7020b39990aa27bc67cc0fe1160676a000a04429.
+Ejecución adicional en CPU con allama-ai/SmolLM-360M-Instruct-onnx-int4, revisión 82a3d1a8a86c8053f2a859a90ed4d344fc0725b0: inferencia nativa superada. SHA256 de los pesos del modelo: 48e9c4ef12f7f995ca11fc7020b39990aa27bc67cc0fe116067676a000a04429. Exportación de la comunidad utilizada solo en el entorno de pruebas, no incluida en la versión distribuida.
 
-Cuatro pruebas de planificación reales (alemán/inglés, documento, programa, micrófono explícito): **0/4 Los planes válidos**; cada JsonException en caso de examen de respuesta estricto. 63501, 6376, 72118 y 6774 ms. No se realizan acciones. Este pequeño modelo no cumple con el contrato de planificación y no se recomienda como adecuado. informe: artifacts/local-ai-evaluation/smollm360-results.json. reproducción: Windows-Test --evaluate-onnx <modelo ordenador> <caminas de informe>. la función de tiempo de trabajo no demuestra la calidad del modelo.
+Cuatro pruebas de planificación reales (alemán/inglés, documento, programa, silencio del micrófono solicitado explícitamente): **0/4 planes válidos**; una JsonException en cada validación estricta de la respuesta. Duraciones: 63501, 6376, 72118 y 6774 ms. No se ejecutó ninguna acción. Este pequeño modelo no cumple el contrato de planificación y no se recomienda como adecuado. Informe: artifacts/local-ai-evaluation/smollm360-results.json. Reproducción: pruebas de Windows --evaluate-onnx <carpeta-del-modelo> <ruta-del-informe>. El funcionamiento del entorno de ejecución no demuestra la calidad del modelo.
 
-Navegación de herramientas y los informes de prueba se han añadido a todos los 27 Los catálogos de lenguaje traducidos. los textos largos y las grabaciones lingüísticas permanecen abiertas. la regresión de los modelos también examina los tipos de JSON falsos, los modelos vacíos/múltiples/múltiples y el nulo con el Jinja Fallback.
+La navegación de herramientas y el informe de verificación también se tradujeron en los 27 catálogos de idiomas. Los textos largos y la revisión lingüística siguen pendientes. Las pruebas de regresión de plantillas también comprueban tipos JSON incorrectos, plantillas vacías/ambiguas/demasiado largas y null con alternativa Jinja.
 
-Paquete actualizado: Artifacts / Release-20261012-201134. envasado WPFEl azúcar en 12.10.2026 El 20:12 superado; la referencia nativa de CPU con el modelo de prueba de instrucción separado en el trabajador conectado. Windows-Testado de TI; Construye sin advertencias/error. calidad de planificación del modelo continúa 0/4.
+Paquete actualizado: artifacts/release-20261012-201134. Prueba de arranque WPF del paquete superada el 12.10.2026 a las 20:12; inferencia nativa en CPU superada con el modelo Instruct de prueba independiente en el proceso de trabajo incluido. Pruebas Core y Windows de IA superadas; compilación sin advertencias ni errores. Calidad de planificación del modelo todavía en 0/4.

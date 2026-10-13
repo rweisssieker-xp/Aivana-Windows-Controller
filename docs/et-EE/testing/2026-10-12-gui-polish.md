@@ -10,6 +10,6 @@
 - Aktsiafilter ilmub ainult dashboardsil. Profiili valikul ja otsingul on selged abitehnoloogiate nimed. Põhikirjeldused on kontrastlikumad.
 - Dialogu-Smoke test hõlmab tööriistade ülevaadet ja laiendamisdialooge 560 × 440 ning normaalset suurust; olemasolevad salvestus- ja keeleanalüüsid on kohandatud salvestusstruktuuriga.
 
-Piirangud: Kompaktne aknad ei asenda reaalset Windows DPI testid 150/200 protsendiga. Uus saksa teksti ei ole veel täielikult tõlgitud kõigile 27 keeltele. Ei ole uut seadme valideerimist ega mõõdetud kasutuskõlblikkuse avaldust.
+Piirangud: kompaktsed aknad ei asenda tegelikke Windows DPI-teste 150/200 protsendiga. Uued saksakeelsed tekstid ei ole veel täielikult tõlgitud kõigisse 27 keelde. Uut riistvaravalideerimist ega mõõdetud kasutatavuse väidet ei ole.
 
 Testi: vabastamine ilma hoiatuste/veadeta; täielik WPF müra testi, sealhulgas kompaktne tööriistade ja laienemise dialoogid ning keelevahetus. GIT DIF - kontrollida.

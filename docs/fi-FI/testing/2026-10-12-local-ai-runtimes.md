@@ -13,13 +13,13 @@ Työkalut → Avaa AI-keskusteluasiantuntija, aktivoi nimenomaisesti ja valitse 
 | Ollama | Paikallinen asennettu malli | 127.0.0.1:11434 |
 | LM Studio | Käytössä oleva paikallinen palvelin, jossa on paikallinen ladattava malli ja JSON-järjestelmän tuki | 127.0.0.1:1234 |
 | llama.cpp | Käytössä oleva llama-palvelin paikallisen mallin ja JSON-järjestelmän tuen kanssa | 127.0.0.1:8080 |
-| ONNX Käyttöaika GenAI CPU | yhteensopiva ja luotettava paikallinen GenAI tekstijärjestelmä | erillinen yhdistetty prosessi, ei HTTP |
+| ONNX Runtime GenAI CPU | yhteensopiva ja luotettava paikallinen GenAI tekstijärjestelmä | erillinen yhdistetty prosessi, ei HTTP |
 
 HTTP-asiakkaat eivät käytä Proxiaa eivätkä seuraa ohjauksia. Paikalliset palvelimet voivat käyttää myös muita palveluita; erityisesti LM Link/Remote-routingia ei saa käyttää paikalliseen käsittelyyn. Tämä ei voi tunnistaa MAKRIVO yhteensopivalla käyttöliittymällä luotettavasti. Ollama Etätiedot ja pilvi-nimet hylätään. Auteeratut paikalliset palvelimet eivät ole konfiguroitavia tässä versiossa.
 
 ## ONNX
 
-Valitse dialogissa genai_config.json. Tiedoston on sisällettävä tokenizer.json ja chat-mallin. Tukea chat_template merkki, nimetty oletusarvo (array tai sanasto) sekä erillinen chat_templa.jinja, jos ei ole sisäänkirjautunut malli tai se on nolla. Useita malleja hylätään; enintään 65536 merkkiä. Käytettävät .onnx-tiedostot, visio-/sovellusmallit tai puhdas GPU/NPU-eksportit eivät ole kokousmalleja.
+Valitse valintaikkunassa genai_config.json. Kansiossa on oltava tokenizer.json ja keskustelumallipohja. Tuettuja ovat merkkijonomuotoinen chat_template, nimetty default-mallipohja (taulukko tai sanakirja) sekä erillinen chat_template.jinja, jos sisäistä mallipohjaa ei ole tai sen arvo on null. Moniselitteiset mallipohjat hylätään; enintään 65536 merkkiä. Mielivaltaiset .onnx-tiedostot, näkö- tai upotusmallit tai pelkät GPU-/NPU-viennit eivät ole kokousmalleja.
 
 Yhdistetty: Microsoft.ML.OnnxRuntimeGenAI 0.17.1, CPU. Palveluntarjoajan konfiguraatio palautetaan CPU: lle. Ei latausta eikä mallipainoja pakkauksessa. Pythonin asennusta ei tarvita. Käytä vain luotettavia mallipaketteja; erillinen prosessi on romahdus / romahdusraja, ei turvakaappi.
 
@@ -28,7 +28,7 @@ Rajat: 90 sekuntia, mukaan lukien mallin lataus, enintään 3072 Prompttokensit 
 ## Tarkistaminen
 
 - Core-Suite, Loopback-liikenteen testi simuloidulla LM-studio-/llama.cpp-/Ollama vastauksella, kaava/lähtö/resurssien tarkastus.
-- Unicode-pöytäkirjan regressioon, jossa on pitkät tavoitteet ja 24 Resurssin nimet.
+- Unicode-protokollin regressiotesti enimmäispituisilla tavoitteilla ja 24 resurssinimellä.
 - Todellinen alkuperäinen CPU-sovellus virallisella tiny-random-gpt2-fp32-Testgraph microsoft/onnxruntime-genai, Commit 5c19002edce50beaa3a5c7eeefd8fe5269ee8d19. Testin malli täydentää ja byte-tokenizer mukautetaan pieni satunnainen grafiikka. Tämä satunnainen malli ei testata laatua eikä ole julkaistu.
 - Toistettavissa oleva alkuperäinen koetustesti: tools/check-onnx-runtime.ps1 -ModelDirectory <GenAI -mallin järjestäjä>.
 - WPF-Smoke tarkistaa kaikkien neljän tarjoajan valinnan ja testauksen; yksin valinta ei tuota mallipyyntöä.
@@ -44,14 +44,14 @@ Laitteiston/ älypuhelin/tabletin/monitorin vaihdon testaus on edelleen tarpeen.
 - https://lmstudio.ai/docs/developer/openai-compat/chat-completions
 - https://github.com/ggml-org/llama.cpp/blob/master/tools/server/README.md
 
-Lopullinen testaus: Release-rakennus ilman varoituksia/virheitä; täydellinen ydin- ja Windows -suita, mukaan lukien kotimainen Focusfixture, HTTPS, UIA, Plugin IPC ja yhteensopiva AI-liikennätesti. Uusi paketti vapautus20261012-190618: WPF-puute (19:07 tunti), yhdistetty ONNX-CPU-sovellus testgraphin kanssa. Riippumaton tarkastelu: Unicode-pöytäkirja korjataan, ei muita konkreettisia havaintoja. Ei fyysistä valmistajan / puhelimen / monitorin vähennystä.
+Lopullinen tarkistustilanne: Release-koonti ilman varoituksia tai virheitä; täydet Core- ja Windows-testisarjat läpäisty, mukaan lukien natiivi kohdistustestifixture, HTTPS, UIA, Plugin-IPC ja yhteensopivat KI-siirtotestit. Uusi paketti release-20261012-190618: WPF-Smoke läpäisty (19:07), mukana toimitettu ONNX-CPU-päättely testigraafilla läpäisty. Riippumaton arvio: Unicode-protokolliraja korjattu, ei muita konkreettisia havaintoja. Tästä ei johdeta fyysisten valmistajalaitteiden, puhelinten tai näyttöjen hyväksyntää.
 
 ## Seuraava: Todellinen malli ja mallit
 
-Lisä CPU-toiminta kanssa allama-ai/SmolLM-360M-Instruct-onnx-int4, tarkistus 82a3d1a8a86c8053f2a859a90ed4d344fc0725b0: alkuperäinen infersion. Modellgewichte-SHA256: 48e9c4ef12f7f995ca11fc7020b39990aa27bc67cc0fe116067676a000a04429. Yhteisön vienti vain testausalueella, ei julkaisu.
+Täydentävä CPU-ajo mallilla allama-ai/SmolLM-360M-Instruct-onnx-int4, revisio 82a3d1a8a86c8053f2a859a90ed4d344fc0725b0: natiivi päättely onnistui. Mallipainojen Modellgewichte-SHA256: 48e9c4ef12f7f995ca11fc7020b39990aa27bc67cc0fe116067676a000a04429. Yhteisövienti on vain testialueella, ei julkaisupaketissa.
 
-Neljä todellista suunnittelutestejä (saksan/englanti, asiakirja, ohjelma, selkeä mikrofonin ääni): **0/4 Voimassa olevat suunnitelmat**; JsonException tiukassa vastauskokeessa. 63501, 6376, 72118 ja 6774 Tämä pieni malli ei täytä suunnittelussopimusta eikä sitä suositella sopivaksi. raportti: artifacts/local-ai-evaluation/smollm360-results.json.: Windows-Testit --evaluate-onnx <mallin järjestäjä> <raportti>. suorituskyvyn ominaisuus ei osoita mallin laatua.
+Neljä todellista suunnittelutestiä (saksa/englanti, asiakirja, ohjelma, erikseen pyydetty mikrofonin mykistys): **0/4 kelvollista suunnitelmaa**; jokaisessa JsonException tiukassa vastauksen tarkistuksessa. Suoritusajat 63501, 6376, 72118 ja 6774 ms. Toimintoja ei suoritettu. Tämä pieni malli ei täytä suunnittelusopimusta eikä sitä suositella soveltuvana. Raportti: artifacts/local-ai-evaluation/smollm360-results.json. Toistaminen: Windows-Tests --evaluate-onnx <Modellordner> <Berichtspfad>. Suoritusympäristön toimivuus ei osoita mallin laatua.
 
-Työkalu-navigointi ja testausraportti on käännetty kaikkiin 27 kielitaulukkoihin. Pitkät tekstit ja kieli pysyvät auki. Mallin regressio tutkii myös vääriä JSON-tyyppejä, tyhjiä / monikäyttöisiä / ylikuormittuja malleja ja nolla Jinja-palaa.
+Työkalunavigointi ja tarkistusraportti käännettiin lisäksi kaikkiin 27 kielikatalogiin. Pitkät tekstit ja kielellinen hyväksyntä ovat yhä avoinna. Mallipohjaregressio tarkistaa myös väärät JSON-tyypit, tyhjät, moniselitteiset ja liian pitkät mallipohjat sekä null-arvon Jinja-varavaihtoehdolla.
 
-Päivitetty paketti: artifacts/release-20261012-201134 Pakkaettu WPF-pyyhkeet kestivät 12.10.2026 ympärillä 20:12; kotimainen CPU-infersio erillisellä instruktin testimallilla yhdistetyssä työläisessä. Core ja Windows KI-testiä; Rakenna ilman varoituksia/virheitä. Mallin laadun jatkaminen 0/4.
+Päivitetty paketti: artifacts/release-20261012-201134. Paketoidun WPF-Smoke-testin ajo onnistui 12.10.2026 klo 20:12; natiivi CPU-päättely erillisellä Instruct-testimallilla onnistui mukana toimitetussa työprosessissa. Core- ja Windows-KI-testit läpäistiin; koonti ilman varoituksia tai virheitä. Mallin suunnittelulaatu edelleen 0/4.

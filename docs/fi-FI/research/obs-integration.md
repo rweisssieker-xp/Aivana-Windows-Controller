@@ -22,4 +22,4 @@ pöytäkirjan viittaukset:
 - [OBS WebSocket todennäköisyys kaava ja viesti opkoodi](https://github.com/obsproject/obs-websocket/blob/master/docs/generated/protocol.md#creating-an-authentication-string)
 - [OBS WebSocket median sisäänpääsypyyntöjen täytäntöönpano ja hyväksytyt toimenpiteet](https://github.com/obsproject/obs-websocket/blob/master/src/requesthandler/RequestHandler_MediaInputs.cpp)
 
-Protokollat ja toiminnalliset nimet tarkastettiin vastaan OBS Projektin dokumentti on 2026-10-08.
+Protokollimuistiinpanot ja toimintojen nimet tarkistettiin OBS-projektin dokumentaatiosta 2026-10-08.

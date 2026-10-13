@@ -19,7 +19,7 @@ Les clients HTTP n'utilisent pas de proxy et ne suivent pas les redirections. Le
 
 ## ONNX
 
-Dans le dialogue genai_config.json. le dossier doit contenir tokenizer.json et un modèle de chat. chat_template est soutenu en tant que chaîne de caractères, un modèle par défaut nommé (Array ou Dictionnaire) ainsi qu'un chat_template.jinja séparé, si aucun modèle en ligne n'est disponible ou null. 65536 Les fichiers .onnx populaires, les modèles de vision/embedding ou les exportations purement GPU/NPU ne sont pas des modèles de rencontre.
+Dans la boîte de dialogue, sélectionnez genai_config.json. Le dossier doit contenir tokenizer.json et un modèle de conversation. Les formes prises en charge sont chat_template sous forme de chaîne, un modèle nommé default (tableau ou dictionnaire), ainsi qu'un fichier chat_template.jinja séparé si aucun modèle intégré n'est présent ou si celui-ci est null. Les modèles ambigus sont rejetés ; longueur maximale : 65536 caractères. Les fichiers .onnx quelconques, les modèles de vision/d'embedding et les exports exclusivement GPU/NPU ne sont pas des modèles pour l'assistant de réunion.
 
 Regroupé : Microsoft.ML.OnnxRuntimeGenAI 0.17.1, CPU. La configuration du fournisseur est réinitialisée sur le processeur. Aucun téléchargement et aucun poids de modèle dans le package. Aucune installation Python requise. Utilisez uniquement des packages de modèles fiables ; le processus distinct est une limite de crash/abandon, pas un bac à sable de sécurité.
 
@@ -48,10 +48,10 @@ Test final : version de version sans avertissements/erreurs ; Réussite du noy
 
 ## Suivant : vraie qualité et modèles
 
-Plus de CPU avec allama-ai/SmolLM-360M-Instruct-onnx-int4, Révision 82a3d1a8a86c8053f2a859a90ed4d344fc0725b0 : inference autochtone. Modellgewichte-SHA256: 48e9c4ef12f7f995ca11fc7020b39990aa27bc67cc0fe1160676a000a04429.
+Exécution CPU supplémentaire avec allama-ai/SmolLM-360M-Instruct-onnx-int4, révision 82a3d1a8a86c8053f2a859a90ed4d344fc0725b0 : inférence native réussie. SHA256 des poids du modèle : 48e9c4ef12f7f995ca11fc7020b39990aa27bc67cc0fe116067676a000a04429. Export communautaire utilisé uniquement dans l'environnement de test, non inclus dans la version distribuée.
 
-Quatre tests réels de planification (allemand/anglais, document, programme, écran de microfon explicite): **0/4 Plans valides**; chaque JsonException en cas de réponse stricte. 63501, 6376, 72118 et 6774 ms. Aucune action n'est effectuée. Ce petit modèle ne répond pas au contrat de planification et ne sera pas recommandé comme approprié. Rapport: artifacts/local-ai-evaluation/smollm360-results.json. Windows-Tests --evaluate-onnx <modèle ordonnateur> <cours de rapport>. La fonction de temps de fonctionnement ne prouve pas la qualité du modèle.
+Quatre tests réels de planification (allemand/anglais, document, programme, mise en sourdine du microphone explicitement demandée) : **0/4 plans valides** ; une JsonException lors de chaque validation stricte de la réponse. Durées : 63501, 6376, 72118 et 6774 ms. Aucune action exécutée. Ce petit modèle ne respecte pas le contrat de planification et n'est pas recommandé comme modèle approprié. Rapport : artifacts/local-ai-evaluation/smollm360-results.json. Reproduction : tests Windows --evaluate-onnx <dossier-du-modèle> <chemin-du-rapport>. Le fonctionnement de l'environnement d'exécution ne prouve pas la qualité du modèle.
 
-Les outils de navigation et les rapports d'essai ont été ajoutés à tous 27 Les catalogues linguistiques sont traduits. les textes longs et les images linguistiques restent ouverts. la régression des modèles évalue également les types de JSON faux, les modèles vides/multi-duits/sur-longs et null avec le Jinja-Fallback.
+La navigation des outils et le rapport de vérification ont également été traduits dans les 27 catalogues de langues. Les textes longs et la validation linguistique restent à terminer. Les tests de régression des modèles de conversation vérifient aussi les types JSON incorrects, les modèles vides/ambigus/trop longs et la valeur null avec remplacement par Jinja.
 
-Pacte actualisé : artifacts/release-20261012-201134Package WPF- La poussière à 12.10.2026 à 20:12 survivant; la référence de CPU native avec le modèle de test de l'instructeur séparé dans le travailleur lié. Windows-Testé par KI; Construire sans alertes/erreurs. 0/4.
+Package mis à jour : artifacts/release-20261012-201134. Test de démarrage WPF du package réussi le 12.10.2026 à 20:12 ; inférence CPU native réussie avec le modèle Instruct de test séparé dans le processus de travail fourni. Tests Core et Windows pour l'IA réussis ; compilation sans avertissements ni erreurs. Qualité de planification du modèle toujours à 0/4.

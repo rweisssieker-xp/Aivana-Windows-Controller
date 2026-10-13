@@ -6,12 +6,12 @@
 
 Status: 12. October 2026, Branch `codex/six-extensions`. Working status, no production release.
 
-## Service
+## Usage
 
 The command palette opens the entries **Set up workstation**, **Keyboard manufacturer and SDKs**, **Mobile panel**, **Extensions**, **UI automation**, **UI record flow** and **Execution test**.
 
 - Workspace Assistant creates Workplace, Meeting, Streaming, Research, and Project profiles. Programs from Registry/Start Menu or File Selector, URLs, Output/Screen and OBS Scene are displayed as steps before saving. The facility does not perform any actions.
-- In the step editor, **Check result** switches on the preliminary check and post-check. History and mobile panel distinguish actual confirmation from unverifiable effect. Relative changes, keyboard shortcuts and text entry do not provide a general confirmation of effectiveness. Proof of the process does not prove the technical readiness of the application.
+- In the step editor, **Check result** enables prechecks and postchecks. History and the mobile panel distinguish actual confirmation from effects that cannot be verified. Relative changes, keyboard shortcuts, and text input do not provide blanket confirmation of an effect. Evidence that a process exists does not establish that the application is ready for its intended task.
 - UI Automation uses a separate, time-limited worker. Selection via mouse position, selector check, Invoke/Select/Toggle/Focus/SetValue/WaitState; multiple hits, disabled targets and password fields are rejected. Recording captures supported click actions and pauses; Text entries are not recorded. The admission will be checked before acceptance.
 - Extensions: ZIP inspection, hashes, schema, disabled import, explicit trust before activation, isolated process with limited IPC, export, deactivation, uninstall, restore/discard previous version. Process isolation is not a sandbox: shared plugins run with user rights. Sample package `makrivo.example.zip` contains countdown and status action. Supported schemas represent a documented simple JSON schema subset in the source code; no public marketplace.
 - Mobile panel: select local IP and shared profiles, open HTTPS address, check certificate using the displayed SHA-256-Fingerprints and consciously trust it, then enter a one-time six-digit code. Private keys are protected with Windows-DPAPI; only hashes of client access are saved. Certificates change after renewal or IP change. The Windows firewall is released by the user if necessary. No automatic certificate installation, port forwarding or firewall change. Client access can be revoked. The panel shows action status and test history; it is not yet a universal live sensor dashboard.
@@ -21,7 +21,7 @@ The command palette opens the entries **Set up workstation**, **Keyboard manufac
 | Manufacturer | Implementation | Limitation |
 |---|---|---|
 | Corsair | existing iCUE-G keys and RGB | Local iCUE connection and suitable model required |
-| Logitech G | G-Key SDK and separate LED SDK | explicitly release original local x64-DLL; G-Key SDK does not provide individual identity of multiple keyboards |
+| Logitech G | G-Key SDK and separate LED SDK | Explicitly approve the original local x64-DLL; the G-Key SDK does not provide separate identities for multiple keyboards |
 | Razer | Chroma RGB and standard key recognition | Assign proprietary keys previously in Synapse |
 | SteelSeries | GameSense-RGB and standard key recognition | assign proprietary keys previously in GG |
 | Wooting | Device-related analog values, pressure/release thresholds | original local x64-SDK-DLL; normal HID input remains active |

@@ -4,11 +4,11 @@
 
 # Utrzymanie wszystkich języków dokumentacji
 
-Dokumenty dokumentalne są zgodne ze wszystkimi 27 Języki UI. generowane foldery używają kodów regionalnych; mapy norweskie do `nb-NO` Serbii latynowej `sr-Latn`Każdy folder zawiera indeks, podręcznik, szczegółowe odniesienia do działania, zapas funkcji, notatki weryfikacyjne, badania, w tym CSV, plany historyczne i analiza licencji.
+Zestaw dokumentacji obejmuje wszystkie 27 języków interfejsu. Wygenerowane foldery używają kodów regionalnych; język norweski odpowiada `nb-NO`, a serbski zapisany alfabetem łacińskim — `sr-Latn`. Każdy folder zawiera indeks, podręcznik, szczegółowy opis akcji, spis funkcji, uwagi dotyczące weryfikacji, badania wraz z plikiem CSV, plany historyczne i analizę licencji.
 
 ## Źródło prawdy
 
-Edit  Koło `README.md`, `docs/HANDBOOK.md`, `docs/FEATURES.md`, `docs/VERIFICATION.md`, ta strona, lub oryginalne pliki poniżej `docs/research`, `docs/testing`, `docs/superpowers` i `docs/licensing`Nie pisz historię, aby oznaczać, że jest ona potwierdzona w późniejszej wersji. utrzymać wdrażanie, symulacje, akceptację prawdziwego urządzenia i komercyjną zgodę oddzielnie.
+Edytuj główny `README.md`, `docs/HANDBOOK.md`, `docs/FEATURES.md`, `docs/VERIFICATION.md`, tę stronę lub oryginalne pliki w `docs/research`, `docs/testing`, `docs/superpowers` i `docs/licensing`. Nie przerabiaj raportu historycznego tak, aby sugerował weryfikację późniejszej wersji. Rozróżniaj implementację, symulację, odbiór na rzeczywistym urządzeniu i zatwierdzenie komercyjne.
 
 ## Generuj i weryfikuj
 
@@ -17,9 +17,9 @@ python tools/localize_documentation.py --refresh-sources
 python tools/check_documentation.py
 ```
 
-Opcjonalny generator internetowy wysyła prozę dokumentacji do publicznego punktu tłumaczenia Google, zgodnie z istniejącym narzędziem lokalizacji. nie czyta konfiguracji użytkownika, sekretów lub plików modelu. tylko go uruchomić na dokumentacji odpowiedniej dla tej usługi. bloky kodowe, kody w linii, adresy URL, struktura tabeli i identyfikatory techniczne są chronione. `artifacts/documentation-translation`.
+Opcjonalny generator online wysyła tekst dokumentacji do publicznego punktu końcowego tłumaczenia Google, zgodnie z istniejącymi narzędziami lokalizacji. Nie odczytuje konfiguracji użytkownika, sekretów ani plików modeli. Uruchamiaj go tylko dla dokumentacji odpowiedniej dla tej usługi. Bloki kodu, kod w tekście, adresy URL, struktura tabel i identyfikatory techniczne są chronione. Pamięć podręczna tłumaczeń i zamrożona migawka źródeł są przechowywane w ignorowanym katalogu `artifacts/documentation-translation`.
 
-Gdy dostawca internetowy jest ograniczony, `tools/translate_documentation_local.py` Wypełnić tę samą cache za pomocą wyraźnie dostarczonego lokalu M2M100 CTranslate2 Modelka – The 2026-10-12 Snapshot wykorzystuje licencję MIT facebook/m2m100_418M Modele, które są konwertowane jako JustFrederik/m2m_100_418m_ct2_int8 w rewizji `1aeed44db4dd61a486bba44acf54c76507082a2c`. CTranslate2 4.8.2 i `SentencePiece` 0.2.2 nie są tylko narzędzia. żadne wagi modelu lub zależności tłumaczeń są wysyłane z MAKRIVO. Wykonaj generator z `--cache-only` po wypełnieniu cache, aby przekazać bez żądań sieciowych. lokalny asystent nie pobiera ani nie wykonuje kodu modelu zdalnego.
+Gdy dostawca online ogranicza liczbę żądań, `tools/translate_documentation_local.py` wypełnia tę samą pamięć podręczną przy użyciu jawnie dostarczonego lokalnego modelu M2M100 CTranslate2. Migawka z 2026-10-12 używa modelu facebook/m2m100_418M na licencji MIT, przekonwertowanego jako JustFrederik/m2m_100_418m_ct2_int8 w rewizji `1aeed44db4dd61a486bba44acf54c76507082a2c`. CTranslate2 4.8.2 i `SentencePiece` 0.2.2 to narzędzia używane wyłącznie podczas budowania. Z MAKRIVO nie są dostarczane wagi modeli ani zależności tłumaczenia. Po wypełnieniu pamięci podręcznej uruchom generator z `--cache-only`, aby wygenerować dokumenty bez żądań sieciowych. Lokalny skrypt pomocniczy nie pobiera ani nie wykonuje zdalnego kodu modeli.
 
 ```powershell
 python -m pip install ctranslate2==4.8.2 sentencepiece==0.2.2
@@ -28,12 +28,12 @@ python tools/localize_documentation.py --cache-only
 python tools/check_documentation.py
 ```
 
-Bez `--refresh-sources`, uruchomienie ponownie zamarza. użyj opcji odświeżania po edycji oryginałów. ukryte segmenty są ponownie wykorzystywane. `--locales`Zmiany nie zastępują cicho nieprzekładanej prozy za nieudane tłumaczenie.
+Bez `--refresh-sources` uruchomienie wznawia pracę na zamrożonej migawce. Po edycji oryginałów użyj opcji odświeżenia. Segmenty z pamięci podręcznej są wykorzystywane ponownie. Częściowe uruchomienie może wybrać kody języków przez `--locales`; przed publikacją ukończ wszystkie języki. Przerwane uruchomienia nie zastępują po cichu nieudanego tłumaczenia nieprzetłumaczonym tekstem.
 
-Manifest rejestruje każdy źródło i generowany plik z SHA-256 odcisków ust normalizowanego UTF-8 tekstu: końcówki linii LF i bez znaku zamówienia bytu. Kontroler offline sprawdza pełne pokrycie językowe, odciski palców, lokalne linki, przykłady kodów, strukturę tabeli/CSV, adresy źródłowe i niewymieszane lokalizacje. Odrzuca źródła. Przekazujący kontrolę strukturalną nie jest przeglądem lub zatwierdzeniem prawnym mówcy. Generowane strony przynoszą tę kwalifikację widoczne.
+Manifest zapisuje każdy plik źródłowy i wygenerowany wraz z odciskami SHA-256 znormalizowanego tekstu UTF-8: zakończenia wierszy LF i brak znacznika kolejności bajtów. Kontroler offline sprawdza pełne pokrycie każdego języka, odciski, linki lokalne, przykłady kodu, strukturę tabel/CSV, źródłowe adresy URL i niezastąpione symbole zastępcze. Odrzuca nieaktualne źródła. Pozytywny wynik kontroli strukturalnej nie jest weryfikacją przez rodzimego użytkownika języka ani zatwierdzeniem prawnym. Wygenerowane strony wyraźnie pokazują to zastrzeżenie.
 
 ## Publikacja i pakiety
 
-Publikuj dokumentację, generator i kontroler razem. zachowuj oryginalne warunki licencji osób trzecich; tłumaczone analizy licencji są informacyjne. budowanie artyfikacji, cache tłumaczenia i pliki lokalnej orchestracji nie należą do Git. Windows Instalator jest
+Publikuj dokumentację, generator i kontroler razem. Zachowaj oryginalne warunki licencji stron trzecich; przetłumaczona analiza licencji ma charakter informacyjny. Artefakty kompilacji, pamięć podręczna tłumaczeń i lokalne pliki orkiestracji nie należą do Git. Wydanie dokumentacji źródłowej samo w sobie nie publikuje instalatora Windows.
 
-Tłumaczenia aplikacji są oddzielnymi katalogami JSON pod `src/Aivana.Core/Localization`Generacja dokumentacji nie zmienia tych katalogów. aplikacja buduje i jej dokumentacja powinna udostępniać w wersji zdjęcie; niedawno opisany czas pracy eksperymentalny może poprzedzają zainstalowany pakiet.
+Tłumaczenia interfejsu aplikacji są osobnymi katalogami JSON w `src/Aivana.Core/Localization`. Generowanie dokumentacji nie modyfikuje tych katalogów. Kompilacja aplikacji i jej dokumentacja powinny odpowiadać tej samej wersjonowanej migawce; nowo opisane eksperymentalne wsparcie środowiska wykonawczego może wyprzedzać zainstalowany pakiet.

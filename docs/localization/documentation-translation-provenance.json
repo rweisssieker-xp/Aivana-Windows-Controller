@@ -34,5 +34,6 @@
     "nvidia-cuda-nvrtc-cu12": "12.9.86 (optional isolated tooling)"
   },
   "approval": "Machine-assisted drafts; no native-speaker or legal approval",
-  "localCompute": "CPU int8 initially; CUDA float16 for the remaining translations"
+  "localCompute": "CPU int8 initially; CUDA float16 for the remaining translations",
+  "semanticReview": "docs/localization/documentation-language-review.json"
 }

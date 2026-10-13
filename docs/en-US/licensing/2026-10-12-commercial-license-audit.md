@@ -34,10 +34,10 @@ In the audited inventory, no general obligation to disclose one's own MAKRIVO so
 ## Open before first sale
 
 1. Corsair Clarify distribution rights or prepare to sell without bundled SDK DLL.
-2. Include license and third-party texts for the exact release dependencies and receive them in the installer.
+2. Include the license and third-party texts for the exact release dependencies and preserve them in the installer.
 3. Confirm ownership of rights to your own code and assets; Create EULA with clear device, user and upgrade rules.
 4. For consumer sales, handle the checkout including information requirements and cancellation. A blanket statement of “no refunds for downloads” is not enough. The expiry of the right of withdrawal if the goods are made available immediately requires the legal requirements.
-5. Recheck the finished installer including plugins and all transitive dependencies. The working copy is expanded in parallel; This inventory is not a release of future files.
+5. Recheck the finished installer, including plugins and all transitive dependencies. The working copy is being expanded in parallel; this inventory does not approve future files.
 
 ## GitHub
 

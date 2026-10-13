@@ -4,15 +4,15 @@
 
 # MAKRIVO — Podręcznik użytkownika
 
-Producent: **Aivana**. Zrzut dokumentacji: **2026-10-12**. W tym podręczniku opisano bieżącą implementację drzewa roboczego. Integracje eksperymentalne i funkcje zależne od sprzętu są wyraźnie identyfikowane. Raporty historyczne opisują ich przestarzałą migawkę, a nie gwarancję nowszej wersji.
+Producent: **Aivana**. Stan dokumentacji: **2026-10-12**. Ten podręcznik opisuje bieżącą implementację w drzewie roboczym. Integracje eksperymentalne i funkcje zależne od sprzętu są wyraźnie oznaczone. Raporty historyczne opisują stan z określonej daty i nie stanowią gwarancji dla nowszej kompilacji.
 
 ## Dokumentacja i języki
 
-Użyj selektora języka dokumentacji, aby otworzyć pełną instrukcję, spis funkcji, rozwiązywanie problemów, notatki dotyczące rozwoju, badania i raporty z testów historycznych w dowolnym języku aplikacji 27. Generowane tłumaczenia są wspomagane maszynowo i podlegają kontroli strukturalnej; nie wszystkie otrzymały recenzję od native speakera. Identyfikatory techniczne i przykłady plików wykonywalnych pozostają niezmienione. Oryginalne źródło pozostaje dostępne dla porównania. Przetłumaczona analiza licencji ma charakter informacyjny i nie zastępuje oryginalnych warunków prawnych strony trzeciej ani ostatecznej umowy EULA.
+Użyj selektora języka dokumentacji, aby otworzyć pełny podręcznik, spis funkcji, rozwiązywanie problemów, notatki rozwojowe, badania i historyczne raporty z testów w dowolnym z 27 języków aplikacji. Wygenerowane tłumaczenia są wspomagane maszynowo i sprawdzane strukturalnie; nie wszystkie zostały zweryfikowane przez rodzimych użytkowników języka. Identyfikatory techniczne i wykonywalne przykłady pozostają niezmienione. Oryginalne źródło pozostaje dostępne do porównania. Przetłumaczona analiza licencji jest informacyjna i nie zastępuje oryginalnych warunków prawnych stron trzecich ani ostatecznej umowy EULA.
 
 ## Instalacja i pierwsze uruchomienie
 
-Początkowym celem jest Windows 11 x64. Trzymaj każdy plik i podkatalog dystrybucji razem. Uruchom `MAKRIVO.exe`. Pobranie źródła nie jest instalatorem. Niezależne pakiety obejmują środowisko wykonawcze .NET; pakiety zależne od platformy wymagają odpowiednich środowisk wykonawczych .NET 10 Desktop i ASP.NET. Aby uwzględnić odpowiednie funkcje, należy uwzględnić ONNX i hosty towarzyszące.
+Pierwszą platformą docelową jest Windows 11 x64. Zachowaj wszystkie pliki i podkatalogi dystrybucji razem. Uruchom `MAKRIVO.exe`. Kopia repozytorium źródłowego nie jest instalatorem. Pakiety samodzielne zawierają środowisko wykonawcze .NET; pakiety zależne od środowiska wymagają odpowiednich środowisk .NET 10 Desktop i ASP.NET. ONNX i hosty towarzyszące muszą być dołączone, aby ich funkcje działały.
 
 1. Uruchom MAKRIVO i wybierz język interfejsu w Ustawieniach. Automatyczny podąża za Windows. Układ klawiatury to osobne ustawienie.
 2. Wybierz profil, a następnie dodaj kafelek poprzez przeszukiwalny katalog akcji. Nadaj mu rozpoznawalną nazwę i wybierz jego działania.
@@ -20,43 +20,43 @@ Początkowym celem jest Windows 11 x64. Trzymaj każdy plik i podkatalog dystryb
 4. Zapisz wersję roboczą. Niezapisane zmiany nie są zapisaną konfiguracją.
 5. Przetestuj, wykonując nieszkodliwą czynność, taką jak otwarcie dokumentu, i sprawdź informacje zwrotne o wykonaniu.
 
-Zamknięcie okna głównego zwykle powoduje pozostawienie aplikacji w obszarze powiadomień. Kliknij dwukrotnie ikonę na pasku zadań, aby go ponownie otworzyć, lub użyj menu na pasku zadań, aby wyjść. Rozpoczęcie od Windows jest opcjonalne i początkowo wyłączone. Kontrola pauzy zawiesza powiązania; ikona przedstawia plakietkę pauzy. Anuluj uruchamianie makr za pośrednictwem interfejsu użytkownika, zasobnika lub skonfigurowanego skrótu anulowania; wartość domyślna to `Ctrl+Alt+Escape`.
+Zamknięcie okna głównego zwykle pozostawia aplikację w obszarze powiadomień. Kliknij dwukrotnie jej ikonę w tym obszarze, aby ponownie otworzyć okno, lub użyj menu ikony, aby zakończyć aplikację. Uruchamianie wraz z Windows jest opcjonalne i początkowo wyłączone. Przycisk pauzy wstrzymuje przypisania; ikona pokazuje oznaczenie pauzy. Anuluj działające makra w interfejsie, w menu ikony lub skonfigurowanym skrótem anulowania; domyślny to `Ctrl+Alt+Escape`.
 
 ## Kafelki, akcje i paleta poleceń
 
 Płytki należą do profili i mogą zawierać wiele uporządkowanych kroków. Edytor obsługuje zapisywanie/odrzucanie, podgląd, cofanie/ponawianie i zmianę kolejności kroków. Katalog zawiera gotowe ustawienia programów, dokumentów, adresów URL, tekstu, schowka, skrótów, multimediów, dźwięku, okien, działań systemowych i obsługiwanych integracji. Ustawienie wstępne wymagające parametrów otwiera się jako wersja robocza.
 
-Otwórz paletę za pomocą `Ctrl+K`, podczas gdy MAKRIVO ma fokus. Wyszukaj zapisane działania, ustawienia wstępne, przełączanie profili i narzędzia. Klawisze strzałek wybierz; Enter aktywuje; `Ctrl+Enter` edytuje obsługiwany element; Ucieczka zostaje zamknięta. Część gotowych poleceń jest wykonywana natychmiastowo, natomiast skonfigurowane akcje wymagają sprawdzenia. Można skonfigurować oddzielny skrót do palety globalnej; nowe konfiguracje wykorzystują `Ctrl+Shift+Space`.
+Otwórz paletę za pomocą `Ctrl+K`, gdy MAKRIVO ma fokus. Wyszukuj zapisane akcje, ustawienia wstępne, przełączanie profili i narzędzia. Strzałki wybierają element; Enter go aktywuje; `Ctrl+Enter` edytuje obsługiwany element; Escape zamyka paletę. Niektóre gotowe polecenia wykonują się natychmiast, a skonfigurowane akcje wymagają sprawdzenia. Można skonfigurować osobny globalny skrót palety; nowe konfiguracje używają `Ctrl+Shift+Space`.
 
 Obsługa kroków tekstu i schowka `{{date}}`, `{{time}}`, `{{datetime}}`, `{{clipboard}}`, `{{profile}}`, `{{process}}` i `{{user}}`. Format daty to `yyyy-MM-dd`; formatowanie czasu to `HH:mm`. Nieznane zmienne pozostają niezmienione. Odczyt ze schowka następuje tylko na żądanie. Akcja schowka zapisuje tekst bez automatycznego wklejania go.
 
-Akcje uruchamiane z interfejsu użytkownika mogą być ukierunkowane na ostatnią aplikację zewnętrzną. Jeśli cel zniknie lub Windows blokuje aktywację pierwszego planu, aktywuj cel ręcznie i spróbuj ponownie. Pomyślne dostarczenie klucza nie oznacza, że ​​cel wykonał swoje zadanie.
+Akcje uruchamiane z interfejsu mogą kierować się do ostatniej aplikacji zewnętrznej. Jeśli cel zniknie lub Windows zablokuje przeniesienie go na pierwszy plan, aktywuj go ręcznie i spróbuj ponownie. Pomyślne dostarczenie naciśnięcia klawisza nie dowodzi, że cel wykonał zadanie.
 
 ## Profile i konfiguracja miejsca pracy
 
-Profile mogą dopasowywać nazwę procesu i część tytułu okna. Gdy oba są ustawione, oba muszą pasować. Kolejność profili rozstrzyga konkurencyjne mecze; domyślnym profilem jest profil rezerwowy. Włącz jawnie wybór automatyczny. Zablokuj profil zapobiega automatycznym zmianom w bieżącej sesji.
+Profile mogą dopasowywać nazwę procesu i część tytułu okna. Jeśli ustawiono oba kryteria, oba muszą być spełnione. Kolejność profili rozstrzyga między równoczesnymi dopasowaniami; profil domyślny jest używany, gdy nie ma dopasowania. Wybór automatyczny należy jawnie włączyć. Blokada profilu zapobiega automatycznym zmianom w bieżącej sesji.
 
-Otwórz Ustawienia miejsca pracy z poziomu narzędzi lub palety. Wybierz programy, dokumenty, strony internetowe, obiekt docelowy audio/wyświetlający lub scenę OBS. Asystent przygotowuje profile miejsca pracy, spotkań, streamingu, badań czy projektów. Przed zapisaniem sprawdź wygenerowane kroki. Instalator nie wykonuje przygotowanych działań.
+Otwórz konfigurację miejsca pracy z menu Narzędzia lub palety. Wybierz programy, dokumenty, witryny, docelowe urządzenie dźwiękowe/wyświetlacz lub scenę OBS. Asystent przygotowuje profile pracy, spotkań, streamingu, badań lub projektu. Przed zapisaniem sprawdź wygenerowane kroki. Konfiguracja nie wykonuje przygotowanych akcji.
 
 ## Makra, warunki i nagrywanie
 
 Makra wykonują swoje kroki w określonej kolejności i obsługują oczekiwania, powtórzenia i anulowanie. Ogólny limit powtórzeń to 100. Użyj podglądu przed uruchomieniem akcji, które wpisują do innej aplikacji lub zmieniają stan systemu.
 
-Wait for Target Window akceptuje proces, podciąg tytułu i limit czasu od 1 do 600,000 ms. Wymagany jest co najmniej jeden filtr. Dopasowane widoczne okno musi odpowiedzieć i stać się pierwszym planem, zanim będą kontynuowane kolejne kroki. Gotowe okno nie jest dowodem zakończenia ładowania dokumentu lub usługi.
+Wait for Target Window przyjmuje proces, fragment tytułu i limit czasu od 1 do 600000 ms. Wymagany jest co najmniej jeden filtr. Dopasowane widoczne okno musi odpowiadać i znaleźć się na pierwszym planie, zanim kolejne kroki będą kontynuowane. Gotowe okno nie dowodzi, że dokument lub usługa zakończyły ładowanie.
 
-Edytor przepływu pracy dodaje warunki istnienia pliku, uruchomionego procesu i tytułu okna. Fałszywy warunek pomija ten krok i może pominąć dodatkowe kroki do przodu. Zaneguj warunek wyrażenia alternatywnej gałęzi. Celowo wybierz zatrzymanie w przypadku błędu lub kontynuację w przypadku błędu; kontynuacja może spowodować pozostawienie późniejszych kroków bez oczekiwanych warunków wstępnych.
+Edytor przepływu pracy dodaje warunki istnienia pliku, działania procesu i tytułu okna. Niespełniony warunek pomija krok i może pominąć kolejne kroki. Zaneguj warunek, aby wyrazić alternatywną gałąź. Świadomie wybierz zatrzymanie lub kontynuację po błędzie; kontynuacja może pozostawić późniejsze kroki bez wymaganych warunków wstępnych.
 
-Rejestrator akcji rejestruje akordy skrótów i czeka, a nie zwykłe pisanie. Obsługuje skróty modyfikujące i klawisze funkcyjne. Ucieczka zatrzymuje nagrywanie. Przejrzyj listę i zaakceptuj ją jako niezapisaną wersję roboczą kafelków, a następnie zapisz jawnie. Nagrywanie kliknięć w interfejsie użytkownika to osobne narzędzie opisane poniżej.
+Rejestrator akcji przechwytuje kombinacje klawiszy skrótów i okresy oczekiwania, a nie zwykłe wpisywanie tekstu. Obsługuje skróty z klawiszami modyfikującymi i klawisze funkcyjne. Escape zatrzymuje nagrywanie. Sprawdź listę, przyjmij ją jako niezapisaną wersję roboczą kafelka, a następnie jawnie zapisz. Nagrywanie kliknięć interfejsu jest osobnym narzędziem opisanym poniżej.
 
 ## Klawiatury, gesty i warstwy
 
 Strona klawiatury zawiera listę wykrytych interfejsów i układów referencyjnych. Pojedyncza klawiatura fizyczna może udostępniać kilka interfejsów. Wybierz właściwy język i geometrię; sama nazwa produktu nie identyfikuje układu ISO lub ANSI.
 
-Standardowe globalne skróty klawiszowe mają zastosowanie na wszystkich klawiaturach. Powiązania Raw Input specyficzne dla urządzenia obserwują określone urządzenie i kod skanowania, w tym obsługiwane klawisze funkcyjne i multimedialne. **Raw Input nie blokuje zwykłego wejścia Windows. Ekskluzywna druga klawiatura nie jest gotowa do produkcji.** Nadal wymagany jest podpisany, licencjonowany i przetestowany sterownik filtra; żaden nie jest instalowany przez MAKRIVO.
+Standardowe globalne skróty klawiszowe działają na wszystkich klawiaturach. Przypisania Raw Input dla konkretnego urządzenia obserwują to urządzenie i kod skanowania, w tym obsługiwane klawisze funkcyjne i multimedialne. **Raw Input nie blokuje zwykłego wejścia Windows. Wyłączna obsługa drugiej klawiatury nie jest gotowa do użytku produkcyjnego.** Nadal potrzebny jest podpisany, licencjonowany i przetestowany backend sterownika filtrującego; MAKRIVO nie instaluje żadnego takiego sterownika.
 
-Obsługiwane powiązania klawiszy specjalnych umożliwiają natychmiastowe naciśnięcie, dotknięcie, przytrzymanie lub dwukrotne dotknięcie. Wstrzymane klawisze warstwy tymczasowo wybierają inne mapowanie i przywracają warstwę bazową po zwolnieniu; klawisze wyboru warstw nie uruchamiają własnego makra. Progi wstrzymania wahają się od 150 do 5,000 ms; kliknij dwukrotnie okna od 150 do 1,000 ms. Te mapowania różnią się od zwykłych globalnych skrótów klawiszowych.
+Obsługiwane przypisania klawiszy specjalnych mogą używać natychmiastowego naciśnięcia, krótkiego naciśnięcia, przytrzymania lub podwójnego naciśnięcia. Klawisze aktywujące warstwę podczas przytrzymania tymczasowo wybierają inne mapowanie i przywracają warstwę podstawową po zwolnieniu; klawisze wyboru warstwy nie uruchamiają własnego makra. Progi przytrzymania wynoszą od 150 do 5000 ms, a przedziały rozpoznawania podwójnego naciśnięcia od 150 do 1000 ms. Te mapowania różnią się od zwykłych globalnych skrótów klawiszowych.
 
-Kreator kluczy specjalnych wykrywa kompatybilne klucze bez wykonywania przypisanych do nich działań podczas przechwytywania. Diagnostyka wyjaśnia niedostępne urządzenia, wstrzymane powiązania, niezgodności profili i konflikty. Nakładka pokazuje wybrany układ i wiązania; jego domyślny skrót wstrzymania to `Ctrl+Alt+F1`.
+Kreator klawiszy specjalnych wykrywa zgodne klawisze bez wykonywania przypisanych do nich akcji podczas przechwytywania. Diagnostyka wyjaśnia niedostępność urządzeń, wstrzymane przypisania, niezgodności profili i konflikty. Nakładka pokazuje wybrany układ i przypisania; domyślnym skrótem wyświetlania podczas przytrzymania jest `Ctrl+Alt+F1`.
 
 | Integracja | Wymagania i ograniczenia |
 | --- | --- |
@@ -67,31 +67,31 @@ Kreator kluczy specjalnych wykrywa kompatybilne klucze bez wykonywania przypisan
 | Wooting | Kompatybilny oryginalny lokalny zestaw SDK x64 dla wartości analogowych i progów; normalne wejście HID pozostaje aktywne. |
 | Inne klawiatury | Standardowe klawisze skrótu lub obsługiwane powiązania fizycznego kodu skanowania. Fn i zastrzeżone elementy sterujące zależą od modelu i konfiguracji dostawcy. |
 
-Badania producenta opisują udokumentowane możliwości, nie zaimplementowaną lub przetestowaną kompatybilność z każdym wymienionym urządzeniem. Nowe adaptery nadal wymagają prawdziwej akceptacji sprzętu. Nie pobieraj plików binarnych SDK z niezaufanych źródeł; Prawa do dystrybucji pakietu SDK są niezależne od zgodności technicznej.
+Badania producentów opisują udokumentowane możliwości, a nie zaimplementowaną lub przetestowaną zgodność z każdym wymienionym urządzeniem. Nowe adaptery nadal wymagają testów odbiorczych na rzeczywistym sprzęcie. Nie pobieraj plików binarnych SDK z niezaufanych źródeł; prawa do dystrybucji SDK są odrębne od zgodności technicznej.
 
 ## Audio, wyświetlacze i OBS
 
-Zestawienie głosów z 0 do 100 procent i mute/unmute/toggle poparte wyjście lub mikrofon końcowy. Wybierz określony punkt końcowy lub użyj Windows domyślnie. brakuje zarejestrowany cel powoduje błąd zamiast cicho kontrolować inne urządzenie. odśwież urządzenia po ponownym podłączeniu. kontrolę punktów końcowych nie jest roszczeniem niezależnego wsparcia na aplikację.
+Kroki dźwiękowe ustawiają głośność od 0 do 100 procent oraz wyciszają, włączają dźwięk lub przełączają wyciszenie obsługiwanych urządzeń wyjściowych lub mikrofonów. Wybierz konkretny punkt końcowy albo domyślne urządzenie Windows. Brak zapisanego urządzenia docelowego powoduje błąd zamiast cichego sterowania innym urządzeniem. Po ponownym podłączeniu odśwież listę urządzeń. Sterowanie punktami końcowymi nie oznacza obsługi niezależnego miksera dla poszczególnych aplikacji.
 
-Działania wyświetlacza zwiększają/zmniejszają jasność o punkty procentowe 10 lub ustawiają wartość od 0 do 100. Wyświetlacze wewnętrzne korzystają z obsługiwanych interfejsów WMI; monitory zewnętrzne wymagają obsługi DDC/CI i zwykle jego ustawienia w menu monitora. Doki, adaptery i kable mogą blokować kontrolę. Wybierz wszystkie obsługiwane wyświetlacze lub jeden monitor. Ponowne połączenie może zmienić dostępne tożsamości; przejrzyj zapisany cel. Brakujące odczyty są wyświetlane jako wartości niedostępne, a nie zmierzone.
+Akcje wyświetlaczy zwiększają/zmniejszają jasność o 10 punktów procentowych lub ustawiają wartość od 0 do 100. Wyświetlacze wewnętrzne używają obsługiwanych interfejsów WMI; monitory zewnętrzne wymagają obsługi DDC/CI i zwykle włączenia tej opcji w menu monitora. Stacje dokujące, adaptery i kable mogą blokować sterowanie. Wybierz wszystkie obsługiwane wyświetlacze lub jeden monitor. Ponowne podłączenie może zmienić dostępne identyfikatory; sprawdź zapisany cel. Brak odczytu jest oznaczany jako niedostępność, a nie jako zmierzona wartość.
 
-OBS wymaga włączenia WebSocket v5 w OBS Tools. Skonfiguruj punkt końcowy, przetestuj połączenie i załaduj nazwy scen/wejść przed zapisaniem. Obsługiwane akcje obejmują przełączanie scen, rozpoczynanie/zatrzymywanie/przełączanie strumienia/nagrywania, wstrzymywanie/wznawianie nagrywania i wyciszanie wejścia. Hasła można przechowywać w Windows Credential Manager i są wyłączone z eksportu konfiguracji. Pomyślne polecenie OBS nie ustanawia każdego efektu przesyłania strumieniowego w dół.
+OBS wymaga włączenia WebSocket v5 w menu Narzędzia OBS. Przed zapisaniem skonfiguruj punkt końcowy, przetestuj połączenie i wczytaj nazwy scen/wejść. Obsługiwane akcje obejmują przełączanie scen, rozpoczęcie/zatrzymanie/przełączanie streamingu lub nagrywania, wstrzymanie/wznowienie nagrywania i wyciszenie wejścia. Hasła można przechowywać w Windows Credential Manager i są wykluczone z eksportów konfiguracji. Pomyślne polecenie OBS nie potwierdza wszystkich dalszych skutków streamingu.
 
 ## Weryfikacja wyników i historia realizacji
 
-Włącz opcję Sprawdź wynik dla odpowiednich kroków. Aplikacja rozróżnia kontrole przed lotem, skutki potwierdzone, awarie, anulowanie i skutki, których nie można zweryfikować. Istnienie procesu nie jest gotowością aplikacji. Zmiany względne, skróty i wprowadzanie tekstu nie mogą być traktowane jako całkowite powodzenie. Sprawdź dziennik aktywności i historię weryfikacji, jeśli akcja się nie powiedzie. Błędy konfiguracji należy poprawić przed ponownym uruchomieniem całego makra.
+Włącz weryfikację wyniku dla odpowiednich kroków. Aplikacja rozróżnia kontrole wstępne, potwierdzone skutki, błędy, anulowanie i skutki niemożliwe do zweryfikowania. Istnienie procesu nie oznacza gotowości aplikacji. Zmian względnych, skrótów i wprowadzania tekstu nie można zbiorczo uznawać za potwierdzony sukces. Gdy akcja się nie powiedzie, sprawdź dziennik aktywności i historię weryfikacji. Popraw błędy konfiguracji przed ponownym uruchomieniem całego makra.
 
 ## Automatyzacja interfejsu użytkownika i nagrywanie kliknięć
 
-Dodaj krok automatyzacji interfejsu, wybierz operację i złapać cel poniżej wskaźnika po wyświetlonej opóźnieniu. `Invoke`, `Select`, `Toggle`, `Focus`, `SetValue` i `WaitState`. Pole hasła, zablokowane kontrolki i niejasne selektory są odrzucone.
+Dodaj krok UI Automation, wybierz operację i po wyświetlonym opóźnieniu przechwyć cel pod wskaźnikiem. Samo przechwycenie niczego nie wykonuje. Sprawdź selektor i wymagaj jednoznacznego dopasowania. Obsługiwane operacje to `Invoke`, `Select`, `Toggle`, `Focus`, `SetValue` i `WaitState`. Pola haseł, wyłączone kontrolki i niejednoznaczne selektory są odrzucane.
 
 Automatyzacja interfejsu użytkownika działa w ograniczonym procesie towarzyszącym. Zależy to od obsługi dostępności i uprawnień Windows aplikacji docelowej. Rejestrator kliknięć rejestruje obsługiwane akcje i pauzy; nie rejestruje ogólnego wprowadzania tekstu. Przejrzyj i zatwierdź projekt przed jego przyjęciem. Zmiany interfejsu użytkownika w aplikacji zewnętrznej mogą unieważnić selektory. Izolacja procesów ogranicza awarie i anulowanie, ale nie jest piaskownicą bezpieczeństwa.
 
 ## Wtyczki
 
-Otwórz rozszerzenia, aby sprawdzić pakiet przed jego zaimportowaniem. Sprawdzana jest struktura pakietu, manifest i skróty. Rozpoczęcie importu jest wyłączone. Przed włączeniem przeczytaj zadeklarowane działania i wyraźnie zaufaj wydawcy. Wtyczki działają z uprawnieniami użytkownika w oddzielnym procesie; ten proces to **nie piaskownica**. Instaluj tylko zaufane pakiety.
+Otwórz Rozszerzenia, aby sprawdzić pakiet przed importem. Sprawdzane są struktura pakietu, manifest i skróty kryptograficzne. Zaimportowany pakiet jest początkowo wyłączony. Przed włączeniem przeczytaj zadeklarowane akcje i jawnie zaufaj wydawcy. Wtyczki działają z uprawnieniami użytkownika w osobnym procesie; ten proces **nie jest piaskownicą**. Instaluj tylko pakiety, którym ufasz.
 
-Menedżer obsługuje eksport, wyłączanie, odinstalowywanie i przywracanie/odrzucanie poprzedniej wersji. Brakujące zależności blokują wywołanie. Przykładowy pakiet udostępnia akcje odliczające i stan lokalny. Obsługiwany schemat to udokumentowany podzbiór schematu JSON, a nie każda możliwa funkcja schematu JSON. Nie ma publicznego rynku wtyczek.
+Menedżer obsługuje eksport, wyłączanie, odinstalowywanie oraz przywracanie/odrzucanie poprzedniej wersji. Brakujące zależności blokują wywołanie. Przykładowy pakiet udostępnia akcje odliczania i stanu lokalnego. Obsługiwany schemat jest udokumentowanym podzbiorem JSON-Schema, a nie zbiorem wszystkich funkcji JSON-Schema. Nie ma publicznego rynku wtyczek.
 
 ## Panel mobilny
 
@@ -105,7 +105,7 @@ Prywatne klucze serwera są chronione Windows DPAPI; dane uwierzytelniające kli
 
 ## Lokalny asystent spotkań AI
 
-Ten opcjonalny asystent eksperymentalny jest domyślnie wyłączony. Otwórz go w Narzędziach, włącz go jawnie, wybierz środowisko wykonawcze/model i dodaj tylko te zasoby, które chcesz uwzględnić. Określ cel, utwórz wersję roboczą, sprawdź nierozwiązane prośby i prześlij wynik do zwykłego redaktora. Nic nie jest wykonywane automatycznie; zapisywanie i uruchamianie pozostają jawnymi działaniami. Nie ma automatycznego przywracania czasu działania.
+Ten opcjonalny eksperymentalny asystent jest domyślnie wyłączony. Otwórz go w menu Narzędzia, jawnie włącz, wybierz środowisko wykonawcze/model i dodaj tylko zasoby, które ma uwzględnić. Określ cel, utwórz wersję roboczą, sprawdź nierozstrzygnięte żądania i przenieś wynik do zwykłego edytora. Nic nie wykonuje się automatycznie; zapisanie i uruchomienie nadal wymagają jawnych działań. Nie ma automatycznego przełączenia na inne środowisko wykonawcze.
 
 | Czas wykonania | Konfiguracja |
 | --- | --- |
@@ -114,21 +114,21 @@ Ten opcjonalny asystent eksperymentalny jest domyślnie wyłączony. Otwórz go 
 | llama.cpp | Lokalny `llama-server` i kompatybilny model z obsługą schematu JSON pod adresem `127.0.0.1:8080`. |
 | ONNX Środowisko wykonawcze GenAI Procesor | Zaufany, kompatybilny lokalny folder modelu tekstowego GenAI; wybierz `genai_config.json`. Wnioskowanie korzysta z dołączonego procesu towarzyszącego bez protokołu HTTP. |
 
-Klienci HTTP korzystają wyłącznie z pętli zwrotnej, nie korzystają z serwerów proxy i nie korzystają z przekierowań. MAKRIVO nie może wiarygodnie ustalić, czy zgodny serwer lokalny wewnętrznie wywołuje usługę zdalną. W tej wersji nie można konfigurować uwierzytelnionych serwerów lokalnych. Wagi modeli, Python i lokalne serwery wnioskowania nie są automatycznie pobierane ani instalowane.
+Klienci HTTP używają wyłącznie adresów pętli zwrotnej, nie korzystają z serwerów proxy i nie podążają za przekierowaniami. MAKRIVO nie może wiarygodnie ustalić, czy zgodny serwer lokalny wewnętrznie wywołuje usługę zdalną. W tej wersji nie można skonfigurować lokalnych serwerów wymagających uwierzytelnienia. Wagi modeli, Python i lokalne serwery wnioskowania nie są automatycznie pobierane ani instalowane.
 
-ONNX Pakiety potrzebne `tokenizer.json` i ważny szablon czatu. obsługiwane formularze szablonu w `tokenizer_config.json` Jest to strona `chat_template`Słownik z struną `default`, lub niepodzielny listę nazw/default szablonu. jeśli szablon jest brakuje lub zero, `chat_template.jinja` Puste, niejasne, nadmierne lub nieprawidłowo wpisane szablony są odrzucane. ONNX pliki, modele wbudowane/widoczne oraz pakiety GPU nie są wymienione z kompatybilnymi GenAI Wzór tekstów - Związek GenAI Wersja Runtime jest 0.17.1Użyj tylko zaufanych modeli; procesy oddzielające nie są pudełkiem piaskowym.
+Pakiety ONNX wymagają `tokenizer.json` i prawidłowego szablonu czatu. Obsługiwane postacie szablonu w `tokenizer_config.json` to ciąg znaków `chat_template`, słownik z ciągiem znaków `default` albo jednoznaczna lista szablonów nazwanych/domyślnych. Jeśli szablonu brakuje lub ma wartość null, jako rozwiązanie zastępcze używany jest `chat_template.jinja`. Szablony puste, niejednoznaczne, zbyt duże lub nieprawidłowego typu są odrzucane. Dowolne pliki ONNX, modele osadzeń/wizyjne i pakiety przeznaczone wyłącznie dla GPU nie są zamienne ze zgodnymi modelami tekstowymi GenAI. Dołączone środowisko wykonawcze GenAI ma wersję 0.17.1 i działa na CPU. Używaj tylko zaufanych modeli; oddzielenie procesów nie jest piaskownicą.
 
-Asystent obsługuje wybrane programy bez argumentów, wybrane dokumenty i strony internetowe oraz wyciszenie mikrofonu na wyraźne żądanie. Nie tworzy wiadomości, spotkań, dowolnych skryptów, bezpłatnych kliknięć, pobrań ani przełączania słuchawek. Nazwy celów i zasobów są wysyłane do wybranego lokalnego środowiska wykonawczego; ścieżki zasobów i zawartość plików nie są dostarczane oddzielnie. Cel wpisany przez użytkownika może sam w sobie zawierać dane osobowe. Za zachowanie sieciowe lokalnego środowiska wykonawczego odpowiada użytkownik.
+Asystent obsługuje wybrane programy bez argumentów, wybrane dokumenty i witryny oraz wyciszenie mikrofonu na wyraźne żądanie. Nie tworzy wiadomości, spotkań, dowolnych skryptów, dowolnych kliknięć, pobrań ani przełączania zestawów słuchawkowych. Cel i nazwy zasobów są wysyłane do wybranego lokalnego środowiska wykonawczego; ścieżki zasobów i zawartość plików nie są podawane osobno. Cel wpisany przez użytkownika może sam zawierać dane osobowe. Użytkownik odpowiada za własne zachowanie sieciowe lokalnego środowiska wykonawczego.
 
-Budżet żądań ONNX wynosi 90 sekund, w tym ładowanie modelu, maksymalnie 3,072 tokeny podpowiedzi i wygenerowane tokeny 1,024, również ograniczone kontekstem modelu. Źle sformułowany/skrócony JSON i nieznane identyfikatory zasobów są odrzucane. Anuluj lub zamknij, aby zakończyć żądanie. Test czasu wykonania modelu losowego ustala wykonanie, a nie użyteczną jakość planowania lub oszczędność czasu. Lokalne dzienniki eksperymentów zawierają identyfikatory i momenty zdarzeń, a nie tekst celu czy treść dokumentu; nie są one przesyłane automatycznie.
+Limit żądania ONNX wynosi 90 sekund, wliczając ładowanie modelu, do 3072 tokenów wejściowych i 1024 tokenów wygenerowanych, z dodatkowym ograniczeniem przez kontekst modelu. Nieprawidłowy/ucięty JSON i nieznane identyfikatory zasobów są odrzucane. Anuluj lub zamknij, aby zakończyć żądanie. Test środowiska wykonawczego z modelem losowym potwierdza wykonanie, a nie użyteczną jakość planowania lub oszczędność czasu. Lokalne dzienniki eksperymentów zawierają identyfikatory zdarzeń i dane czasowe, a nie tekst celu ani zawartość dokumentów; nie są automatycznie przesyłane.
 
-Później mała ocena modelu Instruct wyprodukowała zero ważnych planów w czterech niemieckich/ang. Native inference działał, ale model nie spełnił rygorystycznej umowy planowania. To jest negatywny wynik jakości, nie zalecany model lub udowodniony pomocnik. Zobacz datowany lokalny raport testowy czasu pracy dla dokładnej oceny modelu i ograniczeń.
+Późniejsza ocena małego modelu Instruct dała zero prawidłowych planów w czterech próbach w języku niemieckim/angielskim. Natywne wnioskowanie działało, ale model nie spełnił ścisłego kontraktu planowania. To negatywny wynik oceny jakości, a nie zalecany model ani dowód użyteczności asystenta. Dokładną rewizję modelu i ograniczenia podano w datowanym raporcie z testów lokalnego środowiska wykonawczego.
 
 ## Import, eksport, synchronizacja i tworzenie kopii zapasowych
 
-Przed wymianą konfiguracji przejrzyj podglądy importu. Zaimportowane akcje uruchamiają się wyłączone, a przenośna synchronizacja usuwa powiązania specyficzne dla sprzętu. Zmień przypisanie urządzeń i celowo włącz działania po kontroli. Przejrzyj treść tekstu/działania przed udostępnieniem eksportu; wykluczenie haseł nie powoduje, że cała treść akcji utworzona przez użytkownika staje się niewrażliwa.
+Przed zastąpieniem konfiguracji sprawdź podgląd importu. Zaimportowane akcje są początkowo wyłączone, a synchronizacja przenośna usuwa przypisania zależne od sprzętu. Po sprawdzeniu świadomie przypisz urządzenia i włącz akcje. Przed udostępnieniem eksportu sprawdź tekst i treść akcji; pominięcie haseł nie oznacza, że cała treść akcji utworzonych przez użytkownika jest niewrażliwa.
 
-Synchronizacja profilu wymienia pliki w wybranym folderze, opcjonalnie zarządzane przez istniejącego klienta chmury. MAKRIVO nie dostarcza konta w chmurze i nie przechowuje żadnych potwierdzających w chmurze. Revisions zapobiega cichym przesłaniom. Włączanie treści działania jest wyraźnym wyborem. Zapisz konfigurację przed importowaniem zastępczym. `%LOCALAPPDATA%\AivanaWindowsController\settings.json`• historyczne nazwy adresatu są zachowane dla zgodności. zamknij aplikację przed ręcznym kopiowaniem/rejestrowanym. przechowywane zatwierdzenia SDK i chronione przez system OS potrzebować odtwarzania na innym komputerze.
+Synchronizacja profili wymienia pliki w wybranym folderze, opcjonalnie zarządzanym przez dotychczasowego klienta chmury. MAKRIVO nie zapewnia konta w chmurze i nie przechowuje danych uwierzytelniających do chmury. Rewizje zapobiegają cichemu nadpisywaniu. Dołączenie treści akcji wymaga świadomego wyboru. Przed importem zastępującym konfigurację wykonaj jej kopię zapasową. Domyślny plik konfiguracji to `%LOCALAPPDATA%\AivanaWindowsController\settings.json`; historyczną nazwę katalogu zachowano dla zgodności. Zamknij aplikację przed ręcznym kopiowaniem/przywracaniem pliku. Zapisane zgody na użycie SDK oraz dane uwierzytelniające chronione przez system operacyjny mogą wymagać ponownego utworzenia na innym komputerze.
 
 ## Rozwiązywanie problemów
 
@@ -161,14 +161,14 @@ dotnet run --project src/Aivana.Desktop -c Release -- --smoke-test
 python tools/check_documentation.py
 ```
 
-Testy integracyjne Windows mogą otwierać izolowane okna i tymczasowo konfigurować/zwalniać obsługiwane powiązania dostawców. Uruchom je bez innego kontrolera posiadającego te powiązania. Domyślne sondy jasności/dźwięku są tylko do odczytu; jawne testy sprzętowe w obie strony są oddzielne. Próbne protokoły, renderowane zrzuty ekranu i wykresy losowych wniosków nie mogą być przedstawiane jako akceptacja rzeczywistej jakości sprzętu/modelu.
+Testy integracyjne Windows mogą otwierać izolowane okna i tymczasowo konfigurować/zwalniać obsługiwane przypisania producentów. Uruchamiaj je bez innego kontrolera zajmującego te przypisania. Domyślne próby jasności/dźwięku są tylko do odczytu; jawne sprzętowe testy zmiany i przywrócenia stanu są osobne. Atrapy protokołów, renderowane zrzuty ekranu i losowe grafy wnioskowania nie mogą być przedstawiane jako rzeczywisty odbiór sprzętu lub jakości modelu.
 
-Kompletny wydawca składa się z hostów towarzyszących, zasobów mobilnych, przykładowej wtyczki, środowiska wykonawczego ONNX i dostępnych informacji o zależnościach. Zachowaj jego podkatalogi. Pomyślna kompilacja nie oznacza podpisanego instalatora ani legalnej zgody na wydanie. Źródło i kompilacje mogą ewoluować oddzielnie; porównaj migawkę dokumentacji i zatwierdź z zainstalowaną wersją.
+Kompletny skrypt publikacji składa hosty towarzyszące, zasoby mobilne, przykładową wtyczkę, środowisko wykonawcze ONNX i dostępne informacje o zależnościach. Zachowaj jego podkatalogi. Pomyślna kompilacja nie jest podpisanym instalatorem ani prawnym zatwierdzeniem wydania. Źródła i kompilacje mogą rozwijać się osobno; porównaj migawkę dokumentacji i commit z zainstalowaną wersją.
 
 ## Status licencji, prywatności i wydania
 
-Zamierzony model komercyjny to jednorazowy zakup z możliwością wieczystego korzystania z zakupionej wersji głównej; ostateczna cena, limit urządzeń i warunki aktualizacji muszą być określone w rzeczywistych warunkach sprzedaży. W niniejszym podręczniku nie określono systemu zakupów/aktywacji produkcyjnej. Do codziennej kontroli nie jest wymagane konto w chmurze.
+Planowany model komercyjny to jednorazowy zakup z bezterminowym użytkowaniem zakupionej wersji głównej; ostateczną cenę, limit urządzeń i warunki aktualizacji muszą określać rzeczywiste warunki sprzedaży. Ten podręcznik nie potwierdza istnienia produkcyjnego systemu zakupu/aktywacji. Do codziennego sterowania nie jest wymagane konto w chmurze.
 
-Nie rozpowszechniaj zastrzeżonych plików binarnych SDK bez potwierdzonego pozwolenia. Zachowaj informacje o licencji i informacjach od innych firm dla każdej dostarczonej zależności, w tym pakietów .NET i ONNX. Wagi modeli mają swoje własne warunki. Przestarzały audyt licencji poprzedzający niektóre nowe zależności i nie stanowi zezwolenia na te dodatki. Repozytorium, które jest publiczne, samo w sobie nie przyznaje ogólnej licencji typu open source.
+Nie rozpowszechniaj zastrzeżonych plików binarnych SDK bez udokumentowanego pozwolenia. Zachowaj informacje o licencji i zawiadomienia stron trzecich dla każdej dostarczanej zależności, w tym pakietów .NET i ONNX. Wagi modeli mają własne warunki. Datowany audyt licencji poprzedza niektóre nowe zależności i nie jest pozwoleniem na ich dodanie. Publiczne repozytorium samo w sobie nie udziela ogólnej licencji open source.
 
-Sprzęt prawdziwego dostawcy, obsługa sieci LAN na telefonie/tablecie, zmiany między monitorami/DPI, długotrwałe użytkowanie, pełna recenzja językowa, ekskluzywna obsługa sterowników i użyteczna jakość planowania AI pozostają odrębnymi pracami akceptacyjnymi. Nigdy nie wnioskuj o aprobacie na podstawie samej obecności obiektu.
+Rzeczywisty sprzęt producentów, obsługa telefonu/tabletu w sieci LAN, przejścia między monitorami o różnych parametrach/DPI, długotrwałe użytkowanie, pełna weryfikacja językowa, wyłączna obsługa przez sterownik i użyteczna jakość planowania AI nadal wymagają osobnych testów odbiorczych. Nigdy nie wnioskuj o zatwierdzeniu na podstawie samej obecności funkcji.

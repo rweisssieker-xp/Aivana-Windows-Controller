@@ -4,108 +4,108 @@
 
 # MAKRIVO — Lietotāja rokasgrāmata
 
-Ražotājs: **Aivana**. Dokumentācija snapshot: **2026-10-12**. Šī rokasgrāmata apraksta pašreizējo darba koksnes īstenošanu. eksperimentālās integrācijas un aparatūras atkarīgās funkcijas ir skaidri identificētas. vēstures ziņojumi apraksta to datēto snapshot, nevis jaunu būvniecības garantiju.
+Ražotājs: **Aivana**. Dokumentācijas stāvoklis: **2026-10-12**. Šī rokasgrāmata apraksta pašreizējā darba koka realizāciju. Eksperimentālās integrācijas un no aparatūras atkarīgās funkcijas ir skaidri norādītas. Vēsturiskie pārskati apraksta stāvokli attiecīgajā datumā, negarantējot jaunāka būvējuma darbību.
 
 ## Dokumentācija un valodas
 
-Izmantojiet dokumentācijas valodas izvēlni, lai atvērtu pilnīgu manuālu, funkciju inventāru, problēmu risināšanu, attīstības piezīmes, pētījumu un vēsturisko testu ziņojumus jebkurā no 27 pieteikuma valodām. Izveidotas tulkošanas ir mašīnsaistītas un ir strukturālas pārbaudes; ne visi no tām ir saņēmuši izcelsmes runātāja pārskatus. Tehniskās identifikācijas un izpildāmie piemēri paliek nemainīgi. Sākotnējais avots paliek pieejams salīdzināšanai. Tulkotais licences analīze ir informatīva un neaizstāj oriģinālus trešo pušu juridiskos noteikumus vai galīgo EULA.
+Dokumentācijas valodas atlasītājs ļauj atvērt pilno rokasgrāmatu, funkciju sarakstu, problēmu novēršanu, izstrādes piezīmes, pētījumus un vēsturiskos testu pārskatus jebkurā no 27 lietotnes valodām. Ģenerētie tulkojumi ir veidoti ar mašīntulkošanas palīdzību un strukturāli pārbaudīti; ne visus ir pārskatījuši dzimtās valodas lietotāji. Tehniskie identifikatori un izpildāmie piemēri paliek nemainīti. Sākotnējais avots ir pieejams salīdzināšanai. Tulkotā licencēšanas analīze ir informatīva un neaizstāj sākotnējos trešo pušu juridiskos noteikumus vai galīgo EULA.
 
 ## Uzstādīšana un pirmā uzsākšana
 
-Sākotnējais mērķis ir Windows 11 x64. saglabājiet katru failu un apakšsaziņas līdzekli kopā. `MAKRIVO.exe`. Izejvielas pārbaude nav instalētājs. pašu satura paketi ietver savu .NET darbības laiku; paketi, kas ir atkarīgi no rāmja, prasa atbilstošu .NET 10 Desktop un ASP.NET runtimes. ONNX un līdzjutēji jāiekļauj attiecīgajām funkcijām.
+Sākotnējā mērķplatforma ir Windows 11 x64. Glabājiet visus izplatīšanas pakotnes failus un apakšmapes kopā. Palaidiet `MAKRIVO.exe`. Pirmkoda kopija nav instalētājs. Pašpietiekamās pakotnes ietver savu .NET izpildvidi; no ietvara atkarīgām pakotnēm vajadzīgas atbilstošās .NET 10 Desktop un ASP.NET izpildvides. ONNX un palīgprocesu resursdatoriem jābūt iekļautiem to attiecīgo funkciju lietošanai.
 
-1. Sāciet MAKRIVO un izvēlieties saskarnes valodu Settings. Automašīna tiek veikta Windows Keyboard layout ir atsevišķs.
-2. Izvēlieties profilu, pēc tam pievienojiet tīli, izmantojot meklējamo rīcības katalogu. Dodiet tam atpazīstamu nosaukumu un izvēlieties tās darbības.
-3. Pārbaudiet soļus un vajadzības gadījumā piešķirjiet īsziņu. Izvairieties no kombinācijām, ko jau izmanto Windows vai jūsu mērķa pieteikums.
-4. Saglabājiet projektu. Nepieņemtas izmaiņas nav saglabāta konfigurācija.
+1. Palaidiet MAKRIVO un sadaļā Settings izvēlieties saskarnes valodu. Automātiskais režīms izmanto Windows valodu. Tastatūras izkārtojums ir atsevišķs iestatījums.
+2. Izvēlieties profilu un pievienojiet elementu, izmantojot meklējamo darbību katalogu. Piešķiriet tam atpazīstamu nosaukumu un izvēlieties darbības.
+3. Pārskatiet soļus un vajadzības gadījumā piešķiriet saīsni. Izvairieties no kombinācijām, ko jau izmanto Windows vai mērķa lietotne.
+4. Saglabājiet melnrakstu. Nesaglabātās izmaiņas nav saglabātā konfigurācija.
 5. Pārbaudiet ar nekaitīgu rīcību, piemēram, atverot dokumentu, un pārbaudiet izpildes atsauksmes.
 
-Galvenais logs parasti atstāj pieteikumu paziņojuma zonā. Divkārši noklikšķiniet uz tā tray ikonu, lai to atvērtu, vai izmantojiet tray meniu, lai iziet. Sākt ar Windows ir opcionāls un sākotnēji ir atļauts. Pārtraukuma kontrole aptur saikni; ikona parāda pārtraukuma zīmi. Atcerieties, ka darbojas makros, izmantojot IU, tray vai konfigurēto atcelšanas īsziņu; parasti ir `Ctrl+Alt+Escape`.
+Aizverot galveno logu, lietotne parasti turpina darboties paziņojumu apgabalā. Veiciet dubultklikšķi uz tās ikonas, lai atvērtu logu, vai izmantojiet ikonas izvēlni, lai izietu. Palaišana kopā ar Windows ir izvēles iespēja un sākotnēji ir atspējota. Pauzes vadīkla aptur taustiņu piesaistes; ikonā redzama pauzes atzīme. Darbojošos makro atceliet saskarnē, ikonas izvēlnē vai ar konfigurēto atcelšanas saīsni; noklusējums ir `Ctrl+Alt+Escape`.
 
 ## Tilti, rīcība un komandas palete
 
-Tilti pieder profilam un var saturēt vairākus pasūtītos soļus. Redaktors atbalsta saglabāt/izslēgt, iepriekšēju skatījumu, undo/redo un soli reorganizāciju. Katalogs nodrošina programmu, dokumentu, URL, teksta, klipu, īsziņas, mediju, audio, logus, sistēmas darbības un atbalstītās integrācijas. Priekšraksts, kas prasa parametrus, atveras kā projektu.
+Elementi pieder profiliem un var saturēt vairākus secīgus soļus. Redaktors atbalsta saglabāšanu/atmešanu, priekšskatījumu, atsaukšanu/atjaunošanu un soļu pārkārtošanu. Katalogā ir sagataves programmām, dokumentiem, URL, tekstam, starpliktuvei, saīsnēm, multividei, audio, logiem, sistēmas darbībām un atbalstītajām integrācijām. Sagatave, kurai vajadzīgi parametri, atveras kā melnraksts.
 
-Atvērt paleti ar `Ctrl+K` un MAKRIVO ir koncentrēts. Meklēt glabātās darbības, priekšaprakti, profila pārejas un rīki. Izvēlieties atslēgas; Ievadiet aktivizē; `Ctrl+Enter` rediģē atbalstīto elementu; Escape slēdz. Dažas gatavas komandas tiek izpildītas nekavējoties, bet konfigurētie pasākumi prasa pārskatīšanu. Atsevišķu globālo paletes īsziņu var konfigurēt; jaunas konfigurācijas izmanto `Ctrl+Shift+Space`.
+Atveriet paleti ar `Ctrl+K`, kad MAKRIVO ir fokusā. Meklējiet saglabātās darbības, sagataves, profilu pārslēgšanu un rīkus. Bulttaustiņi izvēlas; Enter aktivizē; `Ctrl+Enter` rediģē atbalstītu vienumu; Escape aizver. Dažas gatavās komandas izpildās uzreiz, bet konfigurētās darbības jāpārskata. Var konfigurēt atsevišķu globālu paletes saīsni; jaunās konfigurācijās tā ir `Ctrl+Shift+Space`.
 
-Teksta un klips atbalsts `{{date}}`, `{{time}}`, `{{datetime}}`, `{{clipboard}}`, `{{profile}}`, `{{process}}` un `{{user}}`. Datums ir `yyyy-MM-dd`; Laika formāts ir `HH:mm`. Nezināmas izmaiņas paliek nemainīgas.Clipboard lasīšana notiek tikai tad, ja to pieprasa.Clip board darbība rakstīs tekstu bez automātisku to pielāgošanu.
+Teksta un starpliktuves soļi atbalsta `{{date}}`, `{{time}}`, `{{datetime}}`, `{{clipboard}}`, `{{profile}}`, `{{process}}` un `{{user}}`. Datuma formāts ir `yyyy-MM-dd`; laika formāts ir `HH:mm`. Nezināmie mainīgie paliek nemainīti. Starpliktuve tiek lasīta tikai pēc pieprasījuma. Starpliktuves darbība ieraksta tekstu, to automātiski neielīmējot.
 
-Darbības, ko uzsāk no IU, var vērsties uz pēdējo ārējo pieteikumu. Ja mērķis pazūd vai Windows bloķē priekšējo aktivizāciju, manuāli aktivizējiet mērķi un atgrieziet to. Veiksmīga atslēgas piegāde nerada, ka mērķis ir izpildījis savu uzdevumu.
+Saskarnē palaistās darbības var būt vērstas uz pēdējo ārējo lietotni. Ja mērķis pazūd vai Windows bloķē aktivizēšanu priekšplānā, aktivizējiet to manuāli un mēģiniet vēlreiz. Veiksmīga taustiņu ievades piegāde nepierāda, ka mērķis pabeidza savu uzdevumu.
 
 ## Profili un darba vieta
 
-Profili var atbilst procesa nosaukumam un lauka nosaukuma daļai. Kad abi ir sadalīti, abiem ir jāsaskaņo. Profila rīkojums izšķir konkurējošus spēles; default profils ir atgriešanās. Iespējami automātiski izvēlēties. Lock Profile novērš pašreizējās sesijas automātisko izmaiņu.
+Profili var atbilst procesa nosaukumam un loga virsraksta daļai. Ja iestatīti abi, jāatbilst abiem. Ja atbilst vairāki profili, izvēli nosaka profilu secība; rezerves izvēle ir noklusējuma profils. Automātiskā izvēle ir skaidri jāiespējo. Lock Profile pašreizējā sesijā novērš automātiskas profila izmaiņas.
 
-Atvērts darba vietas iestatījums no rīkiem vai paletes. Izvēlieties programmas, dokumentus, tīmekļa vietnes, audio / displeja mērķi vai OBS skatu. Palīgs sagatavo darba vietu, sanāksmes, strīdu, pētījumu vai projekta profilu. Pārbaudiet radītos soļus pirms ietaupīšanas. Iestatījums neizpilda sagatavotos pasākumus.
+Atveriet Workplace Setup izvēlnē Tools vai paletē. Izvēlieties programmas, dokumentus, vietnes, audio/displeja mērķi vai OBS ainu. Palīgs sagatavo darbavietas, sanāksmes, straumēšanas, pētniecības vai projekta profilus. Pirms saglabāšanas pārbaudiet ģenerētos soļus. Iestatīšana neizpilda sagatavotās darbības.
 
 ## Macros, nosacījumi un ieraksts
 
-Macros īsteno savas darbības un atbalsta gaidīšanas, atkārtošanās un atcelšana. Vispārējā atkārtošanās robeža ir 100. Izmantojiet iepriekšējo darbību, pirms to ievadiet citā lietojumā vai mainiet sistēmas stāvokli.
+Makro izpilda soļus secīgi un atbalsta gaidīšanu, atkārtošanu un atcelšanu. Vispārējais atkārtojumu limits ir 100. Izmantojiet priekšskatījumu, pirms palaižat darbības, kas ievada tekstu citā lietotnē vai maina sistēmas stāvokli.
 
-Gaida mērķa logs pieņem procesu, nosaukuma substrāciju un laiku no 1 līdz 600,000 ms. Ir nepieciešams vismaz viens filtrs. Atbilstošs redzamais logs ir jāatbild un jāpārvērš, pirms turpmākie soļi turpināsies. Sagatavots logs nerada, ka dokuments vai pakalpojums ir pabeigts.
+Wait for Target Window pieņem procesu, virsraksta apakšvirkni un taimautu no 1 līdz 600000 ms. Vajadzīgs vismaz viens filtrs. Atbilstošajam redzamajam logam jāreaģē un jākļūst par priekšplāna logu, pirms turpinās nākamie soļi. Gatavs logs nepierāda, ka dokuments vai pakalpojums ir pabeidzis ielādi.
 
-Darba plūsmas redaktors pievieno failus, procesus un logus. Fake stāvoklis izslēdz soli un var pārtraukt papildu soļus. Neaizmirstiet nosacījumu, lai izteiktu alternatīvu filiāli. Izvēlieties stop-on-error vai continu-on-err deliberately; turpināt var atstāt vēlākos soļus bez viņu gaidītajām nosacījumiem.
+Darbplūsmas redaktors pievieno faila esamības, procesa darbības un loga virsraksta nosacījumus. Ja nosacījums ir aplams, solis tiek izlaists, un var izlaist arī papildu turpmākos soļus. Lai izteiktu alternatīvu zaru, noliedziet nosacījumu. Apzināti izvēlieties apstāšanos vai turpināšanu kļūdas gadījumā; turpinot vēlākajiem soļiem var nebūt izpildīti nepieciešamie priekšnosacījumi.
 
-Darbības ieraksts uzņem īsmetrus un gaida, nevis parasta rakstīšanu. Tas atbalsta modifikatoru īsziņas un funkciju atslēgas. Bēgšana pārtrauc ierakstīšanu. Pārskatiet sarakstu un pieņemt to kā neapglabātu tile projektu, pēc tam skaidri glabāt. UI klikšķi ir atsevišķs rīks, kas aprakstīts zemāk.
+Darbību ierakstītājs fiksē taustiņu kombinācijas un gaidīšanu, nevis parastu teksta rakstīšanu. Tas atbalsta saīsnes ar modifikatoriem un funkciju taustiņus. Escape aptur ierakstīšanu. Pārskatiet sarakstu un pieņemiet to kā nesaglabātu elementa melnrakstu, pēc tam skaidri saglabājiet. Saskarnes klikšķu ierakstīšana ir atsevišķs tālāk aprakstīts rīks.
 
 ## Meklēšanas, gestu un slāņu
 
-Tastāvokļa lapa uzskaita konstatētos saskarnes un atsauces izkārtojumus. Vienā fiziskajā tastatūrā var parādīt vairākus saskarnes. Izvēlieties pareizo valodu un ģeometriju; tikai produkta nosaukums nerada ISO vai ANSI izkārtojumu.
+Tastatūras lapā uzskaitītas noteiktās saskarnes un paraugizkārtojumi. Vienai fiziskai tastatūrai var būt vairākas saskarnes. Izvēlieties pareizo valodu un ģeometriju; produkta nosaukums vien nenosaka ISO vai ANSI izkārtojumu.
 
-Standarta globālie hotkeys attiecas uz klaviatūras. Ierīces specifiskie Raw Input savienojumi ievēro konkrētu ierīci un skenēšanas kodu, tostarp atbalstītās funkcijas un plašsaziņas līdzekļu atslēgas. ** Raw Input netraucē parasto Windows ievietošanu. Ekskluzīva otrā tastatūra nav gatava ražošanai.** Patlaban ir nepieciešama parakstīta, licencēta un pārbaudīta filtra vadības sistēma; neviena no tām nav instalēta MAKRIVO.
+Standarta globālās saīsnes darbojas visās tastatūrās. Ierīcei specifiskās Raw Input piesaistes novēro konkrētu ierīci un skenēšanas kodu, tostarp atbalstītos funkciju un multivides taustiņus. **Raw Input nenomāc parasto Windows ievadi. Ekskluzīvi makro vajadzībām izmantota otrā tastatūra nav gatava produkcijas lietošanai.** Joprojām vajadzīga parakstīta, licencēta un pārbaudīta filtra draivera aizmugursistēma; MAKRIVO tādu neinstalē.
 
-Atbalstītie speciālie atslēgas savienojumi var izmantot tūlītēju nospiedumu, nospiedumus vai dubultus nospiedumiem.Held-layer atslēgas īslaicīgi izvēlas citu mapēšanu un atjauno pamata slāni; slāņa-selektoru atslēgas nedarbojas paši makro. 150 Lai 5,000 MS; dubultspiedienu logi no 150 Lai 1,000 MS. Šīs kartes atšķiras no parastām globālajām kartiņām.
+Atbalstītās īpašo taustiņu piesaistes var izmantot tūlītēju nospiešanu, īsu nospiešanu, turēšanu vai dubultnospiešanu. Turēšanas slāņa taustiņi uz laiku izvēlas citu piesaistu kopu un pēc atlaišanas atjauno pamatslāni; slāņa izvēles taustiņi nepalaid savus makro. Turēšanas slieksnis ir no 150 līdz 5000 ms; dubultnospiešanas intervāls ir no 150 līdz 1000 ms. Šīs piesaistes atšķiras no parastajām globālajām saīsnēm.
 
-Īpašs atslēga varonis atklāj saderīgus atslēgas, neizpildot to piešķirto darbību uzņemšanas laikā. Diagnoze izskaidro nepieejamas ierīces, pārtrauktas saites, profila nepilnības un konflikti. Pārklājums norāda izvēlēto izkārtojumu un saikni; tā pamatoti saglabā īsziņas `Ctrl+Alt+F1`.
+Īpašo taustiņu vednis noteikšanas laikā atrod saderīgos taustiņus, neizpildot tiem piešķirtās darbības. Diagnostika izskaidro nepieejamas ierīces, apturētas piesaistes, profilu neatbilstības un konfliktus. Pārklājums rāda izvēlēto izkārtojumu un piesaistes; tā noklusējuma turēšanas saīsne ir `Ctrl+Alt+F1`.
 
 | Integrācija | Prasības un ierobežojumi |
 | --- | --- |
-| Corsair | Running iCUE, SDK piekļuve un saderīgs modelis. G1–G6 un atbalstošās RGB funkcijas; īpašās Fn, riteņi, slēgšanas un profila kontroles parasti nav pakļautas G atslēgas API. |
-| Logitech G | Sākotnējās x64 G/LED SDK bibliotēkas prasa skaidru apstiprinājumu. G atslēgas notikumi nevienkārši identificē vairākas identiskas fiziskās tastatūras. |
-| Razer | Chroma RGB un standarta ieejas; kartes īpašumtiesību kontroles Synapse, ja nepieciešams. |
-| SteelSeries | GameSense RGB un standarta ieejas; kartes īpašuma kontroles GG, ja nepieciešams. |
-| Wooting | Kompatīvais oriģināls x64 SDK analogu vērtībām un robežām; normāls HID ievads paliek aktīvs. |
-| Citi tastatūras | Standarta sildītāji vai atbalsta fiziskā skenēšanas kods. Fn un īpašumtiesību kontroles ir atkarīgas no modeļa un pārdevēja konfigurācijas. |
+| Corsair | Darbojošs iCUE, SDK piekļuve un saderīgs modelis. G1–G6 un atbalstītās RGB funkcijas; īpašie Fn, ritenīša, bloķēšanas un profila vadības elementi parasti nav pieejami G-key API. |
+| Logitech G | Oriģinālajām vietējām x64 G-key/LED SDK bibliotēkām vajadzīgs skaidrs apstiprinājums. G-key notikumi unikāli neatšķir vairākas identiskas fiziskas tastatūras. |
+| Razer | Chroma RGB un standarta ievade; vajadzības gadījumā piesaistiet īpašos vadības elementus Synapse. |
+| SteelSeries | GameSense RGB un standarta ievade; vajadzības gadījumā piesaistiet īpašos vadības elementus GG. |
+| Wooting | Saderīgs oriģināls vietējais x64 SDK analogajām vērtībām un sliekšņiem; parastā HID ievade paliek aktīva. |
+| Citi tastatūras | Standarta saīsnes vai atbalstītās fizisko skenēšanas kodu piesaistes. Fn un īpašie vadības elementi ir atkarīgi no modeļa un ražotāja konfigurācijas. |
 
-Ražotāja pētījums apraksta dokumentētus spēkus, kas nav īstenoti vai pārbaudīti saderību ar katru uzskaitīto ierīci. Jauniem adapteriem joprojām ir nepieciešama reāla aparatūras pieņemšana. Nelietojiet SDK binārus no nenoteiktajiem avotiem; SDK izplatīšanas tiesības ir atdalītas no tehniskās saderības.
+Ražotāju pētījumi apraksta dokumentētās iespējas, nevis īstenotu vai pārbaudītu saderību ar katru uzskaitīto ierīci. Jaunajiem adapteriem joprojām vajadzīgi reālas aparatūras pieņemšanas testi. Nelejupielādējiet SDK bināros failus no neuzticamiem avotiem; SDK izplatīšanas tiesības ir atsevišķas no tehniskās saderības.
 
 ## Audio, displeji un OBS
 
-Audio soļi nosaka apjomu no 0 līdz 100 procentiem un mute/unmute/toggle atbalsta iznākumu vai mikrofonu galamērķus. Izvēlieties konkrētu galamērķi vai izmantojiet Windows iestatījumu. Nepazīstamais mērķis rada kļūdu, nevis klusi kontrolē citu ierīci. Atdzesējiet ierīces pēc savienojuma. Endpoint kontroles nav neatkarīgas pa-aplikācijas maisītāja atbalsta prasība.
+Audio soļi iestata skaļumu no 0 līdz 100 procentiem un izslēdz/ieslēdz/pārslēdz skaņu atbalstītajiem izvades vai mikrofona galapunktiem. Izvēlieties konkrētu galapunktu vai Windows noklusējumu. Ja saglabātā mērķa nav, rodas kļūda, nevis tiek klusi vadīta cita ierīce. Pēc atkārtotas pievienošanas izmantojiet Refresh Devices. Galapunktu vadība nenozīmē neatkarīgu katras lietotnes miksera atbalstu.
 
-Rādīt darbības palielinās / samazinās spilgtumu ar 10 procentuālo punktu vai iestatīt vērtību no 0 līdz 100. Iekšējie displeji izmanto atbalstošus WMI saskarnes; ārējiem monitoriem ir nepieciešama DDC/CI atbalsts un parasti to monitoru izvēlne. Dūkas, adapteri un kabeļi var bloķēt kontroli. Izvēlieties visus atbalstītos displejus vai vienu monitoru. Atkopšana var mainīt pieejamās identitātes; pārskatīt glābto mērķi. Nepazīstami lasījumi tiek rādīti kā nepieejami, nevis mērītas vērtības.
+Displeja darbības palielina/samazina spilgtumu par 10 procentpunktiem vai iestata vērtību no 0 līdz 100. Iekšējie displeji izmanto atbalstītās WMI saskarnes; ārējiem monitoriem vajadzīgs DDC/CI atbalsts un parasti tā ieslēgšana monitora izvēlnē. Dokstacijas, adapteri un kabeļi var bloķēt vadību. Izvēlieties visus atbalstītos displejus vai vienu monitoru. Atkārtota pievienošana var mainīt pieejamos identifikatorus; pārskatiet saglabāto mērķi. Trūkstoši rādījumi tiek parādīti kā nepieejami, nevis kā izmērītas vērtības.
 
-OBS prasa WebSocket v5 ievietot OBS rīkus. Konfigurējiet galamērķi, pārbaudiet savienojumu un uzlādi / ievades vārdus pirms ietaupīšanas. Atbalstītie pasākumi ietver skatu pārslēgšanu, starta/pārtraukšanas/pārtraukšanas ierakstu, pārtraukšanas ieraksta un ieejas mute. Paroles var glabāt Windows Uzticības pārvaldītājs un ir izslēgts no konfigurācijas eksporta. Veiksmīga OBS komanda neuzlabo katru lejupslīdes efektu.
+OBS vajadzīgs WebSocket v5, kas iespējots OBS Tools sadaļā. Konfigurējiet galapunktu, pārbaudiet savienojumu un pirms saglabāšanas ielādējiet ainu/ievažu nosaukumus. Atbalstīta ainu pārslēgšana, straumēšanas/ierakstīšanas sākšana/apturēšana/pārslēgšana, ierakstīšanas pauze/atsākšana un ievades skaņas izslēgšana. Paroles var glabāt Windows Credential Manager, un tās netiek iekļautas konfigurācijas eksportos. Veiksmīga OBS komanda nepierāda visu turpmāko straumēšanas efektu izpildi.
 
 ## Rezultātu pārbaude un izpildes vēsture
 
-Iespēja pārbaudīt rezultātus atbilstošiem soļiem. Programma atšķiras no iepriekšējas pārbaudes, apstiprinātiem rezultātiem, neveiksmēm, atcelšanu un efektiem, ko nevar pārbaudīt. Procesu eksistence nav gatavība piemērot. Attiecīgie grozījumi, īsziņas un teksta ievades nevar saņemt panākumu apliecību. Pārbaudiet aktivitātes vēsturi un verifikāciju, kad darbība neizdodas. Konfigurācijas kļūdas ir jāatjauno pirms pilnīgas makro.
+Piemērotajiem soļiem iespējojiet Verify Result. Lietotne atšķir sākotnējās pārbaudes, apstiprinātus efektus, kļūmes, atcelšanu un nepārbaudāmus efektus. Procesa esamība nenozīmē lietotnes gatavību. Relatīvām izmaiņām, saīsnēm un teksta ievadei nevar vispārīgi apgalvot panākumus. Ja darbība neizdodas, pārbaudiet darbību žurnālu un pārbaudes vēsturi. Pirms visa makro atkārtotas palaišanas izlabojiet konfigurācijas kļūdas.
 
 ## UI automātika un klikšķi ieraksts
 
-Pievienojiet UI automācijas posmu, izvēlieties darbību un nokļūstiet mērķim zem rādītāja pēc parādītajām kavēšanās. `Invoke`, `Select`, `Toggle`, `Focus`, `SetValue` un `WaitState`. Paroles lauki, traucējumi un neskaidri selektoru tiek noraidīti.
+Pievienojiet UI Automation soli, izvēlieties operāciju un pēc parādītās aizkaves fiksējiet mērķi zem peles rādītāja. Fiksēšana pati par sevi neko neizpilda. Pārbaudiet selektoru un pieprasiet unikālu atbilstību. Atbalstītās operācijas ir `Invoke`, `Select`, `Toggle`, `Focus`, `SetValue` un `WaitState`. Paroļu lauki, atspējotas vadīklas un neviennozīmīgi selektori tiek noraidīti.
 
-UI automatizācija darbojas ierobežotā partnerattiecībā. Tas ir atkarīgs no mērķa pieteikuma Windows pieejamības atbalsta un atļaujas. Spēles ieraksts uzņem atbalstītās darbības un pārtraukumus; tas neuzrāda vispārējo teksta ievietošanu. Pārskatiet un apstipriniet projektu pirms tā pieņemšanas. Izmaiņas ārējā lietojumprogrammā var neesoties. Procesu izolācija ierobežo sadursmes un atcelšanu, bet nav drošības smiltsērkšķis.
+Saskarnes automatizācija darbojas ierobežotā palīgprocesā. Tā ir atkarīga no mērķa lietotnes Windows pieejamības atbalsta un atļaujām. Klikšķu ierakstītājs fiksē atbalstītās darbības un pauzes, nevis vispārēju teksta ievadi. Pirms pieņemšanas pārskatiet un validējiet melnrakstu. Ārējās lietotnes saskarnes izmaiņas var padarīt selektorus nederīgus. Procesa izolācija ierobežo avāriju ietekmi un atbalsta atcelšanu, taču nav drošības smilškaste.
 
 ## Plugins
 
-Atvērt paplašinājumus, lai pārbaudītu iepakojumu pirms tā importēšanas. Pārbauda iepakojuma struktūru, manifestus un hashes. Ieguvumi sākas ar invaliditāti. Lasīt deklarētos pasākumus un skaidri uzticēt izdevēju pirms atļaujas. Plugins darbojas ar lietotāja atļaujām atsevišķā procesā; šis process ir ** nevis smilšu kastē**. Tikai uzstādīt iepakojumus, kurus jūs uzticaties.
+Atveriet Extensions, lai pārbaudītu pakotni pirms importēšanas. Tiek pārbaudīta pakotnes struktūra, manifests un jaucējvērtības. Importētais paplašinājums sākotnēji ir atspējots. Izlasiet deklarētās darbības un pirms iespējošanas skaidri apstipriniet uzticēšanos izdevējam. Spraudņi darbojas atsevišķā procesā ar jūsu lietotāja atļaujām; šis process **nav smilškaste**. Instalējiet tikai pakotnes, kurām uzticaties.
 
-Vadītājs atbalsta iepriekšējās versijas eksportu, deaktivēšanu, izinstalēšanu un atjaunošanu. Atkāpšanās no atkarības bloķē aicinājumu. Piemērs pakete nodrošina skaitīšanas un vietējo valstu darbības. Atbalstītā shēma ir dokumentēta JSON-Schema apakšsēde, ne visas iespējamās JSON-Šema funkcijas. Nav publisko pluginu tirgus.
+Pārvaldnieks atbalsta eksportēšanu, atspējošanu, atinstalēšanu un iepriekšējās versijas atjaunošanu/atmešanu. Trūkstošas atkarības bloķē izsaukšanu. Parauga pakotne nodrošina atpakaļskaitīšanas un vietējā stāvokļa darbības. Atbalstītā shēma ir dokumentēta JSON-Schema apakškopa, nevis visas iespējamās JSON-Schema funkcijas. Publiska spraudņu tirgus nav.
 
 ## Mobilais panelis
 
-1. Atveriet mobilo paneli, izvēlieties vietējo IP un skaidri izvēlieties profilus, kurus izklāstīt. Iepriekš minētais atgriešanās adrese ir pieejama tikai pašā datorā; izvēlieties atbilstošu LAN adresi tālrunim vai planšetdatoram.
-2. Sāciet paneli un izlasiet tā HTTPS adresi, sertificējiet pirkstu nospiedumu un vienreizēju sešu skaitļu pāri kodu.
-3. Uz ierīci tajā pašā uzticamā tīkla, atverat adresi. Salīdziniet SHA-256 pirkstu nospiedumu caur uzticamu kanālu, pirms uzticaties vietējai sertifikātam. Programma automātiski neinstalē uzticamu sertifikātu.
-4. Izmantojiet parādīto kodu un pārbaudiet vienu nekaitīgu tīli. Manual Windows Firewall atļauja var būt nepieciešama, lai piekļūtu LAN. Nelietojiet portālu internetam.
-5. Pārtraukt paneli, kad tas ir pabeigts, vai atcelt klientu caur programmu.
+1. Atveriet Mobile Panel, izvēlieties vietējo IP un skaidri norādiet kopīgojamos profilus. Noklusējuma loopback adrese ir sasniedzama tikai pašā datorā; tālrunim vai planšetdatoram izvēlieties atbilstošu LAN adresi.
+2. Palaidiet paneli un nolasiet tā HTTPS adresi, sertifikāta pirkstu nospiedumu un vienreizējo sešciparu pārošanas kodu.
+3. Atveriet adresi ierīcē tajā pašā uzticamajā tīklā. Pirms uzticaties vietējam sertifikātam, salīdziniet SHA-256 pirkstu nospiedumu pa uzticamu kanālu. Lietotne automātiski neinstalē uzticamu sertifikātu.
+4. Savienojiet ierīci pārī ar parādīto kodu un pārbaudiet vienu nekaitīgu elementu. LAN piekļuvei var būt vajadzīga manuāla Windows Firewall atļauja. Neatveriet portu internetam.
+5. Kad esat pabeidzis, apturiet paneli vai atsauciet pārī savienoto klientu atļaujas lietotnē.
 
-Privātās serveru atslēgas ir aizsargātas ar Windows DPAPI; klientu apliecības tiek glabātas kā hashes. Izmaiņa IP vai sertifikāta atjaunošana var prasīt atjaunotu uzticību. Panelis rāda rīcības un verifikācijas stāvokli, nevis visus iespējamos dzīvos sensorus. Tīmekļa pārlūkprogrammas un vietējās HTTPS pārbaudes neaizstāj reālu tālruņa/tableta LAN pieņemšanu.
+Servera privātās atslēgas aizsargā Windows DPAPI; klientu akreditācijas dati tiek glabāti kā jaucējvērtības. IP maiņa vai sertifikāta atjaunošana var prasīt atkārtotu uzticēšanās apstiprināšanu. Panelis rāda darbību un pārbaudes stāvokļus, nevis visus iespējamos reāllaika sensorus. Pārlūka izkārtojuma un vietējā HTTPS pārbaudes neaizstāj reālu tālruņu/planšetdatoru LAN pieņemšanas testus.
 
 ## Mājas apmācības asistents
 
-Šis opcionālais eksperimentālais asistents ir deficīts. Atveriet to no rīkiem, skaidri ievietojot to, izvēlieties darba laiku/modeli un pievienojiet tikai resursus, kurus vēlaties apsvērt. Nosakiet mērķi, izveidojiet projektu, pārbaudiet neatbilstīgus pieprasījumus un pārsūtīt rezultātu parastam redaktoram. Nekas netiek izpildīts automātiski; glābšana un darbība paliek skaidras darbības. Nav automātisku runtime fallback.
+Šis izvēles eksperimentālais palīgs pēc noklusējuma ir atspējots. Atveriet to izvēlnē Tools, skaidri iespējojiet, izvēlieties izpildvidi/modeli un pievienojiet tikai resursus, kurus vēlaties ņemt vērā. Norādiet mērķi, izveidojiet melnrakstu, pārbaudiet neatrisinātos pieprasījumus un pārsūtiet rezultātu parastajam redaktoram. Nekas netiek izpildīts automātiski; saglabāšana un palaišana ir skaidri veicamas darbības. Automātiska pāreja uz citu izpildvidi nav paredzēta.
 
 | Runāšana | Iestatīšana |
 | --- | --- |
@@ -114,21 +114,21 @@ Privātās serveru atslēgas ir aizsargātas ar Windows DPAPI; klientu apliecīb
 | llama.cpp | Vietējais `llama-server` un saderīgs modelis ar JSON shēmas atbalstu `127.0.0.1:8080`. |
 | ONNX Runtime GenAI CPU | Uzticams saderīgs vietējais GenAI teksta modeļa mape; izvēlieties `genai_config.json`. Inference izmanto apvienoto partneru procesu bez HTTP. |
 
-HTTP klienti izmanto tikai loopback, neizmanto proxy un neuzrauga rediģējumus. MAKRIVO nevar uzticami noteikt, vai saderīgs vietējais serveris iekšēji sauc tālvadības pakalpojumu. Autentizēti vietējie serveri šajā versijā nav konfigurējami. Modela svari, Python un vietējie inferences serveri netiek automātiski lejupielādēti vai uzstādīti.
+HTTP klienti izmanto tikai loopback savienojumus, neizmanto starpniekserverus un neseko pārvirzīšanām. MAKRIVO nevar droši noteikt, vai saderīgs vietējais serveris iekšēji izsauc attālinātu pakalpojumu. Autentificētus vietējos serverus šajā versijā nevar konfigurēt. Modeļu svari, Python un vietējie inferenču serveri netiek automātiski lejupielādēti vai instalēti.
 
-ONNX iepakojumi ir nepieciešami `tokenizer.json` un derīgs tērzēšanas veidnes. Atbalstītās veidlapas `tokenizer_config.json` ir riteņa `chat_template`, riteņa ar riteņu `default` vai neskaidra nosaukuma/default veidlapas saraksts. Ja šablonā ir trūkst vai nulle, `chat_template.jinja` tiek izmantots kā atgriešanās. Tīrīti, neskaidri, pārmērīgi vai nepareizi rakstīti veidnes tiek noraidītas. Arbitrāžas ONNX failus, ievadīšanas/izskata modeļus un GPU vienīgos iepakojumus nevar mainīt ar saderīgiem GenAI teksta modeļiem. Uzstādīta GenAI darbā versija ir 0.17.1, CPU. Izmantojiet tikai uzticamus modeļus; procesa atdalīšana nav smilšu kastes.
+ONNX pakotnēm vajadzīgs `tokenizer.json` un derīga tērzēšanas veidne. Failā `tokenizer_config.json` atbalstīta virkne `chat_template`, vārdnīca ar virkni `default` vai viennozīmīgs nosauktu/noklusējuma veidņu saraksts. Ja veidnes nav vai tā ir null, kā rezerves variants tiek izmantots `chat_template.jinja`. Tukšas, neviennozīmīgas, pārāk lielas vai nepareiza tipa veidnes tiek noraidītas. Patvaļīgi ONNX faili, iegulšanas/redzes modeļi un tikai GPU pakotnes nevar aizstāt saderīgus GenAI teksta modeļus. Iekļautās GenAI izpildvides versija ir 0.17.1, CPU. Izmantojiet tikai uzticamus modeļus; procesu nodalīšana nav smilškaste.
 
-Palīgs atbalsta izvēlētos programmas bez argumentu, izvēlētus dokumentus un tīmekļa vietnes, un mikrofonu mute, ja tas ir skaidri pieprasīts. Tas nerada ziņojumus, iepazīšanās, savvaļas skriptus, bezmaksas klikšķi, lejupielādes vai headset pāri. Mērķis un resursu nosaukumi tiek nosūtīti uz izvēlēto vietējo darba laiku; resursu ceļus un failu saturu nesniedz atsevišķi. Lietotāja mērķis pats par sevi var saturēt personas datus. Vietējā darba laika tīmekļa uzvedība joprojām ir lietotāja atbildība.
+Palīgs atbalsta izvēlētās programmas bez argumentiem, izvēlētos dokumentus un vietnes, kā arī mikrofona skaņas izslēgšanu pēc skaidra pieprasījuma. Tas neveido ziņojumus, tikšanās, patvaļīgus skriptus, brīvus klikšķus, lejupielādes vai austiņu pārslēgšanu. Mērķis un resursu nosaukumi tiek nosūtīti izvēlētajai vietējai izpildvidei; resursu ceļi un failu saturs netiek atsevišķi nodoti. Lietotāja ievadītais mērķis pats var saturēt personas datus. Vietējās izpildvides tīkla darbība paliek lietotāja atbildība.
 
-Tās ONNX Prasības budžets ir 90 sekundes, tostarp modelis uzlādes, līdz 3,072 Ātrie tokenus un 1,024 radītie tokeni, arī ierobežoti ar modeli kontekstu. ļaunprātīgi / izkliedēti JSON un nezināmi resursu ID tiek noraidīti. atcelt vai tuvāk pieprasījuma beigām. nejauši modelis darba laika tests nosaka izpildi, nav noderīga plānošanas kvalitāte vai laika ietaupījumi. vietējie eksperimentālo logs satur notikumu identifikatorus un grafiku, nevis mērķa tekstu vai dokumentu saturu; tie netiek automātiski lejupielādēti.
+ONNX pieprasījuma laika limits ir 90 sekundes, ieskaitot modeļa ielādi; atļauti līdz 3072 uzvednes tokeniem un 1024 ģenerētiem tokeniem, ko ierobežo arī modeļa konteksts. Nepareizs/saīsināts JSON un nezināmi resursu ID tiek noraidīti. Atceliet pieprasījumu vai aizveriet logu, lai to pārtrauktu. Izpildvides tests ar nejaušu modeli pierāda izpildi, nevis noderīgu plānošanas kvalitāti vai laika ietaupījumu. Vietējie eksperimentu žurnāli satur notikumu identifikatorus un laika mērījumus, nevis mērķa tekstu vai dokumentu saturu; tie netiek automātiski augšupielādēti.
 
-Nākamā maza Instrukt modeļa novērtējums izraisīja nulles spēkā esošos plānus četrās vācu/angļu mēģinājumos. Native inference strādāja, bet modelis neveica stingru plānošanas līgumu. Tas ir negatīvs kvalitātes rezultāts, nevis ieteicamais modelis vai pierādīts noderīgs asistents. Skatīt datēto vietējā braukšanas laika pārbaudes ziņojumu par precīzu modeļa pārskatīšanu un ierobežojumiem.
+Vēlākajā mazā Instruct modeļa novērtējumā četros vācu/angļu izmēģinājumos netika iegūts neviens derīgs plāns. Vietējā inference darbojās, taču modelis neizpildīja stingro plānošanas līgumu. Tas ir negatīvs kvalitātes rezultāts, nevis modeļa ieteikums vai pierādījums palīga lietderībai. Precīzu modeļa revīziju un ierobežojumus skatiet datētajā vietējās izpildvides testa pārskatā.
 
 ## Imports, eksports, sinhronizācija un backup
 
-Pārskatiet importēšanas prognozes pirms konfigurācijas aizstāšanas. Importētie pasākumi sākas bez aktivitātes, un pārnēsājama sinhronizācija noņem aparatūras specifiskas saites. Atkārtojiet ierīces un ļaujiet rīcībai domāt pēc pārbaudes. Pārskatiet teksta/akcijas saturu pirms eksporta dalīšanas; paroles izslēgšana nerada visu lietotāja radīto rīcības saturu necilvēcīgu.
+Pirms konfigurācijas aizstāšanas pārskatiet importēšanas priekšskatījumu. Importētās darbības sākotnēji ir atspējotas, un pārnesamā sinhronizācija noņem aparatūrai specifiskās piesaistes. Pēc pārbaudes atkārtoti piešķiriet ierīces un apzināti iespējojiet darbības. Pirms eksporta kopīgošanas pārskatiet teksta/darbību saturu; paroļu izslēgšana nenozīmē, ka viss lietotāja veidoto darbību saturs ir nesensitīvs.
 
-Profila sinhronizācija apmainās ar failiem izvēlētajā mapē, opcionāli to pārvalda jūsu esošais mākoņa klients. MAKRIVO nenodrošina mākoņa kontu un nav uzglabā mākoņu autentifikācijas. Pārskati novērš klusos pārrakstījumus. Iekļaut rīcības saturu ir skaidra izvēle. Atjauniniet konfigurāciju pirms aizstājēja importēšanas. Paredzamā konfigurācija ir `%LOCALAPPDATA%\AivanaWindowsController\settings.json`; saderības nolūkā saglabājas vēsturiskais adreses nosaukums. Aizveriet lietotni, pirms to manuāli kopējiet/atjaunojiet. Iegūtie SDK apstiprinājumi un OS aizsargātas autentifikācijas var būt nepieciešamas citā datorā.
+Profilu sinhronizācija apmainās ar failiem izvēlētā mapē, ko pēc izvēles pārvalda esošais mākoņklients. MAKRIVO nenodrošina mākoņkontu un neglabā mākoņa akreditācijas datus. Revīzijas novērš klusu pārrakstīšanu. Darbību satura iekļaušana ir skaidra izvēle. Pirms aizstājoša importa dublējiet konfigurāciju. Noklusējuma konfigurācija ir `%LOCALAPPDATA%\AivanaWindowsController\settings.json`; vēsturiskais mapes nosaukums saglabāts saderībai. Pirms manuālas kopēšanas/atjaunošanas aizveriet lietotni. Saglabātie SDK apstiprinājumi un OS aizsargātie akreditācijas dati citā datorā var būt jāizveido no jauna.
 
 ## problēmu risināšana
 
@@ -146,7 +146,7 @@ Profila sinhronizācija apmainās ar failiem izvēlētajā mapē, opcionāli to 
 | Pieprasījums neizdodas | Pareizi izvēlēts vietējais darbības laiks, serviss/modelis gatavs, atbalsta JSON shēma, uzticams saderīgs modeļa mapes un pieprasījuma ierobežojumi. |
 | Layout vai teksts šķiet nepareizs | Atsevišķi lietotāja valodu no tastatūras ģeometrijas; pārskatīt logu, pārbaudīt displeja apjomu un ziņot par precīzu lapu / valodu / veidošanu. |
 
-Noderīga kļūda ziņojums ietver Windows versiju, lietojumprogrammu izveidi/komitāciju, valodu, displeja skalēšanu, aparatūras modeli, minimālu secību un attiecīgo redakciju. Noņemiet personīgus ceļus, rīcības saturu un apliecinājumus pirms publicēšanas.
+Noderīgā kļūdas ziņojumā norādiet Windows versiju, lietotnes būvējumu/komitu, valodu, displeja mērogojumu, aparatūras modeli, minimālo darbību secību un attiecīgo rediģēto žurnālu. Pirms publicēšanas noņemiet personiskos ceļus, darbību saturu un akreditācijas datus.
 
 ## Uzstādīšana, testēšana un iepakojums
 
@@ -161,14 +161,14 @@ dotnet run --project src/Aivana.Desktop -c Release -- --smoke-test
 python tools/check_documentation.py
 ```
 
-Windows integrācijas testi var atvērt izolētus logus un īslaicīgi konfigurēt/izlaiž atbalstošos piegādātāja saites. Izveidojiet tos bez citas kontroles, kas ir šīs saistības. Iepriekš minētie spilgtuma/audijas pārbaudes ir lasāmas vienīgi; skaidri izstrādāti apkārtējie pārbaudes materiāli ir atsevišķi. Mock protokoli, renderētas ekrāna attēli un nejaušās apgalvojuma grafikas nedrīkst būt reālajās aparatūras/modela kvalitātes pieņemšanas formā.
+Windows integrācijas testi var atvērt izolētus logus un īslaicīgi konfigurēt/atbrīvot atbalstītās ražotāju piesaistes. Palaidiet tos, kad cits kontrolleris nepārvalda šīs piesaistes. Noklusējuma spilgtuma/audio pārbaudes ir tikai lasāmas; skaidri pieprasīti aparatūras stāvokļa maiņas un atjaunošanas testi ir atsevišķi. Imitētus protokolus, renderētus ekrānattēlus un nejaušus inferenču grafus nedrīkst pasniegt kā reālas aparatūras/modeļa kvalitātes pieņemšanu.
 
-Pilns izdevējs apkopo uzņēmēju hostus, mobilos aktīvus, piemērs plugins, ONNX darbam un pieejamās atkarības paziņojumus. Saglabājiet savu subdirektori. Veiksmīga būvniecība nav parakstīts instalētājs vai juridisks atbrīvojums. Izejvielas un ēkas var attīstīties atsevišķi; salīdziniet dokumentāciju un apņemiet ar instalēto versiju.
+Pilnais publicēšanas skripts apkopo palīgprocesu resursdatorus, mobilos resursus, parauga spraudni, ONNX izpildvidi un pieejamos atkarību paziņojumus. Saglabājiet apakšmapes. Veiksmīgs būvējums nav parakstīts instalētājs vai juridisks laidiena apstiprinājums. Pirmkods un būvējumi var attīstīties atsevišķi; salīdziniet dokumentācijas stāvokli un komitu ar instalēto versiju.
 
 ## Licencēšana, privātums un atbrīvošanas statuss
 
-Mērķis ir vienreizēja iepirkšanās ar iegādāto lielāko versiju pastāvīgu izmantošanu; galīgā cena, ierīces atļauja un atjaunināšanas nosacījumi ir jānosaka faktiskajos pārdošanas noteikumos. Produkcijas iegādes/aktivācijas sistēma nav izveidota ar šo rokasgrāmatu. Nav nepieciešama ikdienas pārbaude.
+Paredzētais komerciālais modelis ir vienreizējs pirkums ar iegādātās galvenās versijas beztermiņa lietošanu; galīgā cena, atļauto ierīču skaits un jaunināšanas noteikumi jānosaka faktiskajos pārdošanas noteikumos. Šī rokasgrāmata neapliecina produkcijas pirkšanas/aktivizācijas sistēmas esamību. Ikdienas vadībai mākoņkonts nav vajadzīgs.
 
-Nelietojiet īpašos SDK binārus bez pierādīta atļauja. Saglabājiet licences un trešo personu paziņojumus par katru nosūtīto atkarību, ieskaitot .NET un ONNX paketes. Modeliem ir savs nosacījums. Datu licences revīzija izpaužas kā dažas jaunas atkarības un nav atskaņošana par šīm pievienošanās. Reģistrācija, kas ir publiska, pati par sevi nedod vispārēju atvērto avotu licences.
+Neizplatiet īpašnieka tiesībām aizsargātus SDK bināros failus bez pierādītas atļaujas. Saglabājiet licences un trešo pušu paziņojumus par katru piegādāto atkarību, tostarp .NET un ONNX pakotnēm. Modeļu svariem ir savi noteikumi. Datētais licenču audits veikts pirms dažu jaunu atkarību pievienošanas un nav šo papildinājumu apstiprinājums. Publiska repozitorija pati par sevi nepiešķir vispārēju atvērtā pirmkoda licenci.
 
-Reālā piegādātāja aparatūra, tālruņa/tableta LAN darbība, sajaukts monitoru/DPI pārejas, ilgstoša lietošana, pilnīga valodas pārbaude, ekskluzīva vadītāja atbalsts un noderīga AI plānošanas kvalitāte paliek atsevišķa pieņemšanas darbs. Nekad nepieņemu atļauju tikai no klātbūtnes.
+Reālā ražotāju aparatūra, tālruņu/planšetdatoru LAN darbība, pārejas starp dažādiem monitoriem/DPI, ilgstoša lietošana, pilnīga lingvistiskā pārbaude, ekskluzīva draivera atbalsts un noderīga AI plānošanas kvalitāte joprojām prasa atsevišķu pieņemšanu. Nekad neizseciniet apstiprinājumu tikai no funkcijas esamības.

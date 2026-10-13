@@ -4,98 +4,98 @@
 
 # MAKRIVO
 
-[Täydellinen dokumentaatio kaikilla kielillä 27](README.md) · [Käyttäjän käsikirja](HANDBOOK.md)
+[Koko dokumentaatio kaikilla 27 kielellä](README.md) · [Koko käyttöopas](HANDBOOK.md)
 
-**ja sen Aivana.** [Käytännön sisältö ja vapautusrajoitukset](FEATURES.md) · [Testi laajennus](testing/2026-10-12-six-extensions.md) · [Paikallinen prototyyppi](testing/2026-10-12-local-meeting-assistant.md)
+**Valmistaja Aivana.** [Nykyinen ominaisuusluettelo ja julkaisurajoitukset](FEATURES.md) · [Laajennusten testiraportti](testing/2026-10-12-six-extensions.md) · [Paikallisen AI-avustajan prototyyppi](testing/2026-10-12-local-meeting-assistant.md)
 
-**Yhdysvallat (US)** | [Deutsch](../de-DE/REFERENCE.md) | [Français](../fr-FR/REFERENCE.md) | [Italiano](../it-IT/REFERENCE.md)
+**Englanti (US)** | [Deutsch](../de-DE/REFERENCE.md) | [Français](../fr-FR/REFERENCE.md) | [Italiano](../it-IT/REFERENCE.md)
 
-Paikallinen Windows hotkey -ohjain, jossa on Stream Deck-tyyli, profiilit, makro ja näppäimistö. Sisältö tukee 27 kieliä. Tilin tai pilviyhteys ei ole tarpeen jokapäiväiseen käyttöön.
+Paikallinen Windows-pikanäppäinohjain, jossa on Stream Deck -tyyliset toimintoruudut, profiilit, makrot ja näppäimistöntunnistus. Käyttöliittymä tukee 27 kieltä. Päivittäiseen käyttöön ei tarvita tiliä eikä pilviyhteyttä.
 
-[Dokumentti](README.md) · [Tarkistaminen](VERIFICATION.md) · [Testi raportti](testing/2026-10-09-usp-release.md)
+[Dokumentaatio](README.md) · [Tarkistaminen](VERIFICATION.md) · [Ominaisuuksien testiraportti](testing/2026-10-09-usp-release.md)
 
-## Aloittaminen
+## Aloitus
 
-Julkaisun jälkeen hakemus on `artifacts/win-x64/MAKRIVO.exe`. Pidä koko lähtökansi yhdessä; voit kopioida sen muualle. Windows 11 x64 on alkuperäinen tavoite. Rakennettuja esineitä suljetaan pois Gitistä; lähteen tarkastus ei sisällä ennalta rakennettua täytäntöönpanoa.
+Julkaisukoosteen jälkeen sovellus on polussa `artifacts/win-x64/MAKRIVO.exe`. Pidä koko tuloskansio yhdessä; voit kopioida sen muualle. Windows 11 x64 on alkuperäinen kohdeympäristö. Koontiartefaktit on jätetty pois Git-versionhallinnasta; lähdekoodin paikallinen kopio ei sisällä valmista suoritettavaa ohjelmaa.
 
-Asenna .NET 10 SDK, joka on määritelty `global.json` rakentaa ja käynnistää lähde:
+Asenna tiedostossa `global.json` määritetty .NET 10 SDK lähdekoodista koontia ja suorittamista varten:
 
 ```powershell
 dotnet build Aivana.slnx -c Release
 dotnet run --project src/Aivana.Desktop -c Release
 ```
 
-Julkaise omaan sisältöön perustuva rakenne ilman erillistä .NET-käyttöaikaa:
+Julkaise itsenäinen koonti, joka ei vaadi erikseen asennettua .NET-suoritusympäristöä:
 
 ```powershell
 dotnet publish src/Aivana.Desktop -c Release -r win-x64 --self-contained true -o artifacts/win-x64
 ```
 
-## Perusteellinen työvoima
+## Perustyönkulku
 
-1. Valitse profiili ja luo toimintasuunnitelma.
-2. Aseta nimi, kuvio, väri ja näppäimistö lyhyt. Ctrl/Alt/Shift -kombinatiot vähentävät sattumanvaraista aktivointia kirjoittamisen aikana.
-3. Lisää yksi tai useampi askel: sovellukset, tiedostot, verkkosivut, teksti, lyhennökset, media, koko, profiilin vaihdon tai viivästykset.
-4. Pelastaa Muutokset jäävät suunnitelmaan, kunnes tallennettu versio palautetaan. Painopiste ja sen hotkey käyttävät samaa suoratoistoa.
-5. Järjestä uudelleen ja makro askeleet drag-and-drop tai laukauspainikkeilla. Mallit yksinkertaistavat asennusta. Macros voi toistaa jopa 100 kertaa. Poista käyttöliittymän, järjestelmän jäljellä olevan valikon tai Ctrl+Alt+Escape oletusarvoisesti.
+1. Valitse profiili ja luo toimintoruutu.
+2. Aseta nimi, kuvake, väri ja pikanäppäin. Ctrl/Alt/Shift-yhdistelmät vähentävät tahattomia aktivointeja kirjoittamisen aikana.
+3. Lisää yksi tai useampi vaihe: sovellukset, tiedostot, verkkosivustot, teksti, pikanäppäimet, media, äänenvoimakkuus, profiilinvaihto tai viiveet.
+4. Tallenna. Muutokset ovat luonnos tallennukseen asti; hylkääminen palauttaa tallennetun version. Toimintoruudun toistopainike ja sen pikanäppäin käyttävät samaa suorituspolkua.
+5. Järjestä toimintoruudut ja makrovaiheet vetämällä ja pudottamalla tai nuolipainikkeilla. Mallipohjat helpottavat määritystä. Makrot voivat toistua enintään 100 kertaa. Peruuta käyttöliittymästä, ilmoitusalueen valikosta tai oletuspikanäppäimellä Ctrl+Alt+Escape.
 
-Sovelluskohtaiset profiilit käyttävät prosessin nimeä ilman sen täydellistä reittiä. Profiilin tilaus rikkoo linkkejä; oletusarvoinen profiili on palautus. Automaattisen profiilin valinnan on oltava käytettävissä asetuksissa.
+Sovelluskohtaiset profiilit käyttävät prosessin nimeä ilman koko polkua. Profiilien järjestys ratkaisee tasatilanteet; oletusprofiilia käytetään varavaihtoehtona. Automaattinen profiilinvalinta on otettava käyttöön asetuksissa.
 
-Pääikkunan sulkeminen pitää sovelluksen järjestelmässä oletusarvoisesti. Kaksinkertaisesti napsauta tray-ikonia uudelleen; käytä tray-valikkoa ulos. Startup with Windows on valinnainen ja käytöstä poistettu. Hotkeys voidaan keskitettyä.
+Pääikkunan sulkeminen jättää sovelluksen oletusarvoisesti ilmoitusalueelle. Avaa se uudelleen kaksoisnapsauttamalla sen kuvaketta; lopeta ilmoitusalueen valikosta. Käynnistys Windows-järjestelmän mukana on valinnainen ja oletusarvoisesti pois käytöstä. Pikanäppäimet voidaan keskeyttää keskitetysti.
 
-## Toiminta ja komento paletti
+## Toiminnot ja komentopaletti
 
-Lisää toiminta avaa etsimättömän luettelon, jossa on 90 ennakkoluuloja kahdeksassa luokassa. Jokaisella on kuvaus ja ennuste. Makroeditor käyttää samaa luetteloa lisäämään tai korvaamaan vaiheet. Valitsemalla ennakkoasetuksen tässä muokkausvirtauksessa luodaan suunnitelma ilman täytäntöönpanoa.
+Toiminnon lisääminen avaa haettavan luettelon, jossa on 90 esiasetusta kahdeksassa luokassa. Jokaisella on kuvaus ja esikatselu. Makroeditori käyttää samaa luetteloa vaiheiden lisäämiseen tai korvaamiseen. Esiasetuksen valinta tässä muokkaustyönkulussa luo luonnoksen suorittamatta sitä.
 
-Ohje paletti avautuu otsikosta tai sovelluksen sisällä olevalla Ctrl+K:llä. Se etsii tallennettuja toimintoja profiilien, luetteloiden ennakkoasetusten, profiilin vaihdon, navigoinnin, tauon/resumin, makro-takoon ja tuonnin/viennin kautta. Suodatin tallennetulla toiminnalla, luettelon toiminnoilla tai sovelluksen komentoilla. Valitse avaimet, Enter aktivoi, Ctrl+Enter muokkaa muokkaavaa sisäänkäyntiä ja Escape sulkee. Suosikkia ilmestyy ensin. Käyttövalmistettujen luetteloiden käskyjä voidaan käynnistää välittömästi; asetukset, jotka edellyttävät suunnitelman avaamista. Asetukset voivat määritellä globaalin lyhytkestoisen. Uudet asetukset käyttävät Ctrl+Shift+Spacea; olemassa olevat asetukset eivät automaattisesti saa uutta globaalia lyhennettä.
+Komentopaletti avautuu otsakealueelta tai sovelluksen sisällä näppäimillä Ctrl+K. Se hakee tallennettuja toimintoja eri profiileista, luettelon esiasetuksia, profiilinvaihtoa, navigointia, tauotusta ja jatkamista, makron peruutusta sekä tuontia ja vientiä. Suodata tallennettujen toimintojen, luettelotoimintojen tai sovelluskomentojen mukaan. Nuolinäppäimet valitsevat, Enter aktivoi, Ctrl+Enter muokkaa muokattavaa kohdetta ja Escape sulkee. Suosikit näkyvät ensin. Käyttövalmiit luettelokomennot voivat suorittua heti; määritystä tarvitsevat esiasetukset avaavat luonnoksen. Asetuksissa voi määrittää globaalin palettipikanäppäimen. Uusissa kokoonpanoissa se on Ctrl+Shift+Space; olemassa oleviin kokoonpanoihin ei lisätä uutta globaalia pikanäppäintä automaattisesti.
 
-Audio-toiminnot määrittävät tilavuuden tarkasti 0 ja 100 prosenttia ja mute, unmute tai toggle tuotto ja mikrofonilaitteet. Valitse tietty loppupiste tai jätä se asetetuksi Windows. Käytettävissä oleva tallennettu loppupiste tuottaa virheen sen sijaan, että hallitsisit toista laitetta. Lataa uudelleen liitetty laite.
+Äänitoiminnot asettavat äänenvoimakkuuden tarkasti välille 0 ja 100 prosenttia sekä mykistävät äänilähtö- ja mikrofonilaitteet, poistavat mykistyksen tai vaihtavat sen tilaa. Valitse tietty päätepiste tai jätä valinta tyhjäksi käyttääksesi Windows-oletusta. Puuttuva tallennettu päätepiste aiheuttaa virheen sen sijaan, että ohjattaisiin toista laitetta. Laitteiden päivitys lataa kytketyt laitteet uudelleen.
 
-OBS Studio käyttää WebSocket v5: start/stop/toggle/pause/resume tallennus; start/stop /toggle streaming; muuttaa kohtauksia; toggle input mute. Sallita WebSocket -palvelin työkaluissa OBS ja aseta sen loppupiste muokkauksessa. Tarkista yhteys ja latausnimi luet OBS versiota, kohtauksia ja tuloksia aloittamatta tallennusta tai virtaa. Valitse nimet luettelosta tai kirjoita ne manuaalisesti. salasanoja voidaan tallentaa Windows ja ne on suljettu pois vientiasetuksista. Ei ole käytettävissä OBS yhteyksiä ilmoittaa virheen.
+OBS Studio käyttää WebSocket v5 -protokollaa: tallennuksen käynnistys, pysäytys, tilan vaihto, tauotus ja jatkaminen; suoratoiston käynnistys, pysäytys ja tilan vaihto; kohtausten vaihto; tulolähteen mykistystilan vaihto. Ota WebSocket-palvelin käyttöön OBS:n työkaluissa ja määritä päätepiste editorissa. Yhteyden tarkistus ja nimien lataus lukevat OBS-version, kohtaukset ja tulolähteet käynnistämättä tallennusta tai suoratoistoa. Valitse nimet luettelosta tai syötä ne käsin. Salasanat voidaan tallentaa Windows Credential Manager -palveluun, ja ne jätetään pois kokoonpanovienneistä. OBS-yhteyden puuttuessa ilmoitetaan virhe.
 
-Profiilit voivat vastata prosessin nimeä ja osan ikkunan otsikosta. Molempien ehtojen on oltava yhteensopivia. Lock Profile estää istunnon automaattisen vaihtamisen. Capture Conditions Foreground käyttää viimeistä ulkoista sovellusta.
+Profiilin täsmäytyksessä voi käyttää prosessin nimeä ja ikkunan otsikon osaa. Molempien annettujen ehtojen on täsmättävä. Profiilin lukitus estää automaattisen vaihdon istunnon aikana. Ehtojen poiminta etualalta käyttää viimeistä aktiivista ulkoista sovellusta.
 
-Teksti ja clipboard-toiminta `{{date}}`, `{{time}}`, `{{datetime}}`, `{{clipboard}}`, `{{profile}}`, `{{process}}`, ja `{{user}}`. Päivän käyttö `yyyy-MM-dd`; Aikaa käyttää `HH:mm`. Tuntematon paikkakunta pysyy muuttumattomana. `{{profile}}` Tunnistaa käynnistetyn toiminnan profiili; `{{process}}` tunnistaa ulkoisen sovelluksen kontekstin.Clipboard-sisältö luetaan vain, kun kyseistä paikkaa käytetään.Klipboard-toimi kirjoittaa tekstin, mutta ei automaattisesti kiinnitä.
+Teksti- ja leikepöytätoiminnot tukevat muuttujia `{{date}}`, `{{time}}`, `{{datetime}}`, `{{clipboard}}`, `{{profile}}`, `{{process}}` ja `{{user}}`. Päivämäärät käyttävät muotoa `yyyy-MM-dd`; kellonajat muotoa `HH:mm`. Tuntemattomat paikkamerkit säilyvät muuttumattomina. `{{profile}}` tunnistaa käynnistetyn toiminnon profiilin; `{{process}}` tunnistaa ulkoisen sovelluksen kontekstin. Leikepöydän sisältö luetaan vain, kun kyseistä paikkamerkkiä käytetään. Leikepöytätoiminto kirjoittaa tekstiä leikepöydälle mutta ei liitä sitä automaattisesti.
 
-ikkunan toimenpiteet minimoida, maksimoida, palauttaa tai järjestää ikkunan vasemmalle / oikealle näytön työalueelle. Järjestelmän toiminta lukitsee Windows. Näitä toimenpiteitä toteutetaan vain, kun niitä on nimenomaisesti pyydetty.
+Ikkunatoiminnot pienentävät, suurentavat, palauttavat tai asettelevat ikkunan näyttönsä työalueen vasemmalle tai oikealle puolelle. Järjestelmätoiminto lukitsee Windows-järjestelmän. Nämä toiminnot suoritetaan vain erikseen kutsuttaessa.
 
-Etusivu näyttää vaiheet, toistot ja muuttujat ilman suoritusta. Undo ja Redo säilyttävät jopa 100 muotoilua; tekstilaatikot säilyttävät alkuperäisen Ctrl+Z-muokkauksen. Merkitse suosikkeja muokkaajassa tai tile-valikossa ja suodattaa ne dashboardissa. Täytäntöönpanoa sovelletaan vain nykyiseen istuntoon.
+Esikatselu näyttää vaiheet, toistot ja muuttujat suorittamatta niitä. Kumoa ja Tee uudelleen säilyttävät enintään 100 luonnostilaa; tekstikentät säilyttävät alkuperäisen Ctrl+Z-muokkauksen. Merkitse suosikit editorissa tai toimintoruudun valikossa ja suodata niitä koontinäytössä. Suoritusmäärät koskevat vain nykyistä istuntoa.
 
-Tekstin, lyhennöksen ja ikkunan toimenpiteet, jotka käynnistetään käyttöliittymästä, aktivoivat viimeisen ulkoisen kohdeikkunan. Paletti näyttää tämän kohderyhmän. Jos kohde on suljettu tai Windows kieltäytyy aktivoinnista, suoritus pysähtyy viestin kanssa.
+Käyttöliittymästä käynnistetyt teksti-, pikanäppäin- ja ikkunatoiminnot aktivoivat viimeisen ulkoisen kohdeikkunan. Paletti näyttää kohteen kontekstin. Jos kohde on suljettu tai Windows estää aktivoinnin, suoritus pysähtyy ja näyttää viestin.
 
-## Keyboard tuki ja palautetta
+## Näppäimistön avustustoiminnot ja palaute
 
-Special-Key Wizard on sivulla ja paletissa. Se on luettelo G-tärkeistä ilmoitettu iCUE. Avainlehti pidättää heidät väliaikaisesti ilman, että he suorittavat tehtäviään. Normaalit sidokset palaavat havaitsemisen, peruuttamisen tai sulkemisen jälkeen. Katalogin toiminto ja valittu avain avataan ilman suunnitelmaa; kaksinkertaiset sidokset tarkistetaan.
+Erikoisnäppäinten ohjattu määritys on näppäimistösivulla ja paletissa. Se luettelee iCUE:n ilmoittamat G-näppäimet. Näppäinpainalluksen tunnistus sieppaa ne tilapäisesti suorittamatta niille määritettyjä toimintoja. Tavalliset sidonnat palaavat tunnistuksen, peruutuksen tai sulkemisen jälkeen. Luettelotoiminto ja valittu näppäin avautuvat tallentamattomana luonnoksena; päällekkäiset sidonnat tarkistetaan.
 
-Keyboard Overlay näyttää valitun viitekehyksen ja aktiiviset sidokset. Pidä Ctrl+Alt+F1 tai poista se paletista tai näppäimistöstä. Se ei ota keskittymistä ja salli hiiren klikkaukset läpi. Profiili ja sitovat muutokset päivitetään näkyvissä; tavalliset Windows avainpainikkeet korostetaan. Valmistajan yksilölliset ohjausjärjestelmät eivät saa toimittaa vastaavaa Windows avainsignaalia.
+Näppäimistön peittokuva näyttää valitun viiteasettelun ja aktiiviset sidonnat. Pidä Ctrl+Alt+F1 pohjassa tai vaihda näkyvyyttä paletista tai näppäimistösivulta. Se ei ota kohdistusta ja päästää hiiren napsautukset lävitseen. Profiili- ja sidontamuutokset päivittyvät sen ollessa näkyvissä; tavalliset Windows-näppäinpainallukset korostetaan. Valmistajakohtaiset säätimet eivät välttämättä tuota vastaavaa Windows-näppäinsignaalia.
 
-Toteutusviittaukset osoittavat odottamista, vaiheen / toistamisen edistymistä, täydentämistä, peruuttamista tai epäonnistumista ottamatta huomiota tai esittämättä kirjoitettua tekstiä. Commands Executed vahvistaa komennon täytäntöönpanoa, ei itsenäisesti pyydettyä elävää tilaa kolmannen osapuolen sovelluksessa. Virheen tiedot näkyvät toiminnan arkistossa.
+Suorituspalaute näyttää odotuksen, vaiheiden ja toistojen etenemisen, valmistumisen, peruutuksen tai epäonnistumisen ottamatta kohdistusta tai paljastamatta syötettyä tekstiä. Suoritetut komennot vahvistaa komennon suorituksen, ei erikseen kysyttyä reaaliaikaista tilaa kolmannen osapuolen sovelluksessa. Virhetiedot näkyvät toimintalokissa.
 
 ## Laitteet ja Corsair
 
-Corsair G1 – G6 voidaan määrätä suoraan virallisen iCUE SDK: n kautta. Valitse laite ja avain toimintoeditoriin ja tallenna tai valmistele esite K100 -näytöstä. Liitteet koskevat valittua laitetta ja aktiivista profiilia; pausa estää ne myös. iCUE on oltava käynnissä ja sallitaan pääsy. Fn, iCUE pyörä, profiili ja lukko ohjaus ei voi karttaa tämän G-tärkeä API.
+Corsair G1–G6 voidaan määrittää suoraan virallisen iCUE SDK:n kautta. Valitse laite ja näppäin toimintoeditorissa ja tallenna tai valmistele luonnos K100 näppäimistönäkymästä. Sidonnat koskevat valittua laitetta ja aktiivista profiilia; tauotus poistaa myös ne käytöstä. iCUE:n on oltava käynnissä ja sallittava käyttö. Fn-, iCUE-rulla-, profiili- ja lukitussäätimiä ei voi määrittää tämän G-key API -rajapinnan kautta.
 
-Laitteiden sivu luettelee Windows näppäimistön käyttöliittymät ja päivittää säännöllisesti ja kun laitteet ovat yhteydessä. Fyysinen näppäimistö voi altistaa useita HID-liitäntöjä. Standardi globaali hotkeys toimii valmistajien kesken.
+Laitesivu luettelee Windows-näppäimistörajapinnat ja päivittyy säännöllisesti sekä laitteiden kytkeytyessä. Fyysinen näppäimistö voi tarjota useita HID-rajapintoja. Tavalliset globaalit pikanäppäimet toimivat eri valmistajien laitteilla.
 
-Corsair havainto käyttää käytettävissä olevia laitteita. RGB-ohjaus edellyttää yhteensopivaa laitteistoa, joka toimii iCUE ja virallinen iCUE SDK; sovellus raportoi todellisesta saatavuudesta. Muut valmistajat saavat tällä hetkellä havaintoja ja standardoituja toimia. Ulkopuolella Corsair G-tärkeä integrointi, omistusohjaimet toimivat, kun Windows vastaanottaa ne säännöllisenä sisäänkäynnillä. Sovellus ei asenna näppäimistöä.
+Corsair-tunnistus käyttää saatavilla olevia laitetietoja. RGB-ohjaus vaatii yhteensopivan laitteiston, käynnissä olevan iCUE:n ja virallisen iCUE SDK:n; sovellus ilmoittaa todellisen saatavuuden. Muilla valmistajilla on tällä hetkellä tunnistus ja tavalliset toiminnot. Corsair G-key -integraation ulkopuolella valmistajakohtaiset säätimet toimivat, kun Windows vastaanottaa ne tavallisena syötteenä. Sovellus ei asenna näppäimistöajuria.
 
-## kieliä
+## Kielet
 
-Asetukset tarjoavat 27 kieliä: Saksa, Englanti, Ranskan, Espanjan, Italian, Portugalin, Alankomaiden, Tšekin, Slovakian, Unkarin, Bulgarian, Kreikan, Tanskan, Ruotsin, Norjan, Suomen, Viron, Latvian, Liettuan, Slovenian, Kroatian, Ukrainan, Venäjän, Turkin ja Serbian Latinalaisen kirjoituksen. Se seuraa automaattisesti Windows näytön kieltä. Käännökset ovat paikallisia. Asennukset, hotkeys ja käyttäjän luomat nimet ovat riippumattomia käyttöliittymän kielestä.
+Asetuksissa on 27 kieltä: saksa, englanti, ranska, espanja, italia, portugali, hollanti, puola, tšekki, slovakki, unkari, romania, bulgaria, kreikka, tanska, ruotsi, norja, suomi, viro, latvia, liettua, sloveeni, kroatia, ukraina, venäjä, turkki ja latinalaisin kirjaimin kirjoitettu serbia. Automaattinen valinta seuraa Windows-näyttökieltä. Käännökset toimitetaan paikallisesti mukana. Asettelut, pikanäppäimet ja käyttäjän luomat nimet ovat käyttöliittymäkielestä riippumattomia.
 
-Täydellinen tallennusasiakirja on saatavilla kaikilla 27 hakemuksellisilla kielillä [Kieliindeksi](README.md)ja Käännökset ovat koneellisesti avustettuja, alkuperäisten lähteiden linkkien ja rakenteellisten tarkastusten kanssa; alkuperäisen puhujan tarkastus on erillinen. Sovellus hyväksyy myös alueelliset koodit `en-US`, `de-DE`, `fr-FR` ja `it-IT` ja käyttää niiden numeromuotoja. Nykyiset kielikoodit ovat yhteensopivia.
+Tietovaraston koko dokumentaatio on saatavilla kaikilla 27 sovelluskielellä seuraavan hakemiston kautta: [kielihakemisto](README.md). Käännökset ovat koneavusteisia, ja niihin liittyy alkuperäislähteiden linkit ja rakennetarkistukset; äidinkielinen tarkistus on erillinen. Sovellus hyväksyy myös aluekoodit `en-US`, `de-DE`, `fr-FR` ja `it-IT` ja käyttää niiden numeromuotoja. Nykyiset kielikoodit säilyvät yhteensopivina.
 
-## Layoutit ja valmistajan tutkimus
+## Asettelut ja valmistajatutkimus
 
-Näytölaatikossa on täysikokoiset ja ajattelemattomat ISO-DE/ANSI-US-referenssit sekä Corsair K100 RGB-järjestelmät. Geometria edustaa paikkoja, laaja/tall avaimet ja ISO Enter. Standardijärjestelmät ovat yleisiä viittauksia. K100 järjestelmät seuraavat dokumentoituja ohjauksia ilman millimetrin tarkkoja ulottuvuuksia. Valitse oikea kieli/geometrinen variantti: mallin nimi tai USB VID/PID ei määritä erityistä varianttia.
+Näppäimistönäkymä tarjoaa täysikokoiset ja numeronäppäimistöttömät ISO-DE/ANSI-US-viiteasettelut sekä Corsair K100 RGB -asettelut. Geometria kuvaa sijainnit, leveät ja korkeat näppäimet sekä ISO Enter -näppäimen. Tavalliset asettelut ovat yleisiä viitteitä. K100 asettelut seuraavat dokumentoituja säätimiä väittämättä mittoja millimetrintarkoiksi. Valitse oikea kieli- ja geometriaversio: mallinimi tai USB VID/PID ei osoita tiettyä versiota.
 
-Kartta ratkaisee fyysisen skannauksen koodit käyttämällä aktiivista Windows tulosjärjestystä. Työnkulku laatii suunnitelman ja säilyttää säästöt / konfliktin tarkastukset. Standardit ovat globaaleja Windows hotkeys, jotka eivät ole eristetty yhdelle sidoksille. Corsair G1–G6 käytetään laitteen erityistä iCUE integrointia. Muita omistusoikeuksia vaaditaan adapteri tai valmistajan määrittelemät lyhennökset. Main Enter ja numerinen avain Enter jakavat virtuaalisen avaimen identiteetin globaaleille hotkeysille.
+Määritys tulkitsee fyysiset skannauskoodit aktiivisen Windows-syöteasettelun avulla. Työnkulku valmistelee luonnoksen ja säilyttää tallennus- ja ristiriitatarkistukset. Tavalliset sidonnat ovat globaaleja Windows-pikanäppäimiä, eivät rajoitu yhteen kytkettyyn näppäimistöön. Corsair G1–G6 käyttää laitekohtaista iCUE-integraatiota. Muut valmistajakohtaiset säätimet vaativat sovittimen tai valmistajan määrittämiä pikanäppäimiä. Pää-Enter ja numeronäppäimistön Enter jakavat saman virtuaalinäppäintunnisteen globaaleissa pikanäppäimissä.
 
-ja sen [Valmistajan tutkimus](research/tastaturhersteller-sonderfunktionen.md) ja [CSV](research/tastaturhersteller-sonderfunktionen.csv) kattaa 74 brändi / valmistaja ryhmät, erottaa konfiguraattorit, sisäänpääsy SDK: t ja valaistus APIs. [Layout todisteita](research/keyboard-layout-evidence.md) Rekisterimalli, SKU ja moduulien ero. Tutkimus ei tarkoita, että laitteistoa tuetaan.
+Tietovaraston [valmistajatutkimus](research/tastaturhersteller-sonderfunktionen.md) ja [CSV](research/tastaturhersteller-sonderfunktionen.csv) kattavat 74 tuotemerkki- ja valmistajaryhmää erottaen määritystyökalut, syöte-SDK:t ja valaistusrajapinnat. [Asettelujen lähdeaineisto](research/keyboard-layout-evidence.md) kirjaa mallien, SKU-tunnusten ja moduulien erot. Tutkimuskattavuus ei tarkoita, että laitteistotuki olisi toteutettu.
 
 ## Tiedot
 
-Konfiguraatio tallennetaan paikallisiin sovellustietoihin. Tuonti ja vienti ovat JSON. Tuonti ennustaa konfigurointia, korvaa nykyisen konfiguroinnin vahvistamisen jälkeen ja poistaa tuontitunnukset manuaalisesti. Tekstitoiminnon sisältö ei kerätä avainsanoina. Luottamusjohtajien salasanoja erotetaan vientiprofiilista.
+Kokoonpano tallennetaan paikallisiin sovellustietoihin. Tuonti ja vienti käyttävät JSON-muotoa. Tuonti näyttää kokoonpanon esikatselun, korvaa nykyisen kokoonpanon vahvistuksen jälkeen ja poistaa tuodut sidonnat käytöstä, kunnes ne otetaan käsin käyttöön. Tekstitoimintojen sisältöä ei kerätä näppäinpainalluslokiksi. Credential Manager -salasanat ovat erillään viedyistä profiileista.
 
 ## Tarkistaminen
 
@@ -104,26 +104,26 @@ dotnet run --project tests/Aivana.Tests -c Release
 dotnet run --project tests/Aivana.Windows.Tests -c Release
 ```
 
-Windows tarkastukset voivat tarkastaa laitteistoa ja tilapäisesti asettaa/lataa tuettuja iCUE sidoksia. Käynnistä niitä ilman muuta ohjaajaa käyttämällä näitä sidoksia. Äänivaihto ei muutu live-volyymiä tai mute asetuksia.
+Windows-tarkistukset voivat tutkia laitteistoa ja tilapäisesti määrittää tai vapauttaa tuettuja iCUE-sidontoja. Suorita ne ilman toista ohjainta, joka käyttää samoja sidontoja. Äänipäätepisteiden tarkistukset eivät muuta reaaliaikaista äänenvoimakkuutta tai mykistysasetuksia.
 
-Kotimaiset tulot eivät voi ylittää Windows etuoikeuksia. Tavallisesti käynnistetty ohjain ei voi lähettää sisäänkäyntiä hallintovelvollisuuteen. Varattu tai miehitetyt hotkeys näkyvät konflikteina.
+Natiivi syöte ei voi ohittaa Windows-käyttöoikeuksia. Tavallisesti käynnistetty ohjain ei välttämättä voi lähettää syötettä järjestelmänvalvojan oikeuksilla toimivaan sovellukseen. Varatut tai jo käytössä olevat pikanäppäimet näkyvät ristiriitoina.
 
-ja sen [Dokumenttiindeksi](README.md) linkit historiallisia suunnitteita, suunnitelmia, tutkimusta ja päivitetyt testitiedot. Historialliset suunnitelmat kuvaavat niiden rekisteröityä laajuutta, ei nykyistä taitoa ominaisuuksien tuesta.
+Tietovaraston [dokumentaatiohakemisto](README.md) linkittää historialliset suunnitelmat, tutkimuksen ja päivätyt testiraportit. Historialliset suunnitelmat kuvaavat kirjattua laajuuttaan, eivät takaa ominaisuuksien nykyistä tukea.
 
-### Työnkuljetusmalleja ja kohdekenttä odottaa
+### Työnkulkumallit ja kohdeikkunan odotus
 
-Kataloniassa on kuusi muokattavaa työvirtaa: työpaikka, kokous, virtaus, tutkimus, projektin vaihteisto ja teksti. `workflow.` valitsee työnkulku avaa epäsäännöllisen suunnitelman; se ei toimi välittömästi. Kaikki vaiheet säilytetään, kun lisätään työnkulku olemassa olevaan makroon tai määrätään sen Corsair Esimerkkinä URL-osoitteet, ohjelman reitit, profiilit ja OBS Tapahtumat ennen säästöä.
+Luettelo sisältää kuusi muokattavaa työnkulkua: työympäristö, kokous, suoratoisto, tutkimus, projektinvaihto ja tekstikatkelma. Hae merkkijonoa `workflow.` luettelosta tai komentopaletista. Työnkulun valinta avaa tallentamattoman luonnoksen; se ei koskaan suoritu heti. Kaikki vaiheet säilyvät, kun työnkulku lisätään olemassa olevaan makroon tai määritetään Corsair-näppäimelle. Määritä esimerkkien URL-osoitteet, ohjelmapolut, profiilit ja OBS-kohtaukset ennen tallennusta.
 
-ja sen **Tavoitteen ikkuna** Vaihe hyväksyy prosessin nimen (mukaan tai ilman `.exe`), kohtuuttoman otsikko- ja aikarajoitus 1–600,000 ms. Vaaditaan vähintään yksi suodatin; molempien suodattimien on oltava samankaltaisia toimitettaessa. makro jatkuu vain vastaavan näkyvän ikkunan vastaamisen jälkeen ja saavuttaa etupisteen. Käytä tiettyä otsikkoa, kun useat ikkunat jakavat prosessin. Peruutus tai aikarajoitus pysähtyy seuraavien vaiheiden kanssa. ikkunan valmius ei takaa, että asiakirja on ladattava tai ulkoinen palvelu, kuten OBS WebSocket on yhteydessä.
+**Kohdeikkunan odotus** hyväksyy prosessin nimen (`.exe`-päätteellä tai ilman), kirjainkoosta riippumattoman otsikon osan ja aikakatkaisun 1–600000 ms. Vähintään yksi suodatin tarvitaan; molempien on täsmättävä, jos molemmat annetaan. Makro jatkuu vasta, kun vastaava näkyvä ikkuna vastaa ja on etualalla. Käytä tarkkaa otsikkoa, jos useat ikkunat jakavat saman prosessin. Peruutus tai aikakatkaisu estää seuraavien vaiheiden suorituksen. Ikkunan valmius ei takaa asiakirjan latautumista tai ulkoisen palvelun, kuten OBS WebSocket -palvelun, yhteyttä.
 
-Näytön kirkkaus: etsi **Increase näytön kirkkaus**, **Vähentää näytön kirkkautta** tai **Snäytön kirkkaus 50 prosenttia** toimenkatalogissa. Suhteelliset toimet muuttavat kirkkautta 10 prosenttiyksikköä; kiinteät arvot vaihtelevat 0 ja 100. Tuetut sisäiset näytöt käyttävät WMI:tä; yhteensopivat ulkoiset näytöt edellyttävät DDC/CI valikoimaan. Oletusarvoisesti toimenpide vaikuttaa kaikkiin tuettuihin näytöihin; nimenomainen näyttö voidaan valita muokkaajassa. Yhteydet ja tuki voivat rajoittaa tukea.
+Näytön kirkkaus: hae toimintoluettelosta **Lisää näytön kirkkautta**, **Vähennä näytön kirkkautta** tai **Näytön kirkkaus 50 prosenttia**. Suhteelliset toiminnot muuttavat kirkkautta 10 prosenttiyksikköä; kiinteät arvot ovat välillä 0 ja 100. Tuetut sisäiset näytöt käyttävät WMI-rajapintaa; yhteensopivissa ulkoisissa näytöissä on otettava DDC/CI käyttöön niiden valikosta. Oletusarvoisesti toiminto vaikuttaa kaikkiin tuettuihin näyttöihin; editorissa voidaan valita tietty näyttö. Liitännät ja telakat voivat rajoittaa tukea.
 
-### Laajennettu kontrolli
+### Laajennetut ohjaustoiminnot
 
-Avaa komento paletti **Ctrl+K, kun sovellusikkuna on keskittynyt**. etsimään **Workflow suunnittelija**, **Rekisteröinti makro**, **Synkronoi profiilit**, tai **Tärkein diagnoosi** (työvirran suunnittelija muokkaa valittua levyä: tiedoston/prosessin/ikkunan ehtoja, etukäteen lasketaan ja pysähtyy/pysy virheiden käsittelyä. Rekisterin tallentaa lyhytkestoisia koodeja ja odottaa, ei tavallista kirjoittamista; Escape lopettaa tallennuksen..
+Avaa komentopaletti näppäimillä **Ctrl+K, kun sovellusikkuna on aktiivinen**. Hae **Työnkulkusuunnittelija**, **Tallenna makro**, **Synkronoi profiilit** tai **Näppäindiagnostiikka** (sanamuoto noudattaa valittua kieltä). Työnkulkusuunnittelija muokkaa valittua toimintoruudun luonnosta: tiedosto-, prosessi- ja ikkunaehdot, eteenpäin ohitettavien vaiheiden määrät sekä pysäytys tai jatkaminen virhetilanteessa. Tallennin tallentaa näppäinyhdistelmiä ja odotuksia, ei tavallista kirjoittamista; Escape pysäyttää tallennuksen. Tarkista tulos ennen käyttöönottoa.
 
-Valonvaiheessa valitse kaikki tuetut näytöt tai erityinen näyttö. Saatavilla oleva valittu näyttö tuottaa virheen sijaan, että muutetaan hiljaa toista näyttöä. Ohjelmisto näyttää elävää kirkkautta, ääntä ja OBS lukemista, kun niiden integroinnit ovat saatavilla; käytettävissä oleva lukeminen ei ole mitattu arvo.
+Valitse kirkkausvaiheessa kaikki tuetut näytöt tai tietty näyttö. Puuttuva valittu näyttö aiheuttaa virheen sen sijaan, että muutettaisiin huomaamatta toista näyttöä. Koontinäyttö näyttää reaaliaikaiset kirkkaus-, ääni- ja OBS-lukemat, kun vastaavat integraatiot ovat saatavilla; puuttuvaa lukemaa ei esitetä mitattuna arvona.
 
-Tile Editorissa määritä tukeva fyysinen erityinen avain ja valitse välitön painaminen, painaminen, pidä tai kaksinkertainen painaminen. Held Layer -valintaohjelmat aktivoivat väliaikaisesti toisen karttauksen ja palauttavat edellisen kerroksen vapauttamisessa. Käytännöt ja kerrokset koskevat Corsair SDK G-tärkeitä ja laitteen erityisiä standardeja, ei tavallisia globaaleja hotkeyejä. Standard-key capture tukee F13–F24 ja näppäimistö avaimet. Omistettu Fn, profiili ja dial-ohjaimet vaativat edelleen yhteensopivaa toimittajaa tai toimittajaa, joka kartoittaa vakiokohdan. Raw Input tarkkailee avainta eikä estä sen normaalia käyttäytymistä Windows. Avain diagnoosi selittää profiilin, tauon, yhteyden ja sitova ongelma.
+Määritä toimintoruutueditorissa tuettu fyysinen erikoisnäppäin ja valitse välitön painallus, napautus, pitkä painallus tai kaksoisnapautus. Pohjassa pidettävät kerrosvalitsimet aktivoivat väliaikaisesti toisen määrityksen ja palauttavat edellisen kerroksen vapautettaessa. Eleet ja kerrokset koskevat Corsair SDK G-näppäimiä ja laitekohtaisia tavallisia erikoisnäppäimiä, eivät tavallisia globaaleja pikanäppäimiä. Tavallisten näppäinten tunnistus tukee F13–F24- ja näppäimistön medianäppäimiä. Valmistajakohtaiset Fn-, profiili- ja kiertosäätimet vaativat yhä yhteensopivan valmistajasovittimen tai valmistajan määrityksen tavalliseksi näppäimeksi. Raw Input tarkkailee näppäintä eikä estä sen normaalia Windows-toimintaa. Näppäindiagnostiikka selittää profiili-, tauko-, yhteys- ja sidontaongelmat.
 
-Profiilin synkronointi vaihtaa tiedostoja valitsemallasi kansiossa, mukaan lukien olemassa olevan pilvipalvelun hallinnoima kansi. Tarkista etukäteen ennen tuontia; tuonti alkaa poistaa ja poistaa laitteisto-erityisiä karttoja. Tarkistukset estävät hiljaisia ylikuormituksia, ja toimenpiteiden sisältö on nimenomainen valinta. MAKRIVO ei tarjoa pilvipalvelua tai säilyttää pilvipohjaisia tunnistuksia. Peli käyttää nyt MAKRIVO omaa tealin M -kuvaa ja näyttää amber-pauksen, kun se on tauolla.
+Profiilisynkronointi vaihtaa tiedostoja valitsemassasi kansiossa, myös olemassa olevan pilviasiakkaasi hallitsemassa kansiossa. Tarkista esikatselu ennen tuontia; tuodut määritykset ovat aluksi pois käytöstä ja laitekohtaiset määritykset poistetaan. Revisiot estävät huomaamattomat ylikirjoitukset, ja toimintosisällön sisällyttäminen on nimenomainen valinta. MAKRIVO ei tarjoa pilvitiliä eikä säilytä pilvitunnistetietoja. Ilmoitusalueella käytetään nyt MAKRIVO-sovelluksen omaa sinivihreää M-kuvaketta, ja taukotilassa siinä näkyy meripihkanvärinen taukomerkki.

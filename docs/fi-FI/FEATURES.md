@@ -24,17 +24,17 @@ Valmistaja: **Aivana**. Pysy: **12. Lokakuussa 2026**. Tämä on kehitysvaihe, e
 | Tuloksetarkastus | Ennaltaehkäisy, jäljitys ja testaus | Vain tarkistettavat vaikutukset vahvistavat; onnistunut painiketta ei osoita kohdennettua vaikutusta. |
 | Työpaikan avustaja | Valmista profiilit ja prosessit valituista ohjelmista, tiedostoista, URL-osoitteista ja muista toimista | Ennaltaehkäisy ja tallennus on välttämätöntä; laite ei aiheuta mitään. |
 | Makro ja Workflows | Rekisteröinti, olosuhteet ja paikallinen profiilin synkronointi | Käyttäytyminen ja rajat on dokumentoitu täytäntöönpano- ja testausraportteissa. |
-| UI automaatio | Valitse tavoitteet, tarkista valintaohjelmat, toimenpiteet ja rajalliset klikkaukset | Erilliset työntekijät; monivaiheinen, deaktivoitu ja salasanan tavoitteet hylätään; ei yleistä tekstiä. |
+| UI automaatio | Valitse tavoitteet, tarkista valintaohjelmat, toimenpiteet ja rajalliset klikkaukset | Erillinen työprosessi; moniselitteiset kohteet, käytöstä poistetut kohteet ja salasanakohteet hylätään; ei yleistä tekstinsyötön tallennusta. |
 | Laajennukset | Paketit tarkastellaan, tuodaan, aktivoidaan, vientiin ja palautetaan selkeästi luottamuksen mukaan | Prosessi eristyminen ei ole hiekkapuhelin; ei julkinen plug-in-markkinoita. |
-| Mobiilipaneeli | Paikallinen HTTPS-paneeli, yhteys, valitut profiilit ja tilan/testihistoria | Todellinen puhelin/tabletti-LAN-lähde on vielä auki; ei universaalia sensori-näppäintä. |
-| Valmistajan adapteri | Corsair, Logitech-G-SDK, Razer/SteelSeries-RGB ja Wooting-Analogadapterit | Mallin/SDK: n mukaan; uusi adapteri ei ole täysin validoitu todellisella laitteistolla. Ei uusia omistettuja SDK-DLLs yhdistetty. |
+| Mobiilipaneeli | Paikallinen HTTPS-paneeli, yhteys, valitut profiilit ja tilan/testihistoria | Todellisen puhelimen tai tabletin LAN-hyväksyntätestaus on vielä avoinna; ei yleiskäyttöistä anturikoontinäyttöä. |
+| Valmistajan adapteri | Corsair, Logitech-G-SDK, Razer/SteelSeries-RGB ja Wooting-Analogadapterit | Riippuu mallista ja SDK:sta; uusia sovittimia ei ole kokonaan validoitu todellisella laitteistolla. Uusia valmistajakohtaisia SDK-DLL-tiedostoja ei toimiteta mukana. |
 | Fyysinen painiketta | Valitse laitteen ja skannauskoodin | Raw Input ei tukahduta normaalia Windows -sisääntelyä. |
-| Paikallinen AI-keskustelija | Valinnainen prototyyppi Ollama, LM Studio, llama.cpp ja ONNX Runtime GenAI CPU tuottaa rajallisia suunnitelmia nimenomaisesti valittujen resurssien | Vakiokohtaisesti; alkuperäinen CPU-testi satunnaisella mallilla, mutta ei todistettu suunnittelun laatu tai ajan säästö; ei sisälly mallin painoja. |
+| Paikallinen AI-keskustelija | Valinnainen prototyyppi Ollama, LM Studio, llama.cpp ja ONNX Runtime GenAI CPU tuottaa rajallisia suunnitelmia nimenomaisesti valittujen resurssien | Oletusarvoisesti pois käytöstä; natiivi CPU-suoritusympäristö testattu satunnaismallilla, mutta suunnittelun laatua tai ajansäästöä ei ole osoitettu; mallipainoja ei sisälly pakettiin. |
 
 ## Ei ole vielä myynnissä valmiina
 
 - **Ekslioppinen toissijainen / makro: ** Lupautettu ja laitteistoon tarkistettu suodatin puuttuu. Normaalit painikkeet voivat edelleen saavuttaa Windows.
-- Täydellinen laitteiston poistaminen kaikista valmistajista sekä todelliset mobiililaitteet.
+- Kaikkien valmistajasovittimien täydellinen laitteistohyväksyntä ja todellisten mobiililaitteiden LAN-testit.
 - Todellinen sekoitettu monitori/DPI-muutos ja kaikkien uusien käännösten asiantuntija. PerMonitorV2 ja simuloitu 150/200-Prozent-Layouts on testattu; todelliset näytötestit pysyvät erillään. Ympäristö tarjoaa 27 kieliä; yksityiskohtaiset uudet tekstit eivät ole vielä täysin kielellisiä.
 - Allekirjoitettu myyntipäällikkö, lopullinen EULA, tarkistettu SDK-myyntioikeudet ja tuottava ostolupa/vakuutus integrointi.
 
@@ -54,4 +54,4 @@ Valmistaja: **Aivana**. Pysy: **12. Lokakuussa 2026**. Tämä on kehitysvaihe, e
 ./tools/publish-complete.ps1 -SelfContained
 ```
 
-Paketti sisältää työpöytä-sovelluksen, UI-automaation työnantajan, matkapuhelimen, selaimen tiedostojen, esimerkkisovelluksen ja käynnistyksen käyttöoikeusohjeen. Rakennusvirheitä ei tarkasteta Gitissä. GitHub lähdekoodi ei ole vielä julkaistu Windows asentaja.
+Paketti sisältää työpöytäsovelluksen, UI-automaation työprosessin, mobiilipalvelimen, selaintiedostot, esimerkkilaajennuksen ja suoritusympäristön lisenssi-ilmoitukset. Koontiartefakteja ei tallenneta Git-versionhallintaan. GitHub-lähdekoodiversio ei vielä ole julkaistu Windows-asennusohjelma.

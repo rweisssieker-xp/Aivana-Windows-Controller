@@ -10,6 +10,6 @@
 - Filtr akcji pojawia się tylko na pulpicie nawigacyjnym. Wybór profilu i wyszukiwanie mają wyraźne nazwy dla technologii wspomagających. Etykiety pól są bardziej kontrastowe.
 - Dialogowy test dymu zawiera przegląd narzędzi i okna dialogowe rozszerzeń w 560 × 440 i normalnym rozmiarze; Istniejące testy rejestratora i języka zostały dostosowane do struktury scrolla.
 
-Ograniczenia: Okna Compact nie zastępują prawdziwych testów Windows DPI z procentem 150/200. Nowe teksty w języku niemieckim nie zostały jeszcze w pełni przetłumaczone na wszystkie języki 27. Brak walidacji nowego sprzętu i brak oświadczeń na temat zmierzonej użyteczności.
+Ograniczenia: małe okna nie zastępują rzeczywistych testów Windows-DPI przy 150/200 procent. Nowe teksty niemieckie nie zostały jeszcze w pełni przetłumaczone na wszystkie 27 języków. Brak nowej walidacji sprzętu i twierdzeń o zmierzonej użyteczności.
 
 Stanowisko testowe: wydanie kompilacji bez ostrzeżeń/błędów; Przeszedł pełny test dymu WPF, w tym kompaktowe okna dialogowe narzędzi i rozszerzeń oraz kontrole przełączania języków. git diff -- sprawdź pomyślnie.

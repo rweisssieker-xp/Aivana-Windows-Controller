@@ -4,12 +4,12 @@
 
 > Mašinski potpomognut prevod. Struktura, primeri koda i veze se proveravaju; to ne znači pregled izvornog govornika ili pravno odobrenje. Istorijski izveštaji zadržavaju izvorne datume i obim.
 
-Dokumentacija Snapshot: 2026-10-12 · Aivana
+Stanje dokumentacije: 2026-10-12 · Aivana
 
 - [Korisničko uputstvo](HANDBOOK.md)
-- [Detaljna akcija referenca](REFERENCE.md)
-- [Inventarizacija i ograničenja](FEATURES.md)
-- [Izgradnja i dokumentacija provera](VERIFICATION.md)
+- [Detaljna referenca radnji](REFERENCE.md)
+- [Pregled funkcija i ograničenja](FEATURES.md)
+- [Provere izgradnje i dokumentacije](VERIFICATION.md)
 - [Održavanje dokumentacije](MAINTENANCE.md)
 
 ## Verifikacija i testovi izveštaji

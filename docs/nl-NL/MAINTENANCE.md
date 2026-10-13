@@ -28,7 +28,7 @@ python tools/localize_documentation.py --cache-only
 python tools/check_documentation.py
 ```
 
-zonder `--refresh-sources`, een run herstelt zijn bevrieste snapshot. Gebruik de optie verfrissing na het bewerken van originalen. verborgen segmenten worden hergebruikt. Een gedeeltelijke run kan lokale codes kiezen met behulp van `--locales`· beëindigen van alle locaties voordat ze worden gepubliceerd. gebroken runs vervangen niet stil door een onvertaald prose voor een mislukte vertaling.
+Zonder `--refresh-sources` hervat een run zijn bevroren momentopname. Gebruik de vernieuwingsoptie na het bewerken van originelen. Gecachte segmenten worden hergebruikt. Een gedeeltelijke run kan taalregiocodes kiezen met `--locales`; voltooi alle talen vóór publicatie. Onderbroken runs vervangen een mislukte vertaling niet stilzwijgend door onvertaalde tekst.
 
 Het manifeste registreert elke bron en geproduceerde bestand met SHA-256 vingerafdrukken van geïntroduceerd UTF-8 tekst: LF-lijnendingen en geen byte-bestelling. De offline checker verifieert volledige per-linguid coverage, vingerafdrukken, lokale links, code voorbeelden, tabel/CSV structuur, bronnen URL's en onherstelbare locaties. Het ontkent staalbronnen. Een doorlopende structurele check is geen native speaker review of wettelijke goedkeuring. De geproduceerde pagina's dragen deze kwalificatie zichtbaar.
 

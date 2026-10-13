@@ -11,7 +11,7 @@ Producător: **Aivana**. starea: **12. octombrie 2026**. Aceasta este starea de 
 - Cacheluri, hotkeys globale, palete de comenzi, preferate și profiluri dependente de aplicație.
 - Macro cu mai multe pași, repetări, pauze, ruperi și previziuni.
 - Deschideți programe, fișiere și site-uri web; utilizați text, tabă și scurte tastatură.
-- Armonizează ferestrele, închide Windows, controlează ieșirile audio și microfonele, precum și schimbă lumina ecranului prin intermediul interfețelor susținute.
+- Aranjarea ferestrelor, blocarea Windows, controlul ieșirilor audio și microfoanelor și modificarea luminozității ecranului prin interfețele acceptate.
 - OBS-WebSocket-v5-Anbindung pentru scenele, înregistrarea, streamingul și audio.
 - Şablonuri, asistent de lucru, recunoaştere a dispozitivelor şi suprapunere tastatură.
 - Import și export de configurații de profil; testarea proiectului și detectarea conflictelor.
@@ -24,19 +24,19 @@ Producător: **Aivana**. starea: **12. octombrie 2026**. Aceasta este starea de 
 | Testarea rezultatelor | Verificare prealabilă, monitorizare și testare | Doar efectele verificabile confirmă; o presiune de tip de succes nu dovedește efectul țintă. |
 | Asistentul de la locul de muncă | Pregătiți profiluri și proceduri din programe selectate, fișiere, URL-uri și alte acțiuni | Previziune și stocare necesară; instalația nu produce nimic. |
 | Înregistrarea macro și fluxurile de lucru | Înregistrare, condiții, gesturi și sincronizare a profilului local | Conducerea și limitele sunt documentate în rapoartele de punere în aplicare și de testare. |
-| UI automatizare | Selectați obiectivele, verificați selectorii, acțiunile și fluxurile de clicuri limitate | Lucrătorii separati; obiectivele multiple, dezactivate si parola sunt respinse; nu sunt incluse in textul general. |
+| UI automatizare | Selectați obiectivele, verificați selectorii, acțiunile și fluxurile de clicuri limitate | Proces de lucru separat; țintele ambigue, dezactivate și câmpurile de parolă sunt respinse; nu se înregistrează introducerea generală de text. |
 | Extinderi | Verificarea, importarea, activarea, exportarea și returnarea pachetelor, după încredere expresă | Procesul de izolare nu este o cutie de nisip; nu este un loc public de piață plug-in. |
-| Panouri mobile | Panourile locale HTTPS, conexiunile, profilurile selectate și istoricul de status/test | Realitate de telefon / tabletă LAN de îndepărtare încă deschis; nu un desktop de senzori universale. |
+| Panouri mobile | Panourile locale HTTPS, conexiunile, profilurile selectate și istoricul de status/test | Testele de acceptanță LAN cu telefoane/tablete reale sunt încă nefinalizate; nu este un tablou universal de senzori. |
 | Adaptator producător | Corsair, Logitech-G-SDK, Razer/SteelSeries-RGB și Wooting-Analogadapter | Modele/SDK dependente; noile adaptoare nu sunt complet validate cu hardware real. Nu există noi DLL SDK proprietare. |
 | Tastatură fizică | Taste standard pentru a detecta prin dispozitiv și cod de scanare | Raw Input nu suprimă introducerea normală Windows. |
-| Asistentul de discuții local | Prototip opțional pentru Ollama, LM Studio, llama.cpp și ONNX Runtime GenAI CPU produce proiecte limitate din resurse selectate în mod explicit | Standard; timpul de funcționare nativ CPU testat cu modelul accidental, dar nu a dovedit calitatea de planificare sau economisirea timpului; nu conține greutatea modelului. |
+| Asistentul de discuții local | Prototip opțional pentru Ollama, LM Studio, llama.cpp și ONNX Runtime GenAI CPU produce proiecte limitate din resurse selectate în mod explicit | Dezactivat implicit; mediul nativ CPU a fost testat cu un model aleator, dar calitatea planificării sau economiile de timp nu sunt demonstrate; nu sunt incluse ponderi de modele. |
 
 ## Nu oferă încă ca vânzări gata
 
-- **Exclusiv al doilea desktop/macropad: ** Un driver de filtrare semnat, licențiat și testat pe hardware este lipsit. Intrările de tastatură normale pot continua să ajungă la Windows.
-- Absorbția completă a hardware-ului tuturor adaptorilor de producător, precum și testele reale ale dispozitivelor mobile.
+- **A doua tastatură/macropad exclusivă:** Lipsește un driver de filtrare semnat, licențiat și testat pe hardware. Intrările normale de taste pot ajunge în continuare la Windows.
+- Acceptanță hardware completă pentru toate adaptoarele producătorilor și teste LAN reale cu dispozitive mobile.
 - Adevărata schimbare a monitorului/DPI și recunoașterea profesională a tuturor traducerilor noi. PerMonitorV2 și simulate 150/200-Prozent-Layouts au fost verificate; testele reale de afișare rămân separate. Interfața oferă 27 limbi; textele noi detaliate nu au fost încă complet eliminate în limbă.
-- Instalator de vânzare semnat, EULA finală, drepturi de vânzare verificate SDK și integrare productivă a licenței de cumpărare/checkout.
+- Instalator comercial semnat, EULA finală, drepturi verificate de distribuție SDK și integrare în producție a licenței de achiziție/checkout.
 
 ## Detalii și dovezi
 

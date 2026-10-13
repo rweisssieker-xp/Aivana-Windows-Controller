@@ -10,13 +10,13 @@
 
 **İngilizce ( US ))** | [Deutsch](../de-DE/REFERENCE.md) | [Français](../fr-FR/REFERENCE.md) | [Italiano](../it-IT/REFERENCE.md)
 
-Stream Deck tarzı çubuklar, profiller, makro ve klavye algılama ile yerel bir Windows sıcak anahtar kontrolörü. Bu arayüz 27 dillerini destekler. Günlük kullanım için hesap veya bulut bağlantısı gerektirmez.
+Stream Deck tarzı kutucuklar, profiller, makrolar ve klavye algılama sunan yerel Windows kısayol denetleyicisi. Arayüz 27 dili destekler. Günlük kullanımda hesap veya bulut bağlantısı gerekmez.
 
 [Dokümanlık](README.md) · [Kontrolü](VERIFICATION.md) · [Özellikler test raporu](testing/2026-10-09-usp-release.md)
 
 ## Başlamak için
 
-Başvuru yapıldıktan sonra `artifacts/win-x64/MAKRIVO.exe` Tüm çıkış klasörünü bir araya getirin; başka bir yere kopyalayabilirsiniz. Windows 11 x64 başlangıç hedefi. Yapılan eserler Git'ten çıkarılır; bir kaynak kontrolü önceden yapılandırılmış bir uygulama içermez.
+Yayımlama işleminden sonra uygulama `artifacts/win-x64/MAKRIVO.exe` konumundadır. Çıktı klasörünün tamamını birlikte tutun; başka yere kopyalayabilirsiniz. İlk hedef Windows 11 x64 platformudur. Derleme çıktıları Git’e dahil edilmez; kaynak kodu kopyası hazır yürütülebilir dosya içermez.
 
 Kaynaktan oluşturmak ve çalıştırmak için `global.json` belirtilen .NET 10 SDK'yı kurun:
 
@@ -33,69 +33,69 @@ dotnet publish src/Aivana.Desktop -c Release -r win-x64 --self-contained true -o
 
 ## Temel çalışma akışı
 
-1. Bir profil seçin ve bir eylem çubuğu oluşturun.
-2. Adını, simgesini, renkini ve klavyenin kısaltmasını ayarlayın. Ctrl/Alt/Shift kombinasyonları, yazma sırasında tesadüfi etkinliği azaltır.
-3. Bir veya daha fazla adım ekleyin: uygulamalar, dosyalar, web siteleri, metin, kısaltmalar, medya, hacim, profil değiştirme veya gecikmeler.
-4. kurtarma Değişiklikler kurtarılana kadar bir tasarıma sahiptir; kaydedilen versiyonu geri getirir. Tile Play düğmesi ve sıcak anahtarı aynı yürütme yolu kullanır.
-5. Çekme ve atma düğmeleri ile yeniden düzenleme çubukları ve makro adımları. şablonlar ayarları kolaylaştırır. 100 zaman. arayüzü, sistem sürüş menüsü veya varsayılan olarak Ctrl+Alt+Escape.
+1. Bir profil seçin ve eylem kutucuğu oluşturun.
+2. Adını, simgesini, rengini ve klavye kısayolunu ayarlayın. Ctrl/Alt/Shift birleşimleri yazarken yanlışlıkla etkinleştirmeyi azaltır.
+3. Bir veya daha fazla adım ekleyin: uygulama, dosya, web sitesi, metin, kısayol, medya, ses düzeyi, profil değiştirme veya gecikme.
+4. Kaydedin. Değişiklikler kaydedilene kadar taslaktır; vazgeçme kayıtlı sürümü geri getirir. Kutucuğun Play düğmesi ve kısayolu aynı yürütme yolunu kullanır.
+5. Kutucukları ve makro adımlarını sürükleyip bırakarak veya ok düğmeleriyle sıralayın. Şablonlar kurulumu kolaylaştırır. Makrolar en fazla 100 kez yinelenebilir. Arayüzden, bildirim alanı menüsünden veya varsayılan Ctrl+Alt+Escape ile iptal edin.
 
-Uygulama özel profilleri, tam yolu olmadan bir süreç adı kullanır. Profil siparişi bağlantıları kırar; varsayılan profil düşüştür. Profil seçimi ayarlarda etkinleştirilmelidir.
+Uygulamaya özgü profiller tam yol olmadan işlem adını kullanır. Eşit eşleşmelerde profil sırası belirleyicidir; eşleşme yoksa varsayılan profil kullanılır. Otomatik profil seçimi Ayarlar’da etkinleştirilmelidir.
 
-Ana pencereyi kapatırken, uygulama varsayılan olarak sistemde tutar. Tekrar tıklayın ve yeniden açın; çıkış için tekrar menüsü kullanın. Windows ile başlatma seçmeli ve varsayılan olarak devre dışı bırakılır. Hotkeys merkezli olarak durdurulabilir.
+Ana pencereyi kapatmak uygulamayı varsayılan olarak bildirim alanında tutar. Yeniden açmak için simgesine çift tıklayın; çıkmak için simge menüsünü kullanın. Windows ile başlatma isteğe bağlı ve varsayılan olarak kapalıdır. Kısayollar merkezi olarak duraklatılabilir.
 
 ## eylemler ve komut paleti
 
-Aksiyon ekleme, sekiz kategoride 90 önizlemelerle arama yapabilen bir katalog açıyor. Her birinin bir öyküsü ve öyküsü vardır. Makro editörü, adımları eklemek veya değiştirmek için aynı katalog kullanır. Bu editör çalışma akışında bir önceden ayar seçmek, çalışmadan bir tasarıma sahiptir.
+Eylem Ekle, sekiz kategoride 90 hazır ayar içeren aranabilir kataloğu açar. Her ayarın açıklaması ve önizlemesi vardır. Makro düzenleyici adım eklemek veya değiştirmek için aynı kataloğu kullanır. Bu düzenleme akışında hazır ayar seçmek yürütmeden taslak oluşturur.
 
 Komut paleti başlıkta veya uygulamanın içindeki Ctrl+K ile açılır. Profiller, katalog öncesi setler, profil değiştirme, navigasyon, duraklama/resume, makro iptal ve ithalat/eksport üzerinden kaydedilen eylemleri arar. Filtre kaydedilen eylemler, katalog fonksiyonları veya uygulama komutları. Arrow anahtarları seçin, Enter etkinleştirir, Ctrl+Enter bir düzenlenebilir giriş düzenler ve Escape kapatılır. Favori ilk olarak ortaya çıkıyor. Kullanım için hazır katalog komutları hemen çalıştırılabilir; bir tasarıma açılmasını gerektiren ön ayarlar. Ayarlar, küresel bir palet kısaltması tanımlayabilir. Yeni yapılandırmalar Ctrl+Shift+Space kullanır; mevcut yapılandırmalar otomatik olarak yeni bir küresel kısaltma almaz.
 
-Ses eylemleri tam olarak 0 ile 100 yüzdesi arasında hacmi ayarlar ve sessiz, değişmez veya kaydırma çıkışı ve mikrofon cihazları. Belirli bir son nokta seçin veya varsayılan Windows için ayarlanmaz bırakın. Kullanılamayan bir son nokta, başka bir cihazı kontrol etmek yerine bir hata üretir. Refriger Devices bağlantılı cihazları yeniden yüklüyor.
+Ses eylemleri düzeyi 0 ile 100 yüzde arasında hassas ayarlar ve çıkış/mikrofon cihazlarını sessize alır, sesini açar veya sessizliği değiştirir. Belirli bir uç nokta seçin ya da Windows varsayılanı için boş bırakın. Kayıtlı uç nokta kullanılamıyorsa başka cihazı kontrol etmek yerine hata verilir. Cihazları Yenile bağlı cihazları yeniden yükler.
 
-OBS Stüdyo Kullanımı WebSocket v5: start/stop/toggle/pause/resume kaydı; start/stop /toggle akışı; sahneleri değiştirmek; toggle giriş mute. WebSocket Aracın altındaki server OBS Editörün son noktasını ayarlayın.Connection ve Load Names okuyor OBS Bir kayıt veya akış başlatmadan versiyonlar, sahneler ve girişler. listeden isimleri seçin veya onları manuel olarak girin. Windows Sertifika Yöneticisi ve ihraç edilen yapılandırmalardan hariç. OBS Bağlantı hatası bildirir.
+OBS Studio WebSocket v5 kullanır: kaydı başlatma/durdurma/değiştirme/duraklatma/sürdürme; yayını başlatma/durdurma/değiştirme; sahne değiştirme; giriş sessizliğini değiştirme. OBS Araçlar altında WebSocket sunucusunu açın ve düzenleyicide uç noktasını ayarlayın. Bağlantıyı Kontrol Et ve Adları Yükle, kayıt veya yayın başlatmadan OBS sürümünü, sahneleri ve girişleri okur. Adları listeden seçin veya elle girin. Parolalar Windows Credential Manager içinde saklanabilir ve dışa aktarılan yapılandırmalardan çıkarılır. Kullanılamayan OBS bağlantıları hata bildirir.
 
 Profiller bir süreç adı ve bir pencere başlığı parçası ile eşleşebilir. Bu iki koşul da eşleşmelidir. Lock Profile oturum için otomatik olarak geçiş yapmayı engeller. Foreground'dan çekim koşulları son odaklanmış dış uygulama kullanır.
 
-Video ve clipboard desteği `{{date}}`, `{{time}}`, `{{datetime}}`, `{{clipboard}}`, `{{profile}}`, `{{process}}`, ve `{{user}}`. Tarih Kullanımı `yyyy-MM-dd`; Zaman Kullanımı `HH:mm`. Bilinmeyenler Değişmez. `{{profile}}` Başlatılan eylemin profilini belirleyin; `{{process}}` Clipboard içeriği yalnızca bu siteyi kullanırken okunur.Clipboard eylemi metni yazar ama otomatik olarak yapıştırmaz.
+Metin ve pano eylemleri `{{date}}`, `{{time}}`, `{{datetime}}`, `{{clipboard}}`, `{{profile}}`, `{{process}}` ve `{{user}}` destekler. Tarihler `yyyy-MM-dd`, saatler `HH:mm` biçimindedir. Bilinmeyen yer tutucular değişmez. `{{profile}}` başlatılan eylemin profilini, `{{process}}` harici uygulama bağlamını belirtir. Pano içeriği yalnızca ilgili yer tutucu kullanıldığında okunur. Pano eylemi metni yazar ancak otomatik yapıştırmaz.
 
-Pencere eylemleri, monitörün çalışma alanının sol/sağ tarafındaki bir pencereyi en aza indirmek, en üst düzeye çıkarmak veya düzenlemek. İşletme sisteminin kapatılması Windows Bu eylemler yalnızca açıkça talep edildiğinde yürütülür.
+Pencere eylemleri pencereyi küçültür, büyütür, geri yükler veya monitörünün çalışma alanının sol/sağ tarafına yerleştirir. Sistem eylemi Windows oturumunu kilitler. Bu eylemler yalnızca açıkça çağrıldığında çalışır.
 
-Önizleme, adımlar, tekrarlar ve değişkenler uygulanmadan gösterir. Undo ve Redo, 100 tasarım durumuna kadar tutar; metin kutuları yerli Ctrl+Z düzenini tutar. Editör veya tablo menüsünde favori işaretleri işaretleyin ve bunları panelde filtreleyin. Yürütme sayısı yalnızca mevcut oturum için geçerlidir.
+Önizleme adımları, yinelemeleri ve değişkenleri yürütmeden gösterir. Geri Al ve Yinele en fazla 100 taslak durumunu tutar; metin kutuları yerleşik Ctrl+Z düzenlemesini korur. Düzenleyicide veya kutucuk menüsünde favorileri işaretleyip panoda filtreleyin. Yürütme sayıları yalnızca geçerli oturum için geçerlidir.
 
-Yazı, kısaltma ve arayüzden başlatılan pencere eylemleri son hedef penceresini etkinleştirir. Hedef bu konuyu gösterir. Hedef kapatıldı veya Windows etkinleştirmeyi reddederse, uygulama bir mesajla durur.
+Arayüzden başlatılan metin, kısayol ve pencere eylemleri son harici hedef pencereyi etkinleştirir. Palet bu hedef bağlamını gösterir. Hedef kapanmışsa veya Windows etkinleştirmeyi reddederse yürütme mesajla durur.
 
 ## Keyboard Yardım ve Feedback
 
-Özel anahtar sihirbazı klavye sayfasında ve paletinde yer almaktadır. G-Key'leri kaydetti iCUE Anahtar Baskı, görevlendirilen eylemleri yerine getirmeden geçici olarak yakalar. Normal bağlar tespit, iptal veya kapatma sonrasında geri döner. Bir katalog fonksiyonu ve seçilmiş anahtar kaydedilmemiş bir taslak olarak açılır; çift bağlantılar kontrol edilir.
+Özel Tuş Sihirbazı Klavye sayfasında ve palettedir. iCUE tarafından bildirilen G tuşlarını listeler. Tuş Basımını Algıla atanan eylemleri yürütmeden geçici yakalama yapar. Normal atamalar algılama, iptal veya kapatma sonrası geri gelir. Katalog işlevi ve seçilen tuş kaydedilmemiş taslak olarak açılır; yinelenen atamalar kontrol edilir.
 
-Keyboard Overlay seçilen referans düzenini ve aktif bağları gösterir. Ctrl+Alt+F1 tutun veya palet veya Klavye sayfasından çıkarın. Konforu almaz ve fare tıklamalarını geçmesine izin verir. Profil ve zorunlu değişiklikler güncellenir; sıradan Windows anahtar baskıları vurgulanır. Üretici özellikli kontroller eşdeğer bir Windows anahtar sinyal sağlayamaz.
+Klavye ekran katmanı seçilen referans düzeni ve etkin atamaları gösterir. Ctrl+Alt+F1 basılı tutun veya paletten ya da Klavye sayfasından açıp kapatın. Odağı almaz ve fare tıklamalarını geçirir. Görünürken profil ve atama değişiklikleri güncellenir; normal Windows tuş basımları vurgulanır. Üreticiye özgü denetimler eşdeğer Windows tuş sinyali vermeyebilir.
 
-Yönlendirme geribildirimleri bekleme, adım / tekrarlama ilerlemesi, tamamlanma, iptal veya odaklanmadan veya girilen metni ortaya çıkarmadan gösterir. Commands Executed, komut uygulamasında bağımsız olarak istenen bir canlı durum değil, komut uygulaması doğrulamaktadır. Hataların ayrıntıları aktivite logunda görünür.
+Yürütme geri bildirimi odağı almadan veya girilen metni göstermeden beklemeyi, adım/yineleme ilerlemesini, tamamlanmayı, iptali veya hatayı gösterir. Komutlar Yürütüldü, komut yürütmesini doğrular; üçüncü taraf uygulamadaki bağımsız sorgulanmış canlı durumu doğrulamaz. Hata ayrıntıları etkinlik günlüğündedir.
 
 ## Üretici ve Corsair
 
-Corsair G1 - G6 resmi iCUE SDK aracılığıyla doğrudan atanabilir. Eylem editöründe cihazı ve anahtarı seçin ve kaydedin veya K100 tuş görüntüsünden bir tasarıma hazırlayın. Bağlantılar seçilen cihaz ve aktif profil için geçerlidir; duraklar da bunları engeller. iCUE çalıştırılmalı ve erişim sağlanmalıdır. Fn, iCUE tekerlek, profil ve kilit kontrolü bu G anahtar API aracılığıyla haritalamıyor.
+Corsair G1–G6 resmi iCUE SDK ile doğrudan atanabilir. Eylem düzenleyicide cihaz ve tuş seçip kaydedin veya K100 klavye görünümünden taslak hazırlayın. Atamalar seçilen cihaz ve etkin profil için geçerlidir; duraklatma bunları da kapatır. iCUE çalışmalı ve erişime izin vermelidir. Fn, iCUE tekerleği, profil ve kilit denetimleri bu G-key API ile eşlenemez.
 
 Cihazlar sayfası Windows klavye arayüzlerini ve düzenli olarak ve cihazların bağlandığında yeniliyor. Bir fiziksel klavye çok sayıda HID arayüzüne maruz kalabilir. Standart küresel hotkeys üreticiler arasında çalışır.
 
-Corsair tespit mevcut cihaz bilgileri kullanır. RGB kontrolü uyumlu donanım, çalıştırma iCUE ve resmi iCUE SDK gerektirir; uygulama gerçek kullanılabilirliği bildirir. Diğer üreticiler şu anda tespit ve standart eylemler alırlar. Corsair G anahtarı entegrasyonu dışında, mülkiyet kontrolü Windows bunları düzenli giriş olarak aldığında çalışır. Uygulama bir klavye sürücüsü yüklemiyor.
+Corsair algılama mevcut cihaz bilgilerini kullanır. RGB kontrolü uyumlu donanım, çalışan iCUE ve resmi iCUE SDK gerektirir; uygulama gerçek kullanılabilirliği bildirir. Diğer üreticiler şu anda algılama ve standart eylemler alır. Corsair G-key entegrasyonu dışındaki tescilli denetimler, Windows bunları normal giriş olarak aldığında çalışır. Uygulama klavye sürücüsü kurmaz.
 
 ## Diller
 
-Settings Teklifler 27 İngilizce, Fransızca, İspanyolca, İtalyanca, Portekizce, Hollanda, Polonyalı, Çekçe, Slovakca, Macarca, Bulgarca, Yunanca, İsveççe, Norveççe, Finlandiya, Estonya, Litvanya, Slovenya, Hırvatça, Ukrayna, Rusça, Türkçe ve Sırpça Windows Görüntüleme dilini. çeviriler yerel olarak bağlanmıştır. ayarlar, hotkeys ve kullanıcı tarafından oluşturulan isimler arayüz dilinden bağımsızdır.
+Ayarlar 27 dil sunar: Almanca, İngilizce, Fransızca, İspanyolca, İtalyanca, Portekizce, Felemenkçe, Lehçe, Çekçe, Slovakça, Macarca, Rumence, Bulgarca, Yunanca, Danca, İsveççe, Norveççe, Fince, Estonca, Letonca, Litvanca, Slovence, Hırvatça, Ukraynaca, Rusça, Türkçe ve Latin harfli Sırpça. Otomatik seçeneği Windows görüntüleme dilini izler. Çeviriler yerel olarak pakete dahildir. Düzenler, kısayollar ve kullanıcının oluşturduğu adlar arayüz dilinden bağımsızdır.
 
 Tüm kayıt defterleri 27 dilinde mevcuttur. [Dil Endeksi](README.md)Bu yüzden Çeviriler, orijinal kaynak bağlantıları ve yapısal kontroller ile makine tarafından desteklenir; yerli konuşmacı incelemesi ayrıdır. Uygulama ayrıca bölgesel kodları `en-US`, `de-DE`, `fr-FR` ve `it-IT` kabul eder ve bunların sayısı biçimlerini kullanır. Mevcut dil kodları uyumludur.
 
 ## Layouts ve Üretici Araştırmaları
 
-Klavye görünümü tam boyutlu ve düşünülemez ISO-DE/ANSI-US referansları artı Corsair K100 RGB düzenleri sağlar. Geometri pozisyonları, geniş / anahtarları ve ISO Enter'i temsil eder. Standart düzenler genetik referanslardır. K100 düzenler milimetre doğru boyutları talep etmeden belgelendirilmiş kontrolleri izler. Doğru dil/geometri varyantını seçin: bir model adı veya USB VID/PID belirli bir varyant belirlemez.
+Klavye görünümü tam boy ve sayısal tuş takımı olmayan ISO-DE/ANSI-US referansları ile Corsair K100 RGB düzenlerini sunar. Geometri konumları, geniş/uzun tuşları ve ISO Enter’ı temsil eder. Standart düzenler genel referanstır. K100 düzenleri milimetre hassasiyeti iddiası olmadan belgelenmiş denetimleri izler. Doğru dil/geometri varyantını seçin; model adı veya USB VID/PID belirli varyantı kanıtlamaz.
 
-Haritalama, aktif Windows giriş düzenini kullanarak fiziksel tarama kodlarını çözür. Çalışma akışı bir taslak hazırlar ve kurtarma / çatışma kontrollerini korur. Standart bağlar küresel Windows sıcak anahtarlar, tek bir bağlantılı klavye ile izole edilmez. Corsair G1- G6 cihaz özel iCUE entegrasyonu kullanır. Diğer mülkiyet kontrolü bir adaptör veya üretici tarafından yapılandırılmış kısayol gerektirir. Ana Enter ve sayı anahtarı Enter, küresel hotkeys için bir sanal anahtar kimliği paylaşır.
+Eşleme fiziksel tarama kodlarını etkin Windows giriş düzeniyle çözer. İş akışı taslak hazırlar ve kaydetme/çakışma denetimlerini korur. Standart atamalar tek bağlı klavyeye yalıtılmış değildir; genel Windows kısayollarıdır. Corsair G1–G6 cihaza özgü iCUE entegrasyonu kullanır. Diğer tescilli denetimler bağdaştırıcı veya üreticinin yapılandırdığı kısayollar gerektirir. Ana Enter ile sayısal tuş takımı Enter genel kısayollarda aynı sanal tuş kimliğini paylaşır.
 
 The için [Üretici Araştırmaları](research/tastaturhersteller-sonderfunktionen.md) ve [CSV](research/tastaturhersteller-sonderfunktionen.csv) 74 marka / üretici grupları, konfigüratörleri, giriş SDK'ları ve aydınlatma API'leri ayırt eder. [Layout Kanıtı](research/keyboard-layout-evidence.md) Modeller, modeller ve modeller arasındaki fark. Araştırma kapsamı, donanım desteğinin uygulanması anlamına gelmez.
 
 ## veri
 
-Yerel uygulama verilerinde yapılandırma kaydedilir. İthalat / ihracat kullanımı JSON. İthalat konfigürasyonu öngörür, doğrulandıktan sonra mevcut konfigürasyonu değiştirir ve ithal edilen bağlantıları manuel olarak etkinleştirene kadar devre dışı bırakır. Tekstil eylem içeriği bir anahtarlık olarak toplanmaz. Credential Manager şifreleri ihraç edilen profillerden ayrıdır.
+Yapılandırma yerel uygulama verilerinde saklanır. İçe/dışa aktarma JSON kullanır. İçe aktarma önizleme sunar, onaydan sonra geçerli yapılandırmayı değiştirir ve içe aktarılan atamaları elle etkinleştirilene kadar kapatır. Metin eylemi içeriği tuş kaydı olarak toplanmaz. Credential Manager parolaları dışa aktarılan profillerden ayrıdır.
 
 ## Kontrolü
 
@@ -104,26 +104,26 @@ dotnet run --project tests/Aivana.Tests -c Release
 dotnet run --project tests/Aivana.Windows.Tests -c Release
 ```
 
-Windows kontroller donanımını kontrol edebilir ve geçici olarak destekli iCUE bağlantıları ayarlayabilir. Bu bağlantıları başka bir kontrolör kullanmadan çalıştırın. Ses son noktası kontrolleri canlı hacim veya değişken ayarları değiştirmez.
+Windows kontrolleri donanımı inceleyebilir ve desteklenen iCUE atamalarını geçici yapılandırıp serbest bırakabilir. Bu atamaları kullanan başka denetleyici olmadan çalıştırın. Ses uç noktası kontrolleri canlı ses düzeyini veya sessizlik ayarlarını değiştirmez.
 
-Yurt içi girişler Windows ayrıcalığı aşamaz. Normal olarak başlatılan bir denetleyici, bir yönetici uygulamasına giriş gönderemez. Korunan veya işgal edilen hotkeys çatışmalar olarak görünüyor.
+Yerel giriş Windows yetkilerini aşamaz. Normal başlatılan denetleyici yönetici uygulamasına giriş gönderemeyebilir. Ayrılmış veya kullanımda olan kısayollar çakışma olarak görünür.
 
 The için [Belgelendirme Index](README.md) Tarihi tasarımlar, planlar, araştırma ve tarihli test raporları. Tarihi planlar kaydedilen kapsamını, mevcut bir özellik desteği garantisi değil anlatır.
 
 ### Çalışma akışı şablonları ve hedef penceresi bekliyor
 
-Katalog altı düzenlenebilir çalışma akışları içerir: çalışma alanı, toplantı, akış, araştırma, proje anahtarı ve metin snippet. Katalog veya komut paletinde `workflow.` arama. Bir çalışma akışını seçmek kayıp bir tasarıma açıyor; asla hemen çalışmıyor. Tüm adımlar mevcut bir makroya bir çalışma akışı eklendiğinde veya bir Corsair anahtarına atıfta bulunur. Örnek URL'leri, program yolları, profilleri ve kaydetmeden önce OBS sahneleri ayarlayın.
+Katalog altı düzenlenebilir iş akışı içerir: çalışma alanı, toplantı, yayın, araştırma, proje değiştirme ve metin parçası. Katalogda veya paletten `workflow.` arayın. İş akışı seçmek kaydedilmemiş taslak açar; hiçbir zaman hemen çalıştırmaz. Mevcut makroya akış eklendiğinde veya Corsair tuşuna atandığında tüm adımlar korunur. Kaydetmeden önce örnek URL’leri, program yollarını, profilleri ve OBS sahnelerini yapılandırın.
 
-The için **Hedef penceresini bekleyin** adım bir süreç adı kabul eder (veya olmadan `.exe`), bir anahtarlık ve bir zaman kaybı 1–600,000 ms. En az bir filtre gerektirir; her iki filtre teslim edildiğinde eşleşmelidir. makro yalnızca eşleşen görülebilir pencere yanıtladıktan sonra devam eder. bir süreci paylaştığında belirli bir başlık kullanın. iptal veya zaman çıkışı sonraki adımları durdurur. pencere hazırlığı bir belge yüklendiğini veya bir dış hizmet gibi garanti etmez OBS WebSocket Bağlantılı.
+**Hedef pencereyi bekle** adımı işlem adı (`.exe` ile veya olmadan), büyük/küçük harfe duyarsız başlık alt dizesi ve 1–600000 ms zaman aşımı kabul eder. En az bir filtre gerekir; ikisi verilmişse ikisi de eşleşmelidir. Makro yalnızca eşleşen görünür pencere yanıt verip ön plana geldiğinde sürer. Birden fazla pencere aynı işlemi paylaşıyorsa belirli başlık kullanın. İptal veya zaman aşımı sonraki adımları durdurur. Pencerenin hazır olması belgenin yüklendiğini veya OBS WebSocket gibi harici hizmetin bağlı olduğunu garanti etmez.
 
-Gösterim parlaklığı: **Gelişmiş ekran parlaklığı için arama**, **Düşük ekran parlaklık** veya **Gizem parlaklığı 50 yüzde** eylem kataloğunda. Karşılıklı eylemlerin parlaklığı yüzde 10 ile değişir; sabit değerler 0 ile 100 arasındadır. Desteklenen iç ekranlar WMI'yi kullanır; uyumlu dış monitörler menüsünde DDC/CI etkinleştirilmelidir. Varsayılan olarak, eylem tüm desteklenen ekranları etkiler; editörde açık bir monitör seçilebilir. Bağlantılar ve dokular desteği kısıtlayabilir.
+Ekran parlaklığı: katalogda **Ekran parlaklığını artır**, **Ekran parlaklığını azalt** veya **Ekran parlaklığı yüzde 50** arayın. Göreli eylemler parlaklığı 10 yüzde puanı değiştirir; sabit değerler 0 ile 100 arasındadır. Desteklenen dahili ekranlar WMI kullanır; uyumlu harici monitörlerin menüsünde DDC/CI açık olmalıdır. Varsayılan olarak tüm desteklenen ekranlar etkilenir; düzenleyicide belirli monitör seçilebilir. Bağlantılar ve bağlantı istasyonları desteği kısıtlayabilir.
 
 ### Genişletilmiş kontroller
 
-Komut paleti ile açılır **Ctrl+K uygulama penceresi odaklanırken**. Arama için **Workflow Tasarımcı**, **Makro kayıtları**, **Profil Sinkronizasyonu**, veya **Anahtar Diagnostik** (iş akışı tasarımcısı seçilen çerçeve tasarısını düzenler: dosya / süreç / pencere koşulları, ileri kaydırma sayısı ve durdurma / hata işleme devam eder. kayıt defterleri yakalar ve bekler, sıradan yazdırma değil; kaydırma durdurur..
+Paleti **uygulama penceresi odaktayken Ctrl+K** ile açın. **İş akışı tasarımcısı**, **Makro kaydet**, **Profilleri eşitle** veya **Tuş tanılama** arayın (ifadeler seçilen dile bağlıdır). Tasarımcı seçilen kutucuk taslağını düzenler: dosya/işlem/pencere koşulları, ileri atlama sayıları ve hatada durma/devam etme. Kaydedici kısayol birleşimlerini ve beklemeleri yakalar, normal yazıyı kaydetmez; Escape kaydı durdurur. Aktarmadan önce sonucu inceleyin.
 
-Bir parlaklık aşamasında, tüm desteklenen ekranları veya belirli bir monitör seçin. Kullanılamayan seçilmiş bir monitör, sessizce başka bir ekran değiştirmek yerine bir hata üretir. Tablo, ilgili entegrasyonları mevcut olduğunda canlı parlaklık, ses ve OBS okuma gösterir; kullanılamayan bir okuma ölçülen bir değer olarak sunulmaz.
+Parlaklık adımında desteklenen tüm ekranları veya belirli monitörü seçin. Seçilen monitör kullanılamıyorsa başka ekranı sessizce değiştirmek yerine hata verilir. Pano ilgili entegrasyonlar varsa canlı parlaklık, ses ve OBS okumalarını gösterir; kullanılamayan okuma ölçülmüş değer olarak sunulmaz.
 
-Tile editöründe, desteklenen bir fiziksel özel anahtar atın ve hemen basın, dokunun, tutun veya çift dokunun seçin. Held katman seçicileri geçici olarak başka bir haritalama etkinleştirir ve önceki katmanı serbest bırakır. Gezi ve katmanlar Corsair SDK G anahtarları ve cihaz özel standart özel anahtarlar için geçerlidir, sıradan küresel sıcak anahtar değil. Standart anahtar yakalama F13-F24 ve klavye medya anahtarları destekler. Mülkiyetli Fn, profil ve diy kontrolü hala uyumlu bir satıcı adaptörü veya standart bir anahtarı haritalayan bir satıcı gerektirir. Raw Input anahtarını gözlemler ve normal davranışını bastırmaz Windows. Anahtar teşhisler profil, duraklama, bağlantı ve bağlama sorunlarını açıklıyor.
+Kutucuk düzenleyicide desteklenen fiziksel özel tuş atayın ve anında basma, kısa basma, basılı tutma veya çift basma seçin. Basılı katman seçicileri geçici başka eşlemeyi etkinleştirir ve bırakılınca önceki katmanı geri getirir. Hareketler ve katmanlar Corsair SDK G tuşlarına ve cihaza özgü standart özel tuşlara uygulanır, normal genel kısayollara uygulanmaz. Standart tuş yakalama F13–F24 ve klavye medya tuşlarını destekler. Tescilli Fn, profil ve kadran denetimleri uyumlu üretici bağdaştırıcısı veya standart tuşa üretici eşlemesi gerektirir. Raw Input tuşu gözlemler, normal Windows davranışını engellemez. Tuş tanılama profil, duraklama, bağlantı ve atama sorunlarını açıklar.
 
-Profil senkronizasyonu, mevcut bulut istemcisi tarafından yönetilen bir klasör de dahil olmak üzere seçtiğiniz bir klasör üzerinden dosyaları değiştirir. İthalat öncesi önizlemeyi gözden geçirin; ithalatlar devre dışı bırakılır ve donanım özel haritalama kaldırılır. Değerlendirmeler sessiz aşırı yazıları önler ve eylem içeriği de dahil olmak üzere açık bir seçimdir. MAKRIVO bir bulut hesabı sunmaz veya bulut kimliklerini korur. Sürücü şimdi MAKRIVO kendi teal M simgesini kullanır ve durduğunda bir amber dinlenme işareti gösterir.
+Profil eşitleme seçtiğiniz klasör üzerinden dosya alışverişi yapar; mevcut bulut istemcinizin yönettiği klasör de kullanılabilir. İçe aktarmadan önce önizlemeyi inceleyin; içe aktarımlar kapalı başlar ve donanıma özgü eşlemeleri kaldırır. Revizyonlar sessiz üzerine yazmayı önler; eylem içeriklerini dahil etmek açık seçimdir. MAKRIVO bulut hesabı sağlamaz veya bulut kimlik bilgilerini saklamaz. Bildirim alanı artık MAKRIVO’nun kendi turkuaz M simgesini kullanır ve duraklatıldığında kehribar duraklatma rozeti gösterir.

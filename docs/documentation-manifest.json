@@ -167,13 +167,13 @@
       "source": "docs/FEATURES.md",
       "target": "docs/en-US/FEATURES.md",
       "sourceSha256": "ea712f39457ce69f772f09a1294201705a5f36a92a8bf15f356bd80132c3e723",
-      "translationSha256": "acca9904c0749b6cc523fb4520615fef0e0eaff9427c615af0fe1d417313a8f1"
+      "translationSha256": "41b64e0705c3209e226335ecb1b4c877dfe3449994f1be9d5ee7835f4f380c00"
     },
     {
       "source": "docs/VERIFICATION.md",
       "target": "docs/en-US/VERIFICATION.md",
       "sourceSha256": "f19afb9e7b5ffac90c83167416ab3af0964a4481dd16b7357f8585480c6aae65",
-      "translationSha256": "68d2ac484b23c2387ea09786bd87a231b3e9b779444c830355ab21dd3fcaf22c"
+      "translationSha256": "d2f34293762ed96b624e7a5e591e75c8ba58b97f5b20a83e4539d5c526ede86e"
     },
     {
       "source": "docs/MAINTENANCE.md",
@@ -185,19 +185,19 @@
       "source": "docs/research/keyboard-custom.md",
       "target": "docs/en-US/research/keyboard-custom.md",
       "sourceSha256": "b8030b7a433e6c6513985b2a057c66d8184979f027f3e9fe8cda8e40ffd9faf4",
-      "translationSha256": "3d96a62c6142fd70c910fa720d1b2e523508fd927153b7f0f778547db7dcad26"
+      "translationSha256": "e6082d4073da5df4e272b4b208d5e5c28ab1479354c606a4f9126c9c4235db2c"
     },
     {
       "source": "docs/research/keyboard-gaming.md",
       "target": "docs/en-US/research/keyboard-gaming.md",
       "sourceSha256": "dd2a575750ec0d0943b62b6083e634a1b40e7b5538c43767aed62b545b3441f8",
-      "translationSha256": "456e2b2dc46e2e352deb8a5edb52ee3fb8630072a0609254c455e3b85c1c2c60"
+      "translationSha256": "31687adde64587530b708cd5205510fa738611318b3e6725a3b250a6649666b7"
     },
     {
       "source": "docs/research/keyboard-layout-evidence.md",
       "target": "docs/en-US/research/keyboard-layout-evidence.md",
       "sourceSha256": "701a4b190fd53a45f235635f8eef535f84affd64e6389c9ccdaf2e3cfec1391a",
-      "translationSha256": "103b8463d6a1c13fab8370a7d900da9db38d3e3d71f7997b516662c46dd68626"
+      "translationSha256": "290b5a4abd42652ec0d4f9ea26e2bea1aff0e3334cea8186f0392c33914f5495"
     },
     {
       "source": "docs/research/keyboard-productivity.md",
@@ -215,13 +215,13 @@
       "source": "docs/research/tastaturhersteller-sonderfunktionen.csv",
       "target": "docs/en-US/research/tastaturhersteller-sonderfunktionen.csv",
       "sourceSha256": "4f051721fcf5939ef9440f10f417151d08a0928136501fc5c871b58066e410a1",
-      "translationSha256": "046d6901831e15d7c8e77987ebb9f3fc209c8bbe4b6cdf8dc28c998e841d9b79"
+      "translationSha256": "6eef991773a29d242bc495b84f69289ec2da64b7821890f01a342e26091ba3b0"
     },
     {
       "source": "docs/research/tastaturhersteller-sonderfunktionen.md",
       "target": "docs/en-US/research/tastaturhersteller-sonderfunktionen.md",
       "sourceSha256": "531ab8901be0cbcae5542de1dde95416a8d1c040a63cb7a3386f695b925de782",
-      "translationSha256": "4482eba9ced7e1ebcde8afa115b52996efc9c0fd82bb504e333d8cb1384ee248"
+      "translationSha256": "31c86d3910d82d013514797bb2182f9286915b27da59151ce1018c84350feade"
     },
     {
       "source": "docs/testing/2026-10-09-app-audit.md",
@@ -239,7 +239,7 @@
       "source": "docs/testing/2026-10-12-dpi-scaling.md",
       "target": "docs/en-US/testing/2026-10-12-dpi-scaling.md",
       "sourceSha256": "dcf6d4c1a21eec9be9f07a38cab0aff308587c78b85fb2b24c69f04d28d82864",
-      "translationSha256": "1e375204621ec13c33828fab6e9ac09dabee52c5f9bdc9dd4e4f2b9330929dc3"
+      "translationSha256": "3a4a45a7463c9349c2bc1c201126c5538bc0ad3591fee9a28b35fe5c3c48e4bf"
     },
     {
       "source": "docs/testing/2026-10-12-github-publication.md",
@@ -257,25 +257,25 @@
       "source": "docs/testing/2026-10-12-local-ai-runtimes.md",
       "target": "docs/en-US/testing/2026-10-12-local-ai-runtimes.md",
       "sourceSha256": "3dfbb80761aad758ea6a9307999ff530dfdd4a0cf685804e15052508cf107fd7",
-      "translationSha256": "4a276a53838b2b0fa2f58fc9ef86fb6a98ab8aeda6cee788bed4215535ab1a5e"
+      "translationSha256": "162236ac0153f5e8a1c9cb5cd9713c3a66c7318d17a0ceff19144256e852c0f2"
     },
     {
       "source": "docs/testing/2026-10-12-local-meeting-assistant.md",
       "target": "docs/en-US/testing/2026-10-12-local-meeting-assistant.md",
       "sourceSha256": "56631ca85dca5f785448d12586b0741628728925a649f6124f7aebffb19bb615",
-      "translationSha256": "48164063212f858b233cde840cd58172fb8fba241d4b2b66422d6c9d18e3e2ad"
+      "translationSha256": "c215160bb61f359bd65ab4e89b79c9d1f273e7185a9f23f8427a4ecae5fd22fb"
     },
     {
       "source": "docs/testing/2026-10-12-responsive-layout.md",
       "target": "docs/en-US/testing/2026-10-12-responsive-layout.md",
       "sourceSha256": "8b3710a27f806575e88b4d9a0c4e80de4f26539ea1b5826cfe291764228b4ca6",
-      "translationSha256": "cc23db7b340f7ec260526e5b316d79e637a3dd7518f5c3ce8db8144bcaf36e79"
+      "translationSha256": "1b20c1b3f72ec524e3e2bdb1d9af0ef33d8b231772744d3524c3b105e9a626f1"
     },
     {
       "source": "docs/testing/2026-10-12-six-extensions.md",
       "target": "docs/en-US/testing/2026-10-12-six-extensions.md",
       "sourceSha256": "ff2eb755b2f18dce8c7bd7c832018ae71ee706bcca65e37c191dbb55ff999c1e",
-      "translationSha256": "6f38ae41f344af2d4a19c596983f05e29478f8d3e878922c2af3d64bf4e934d9"
+      "translationSha256": "ae1154db9f6a7205f587316b891500e604a5b318f57cbd24234ae2af5701abbc"
     },
     {
       "source": "docs/superpowers/plans/2026-10-08-controller-polish.md",
@@ -299,7 +299,7 @@
       "source": "docs/superpowers/plans/2026-10-12-local-ai-runtimes.md",
       "target": "docs/en-US/superpowers/plans/2026-10-12-local-ai-runtimes.md",
       "sourceSha256": "f24c6b3bce4d0b4dd9d42732c363941a36644f90cf8d664d61ea0c60eb950079",
-      "translationSha256": "14f8705e63d78fa489e09254a620c8c296e865629b5a69a5ca5a14dc89cafbdb"
+      "translationSha256": "95bfc3fc2101ba73aa70de8476e2bf75b29c68f852cb977ae6b5f5357f0ba1d1"
     },
     {
       "source": "docs/superpowers/plans/2026-10-12-local-meeting-assistant.md",
@@ -347,7 +347,7 @@
       "source": "docs/licensing/2026-10-12-commercial-license-audit.md",
       "target": "docs/en-US/licensing/2026-10-12-commercial-license-audit.md",
       "sourceSha256": "b58c6861e0b38c4495265651b5ab10349c701d8fb4582dd7d7cae5d2d865bc5f",
-      "translationSha256": "705d216cd140c57ed90ecd73ffa4cd487fb849f5c0e99728c265d94366a70ceb"
+      "translationSha256": "eeda8d740a5a2cec764d4c18b9de3f27e7a274b39a8da84b28230be0982dcf01"
     },
     {
       "source": "docs/licensing/makrivo-vertriebsplattformen-2026-10-12.html",
@@ -359,13 +359,13 @@
       "source": "README.md",
       "target": "docs/de-DE/REFERENCE.md",
       "sourceSha256": "eb6f3fe7810ed3e10793e8938e908e151a84c4afbea2f22cba2656bfe4e8dfc3",
-      "translationSha256": "43eb60df8ebe20b28e72ffac0e3068e83c1e9d6ce62add4492da1e518aaf3bc6"
+      "translationSha256": "218296415b1066c074419786fa63bce8bf8e7acac6cb5a6011d5958bc9e3500e"
     },
     {
       "source": "docs/HANDBOOK.md",
       "target": "docs/de-DE/HANDBOOK.md",
       "sourceSha256": "8c6422e18d8939164f91da28603ed597f478f1a9b8bb41e14cbe4f6630bab3fc",
-      "translationSha256": "de698fe878001b68c69d19f78b21650a8edbae2b3f0fe38f61e792acfc940e78"
+      "translationSha256": "869497a4bfed6f38d713ab18d07f2ab9280dc9c4a4d074a92fcc61d3fcd418a4"
     },
     {
       "source": "docs/FEATURES.md",
@@ -563,19 +563,19 @@
       "source": "README.md",
       "target": "docs/fr-FR/REFERENCE.md",
       "sourceSha256": "eb6f3fe7810ed3e10793e8938e908e151a84c4afbea2f22cba2656bfe4e8dfc3",
-      "translationSha256": "bff5f5142bb640f0c66eccb68e87db03ab95f2d4b269affa0d2b1d773018ef5b"
+      "translationSha256": "08aa35fbf33bac2f9f737621befef63ddede5fa9567d7ff39e511075fa4b2a63"
     },
     {
       "source": "docs/HANDBOOK.md",
       "target": "docs/fr-FR/HANDBOOK.md",
       "sourceSha256": "8c6422e18d8939164f91da28603ed597f478f1a9b8bb41e14cbe4f6630bab3fc",
-      "translationSha256": "407d1aae890b95340acacdafc87bb828d80cd19f744b45d75d6352f5533192b9"
+      "translationSha256": "a469cbafa897eab0255a64af9026c1b84ef6b2713155551dd8fb6e6afd99e9c7"
     },
     {
       "source": "docs/FEATURES.md",
       "target": "docs/fr-FR/FEATURES.md",
       "sourceSha256": "ea712f39457ce69f772f09a1294201705a5f36a92a8bf15f356bd80132c3e723",
-      "translationSha256": "c9e6a35b742a266e262b772b7060f41e99d87b306e198a6ff7a40b6f85ef70d0"
+      "translationSha256": "5ea542ca6425c659bedde7fba1e06785a2f6e29efcf9200bd97efa7e13724e75"
     },
     {
       "source": "docs/VERIFICATION.md",
@@ -665,7 +665,7 @@
       "source": "docs/testing/2026-10-12-local-ai-runtimes.md",
       "target": "docs/fr-FR/testing/2026-10-12-local-ai-runtimes.md",
       "sourceSha256": "3dfbb80761aad758ea6a9307999ff530dfdd4a0cf685804e15052508cf107fd7",
-      "translationSha256": "0b5fb00984286338878bc7604bc187f6160e5eb935d8ea0ac6645490bc16213a"
+      "translationSha256": "ca8967e4d42707b5a34c6998ab1c42412a6a7f483de95b224f4c93bff14e0a73"
     },
     {
       "source": "docs/testing/2026-10-12-local-meeting-assistant.md",
@@ -767,19 +767,19 @@
       "source": "README.md",
       "target": "docs/it-IT/REFERENCE.md",
       "sourceSha256": "eb6f3fe7810ed3e10793e8938e908e151a84c4afbea2f22cba2656bfe4e8dfc3",
-      "translationSha256": "f5dab27d433f7441b32688384189c1e3f0d92919e96a33c62cfdf71cb7709ba6"
+      "translationSha256": "92e14ed2fea0d399989a11286f999ec937e147ca43dfb50ffab6f108f4e401c6"
     },
     {
       "source": "docs/HANDBOOK.md",
       "target": "docs/it-IT/HANDBOOK.md",
       "sourceSha256": "8c6422e18d8939164f91da28603ed597f478f1a9b8bb41e14cbe4f6630bab3fc",
-      "translationSha256": "239df31f377c342a6064d370a44a65319316792ffcddc5faa59f91cb64304892"
+      "translationSha256": "66d8e5f7f0ec6d778e8c1bfc796e3cdf6b80bcae6ed97fa5d841bd5a09ad0592"
     },
     {
       "source": "docs/FEATURES.md",
       "target": "docs/it-IT/FEATURES.md",
       "sourceSha256": "ea712f39457ce69f772f09a1294201705a5f36a92a8bf15f356bd80132c3e723",
-      "translationSha256": "60e75993bfba921c4c72801efd0c300c294785e947001686c2270dad9a20f3e6"
+      "translationSha256": "0b2d15f8786ad154357b60a1b8f3b637602d6015c4770c7223dd23b70b54c7fe"
     },
     {
       "source": "docs/VERIFICATION.md",
@@ -869,7 +869,7 @@
       "source": "docs/testing/2026-10-12-local-ai-runtimes.md",
       "target": "docs/it-IT/testing/2026-10-12-local-ai-runtimes.md",
       "sourceSha256": "3dfbb80761aad758ea6a9307999ff530dfdd4a0cf685804e15052508cf107fd7",
-      "translationSha256": "53ecb901305a044ec540ecfde4bc9dc11d5986e7d888208f20e26b3ae779235e"
+      "translationSha256": "f2ab195e5e02c968a37a42105f91c2d56b379e03b645d81f3cad51be0326ac33"
     },
     {
       "source": "docs/testing/2026-10-12-local-meeting-assistant.md",
@@ -971,19 +971,19 @@
       "source": "README.md",
       "target": "docs/es-ES/REFERENCE.md",
       "sourceSha256": "eb6f3fe7810ed3e10793e8938e908e151a84c4afbea2f22cba2656bfe4e8dfc3",
-      "translationSha256": "57e6906e248593c2b07ab1c275d221e61f58bfa838ac60eb6c8d633a4cf04c75"
+      "translationSha256": "875da4c41feb9510469fadacfd63a549ef04160b46d2044dcb71a645a60f176d"
     },
     {
       "source": "docs/HANDBOOK.md",
       "target": "docs/es-ES/HANDBOOK.md",
       "sourceSha256": "8c6422e18d8939164f91da28603ed597f478f1a9b8bb41e14cbe4f6630bab3fc",
-      "translationSha256": "4109e563299e49ea62f16e8b511bacd6f95a05463bc6b6c905033717426226cc"
+      "translationSha256": "9a552038d1954f80ca1b9b5857a100e80697452c7a00ca7797e818b6f4c9344c"
     },
     {
       "source": "docs/FEATURES.md",
       "target": "docs/es-ES/FEATURES.md",
       "sourceSha256": "ea712f39457ce69f772f09a1294201705a5f36a92a8bf15f356bd80132c3e723",
-      "translationSha256": "943784fd75fe731fa3b60e1ca125c43066c78cc7fe712e61764f333a9886503b"
+      "translationSha256": "d486c3992e4fc32f95f5c10caba302f3cfae731bcc577d1f8204ebbebfbdcdd0"
     },
     {
       "source": "docs/VERIFICATION.md",
@@ -1073,7 +1073,7 @@
       "source": "docs/testing/2026-10-12-local-ai-runtimes.md",
       "target": "docs/es-ES/testing/2026-10-12-local-ai-runtimes.md",
       "sourceSha256": "3dfbb80761aad758ea6a9307999ff530dfdd4a0cf685804e15052508cf107fd7",
-      "translationSha256": "f7aadcc02f43056a0bed604fe8928597f091f551eebf46cd48f54496c0036fba"
+      "translationSha256": "4f92a766b5d313b49613701a5b90ed36529337f66a437257ffb6a42993114bc7"
     },
     {
       "source": "docs/testing/2026-10-12-local-meeting-assistant.md",
@@ -1175,19 +1175,19 @@
       "source": "README.md",
       "target": "docs/pt-PT/REFERENCE.md",
       "sourceSha256": "eb6f3fe7810ed3e10793e8938e908e151a84c4afbea2f22cba2656bfe4e8dfc3",
-      "translationSha256": "d4a0d1c5f1ce24df33e3b76a321fa745c97c552ffeea046819404ff8f2490f93"
+      "translationSha256": "b436b2a119e0554116d63da9bb2a6206ee3824da899e0bc8fcce845745654a56"
     },
     {
       "source": "docs/HANDBOOK.md",
       "target": "docs/pt-PT/HANDBOOK.md",
       "sourceSha256": "8c6422e18d8939164f91da28603ed597f478f1a9b8bb41e14cbe4f6630bab3fc",
-      "translationSha256": "12c5770a50e8f7938dd9169a75ba0e2c72eea89f758f9a543d2fea20c6d52c71"
+      "translationSha256": "8d3a36d28863059d63e18f4baa8d6b37365e871c886421d1e34f0d7c430ad95a"
     },
     {
       "source": "docs/FEATURES.md",
       "target": "docs/pt-PT/FEATURES.md",
       "sourceSha256": "ea712f39457ce69f772f09a1294201705a5f36a92a8bf15f356bd80132c3e723",
-      "translationSha256": "6876bc5487a9df58bd11191ba98ef2043b56ae1c0f51e4ef1fbad5690ec39969"
+      "translationSha256": "2767ff51f40232c4d1700db7f6836518c7118486bde0c545fd382c5c64340a35"
     },
     {
       "source": "docs/VERIFICATION.md",
@@ -1277,7 +1277,7 @@
       "source": "docs/testing/2026-10-12-local-ai-runtimes.md",
       "target": "docs/pt-PT/testing/2026-10-12-local-ai-runtimes.md",
       "sourceSha256": "3dfbb80761aad758ea6a9307999ff530dfdd4a0cf685804e15052508cf107fd7",
-      "translationSha256": "deec3e22bab6f6793fe27b2e61935c242e51cd0f5cb388e533992187c167eefa"
+      "translationSha256": "a380cff7295f9e78cbd3841ec9f931c32f5a561159ddf2a07df22372c0f88902"
     },
     {
       "source": "docs/testing/2026-10-12-local-meeting-assistant.md",
@@ -1379,19 +1379,19 @@
       "source": "README.md",
       "target": "docs/nl-NL/REFERENCE.md",
       "sourceSha256": "eb6f3fe7810ed3e10793e8938e908e151a84c4afbea2f22cba2656bfe4e8dfc3",
-      "translationSha256": "8102bb3a00afad036bf41ae70cf40465f0d7d2efb3723fdb687cc061d69a2d85"
+      "translationSha256": "25ae760d3e0661d885516ee80dc794aefbe1325327276ed36ebee008c4e51aa6"
     },
     {
       "source": "docs/HANDBOOK.md",
       "target": "docs/nl-NL/HANDBOOK.md",
       "sourceSha256": "8c6422e18d8939164f91da28603ed597f478f1a9b8bb41e14cbe4f6630bab3fc",
-      "translationSha256": "3bed7d9460b0845d2c10fa092b0b192ad14328894f0b4b325f0d76f313914039"
+      "translationSha256": "4c6898605604f3d707f89435635b989535a8843655851309ea8617cf15643417"
     },
     {
       "source": "docs/FEATURES.md",
       "target": "docs/nl-NL/FEATURES.md",
       "sourceSha256": "ea712f39457ce69f772f09a1294201705a5f36a92a8bf15f356bd80132c3e723",
-      "translationSha256": "85901669e4cdfd46af5adbc4c00e701c14272c8c76b5c29a71e65e68599d210d"
+      "translationSha256": "6f3b5718b38c78b9b8713216dd9b626db2b8ac0c05344e748a5c1991ccbfc73d"
     },
     {
       "source": "docs/VERIFICATION.md",
@@ -1403,7 +1403,7 @@
       "source": "docs/MAINTENANCE.md",
       "target": "docs/nl-NL/MAINTENANCE.md",
       "sourceSha256": "9bf5875b50386e698c0574eee390f790d4b1c29cb11288c856c98e03a05877f7",
-      "translationSha256": "e979cad20a7179ea83af878795e8f023169e892794c1c8bfcd537941469e51cd"
+      "translationSha256": "b4e136568afdc1189a789eef55904c326bf8fbbcd2e2db30e374e7d83705e57a"
     },
     {
       "source": "docs/research/keyboard-custom.md",
@@ -1439,13 +1439,13 @@
       "source": "docs/research/tastaturhersteller-sonderfunktionen.csv",
       "target": "docs/nl-NL/research/tastaturhersteller-sonderfunktionen.csv",
       "sourceSha256": "4f051721fcf5939ef9440f10f417151d08a0928136501fc5c871b58066e410a1",
-      "translationSha256": "fa9043593354de7fa827e2fc030e1d2a7b16ed1c2d84bac4347d9281ba839ce8"
+      "translationSha256": "65db466d64b72cb94b3593130385f251f87e4dd88a6f21077a741f8fc5520962"
     },
     {
       "source": "docs/research/tastaturhersteller-sonderfunktionen.md",
       "target": "docs/nl-NL/research/tastaturhersteller-sonderfunktionen.md",
       "sourceSha256": "531ab8901be0cbcae5542de1dde95416a8d1c040a63cb7a3386f695b925de782",
-      "translationSha256": "f16b28e48cfd69e1505fd9aa68edf6cc807fe315caf468c1f605e270d31e6454"
+      "translationSha256": "b6d9d4804e2f59c9828fa89cf71dbdc70a3c117b0db4ef58c4c87dd4203b6a46"
     },
     {
       "source": "docs/testing/2026-10-09-app-audit.md",
@@ -1481,7 +1481,7 @@
       "source": "docs/testing/2026-10-12-local-ai-runtimes.md",
       "target": "docs/nl-NL/testing/2026-10-12-local-ai-runtimes.md",
       "sourceSha256": "3dfbb80761aad758ea6a9307999ff530dfdd4a0cf685804e15052508cf107fd7",
-      "translationSha256": "55c93882a4c4522c3b15edefc19018f06d91531810ba31c75428d395ed6dc84c"
+      "translationSha256": "cc3a138aaa1a7ee901bc67dc6afc1fae52ba081b0fa6df9170a36dadd509e9ee"
     },
     {
       "source": "docs/testing/2026-10-12-local-meeting-assistant.md",
@@ -1583,19 +1583,19 @@
       "source": "README.md",
       "target": "docs/pl-PL/REFERENCE.md",
       "sourceSha256": "eb6f3fe7810ed3e10793e8938e908e151a84c4afbea2f22cba2656bfe4e8dfc3",
-      "translationSha256": "0ff56025c17fc91268e77546996abb077f3ef0c02a2e7e250d88021ec203e659"
+      "translationSha256": "dcac2b7288b948024a137a328465905df685d9bd9ed6ce05ffd511870fd7f717"
     },
     {
       "source": "docs/HANDBOOK.md",
       "target": "docs/pl-PL/HANDBOOK.md",
       "sourceSha256": "8c6422e18d8939164f91da28603ed597f478f1a9b8bb41e14cbe4f6630bab3fc",
-      "translationSha256": "dea455e202fa523d5c7c17c1743d08993647d30d7cd04b979ee9a1d3383d0dd0"
+      "translationSha256": "cd8c783039b3484401750fdd8cbd5d6acb4647b5a4a867ac01a49a96b36428a8"
     },
     {
       "source": "docs/FEATURES.md",
       "target": "docs/pl-PL/FEATURES.md",
       "sourceSha256": "ea712f39457ce69f772f09a1294201705a5f36a92a8bf15f356bd80132c3e723",
-      "translationSha256": "07aa39d10d6cd513913dd7ce6a9e97093c331e4228e5a72ba860b43c31aa340d"
+      "translationSha256": "b716685a3ed17992a3987cd99bc5aab8f8774b7261629001e86993dcf3ea8695"
     },
     {
       "source": "docs/VERIFICATION.md",
@@ -1607,7 +1607,7 @@
       "source": "docs/MAINTENANCE.md",
       "target": "docs/pl-PL/MAINTENANCE.md",
       "sourceSha256": "9bf5875b50386e698c0574eee390f790d4b1c29cb11288c856c98e03a05877f7",
-      "translationSha256": "54c03a82537a5b7dfe04b80ebcf1f3e00b177b1fb8544f1ad97d9051cdf26f51"
+      "translationSha256": "0532a2a6c9fabbce538682668cdc5c793113501be95b46b1158cf2f43ac8349d"
     },
     {
       "source": "docs/research/keyboard-custom.md",
@@ -1631,25 +1631,25 @@
       "source": "docs/research/keyboard-productivity.md",
       "target": "docs/pl-PL/research/keyboard-productivity.md",
       "sourceSha256": "3b7c3f728d4fd050b6695532feccb872c6ce39c3b69f1970420c6e53c75856e4",
-      "translationSha256": "6bee6ff2347c45fb92fc6027b14a129d3522e4c9b4b1827899bb3126be2a057b"
+      "translationSha256": "88e187246aab215094aac99d2fcb4223a4e66442ed3b40892a5c7f253b74e469"
     },
     {
       "source": "docs/research/obs-integration.md",
       "target": "docs/pl-PL/research/obs-integration.md",
       "sourceSha256": "a4e6ca4368b28daa73ffbdda4fb817863e3fa15d52da00d26bbd32ce1f05f9b7",
-      "translationSha256": "079fd046472f2f87c30cebe4ed5c5cd20d4bbd1d44c3441a245545036e1c634c"
+      "translationSha256": "858f41cd580175ad8a466e0d71a1145b75780b74355e6776cb735ec30f83e97f"
     },
     {
       "source": "docs/research/tastaturhersteller-sonderfunktionen.csv",
       "target": "docs/pl-PL/research/tastaturhersteller-sonderfunktionen.csv",
       "sourceSha256": "4f051721fcf5939ef9440f10f417151d08a0928136501fc5c871b58066e410a1",
-      "translationSha256": "9105fd54b5bb0f4501067fc4a2ef76188670d8a83131568df8afec1a5e5c477c"
+      "translationSha256": "e16623776599328f6cdc8ec1794a05e598079710a57fd15a0acdaead35d03bba"
     },
     {
       "source": "docs/research/tastaturhersteller-sonderfunktionen.md",
       "target": "docs/pl-PL/research/tastaturhersteller-sonderfunktionen.md",
       "sourceSha256": "531ab8901be0cbcae5542de1dde95416a8d1c040a63cb7a3386f695b925de782",
-      "translationSha256": "26b1b134457a050960e8d2826f2eb498bbc0fb0ac3c82ca2690a636e42809455"
+      "translationSha256": "7fc809bf1580c5b1c4fd3d760daca76d0f6a6670fd5a5d1d5d752b791ba1e790"
     },
     {
       "source": "docs/testing/2026-10-09-app-audit.md",
@@ -1679,13 +1679,13 @@
       "source": "docs/testing/2026-10-12-gui-polish.md",
       "target": "docs/pl-PL/testing/2026-10-12-gui-polish.md",
       "sourceSha256": "ac39188358e51c68964421d3e855161d607b02a41da2b1a1fad70244f9feff97",
-      "translationSha256": "225f8461e36f41055abf952a1d7ea0a84a0aed44abc3b9e5b8f2e406f12b8254"
+      "translationSha256": "e68eb4c1b4104c366cccd4e0a39bd3ed64c7269d4cd5f74079744081b2e83c0c"
     },
     {
       "source": "docs/testing/2026-10-12-local-ai-runtimes.md",
       "target": "docs/pl-PL/testing/2026-10-12-local-ai-runtimes.md",
       "sourceSha256": "3dfbb80761aad758ea6a9307999ff530dfdd4a0cf685804e15052508cf107fd7",
-      "translationSha256": "f044070fcce3b05fb2e67272731d4eff7a94c63fcf9f1e5e209b6a678a3f76e8"
+      "translationSha256": "e009cbed366d7f1adfe8bf6958d17ad269af75008c322375af42c90d15dc7468"
     },
     {
       "source": "docs/testing/2026-10-12-local-meeting-assistant.md",
@@ -1787,19 +1787,19 @@
       "source": "README.md",
       "target": "docs/cs-CZ/REFERENCE.md",
       "sourceSha256": "eb6f3fe7810ed3e10793e8938e908e151a84c4afbea2f22cba2656bfe4e8dfc3",
-      "translationSha256": "a8b1c6070c3a2696a15af6694407ac0ef0c58f2405ec09d00c4442a9e1e1bd32"
+      "translationSha256": "9b0675ec8c1c698d71c2466e682e4f5db3a6e8283ae6bd4df2a8afd1953631d1"
     },
     {
       "source": "docs/HANDBOOK.md",
       "target": "docs/cs-CZ/HANDBOOK.md",
       "sourceSha256": "8c6422e18d8939164f91da28603ed597f478f1a9b8bb41e14cbe4f6630bab3fc",
-      "translationSha256": "73e47bff82ab1bc5935f6935f21d71a6e0197e8bbae7f9bb6a81604732011258"
+      "translationSha256": "234d03db6728404023cbfe396f276b71dea74922202e780a6b959808e474875d"
     },
     {
       "source": "docs/FEATURES.md",
       "target": "docs/cs-CZ/FEATURES.md",
       "sourceSha256": "ea712f39457ce69f772f09a1294201705a5f36a92a8bf15f356bd80132c3e723",
-      "translationSha256": "ecf094a7646ddfcff04d8d0dcc10332f1d650dbd32a96b05d055bc1e6d5802a9"
+      "translationSha256": "2d65f1db9c94aa35d41083fa477ce21c599b259e674515165d590a14f0924a38"
     },
     {
       "source": "docs/VERIFICATION.md",
@@ -1811,7 +1811,7 @@
       "source": "docs/MAINTENANCE.md",
       "target": "docs/cs-CZ/MAINTENANCE.md",
       "sourceSha256": "9bf5875b50386e698c0574eee390f790d4b1c29cb11288c856c98e03a05877f7",
-      "translationSha256": "dfac18daaa92a5b923861a1a44e8aacb8d31a414bb496a0426d34615756601bc"
+      "translationSha256": "db3b0d7c92c30012aaa47564c382a3643c2b7c9172360d65dc11971e86927708"
     },
     {
       "source": "docs/research/keyboard-custom.md",
@@ -1835,25 +1835,25 @@
       "source": "docs/research/keyboard-productivity.md",
       "target": "docs/cs-CZ/research/keyboard-productivity.md",
       "sourceSha256": "3b7c3f728d4fd050b6695532feccb872c6ce39c3b69f1970420c6e53c75856e4",
-      "translationSha256": "a9dd4da09d7bb342a64ce0b92b7194846b1d056ef45770f47afc70056e2892a5"
+      "translationSha256": "7205a1ddc1f4cdea29983945595f407aa2735383306446b914f3c67fb5b30d1e"
     },
     {
       "source": "docs/research/obs-integration.md",
       "target": "docs/cs-CZ/research/obs-integration.md",
       "sourceSha256": "a4e6ca4368b28daa73ffbdda4fb817863e3fa15d52da00d26bbd32ce1f05f9b7",
-      "translationSha256": "42a9c988e70932bb713890ad845045f09a3f4b74ff47c9e12789f56c4b9477e6"
+      "translationSha256": "00af0216edc210f054dc6ce488fd5a23a9419efdaddd0bff6e3731f591ea510f"
     },
     {
       "source": "docs/research/tastaturhersteller-sonderfunktionen.csv",
       "target": "docs/cs-CZ/research/tastaturhersteller-sonderfunktionen.csv",
       "sourceSha256": "4f051721fcf5939ef9440f10f417151d08a0928136501fc5c871b58066e410a1",
-      "translationSha256": "2c4f12045cd7805f1351856bf085e1554fdae131cc8ba7fd1c2c7ffda9f2199c"
+      "translationSha256": "01dd1d1e5ede3b0d5d2fc95795f7e1f6370f99cbd03ed2681a1a0c381740b5e2"
     },
     {
       "source": "docs/research/tastaturhersteller-sonderfunktionen.md",
       "target": "docs/cs-CZ/research/tastaturhersteller-sonderfunktionen.md",
       "sourceSha256": "531ab8901be0cbcae5542de1dde95416a8d1c040a63cb7a3386f695b925de782",
-      "translationSha256": "6c4ef2f880feef4bdfc34e6f64622340baeaac72c45efb5407e3c358e0264c4a"
+      "translationSha256": "c51b9f237426ec21336e1cb638be65dffdf0e7a5c3f11bd1dc5a03da0ff1d823"
     },
     {
       "source": "docs/testing/2026-10-09-app-audit.md",
@@ -1883,13 +1883,13 @@
       "source": "docs/testing/2026-10-12-gui-polish.md",
       "target": "docs/cs-CZ/testing/2026-10-12-gui-polish.md",
       "sourceSha256": "ac39188358e51c68964421d3e855161d607b02a41da2b1a1fad70244f9feff97",
-      "translationSha256": "95f472fa4bd89691f5782280e125c000ebc8d605983c49d31fb3a123f44a7d8f"
+      "translationSha256": "cba7264906f86655fb16a151ed14c5768312c1bf199adbb39b6da3c10cc99656"
     },
     {
       "source": "docs/testing/2026-10-12-local-ai-runtimes.md",
       "target": "docs/cs-CZ/testing/2026-10-12-local-ai-runtimes.md",
       "sourceSha256": "3dfbb80761aad758ea6a9307999ff530dfdd4a0cf685804e15052508cf107fd7",
-      "translationSha256": "ab76414f0cbacbfa3258687f0e5d575b20311e786a4f28ce9ed739fea36c306c"
+      "translationSha256": "05b17084cf74df52c2884538760966c52357be8794a132be6383e6b7df07a9d5"
     },
     {
       "source": "docs/testing/2026-10-12-local-meeting-assistant.md",
@@ -1991,19 +1991,19 @@
       "source": "README.md",
       "target": "docs/sk-SK/REFERENCE.md",
       "sourceSha256": "eb6f3fe7810ed3e10793e8938e908e151a84c4afbea2f22cba2656bfe4e8dfc3",
-      "translationSha256": "465d74965364aa0ea308bcee4b7d734dd0b10cf53fcc9964d60250240b62c005"
+      "translationSha256": "d0d7e8735363e8ccb16f0c783a5b79b41f37e5aee220bb0bde50bc750bbcc460"
     },
     {
       "source": "docs/HANDBOOK.md",
       "target": "docs/sk-SK/HANDBOOK.md",
       "sourceSha256": "8c6422e18d8939164f91da28603ed597f478f1a9b8bb41e14cbe4f6630bab3fc",
-      "translationSha256": "32a79658067f6c25c98dec1bdca42007c82826dd6e1344da9f1a53fce10557f7"
+      "translationSha256": "60c78f1f0515947fe72c3a6170b4488fb05786c84b30e2154fde057dfa8336a7"
     },
     {
       "source": "docs/FEATURES.md",
       "target": "docs/sk-SK/FEATURES.md",
       "sourceSha256": "ea712f39457ce69f772f09a1294201705a5f36a92a8bf15f356bd80132c3e723",
-      "translationSha256": "bcf8ad5a670501d75ea6e6457f5ab131848172606ade30cc5b2afa4ad95e889f"
+      "translationSha256": "0ba1441213c8d05c51c6b10b17d9feae8101c20872b4c39b3dfa66a92afbe207"
     },
     {
       "source": "docs/VERIFICATION.md",
@@ -2015,7 +2015,7 @@
       "source": "docs/MAINTENANCE.md",
       "target": "docs/sk-SK/MAINTENANCE.md",
       "sourceSha256": "9bf5875b50386e698c0574eee390f790d4b1c29cb11288c856c98e03a05877f7",
-      "translationSha256": "1113a5e19d0c4c4c023844c253d264593c71738459558169f0e5792f282336ca"
+      "translationSha256": "cd3948bb1783bea3a2b3150c16c36cb5aad522ca4841027c35c76497dd2dc187"
     },
     {
       "source": "docs/research/keyboard-custom.md",
@@ -2039,25 +2039,25 @@
       "source": "docs/research/keyboard-productivity.md",
       "target": "docs/sk-SK/research/keyboard-productivity.md",
       "sourceSha256": "3b7c3f728d4fd050b6695532feccb872c6ce39c3b69f1970420c6e53c75856e4",
-      "translationSha256": "c95e5793112bfecb14ffe970578030e0f5183fb5bf479b9538c265e718622e45"
+      "translationSha256": "938f7c53174204fd2d0bcf3ef5f6fe0cfeb94d56a3b92e71fca6d576d779615f"
     },
     {
       "source": "docs/research/obs-integration.md",
       "target": "docs/sk-SK/research/obs-integration.md",
       "sourceSha256": "a4e6ca4368b28daa73ffbdda4fb817863e3fa15d52da00d26bbd32ce1f05f9b7",
-      "translationSha256": "b9d6fa9fa6d084007fe1b0ae37c588965a0bb9c0ff7a083dc72c290cc9417d35"
+      "translationSha256": "eab18e515068779772f717abc7a368abfed9273fe00f1afbe5e343f44d49b851"
     },
     {
       "source": "docs/research/tastaturhersteller-sonderfunktionen.csv",
       "target": "docs/sk-SK/research/tastaturhersteller-sonderfunktionen.csv",
       "sourceSha256": "4f051721fcf5939ef9440f10f417151d08a0928136501fc5c871b58066e410a1",
-      "translationSha256": "262b011e23738c9421b939b3659a1ffe20c9d13c5ad9abca615ceaec4cc582a1"
+      "translationSha256": "3aeabeb3304ad9a1157df2f0f01b17dbea5d8cff7ba784a5d7f88b60d6bcf407"
     },
     {
       "source": "docs/research/tastaturhersteller-sonderfunktionen.md",
       "target": "docs/sk-SK/research/tastaturhersteller-sonderfunktionen.md",
       "sourceSha256": "531ab8901be0cbcae5542de1dde95416a8d1c040a63cb7a3386f695b925de782",
-      "translationSha256": "da674aa87f40e91c92cb44d0638ae6b3a3a139c913c089d18865055778f70508"
+      "translationSha256": "80b8fa2ec63e04082867c267d750b17bc229054000e9bd04007ac9bc5a125a40"
     },
     {
       "source": "docs/testing/2026-10-09-app-audit.md",
@@ -2087,13 +2087,13 @@
       "source": "docs/testing/2026-10-12-gui-polish.md",
       "target": "docs/sk-SK/testing/2026-10-12-gui-polish.md",
       "sourceSha256": "ac39188358e51c68964421d3e855161d607b02a41da2b1a1fad70244f9feff97",
-      "translationSha256": "928af1af00c2cd09ce954a966930b61a6d57f60587bf541c6c82a19adfdb4376"
+      "translationSha256": "0cfb6011a9c7c12cd9121af3ff19e8e8c50c90a7ba82e3242eb3c448c3091fa7"
     },
     {
       "source": "docs/testing/2026-10-12-local-ai-runtimes.md",
       "target": "docs/sk-SK/testing/2026-10-12-local-ai-runtimes.md",
       "sourceSha256": "3dfbb80761aad758ea6a9307999ff530dfdd4a0cf685804e15052508cf107fd7",
-      "translationSha256": "05ad8650d2b72991742ac688ffd3e8975392418ba406458beb5aece73c7b4350"
+      "translationSha256": "1a2e9f771dacf05cfb0e0381c715b436b86b8502dbec38ba1fe6eda93925bd9d"
     },
     {
       "source": "docs/testing/2026-10-12-local-meeting-assistant.md",
@@ -2195,19 +2195,19 @@
       "source": "README.md",
       "target": "docs/hu-HU/REFERENCE.md",
       "sourceSha256": "eb6f3fe7810ed3e10793e8938e908e151a84c4afbea2f22cba2656bfe4e8dfc3",
-      "translationSha256": "44018e60af27781cfd2f40a25bf389cd6e4f166a211a5d665751068d446fb72a"
+      "translationSha256": "482eb6d4a41f42a5784c7852a8188cc2f853b5afea0678f4c1059d8ef8576bde"
     },
     {
       "source": "docs/HANDBOOK.md",
       "target": "docs/hu-HU/HANDBOOK.md",
       "sourceSha256": "8c6422e18d8939164f91da28603ed597f478f1a9b8bb41e14cbe4f6630bab3fc",
-      "translationSha256": "8b562c21ab2af27ebab0295497647de9a6b8f3d041ff7131f4aba834e47c49b1"
+      "translationSha256": "f8057f4b392bebf3ed1d774da3e337fe7ecfa6178b3f96a99f0ef73ec1d58650"
     },
     {
       "source": "docs/FEATURES.md",
       "target": "docs/hu-HU/FEATURES.md",
       "sourceSha256": "ea712f39457ce69f772f09a1294201705a5f36a92a8bf15f356bd80132c3e723",
-      "translationSha256": "ae4b30bad813759f7d52110f0f669dc2159bd02a58851bcf85ec69c8f7632a63"
+      "translationSha256": "f51646947263ef40940f16e39200335d5c1b66f04c1155b2884988b419382a68"
     },
     {
       "source": "docs/VERIFICATION.md",
@@ -2219,7 +2219,7 @@
       "source": "docs/MAINTENANCE.md",
       "target": "docs/hu-HU/MAINTENANCE.md",
       "sourceSha256": "9bf5875b50386e698c0574eee390f790d4b1c29cb11288c856c98e03a05877f7",
-      "translationSha256": "b837bfb7501d2cc53c5d62cd9f7ad136d864e65f473768fed5f4660140651c38"
+      "translationSha256": "dca9334daa461c391ec382fdca5318eab21741d7e617a8c1b9b88de3fa1c492f"
     },
     {
       "source": "docs/research/keyboard-custom.md",
@@ -2231,7 +2231,7 @@
       "source": "docs/research/keyboard-gaming.md",
       "target": "docs/hu-HU/research/keyboard-gaming.md",
       "sourceSha256": "dd2a575750ec0d0943b62b6083e634a1b40e7b5538c43767aed62b545b3441f8",
-      "translationSha256": "7c668e05c83fef364f91481b948f113c56f6144152b1fa566a7015093ca27490"
+      "translationSha256": "68a5f2aa3c7ac94538e501a1a0c36b7a301181c08f86a3d80687956ff49a2206"
     },
     {
       "source": "docs/research/keyboard-layout-evidence.md",
@@ -2249,7 +2249,7 @@
       "source": "docs/research/obs-integration.md",
       "target": "docs/hu-HU/research/obs-integration.md",
       "sourceSha256": "a4e6ca4368b28daa73ffbdda4fb817863e3fa15d52da00d26bbd32ce1f05f9b7",
-      "translationSha256": "1f865519ce7bb9f264c1558faf3c6753abe218a1d288ec52b509f607a485d157"
+      "translationSha256": "647cc3b49dc13348a0a82bbec23b097bc0c5f45bb2d5a2a9797ad59af5b1ff21"
     },
     {
       "source": "docs/research/tastaturhersteller-sonderfunktionen.csv",
@@ -2291,13 +2291,13 @@
       "source": "docs/testing/2026-10-12-gui-polish.md",
       "target": "docs/hu-HU/testing/2026-10-12-gui-polish.md",
       "sourceSha256": "ac39188358e51c68964421d3e855161d607b02a41da2b1a1fad70244f9feff97",
-      "translationSha256": "dcdd9529347e16b9ef96d250567db8d6d8e53622da2500326118d8bb26495119"
+      "translationSha256": "d356388b93c252676999264802fc53b09f61d6d91ae0bc1ee9b155d6b5bbed51"
     },
     {
       "source": "docs/testing/2026-10-12-local-ai-runtimes.md",
       "target": "docs/hu-HU/testing/2026-10-12-local-ai-runtimes.md",
       "sourceSha256": "3dfbb80761aad758ea6a9307999ff530dfdd4a0cf685804e15052508cf107fd7",
-      "translationSha256": "63ae4cf1a564ea2084ef099c44445a01e56c00197e6725207af47d5294376d38"
+      "translationSha256": "1dd920f9d5148c92f8bc4605beb4b04788ed5e739f1ccc181344ecef0ec7aaa7"
     },
     {
       "source": "docs/testing/2026-10-12-local-meeting-assistant.md",
@@ -2399,19 +2399,19 @@
       "source": "README.md",
       "target": "docs/ro-RO/REFERENCE.md",
       "sourceSha256": "eb6f3fe7810ed3e10793e8938e908e151a84c4afbea2f22cba2656bfe4e8dfc3",
-      "translationSha256": "22859a1a1da78f642f69b2c36069f072c924aa6a781058c3eb3921ad420050ac"
+      "translationSha256": "2ac1422288aa58bfffcdc96d7c89d77dbd5da55a37abefaec5b28bc977d88ebf"
     },
     {
       "source": "docs/HANDBOOK.md",
       "target": "docs/ro-RO/HANDBOOK.md",
       "sourceSha256": "8c6422e18d8939164f91da28603ed597f478f1a9b8bb41e14cbe4f6630bab3fc",
-      "translationSha256": "feb37ef04d8504d2b85dc703da3e433a69d05c9cd86d31b19fd9efe5f7f15813"
+      "translationSha256": "8ea9041d4d993e4e4a27d353ce0c8031fefa2aaee7125ef173884d1e895b9e3f"
     },
     {
       "source": "docs/FEATURES.md",
       "target": "docs/ro-RO/FEATURES.md",
       "sourceSha256": "ea712f39457ce69f772f09a1294201705a5f36a92a8bf15f356bd80132c3e723",
-      "translationSha256": "c616d7a280be62d40c6143de9ad97b9573d60b28f546746b3f2665a485dca442"
+      "translationSha256": "91089f403acf82286f030f4358e1eab379734623ecd3bad19cd7aa58391cc589"
     },
     {
       "source": "docs/VERIFICATION.md",
@@ -2423,7 +2423,7 @@
       "source": "docs/MAINTENANCE.md",
       "target": "docs/ro-RO/MAINTENANCE.md",
       "sourceSha256": "9bf5875b50386e698c0574eee390f790d4b1c29cb11288c856c98e03a05877f7",
-      "translationSha256": "64f9f4ffec09f0919f15e89e3b4d84ab110eec016969ef6d637b1f404ee902d4"
+      "translationSha256": "ca327e7137c95f4962be258fd20115dceab78208c05d12105718a6bf0a623cfa"
     },
     {
       "source": "docs/research/keyboard-custom.md",
@@ -2495,13 +2495,13 @@
       "source": "docs/testing/2026-10-12-gui-polish.md",
       "target": "docs/ro-RO/testing/2026-10-12-gui-polish.md",
       "sourceSha256": "ac39188358e51c68964421d3e855161d607b02a41da2b1a1fad70244f9feff97",
-      "translationSha256": "7a91291e00f64d4e6f094128663944fb6421b3e82b5e9d364dc2e20f932371b5"
+      "translationSha256": "73d4df4ce4fff8539830ec71fed9ab523bb35a2b116b28939ef5b4b12492ec08"
     },
     {
       "source": "docs/testing/2026-10-12-local-ai-runtimes.md",
       "target": "docs/ro-RO/testing/2026-10-12-local-ai-runtimes.md",
       "sourceSha256": "3dfbb80761aad758ea6a9307999ff530dfdd4a0cf685804e15052508cf107fd7",
-      "translationSha256": "45f12f4eb195da5e65c26592db354f2190e4472ba400d2ad10247db7051f01aa"
+      "translationSha256": "d217bc93bdb4de01bc48d22198a4816428a707e2cd65f14af30ded22ba63e0f1"
     },
     {
       "source": "docs/testing/2026-10-12-local-meeting-assistant.md",
@@ -2603,19 +2603,19 @@
       "source": "README.md",
       "target": "docs/bg-BG/REFERENCE.md",
       "sourceSha256": "eb6f3fe7810ed3e10793e8938e908e151a84c4afbea2f22cba2656bfe4e8dfc3",
-      "translationSha256": "abb6a9e29e5ada4a99405e68cc06e9d13bd5ae2e72db95623923ce3cb64b5b1a"
+      "translationSha256": "e6701fad90093875ea3f38a5ca55e590c9e986da5ce68ccd8370d4c732291122"
     },
     {
       "source": "docs/HANDBOOK.md",
       "target": "docs/bg-BG/HANDBOOK.md",
       "sourceSha256": "8c6422e18d8939164f91da28603ed597f478f1a9b8bb41e14cbe4f6630bab3fc",
-      "translationSha256": "fba4a4d17caea75ad6304e9510050627ad1b5169c584b9627ca3206a457668e1"
+      "translationSha256": "aee874b59091cd74ee2384817344eee577f4b75b8ad43ad4c08975037f1fadd6"
     },
     {
       "source": "docs/FEATURES.md",
       "target": "docs/bg-BG/FEATURES.md",
       "sourceSha256": "ea712f39457ce69f772f09a1294201705a5f36a92a8bf15f356bd80132c3e723",
-      "translationSha256": "985477796c80d038b28ff4eb078c595461006ddee547f0a78dbe55ff00b4b8dd"
+      "translationSha256": "115f2d21a5a9278cc0c328241feb9d55eb93c927cb2555cb3229ed7ca77908ee"
     },
     {
       "source": "docs/VERIFICATION.md",
@@ -2627,7 +2627,7 @@
       "source": "docs/MAINTENANCE.md",
       "target": "docs/bg-BG/MAINTENANCE.md",
       "sourceSha256": "9bf5875b50386e698c0574eee390f790d4b1c29cb11288c856c98e03a05877f7",
-      "translationSha256": "26dc2f94d1dc9e6211f16e932c4b90c8dc826e043879b6876dbc43cb4ffa718a"
+      "translationSha256": "88bbb652f6e3d5d4f1f491ff1ea8b2cbe1dd203ec33559ce6eadc836fc2649cd"
     },
     {
       "source": "docs/research/keyboard-custom.md",
@@ -2639,7 +2639,7 @@
       "source": "docs/research/keyboard-gaming.md",
       "target": "docs/bg-BG/research/keyboard-gaming.md",
       "sourceSha256": "dd2a575750ec0d0943b62b6083e634a1b40e7b5538c43767aed62b545b3441f8",
-      "translationSha256": "1ff4c9e31bce2b93a468461c605224b66bbaafdc64de3c59aa0c81f1838d9c5f"
+      "translationSha256": "0718b66653915e10c797cf7cdffd254ace94fa2be79c0724ea55615bbd35d743"
     },
     {
       "source": "docs/research/keyboard-layout-evidence.md",
@@ -2699,13 +2699,13 @@
       "source": "docs/testing/2026-10-12-gui-polish.md",
       "target": "docs/bg-BG/testing/2026-10-12-gui-polish.md",
       "sourceSha256": "ac39188358e51c68964421d3e855161d607b02a41da2b1a1fad70244f9feff97",
-      "translationSha256": "1d384252e320eebaed71ba720d9bdb6cd764e629581ab6c2fd6fa23b5dc7e364"
+      "translationSha256": "60ae4b19bfae8aa9c70f4195d85f9d4a8aaf1228e8950a60b4e79cce2e9889cb"
     },
     {
       "source": "docs/testing/2026-10-12-local-ai-runtimes.md",
       "target": "docs/bg-BG/testing/2026-10-12-local-ai-runtimes.md",
       "sourceSha256": "3dfbb80761aad758ea6a9307999ff530dfdd4a0cf685804e15052508cf107fd7",
-      "translationSha256": "9afa5262819ae50ed78f3bc8c0887c1344df008032a461fffe2c446c0e00f77b"
+      "translationSha256": "0e33ffd00212b96a7e9c0d9193998a23925dead589823e9148fc848f04e9caba"
     },
     {
       "source": "docs/testing/2026-10-12-local-meeting-assistant.md",
@@ -2723,7 +2723,7 @@
       "source": "docs/testing/2026-10-12-six-extensions.md",
       "target": "docs/bg-BG/testing/2026-10-12-six-extensions.md",
       "sourceSha256": "ff2eb755b2f18dce8c7bd7c832018ae71ee706bcca65e37c191dbb55ff999c1e",
-      "translationSha256": "4e0190e325397bde8133f0f901c79f1844c80ae05a16811bad4fbe2d33c23935"
+      "translationSha256": "04eb3cb8875be7d9b908f6252710495353d25d49cc283ab32860a7d69f73d6ca"
     },
     {
       "source": "docs/superpowers/plans/2026-10-08-controller-polish.md",
@@ -2789,7 +2789,7 @@
       "source": "docs/superpowers/specs/2026-10-12-six-extensions-design.md",
       "target": "docs/bg-BG/superpowers/specs/2026-10-12-six-extensions-design.md",
       "sourceSha256": "a80dda083fbbe90404023ac784b47e7f16f89f72ce0b821e3cda122dc561317f",
-      "translationSha256": "cd866add62b71c21646d90e2dee30386becfe0f0bb037ac7b80d0a2c29ea8e67"
+      "translationSha256": "81b1c671a1c080cb0e5efd8e10fc7bea1a037549e7a51522d25861f158e7f15d"
     },
     {
       "source": "docs/licensing/2026-10-12-commercial-license-audit.md",
@@ -2807,19 +2807,19 @@
       "source": "README.md",
       "target": "docs/el-GR/REFERENCE.md",
       "sourceSha256": "eb6f3fe7810ed3e10793e8938e908e151a84c4afbea2f22cba2656bfe4e8dfc3",
-      "translationSha256": "b0809bf1f5a3915fa9069b4f6426d9a428638389bfce4f78dcad29de07700c27"
+      "translationSha256": "f05046c73e7d88bc626ea2bf0bd626f892e8527864fbbdd82c515dfa0f259ae6"
     },
     {
       "source": "docs/HANDBOOK.md",
       "target": "docs/el-GR/HANDBOOK.md",
       "sourceSha256": "8c6422e18d8939164f91da28603ed597f478f1a9b8bb41e14cbe4f6630bab3fc",
-      "translationSha256": "188591f46dd962ac83b32fcfdd769d0cc1354d26b44cb080cadb665c72240de7"
+      "translationSha256": "d5bf567918be1707498b16171f93fdff8642e7506310aca63c2a5d080a8a3946"
     },
     {
       "source": "docs/FEATURES.md",
       "target": "docs/el-GR/FEATURES.md",
       "sourceSha256": "ea712f39457ce69f772f09a1294201705a5f36a92a8bf15f356bd80132c3e723",
-      "translationSha256": "af2c61bb25ee4efc7754e1a5e1b884d0f00843e5860d4647449da9fbbef1ccb8"
+      "translationSha256": "f887b4d8217bba63fbc74d050b668e96aa9b4d2e4f099149bcd04c596233fc1a"
     },
     {
       "source": "docs/VERIFICATION.md",
@@ -2831,7 +2831,7 @@
       "source": "docs/MAINTENANCE.md",
       "target": "docs/el-GR/MAINTENANCE.md",
       "sourceSha256": "9bf5875b50386e698c0574eee390f790d4b1c29cb11288c856c98e03a05877f7",
-      "translationSha256": "3e30536513b74e594bb467ca02dc8415adeef38d91d7d8cafa989e18d3f330b6"
+      "translationSha256": "793da27461dcb8f53e1e9d9850a45f244ebbb1c494b1f45d04ebfe0b1cc7a03b"
     },
     {
       "source": "docs/research/keyboard-custom.md",
@@ -2903,13 +2903,13 @@
       "source": "docs/testing/2026-10-12-gui-polish.md",
       "target": "docs/el-GR/testing/2026-10-12-gui-polish.md",
       "sourceSha256": "ac39188358e51c68964421d3e855161d607b02a41da2b1a1fad70244f9feff97",
-      "translationSha256": "e5ee75a131d036915d47d683bd7b3824fcf9190530d437df7b9ccf6a7139e3d1"
+      "translationSha256": "488ab71505794d64fd85ef5cd7bc5027b1faa132e6217a459b0d24b07758e07c"
     },
     {
       "source": "docs/testing/2026-10-12-local-ai-runtimes.md",
       "target": "docs/el-GR/testing/2026-10-12-local-ai-runtimes.md",
       "sourceSha256": "3dfbb80761aad758ea6a9307999ff530dfdd4a0cf685804e15052508cf107fd7",
-      "translationSha256": "c6f6bb1c2c911de20fa88546b0e63a4fe630f398e94ebd4e31509a88717502e4"
+      "translationSha256": "9706b4777ffe98af225f764899c7b1d2cea3da11113623dc88824224ee919400"
     },
     {
       "source": "docs/testing/2026-10-12-local-meeting-assistant.md",
@@ -3011,19 +3011,19 @@
       "source": "README.md",
       "target": "docs/da-DK/REFERENCE.md",
       "sourceSha256": "eb6f3fe7810ed3e10793e8938e908e151a84c4afbea2f22cba2656bfe4e8dfc3",
-      "translationSha256": "2bb3a6dbddfc564865ea49b2e9c969ebb339007740d9c5c2d349c50c6a8ca74a"
+      "translationSha256": "61f5735bf78093ae97e7e06c16932e80407641bd189c6fe460799ac2f09daac2"
     },
     {
       "source": "docs/HANDBOOK.md",
       "target": "docs/da-DK/HANDBOOK.md",
       "sourceSha256": "8c6422e18d8939164f91da28603ed597f478f1a9b8bb41e14cbe4f6630bab3fc",
-      "translationSha256": "d102d2295daea1625ad1ee69168b1df584e798dadcca1ba63c22263178b5535d"
+      "translationSha256": "181b8962eb245dba6c5f5c4153d2cab8190f9b65baa38ddf58709f7f84f01e78"
     },
     {
       "source": "docs/FEATURES.md",
       "target": "docs/da-DK/FEATURES.md",
       "sourceSha256": "ea712f39457ce69f772f09a1294201705a5f36a92a8bf15f356bd80132c3e723",
-      "translationSha256": "80887dde56594eb74afa821cff88e7aee0ca9b9063e33fc7100372306b8c2ad6"
+      "translationSha256": "d432cbae35e6795e6dd02ddf0dabc4551970b6b5d7e356ff4f58ec8a1a5eb366"
     },
     {
       "source": "docs/VERIFICATION.md",
@@ -3035,7 +3035,7 @@
       "source": "docs/MAINTENANCE.md",
       "target": "docs/da-DK/MAINTENANCE.md",
       "sourceSha256": "9bf5875b50386e698c0574eee390f790d4b1c29cb11288c856c98e03a05877f7",
-      "translationSha256": "99bb1d894b77fcce428f9180e103f764a3a52230b2bff8affa80f687343a88ea"
+      "translationSha256": "b8f3e8fe8aace8468dde40361d2076211e25c1425377e1745487f5a8e1a51b0a"
     },
     {
       "source": "docs/research/keyboard-custom.md",
@@ -3071,13 +3071,13 @@
       "source": "docs/research/tastaturhersteller-sonderfunktionen.csv",
       "target": "docs/da-DK/research/tastaturhersteller-sonderfunktionen.csv",
       "sourceSha256": "4f051721fcf5939ef9440f10f417151d08a0928136501fc5c871b58066e410a1",
-      "translationSha256": "b4b613331a51d06947e7836a2966b5cf37ce7eacd381f9df0e0470fb045885d4"
+      "translationSha256": "353164334d9259ff1c23b20ff670fa885e27ecd0aacc494acbb39447e103bc31"
     },
     {
       "source": "docs/research/tastaturhersteller-sonderfunktionen.md",
       "target": "docs/da-DK/research/tastaturhersteller-sonderfunktionen.md",
       "sourceSha256": "531ab8901be0cbcae5542de1dde95416a8d1c040a63cb7a3386f695b925de782",
-      "translationSha256": "5f573d6159ea8fb9848b80cd21e9b97d09df61ce18083e5b3861750f4040145f"
+      "translationSha256": "11665df9d823541eadabcb6abcff7eb85338522b044833c46ddb585906543d23"
     },
     {
       "source": "docs/testing/2026-10-09-app-audit.md",
@@ -3113,7 +3113,7 @@
       "source": "docs/testing/2026-10-12-local-ai-runtimes.md",
       "target": "docs/da-DK/testing/2026-10-12-local-ai-runtimes.md",
       "sourceSha256": "3dfbb80761aad758ea6a9307999ff530dfdd4a0cf685804e15052508cf107fd7",
-      "translationSha256": "dd54d06c34a4aa7dfd3a5889b60e43a9969017057b89bf5f4a2d96ca9b963e31"
+      "translationSha256": "06e1e533582115ff75af7ec7129b74301a5dc21c3839ab2164708efb8a03a171"
     },
     {
       "source": "docs/testing/2026-10-12-local-meeting-assistant.md",
@@ -3215,19 +3215,19 @@
       "source": "README.md",
       "target": "docs/sv-SE/REFERENCE.md",
       "sourceSha256": "eb6f3fe7810ed3e10793e8938e908e151a84c4afbea2f22cba2656bfe4e8dfc3",
-      "translationSha256": "6053fab48b77eb3e8cb5ac7390f79de240c5f0b0d9e4ac7e5e30db703e430532"
+      "translationSha256": "8c7be620af9cc8241a39ef2d9599fe5098c5ef7ee258d12cf7f9df4bccb85baf"
     },
     {
       "source": "docs/HANDBOOK.md",
       "target": "docs/sv-SE/HANDBOOK.md",
       "sourceSha256": "8c6422e18d8939164f91da28603ed597f478f1a9b8bb41e14cbe4f6630bab3fc",
-      "translationSha256": "9848dc566ebcab5173fa9da414e258121c072bff7811f67f7b977afcd5b5c056"
+      "translationSha256": "ac6366b0246f3df6b521fe4d8384c6ad36d4e3108cb53d9208e4df27cdd2a2cb"
     },
     {
       "source": "docs/FEATURES.md",
       "target": "docs/sv-SE/FEATURES.md",
       "sourceSha256": "ea712f39457ce69f772f09a1294201705a5f36a92a8bf15f356bd80132c3e723",
-      "translationSha256": "1ac597fda1568753fac430075e2a0498fa67110416ade712d7f4177066bf71e2"
+      "translationSha256": "36330cd5fd5524747393877fb6e5201e9c1937b63e89bfe83f02deff5f3d85b4"
     },
     {
       "source": "docs/VERIFICATION.md",
@@ -3239,7 +3239,7 @@
       "source": "docs/MAINTENANCE.md",
       "target": "docs/sv-SE/MAINTENANCE.md",
       "sourceSha256": "9bf5875b50386e698c0574eee390f790d4b1c29cb11288c856c98e03a05877f7",
-      "translationSha256": "0245aa07687847fadde221110859c0a59bd0d7a8ae21812920211254114dda34"
+      "translationSha256": "f556ed7b12de54082ffa4d3118484c159f5b912f0ce933418cba03f8468d6448"
     },
     {
       "source": "docs/research/keyboard-custom.md",
@@ -3275,13 +3275,13 @@
       "source": "docs/research/tastaturhersteller-sonderfunktionen.csv",
       "target": "docs/sv-SE/research/tastaturhersteller-sonderfunktionen.csv",
       "sourceSha256": "4f051721fcf5939ef9440f10f417151d08a0928136501fc5c871b58066e410a1",
-      "translationSha256": "20c2132eb891acab9e0c64be465e65c7732597a01e25e0194e9d9d3574911c5d"
+      "translationSha256": "e94f2d517582f7b806b4738f77c59fb81a59f7f1f99884e68235f7f708db26d9"
     },
     {
       "source": "docs/research/tastaturhersteller-sonderfunktionen.md",
       "target": "docs/sv-SE/research/tastaturhersteller-sonderfunktionen.md",
       "sourceSha256": "531ab8901be0cbcae5542de1dde95416a8d1c040a63cb7a3386f695b925de782",
-      "translationSha256": "112b0e25376e5d825a226aeebca51824433ec509902b4cb97174e21afdc1c478"
+      "translationSha256": "1e4b89107ca60fb5f7f66c52e4bcd467a858a92e9d70d1a3524737c690b9a5cb"
     },
     {
       "source": "docs/testing/2026-10-09-app-audit.md",
@@ -3317,7 +3317,7 @@
       "source": "docs/testing/2026-10-12-local-ai-runtimes.md",
       "target": "docs/sv-SE/testing/2026-10-12-local-ai-runtimes.md",
       "sourceSha256": "3dfbb80761aad758ea6a9307999ff530dfdd4a0cf685804e15052508cf107fd7",
-      "translationSha256": "4f463769189377553e1fa4efc0945034a07f8e901850623b8e1f2160391972de"
+      "translationSha256": "d9b2406ceb6d7e0617415b18a8490a421f7664848d2c3ed1dc87dced70c53f62"
     },
     {
       "source": "docs/testing/2026-10-12-local-meeting-assistant.md",
@@ -3419,19 +3419,19 @@
       "source": "README.md",
       "target": "docs/nb-NO/REFERENCE.md",
       "sourceSha256": "eb6f3fe7810ed3e10793e8938e908e151a84c4afbea2f22cba2656bfe4e8dfc3",
-      "translationSha256": "37db872d2c23c9cf924483895425bf8593aa5cf2e06fc7110a4703bedaeb8278"
+      "translationSha256": "2b0f2311513e7d994f2ba42238271db675fa98d8e73dd79920f251c9e855b6d1"
     },
     {
       "source": "docs/HANDBOOK.md",
       "target": "docs/nb-NO/HANDBOOK.md",
       "sourceSha256": "8c6422e18d8939164f91da28603ed597f478f1a9b8bb41e14cbe4f6630bab3fc",
-      "translationSha256": "3cacad490453847d6f000d17286dd81ffc0d92f244a08b6d4de08752b6b76621"
+      "translationSha256": "c6e136685d3ebfb6bffb4928129640fa8239d763bdfdb6d63489bdd6ddb86863"
     },
     {
       "source": "docs/FEATURES.md",
       "target": "docs/nb-NO/FEATURES.md",
       "sourceSha256": "ea712f39457ce69f772f09a1294201705a5f36a92a8bf15f356bd80132c3e723",
-      "translationSha256": "c19c5173f468384a79214c9e4b00c53645fe28373f67247e25c9283986e436bb"
+      "translationSha256": "bf89cfa50f0ee48531e171219df21e3ac462d1d81254da26e53a1134223793b7"
     },
     {
       "source": "docs/VERIFICATION.md",
@@ -3443,7 +3443,7 @@
       "source": "docs/MAINTENANCE.md",
       "target": "docs/nb-NO/MAINTENANCE.md",
       "sourceSha256": "9bf5875b50386e698c0574eee390f790d4b1c29cb11288c856c98e03a05877f7",
-      "translationSha256": "ad49d1637a5983ae9be71d49947320712128a56cea127925b11a72f3edbe5844"
+      "translationSha256": "bb1435b61f2ca408f63f47a28293087a3a5f5662c40d9153a4ff85ebd8844524"
     },
     {
       "source": "docs/research/keyboard-custom.md",
@@ -3479,13 +3479,13 @@
       "source": "docs/research/tastaturhersteller-sonderfunktionen.csv",
       "target": "docs/nb-NO/research/tastaturhersteller-sonderfunktionen.csv",
       "sourceSha256": "4f051721fcf5939ef9440f10f417151d08a0928136501fc5c871b58066e410a1",
-      "translationSha256": "c9275fe33de3a4bb0331618fb645d77adc3b113d8c56fe73dccf670091078a13"
+      "translationSha256": "b264a87491f063af89cf22330e16a9d1c6e099388225b5751fa848967b19fe1d"
     },
     {
       "source": "docs/research/tastaturhersteller-sonderfunktionen.md",
       "target": "docs/nb-NO/research/tastaturhersteller-sonderfunktionen.md",
       "sourceSha256": "531ab8901be0cbcae5542de1dde95416a8d1c040a63cb7a3386f695b925de782",
-      "translationSha256": "97da2fa247da08ad14608f71780deff4103d494e02d4b430addb680b2d2868ed"
+      "translationSha256": "6d6225b08301fb798dd7ef3f955182999015aabc5579c851ab6b0a64eb0b8666"
     },
     {
       "source": "docs/testing/2026-10-09-app-audit.md",
@@ -3521,7 +3521,7 @@
       "source": "docs/testing/2026-10-12-local-ai-runtimes.md",
       "target": "docs/nb-NO/testing/2026-10-12-local-ai-runtimes.md",
       "sourceSha256": "3dfbb80761aad758ea6a9307999ff530dfdd4a0cf685804e15052508cf107fd7",
-      "translationSha256": "71850904ae0fe1c6d893870ff943cce78dfe711b74e5aa1f8013e9ae52ff7703"
+      "translationSha256": "6bbcda6f7e9ad521a404f9630b636c060ae18a480351780c8db71fbeb0b74650"
     },
     {
       "source": "docs/testing/2026-10-12-local-meeting-assistant.md",
@@ -3623,19 +3623,19 @@
       "source": "README.md",
       "target": "docs/fi-FI/REFERENCE.md",
       "sourceSha256": "eb6f3fe7810ed3e10793e8938e908e151a84c4afbea2f22cba2656bfe4e8dfc3",
-      "translationSha256": "a8e75dbc22f51546018544f409a6bc958bd4ec2c6b641271ea8bd0171f1709fa"
+      "translationSha256": "7d22b5fe5c8fc98a2c91f3a32635d4d8972ec771456b06baca48ddf62d726c6d"
     },
     {
       "source": "docs/HANDBOOK.md",
       "target": "docs/fi-FI/HANDBOOK.md",
       "sourceSha256": "8c6422e18d8939164f91da28603ed597f478f1a9b8bb41e14cbe4f6630bab3fc",
-      "translationSha256": "4701e433072708de7d827577a47b98c78f3385ea0a18a69df1c00300f89c453b"
+      "translationSha256": "cde52c411891d229bc9cb28b8f73d72e073762f2a40eb1abab7a16900e366e1c"
     },
     {
       "source": "docs/FEATURES.md",
       "target": "docs/fi-FI/FEATURES.md",
       "sourceSha256": "ea712f39457ce69f772f09a1294201705a5f36a92a8bf15f356bd80132c3e723",
-      "translationSha256": "477a4205e4199fda4e6ec1382e6fb4f30d88a6934a744142de32454baaa67e9e"
+      "translationSha256": "7a91c0ccb2214d8216e7c2128b272844a5fc0bf66e28eb90402c038a9a0035a3"
     },
     {
       "source": "docs/VERIFICATION.md",
@@ -3647,7 +3647,7 @@
       "source": "docs/MAINTENANCE.md",
       "target": "docs/fi-FI/MAINTENANCE.md",
       "sourceSha256": "9bf5875b50386e698c0574eee390f790d4b1c29cb11288c856c98e03a05877f7",
-      "translationSha256": "ce2143502ad10a9eddafc1622830c0d8afceb7f2a84ab4cc71353a42fec54dfd"
+      "translationSha256": "954a0d3b341d5b17812e2edb4bb78077ae3ea8f2b15f62789de5c1d58250462a"
     },
     {
       "source": "docs/research/keyboard-custom.md",
@@ -3659,7 +3659,7 @@
       "source": "docs/research/keyboard-gaming.md",
       "target": "docs/fi-FI/research/keyboard-gaming.md",
       "sourceSha256": "dd2a575750ec0d0943b62b6083e634a1b40e7b5538c43767aed62b545b3441f8",
-      "translationSha256": "f576631ed64bd26650fadb72e8e4c3030f95491d7e8029b71d235f1e87af7c9b"
+      "translationSha256": "53703ba7a7d6a337eedefe48b4ccc2d86c0c5fa40310870455fb998cb5426cfa"
     },
     {
       "source": "docs/research/keyboard-layout-evidence.md",
@@ -3677,7 +3677,7 @@
       "source": "docs/research/obs-integration.md",
       "target": "docs/fi-FI/research/obs-integration.md",
       "sourceSha256": "a4e6ca4368b28daa73ffbdda4fb817863e3fa15d52da00d26bbd32ce1f05f9b7",
-      "translationSha256": "435f19689e0ba3d1a0cc22deff9e2e258968bb251d231aaa012c05b93150ad3e"
+      "translationSha256": "5fc44a766312ca7392b8b44613dd00442514d8baf83259d50a8405656af030ec"
     },
     {
       "source": "docs/research/tastaturhersteller-sonderfunktionen.csv",
@@ -3719,13 +3719,13 @@
       "source": "docs/testing/2026-10-12-gui-polish.md",
       "target": "docs/fi-FI/testing/2026-10-12-gui-polish.md",
       "sourceSha256": "ac39188358e51c68964421d3e855161d607b02a41da2b1a1fad70244f9feff97",
-      "translationSha256": "648505152e125f0e51b926d52ec87e367773e700d102ff0d9b5166ac408adbb4"
+      "translationSha256": "b4747e67dd690d2253883cc56499a18acaac776d5e535dd19b2410597a8e8059"
     },
     {
       "source": "docs/testing/2026-10-12-local-ai-runtimes.md",
       "target": "docs/fi-FI/testing/2026-10-12-local-ai-runtimes.md",
       "sourceSha256": "3dfbb80761aad758ea6a9307999ff530dfdd4a0cf685804e15052508cf107fd7",
-      "translationSha256": "23b8bbeb152c5bfcecca3d320c3883bdeacfb1fc9020d88bbee216ea74820c83"
+      "translationSha256": "76745463afd365e291ee5e19f170640c984627359e70a42c947c5f35f3e1831d"
     },
     {
       "source": "docs/testing/2026-10-12-local-meeting-assistant.md",
@@ -3827,19 +3827,19 @@
       "source": "README.md",
       "target": "docs/et-EE/REFERENCE.md",
       "sourceSha256": "eb6f3fe7810ed3e10793e8938e908e151a84c4afbea2f22cba2656bfe4e8dfc3",
-      "translationSha256": "f12e5bb5eb4b26aff8e77de83d6fa7a0466aec48b5bc75369326ea9c9b3ca83e"
+      "translationSha256": "ee4eb6dcedbcc6f01ceb1b39a43c59c4ad5a2c20940cd474ed116c6b087d49da"
     },
     {
       "source": "docs/HANDBOOK.md",
       "target": "docs/et-EE/HANDBOOK.md",
       "sourceSha256": "8c6422e18d8939164f91da28603ed597f478f1a9b8bb41e14cbe4f6630bab3fc",
-      "translationSha256": "4c42b7b2a187343ab92abe5a589485384252963baf620352c3be59aff616192f"
+      "translationSha256": "57370fff6669f008843f8f910f7bf0309255aa99e1f414c767ca7d59c46f7584"
     },
     {
       "source": "docs/FEATURES.md",
       "target": "docs/et-EE/FEATURES.md",
       "sourceSha256": "ea712f39457ce69f772f09a1294201705a5f36a92a8bf15f356bd80132c3e723",
-      "translationSha256": "87b307247a70e9e4ea4655a323f1d90a390f8be7c04dffe684e6a78700d38d45"
+      "translationSha256": "569b99ce5f6d37d35d15b75bb552b0294dfdbb0ae718335ce95e1b2ac87c81bb"
     },
     {
       "source": "docs/VERIFICATION.md",
@@ -3851,7 +3851,7 @@
       "source": "docs/MAINTENANCE.md",
       "target": "docs/et-EE/MAINTENANCE.md",
       "sourceSha256": "9bf5875b50386e698c0574eee390f790d4b1c29cb11288c856c98e03a05877f7",
-      "translationSha256": "c470e71d78c973a782c2a6084cdeea779fc014aa63064266f96eb45ac1a9e8d5"
+      "translationSha256": "8b9ed420a967628146707cd4f101a03e8e731ad6010a6def593c06c97320f8f2"
     },
     {
       "source": "docs/research/keyboard-custom.md",
@@ -3887,13 +3887,13 @@
       "source": "docs/research/tastaturhersteller-sonderfunktionen.csv",
       "target": "docs/et-EE/research/tastaturhersteller-sonderfunktionen.csv",
       "sourceSha256": "4f051721fcf5939ef9440f10f417151d08a0928136501fc5c871b58066e410a1",
-      "translationSha256": "4fff963c114edd7fcc0e34d05093d17aaf2c8021521bd9dd5e64621c520990a9"
+      "translationSha256": "ebc210dda41075af637be95e0b4e1218a91d91d55eb352fcd42f66c89be3f9ef"
     },
     {
       "source": "docs/research/tastaturhersteller-sonderfunktionen.md",
       "target": "docs/et-EE/research/tastaturhersteller-sonderfunktionen.md",
       "sourceSha256": "531ab8901be0cbcae5542de1dde95416a8d1c040a63cb7a3386f695b925de782",
-      "translationSha256": "1201c061f8713c33524da0579a54e05df24cbc8bcf4ce9b912fd6e569344ac0b"
+      "translationSha256": "c211b6e50d9035408bb0366665b17495d5176a838a9603f2431f939641de13ff"
     },
     {
       "source": "docs/testing/2026-10-09-app-audit.md",
@@ -3923,13 +3923,13 @@
       "source": "docs/testing/2026-10-12-gui-polish.md",
       "target": "docs/et-EE/testing/2026-10-12-gui-polish.md",
       "sourceSha256": "ac39188358e51c68964421d3e855161d607b02a41da2b1a1fad70244f9feff97",
-      "translationSha256": "d5082ff7b4a72c5c74266ef20c111ef6b8acc23f581bfa2609dd3c4a86054306"
+      "translationSha256": "d4507f4f9c46f9564c7bd3621bab01425991608e978c3dcb5bd74da54744d1c5"
     },
     {
       "source": "docs/testing/2026-10-12-local-ai-runtimes.md",
       "target": "docs/et-EE/testing/2026-10-12-local-ai-runtimes.md",
       "sourceSha256": "3dfbb80761aad758ea6a9307999ff530dfdd4a0cf685804e15052508cf107fd7",
-      "translationSha256": "80e14565710c32e8077c555ab9a8a43d4f3a9a26f1ea47aebc3ac2420c44c32d"
+      "translationSha256": "6728f5fa3ebde49753dd04ca5d91e0a4dac71a239fa17a232e62e12f196007ca"
     },
     {
       "source": "docs/testing/2026-10-12-local-meeting-assistant.md",
@@ -4031,19 +4031,19 @@
       "source": "README.md",
       "target": "docs/lv-LV/REFERENCE.md",
       "sourceSha256": "eb6f3fe7810ed3e10793e8938e908e151a84c4afbea2f22cba2656bfe4e8dfc3",
-      "translationSha256": "7964d0ca0392d06749e99dbbeaf2173564fcf0c0b56368241d7fdfdf435f9aa8"
+      "translationSha256": "3773e24ef008b20c902c1da2b4d1657f3a72d79fd1a22a76f405d9e0900366b2"
     },
     {
       "source": "docs/HANDBOOK.md",
       "target": "docs/lv-LV/HANDBOOK.md",
       "sourceSha256": "8c6422e18d8939164f91da28603ed597f478f1a9b8bb41e14cbe4f6630bab3fc",
-      "translationSha256": "e5b7750cbfff043b7b9d6e69b6b2c109795069807ef3434a3c3b350150656700"
+      "translationSha256": "1c8af54c5a21db4a7babdca969b0786a7776c1570eda7d01ef502d5323aecf49"
     },
     {
       "source": "docs/FEATURES.md",
       "target": "docs/lv-LV/FEATURES.md",
       "sourceSha256": "ea712f39457ce69f772f09a1294201705a5f36a92a8bf15f356bd80132c3e723",
-      "translationSha256": "1466a26bd2c0e0458a2a49e6ef6a77415036e23dcd8f96a92b680576d430d744"
+      "translationSha256": "826776bca6f9dae85993e55db29858c6a3d85c7ab5704759189e60a030a2c8e8"
     },
     {
       "source": "docs/VERIFICATION.md",
@@ -4055,7 +4055,7 @@
       "source": "docs/MAINTENANCE.md",
       "target": "docs/lv-LV/MAINTENANCE.md",
       "sourceSha256": "9bf5875b50386e698c0574eee390f790d4b1c29cb11288c856c98e03a05877f7",
-      "translationSha256": "0b94f886064c353c0b2836357757af855a7ddec53eecf420bd5c4166ee29cf71"
+      "translationSha256": "dd6dc0851c11c6e01e7d8315bac076a0b848e09d4bfea2a887a88fe20ec7726f"
     },
     {
       "source": "docs/research/keyboard-custom.md",
@@ -4091,13 +4091,13 @@
       "source": "docs/research/tastaturhersteller-sonderfunktionen.csv",
       "target": "docs/lv-LV/research/tastaturhersteller-sonderfunktionen.csv",
       "sourceSha256": "4f051721fcf5939ef9440f10f417151d08a0928136501fc5c871b58066e410a1",
-      "translationSha256": "ad0a9d58a4fed4859627bd2230985c444eacfb1fd9756c6c45ce4e3a56db30e7"
+      "translationSha256": "bc3adacf5ffce9d0c98987e0e28dceec48fb807185fea36175a117e893c28041"
     },
     {
       "source": "docs/research/tastaturhersteller-sonderfunktionen.md",
       "target": "docs/lv-LV/research/tastaturhersteller-sonderfunktionen.md",
       "sourceSha256": "531ab8901be0cbcae5542de1dde95416a8d1c040a63cb7a3386f695b925de782",
-      "translationSha256": "64e74a4df9d727a9ce2fc9fba887cd35db40a5465077b4879b17cbe24d2236eb"
+      "translationSha256": "a0df0ff98394bf3d01dec310c41473acb8ffc349469600a7af783f8c9043cf68"
     },
     {
       "source": "docs/testing/2026-10-09-app-audit.md",
@@ -4127,13 +4127,13 @@
       "source": "docs/testing/2026-10-12-gui-polish.md",
       "target": "docs/lv-LV/testing/2026-10-12-gui-polish.md",
       "sourceSha256": "ac39188358e51c68964421d3e855161d607b02a41da2b1a1fad70244f9feff97",
-      "translationSha256": "9aadb21ff80e36102ba9651e3ca3ec12b664121f0a7e59f72f68a2ca70795f31"
+      "translationSha256": "b1993b2da5cb950e7634270853b6ddedc3f03af91b243bb3fcb51e1a35adfcda"
     },
     {
       "source": "docs/testing/2026-10-12-local-ai-runtimes.md",
       "target": "docs/lv-LV/testing/2026-10-12-local-ai-runtimes.md",
       "sourceSha256": "3dfbb80761aad758ea6a9307999ff530dfdd4a0cf685804e15052508cf107fd7",
-      "translationSha256": "a6085a1f4b965f1473bb4c8ec13f270196923bf7f009b9b37728bf6ce90efc96"
+      "translationSha256": "516009a0402d1a4183ddea565cecb25115357bb8dd470399193a4444fe68fd1f"
     },
     {
       "source": "docs/testing/2026-10-12-local-meeting-assistant.md",
@@ -4235,19 +4235,19 @@
       "source": "README.md",
       "target": "docs/lt-LT/REFERENCE.md",
       "sourceSha256": "eb6f3fe7810ed3e10793e8938e908e151a84c4afbea2f22cba2656bfe4e8dfc3",
-      "translationSha256": "ad3699b454a9e12cda53654fa20ad8e8e1369343cb67483564a04413f3e89172"
+      "translationSha256": "0b95df0ddde54282eca92c6bc73e709f11a62ea4eb3882b53731234a8ecb288d"
     },
     {
       "source": "docs/HANDBOOK.md",
       "target": "docs/lt-LT/HANDBOOK.md",
       "sourceSha256": "8c6422e18d8939164f91da28603ed597f478f1a9b8bb41e14cbe4f6630bab3fc",
-      "translationSha256": "f490be99005ff37f4bdab0356f0793d04fff4cd30674723a6f2a052005bb7f02"
+      "translationSha256": "e48f735b07fa9cab13650f4860e46a79a84a904c5f3943365797e470b3e5711b"
     },
     {
       "source": "docs/FEATURES.md",
       "target": "docs/lt-LT/FEATURES.md",
       "sourceSha256": "ea712f39457ce69f772f09a1294201705a5f36a92a8bf15f356bd80132c3e723",
-      "translationSha256": "5b8c257777e7b10ce79cc76d576fb76e201e3ea54de7e7c7bea5542b5491f52b"
+      "translationSha256": "7580aa1936985a41f7150fa810d55db86bdd1711380f8fc20d6c6c3212794d14"
     },
     {
       "source": "docs/VERIFICATION.md",
@@ -4259,7 +4259,7 @@
       "source": "docs/MAINTENANCE.md",
       "target": "docs/lt-LT/MAINTENANCE.md",
       "sourceSha256": "9bf5875b50386e698c0574eee390f790d4b1c29cb11288c856c98e03a05877f7",
-      "translationSha256": "16dcf37773ded10c042ee9d3227204a615e67a69f8d98d6ca42ecb497246b893"
+      "translationSha256": "ae78d96c4e49bde406114884ed959601c1e7363d6d236e1a920966a95869edf6"
     },
     {
       "source": "docs/research/keyboard-custom.md",
@@ -4295,13 +4295,13 @@
       "source": "docs/research/tastaturhersteller-sonderfunktionen.csv",
       "target": "docs/lt-LT/research/tastaturhersteller-sonderfunktionen.csv",
       "sourceSha256": "4f051721fcf5939ef9440f10f417151d08a0928136501fc5c871b58066e410a1",
-      "translationSha256": "907580ad0ac4d7f117e8d4175f790dab78efbae524c9a27ddc9d6418efa8d8e2"
+      "translationSha256": "2d356b6dc5a3c3a072bfe79a34cdfea46488f6e6e50acf6703face07e32ba120"
     },
     {
       "source": "docs/research/tastaturhersteller-sonderfunktionen.md",
       "target": "docs/lt-LT/research/tastaturhersteller-sonderfunktionen.md",
       "sourceSha256": "531ab8901be0cbcae5542de1dde95416a8d1c040a63cb7a3386f695b925de782",
-      "translationSha256": "97cd4b5dc8e343dc6b8c1f5fd426a583e7166014564052e08e2b66590de1eccc"
+      "translationSha256": "1d311216d7a776928c1f8a7f19806bc2c6642fdaa37d067c59afc7fb787d4efc"
     },
     {
       "source": "docs/testing/2026-10-09-app-audit.md",
@@ -4331,13 +4331,13 @@
       "source": "docs/testing/2026-10-12-gui-polish.md",
       "target": "docs/lt-LT/testing/2026-10-12-gui-polish.md",
       "sourceSha256": "ac39188358e51c68964421d3e855161d607b02a41da2b1a1fad70244f9feff97",
-      "translationSha256": "34034ade78f1b35ad17927e38af2c880d3d3ae05190905ddf051162d45755ff9"
+      "translationSha256": "7bf1effb79624b3426fda1b590f2f03a529836e1f75743d83f57f3c8c8b93a52"
     },
     {
       "source": "docs/testing/2026-10-12-local-ai-runtimes.md",
       "target": "docs/lt-LT/testing/2026-10-12-local-ai-runtimes.md",
       "sourceSha256": "3dfbb80761aad758ea6a9307999ff530dfdd4a0cf685804e15052508cf107fd7",
-      "translationSha256": "89773b029e883f78db4b9ce59b05ca8ae4442e220d0dfa793e6a5832efb041fd"
+      "translationSha256": "5c904731e4b1eea4ba69be44a0cc6c15d8e43ae0a60e4359a37c9d83d7237af4"
     },
     {
       "source": "docs/testing/2026-10-12-local-meeting-assistant.md",
@@ -4439,19 +4439,19 @@
       "source": "README.md",
       "target": "docs/sl-SI/REFERENCE.md",
       "sourceSha256": "eb6f3fe7810ed3e10793e8938e908e151a84c4afbea2f22cba2656bfe4e8dfc3",
-      "translationSha256": "fb22e400c891ff5ce83b499f4e9efe4c6a0b79404c0708f8becf797abec32495"
+      "translationSha256": "3620ada51de1c87cca0322eb72da161cdec2659f2e457dd7a555ce43dd5d511c"
     },
     {
       "source": "docs/HANDBOOK.md",
       "target": "docs/sl-SI/HANDBOOK.md",
       "sourceSha256": "8c6422e18d8939164f91da28603ed597f478f1a9b8bb41e14cbe4f6630bab3fc",
-      "translationSha256": "14e00aa0d8a6899fb312ab7da6a3eaaf44ae82558762b956d14be74c72563005"
+      "translationSha256": "70988f8db85ddba70998742e0897ddd9c3651ef8d851ae6800cac587e6b9d985"
     },
     {
       "source": "docs/FEATURES.md",
       "target": "docs/sl-SI/FEATURES.md",
       "sourceSha256": "ea712f39457ce69f772f09a1294201705a5f36a92a8bf15f356bd80132c3e723",
-      "translationSha256": "2afe35dc0569d1b7e54d614427c4358488a8f414c74134e1e2d56b73a6d13e80"
+      "translationSha256": "01e9422ce68b9b1a980f7a9b8489fbd341324b3e8ebf68e7bea92f356f3ba6a9"
     },
     {
       "source": "docs/VERIFICATION.md",
@@ -4463,7 +4463,7 @@
       "source": "docs/MAINTENANCE.md",
       "target": "docs/sl-SI/MAINTENANCE.md",
       "sourceSha256": "9bf5875b50386e698c0574eee390f790d4b1c29cb11288c856c98e03a05877f7",
-      "translationSha256": "6bf60965b17f08da7e476a50ab6dd693cae5afe32f6a966922f6241f6ae1c8dc"
+      "translationSha256": "6614ee6a8808e74ef0efeef9833a9e58e959ba03e37eb953138a957e1bfe77b6"
     },
     {
       "source": "docs/research/keyboard-custom.md",
@@ -4475,7 +4475,7 @@
       "source": "docs/research/keyboard-gaming.md",
       "target": "docs/sl-SI/research/keyboard-gaming.md",
       "sourceSha256": "dd2a575750ec0d0943b62b6083e634a1b40e7b5538c43767aed62b545b3441f8",
-      "translationSha256": "4500ecea734afbe3241a2f9cebe9602e3fc150538244b93d55edc286b64b5799"
+      "translationSha256": "f2d28bbc6089fccba383d070be6ccad4d26811e042f3c3f2a2025e183fbfcf3a"
     },
     {
       "source": "docs/research/keyboard-layout-evidence.md",
@@ -4535,13 +4535,13 @@
       "source": "docs/testing/2026-10-12-gui-polish.md",
       "target": "docs/sl-SI/testing/2026-10-12-gui-polish.md",
       "sourceSha256": "ac39188358e51c68964421d3e855161d607b02a41da2b1a1fad70244f9feff97",
-      "translationSha256": "eb4b3e090ef889beb82627d677ea1000c352e244df63c4cd8739e229c237532a"
+      "translationSha256": "b36361b04d92dc821ac655d4a4988d4b2e578cbabb168386cc2c850044928461"
     },
     {
       "source": "docs/testing/2026-10-12-local-ai-runtimes.md",
       "target": "docs/sl-SI/testing/2026-10-12-local-ai-runtimes.md",
       "sourceSha256": "3dfbb80761aad758ea6a9307999ff530dfdd4a0cf685804e15052508cf107fd7",
-      "translationSha256": "01a13964db46f7a8970f4265f98c5a835c53b4830a117f79f4f3d961e9d15800"
+      "translationSha256": "d018e1998af0672950600548eff28349508f0fc4a2672615d9b6e2bdf4d1fb66"
     },
     {
       "source": "docs/testing/2026-10-12-local-meeting-assistant.md",
@@ -4643,19 +4643,19 @@
       "source": "README.md",
       "target": "docs/hr-HR/REFERENCE.md",
       "sourceSha256": "eb6f3fe7810ed3e10793e8938e908e151a84c4afbea2f22cba2656bfe4e8dfc3",
-      "translationSha256": "420abdd8d894512eb93a092790f3f625091ad66afb39af05ca94c51abd73cde4"
+      "translationSha256": "47ee0f99c567b658973ec200a82a9d626de41470923826974684a4e07d78e1c5"
     },
     {
       "source": "docs/HANDBOOK.md",
       "target": "docs/hr-HR/HANDBOOK.md",
       "sourceSha256": "8c6422e18d8939164f91da28603ed597f478f1a9b8bb41e14cbe4f6630bab3fc",
-      "translationSha256": "5fdd44ba9375355e1317da48564a3bffa4178782a9332de29e032f4fd7f395f2"
+      "translationSha256": "89354e10ba3a58536fd51d2b6f5cbc9823d7d2bb0f701e467293360e0b55db25"
     },
     {
       "source": "docs/FEATURES.md",
       "target": "docs/hr-HR/FEATURES.md",
       "sourceSha256": "ea712f39457ce69f772f09a1294201705a5f36a92a8bf15f356bd80132c3e723",
-      "translationSha256": "3bfd85943210e07708c7407a5bce1a8bf4359fe8d57228d322be451eaba2ab68"
+      "translationSha256": "7085ee87376e4f6228d68d2c5026f3904a3bb28fb4835e29883bdbfdf917ab59"
     },
     {
       "source": "docs/VERIFICATION.md",
@@ -4667,7 +4667,7 @@
       "source": "docs/MAINTENANCE.md",
       "target": "docs/hr-HR/MAINTENANCE.md",
       "sourceSha256": "9bf5875b50386e698c0574eee390f790d4b1c29cb11288c856c98e03a05877f7",
-      "translationSha256": "54c9b969c07ac88b08c25cc97dc013c96d8616595548fbd56dbb3c0c5a9ba3fe"
+      "translationSha256": "eb72833b10bda580f9373416cf5ca9e4238e91c41d9467aa4cba9b6800da9a7e"
     },
     {
       "source": "docs/research/keyboard-custom.md",
@@ -4679,7 +4679,7 @@
       "source": "docs/research/keyboard-gaming.md",
       "target": "docs/hr-HR/research/keyboard-gaming.md",
       "sourceSha256": "dd2a575750ec0d0943b62b6083e634a1b40e7b5538c43767aed62b545b3441f8",
-      "translationSha256": "e024318afc59e7afcdd55040cea36787702c07ee54b8451610f39d0fe1110e74"
+      "translationSha256": "f391c12e6bea408b64f568583beec4e657495f768701b9eb79160d6fd403a326"
     },
     {
       "source": "docs/research/keyboard-layout-evidence.md",
@@ -4739,13 +4739,13 @@
       "source": "docs/testing/2026-10-12-gui-polish.md",
       "target": "docs/hr-HR/testing/2026-10-12-gui-polish.md",
       "sourceSha256": "ac39188358e51c68964421d3e855161d607b02a41da2b1a1fad70244f9feff97",
-      "translationSha256": "1dfcb82064d4ce525debb7d1f843a0c06455b3520eb992bb16865a1e24c1cc40"
+      "translationSha256": "ab6ad7a8e30c79080649b481db483a3051d70357657b9d87b87a54108361d884"
     },
     {
       "source": "docs/testing/2026-10-12-local-ai-runtimes.md",
       "target": "docs/hr-HR/testing/2026-10-12-local-ai-runtimes.md",
       "sourceSha256": "3dfbb80761aad758ea6a9307999ff530dfdd4a0cf685804e15052508cf107fd7",
-      "translationSha256": "1c294a8d959b155ffdd86dc5aeb272a8cfeb11cf2abafd03cb3c52e656fa9269"
+      "translationSha256": "9ce5305dab3ff6dd9095c16b2b1daf39ac615e551aa91258d6b69a0d7560b7ee"
     },
     {
       "source": "docs/testing/2026-10-12-local-meeting-assistant.md",
@@ -4847,19 +4847,19 @@
       "source": "README.md",
       "target": "docs/uk-UA/REFERENCE.md",
       "sourceSha256": "eb6f3fe7810ed3e10793e8938e908e151a84c4afbea2f22cba2656bfe4e8dfc3",
-      "translationSha256": "4018329f5b1eaae93658f12c7cbb0bbc82cdd25f436edaa4bd14ff90a407448f"
+      "translationSha256": "2238b9e14c71c9baf6d49ebc862862e2184068e2cc487a777dacd4a7ce89ba70"
     },
     {
       "source": "docs/HANDBOOK.md",
       "target": "docs/uk-UA/HANDBOOK.md",
       "sourceSha256": "8c6422e18d8939164f91da28603ed597f478f1a9b8bb41e14cbe4f6630bab3fc",
-      "translationSha256": "d8a6f0113a4a5e2cacab1b9f51533886176f9c5333c8ae2b4af7f8e2b31ceb57"
+      "translationSha256": "197818e3a771bb501aeb9cee93a066d25a720f50cf31c7a3dac63d5ead5dc84b"
     },
     {
       "source": "docs/FEATURES.md",
       "target": "docs/uk-UA/FEATURES.md",
       "sourceSha256": "ea712f39457ce69f772f09a1294201705a5f36a92a8bf15f356bd80132c3e723",
-      "translationSha256": "2b5a80c61d282f448be17562eb0b1e3f2a2f951fa33d8311df7948d11442ed4e"
+      "translationSha256": "f15f0de59c529ed05d3726a104761f8df012be62d9ea336d1d81af578f7ac482"
     },
     {
       "source": "docs/VERIFICATION.md",
@@ -4871,7 +4871,7 @@
       "source": "docs/MAINTENANCE.md",
       "target": "docs/uk-UA/MAINTENANCE.md",
       "sourceSha256": "9bf5875b50386e698c0574eee390f790d4b1c29cb11288c856c98e03a05877f7",
-      "translationSha256": "6fc30c9f18e4dce179e1a483bcc7b78f1bb0c0ed21b3422932c47314dda74bbe"
+      "translationSha256": "4fa83beb63f7f9ce339e60b83dc8a0dcdedd0aede11d219f3c57e8a2104bfbea"
     },
     {
       "source": "docs/research/keyboard-custom.md",
@@ -4907,13 +4907,13 @@
       "source": "docs/research/tastaturhersteller-sonderfunktionen.csv",
       "target": "docs/uk-UA/research/tastaturhersteller-sonderfunktionen.csv",
       "sourceSha256": "4f051721fcf5939ef9440f10f417151d08a0928136501fc5c871b58066e410a1",
-      "translationSha256": "726ca56fb324f7ce98f00e9c823997226ab2baaa450cd3d13485337b3732b95c"
+      "translationSha256": "c5b5ba34ee3f3d167273ec1a53b9f407507c3ac856be0bed8b495804046f61f5"
     },
     {
       "source": "docs/research/tastaturhersteller-sonderfunktionen.md",
       "target": "docs/uk-UA/research/tastaturhersteller-sonderfunktionen.md",
       "sourceSha256": "531ab8901be0cbcae5542de1dde95416a8d1c040a63cb7a3386f695b925de782",
-      "translationSha256": "9e481e1b17c1819bde1e2a69dc9a718eaeae65331af3a06d8e88766226972769"
+      "translationSha256": "4729956eeeb9607de76cd356dcbdf84072097310e692faf92f062a70328bdb0d"
     },
     {
       "source": "docs/testing/2026-10-09-app-audit.md",
@@ -4943,13 +4943,13 @@
       "source": "docs/testing/2026-10-12-gui-polish.md",
       "target": "docs/uk-UA/testing/2026-10-12-gui-polish.md",
       "sourceSha256": "ac39188358e51c68964421d3e855161d607b02a41da2b1a1fad70244f9feff97",
-      "translationSha256": "757218180f09f92c8bdcef7e6b95313b918a64c4831fbe62eeeffd415ea9ca42"
+      "translationSha256": "72e1f15575c78d3333c611f607076075e050bb0e966d9dd4ee3e0ad17beaeb3c"
     },
     {
       "source": "docs/testing/2026-10-12-local-ai-runtimes.md",
       "target": "docs/uk-UA/testing/2026-10-12-local-ai-runtimes.md",
       "sourceSha256": "3dfbb80761aad758ea6a9307999ff530dfdd4a0cf685804e15052508cf107fd7",
-      "translationSha256": "7cd7cb32b2404f4a111782237787c630b16e79ee1c6ac3794370e2a978306b64"
+      "translationSha256": "fbda85b72e0adfcec55d28d840f63a9a2bc30d6ab3cdab1d305971f75c31889e"
     },
     {
       "source": "docs/testing/2026-10-12-local-meeting-assistant.md",
@@ -4991,13 +4991,13 @@
       "source": "docs/superpowers/plans/2026-10-12-local-ai-runtimes.md",
       "target": "docs/uk-UA/superpowers/plans/2026-10-12-local-ai-runtimes.md",
       "sourceSha256": "f24c6b3bce4d0b4dd9d42732c363941a36644f90cf8d664d61ea0c60eb950079",
-      "translationSha256": "b2c9a1340013ea420d6c30a26be9ad60c81cedf8b7f311ca011b3f002c66a5bc"
+      "translationSha256": "642883849c9496c8669c5dad291a9aace57638838dac02a4ae0117f3f035e747"
     },
     {
       "source": "docs/superpowers/plans/2026-10-12-local-meeting-assistant.md",
       "target": "docs/uk-UA/superpowers/plans/2026-10-12-local-meeting-assistant.md",
       "sourceSha256": "1f105661dc4244fce4110ddae1484b4ce819e2d4c6945ada84a27704d95db72a",
-      "translationSha256": "88b3ddc97e85ab821c4c1f9313733337df044fdefdaf2805e91b3fd507873d67"
+      "translationSha256": "5c4de9ad984f602615def0897f0ba57a93756611a57d2885127def86e5430733"
     },
     {
       "source": "docs/superpowers/plans/2026-10-12-six-extensions-progress.md",
@@ -5051,19 +5051,19 @@
       "source": "README.md",
       "target": "docs/ru-RU/REFERENCE.md",
       "sourceSha256": "eb6f3fe7810ed3e10793e8938e908e151a84c4afbea2f22cba2656bfe4e8dfc3",
-      "translationSha256": "a4e5d04fed4d91dbcd6cc924852b2f1610c85cd4feb691015f413102e97b9fb5"
+      "translationSha256": "6e847b024e1c4175b22fc704ac2383c271907203140f43a96dfa7f51b3ee1953"
     },
     {
       "source": "docs/HANDBOOK.md",
       "target": "docs/ru-RU/HANDBOOK.md",
       "sourceSha256": "8c6422e18d8939164f91da28603ed597f478f1a9b8bb41e14cbe4f6630bab3fc",
-      "translationSha256": "772b6f5edd348e83079b3cd8eacbee75620d2a00de4e710d11c43fc53dfc6c97"
+      "translationSha256": "6e77091686117e4593a36941f90f1344ad0f22c2983e3daadfa64f244317459b"
     },
     {
       "source": "docs/FEATURES.md",
       "target": "docs/ru-RU/FEATURES.md",
       "sourceSha256": "ea712f39457ce69f772f09a1294201705a5f36a92a8bf15f356bd80132c3e723",
-      "translationSha256": "2c5c8c161d88ad70e5a002bef66fcba82d4b62ba6db034875155506d3406289e"
+      "translationSha256": "4cdde07c728ff8c777995a8abc962e86404ad7ebe3dba66742edb4cd114e1546"
     },
     {
       "source": "docs/VERIFICATION.md",
@@ -5075,7 +5075,7 @@
       "source": "docs/MAINTENANCE.md",
       "target": "docs/ru-RU/MAINTENANCE.md",
       "sourceSha256": "9bf5875b50386e698c0574eee390f790d4b1c29cb11288c856c98e03a05877f7",
-      "translationSha256": "b8067b4ecff24b58750707b7635db0f43b4993ea3e45707a2f338d266d6f4252"
+      "translationSha256": "2a94a9285621d2ef1ab8dd7d168c04d6e4e2320028bf18413d9c9e9cabf5abb3"
     },
     {
       "source": "docs/research/keyboard-custom.md",
@@ -5111,13 +5111,13 @@
       "source": "docs/research/tastaturhersteller-sonderfunktionen.csv",
       "target": "docs/ru-RU/research/tastaturhersteller-sonderfunktionen.csv",
       "sourceSha256": "4f051721fcf5939ef9440f10f417151d08a0928136501fc5c871b58066e410a1",
-      "translationSha256": "49f0e58e2682b594d0ad95e6e6912a14f7b991a4cac441461e54081c151a8e00"
+      "translationSha256": "d0866ae04726af6911284dfa08620995f35d4b9a16bf80a2724f29c325e67c07"
     },
     {
       "source": "docs/research/tastaturhersteller-sonderfunktionen.md",
       "target": "docs/ru-RU/research/tastaturhersteller-sonderfunktionen.md",
       "sourceSha256": "531ab8901be0cbcae5542de1dde95416a8d1c040a63cb7a3386f695b925de782",
-      "translationSha256": "a03364323fec44371f6525e365b4e7399c41b7d7ba2dafb7777d9767de849ae8"
+      "translationSha256": "151c0937d6cd9af54a8638ccdd69ffb5b328981e2160cf767fe6eb684a99a134"
     },
     {
       "source": "docs/testing/2026-10-09-app-audit.md",
@@ -5147,13 +5147,13 @@
       "source": "docs/testing/2026-10-12-gui-polish.md",
       "target": "docs/ru-RU/testing/2026-10-12-gui-polish.md",
       "sourceSha256": "ac39188358e51c68964421d3e855161d607b02a41da2b1a1fad70244f9feff97",
-      "translationSha256": "94493301db98f9ba977f8e36dc4809975429f56153e55f5e84a32bcf395f9e52"
+      "translationSha256": "786520e85334da20b2ccf52298f4ff787249bc24b8e3357f3f050267a30bd88d"
     },
     {
       "source": "docs/testing/2026-10-12-local-ai-runtimes.md",
       "target": "docs/ru-RU/testing/2026-10-12-local-ai-runtimes.md",
       "sourceSha256": "3dfbb80761aad758ea6a9307999ff530dfdd4a0cf685804e15052508cf107fd7",
-      "translationSha256": "84770d67055db721b6637fa2ec868c6f99532aa11f8addf94d8b3d32cc5050a6"
+      "translationSha256": "be056f9400a90ee02364b92c46dd4b36c8fa85b30bce9f17db50bef1e14ef490"
     },
     {
       "source": "docs/testing/2026-10-12-local-meeting-assistant.md",
@@ -5195,13 +5195,13 @@
       "source": "docs/superpowers/plans/2026-10-12-local-ai-runtimes.md",
       "target": "docs/ru-RU/superpowers/plans/2026-10-12-local-ai-runtimes.md",
       "sourceSha256": "f24c6b3bce4d0b4dd9d42732c363941a36644f90cf8d664d61ea0c60eb950079",
-      "translationSha256": "98edfafa3d86e2595224831e3696ed104055070686c749a0469b0dcaa78390ea"
+      "translationSha256": "a87df91545a9c6724c42526d5f9c920b8a53137b56dac97c0d33d474a40e01c5"
     },
     {
       "source": "docs/superpowers/plans/2026-10-12-local-meeting-assistant.md",
       "target": "docs/ru-RU/superpowers/plans/2026-10-12-local-meeting-assistant.md",
       "sourceSha256": "1f105661dc4244fce4110ddae1484b4ce819e2d4c6945ada84a27704d95db72a",
-      "translationSha256": "613bbb3c162c406e0371f44095226da4a3f4cd40db96cc327bd4fbd91f5b3ff5"
+      "translationSha256": "9e2d9e0759442d730eb4d2f82198fe1a460e15ad05f15e7affdc17b6688cfdbc"
     },
     {
       "source": "docs/superpowers/plans/2026-10-12-six-extensions-progress.md",
@@ -5255,19 +5255,19 @@
       "source": "README.md",
       "target": "docs/tr-TR/REFERENCE.md",
       "sourceSha256": "eb6f3fe7810ed3e10793e8938e908e151a84c4afbea2f22cba2656bfe4e8dfc3",
-      "translationSha256": "697e007e3fa6000b4dfcdc2b443e79f80c9d3a7cd2ab782192a1dd42460a5f36"
+      "translationSha256": "7547d60dc27ad00ef37fa4e016d688d36ff0598aefa8448858b089f6af0be028"
     },
     {
       "source": "docs/HANDBOOK.md",
       "target": "docs/tr-TR/HANDBOOK.md",
       "sourceSha256": "8c6422e18d8939164f91da28603ed597f478f1a9b8bb41e14cbe4f6630bab3fc",
-      "translationSha256": "452d98f79343d4cc91d4df9c0c5ddef565241a85a5f5cd08f2581cea286a6e3e"
+      "translationSha256": "62221adf621b3b277ba733860c1557a8b2f22b18065bae994a552b6a9f5e51e3"
     },
     {
       "source": "docs/FEATURES.md",
       "target": "docs/tr-TR/FEATURES.md",
       "sourceSha256": "ea712f39457ce69f772f09a1294201705a5f36a92a8bf15f356bd80132c3e723",
-      "translationSha256": "9cf9113f59fef85551fc5ccaa94af65473984895fe6349de5b369c0bac4a90ad"
+      "translationSha256": "4780bebdcebdd9db4ebaebd7bd2dbb07ac2ee4d73f6d47a9f8818ffec0fb8a9a"
     },
     {
       "source": "docs/VERIFICATION.md",
@@ -5279,7 +5279,7 @@
       "source": "docs/MAINTENANCE.md",
       "target": "docs/tr-TR/MAINTENANCE.md",
       "sourceSha256": "9bf5875b50386e698c0574eee390f790d4b1c29cb11288c856c98e03a05877f7",
-      "translationSha256": "6d636d9ddb6a17899c0f02a0c9d93af6b2e071b03324dc9e4c7db843472b6756"
+      "translationSha256": "d646fdc0e25d1a4caea23b5014a1d1866deb974148cbceb5e427d8c606d85dc9"
     },
     {
       "source": "docs/research/keyboard-custom.md",
@@ -5351,13 +5351,13 @@
       "source": "docs/testing/2026-10-12-gui-polish.md",
       "target": "docs/tr-TR/testing/2026-10-12-gui-polish.md",
       "sourceSha256": "ac39188358e51c68964421d3e855161d607b02a41da2b1a1fad70244f9feff97",
-      "translationSha256": "7c51e45b121dc1b6e47ebad12494564deaa400421c1d34e368873652faa56491"
+      "translationSha256": "3cdd175da06c36f6dd950b2703bdf9a67019356cd0f32730ff0af05324955cd0"
     },
     {
       "source": "docs/testing/2026-10-12-local-ai-runtimes.md",
       "target": "docs/tr-TR/testing/2026-10-12-local-ai-runtimes.md",
       "sourceSha256": "3dfbb80761aad758ea6a9307999ff530dfdd4a0cf685804e15052508cf107fd7",
-      "translationSha256": "d94d2ea772a92432ad381f6ef8b650ba08fdde0e94fd2f7b7ae0aa2d10bd4936"
+      "translationSha256": "4809f5bb11eb28066bf93ea5e971c66150f45f4bc2f69c3f0c1e779177864cdc"
     },
     {
       "source": "docs/testing/2026-10-12-local-meeting-assistant.md",
@@ -5459,19 +5459,19 @@
       "source": "README.md",
       "target": "docs/sr-Latn/REFERENCE.md",
       "sourceSha256": "eb6f3fe7810ed3e10793e8938e908e151a84c4afbea2f22cba2656bfe4e8dfc3",
-      "translationSha256": "570e6ade90452901561b7aba52cd8c1dd3f2ce155ba321b531e1030064f29b2c"
+      "translationSha256": "dd19bb8f74adcf31529af9f962fc3a24565f091845b5e010ca302b51e15d265b"
     },
     {
       "source": "docs/HANDBOOK.md",
       "target": "docs/sr-Latn/HANDBOOK.md",
       "sourceSha256": "8c6422e18d8939164f91da28603ed597f478f1a9b8bb41e14cbe4f6630bab3fc",
-      "translationSha256": "c0bae14d39c457f3e27ab3503dc79b2bb7c4b8b4430fece457dff6d21f900340"
+      "translationSha256": "7a15585c1e8ad1e0ddb84613661171617f2f3206394519b7595e1ca9dc8813ff"
     },
     {
       "source": "docs/FEATURES.md",
       "target": "docs/sr-Latn/FEATURES.md",
       "sourceSha256": "ea712f39457ce69f772f09a1294201705a5f36a92a8bf15f356bd80132c3e723",
-      "translationSha256": "73a6844c320cdfce51c814e228d387442a888f669d070beb77a556ef2cd1bf10"
+      "translationSha256": "cc7b7854b229863019f3b25c2d22ffe8a5c77e6b900c82940195c9272f481641"
     },
     {
       "source": "docs/VERIFICATION.md",
@@ -5483,7 +5483,7 @@
       "source": "docs/MAINTENANCE.md",
       "target": "docs/sr-Latn/MAINTENANCE.md",
       "sourceSha256": "9bf5875b50386e698c0574eee390f790d4b1c29cb11288c856c98e03a05877f7",
-      "translationSha256": "71c7e04111fcbd243afc66b16aa327afec6844cd1df27b1cdb55abb1e33caef8"
+      "translationSha256": "9930ff5c3d51996b42da9df12e5a863d5a3a56eebb2a0a7b2410740276c4e088"
     },
     {
       "source": "docs/research/keyboard-custom.md",
@@ -5495,7 +5495,7 @@
       "source": "docs/research/keyboard-gaming.md",
       "target": "docs/sr-Latn/research/keyboard-gaming.md",
       "sourceSha256": "dd2a575750ec0d0943b62b6083e634a1b40e7b5538c43767aed62b545b3441f8",
-      "translationSha256": "4ecb5f626ca2585db2df21e299f5014800d7aa833ca958f2bd5c8ca982f046b3"
+      "translationSha256": "75026577f6c69385bbb4ea02dd3d8bd182a236aa54f03d8aa6b2242d46ff1ca0"
     },
     {
       "source": "docs/research/keyboard-layout-evidence.md",
@@ -5555,13 +5555,13 @@
       "source": "docs/testing/2026-10-12-gui-polish.md",
       "target": "docs/sr-Latn/testing/2026-10-12-gui-polish.md",
       "sourceSha256": "ac39188358e51c68964421d3e855161d607b02a41da2b1a1fad70244f9feff97",
-      "translationSha256": "17daf0b800862024f1b636bef4965417bbb27222147862253fafaf77c47b4e54"
+      "translationSha256": "9454f8ef679b2bc64f9915ec1e694e8d5a0299be198d436eca3d85d455dff736"
     },
     {
       "source": "docs/testing/2026-10-12-local-ai-runtimes.md",
       "target": "docs/sr-Latn/testing/2026-10-12-local-ai-runtimes.md",
       "sourceSha256": "3dfbb80761aad758ea6a9307999ff530dfdd4a0cf685804e15052508cf107fd7",
-      "translationSha256": "8de7b118ab123fefd01db72c6eb5c3152b715fa2b5f0c43ed5f9aa90f51a1998"
+      "translationSha256": "b3e523a4953cbeead5befb002e3158e6b0dfb78e27964710711b6e40433d26c2"
     },
     {
       "source": "docs/testing/2026-10-12-local-meeting-assistant.md",

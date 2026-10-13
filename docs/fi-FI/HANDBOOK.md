@@ -2,155 +2,155 @@
 
 > Koneavusteinen käännös. Rakenne, koodiesimerkit ja linkit tarkistetaan; tämä ei tarkoita äidinkielisen tarkistajan arviota tai oikeudellista hyväksyntää. Historialliset raportit säilyttävät alkuperäiset päivämääränsä ja rajauksensa. [Alkuperäinen lähde](../HANDBOOK.md)
 
-# MAKRIVO — Käyttöopas
+# MAKRIVO-käyttöopas
 
-Valmistaja: **Aivana**. Dokumentti snapshot: **2026-10-12**. Tämä käsikirja kuvastaa nykyistä työpuun toteuttamista. kokeelliset integroinnit ja laitteistoon riippuvat toiminnot tunnistetaan nimenomaisesti. Historialliset raportit kuvaavat niiden päivitetyn kuvan, ei takuun uudelle rakenteelle.
+Valmistaja: **Aivana**. Dokumentaation tilannekuva: **2026-10-12**. Tämä opas kuvaa nykyistä työpuun toteutusta. Kokeelliset integraatiot ja laitteistosta riippuvat toiminnot on merkitty erikseen. Historialliset raportit kuvaavat päivättyä tilannekuvaansa, eivät takaa uudempien koontien toimivuutta.
 
-## Dokumentti ja kielet
+## Dokumentaatio ja kielet
 
-Käytä dokumenttikielen valintaohjelmaa avata täydellinen käsikirja, ominaisuus, ongelmanratkaisu, kehitysilmoitukset, tutkimus ja historialliset testitiedot jollakin 27 sovelluskielistä. Tuotetut käännökset ovat koneellisesti avustettuja ja niillä on rakenteellisia tarkastuksia; ne eivät ole kaikki saaneet alkuperäisen puhujan tarkastusta. Tekniset tunnisteet ja täytäntöönpanokelpoiset esimerkit pysyvät muuttumattomina. Alkuperäinen lähde on edelleen vertailukelpoinen. Käännetty lisenssin analyysi on informatiivinen eikä korvaa alkuperäisiä kolmannen osapuolen oikeudellisia ehtoja tai lopullista EULA:ta.
+Käytä dokumentaation kielivalitsinta avataksesi koko oppaan, ominaisuusluettelon, vianmäärityksen, kehitysmuistiinpanot, tutkimuksen ja historialliset testiraportit millä tahansa 27 sovelluskielestä. Tuotetut käännökset ovat koneavusteisia ja rakenteellisesti tarkistettuja; kaikkia ei ole tarkistanut äidinkielinen puhuja. Tekniset tunnisteet ja suoritettavat esimerkit säilyvät muuttumattomina. Alkuperäinen lähde on edelleen saatavilla vertailua varten. Käännetty lisenssianalyysi on tiedoksi eikä korvaa alkuperäisiä kolmansien osapuolten oikeudellisia ehtoja tai lopullista EULA-sopimusta.
 
 ## Asennus ja ensimmäinen käynnistys
 
-Alkuperäinen tavoite on Windows 11 x64. Pidä kaikki tiedostot ja jakeluosasto yhdessä. `MAKRIVO.exe`. Alkuperäinen tarkastus ei ole asentaja. itsekohtaiset paketit sisältävät niiden .NET-käyttöaikaa; puitteet riippuvaiset paketit vaativat asianmukaista .NET-ohjelmaa. 10 Desktop ja ASP.NET. ONNX ja kumppanit on sisällytettävä niiden ominaisuuksiin.
+Alkuperäinen kohdeympäristö on Windows 11 x64. Pidä kaikki jakelupaketin tiedostot ja alihakemistot yhdessä. Käynnistä `MAKRIVO.exe`. Lähdekoodin paikallinen kopio ei ole asennusohjelma. Itsenäiset paketit sisältävät .NET-suoritusympäristönsä; suoritusympäristöstä riippuvaiset paketit vaativat asianmukaiset .NET 10 Desktop- ja ASP.NET-suoritusympäristöt. ONNX ja apuprosessien isäntäohjelmat on sisällytettävä pakettiin niitä tarvitsevia ominaisuuksia varten.
 
-1. Käynnistä MAKRIVO ja valitse käyttöliittymän kieli asetuksissa. Seuraa automaattisesti Windows Keyboard -järjestelmä on erillinen järjestelmä.
-2. Valitse profiili ja lisää sitten otsikoituun toimenpide-katalogiin. Anna sille tunnistettavan nimen ja valitse sen toimet.
-3. Tarkista vaiheet ja määritä lyhyt lyhyt tarvittaessa. Vältä yhdistelmät, joita on jo käytetty Windows tai kohderyhmäsi.
-4. Pidä suunnitelma. Muutos ei ole pelastettu.
+1. Käynnistä MAKRIVO ja valitse käyttöliittymän kieli asetuksista. Automaattinen valinta seuraa Windows-kieltä. Näppäimistöasettelu on erillinen asetus.
+2. Valitse profiili ja lisää toimintoruutu haettavan toimintoluettelon avulla. Anna sille tunnistettava nimi ja valitse sen toiminnot.
+3. Tarkista vaiheet ja määritä tarvittaessa pikanäppäin. Vältä yhdistelmiä, joita Windows tai kohdesovellus jo käyttää.
+4. Tallenna luonnos. Tallentamattomat muutokset eivät kuulu tallennettuun kokoonpanoon.
 5. Testaa vaarattomalla toiminnalla, kuten asiakirjan avaamisella ja tarkista suorituskyvyn palautetta.
 
-Pääikkunan sulkeminen jättää yleensä hakemuksen ilmoitusalueella. Kaksinkertaisesti napsauta tray-ikonia uudelleen, tai käytä tray-menua ulos. Aloittaminen Windows on valinnaista ja aluksi poissa. Pausen hallinta keskeyttää sidokset; ikoni näyttää pausen. Poista käynnissä olevat makronet käyttäen käyttöliittymää, traiaa tai määritettyä peruuttamista lyhyt; oletusarvo on `Ctrl+Alt+Escape`.
+Pääikkunan sulkeminen jättää sovelluksen tavallisesti ilmoitusalueelle. Avaa se uudelleen kaksoisnapsauttamalla ilmoitusalueen kuvaketta tai lopeta sovellus sen valikosta. Käynnistys Windows-käynnistyksen yhteydessä on valinnainen ja aluksi poistettu käytöstä. Taukopainike keskeyttää sidonnat; kuvakkeessa näkyy taukomerkki. Peruuta käynnissä olevat makrot käyttöliittymästä, ilmoitusalueelta tai määritetyllä peruutuspikanäppäimellä; oletus on `Ctrl+Alt+Escape`.
 
-## Tilat, toimet ja komento paletti
+## Toimintoruudut, toiminnot ja komentopaletti
 
-Tilat kuuluvat profiileihin ja voivat sisältää useita tilattuja askeleita. Toimittaja tukee Save/Discard, Preview, undo/redo ja askel uudelleenjärjestely. Katalogissa on ohjelmien, asiakirjojen, URL-osoitteiden, tekstien, clipboardin, lyhenteiden, median, äänen, ikkunoiden, järjestelmätoimintojen ja tuettujen integrointien ennakkoluuloja. Parametrit edellyttävät esityksiä, jotka avautuvat luonnokseksi.
+Toimintoruudut kuuluvat profiileihin ja voivat sisältää useita järjestettyjä vaiheita. Editori tukee tallennusta ja hylkäämistä, esikatselua, kumoamista ja uudelleentekemistä sekä vaiheiden uudelleenjärjestelyä. Luettelo tarjoaa esiasetuksia ohjelmille, asiakirjoille, URL-osoitteille, tekstille, leikepöydälle, pikanäppäimille, medialle, äänelle, ikkunoille, järjestelmätoiminnoille ja tuetuille integraatioille. Parametreja tarvitseva esiasetus avautuu luonnoksena.
 
-Avaa paletti `Ctrl+K` ja MAKRIVO on keskittynyt. Etsi tallennettuja toimintoja, ennakkoluuloja, profiilin vaihtamista ja työkaluja. Valitse avaimet; Käytä aktivoi; `Ctrl+Enter` muokkaa tuettu elementti; Escape sulkee. Jotkut valmiit käskyt suoritetaan välittömästi, kun taas konfiguroidut toimet vaativat tarkistusta. Erillinen maailmanlaajuinen lyhytkesto voidaan konfiguroida; uusia konfiguraatioita käytetään `Ctrl+Shift+Space`.
+Avaa komentopaletti näppäimillä `Ctrl+K`, kun MAKRIVO on aktiivinen. Hae tallennettuja toimintoja, esiasetuksia, profiilinvaihtoa ja työkaluja. Nuolinäppäimet valitsevat; Enter aktivoi; `Ctrl+Enter` muokkaa tuettua kohdetta; Escape sulkee. Osa käyttövalmiista komennoista suoritetaan heti, kun taas määritetyt toiminnot vaativat tarkistuksen. Erillinen globaali paletin pikanäppäin voidaan määrittää; uusissa kokoonpanoissa se on `Ctrl+Shift+Space`.
 
-Teksti ja clipboard askeleet tukea `{{date}}`, `{{time}}`, `{{datetime}}`, `{{clipboard}}`, `{{profile}}`, `{{process}}` ja `{{user}}`. Date muotoilu on `yyyy-MM-dd`; Ajan muotoilu on `HH:mm`. Tuntematon muuttujat pysyvät muuttumattomina.Clipboard-luku tapahtuu vain pyydettäessä.Clip board-toiminta kirjoittaa tekstin automaattisesti mukauttamatta sitä.
+Teksti- ja leikepöytävaiheet tukevat muuttujia `{{date}}`, `{{time}}`, `{{datetime}}`, `{{clipboard}}`, `{{profile}}`, `{{process}}` ja `{{user}}`. Päivämäärän muoto on `yyyy-MM-dd`; kellonajan muoto on `HH:mm`. Tuntemattomat muuttujat säilyvät muuttumattomina. Leikepöytää luetaan vain pyydettäessä. Leikepöytätoiminto kirjoittaa tekstiä leikepöydälle liittämättä sitä automaattisesti.
 
-UI: n käynnistämät toimet voivat kohdistaa viimeisen ulkoisen sovelluksen. Jos kohde katoaa tai Windows estää etukäteen aktivoinnin, aktivoi manuaalisesti kohde ja vetää. Menestyksekäs avain toimitus ei osoita, että tavoite on suorittanut tehtävänsä.
+Käyttöliittymästä käynnistetyt toiminnot voivat kohdistua viimeiseen ulkoiseen sovellukseen. Jos kohde katoaa tai Windows estää etualalle tuomisen, aktivoi kohde käsin ja yritä uudelleen. Näppäinten onnistunut välitys ei todista kohdesovelluksen suorittaneen tehtäväänsä.
 
-## Profileja ja työpaikkoja
+## Profiilit ja työympäristön määritys
 
-Profiilit voivat vastata prosessin nimeä ja osan ikkunan otsikosta. Kun molemmat on tehty, molempien on oltava yhteisiä. Profile-tilaus ratkaisee kilpailevat ottelut; oletusarvoinen profiili on palautus. Automaattinen valinta mahdollistaa selkeästi. Lock Profile estää automaattiset muutokset nykyiselle istunnolle.
+Profiilin täsmäytysehtoina voidaan käyttää prosessin nimeä ja ikkunan otsikon osaa. Kun molemmat on asetettu, molempien on täsmättävä. Profiilien järjestys ratkaisee kilpailevat osumat; oletusprofiilia käytetään, jos muuta osumaa ei ole. Ota automaattinen valinta erikseen käyttöön. Profiilin lukitus estää automaattiset muutokset nykyisessä istunnossa.
 
-Avoin työpaikka asetukset työkaluista tai palettia. Valitse ohjelmat, asiakirjat, verkkosivut, äänen/näytön kohde tai OBS kohtaus. Avustaja valmistelee työpaikkaa, kokouksia, suoratoistoa, tutkimusta tai projektiprofiileja. Tarkista tuotetut vaiheet ennen säästöä. Asennus ei toteuta valmistettuja toimia.
+Avaa työympäristön määritys työkaluista tai komentopaletista. Valitse ohjelmat, asiakirjat, verkkosivustot, ääni- tai näyttökohde tai OBS-kohtaus. Avustaja valmistelee työympäristö-, kokous-, suoratoisto-, tutkimus- tai projektiprofiileja. Tarkista luodut vaiheet ennen tallennusta. Määritys ei suorita valmisteltuja toimintoja.
 
-## Macros, ehdot ja tallennus
+## Makrot, ehdot ja tallennus
 
-Macros suorittaa askeleensa järjestyksessä ja tukee odotuksia, toistoja ja peruuttamista. Yleinen toistamisraja on 100. Käytä ennakkoa ennen toimintojen suorittamista muuhun sovellukseen tai järjestelmän tilaan muuttamiseen.
+Makrot suorittavat vaiheensa järjestyksessä ja tukevat odotuksia, toistoja ja peruutusta. Yleinen toistoraja on 100. Käytä esikatselua ennen toimintoja, jotka kirjoittavat toiseen sovellukseen tai muuttavat järjestelmän tilaa.
 
-Tavoiteikkuna hyväksyy prosessin, otsikon ja aikarajan 1 ja 600,000 ms. Tarvitaan ainakin yksi suodatin. Näkyvä ikkuna vastaa ja tulee etukäteen, ennen kuin seuraavat vaiheet jatkavat. Valmis ikkuna ei osoita, että asiakirja tai palvelu on valmis latautumaan.
+Kohdeikkunan odotus hyväksyy prosessin, otsikon osan ja aikakatkaisun väliltä 1 ja 600000 ms. Vähintään yksi suodatin tarvitaan. Vastaavan näkyvän ikkunan on vastattava ja tultava etualalle ennen seuraavien vaiheiden jatkamista. Valmis ikkuna ei osoita, että asiakirjan tai palvelun lataus olisi päättynyt.
 
-Työnkulun muokkaaja lisää tiedostoja, prosessit ja ikkunan otsikoita. Virheellinen tila ohjaa askeleen ja voi siirtyä eteenpäin. Kieltäytyy ehdosta ilmaista vaihtoehtoinen ryhmi. Valitse pysähdys virheeseen tai jatko virheeseen tarkoituksella; jatkaminen voi jättää myöhemmät vaiheet ilman odotettuja edellytyksiä.
+Työnkulkueditorissa voi asettaa ehtoja tiedoston olemassaololle, prosessin käynnissäololle ja ikkunan otsikolle. Epätosi ehto ohittaa vaiheen ja voi ohittaa myös muita myöhempiä vaiheita. Ilmaise vaihtoehtoinen haara kääntämällä ehdon totuusarvo. Valitse tarkoituksella, pysäytetäänkö suoritus virheeseen vai jatketaanko virheestä huolimatta; jatkaminen voi jättää myöhemmät vaiheet ilman niiden odottamia edellytyksiä.
 
-Toiminto-rekisteri tallentaa lyhytkestoisia kortteja ja odottaa, ei tavallista kirjoitusta. Se tukee muokkaus lyhytkestoja ja toiminnallisia avaimia. Pelastus lopettaa tallennuksen. Tarkastele luetteloa ja hyväksy sitä säästämättömänä tyylisuunnitteluna, sitten säästää selvästi. UI-painikkeen tallennus on erillinen työkalu, joka on kuvattu alla.
+Toimintotallennin tallentaa näppäinyhdistelmiä ja odotuksia, ei tavallista kirjoittamista. Se tukee muokkausnäppäimiä sisältäviä pikanäppäimiä ja funktionäppäimiä. Escape lopettaa tallennuksen. Tarkista luettelo ja ota se käyttöön tallentamattomana toimintoruudun luonnoksena; tallenna sitten erikseen. Käyttöliittymän napsautusten tallennus on erillinen, jäljempänä kuvattu työkalu.
 
-## Avaimet, käskyt ja kerrokset
+## Näppäimistöt, eleet ja kerrokset
 
-Näppäimistö luetteloi havaitut käyttöliittymät ja viittaukset. Yksittäinen fyysinen näppäimistö voi altistaa useita käyttöliittymää. Valitse oikea kieli ja geometria; yksin tuote nimi ei tunnista ISO tai ANSI-järjestelmää.
+Näppäimistösivu luettelee havaitut laiterajapinnat ja viiteasettelut. Yksi fyysinen näppäimistö voi tarjota useita rajapintoja. Valitse oikea kieli ja geometria; pelkkä tuotenimi ei määritä ISO- tai ANSI-asettelua.
 
-Standardi globaali hotkeys sovelletaan kaikkiin näppäimistöihin. laite-erityinen Raw Input linkit tarkkailevat tiettyä laitetta ja skannauskoodin, mukaan lukien tuettu toiminto ja median avaimet. **Raw Input Ei häiritse tavallista Windows 2. Yksinomainen toissijainen näppäimistö ei ole valmistettu.** allekirjoitettu, lisensoitu ja testattu suodatinpitäjä on edelleen tarpeen; ei ole asennettu MAKRIVO.
+Tavalliset globaalit pikanäppäimet toimivat kaikilla näppäimistöillä. Laitekohtaiset Raw Input -sidonnat tarkkailevat tiettyä laitetta ja skannauskoodia, mukaan lukien tuetut funktio- ja medianäppäimet. **Raw Input ei estä tavallista Windows-syötettä. Yksinomaisessa käytössä oleva toinen näppäimistö ei ole tuotantovalmis.** Allekirjoitettu, lisensoitu ja testattu suodatinajuritaustajärjestelmä tarvitaan edelleen; MAKRIVO ei asenna sellaista.
 
-Tuki erityinen avain sidokset voivat käyttää välittömästi painamalla, painamalla, pitämällä tai kaksoispainikkeita. Held-laatikko avaimet väliaikaisesti valitsee toinen kartta ja palauttaa peruslaatikko vapautuksen; laatikko-valinta avaimet eivät käynnistä omaa makro. 150 Tähän 5,000 ms; kaksoisnäppäimet 150 Tähän 1,000 Nämä kartat eroavat tavallisista globaaleista hotkeys.
+Tuetut erikoisnäppäinsidonnat voivat käyttää välitöntä painallusta, napautusta, pitkää painallusta tai kaksoisnapautusta. Pohjassa pidettävä kerrosnäppäin valitsee väliaikaisesti toisen näppäinkartan ja palauttaa peruskerroksen vapautettaessa; kerroksen valintanäppäimet eivät suorita omaa makroaan. Pitkän painalluksen kynnys on 150 ja 5000 ms ja kaksoisnapautuksen aikaikkuna 150 ja 1000 ms. Nämä määritykset ovat erillisiä tavallisista globaaleista pikanäppäimistä.
 
-Erityisen avaimen miekka havaitsee yhteensopivia avaimia suorittamatta niiden määräämiä toimenpiteitä pidätyksen aikana. Diagnoosi selittää käytettävissä olevia laitteita, keskeytyneitä sidoksia, profiilin väärinkäytöksiä ja konflikteja. Ylityö näyttää valitun asetuksen ja sidosten; sen oletusarvoinen lyhytkesto on `Ctrl+Alt+F1`.
+Erikoisnäppäinten ohjattu määritys tunnistaa yhteensopivat näppäimet suorittamatta niille määritettyjä toimintoja tunnistuksen aikana. Diagnostiikka selittää puuttuvat laitteet, keskeytetyt sidonnat, profiilien ristiriidat ja konfliktit. Peittokuva näyttää valitun asettelun ja sidonnat; sen oletusarvoinen pohjassa pidettävä pikanäppäin on `Ctrl+Alt+F1`.
 
 | integraatio | Vaatimukset ja rajoitukset |
 | --- | --- |
-| Corsair | Running iCUE, SDK-yhteys ja yhteensopiva malli. G1–G6 ja tuettu RGB-toimintoja; omistettu Fn, pyörä, lukko ja profiilin ohjaimet eivät yleensä altistu G-key API: lle. |
-| Logitech G | Alkuperäinen x64 G-key/LED SDK -kirjastot vaativat nimenomaista hyväksyntää. G-näytöt eivät yksilöllisesti tunnista useita identtisiä fyysisiä näppäimistöjä. |
-| Razer | Chroma RGB ja vakiintunut sisäänkäynti; kartta omistettuja ohjauksia Synapse tarvittaessa. |
-| SteelSeries | GameSense RGB ja vakiintunut sisäänkäynti; kartta omistuksen GG tarvittaessa. |
-| Wooting | Yhteensopiva alkuperäinen x64 SDK analogisiin arvoihin ja raja-arvoihin; normaali HID-tulostus pysyy aktiivisena. |
-| Muut avaimet | Standard hotkeys tai tukea fyysinen skannaus koodi sidokset. Fn ja omistusoikeudet riippuvat mallista ja toimittajan konfiguraatiosta. |
+| Corsair | Käynnissä oleva iCUE, SDK-käyttöoikeus ja yhteensopiva malli. G1–G6 ja tuetut RGB-toiminnot; valmistajakohtaiset Fn-, rulla-, lukitus- ja profiilisäätimet eivät yleensä ole käytettävissä G-key API -rajapinnan kautta. |
+| Logitech G | Alkuperäiset paikalliset x64 G-key/LED SDK -kirjastot vaativat nimenomaisen hyväksynnän. G-key-tapahtumat eivät yksilöi useita samanlaisia fyysisiä näppäimistöjä. |
+| Razer | Chroma RGB ja tavallinen syöte; määritä tarvittaessa valmistajakohtaiset säätimet Synapse-ohjelmassa. |
+| SteelSeries | GameSense RGB ja tavallinen syöte; määritä tarvittaessa valmistajakohtaiset säätimet GG-ohjelmassa. |
+| Wooting | Yhteensopiva alkuperäinen paikallinen x64 SDK analogisille arvoille ja kynnysarvoille; tavallinen HID-syöte pysyy aktiivisena. |
+| Muut näppäimistöt | Tavalliset pikanäppäimet tai tuetut fyysisten skannauskoodien sidonnat. Fn ja valmistajakohtaiset säätimet riippuvat mallista ja valmistajan määrityksistä. |
 
-Valmistajan tutkimus kuvailee dokumentoituja valmiuksia, joita ei ole toteutettu tai testattu yhteensopivuutta jokaiseen luetelluille laitteille. Uudet adapterit tarvitsevat edelleen todellista laitteiston hyväksyntää. Älä lataa SDK:tä epäluotetuista lähteistä; SDK:n jakeluoikeudet erotetaan teknisestä yhteensopivuudesta.
+Valmistajatutkimus kuvaa dokumentoituja ominaisuuksia, ei toteutettua tai testattua yhteensopivuutta jokaisen luetellun laitteen kanssa. Uudet sovittimet vaativat edelleen hyväksyntätestauksen todellisella laitteistolla. Älä lataa SDK-binäärejä epäluotettavista lähteistä; SDK:n jakeluoikeudet ovat eri asia kuin tekninen yhteensopivuus.
 
 ## Näytöt, äänet ja OBS
 
-Audio-vaiheet määrittävät volyymin 0 ja 100 prosenttia ja mute/unmute/toggle tuettu tulos tai mikrofonin pääpisteet. Valitse tietty loppupiste tai käytä oletusta Windows. Puuttuva pelastettu tavoite tuottaa virheen sijaan, että se ohjaa hiljaa toista laitetta. Puhdista laitteet uudelleenkäynnistyksen jälkeen. Lopullinen ohjaus ei ole riippumaton sovellus sekoittimen tuki.
+Äänivaiheet asettavat äänenvoimakkuuden välille 0 ja 100 prosenttia ja mykistävät tuettuja äänilähtöjä tai mikrofonipäätepisteitä, poistavat niiden mykistyksen tai vaihtavat mykistystilaa. Valitse tietty päätepiste tai Windows-oletuslaite. Puuttuva tallennettu kohde aiheuttaa virheen sen sijaan, että ohjattaisiin huomaamatta toista laitetta. Päivitä laiteluettelo uudelleenkytkennän jälkeen. Päätepisteen ohjaus ei tarkoita itsenäisen sovelluskohtaisen mikserin tukea.
 
-Näytä toimenpiteet lisätä/vähenemään kirkkautta 10 prosenttiyksikköä tai asettaa arvo 0 100. Sisäiset näytöt käyttävät tuettuja WMI-liitäntöjä; ulkoiset näytöt vaativat tukea DDC/CI ja yleensä sen näytön valinta. Kabelit ja adapterit voivat estää ohjauksen. Valitse kaikki tuetut näytöt tai yksi näyttö. Uusi yhteys voi muuttaa käytettävissä olevia identiteettejä; tarkistaa pelastetun tavoitteen. Puuttuvat lukemat osoittautuvat käytettävissä oleviksi kuin mitattuina arvoina.
+Näyttötoiminnot lisäävät tai vähentävät kirkkautta 10 prosenttiyksikköä tai asettavat arvon välille 0 ja 100. Sisäiset näytöt käyttävät tuettuja WMI-rajapintoja; ulkoiset näytöt vaativat DDC/CI-tuen ja yleensä sen käyttöönoton näytön valikosta. Telakat, sovittimet ja kaapelit voivat estää ohjauksen. Valitse kaikki tuetut näytöt tai yksi näyttö. Uudelleenkytkentä voi muuttaa käytettävissä olevia tunnisteita; tarkista tallennettu kohde. Puuttuvat lukemat esitetään ei saatavilla -tilassa, ei mitattuina arvoina.
 
-OBS edellyttää WebSocket v5 käytettävissä OBS Työkalut. Aseta loppupiste, testaa yhteys ja latauspaikka / sisääntunnukset ennen tallennusta. Tukemassa olevat toimet ovat kohtauksen vaihtaminen, virta/rekordin aloittaminen/pysäytyminen/toppelu, tauon tallentaminen/resume ja sisäänpääsy mute. salasanoja voidaan tallentaa Windows Credential Managerissa ja ne ovat suljettuja konfigurointien viennistä. Menestyksekäs komento OBS ei vahvista jokaista downstream-efektiä.
+OBS vaatii, että WebSocket v5 on käytössä OBS:n työkaluissa. Määritä päätepiste, testaa yhteys ja lataa kohtausten sekä tulolähteiden nimet ennen tallennusta. Tuettuja toimintoja ovat kohtauksen vaihto, suoratoiston ja tallennuksen käynnistys, pysäytys ja tilan vaihto, tallennuksen tauotus ja jatkaminen sekä tulolähteen mykistys. Salasanat voidaan tallentaa Windows Credential Manager -palveluun, ja ne jätetään pois kokoonpanovienneistä. Onnistunut OBS-komento ei vahvista kaikkia suoratoistoketjun myöhempiä vaikutuksia.
 
-## Tulosten tarkistaminen ja täytäntöönpanon historia
+## Tuloksen tarkistus ja suoritushistoria
 
-Voit tarkistaa tuloksen asianmukaisille toimenpiteille. Sovellus erottaa etukäteen tarkastukset, vahvistetut vaikutukset, epäonnistumiset, peruutus ja vaikutukset, joita ei voida todistaa. Menettelyn olemassaolo ei ole soveltamisvalmiutta. Suhteelliset muutokset, lyhennökset ja tekstiviestit eivät saa menestysvaatimusta. Tarkista toiminnan arkisto ja tarkistushistoria, kun toimenpide epäonnistuu. Määritysvirheitä on korjattava ennen täydellisen makron sulkemista.
+Ota tuloksen tarkistus käyttöön soveltuville vaiheille. Sovellus erottaa ennakkotarkistukset, vahvistetut vaikutukset, epäonnistumiset, peruutuksen ja vaikutukset, joita ei voida tarkistaa. Prosessin olemassaolo ei tarkoita sovelluksen valmiutta. Suhteellisille muutoksille, pikanäppäimille ja tekstinsyötölle ei voida antaa yleistä onnistumisvahvistusta. Tarkista toimintaloki ja tarkistushistoria toiminnon epäonnistuessa. Korjaa määritysvirheet ennen koko makron suorittamista uudelleen.
 
-## UI automaatio ja klikkaaminen
+## Käyttöliittymäautomaatio ja napsautusten tallennus
 
-Lisää UI Automation -vaihe, valitse toimenpide ja tallenna kohde osoittautuneen viivästyksen jälkeen. tallennus yksin ei suoriteta mitään. tarkista valinta ja vaatii ainutlaatuisen matkan. `Invoke`, `Select`, `Toggle`, `Focus`, `SetValue` ja `WaitState`. salasanan kentät, puutteelliset ohjaimet ja epäselektiot hylätään.
+Lisää UI Automation -vaihe, valitse toiminto ja poimi osoittimen alla oleva kohde näytetyn viiveen jälkeen. Pelkkä poiminta ei suorita mitään. Tarkista valitsin ja vaadi yksikäsitteinen osuma. Tuetut toiminnot ovat `Invoke`, `Select`, `Toggle`, `Focus`, `SetValue` ja `WaitState`. Salasanakentät, käytöstä poistetut ohjaimet ja moniselitteiset valitsimet hylätään.
 
-UI-automaatio toimii rajoitetussa kumppanuusprosessissa. Se riippuu kohdehakemuksen Windows saatavuus tukea ja lupia. Napsautusrekisteri tallentaa tuetut toimet ja tauot; se ei tallenna yleistä tekstiä. Tarkastellaan ja hyväksytään suunnitelma ennen sen hyväksymistä. UI: n muutokset ulkoisessa sovelluksessa voivat poistaa valintoja. Prosessin eristys rajoittaa onnettomuuksia ja peruuttamista, mutta se ei ole turvakaappi.
+Käyttöliittymäautomaatio toimii rajoitetussa apuprosessissa. Se riippuu kohdesovelluksen Windows-saavutettavuustuesta ja käyttöoikeuksista. Napsautustallennin tallentaa tuettuja toimintoja ja taukoja, ei yleistä tekstinsyöttöä. Tarkista ja validoi luonnos ennen sen käyttöönottoa. Ulkoisen sovelluksen käyttöliittymämuutokset voivat tehdä valitsimista kelvottomia. Prosessieristys rajoittaa kaatumisia ja peruutusta, mutta ei ole tietoturvahiekkalaatikko.
 
-## Plugin
+## Laajennukset
 
-Avaa laajennukset tarkistaa paketti ennen tuontia. Pakkauksen rakenne, manifesti ja hashit tarkastetaan. Tuonti alkaa vammaiseksi. Lue ilmoitetut toimenpiteet ja luota selkeästi julkaisijalle ennen sallimista. Plugins toimii käyttäjän lupien kanssa erillisessä prosessissa; tämä prosessi on **ei hiekkapuoli**. Ainoastaan paketti, johon luotat.
+Avaa laajennukset ja tarkista paketti ennen tuontia. Paketin rakenne, manifesti ja tiivisteet tarkistetaan. Tuotu laajennus on aluksi poistettu käytöstä. Lue ilmoitetut toiminnot ja vahvista luottamuksesi julkaisijaan ennen käyttöönottoa. Laajennukset toimivat käyttäjäoikeuksillasi erillisessä prosessissa; tämä prosessi **ei ole hiekkalaatikko**. Asenna vain paketteja, joihin luotat.
 
-Ohjaus tukee aiemman version vientiä, poistoa ja palauttamista. Puuttuvat riippuvuudet estävät kutsumista. Esimerkkinä paketti tarjoaa laskun ja paikallisten toimien. Tuettu kaava on dokumentoitu JSON-kaavan alakohta, ei kaikki mahdolliset JSON-käsittelyn ominaisuudet. Julkista Plugin markkinoita ei ole.
+Hallinta tukee vientiä, käytöstä poistamista, asennuksen poistamista sekä aiemman version palauttamista tai hylkäämistä. Puuttuvat riippuvuudet estävät kutsumisen. Esimerkkipaketti tarjoaa ajastimen ja paikallisen tilan toimintoja. Tuettu skeema on dokumentoitu JSON-Schema-osajoukko, ei kaikkien mahdollisten JSON-Schema-ominaisuuksien toteutus. Julkista laajennuskauppaa ei ole.
 
 ## Mobiilipaneeli
 
-1. Avaa Mobile Panel, valitse paikallinen IP ja valitse nimenomaisesti profiilit näyttämään. Asetuksen takaa-osoite on saavutettavissa vain tietokoneella; valitse sopiva LAN-osoite puhelimelle tai tabletille.
-2. Käynnistä paneeli ja lue sen HTTPS-osoite, sertifioi sormenjäljet ja yhden käytön kuuden digitaalisen kumulatiivisen koodin.
-3. Samassa luotetussa verkossa olevaan laitteeseen avaa osoite. Vertaa SHA-256 sormenjälki luotetun kanavan kautta ennen paikallisen todistuksen luottamusta. Sovellus ei asenna luotettavaa sertifikaattia automaattisesti.
-4. Käytä näytetyn koodin avulla ja testaa yhden vaarattoman levyä. Manuaalinen Windows Firewall -lupaa voi tarvita LAN-yhteyden saavuttamiseksi. Älä altista porttia internetiin.
-5. Pysäytä paneeli, kun se on valmis tai peruutetaan maksetut asiakkaat sovelluksen kautta.
+1. Avaa mobiilipaneeli, valitse paikallinen IP-osoite ja valitse erikseen näkyviin annettavat profiilit. Oletusarvoinen takaisinkytkentäosoite on käytettävissä vain itse tietokoneella; valitse sopiva LAN-osoite puhelinta tai tablettia varten.
+2. Käynnistä paneeli ja lue sen HTTPS-osoite, varmenteen sormenjälki ja kertakäyttöinen kuusinumeroinen pariliitoskoodi.
+3. Avaa osoite samalla luotetulla verkolla olevassa laitteessa. Vertaa SHA-256 sormenjälkeä luotetun kanavan kautta ennen paikalliseen varmenteeseen luottamista. Sovellus ei asenna luotettua varmennetta automaattisesti.
+4. Muodosta pariliitos näytetyllä koodilla ja testaa yhtä vaaratonta toimintoruutua. LAN-käyttö voi vaatia Windows-palomuurin luvan antamista käsin. Älä avaa porttia internetiin.
+5. Pysäytä paneeli käytön päätyttyä tai peruuta pariliitettyjen asiakkaiden käyttöoikeus sovelluksesta.
 
-Yksityiset palvelin avaimet ovat suojattuja Windows DPAPI; asiakasluottamus tallennetaan hashina. IP:n muuttaminen tai sertifikaatin uusiminen voi edellyttää luottamuksen uusimista. Paneeli näyttää toiminnan ja todentamisen tilat, ei kaikki mahdolliset live-sensorit. Näyttöjärjestelmä ja paikallinen HTTPS-tunnistus eivät korvaa todellista puhelin/tabletin LAN-pääsyä.
+Palvelimen yksityiset avaimet suojataan Windows DPAPI:lla; asiakkaiden tunnistetiedot tallennetaan tiivisteinä. IP-osoitteen muutos tai varmenteen uusiminen voi vaatia luottamuksen vahvistamista uudelleen. Paneeli näyttää toimintojen ja tarkistusten tilat, ei kaikkia mahdollisia reaaliaikaisia antureita. Selainasettelun ja paikallisen HTTPS:n tarkistukset eivät korvaa oikean puhelimen tai tabletin LAN-hyväksyntätestausta.
 
-## Paikallinen avustaja
+## Paikallinen AI-kokousavustaja
 
-Tämä valinnainen kokeiluvälittäjä on haitallinen. Avaa se työkaluista, käytä sitä nimenomaisesti, valitse työtunnus/malli ja lisää vain resursseja, joita haluat ottaa huomioon. Aseta tavoite, luo suunnitelma, tarkistaa ratkaisemattomat pyynnöt ja siirtää tulos normaaliin toimittajaan. Mikään ei suoriteta automaattisesti; säästämistä ja toimintaa on selkeästi. Ei ole automaattista runtime fallbackia.
+Tämä valinnainen kokeellinen avustaja on oletusarvoisesti poistettu käytöstä. Avaa se työkaluista, ota se erikseen käyttöön, valitse suoritusympäristö ja malli sekä lisää vain resurssit, jotka haluat sen huomioivan. Ilmaise tavoite, luo luonnos, tarkista ratkaisemattomat pyynnöt ja siirrä tulos tavalliseen editoriin. Mitään ei suoriteta automaattisesti; tallennus ja suoritus edellyttävät erillisiä toimia. Automaattista siirtymistä toiseen suoritusympäristöön ei ole.
 
-| Runtimeä | asennuksen |
+| Suoritusympäristö | Määritys |
 | --- | --- |
 | Ollama | Erillinen paikallinen palvelu ja paikallisesti asennettu malli `127.0.0.1:11434`. Ilmoitetut kauko- ja pilvimallit hylätään. |
-| LM Studio | Paikallinen palvelin, jossa on paikallisesti ladattava malli ja JSON-järjestelmän tuki `127.0.0.1:1234`. Älä käytä kaukolähetystä paikalliseen käsittelyyn. |
-| llama.cpp | Paikallinen `llama-server` ja yhteensopiva malli JSON-järjestelmän tuella `127.0.0.1:8080`. |
-| ONNX Käyttöaika GenAI CPU | Luotettava yhteensopiva paikallinen GenAI tekstimalli; valitse `genai_config.json`. Inference käyttää yhdistettyä kumppanuusprosessia ilman HTTP:tä. |
+| LM Studio | Paikallinen palvelin, paikallisesti ladattu malli ja JSON-skeematuki osoitteessa `127.0.0.1:1234`. Älä ota etäreititystä käyttöön paikallista käsittelyä varten. |
+| llama.cpp | Paikallinen `llama-server` ja yhteensopiva JSON-skeemaa tukeva malli osoitteessa `127.0.0.1:8080`. |
+| ONNX Runtime GenAI CPU | Luotettu yhteensopiva paikallinen GenAI-tekstimallikansio; valitse `genai_config.json`. Päättely käyttää mukana toimitettua apuprosessia ilman HTTP:tä. |
 
-HTTP-asiakkaat käyttävät vain loopbackia, eivätkä käytä proksia eikä seuraa ohjauksia. MAKRIVO ei voi luotettavasti määrittää, soittaako yhteensopiva paikallinen palvelin sisäisesti etäpalveluun. Viralliset palvelimet eivät ole tässä versiossa määritettävissä. Mallin painoja, Python ja paikallisia inferenssin palvelimia ei ladata tai asenneta automaattisesti.
+HTTP-asiakkaat käyttävät vain takaisinkytkentäosoitteita, eivät käytä välityspalvelimia eivätkä seuraa uudelleenohjauksia. MAKRIVO ei voi luotettavasti todeta, kutsuuko yhteensopiva paikallinen palvelin sisäisesti etäpalvelua. Todennusta vaativia paikallisia palvelimia ei voi määrittää tässä versiossa. Mallipainoja, Python-ympäristöä tai paikallisia päättelypalvelimia ei ladata eikä asenneta automaattisesti.
 
-ONNX paketit vaativat `tokenizer.json` ja voimassa oleva chat-mallia. Tuetut mallit `tokenizer_config.json` ovat sarja `chat_template`, sanakirja sarjan `default` tai epäselvä nimetty / oletusarvoinen malli luettelo. Jos malli puuttuu tai nolla, `chat_template.jinja` käytetään palautetta. Tyhjiä, epäselviä, liiallisia tai virheellisesti kirjoitettuja malleja hylätään. Arbitraariset ONNX tiedostot, sisällytetyt/näkökulmat ja vain GPU-paketit eivät voi vaihtaa yhteensopivia GenAI tekstimalleja. Yhdistetty versio GenAI on 0.17.1, CPU. Käytä vain luotettavia malleja; prosessin erottaminen ei ole hiekkasetti.
+ONNX-paketit tarvitsevat tiedoston `tokenizer.json` ja kelvollisen keskustelumallipohjan. Tiedoston `tokenizer_config.json` tuetut muodot ovat merkkijonomuotoinen `chat_template`, sanakirja, jonka `default`-arvo on merkkijono, tai yksiselitteinen nimettyjen/oletusmallipohjien luettelo. Jos mallipohja puuttuu tai sen arvo on null, varavaihtoehtona käytetään tiedostoa `chat_template.jinja`. Tyhjät, moniselitteiset, liian suuret tai vääräntyyppiset mallipohjat hylätään. Mielivaltaiset ONNX-tiedostot, upotus- ja näkömallit sekä vain GPU:lle tarkoitetut paketit eivät korvaa yhteensopivia GenAI-tekstimalleja. Mukana toimitettavan GenAI-suoritusympäristön versio on 0.17.1, CPU. Käytä vain luotettuja malleja; prosessien erottaminen ei ole hiekkalaatikko.
 
-Avustaja tukee valittuja ohjelmia ilman väitteitä, valittuja asiakirjoja ja verkkosivustoja ja mikrofonia, kun sitä nimenomaisesti pyydetään. Se ei luo viestejä, tapaamisia, tahallisia skriptejä, ilmaisia klikkauksia, latauksia tai kuulokkeita. Tavoite ja resurssien nimet lähetetään valittuun paikalliseen käyttöaikaan; resurssit ja tiedostot eivät ole erikseen toimitettuja. Käyttäjän määrittämä tavoite voi itse sisältää henkilötietoja. Paikallisen liiketoiminnan omat käyttäytymiset ovat edelleen käyttäjän vastuulla.
+Avustaja tukee valittuja ohjelmia ilman käynnistysargumentteja, valittuja asiakirjoja ja verkkosivustoja sekä mikrofonin mykistystä erikseen pyydettäessä. Se ei luo viestejä, tapaamisia, mielivaltaisia komentosarjoja, vapaamuotoisia napsautuksia tai latauksia eikä vaihda kuulokelaitetta. Tavoite ja resurssien nimet lähetetään valittuun paikalliseen suoritusympäristöön; resurssien polkuja ja tiedostojen sisältöä ei toimiteta erikseen. Käyttäjän kirjoittama tavoite voi itsessään sisältää henkilötietoja. Paikallisen suoritusympäristön oma verkkotoiminta jää käyttäjän vastuulle.
 
-ja sen ONNX Pyyntö budjetti 90 sekuntia mukaan lukien mallin lataaminen, jopa 3,072 Nopeat tokenit ja 1,024 luodaan tokenejä, myös rajoitettu malli kontekstilla. väärennettyjä/tyyppisiä JSON- ja tuntemattomia resurssi-tunnisteita hylätään. peruuttaa tai lopettaa pyyntö. satunnainen malli suoritusajan testaus määrittää suorituksen, ei hyödyllistä suunnittelun laatua tai aikaa säästää. paikalliset kokeelliset arkistot sisältävät tapahtumien tunnisteita ja aikatauluja, ei kohde tekstiä tai asiakirjan sisältöä; ne eivät automaattisesti ladata.
+ONNX-pyynnön aikabudjetti on 90 sekuntia mallin lataus mukaan lukien; rajat ovat enintään 3072 kehotetokenia ja 1024 tuotettua tokenia, lisäksi mallin konteksti rajoittaa niitä. Virheellinen tai katkennut JSON ja tuntemattomat resurssitunnisteet hylätään. Lopeta pyyntö peruuttamalla tai sulkemalla. Satunnaismallilla tehty suoritusympäristötesti osoittaa suorituksen toimivuuden, ei hyödyllistä suunnittelun laatua tai ajansäästöä. Paikalliset kokeilulokit sisältävät tapahtumatunnisteita ja ajoitustietoja, eivät tavoitetekstiä tai asiakirjasisältöä; niitä ei lähetetä automaattisesti.
 
-Myöhemmin pieni Instrut-malliarviointi tuotti nollan voimassa olevia suunnitelmia neljässä saksalaisessa / englanninkielisessä tutkimuksessa. Alkuperäinen johtopäätös toimi, mutta malli epäonnistui tiukkaan suunnitelman. Tämä on negatiivinen laatu, ei suositeltu malli tai osoitettu hyödyllinen avustaja. Katso päivitetyt paikalliset testausraportit tarkkaan mallin tarkistamiseksi ja rajoituksiksi.
+Myöhemmässä pienen Instruct-mallin arvioinnissa neljä saksan- ja englanninkielistä koetta tuotti nolla kelvollista suunnitelmaa. Natiivi päättely toimi, mutta malli ei täyttänyt tiukkaa suunnittelusopimusta. Tulos on kielteinen laatuhavainto, ei mallisuositus eikä osoitus avustajan hyödyllisyydestä. Tarkka malliversio ja rajoitukset löytyvät päivätystä paikallisen suoritusympäristön testiraportista.
 
-## Tuonti, vienti ja synkronointi
+## Tuonti, vienti, synkronointi ja varmuuskopiointi
 
-Tarkista tuontiennusteet ennen konfiguraation korvaamista. Tuodut toimenpiteet alkavat poistaa ja kannettava synkronointi poistaa laitteistoon liittyviä sidoksia. Aseta laitteet uudelleen ja sallia toimenpiteet tarkoituksellisesti tarkastuksen jälkeen. Tarkista teksti/toiminto ennen viennin jakamista; salasanan sulkeminen ei tee kaikkia käyttäjän luomia toimenpiteitä epäherkkä.
+Tarkista tuonnin esikatselu ennen kokoonpanon korvaamista. Tuodut toiminnot ovat aluksi poistettu käytöstä, ja siirrettävä synkronointi poistaa laitekohtaiset sidonnat. Määritä laitteet uudelleen ja ota toiminnot harkitusti käyttöön tarkistuksen jälkeen. Tarkista tekstien ja toimintojen sisältö ennen viennin jakamista; salasanojen pois jättäminen ei tee kaikesta käyttäjän luomasta toimintosisällöstä arkaluonteetonta.
 
-Profiilin synkronointi vaihtaa tiedostoja valitsemassa asiakirjassa, jonka hallinnoi olemassa oleva pilvipalvelu. MAKRIVO ei tarjoa pilven tiliä eikä tallentaa pilven luottamuksellisuutta. Tarkistukset estävät hiljaisia ylikuulemisia. Toiminta sisältö on selkeä valinta. Palauta konfigurointi ennen korvausta tuontia. Oletusarvo on `%LOCALAPPDATA%\AivanaWindowsController\settings.json`; yhteensopivuutta varten säilytetään historiallinen sarjan nimi. Sulje sovellus ennen sen kopiointia / palauttamista. Säilytetyt SDK-todistukset ja OS-suojatut tunnistukset saattavat tarvita toistamisen toisella tietokoneella.
+Profiilisynkronointi vaihtaa tiedostoja valitussa kansiossa, jota voi haluttaessa hallita olemassa oleva pilviasiakas. MAKRIVO ei tarjoa pilvitiliä eikä tallenna pilvipalvelun tunnistetietoja. Revisiot estävät huomaamattomat ylikirjoitukset. Toimintosisällön sisällyttäminen edellyttää nimenomaista valintaa. Varmuuskopioi kokoonpano ennen sen korvaavaa tuontia. Oletuskokoonpano on `%LOCALAPPDATA%\AivanaWindowsController\settings.json`; historiallinen hakemistonimi säilytetään yhteensopivuuden vuoksi. Sulje sovellus ennen manuaalista kopiointia tai palauttamista. Tallennetut SDK-hyväksynnät ja käyttöjärjestelmän suojaamat tunnistetiedot voidaan joutua luomaan uudelleen toisessa tietokoneessa.
 
 ## Ongelmien ratkaiseminen
 
 | oireet | Mitä tarkistaa |
 | --- | --- |
-| Lyhyt ei tee mitään | Sovellus käynnistyy, sidoksia ei keskeytetä, oikea aktiivinen profiili, tallennettu / sallittua tiiliä, lyhennettyjä konflikteja ja käytettävissä olevia kohde. |
-| Tavoiteikkuna ei voi aktivoida | Manuaalisesti aktivoi se. Windows etuoikeusrajoitukset ja etuoikeudelliset erot voivat estää automaation. |
-| Erityistä avainta ei löydy | Palvelu / SDK / malli tuki; asettaa omistuksen päällystys, jotta voidaan antaa tuki standardi avain mahdollisuuksien mukaan. |
-| Toinen näppäimistö on myös normaali | Odotettu Raw Input. Tuotantoa ei käytetä yksinomaisesti. |
-| Ääni tai kirkkaus ei ole saatavilla | Puhdistaa laitteita; tarkistaa valitut identiteetit, loppupisteistot, WMI/DDC/CI tuki ja langat/kaapeli rajoitukset. |
+| Pikanäppäin ei tee mitään | Sovellus käynnissä, sidonnat eivät ole tauolla, oikea aktiivinen profiili, tallennettu ja käytössä oleva toimintoruutu, pikanäppäinristiriidat ja käytettävissä oleva kohde. |
+| Tavoiteikkuna ei voi aktivoida | Aktivoi se käsin. Windows-järjestelmän etualarajoitukset ja käyttöoikeustasojen erot voivat estää automaation. |
+| Erikoisnäppäintä ei tunnisteta | Valmistajan palvelun, SDK:n ja mallin tuki; määritä valmistajakohtaiset säätimet lähettämään tuettu tavallinen näppäin, jos mahdollista. |
+| Toinen näppäimistö myös kirjoittaa tavallisesti | Odotettu toiminta käytettäessä Raw Input -rajapintaa. Syötteen yksinomaista estämistä ei ole toteutettu tuotantokäyttöön. |
+| Ääni tai kirkkaus ei ole saatavilla | Päivitä laitteet; tarkista valittu tunniste, päätepisteistunnot, WMI/DDC/CI-tuki sekä telakka- ja kaapelirajoitukset. |
 | OBS offline | WebSocket v5 käytettävissä, oikea loppupiste / salasano, saavutettavissa oleva palvelu ja voimassa oleva kohtaus / sisääntunnus. |
-| Automaatio epäonnistuu | Companion-hostaja on mukana, ainutlaatuinen voimassa oleva valinta, käytettävissä oleva sallittu kohde, tuettu hallinta ja luvat. Palauta siirtymäaika vasta tavoitteen tarkistamisen jälkeen. |
-| Mobiilipaneeli ei ole | LAN sen sijaan, että loopback-osoite, sama verkko, palvelin käynnissä, hyväksytyt profiilit, sertifioitu sormenjälki / luottamus ja manuaalinen palomuuri lupa. |
-| Plugin epäonnistuu | Paketin eheys, nimenomainen luottamus / sallittu tila, riippuvuudet, pöytäkirjan yhteensopivuus ja täytäntöönpano. |
-| Pyyntö epäonnistuu | Oikea valittu paikallinen käyttöaika, palvelu/malli valmis, tuettu JSON-järjestelmä, luotettava yhteensopiva malli ja pyyntörajat. |
-| Layout tai teksti näyttää väärältä | Erota käyttöliittymän kieli näppäimistöltä; tarkista ikkuna, tarkista näytön mittakaava ja raportoi tarkan sivun/kielen/rakennuksen. |
+| Käyttöliittymäautomaatio epäonnistuu | Apuprosessin isäntäohjelma mukana, yksikäsitteinen kelvollinen valitsin, saavutettava käytössä oleva kohde, tuettu ohjain ja käyttöoikeudet. Yritä tilapäisen aikakatkaisun jälkeen uudelleen vasta tarkistettuasi kohteen. |
+| Mobiilipaneeli ei ole tavoitettavissa | LAN-osoite takaisinkytkentäosoitteen sijaan, sama verkko, palvelin käynnissä, hyväksytyt profiilit, varmenteen sormenjälki ja luottamus sekä käsin annetut palomuuriluvat. |
+| Plugin epäonnistuu | Paketin eheys, nimenomainen luottamus ja käyttöönottotila, riippuvuudet, protokollan yhteensopivuus ja suoritusloki. |
+| AI-pyyntö epäonnistuu | Oikea valittu paikallinen suoritusympäristö, palvelun ja mallin valmius, tuettu JSON-skeema, luotettu yhteensopiva mallikansio ja pyyntörajat. |
+| Asettelu tai teksti näyttää väärältä | Erota käyttöliittymäkieli näppäimistön geometriasta; muuta ikkunan kokoa, tarkista näytön skaalaus ja ilmoita tarkka sivu, kieli ja koontiversio. |
 
-Hyödyllinen vika-raportti sisältää Windows -version, sovellusrakennuksen / komitean, kielen, näytön mittakaavan, laitteistomallin, vähimmäissekvenssin ja merkityksellisen muokkauksen. Poista henkilökohtaiset reitit, toiminnallinen sisältö ja luottamus ennen julkaisemista.
+Sisällytä hyödylliseen vikailmoitukseen Windows-versio, sovelluksen koonti tai commit, kieli, näytön skaalaus, laitteistomalli, mahdollisimman lyhyt toistosekvenssi ja asianmukainen arkaluonteisista tiedoista puhdistettu loki. Poista henkilökohtaiset polut, toimintosisältö ja tunnistetiedot ennen julkaisua.
 
-## Rakennus, testaus ja pakkaus
+## Koonti, testaus ja paketointi
 
-Käytä SDK:tä, joka on kiinnitetty `global.json`. Ruotsin juuresta:
+Käytä tiedostossa `global.json` kiinnitettyä SDK-versiota. Suorita tietovaraston juuresta:
 
 ```powershell
 dotnet build Aivana.slnx -c Release
@@ -161,14 +161,14 @@ dotnet run --project src/Aivana.Desktop -c Release -- --smoke-test
 python tools/check_documentation.py
 ```
 
-Windows integrointi testit voivat avata eristettyjä ikkunoita ja väliaikaisesti asettaa / vapauttaa tuettuja toimittajan sidoksia. Käynnistä ne ilman muuta ohjaajaa, joka omistaa nämä sidokset. Oletusarvoiset kirkkaus/audio-testi on luettavaa; selkeät laitteistotutkimukset ovat erillisiä. Mock-protokollat, renderoidut näytöt ja satunnaiset tulokset eivät saa olla todellisia laitteiston / mallin laadun hyväksymistä.
+Windows-integraatiotestit voivat avata eristettyjä ikkunoita ja määrittää tai vapauttaa tuettuja valmistajakohtaisia sidontoja tilapäisesti. Suorita ne ilman toista ohjainta, joka hallitsee samoja sidontoja. Oletusarvoiset kirkkaus- ja äänitestit ovat vain lukevia; erikseen käynnistettävät laitteiston muutos- ja palautustestit ovat erillisiä. Simuloituja protokollia, renderöityjä kuvakaappauksia tai satunnaisia päättelygraafeja ei saa esittää todellisen laitteiston tai mallin laadun hyväksyntänä.
 
-Täydellinen julkaisijan kokoelma kumppanit, mobiililaitteet, esimerkki plugin, ONNX toiminnan ja saatavilla riippuvuus ilmoitukset. Pidä alihankkijoita. Menestyksekäs rakenne ei ole allekirjoitettu asentaja tai laillinen vapautus hyväksyntä. Lähteet ja rakenteet voivat kehittyä erikseen; verrataan dokumentaatiota ja sitoudu asennettuun versioon.
+Täydellinen paketointityökalu kokoaa apuprosessien isäntäohjelmat, mobiiliresurssit, esimerkkilaajennuksen, ONNX-suoritusympäristön ja saatavilla olevat riippuvuusilmoitukset. Säilytä alihakemistot. Onnistunut koonti ei ole allekirjoitettu asennusohjelma eikä oikeudellinen julkaisuhyväksyntä. Lähdekoodi ja koonnit voivat kehittyä erikseen; vertaa dokumentaation tilannekuvaa ja committia asennettuun versioon.
 
-## Lisenssi, yksityisyys ja vapautus
+## Lisensointi, yksityisyys ja julkaisutilanne
 
-Suunniteltu kaupallinen malli on yksi kertainen ostos, jossa ostetun suurimman version pysyvä käyttö; lopullinen hinta, laitteen tuotto ja päivitysehdot on määriteltävä todellisissa myyntiehdoissa. Tuotanto- ja aktivointijärjestelmä ei ole tässä oppaassa. Päivittäiseen valvontaan ei tarvita pilvipalvelua.
+Suunniteltu kaupallinen malli on kertamaksu ja ostetun pääversion pysyvä käyttöoikeus; lopullinen hinta, sallittu laitemäärä ja päivitysehdot on määriteltävä todellisissa myyntiehdoissa. Tämä opas ei vahvista tuotantokäyttöistä osto- tai aktivointijärjestelmää. Jokapäiväiseen ohjaukseen ei tarvita pilvitiliä.
 
-Älä levitä omistettuja SDK binareja ilman todistettua lupaa. Säilytä lisenssit ja kolmansien osapuolten ilmoitukset jokaiselle lähetetylle riippuvuudelle, mukaan lukien .NET ja ONNX paketit. Mallin painoilla on omat ehdot. Päivitetyn lisenssin tarkastukset tuovat esiin joitakin uusia riippuvuuksia, eikä se ole näiden lisäysten selvitys. Julkinen tallennus ei itse myönnä yleistä avoimen lähdekoodin lisenssiä.
+Älä levitä valmistajakohtaisia SDK-binäärejä ilman todennettua lupaa. Säilytä lisenssit ja kolmansien osapuolten ilmoitukset kaikille toimitetuille riippuvuuksille, mukaan lukien .NET- ja ONNX-paketit. Mallipainoilla on omat ehtonsa. Päivätty lisenssitarkastus edeltää joitakin uusia riippuvuuksia eikä hyväksy näitä lisäyksiä. Tietovaraston julkisuus ei itsessään anna yleistä avoimen lähdekoodin lisenssiä.
 
-Todellinen palveluntarjoaja, puhelin/tabletti LAN-toiminta, sekoitettu monitorin/DPI-liikkeet, pitkäaikainen käyttö, täydellinen kielellinen tarkastelu, yksinomainen kuljettajan tuki ja hyödyllinen AI-suunnittelu pysyvät erillisenä hyväksyntätyönä. Älä koskaan anna hyväksyntää yksin läsnäolosta.
+Todellinen valmistajalaitteisto, puhelimen ja tabletin LAN-käyttö, eri näyttöjen ja DPI-asetusten väliset siirtymät, pitkäaikainen käyttö, täydellinen kielentarkistus, yksinomaisen käytön ajurituki ja hyödyllinen AI-suunnittelun laatu vaativat edelleen erillisen hyväksyntätyön. Älä koskaan päättele hyväksyntää pelkästä ominaisuuden olemassaolosta.

@@ -19,7 +19,7 @@ HTTP-klienterna använder inte Proxys och följer inga riktlinjer. Lokala servra
 
 ## ONNX
 
-Välj genai_config.json i dialogen. Fliken måste innehålla tokenizer.json och en chattmall. Chat_template stöds som en tecken kedja, en standardmall (Array eller Dictionary) samt en separat chat_templat.jinja om det inte finns någon inlinemall eller den är noll. Det finns flera tecken som avvisas, högst 65536 tecken. Populära .onnx-filer, vision/förpackningsmodeller eller ren GPU/NPU-export är inte mötesmodeller.
+Välj genai_config.json i dialogrutan. Mappen måste innehålla tokenizer.json och en chattmall. Stöd finns för chat_template som sträng, en namngiven default-mall (array eller ordbok) samt en separat chat_template.jinja om inline-mallen saknas eller är null. Tvetydiga mallar avvisas; högst 65536 tecken. Godtyckliga .onnx-filer, visions-/embeddingmodeller eller exporter enbart för GPU/NPU är inte mötesmodeller.
 
 Kombinerad: Microsoft.ML.OnnxRuntimeGenAI 0.17.1, CPU. Leverantörskonfigurationen återställs till CPU. Inga nedladdningar och inga modellvikter i paketet. Det behövs ingen Pythoninstallation. Använd endast tillförlitliga modeller; den separata processen är en nedbrytningsgräns, inte en säkerhetssandbox.
 
@@ -28,7 +28,7 @@ Gränser: 90 sekunder inklusive modellladdning, högst 3072 prompttokens och 102
 ## Verifikation
 
 - Core-Suite, Loopback transporttest med simulerade LM-studio-/llama.cpp-/Ollama svar, schema/avbrott/resursprovning.
-- Unicode-protokollregression med maximala långsiktiga mål och resursnamn 24.
+- Unicode-protokollregression med maximalt långa mål och 24 resursnamn.
 - Verkliga inhemska CPU-inferens med officiell tiny-random-gpt2-fp32-Testgraph från microsoft/onnxruntime-genai, Commit 5c19002edce50beaa3a5c7eeefd8fe5269ee8d19. Testmallen kompletteras och byte-tokeniser anpassas till den lilla slumpmässiga diagrammet. Denna slumpmässiga modell kontrollerar inte kvaliteten och är inte i release.
 - Reproduktiv nativ körtest: tools/check-onnx-runtime.ps1 -ModellDirectory <GenAI-modellordnare>.
 - WPF-Smoke undersöker valet av alla fyra leverantörer och testet; valet ensamt genererar ingen modellfråga.
@@ -44,14 +44,14 @@ Hardware/Smartphone/Tablet/Monitorändringstester behövs fortfarande. Exklusiv 
 - https://lmstudio.ai/docs/developer/openai-compat/chat-completions
 - https://github.com/ggml-org/llama.cpp/blob/master/tools/server/README.md
 
-Slutstopp: Release-bygg utan varningar/fel; fullständiga kärn- och Windows-serier, inklusive nativ fokusfixture, HTTPS, UIA, plug-in IPC och kompatibla AI-transporttester. Ny paket release-20261012-190618: WPF smoke överlevde (19:07 klocka), bundna ONNX CPU-inferens överlevde med testgraph. Oberoende granskning: Unicode-protokoll gränsen korrigeras, inga ytterligare konkreta fynd. Inga fysiska tillverkare/telefon/monitoravdrag härrör från det.
+Slutlig teststatus: Release-bygge utan varningar/fel; fullständig Core- och Windows-svit godkänd, inklusive native fokusfixture, HTTPS, UIA, Plugin-IPC och kompatibla AI-transporttester. Nytt paket release-20261012-190618: WPF-smoke godkänt (kl. 19:07), medföljande ONNX-CPU-inferens med testgraf godkänd. Oberoende granskning: Unicode-protokollgräns rättad, inga ytterligare konkreta fynd. Ingen fysisk tillverkar-/telefon-/skärmacceptans härledd från detta.
 
 ## Fortsätt: Verklig modellkvalitet och mönster
 
-Ytterligare CPU körning med allama-ai/SmolLM-360M-Instruct-onnx-int4, Revision 82a3d1a8a86c8053f2a859a90ed4d344fc0725b0: inhemska inflation. Modellgewichte-SHA256: 48e9c4ef12f7f995ca11fc7020b39990aa27bc67cc0fe116067676a000a04429. Exporteras endast i testområdet, inte i utgivningen.
+Ytterligare CPU-körning med allama-ai/SmolLM-360M-Instruct-onnx-int4, revision 82a3d1a8a86c8053f2a859a90ed4d344fc0725b0: native inferens godkänd. Modellvikternas SHA256: 48e9c4ef12f7f995ca11fc7020b39990aa27bc67cc0fe116067676a000a04429. Community-export endast i testområdet, inte i utgåvan.
 
-Fyra verkliga planeringstester (tyska/engelska, dokument, program, uttrycklig mikrofonstryck): **0/4 Gällande planer**; JsonException vid strikt responsprov. 63501, 6376, 72118 och 6774 ms. Inga åtgärder utförs. Denna lilla modell uppfyller inte planeringsavtalet och rekommenderas inte som lämplig. rapport: artifacts/local-ai-evaluation/smollm360-results.json.: Windows-Tests --evaluate-onnx <modellordnare> <rapporteringsteg> Funktionen inte visar modellkvalitet.
+Fyra verkliga planeringstester (tyska/engelska, dokument, program, uttrycklig mikrofonavstängning): **0/4 giltiga planer**; JsonException vid strikt svarskontroll i varje försök. Körtider 63501, 6376, 72118 och 6774 ms. Inga åtgärder utförda. Denna lilla modell uppfyller inte planeringskontraktet och rekommenderas inte som lämplig. Rapport: artifacts/local-ai-evaluation/smollm360-results.json. Reproduktion: Windows-Tests --evaluate-onnx <Modellordner> <Berichtspfad>. Att körtiden fungerar bevisar inte modellkvalitet.
 
-Verktygsnavigering och testrapporter har dessutom översatts till alla 27 språkkataloger. Längre texter och språkkoppling är öppna. Modellerregression undersöker också felaktiga JSON-typer, tomma/multilångt/överlängda mönster och noll med Jinja-fallback.
+Verktygsnavigering och testrapport har dessutom översatts i alla 27 språkkataloger. Långa texter och språkligt godkännande återstår. Mallregressionen kontrollerar även felaktiga JSON-typer, tomma/tvetydiga/för långa mallar och null med Jinja-reserv.
 
-Uppdaterad paket: Artifacts/release-20261012-201134 Förpackade WPF-smoken överlevde 12.10.2026 runt 20:12; inhemska CPU-inferens överlevde med den separata instruct-testmodellen i den kombinerade arbetaren. Core och Windows KI-test passerade; Bygg utan varningar/fel. Modellplanering kvalitet fortsätter 0/4.
+Uppdaterat paket: artifacts/release-20261012-201134. Paketerat WPF-smoke godkänt den 12.10.2026 kl. 20:12; native CPU-inferens med den separata Instruct-testmodellen i den medföljande workern godkänd. Core- och Windows-KI-tester godkända; bygge utan varningar/fel. Modellens planeringskvalitet fortfarande 0/4.

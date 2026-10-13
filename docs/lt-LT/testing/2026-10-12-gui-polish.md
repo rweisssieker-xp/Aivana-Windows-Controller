@@ -10,6 +10,6 @@
 - Veiksmų filtras pasirodys tik ant „Dashboard“. Profilų parinkimas ir paieškos turi aiškius pagalbinės technologijos pavadinimus. Žemės aprašymai yra daugiau kontrastų.
 - Dialogas-Smoke testas apima įrankių peržiūrą ir išplėtimo dialogus 560 × 440 ir įprastą dydį; esami įrašymo ir kalbos testai buvo pritaikyti prie spustelėjimo struktūros.
 
-Kompaktiški langai nėra realių Windows DPI testų pakaitalas su 150/200 procentais. Nauji vokiečių tekstai dar nėra visiškai išversti į visas 27 kalbas. Nėra jokių naujų aparatūros patvirtinimų ir jokių matuojamo naudojimo pareiškimų.
+Ribos: kompaktiški langai nepakeičia tikrų Windows DPI bandymų su 150/200 procentų masteliu. Nauji vokiški tekstai dar nevisiškai išversti į visas 27 kalbas. Nėra naujo aparatūros patvirtinimo ar teiginio apie išmatuotą naudojimo patogumą.
 
 Išbandymas: išleidimas be įspėjimų / klaidų; išsamios WPF smoke testas, įskaitant kompaktišką įrankių ir plėtros dialogą, taip pat kalbos keitimo testus. git diff - patikrinti.

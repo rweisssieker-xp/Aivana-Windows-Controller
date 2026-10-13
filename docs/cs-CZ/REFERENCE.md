@@ -6,17 +6,17 @@
 
 [Kompletní dokumentace ve všech jazycích 27](README.md) · [Úplný uživatelský manuál](HANDBOOK.md)
 
-**Na Aivana.** [Aktuální inventář a omezení uvolnění](FEATURES.md) · [Rozšíření testování](testing/2026-10-12-six-extensions.md) · [Místní asistent prototypu](testing/2026-10-12-local-meeting-assistant.md)
+**Na Aivana.** [Aktuální soupis funkcí a omezení vydání](FEATURES.md) · [Zpráva o testech rozšíření](testing/2026-10-12-six-extensions.md) · [Prototyp místního asistenta AI](testing/2026-10-12-local-meeting-assistant.md)
 
 **Eangličtina (USA)** | [Deutsch](../de-DE/REFERENCE.md) | [Français](../fr-FR/REFERENCE.md) | [Italiano](../it-IT/REFERENCE.md)
 
 Místní ovladač klávesových zkratek Windows s dlaždicemi, profily, makry a detekcí klávesnice ve stylu Stream Deck. Rozhraní podporuje jazyky 27. Pro každodenní použití není potřeba žádný účet ani cloudové připojení.
 
-[Dokumentace](README.md) · [Ověření](VERIFICATION.md) · [Funkční testová zpráva](testing/2026-10-09-usp-release.md)
+[Dokumentace](README.md) · [Ověření](VERIFICATION.md) · [Zpráva o testech funkcí](testing/2026-10-09-usp-release.md)
 
 ## Začínáme
 
-Po zveřejnění je aplikace na `artifacts/win-x64/MAKRIVO.exe`. Udržujte celou výstupní složku pohromadě; můžete zkopírovat jinam. Windows 11 x64 je počáteční cíl. Artefakty sestavení jsou z Gitu vyloučeny; kontrola zdroje nezahrnuje předem sestavený spustitelný soubor.
+Po publikování se aplikace nachází v `artifacts/win-x64/MAKRIVO.exe`. Uchovávejte celou výstupní složku pohromadě; můžete ji zkopírovat jinam. Počáteční cílovou platformou je Windows 11 x64. Artefakty sestavení jsou vyloučeny z Git; pracovní kopie zdrojového repozitáře neobsahuje předem sestavený spustitelný soubor.
 
 Nainstalujte sadu .NET 10 SDK specifikovanou v `global.json`, abyste mohli sestavovat a spouštět ze zdroje:
 
@@ -35,63 +35,63 @@ dotnet publish src/Aivana.Desktop -c Release -r win-x64 --self-contained true -o
 
 1. Vyberte profil a vytvořte dlaždici akce.
 2. Nastavte jeho název, ikonu, barvu a klávesovou zkratku. Kombinace Ctrl/Alt/Shift snižují náhodnou aktivaci při psaní.
-3. Přidejte jeden nebo více kroků: aplikace, soubory, webové stránky, text, zástupce, média, svazek, přepínání profilů nebo zpoždění.
+3. Přidejte jeden nebo více kroků: aplikace, soubory, weby, text, klávesové zkratky, média, hlasitost, přepínání profilů nebo prodlevy.
 4. Uložit. Změny zůstávají konceptem, dokud nejsou uloženy; zahodit obnoví uloženou verzi. Tlačítko Přehrát dlaždice a jeho klávesová zkratka používají stejnou cestu spuštění.
 5. Změňte pořadí dlaždic a kroků makra pomocí přetažení nebo tlačítek se šipkami. Šablony zjednodušují nastavení. Makra se mohou opakovat až 100 krát. Ve výchozím nastavení zrušte prostřednictvím rozhraní, nabídky na hlavním panelu nebo Ctrl+Alt+Escape.
 
-Profily specifické pro aplikaci používají název procesu bez jeho úplné cesty. Pořadí profilů přerušuje vazby; výchozí profil je záložní. V Nastavení musí být povolen automatický výběr profilu.
+Profily pro konkrétní aplikace používají název procesu bez celé cesty. Pořadí profilů rozhoduje při více shodách; výchozí profil se použije, pokud žádná shoda není. Automatický výběr profilu je nutné povolit v Nastavení.
 
-Zavřením hlavního okna zůstane aplikace ve výchozím nastavení na systémové liště. Poklepáním na ikonu na hlavním panelu jej znovu otevřete; k ukončení použijte nabídku zásobníku. Spuštění pomocí Windows je volitelné a ve výchozím nastavení zakázáno. Klávesové zkratky lze centrálně pozastavit.
+Zavření hlavního okna ve výchozím nastavení ponechá aplikaci v oznamovací oblasti. Dvojklikem na její ikonu okno znovu otevřete; aplikaci ukončíte z nabídky ikony. Spouštění s Windows je volitelné a ve výchozím nastavení zakázané. Klávesové zkratky lze centrálně pozastavit.
 
 ## Paleta akcí a příkazů
 
 Přidat akci otevře prohledávatelný katalog s předvolbami 90 v osmi kategoriích. Každá má popis a náhled. Editor maker používá stejný katalog k přidání nebo nahrazení kroků. Výběrem předvolby v tomto pracovním postupu editoru vytvoříte koncept bez provedení.
 
-Paleta příkazů se otevře v záhlaví nebo pomocí Ctrl+K uvnitř aplikace. Vyhledává uložené akce napříč profily, předvolby katalogu, přepínání profilů, navigaci, pozastavení/obnovení, zrušení maker a import/export. Filtrujte podle uložených akcí, funkcí katalogu nebo příkazů aplikace. Šipkami vyberte, Enter aktivuje, Ctrl+Enter upraví upravitelný záznam a Escape se zavře. Oblíbené se zobrazí jako první. Příkazy katalogu připravené k použití lze okamžitě spustit; předvolby vyžadující nastavení otevřít koncept. Nastavení může definovat globální zástupce palety. Nové konfigurace používají Ctrl+Shift+Mezerník; existující konfigurace neobdrží nové globální zástupce automaticky.
+Paleta příkazů se otevírá ze záhlaví nebo pomocí Ctrl+K v aplikaci. Vyhledává uložené akce napříč profily, předvolby katalogu, přepínání profilů, navigaci, pozastavení/obnovení, zrušení maker a import/export. Filtrujte podle uložených akcí, funkcí katalogu nebo příkazů aplikace. Šipky vybírají položku, Enter ji aktivuje, Ctrl+Enter upraví upravitelnou položku a Escape paletu zavře. Oblíbené položky jsou první. Hotové příkazy katalogu lze spustit ihned; předvolby vyžadující nastavení otevřou koncept. V Nastavení lze určit globální zkratku palety. Nové konfigurace používají Ctrl+Shift+Space; stávající konfigurace nedostanou novou globální zkratku automaticky.
 
-Zvukové akce nastavují hlasitost přesně od 0 do 100 procent a ztlumí, zapnou nebo přepínají výstupní a mikrofonní zařízení. Vyberte konkrétní koncový bod nebo jej ponechte nenastavený pro výchozí Windows. Nedostupný uložený koncový bod způsobí chybu namísto ovládání jiného zařízení. Obnovit zařízení znovu načte připojená zařízení.
+Zvukové akce nastavují hlasitost přesně od 0 do 100 procent a ztlumují, obnovují zvuk nebo přepínají ztlumení výstupních a mikrofonních zařízení. Vyberte konkrétní koncový bod nebo jej ponechte nenastavený pro výchozí zařízení Windows. Nedostupný uložený koncový bod způsobí chybu namísto ovládání jiného zařízení. Obnovení zařízení znovu načte připojená zařízení.
 
 OBS Studio používá WebSocket v5: spuštění/zastavení/přepnutí/pauza/obnovení nahrávání; spustit/zastavit/přepnout streamování; měnit scény; přepnout ztlumení vstupu. Povolte server WebSocket v části Nástroje v OBS a nastavte jeho koncový bod v editoru. Check Connection and Load Names načte verzi OBS, scény a vstupy bez spuštění nahrávání nebo streamu. Vyberte jména ze seznamu nebo je zadejte ručně. Hesla lze uložit do Windows Credential Manager a jsou vyloučena z exportovaných konfigurací. Nedostupná připojení OBS hlásí chybu.
 
-Profily mohou odpovídat názvu procesu a části názvu okna. Obě zadané podmínky se musí shodovat. Lock Profile zabraňuje automatickému přepínání pro relaci. Zachycení podmínek z popředí využívá naposledy zaměřenou externí aplikaci.
+Profily mohou odpovídat názvu procesu a části názvu okna. Obě zadané podmínky musí platit. Zámek profilu brání automatickému přepínání v aktuální relaci. Zachycení podmínek z popředí používá poslední externí aplikaci s fokusem.
 
-Podpora akcí s textem a schránkou `{{date}}`, `{{time}}`, `{{datetime}}`, `{{clipboard}}`, `{{profile}}`, `{{process}}`a `{{user}}`. Použití dat `yyyy-MM-dd`; časy použití `HH:mm`. Neznámé zástupné symboly zůstávají nezměněny. `{{profile}}` identifikuje profil spuštěné akce; `{{process}}` identifikuje kontext externí aplikace. Obsah schránky se čte pouze při použití tohoto zástupného symbolu. Akce schránky zapíše text, ale nevloží jej automaticky.
+Textové akce a akce schránky podporují `{{date}}`, `{{time}}`, `{{datetime}}`, `{{clipboard}}`, `{{profile}}`, `{{process}}` a `{{user}}`. Data používají `yyyy-MM-dd`; časy používají `HH:mm`. Neznámé zástupné symboly zůstávají nezměněny. `{{profile}}` označuje profil spuštěné akce; `{{process}}` označuje kontext externí aplikace. Obsah schránky se čte pouze při použití tohoto zástupného symbolu. Akce schránky zapíše text, ale automaticky jej nevloží.
 
 Akce okna minimalizují, maximalizují, obnovují nebo uspořádávají okno na levé/pravé straně pracovní plochy monitoru. Akce systému uzamkne Windows. Tyto akce se spouštějí pouze při explicitním vyvolání.
 
-Náhled zobrazuje kroky, opakování a proměnné bez provedení. Zpět a Znovu si zachovají stavy konceptu 100; textová pole zachovávají nativní úpravy pomocí Ctrl+Z. Označte oblíbené položky v nabídce editoru nebo dlaždic a filtrujte je na řídicím panelu. Počty provedení se vztahují pouze na aktuální relaci.
+Náhled ukazuje kroky, opakování a proměnné bez provedení. Zpět a Znovu uchovávají až 100 stavů konceptu; textová pole zachovávají nativní úpravy Ctrl+Z. Označte oblíbené položky v editoru nebo nabídce dlaždice a filtrujte je na dashboardu. Počty provedení platí pouze pro aktuální relaci.
 
 Akce textu, zkratky a okna spuštěné z rozhraní aktivují poslední externí cílové okno. Paleta zobrazuje cílový kontext. Pokud se cíl uzavřel nebo Windows odmítne aktivaci, provádění se zastaví se zprávou.
 
 ## Pomoc s klávesnicí a zpětná vazba
 
-Průvodce speciální klávesou je na stránce Klávesnice a na paletě. Uvádí G-keys hlášené iCUE. Detect Key Press je dočasně zachytí, aniž by provedly jim přiřazené akce. Normální vazby se vrátí po detekci, zrušení nebo uzavření. Funkce katalogu a vybraný klíč se otevřou jako neuložený koncept; duplicitní vazby jsou kontrolovány.
+Průvodce speciálními klávesami je na stránce Klávesnice a v paletě. Uvádí klávesy G hlášené iCUE. Detekce stisku klávesy je dočasně zachytí bez provedení přiřazených akcí. Běžné vazby se obnoví po detekci, zrušení nebo zavření. Funkce katalogu a vybraná klávesa se otevřou jako neuložený koncept; kontrolují se duplicitní vazby.
 
-Překrytí klávesnice zobrazuje vybrané referenční rozložení a aktivní vazby. Podržte Ctrl+Alt+F1 nebo jej přepněte na stránce palety nebo klávesnice. Nezaměřuje se a propouští kliknutí myší. Změny profilu a vazby se aktualizují, když jsou viditelné; běžné stisknutí klávesy Windows je zvýrazněno. Ovládací prvky specifické pro výrobce nemusí poskytovat ekvivalentní signál klíče Windows.
+Překryv klávesnice ukazuje vybrané referenční rozložení a aktivní vazby. Podržte Ctrl+Alt+F1 nebo jej přepněte z palety či stránky Klávesnice. Nepřebírá fokus a propouští kliknutí myší. Když je viditelný, aktualizuje změny profilu a vazeb; běžné stisky kláves Windows jsou zvýrazněny. Ovládací prvky specifické pro výrobce nemusí poskytovat odpovídající signál klávesy Windows.
 
-Zpětná vazba na provedení ukazuje čekání, postup kroků/opakování, dokončení, zrušení nebo selhání, aniž by se zaostřilo nebo odkryl zadaný text. Commands Executed potvrzuje provedení příkazu, nikoli nezávisle dotazovaný živý stav v aplikaci třetí strany. Podrobnosti o chybě se zobrazí v protokolu aktivit.
+Zpětná vazba provedení ukazuje čekání, průběh kroků/opakování, dokončení, zrušení nebo selhání bez převzetí fokusu či odhalení zadaného textu. Commands Executed potvrzuje provedení příkazu, nikoli nezávisle dotazovaný živý stav aplikace třetí strany. Podrobnosti chyb jsou v protokolu aktivit.
 
 ## Zařízení a Corsair
 
-Corsair G1–G6 lze přiřadit přímo prostřednictvím oficiální sady iCUE SDK. Vyberte zařízení a klíč v editoru akcí a uložte nebo připravte koncept ze zobrazení klávesnice K100. Vazby se vztahují na vybrané zařízení a aktivní profil; pauza je také deaktivuje. iCUE musí být spuštěné a musí umožnit přístup. Fn, ovládací prvky kolečka, profilu a zámku iCUE nelze mapovat prostřednictvím tohoto rozhraní G-key API.
+Corsair G1–G6 lze přiřadit přímo prostřednictvím oficiálního iCUE SDK. Vyberte zařízení a klávesu v editoru akcí a uložte nebo připravte koncept ze zobrazení klávesnice K100. Vazby platí pro vybrané zařízení a aktivní profil; pauza je také zakáže. iCUE musí běžet a povolit přístup. Fn, kolečko iCUE a ovládací prvky profilu a zámku nelze mapovat přes toto G-key API.
 
-Stránka Zařízení uvádí rozhraní klávesnice Windows a pravidelně se obnovuje a při připojení zařízení. Fyzická klávesnice může odhalit více rozhraní HID. Standardní globální klávesové zkratky fungují napříč výrobci.
+Stránka Zařízení uvádí rozhraní klávesnic Windows a obnovuje se pravidelně i při připojení zařízení. Fyzická klávesnice může poskytovat více rozhraní HID. Standardní globální zkratky fungují napříč výrobci.
 
-Detekce Corsair využívá dostupné informace o zařízení. Ovládání RGB vyžaduje kompatibilní hardware, běžící iCUE a oficiální iCUE SDK; aplikace hlásí skutečnou dostupnost. Ostatní výrobci v současné době dostávají detekci a standardní akce. Mimo integraci G-key Corsair fungují proprietární ovládací prvky, když je Windows přijme jako běžný vstup. Aplikace neinstaluje ovladač klávesnice.
+Detekce Corsair používá dostupné informace o zařízení. Ovládání RGB vyžaduje kompatibilní hardware, běžící iCUE a oficiální iCUE SDK; aplikace hlásí skutečnou dostupnost. Ostatní výrobci mají nyní detekci a standardní akce. Mimo integraci kláves G Corsair fungují proprietární ovládací prvky, pokud je Windows přijímá jako běžný vstup. Aplikace neinstaluje ovladač klávesnice.
 
 ## Jazyky
 
-Nastavení nabízí jazyky 27: němčina, angličtina, francouzština, španělština, italština, portugalština, holandština, polština, čeština, slovenština, maďarština, rumunština, bulharština, řečtina, dánština, švédština, norština, finština, estonština, lotyština, litevština, slovinština, chorvatština, ukrajinština, ruština, turečtina a srbština v latince. Automaticky se řídí jazykem zobrazení Windows. Překlady jsou lokálně baleny. Rozvržení, klávesové zkratky a názvy vytvořené uživatelem jsou nezávislé na jazyku rozhraní.
+Nastavení nabízí 27 jazyků: němčinu, angličtinu, francouzštinu, španělštinu, italštinu, portugalštinu, nizozemštinu, polštinu, češtinu, slovenštinu, maďarštinu, rumunštinu, bulharštinu, řečtinu, dánštinu, švédštinu, norštinu, finštinu, estonštinu, lotyštinu, litevštinu, slovinštinu, chorvatštinu, ukrajinštinu, ruštinu, turečtinu a srbštinu v latince. Automatická volba se řídí jazykem zobrazení Windows. Překlady jsou přibaleny místně. Rozložení, klávesové zkratky a uživatelské názvy jsou nezávislé na jazyku rozhraní.
 
-Kompletní dokumentace je k dispozici ve všech jazycích aplikace 27 prostřednictvím [Jazykový index](README.md)A to Překlady jsou strojově podporované, s originálními odkazy a strukturálními kontrolami; recenze původního řečníka je oddělená. Aplikace také přijímá regionální kódy `en-US`, `de-DE`, `fr-FR` a `it-IT` a používá jejich číselné formáty. Existující jazykové kódy jsou kompatibilní.
+Úplná dokumentace repozitáře je dostupná ve všech 27 jazycích aplikace prostřednictvím [Jazykový index](README.md). Překlady jsou strojově podporované, obsahují odkazy na původní zdroje a procházejí strukturálními kontrolami; revize rodilým mluvčím je samostatná. Aplikace přijímá také regionální kódy `en-US`, `de-DE`, `fr-FR` a `it-IT` a používá jejich číselné formáty. Dosavadní jazykové kódy zůstávají kompatibilní.
 
 ## Rozložení a průzkum výrobce
 
-Zobrazení klávesnice poskytuje reference ISO-DE/ANSI-US v plné velikosti a bez použití kláves a navíc rozložení RGB Corsair K100. Geometrie představuje pozice, široké/vysoké klávesy a ISO Enter. Standardní rozvržení jsou obecné odkazy. Rozvržení K100 se řídí zdokumentovanými ovládacími prvky bez nároku na milimetrově přesné rozměry. Vyberte správný jazyk/geometrickou variantu: název modelu nebo USB VID/PID neurčuje konkrétní variantu.
+Zobrazení klávesnice poskytuje plnohodnotná a beznumerická referenční rozložení ISO-DE/ANSI-US a rozložení Corsair K100 RGB. Geometrie znázorňuje polohy, široké/vysoké klávesy a ISO Enter. Standardní rozložení jsou obecné reference. Rozložení K100 vycházejí ze zdokumentovaných ovládacích prvků bez tvrzení o rozměrech přesných na milimetr. Vyberte správnou jazykovou/geometrickou variantu: název modelu ani USB VID/PID neurčují konkrétní variantu.
 
-Mapování řeší fyzické skenovací kódy pomocí aktivního rozložení vstupu Windows. Pracovní postup připraví koncept a zachová kontroly uložení/konfliktů. Standardní vazby jsou globální klávesové zkratky Windows, které nejsou izolované na jedné připojené klávesnici. Corsair G1–G6 použijte integraci iCUE specifickou pro zařízení. Jiné proprietární ovládací prvky vyžadují adaptér nebo výrobcem nakonfigurované zástupce. Main Enter a numerická klávesnice Enter sdílejí identitu virtuálního klíče pro globální klávesové zkratky.
+Mapování interpretuje fyzické skenovací kódy pomocí aktivního vstupního rozložení Windows. Postup připraví koncept a zachová kontroly uložení/konfliktů. Standardní vazby jsou globální zkratky Windows, nejsou omezeny na jednu připojenou klávesnici. Corsair G1–G6 používají integraci iCUE pro konkrétní zařízení. Jiné proprietární ovládací prvky vyžadují adaptér nebo výrobcem nakonfigurované zkratky. Hlavní Enter a Enter numerické klávesnice sdílejí pro globální zkratky stejný identifikátor virtuální klávesy.
 
-a to [Výrobce výzkumu](research/tastaturhersteller-sonderfunktionen.md) a [CSV](research/tastaturhersteller-sonderfunktionen.csv) pokrývá 74 skupiny značek/výrobců, rozlišují konfigurátory, vstupní SDK a osvětlení API. [Layout důkazů](research/keyboard-layout-evidence.md) Modely, modely a rozdíly. Výzkumné pokrytí neznamená, že je prováděna podpora hardwaru.
+a to [Výrobce výzkumu](research/tastaturhersteller-sonderfunktionen.md) a [CSV](research/tastaturhersteller-sonderfunktionen.csv) pokrývá 74 skupiny značek/výrobců, rozlišují konfigurátory, vstupní SDK a osvětlení API. [Layout důkazů](research/keyboard-layout-evidence.md) zaznamenává rozdíly modelů, SKU a modulů. Pokrytí průzkumem neznamená implementovanou podporu hardwaru.
 
 ## Data
 
@@ -104,26 +104,26 @@ dotnet run --project tests/Aivana.Tests -c Release
 dotnet run --project tests/Aivana.Windows.Tests -c Release
 ```
 
-Kontroly Windows mohou kontrolovat hardware a dočasně konfigurovat/uvolňovat podporované vazby iCUE. Spusťte je bez dalšího ovladače pomocí těchto vazeb. Kontroly koncových bodů zvuku nemění hlasitost živého vysílání ani nastavení ztlumení.
+Kontroly Windows mohou zkoumat hardware a dočasně konfigurovat/uvolňovat podporované vazby iCUE. Spouštějte je bez jiného řadiče používajícího tyto vazby. Kontroly zvukových koncových bodů nemění aktuální hlasitost ani nastavení ztlumení.
 
 Nativní vstup nemůže obejít oprávnění Windows. Normálně spuštěný řadič nemusí odesílat vstup do aplikace správce. Rezervované nebo obsazené klávesové zkratky se objevují jako konflikty.
 
-a to [Dokumentační index](README.md) odkaz historických návrhů, plánů, výzkumu a datovaných testovacích zpráv. Historické plány popisují jejich zaznamenaný rozsah, ne aktuální záruku podpory.
+a to [Dokumentační index](README.md) odkazuje na historické návrhy, plány, průzkum a datované testovací zprávy. Historické plány popisují zaznamenaný rozsah, nikoli aktuální záruku podpory funkcí.
 
 ### Šablony pracovních postupů a čekání na cílové okno
 
-Katalog obsahuje šest upravitelných pracovních postupů: pracovní prostor, schůzka, streamování, výzkum, změna projektu a úryvek textu. Vyhledejte `workflow.` v katalogu nebo na paletě příkazů. Výběrem pracovního postupu se otevře neuložený koncept; nikdy neběží okamžitě. Všechny kroky jsou zachovány při přidávání pracovního postupu do existujícího makra nebo jeho přiřazení ke klávese Corsair. Před uložením nakonfigurujte příklady URL, programové cesty, profily a scény OBS.
+Katalog obsahuje šest upravitelných pracovních postupů: pracoviště, schůzka, streamování, výzkum, změna projektu a textový úryvek. Vyhledejte `workflow.` v katalogu nebo paletě příkazů. Výběr postupu otevře neuložený koncept; nikdy jej ihned nespustí. Při přidání postupu do existujícího makra nebo přiřazení ke klávese Corsair zůstanou všechny kroky zachovány. Před uložením nastavte příklady URL, cesty programů, profily a scény OBS.
 
-Krok **Wait for target window** přijímá název procesu (s nebo bez `.exe`), podřetězec názvu nerozlišující malá a velká písmena a časový limit 1–600,000 ms. Je vyžadován alespoň jeden filtr; oba filtry se musí při dodání shodovat. Makro pokračuje až poté, co odpovídající viditelné okno odpoví a dosáhne popředí. Pokud proces sdílí více oken, použijte konkrétní název. Zrušení nebo časový limit zastaví následující kroky. Připravenost okna nezaručuje, že se dokument načetl nebo že je připojena externí služba, jako je OBS WebSocket.
+Krok **Wait for target window** přijímá název procesu (s `.exe` nebo bez), část názvu bez rozlišení velikosti písmen a časový limit 1–600000 ms. Je vyžadován alespoň jeden filtr; pokud jsou zadány oba, musí platit oba. Makro pokračuje až po reakci odpovídajícího viditelného okna a jeho přechodu do popředí. Pokud proces sdílí více oken, použijte konkrétní název. Zrušení nebo vypršení limitu zastaví další kroky. Připravenost okna nezaručuje načtení dokumentu ani připojení externí služby, například OBS WebSocket.
 
-Jas displeje: vyhledat **Zvyšte jas obrazovky**, **Snižte jas obrazovky**nebo **Jas obrazovky při 50 procent** v katalogu akcí. Relativní akce mění jas o 10 procentní body; pevné hodnoty se pohybují od 0 na 100. Podporované interní displeje používají WMI; vyžadují kompatibilní externí monitory DDC/CI povoleno v jejich nabídce. Ve výchozím nastavení tato akce ovlivní všechny podporované displeje; v editoru lze vybrat explicitní monitor. Připojení a doky mohou omezit podporu.
+Jas displeje: v katalogu akcí vyhledejte **Zvýšit jas obrazovky**, **Snížit jas obrazovky** nebo **Jas obrazovky na 50 procent**. Relativní akce mění jas o 10 procentních bodů; pevné hodnoty jsou od 0 do 100. Podporované interní displeje používají WMI; kompatibilní externí monitory vyžadují DDC/CI povolené ve své nabídce. Ve výchozím nastavení akce ovlivní všechny podporované displeje; v editoru lze vybrat konkrétní monitor. Připojení a doky mohou podporu omezit.
 
 ### Rozšířené ovládání
 
-Otevřete paletu příkazů pomocí **Ctrl+K, když je okno aplikace aktivní**. Hledat **Návrhář pracovních postupů**, **Záznam makra**, **Synchronizovat profily**nebo **Klíčová diagnostika** (znění odpovídá vámi zvolenému jazyku). Návrhář pracovního postupu upraví vybraný koncept dlaždice: podmínky souboru/procesu/okna, počet přeskočení vpřed a zastavení/pokračování zpracování chyb. Diktafon zachycuje akordy zkratek a čeká, ne obyčejné psaní; Escape zastaví nahrávání. Před přijetím zkontrolujte výsledek.
+Otevřete paletu příkazů pomocí **Ctrl+K, když má okno aplikace fokus**. Vyhledejte **Návrhář pracovních postupů**, **Záznam makra**, **Synchronizovat profily** nebo **Diagnostika kláves** (znění odpovídá vybranému jazyku). Návrhář upravuje vybraný koncept dlaždice: podmínky souboru/procesu/okna, počty přeskočených následujících kroků a zastavení/pokračování při chybě. Záznamník zachycuje kombinace klávesových zkratek a prodlevy, nikoli běžné psaní; Escape záznam zastaví. Před převzetím výsledek zkontrolujte.
 
 V kroku jasu vyberte všechny podporované displeje nebo konkrétní monitor. Nedostupný vybraný monitor způsobí chybu, místo aby tiše změnil jiný displej. Přístrojová deska zobrazuje živý jas, zvuk a hodnoty OBS, pokud jsou k dispozici jejich příslušné integrace; nedostupná hodnota není prezentována jako naměřená hodnota.
 
-V editoru dlaždic přiřaďte podporovanou fyzickou speciální klávesu a zvolte okamžité stisknutí, klepnutí, podržení nebo dvojité klepnutí. Podržené selektory vrstev dočasně aktivují další mapování a obnoví předchozí vrstvu při vydání. Gesta a vrstvy se vztahují na G-klávesy Corsair SDK a standardní speciální klávesy specifické pro zařízení, nikoli běžné globální klávesové zkratky. Standardní zachycení kláves podporuje F13–F24 a klávesy médií na klávesnici. Proprietární ovládání Fn, profilu a číselníku stále vyžaduje kompatibilní adaptér dodavatele nebo mapování dodavatele na standardní klíč. Raw Input sleduje klíč a nepotlačuje jeho normální chování Windows. Klíčová diagnostika vysvětluje problémy profilu, pauzy, připojení a vazby.
+V editoru dlaždice přiřaďte podporovanou fyzickou speciální klávesu a vyberte okamžité stisknutí, krátké stisknutí, podržení nebo dvojité stisknutí. Podržené voliče vrstev dočasně aktivují jiné mapování a při uvolnění obnoví předchozí vrstvu. Gesta a vrstvy platí pro klávesy G Corsair SDK a standardní speciální klávesy konkrétního zařízení, nikoli pro běžné globální zkratky. Zachycení standardních kláves podporuje F13–F24 a multimediální klávesy klávesnice. Proprietární ovládání Fn, profilu a otočného ovladače stále vyžaduje kompatibilní adaptér výrobce nebo mapování výrobce na standardní klávesu. Raw Input klávesu sleduje a nepotlačuje její běžné chování ve Windows. Diagnostika kláves vysvětluje problémy profilu, pauzy, připojení a vazeb.
 
-Synchronizace profilu vyměňuje soubory prostřednictvím složky, kterou si vyberete, včetně složky spravované vaším stávajícím cloudovým klientem. Před importem zkontrolujte náhled; importy start zakázány a odstraní mapování specifická pro hardware. Revize zabraňují tichému přepsání a zahrnutí obsahu akce je explicitní volbou. MAKRIVO neposkytuje cloudový účet ani neuchovává cloudové přihlašovací údaje. Panel nyní používá vlastní modrozelenou ikonu M MAKRIVO a při pozastavení zobrazuje jantarový odznak pozastavení.
+Synchronizace profilů vyměňuje soubory přes vybranou složku, včetně složky spravované vaším stávajícím cloudovým klientem. Před importem zkontrolujte náhled; importované akce jsou zpočátku zakázané a hardwarově specifická mapování se odstraní. Revize zabraňují tichému přepsání a zahrnutí obsahu akcí je výslovná volba. MAKRIVO neposkytuje cloudový účet ani neuchovává cloudové přihlašovací údaje. Oznamovací oblast nyní používá vlastní tyrkysovou ikonu M MAKRIVO a při pozastavení zobrazuje jantarovou značku pauzy.

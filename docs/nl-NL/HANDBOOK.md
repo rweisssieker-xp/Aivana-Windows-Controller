@@ -2,155 +2,155 @@
 
 > Machinaal ondersteunde vertaling. Structuur, codevoorbeelden en links worden gecontroleerd; dit is geen taalkundige controle door een moedertaalspreker of juridische goedkeuring. Historische rapporten behouden hun oorspronkelijke datum en reikwijdte. [Originele bron](../HANDBOOK.md)
 
-# MAKRIVO — Gebruikershandleiding
+# MAKRIVO-gebruikershandboek
 
-Fabrikant: **Aivana**. Momentopname van de documentatie: **2026-10-12**. Dit handboek beschrijft de huidige werkboomimplementatie. Experimentele integraties en hardware-afhankelijke functies worden expliciet geïdentificeerd. Historische rapporten beschrijven hun gedateerde momentopname, geen garantie voor een nieuwere versie.
+Fabrikant: **Aivana**. Documentatiemomentopname: **2026-10-12**. Dit handboek beschrijft de huidige implementatie in de werkboom. Experimentele integraties en hardwareafhankelijke functies worden expliciet aangeduid. Historische rapporten beschrijven hun gedateerde momentopname en geven geen garantie voor een nieuwere build.
 
 ## Documentatie en talen
 
-Gebruik de documentatietaalkiezer om de volledige handleiding, functie-inventaris, probleemoplossing, ontwikkelingsnotities, onderzoek en historische testrapporten te openen in een van de 27-toepassingstalen. Gegenereerde vertalingen worden machinaal ondersteund en ondergaan structurele controles; ze hebben niet allemaal een native speaker-beoordeling gekregen. Technische identificatiegegevens en uitvoerbare voorbeelden blijven ongewijzigd. De originele bron blijft ter vergelijking beschikbaar. Vertaalde licentieanalyses zijn informatief en vervangen niet de oorspronkelijke juridische voorwaarden van derden of een definitieve EULA.
+Gebruik de documentatietaalkeuze om de volledige handleiding, functie-inventaris, probleemoplossing, ontwikkelnotities, onderzoek en historische testrapporten in elk van de 27 toepassingstalen te openen. Gegenereerde vertalingen zijn machinaal ondersteund en structureel gecontroleerd; ze zijn niet allemaal door moedertaalsprekers beoordeeld. Technische identifiers en uitvoerbare voorbeelden blijven ongewijzigd. De oorspronkelijke bron blijft beschikbaar ter vergelijking. Vertaalde licentieanalyse is informatief en vervangt niet de oorspronkelijke juridische voorwaarden van derden of een definitieve EULA.
 
 ## Installatie en eerste lancering
 
-Het initiële doel is Windows 11 x64. Houd elk bestand en elke submap van de distributie bij elkaar. Start `MAKRIVO.exe`. Een source checkout is geen installatieprogramma. Op zichzelf staande pakketten bevatten hun .NET-runtime; raamwerkafhankelijke pakketten vereisen de juiste .NET 10 Desktop- en ASP.NET-runtimes. ONNX en begeleidende hosts moeten worden opgenomen vanwege hun respectieve kenmerken.
+Het eerste doelplatform is Windows 11 x64. Houd alle bestanden en submappen van de distributie bij elkaar. Start `MAKRIVO.exe`. Een checkout van de broncode is geen installatieprogramma. Zelfstandige pakketten bevatten hun .NET-runtime; frameworkafhankelijke pakketten vereisen de juiste .NET 10 Desktop- en ASP.NET-runtimes. ONNX en begeleidende hosts moeten voor hun bijbehorende functies worden meegeleverd.
 
-1. Start MAKRIVO en kies de interfacetaal in Instellingen. Automaat volgt Windows. Toetsenbordindeling is een aparte instelling.
-2. Kies een profiel en voeg vervolgens een tegel toe via de doorzoekbare actiecatalogus. Geef het een herkenbare naam en kies de acties.
-3. Bekijk de stappen en wijs indien nodig een snelkoppeling toe. Vermijd combinaties die al worden gebruikt door Windows of uw doeltoepassing.
-4. Bewaar het concept. Niet-opgeslagen wijzigingen zijn niet de opgeslagen configuratie.
-5. Test met een ongevaarlijke actie, zoals het openen van een document, en bekijk de uitvoeringsfeedback.
+1. Start MAKRIVO en kies de interfacetaal in Instellingen. Automatisch volgt Windows. De toetsenbordindeling is een afzonderlijke instelling.
+2. Kies een profiel en voeg een tegel toe via de doorzoekbare actiecatalogus. Geef de tegel een herkenbare naam en kies de acties.
+3. Controleer de stappen en wijs zo nodig een sneltoets toe. Vermijd combinaties die Windows of de doeltoepassing al gebruikt.
+4. Sla het concept op. Niet-opgeslagen wijzigingen maken geen deel uit van de opgeslagen configuratie.
+5. Test met een onschuldige actie, bijvoorbeeld een document openen, en controleer de uitvoeringsfeedback.
 
-Als u het hoofdvenster sluit, blijft de toepassing normaal gesproken in het systeemvak staan. Dubbelklik op het ladepictogram om het opnieuw te openen, of gebruik het lademenu om af te sluiten. Beginnen met Windows is optioneel en in eerste instantie uitgeschakeld. De pauzecontrole schort de bindingen op; het pictogram toont een pauzebadge. Annuleer actieve macro's via de gebruikersinterface, lade of de geconfigureerde annuleringssnelkoppeling; de standaardwaarde is `Ctrl+Alt+Escape`.
+Als u het hoofdvenster sluit, blijft de toepassing gewoonlijk in het systeemvak actief. Dubbelklik op het systeemvakpictogram om het venster te heropenen of sluit af via het systeemvakmenu. Starten met Windows is optioneel en aanvankelijk uitgeschakeld. De pauzeknop onderbreekt bindingen; het pictogram toont een pauzebadge. Annuleer lopende macro’s via de interface, het systeemvak of de ingestelde annuleringssneltoets; standaard is dit `Ctrl+Alt+Escape`.
 
-## Tegels, acties en het commandopalet
+## Tegels, acties en het opdrachtenpalet
 
-Tegels behoren tot profielen en kunnen meerdere geordende stappen bevatten. De editor ondersteunt opslaan/weggooien, bekijken, ongedaan maken/opnieuw uitvoeren en stapsgewijs opnieuw ordenen. De catalogus biedt voorinstellingen voor programma's, documenten, URL's, tekst, klembord, snelkoppelingen, media, audio, vensters, systeemacties en ondersteunde integraties. Een voorinstelling waarvoor parameters nodig zijn, wordt geopend als concept.
+Tegels behoren tot profielen en kunnen meerdere geordende stappen bevatten. De editor ondersteunt opslaan/verwerpen, voorbeeldweergave, ongedaan maken/opnieuw en herschikken van stappen. De catalogus levert voorinstellingen voor programma’s, documenten, URL’s, tekst, klembord, sneltoetsen, media, audio, vensters, systeemacties en ondersteunde integraties. Een voorinstelling die parameters vereist, opent als concept.
 
-Open het palet met `Ctrl+K` terwijl MAKRIVO focus heeft. Zoek naar opgeslagen acties, presets, profielwisseling en tools. Pijltjestoetsen selecteren; Enter activeert; `Ctrl+Enter` bewerkt een ondersteund item; De ontsnapping is gesloten. Sommige kant-en-klare opdrachten worden onmiddellijk uitgevoerd, terwijl geconfigureerde acties beoordeling vereisen. Er kan een aparte globale paletsnelkoppeling worden geconfigureerd; nieuwe configuraties gebruiken `Ctrl+Shift+Space`.
+Open het palet met `Ctrl+K` terwijl MAKRIVO focus heeft. Zoek opgeslagen acties, voorinstellingen, profielwisselingen en hulpmiddelen. Selecteer met de pijltjestoetsen; Enter activeert; `Ctrl+Enter` bewerkt een ondersteund item; Escape sluit. Sommige kant-en-klare opdrachten worden meteen uitgevoerd, terwijl geconfigureerde acties controle vereisen. Er kan een afzonderlijke globale paletsneltoets worden ingesteld; nieuwe configuraties gebruiken `Ctrl+Shift+Space`.
 
-Tekst- en klembordstappen ondersteunen `{{date}}`, `{{time}}`, `{{datetime}}`, `{{clipboard}}`, `{{profile}}`, `{{process}}` en `{{user}}`. Datumnotatie is `yyyy-MM-dd`; tijdnotatie is `HH:mm`. Onbekende variabelen blijven ongewijzigd. Het lezen van het klembord gebeurt alleen wanneer daarom wordt gevraagd. Met een klembordactie wordt tekst geschreven zonder deze automatisch te plakken.
+Tekst- en klembordstappen ondersteunen `{{date}}`, `{{time}}`, `{{datetime}}`, `{{clipboard}}`, `{{profile}}`, `{{process}}` en `{{user}}`. Het datumformaat is `yyyy-MM-dd`; het tijdformaat is `HH:mm`. Onbekende variabelen blijven ongewijzigd. Het klembord wordt alleen gelezen wanneer daarom wordt gevraagd. Een klembordactie schrijft tekst zonder die automatisch te plakken.
 
-Acties die vanuit de gebruikersinterface worden gestart, kunnen zich richten op de laatste externe applicatie. Als het doel verdwijnt of Windows de activering op de voorgrond blokkeert, activeer het doel dan handmatig en probeer het opnieuw. Succesvolle sleuteloverdracht bewijst niet dat het doelwit zijn taak heeft voltooid.
+Acties die vanuit de interface worden gestart, kunnen de laatste externe toepassing als doel hebben. Als het doel verdwijnt of Windows activering op de voorgrond blokkeert, activeert u het doel handmatig en probeert u het opnieuw. Succesvolle levering van toetsaanslagen bewijst niet dat het doel zijn taak heeft voltooid.
 
 ## Profielen en werkplekinrichting
 
-Profielen kunnen overeenkomen met een procesnaam en een deel van een venstertitel. Als beide zijn ingesteld, moeten beide overeenkomen. Profielvolgorde lost concurrerende wedstrijden op; het standaardprofiel is de fallback. Schakel automatische selectie expliciet in. Profiel vergrendelen voorkomt automatische wijzigingen voor de huidige sessie.
+Profielen kunnen overeenkomen met een procesnaam en een deel van een venstertitel. Als beide zijn ingesteld, moeten beide overeenkomen. De profielvolgorde bepaalt welk profiel bij meerdere overeenkomsten wint; het standaardprofiel is de terugval. Schakel automatische selectie expliciet in. Profiel vergrendelen voorkomt automatische wijzigingen tijdens de huidige sessie.
 
-Open Werkplekinstellingen vanuit Tools of het palet. Selecteer programma's, documenten, websites, een audio-/weergavedoel of een OBS-scène. De assistent maakt werkplek-, vergader-, streaming-, onderzoeks- of projectprofielen op. Controleer de gegenereerde stappen voordat u deze opslaat. Setup voert de voorbereide acties niet uit.
+Open Werkplekinrichting vanuit Hulpmiddelen of het palet. Selecteer programma’s, documenten, websites, een audio-/beeldschermdoel of een OBS-scène. De assistent bereidt werkplek-, vergader-, streaming-, onderzoeks- of projectprofielen voor. Controleer de gegenereerde stappen voordat u opslaat. De inrichting voert de voorbereide acties niet uit.
 
-## Macro's, omstandigheden en opname
+## Macro’s, voorwaarden en opname
 
-Macro's voeren hun stappen in volgorde uit en ondersteunen wachten, herhalingen en annuleringen. De algemene herhalingslimiet is 100. Gebruik Preview voordat u acties uitvoert die in een andere applicatie typen of de systeemstatus wijzigen.
+Macro’s voeren stappen in volgorde uit en ondersteunen wachttijden, herhalingen en annulering. De algemene herhalingslimiet is 100. Gebruik de voorbeeldweergave voordat u acties uitvoert die in een andere toepassing typen of de systeemstatus wijzigen.
 
-Wachten op doelvenster accepteert een proces, een titelsubstring en een time-out van 1 tot 600,000 ms. Er is minimaal één filter vereist. Een bijpassend zichtbaar venster moet reageren en op de voorgrond komen voordat de volgende stappen worden voortgezet. Een gereedvenster bewijst niet dat een document of dienst klaar is met laden.
+Wachten op doelvenster accepteert een proces, een deel van een titel en een time-out van 1 tot 600000 ms. Minstens één filter is vereist. Een overeenkomend zichtbaar venster moet reageren en op de voorgrond komen voordat volgende stappen doorgaan. Een gereed venster bewijst niet dat een document of dienst klaar is met laden.
 
-De workflow-editor voegt voorwaarden voor het bestaan van bestanden, lopende processen en venstertitels toe. Een valse voorwaarde slaat de stap over en kan extra stappen vooruit overslaan. Negeer de voorwaarde om een ​​alternatieve tak uit te drukken. Kies bewust voor stoppen bij fout of doorgaan bij fout; doorgaan kan latere stappen achterlaten zonder de verwachte randvoorwaarden.
+De workflow-editor voegt voorwaarden toe voor het bestaan van een bestand, een actief proces en de venstertitel. Als een voorwaarde onwaar is, wordt de stap overgeslagen en kunnen extra volgende stappen worden overgeslagen. Keer de voorwaarde om voor een alternatieve tak. Kies bewust tussen stoppen bij een fout en doorgaan bij een fout; bij doorgaan kunnen latere stappen hun vereiste voorwaarden missen.
 
-De actierecorder legt snelkoppelingen vast en wacht, geen gewoon typen. Het ondersteunt modificatiesnelkoppelingen en functietoetsen. Escape stopt met opnemen. Bekijk de lijst, neem deze over als een niet-opgeslagen tegelconcept en sla deze vervolgens expliciet op. UI-klikopname is een afzonderlijk hulpmiddel dat hieronder wordt beschreven.
+De actierecorder legt sneltoetscombinaties en wachttijden vast, geen gewone tekstinvoer. Hij ondersteunt sneltoetsen met modificatietoetsen en functietoetsen. Escape stopt de opname. Controleer de lijst en neem die over als niet-opgeslagen tegelconcept; sla vervolgens expliciet op. UI-klikopname is een afzonderlijk hulpmiddel dat hieronder wordt beschreven.
 
 ## Toetsenborden, gebaren en lagen
 
-Op de toetsenbordpagina worden gedetecteerde interfaces en referentielay-outs vermeld. Eén enkel fysiek toetsenbord kan meerdere interfaces blootleggen. Selecteer de juiste taal en geometrie; een productnaam alleen identificeert de ISO- of ANSI-indeling niet.
+De toetsenbordpagina vermeldt gedetecteerde interfaces en referentie-indelingen. Eén fysiek toetsenbord kan meerdere interfaces aanbieden. Kies de juiste taal en geometrie; alleen een productnaam identificeert geen ISO- of ANSI-indeling.
 
-Standaard globale sneltoetsen zijn van toepassing op alle toetsenborden. Apparaatspecifieke Raw Input-bindingen observeren een bepaald apparaat en een specifieke scancode, inclusief ondersteunde functie- en mediatoetsen. **Raw Input onderdrukt de gewone Windows-invoer niet. Een exclusief tweede toetsenbord is nog niet productieklaar.** Een ondertekende, gelicentieerde en geteste filterdriver-backend is nog steeds vereist; geen enkele wordt geïnstalleerd door MAKRIVO.
+Standaard globale sneltoetsen gelden voor alle toetsenborden. Apparaatspecifieke Raw Input-bindingen observeren een bepaald apparaat en een scancode, inclusief ondersteunde functie- en mediatoetsen. **Raw Input onderdrukt gewone Windows-invoer niet. Een exclusief tweede toetsenbord is niet productieklaar.** Hiervoor is nog een ondertekende, gelicentieerde en geteste filterdriver-backend nodig; MAKRIVO installeert er geen.
 
-Ondersteunde speciale toetsbindingen kunnen direct indrukken, tikken, vasthouden of dubbeltikken gebruiken. Vastgehouden laagtoetsen selecteren tijdelijk een andere mapping en herstellen de basislaag bij het loslaten; laagselectietoetsen voeren geen eigen macro uit. Hold-drempels variëren van 150 tot 5,000 ms; dubbeltik op vensters van 150 tot 1,000 ms. Deze toewijzingen verschillen van gewone globale sneltoetsen.
+Ondersteunde speciale toetsbindingen kunnen reageren op direct indrukken, tikken, vasthouden of dubbeltikken. Laagtoetsen selecteren tijdens het vasthouden tijdelijk een andere toewijzing en herstellen de basislaag bij loslaten; laagselectietoetsen voeren geen eigen macro uit. Vasthouddrempels lopen van 150 tot 5000 ms; tijdvensters voor dubbeltikken van 150 tot 1000 ms. Deze toewijzingen staan los van gewone globale sneltoetsen.
 
-De wizard voor speciale sleutels detecteert compatibele sleutels zonder de toegewezen acties uit te voeren tijdens het vastleggen. Diagnostische gegevens verklaren niet-beschikbare apparaten, onderbroken bindingen, niet-overeenkomende profielen en conflicten. De overlay toont de geselecteerde lay-out en bindingen; de standaard sneltoets voor vasthouden is `Ctrl+Alt+F1`.
+De wizard voor speciale toetsen detecteert compatibele toetsen zonder tijdens het vastleggen hun toegewezen acties uit te voeren. Diagnostiek verklaart niet-beschikbare apparaten, gepauzeerde bindingen, profielmismatches en conflicten. De overlay toont de gekozen indeling en bindingen; de standaard vasthoudsneltoets is `Ctrl+Alt+F1`.
 
 | Integratie | Vereisten en beperkingen |
 | --- | --- |
-| Corsair | Met iCUE, SDK-toegang en een compatibel model. G1–G6 en ondersteunde RGB-functies; eigen Fn-, wiel-, slot- en profielbedieningen worden over het algemeen niet zichtbaar door de G-key API. |
-| Logitech G | Originele lokale x64 G-key/LED SDK-bibliotheken vereisen expliciete goedkeuring. G-toetsgebeurtenissen identificeren niet op unieke wijze meerdere identieke fysieke toetsenborden. |
-| Razer | Chroma RGB en standaardingang; breng bedrijfseigen besturingselementen in Synapse in kaart waar nodig. |
-| SteelSeries | GameSense RGB- en standaardingang; breng bedrijfseigen controles in GG in kaart waar nodig. |
-| Wooting | Compatibele originele lokale x64 SDK voor analoge waarden en drempels; normale HID-ingang blijft actief. |
-| Andere toetsenborden | Standaardsneltoetsen of ondersteunde fysieke scancodebindingen. Fn en eigen bedieningselementen zijn afhankelijk van het model en de leveranciersconfiguratie. |
+| Corsair | Actieve iCUE, SDK-toegang en een compatibel model. G1–G6 en ondersteunde RGB-functies; bedrijfseigen Fn-, wiel-, vergrendelings- en profielbediening worden in het algemeen niet aangeboden via de G-key API. |
+| Logitech G | Originele lokale x64 G-key/LED SDK-bibliotheken vereisen expliciete goedkeuring. G-key-gebeurtenissen identificeren meerdere identieke fysieke toetsenborden niet uniek. |
+| Razer | Chroma RGB en standaardinvoer; wijs bedrijfseigen bedieningselementen zo nodig toe in Synapse. |
+| SteelSeries | GameSense RGB en standaardinvoer; wijs bedrijfseigen bedieningselementen zo nodig toe in GG. |
+| Wooting | Compatibele originele lokale x64 SDK voor analoge waarden en drempels; gewone HID-invoer blijft actief. |
+| Andere toetsenborden | Standaardsneltoetsen of ondersteunde fysieke scancodebindingen. Fn en bedrijfseigen bediening hangen af van het model en de leveranciersconfiguratie. |
 
-Onderzoek van de fabrikant beschrijft gedocumenteerde mogelijkheden, niet geïmplementeerde of geteste compatibiliteit met elk vermeld apparaat. Nieuwe adapters hebben nog steeds echte hardware-acceptatie nodig. Download geen binaire SDK-bestanden van onbetrouwbare bronnen; SDK-distributierechten staan ​​los van technische compatibiliteit.
+Fabrikantenonderzoek beschrijft gedocumenteerde mogelijkheden, geen geïmplementeerde of geteste compatibiliteit met elk vermeld apparaat. Nieuwe adapters vereisen nog acceptatietests met echte hardware. Download geen binaire SDK-bestanden van onbetrouwbare bronnen; SDK-distributierechten staan los van technische compatibiliteit.
 
 ## Audio, displays en OBS
 
-Audio stappen set volume van 0 om te 100 percentage en mute/unmute/toggle ondersteunde output of microfoon endpoints. Windows een vermiste beveiligde doelstelling produceert een fout in plaats van stil te controleren een ander apparaat. Verfrissing van apparaten na herverbinding. Endpoint control is geen claim van onafhankelijke mixer ondersteuning per applicatie.
+Audiostappen stellen het volume in van 0 tot 100 procent en dempen ondersteunde uitvoer- of microfooneindpunten, heffen het dempen op of wisselen de dempstatus. Kies een specifiek eindpunt of de Windows-standaard. Als een opgeslagen doel ontbreekt, volgt een fout in plaats van stilzwijgend een ander apparaat te bedienen. Vernieuw de apparaten na opnieuw verbinden. Eindpuntbesturing betekent niet dat onafhankelijke mixerbesturing per toepassing wordt ondersteund.
 
-Weergaveacties verhogen/verlagen de helderheid met 10 procentpunten of stellen een waarde in van 0 tot 100. Interne beeldschermen gebruiken ondersteunde WMI-interfaces; externe monitoren vereisen DDC/CI-ondersteuning en meestal de monitormenu-instelling. Docks, adapters en kabels kunnen de bediening blokkeren. Kies alle ondersteunde beeldschermen of één monitor. Opnieuw verbinden kan beschikbare identiteiten veranderen; bekijk het opgeslagen doel. Ontbrekende metingen worden weergegeven als niet-beschikbare waarden in plaats van als gemeten waarden.
+Beeldschermacties verhogen/verlagen de helderheid met 10 procentpunten of stellen een waarde van 0 tot 100 in. Interne beeldschermen gebruiken ondersteunde WMI-interfaces; externe monitoren vereisen DDC/CI-ondersteuning en meestal inschakeling via het monitormenu. Docks, adapters en kabels kunnen de bediening blokkeren. Kies alle ondersteunde beeldschermen of één monitor. Opnieuw verbinden kan de beschikbare identiteiten veranderen; controleer het opgeslagen doel. Ontbrekende uitlezingen worden als niet beschikbaar getoond, niet als gemeten waarden.
 
-OBS vereist dat WebSocket v5 is ingeschakeld in OBS Tools. Configureer het eindpunt, test de verbinding en laad scène-/ingangsnamen voordat u opslaat. Ondersteunde acties zijn onder meer scènewisseling, stream/opname starten/stoppen/wisselen, opname pauzeren/hervatten en input dempen. Wachtwoorden kunnen worden opgeslagen in Windows Credential Manager en zijn uitgesloten van configuratie-exports. Een succesvolle OBS-opdracht brengt niet elk stroomafwaarts streaming-effect tot stand.
+OBS vereist dat WebSocket v5 is ingeschakeld via Hulpmiddelen in OBS. Configureer het eindpunt, test de verbinding en laad scène- en invoernamen voordat u opslaat. Ondersteunde acties zijn scènewisselingen, stream/opname starten/stoppen/wisselen, opname pauzeren/hervatten en invoer dempen. Wachtwoorden kunnen in Windows Credential Manager worden opgeslagen en worden niet opgenomen in configuratie-exports. Een geslaagde OBS-opdracht bewijst niet elk daaropvolgend streamingeffect.
 
 ## Resultaatverificatie en uitvoeringsgeschiedenis
 
-Schakel Resultaat verifiëren in voor geschikte stappen. De app maakt onderscheid tussen preflightcontroles, bevestigde effecten, mislukkingen, annuleringen en niet-verifieerbare effecten. Het bestaan ​​van een proces betekent niet dat de applicatie gereed is. Relatieve wijzigingen, snelkoppelingen en tekstinvoer kunnen geen algemene succesclaim krijgen. Inspecteer het activiteitenlogboek en de verificatiegeschiedenis wanneer een actie mislukt. Configuratiefouten moeten worden gecorrigeerd voordat de volledige macro opnieuw wordt uitgevoerd.
+Schakel Resultaat verifiëren in voor geschikte stappen. De app onderscheidt controles vooraf, bevestigde effecten, mislukkingen, annulering en effecten die niet kunnen worden geverifieerd. Het bestaan van een proces betekent niet dat een toepassing gereed is. Relatieve wijzigingen, sneltoetsen en tekstinvoer kunnen geen algemene succesbevestiging krijgen. Controleer het activiteitenlogboek en de verificatiegeschiedenis als een actie mislukt. Corrigeer configuratiefouten voordat u de volledige macro opnieuw uitvoert.
 
 ## UI-automatisering en klikopname
 
-Voeg een UI Automation-stap toe, selecteer de operatie en vallen de doelgroep onder de indicator na de weergave. alleen vallen niets uit. Check de selector en vereist een unieke match. `Invoke`, `Select`, `Toggle`, `Focus`, `SetValue` en `WaitState`. Passpoorten, ingeschakelde controles en ambiguïte selecteurs worden afgewezen.
+Voeg een UI Automation-stap toe, selecteer de bewerking en leg na de weergegeven vertraging het doel onder de muisaanwijzer vast. Alleen vastleggen voert niets uit. Controleer de selector en vereis een unieke overeenkomst. Ondersteunde bewerkingen zijn `Invoke`, `Select`, `Toggle`, `Focus`, `SetValue` en `WaitState`. Wachtwoordvelden, uitgeschakelde besturingselementen en niet-eenduidige selectors worden afgewezen.
 
-UI-automatisering wordt uitgevoerd in een begrensd begeleidend proces. Dit hangt af van de toegankelijkheidsondersteuning en machtigingen Windows van de doeltoepassing. De klikrecorder legt ondersteunde acties en pauzes vast; het registreert geen algemene tekstinvoer. Beoordeel en valideer het ontwerp voordat u het aanneemt. UI-wijzigingen in een externe app kunnen selectors ongeldig maken. Procesisolatie beperkt crashes en annuleringen, maar is geen beveiligingssandbox.
+UI-automatisering draait in een begrensd begeleidend proces. Dit hangt af van de Windows-toegankelijkheidsondersteuning en machtigingen van de doeltoepassing. De klikrecorder legt ondersteunde acties en pauzes vast; hij neemt geen algemene tekstinvoer op. Controleer en valideer het concept voordat u het overneemt. Interfacewijzigingen in een externe app kunnen selectors ongeldig maken. Procesisolatie begrenst crashes en annulering, maar is geen beveiligingssandbox.
 
 ## Plug-ins
 
-Open Extensies om een ​​pakket te inspecteren voordat u het importeert. Pakketstructuur, manifest en hashes worden gecontroleerd. Een import start uitgeschakeld. Lees de gedeclareerde acties en vertrouw de uitgever expliciet voordat u deze inschakelt. Plug-ins worden uitgevoerd met uw gebruikersrechten in een afzonderlijk proces; dat proces is **geen sandbox**. Installeer alleen pakketten die u vertrouwt.
+Open Extensies om een pakket te inspecteren voordat u het importeert. Pakketstructuur, manifest en hashes worden gecontroleerd. Na import is het pakket uitgeschakeld. Lees de gedeclareerde acties en vertrouw de uitgever expliciet voordat u het inschakelt. Plug-ins draaien met uw gebruikersrechten in een afzonderlijk proces; dat proces is **geen sandbox**. Installeer alleen pakketten die u vertrouwt.
 
-De manager ondersteunt het exporteren, uitschakelen, verwijderen en herstellen/verwijderen van een eerdere versie. Ontbrekende afhankelijkheden blokkeren de aanroep. Het voorbeeldpakket biedt aftel- en lokale statusacties. Het ondersteunde schema is een gedocumenteerde JSON-Schema-subset, niet elke mogelijke JSON-Schema-functie. Er is geen openbare marktplaats voor plug-ins.
+De beheerder ondersteunt exporteren, uitschakelen, verwijderen en het herstellen/verwerpen van een vorige versie. Ontbrekende afhankelijkheden blokkeren de aanroep. Het voorbeeldpakket biedt aftelacties en lokale statusacties. Het ondersteunde schema is een gedocumenteerde subset van JSON-Schema, niet elke mogelijke JSON-Schema-functie. Er is geen openbare marktplaats voor plug-ins.
 
 ## Mobiel paneel
 
-1. Open Mobile Panel, selecteer een lokaal IP-adres en kies expliciet de profielen die u wilt weergeven. Het standaard loopback-adres is alleen bereikbaar op de pc zelf; selecteer het juiste LAN-adres voor een telefoon of tablet.
-2. Start het paneel en lees het HTTPS-adres, de vingerafdruk van het certificaat en de zescijferige koppelingscode voor eenmalig gebruik.
+1. Open Mobiel paneel, selecteer een lokaal IP-adres en kies expliciet de profielen die toegankelijk worden. Het standaard loopback-adres is alleen op de pc zelf bereikbaar; kies het juiste LAN-adres voor een telefoon of tablet.
+2. Start het paneel en lees het HTTPS-adres, de certificaatvingerafdruk en de eenmalige zescijferige koppelcode.
 3. Open het adres op een apparaat in hetzelfde vertrouwde netwerk. Vergelijk de SHA-256-vingerafdruk via een vertrouwd kanaal voordat u het lokale certificaat vertrouwt. De app installeert niet automatisch een vertrouwd certificaat.
-4. Koppel met behulp van de weergegeven code en test één onschadelijke tegel. Voor LAN-toegang kan handmatige Windows Firewall-toestemming nodig zijn. Stel de poort niet bloot aan internet.
-5. Stop het paneel als u klaar bent, of trek gekoppelde clients in via de app.
+4. Koppel met de weergegeven code en test één onschuldige tegel. Voor LAN-toegang kan handmatige Windows Firewall-toestemming nodig zijn. Stel de poort niet bloot aan internet.
+5. Stop het paneel wanneer u klaar bent of trek de toegang van gekoppelde clients in via de app.
 
-Privéserversleutels worden beveiligd met Windows DPAPI; klantreferenties worden opgeslagen als hashes. Het wijzigen van het IP-adres of het vernieuwen van het certificaat kan hernieuwd vertrouwen vereisen. Het paneel toont actie- en verificatiestatussen, niet elke mogelijke live-sensor. Browserindeling en lokale HTTPS-controles vervangen de echte LAN-acceptatie van telefoons/tablets niet.
+Privéserversleutels worden beveiligd met Windows DPAPI; clientreferenties worden als hashes opgeslagen. Een gewijzigd IP-adres of vernieuwd certificaat kan opnieuw vertrouwen vereisen. Het paneel toont actie- en verificatiestatussen, niet elke mogelijke live-sensor. Controles van de browserindeling en lokale HTTPS vervangen geen echte LAN-acceptatietests op telefoons/tablets.
 
 ## Lokale AI-vergaderassistent
 
-Deze optionele experimentele assistent is standaard uitgeschakeld. Open het vanuit Tools, schakel het expliciet in, selecteer een runtime/model en voeg alleen de bronnen toe waarmee u rekening wilt houden. Geef het doel aan, maak een concept, inspecteer onopgeloste verzoeken en draag het resultaat over aan de normale editor. Niets wordt automatisch uitgevoerd; opslaan en uitvoeren blijven expliciete acties. Er is geen automatische runtime-fallback.
+Deze optionele experimentele assistent is standaard uitgeschakeld. Open hem vanuit Hulpmiddelen, schakel hem expliciet in, selecteer een runtime/model en voeg alleen de resources toe die hij mag meenemen. Geef het doel aan, maak een concept, controleer onopgeloste verzoeken en draag het resultaat over aan de gewone editor. Niets wordt automatisch uitgevoerd; opslaan en uitvoeren blijven expliciete acties. Er is geen automatische runtime-terugval.
 
 | Looptijd | Installatie |
 | --- | --- |
-| Ollama | Aparte lokale service en een lokaal geïnstalleerd model op `127.0.0.1:11434`. Aangegeven externe/cloudmodellen worden afgewezen. |
+| Ollama | Afzonderlijke lokale dienst en een lokaal geïnstalleerd model op `127.0.0.1:11434`. Aangemelde externe/cloudmodellen worden afgewezen. |
 | LM Studio | Lokale server met een lokaal geladen model en JSON-schema-ondersteuning op `127.0.0.1:1234`. Schakel externe routering niet in voor lokale verwerking. |
-| llama.cpp | Lokaal `llama-server` en compatibel model met JSON-schema-ondersteuning op `127.0.0.1:8080`. |
-| ONNX Runtime GenAI CPU | Vertrouwde compatibele lokale GenAI tekstmodelmap; selecteer `genai_config.json`. Inference gebruikt een gebundeld begeleidend proces zonder HTTP. |
+| llama.cpp | Lokale `llama-server` en compatibel model met JSON-schema-ondersteuning op `127.0.0.1:8080`. |
+| ONNX Runtime GenAI CPU | Vertrouwde compatibele lokale GenAI-tekstmodelmap; selecteer `genai_config.json`. Inferentie gebruikt een gebundeld begeleidend proces zonder HTTP. |
 
-HTTP-clients gebruiken alleen loopback, gebruiken geen proxy's en volgen geen omleidingen. MAKRIVO kan niet op betrouwbare wijze vaststellen of een compatibele lokale server intern een externe service aanroept. Geauthenticeerde lokale servers kunnen in deze versie niet worden geconfigureerd. Modelgewichten, Python en lokale inferentieservers worden niet automatisch gedownload of geïnstalleerd.
+HTTP-clients gebruiken alleen loopback, geen proxy’s en volgen geen omleidingen. MAKRIVO kan niet betrouwbaar vaststellen of een compatibele lokale server intern een externe dienst aanroept. Geauthenticeerde lokale servers zijn in deze versie niet configureerbaar. Modelgewichten, Python en lokale inferentieservers worden niet automatisch gedownload of geïnstalleerd.
 
-ONNX Pakketten nodig `tokenizer.json` en een geldig chat-template. ondersteunde template-formaten in `tokenizer_config.json` Een string `chat_template`Een woordenboek met een string `default`, of een onduidelijke naam/default template lijst. als het template ontbreekt of nul, `chat_template.jinja` Vrije, ambiguur, overschot of onjuist getypt templates worden afgewezen. ONNX bestanden, inbound/visie modellen en GPU-specifieke pakketten zijn niet uitwisseld met compatibele GenAI De tekstmodellen. de bundel GenAI De runtime versie is 0.17.1Gebruik alleen vertrouwde modellen; procesafscheiding is geen zandbox.
+ONNX-pakketten hebben `tokenizer.json` en een geldige chatsjabloon nodig. Ondersteunde sjabloonvormen in `tokenizer_config.json` zijn een tekenreeks `chat_template`, een woordenboek met een tekenreeks `default`, of een eenduidige lijst met benoemde/standaardsjablonen. Als de sjabloon ontbreekt of null is, wordt `chat_template.jinja` als terugval gebruikt. Lege, niet-eenduidige, te grote of verkeerd getypeerde sjablonen worden afgewezen. Willekeurige ONNX-bestanden, embedding-/visiemodellen en pakketten uitsluitend voor GPU zijn niet uitwisselbaar met compatibele GenAI-tekstmodellen. De gebundelde GenAI-runtimeversie is 0.17.1, CPU. Gebruik alleen vertrouwde modellen; processcheiding is geen sandbox.
 
-De assistent ondersteunt geselecteerde programma's zonder argumenten, geselecteerde documenten en websites en het dempen van de microfoon wanneer dit uitdrukkelijk wordt gevraagd. Het creëert geen berichten, afspraken, willekeurige scripts, gratis klikken, downloads of wisselen van headset. De doel- en resourcenamen worden naar de geselecteerde lokale runtime verzonden; bronpaden en bestandsinhoud worden niet afzonderlijk geleverd. Een door de gebruiker getypt doel kan zelf persoonsgegevens bevatten. Het eigen netwerkgedrag van een lokale runtime blijft de verantwoordelijkheid van de gebruiker.
+De assistent ondersteunt geselecteerde programma’s zonder argumenten, geselecteerde documenten en websites en het dempen van de microfoon wanneer dit uitdrukkelijk wordt gevraagd. Hij maakt geen berichten, afspraken, willekeurige scripts, vrije klikacties of downloads en wisselt geen headset. Het doel en de resourcenamen worden naar de geselecteerde lokale runtime gestuurd; resourcepaden en bestandsinhoud worden niet afzonderlijk verstrekt. Een door de gebruiker ingevoerd doel kan zelf persoonsgegevens bevatten. Het eigen netwerkgedrag van een lokale runtime blijft de verantwoordelijkheid van de gebruiker.
 
-Het ONNX-aanvraagbudget bedraagt ​​90 seconden inclusief het laden van het model, tot aan 3,072-prompttokens en 1,024 gegenereerde tokens, ook beperkt door de modelcontext. Verkeerd opgemaakte/afgekapte JSON en onbekende resource-ID's worden afgewezen. Annuleer of sluit om een ​​verzoek te beëindigen. Een runtimetest met een willekeurig model stelt de uitvoering vast, en niet de bruikbare planningskwaliteit of tijdbesparing. Lokale experimentlogboeken bevatten gebeurtenis-ID's en tijdstippen, geen doeltekst of documentinhoud; ze worden niet automatisch geüpload.
+Het ONNX-verzoekbudget is 90 seconden inclusief het laden van het model, maximaal 3072 prompttokens en 1024 gegenereerde tokens, daarnaast begrensd door de modelcontext. Verkeerd gevormde/afgekapte JSON en onbekende resource-ID’s worden afgewezen. Annuleer of sluit om een verzoek te beëindigen. Een runtimetest met een willekeurig model toont uitvoering aan, geen nuttige planningskwaliteit of tijdwinst. Lokale experimentlogboeken bevatten gebeurtenis-ID’s en tijdmetingen, geen doeltekst of documentinhoud; ze worden niet automatisch geüpload.
 
-De latere kleine Instruct-modelbeoordeling produceerde nul geldig plannen in vier Duitse/Engelse proeven. Native inference werkte, maar het model mislukt de strikte planningcontract. Dit is een negatief kwaliteit resultaat, niet een aanbevolen model of een bewezen nuttige assistent.
+De latere evaluatie van een klein Instruct-model leverde nul geldige plannen op in vier Duitse/Engelse proeven. Native inferentie werkte, maar het model voldeed niet aan het strikte planningscontract. Dit is een negatief kwaliteitsresultaat, geen aanbevolen model of bewezen nuttige assistent. Zie het gedateerde testrapport over lokale runtimes voor de exacte modelrevisie en beperkingen.
 
 ## Importeren, exporteren, synchronisatie en back-up
 
-Bekijk importvoorbeelden voordat u een configuratie vervangt. Geïmporteerde acties worden uitgeschakeld en draagbare synchronisatie verwijdert hardwarespecifieke bindingen. Wijs apparaten opnieuw toe en schakel acties bewust in na inspectie. Controleer de inhoud van tekst/acties voordat u een export deelt; het uitsluiten van wachtwoorden betekent niet dat alle door de gebruiker gemaakte actie-inhoud niet-gevoelig is.
+Bekijk de importvoorbeelden voordat u een configuratie vervangt. Geïmporteerde acties zijn aanvankelijk uitgeschakeld en draagbare synchronisatie verwijdert hardwarespecifieke bindingen. Wijs apparaten opnieuw toe en schakel acties na controle bewust in. Controleer tekst- en actie-inhoud voordat u een export deelt; het uitsluiten van wachtwoorden maakt niet alle door gebruikers gemaakte actie-inhoud ongevoelig.
 
-Profile synchronisatie vervangt bestanden in een geselecteerde map, optie een beheerd door uw bestaande cloud client. MAKRIVO geen cloud-account levert en geen cloud-creditials opslaat. Revisions voorkomen stille overwinningen. Inclusie van actieinhoud is een uitdrukkelijke keuze. Backup uw configuratie voordat u een vervanging importeren. `%LOCALAPPDATA%\AivanaWindowsController\settings.json`De historische directory naam wordt bewaard voor compatibiliteit. sluit de app voordat u het handmatig kopiërt/herstelt. bewaard SDK-approvals en OS-beschermde credentials kunnen op een andere PC worden hersteld.
+Profielsynchronisatie wisselt bestanden uit in een geselecteerde map, eventueel beheerd door uw bestaande cloudclient. MAKRIVO biedt geen cloudaccount en bewaart geen cloudreferenties. Revisies voorkomen stilzwijgend overschrijven. Het opnemen van actie-inhoud is een expliciete keuze. Maak een back-up van uw configuratie voordat u die door een import vervangt. De standaardconfiguratie is `%LOCALAPPDATA%\AivanaWindowsController\settings.json`; de historische mapnaam blijft behouden voor compatibiliteit. Sluit de app voordat u deze handmatig kopieert/herstelt. Opgeslagen SDK-goedkeuringen en door het besturingssysteem beveiligde referenties moeten op een andere pc mogelijk opnieuw worden aangemaakt.
 
 ## Problemen oplossen
 
 | Symptoom | Wat te controleren |
 | --- | --- |
-| Snelkoppeling doet niets | App actief, bindingen niet gepauzeerd, correct actief profiel, opgeslagen/ingeschakelde tegel, snelkoppelingsconflicten en beschikbaar doel. |
-| Doelvenster kan niet worden geactiveerd | Activeer het handmatig. Windows beperkingen op de voorgrond en verschillen in rechten kunnen automatisering blokkeren. |
-| Speciale sleutel wordt niet gedetecteerd | Leveranciersservice/SDK/modelondersteuning; configureer eigen besturingselementen om, indien mogelijk, een ondersteunde standaardsleutel uit te zenden. |
-| Tweede toetsenbord typt ook normaal | Verwacht met Raw Input. Exclusieve onderdrukking wordt niet geïmplementeerd voor de productie. |
-| Audio of helderheid niet beschikbaar | Apparaten vernieuwen; inspecteer de geselecteerde identiteit, eindpuntsessies, WMI/DDC/CI-ondersteuning en dock-/kabelbeperkingen. |
-| OBS offline | WebSocket v5 ingeschakeld, correct eindpunt/wachtwoord, bereikbare service en geldige scène-/invoernamen. |
-| UI-automatisering mislukt | Inclusief begeleidende host, unieke geldige selector, toegankelijk ingeschakeld doel, ondersteunde controle en machtigingen. Probeer een tijdelijke time-out alleen opnieuw nadat u het doel hebt bekeken. |
-| Mobiel paneel onbereikbaar | LAN in plaats van loopback-adres, hetzelfde netwerk, draaiende server, goedgekeurde profielen, certificaatvingerafdruk/vertrouwen en handmatige firewall-machtigingen. |
-| Plug-in mislukt | Pakketintegriteit, expliciete vertrouwens-/ingeschakelde status, afhankelijkheden, protocolcompatibiliteit en uitvoeringslogboek. |
-| AI-verzoek mislukt | Corrigeer de geselecteerde lokale runtime, gereed voor service/model, ondersteund JSON-schema, vertrouwde compatibele modelmap en verzoeklimieten. |
-| Lay-out of tekst lijkt verkeerd | Scheid de UI-taal van de toetsenbordgeometrie; wijzig het formaat van het venster, controleer de weergaveschaal en rapporteer de exacte pagina/taal/build. |
+| Sneltoets doet niets | App actief, bindingen niet gepauzeerd, juist actief profiel, opgeslagen/ingeschakelde tegel, sneltoetsconflicten en beschikbaar doel. |
+| Doelvenster kan niet worden geactiveerd | Activeer het handmatig. Windows-beperkingen op voorgrondactivering en verschillen in rechten kunnen automatisering blokkeren. |
+| Speciale toets wordt niet gedetecteerd | Leveranciersdienst/SDK/modelondersteuning; configureer bedrijfseigen bedieningselementen zo mogelijk om een ondersteunde standaardtoets uit te sturen. |
+| Tweede toetsenbord typt ook gewoon | Verwacht bij Raw Input. Exclusieve onderdrukking is niet geïmplementeerd voor productiegebruik. |
+| Audio of helderheid niet beschikbaar | Vernieuw apparaten; controleer de gekozen identiteit, eindpuntsessies, WMI/DDC/CI-ondersteuning en dock-/kabelbeperkingen. |
+| OBS offline | WebSocket v5 ingeschakeld, juist eindpunt/wachtwoord, bereikbare dienst en geldige scène-/invoernamen. |
+| UI-automatisering mislukt | Begeleidende host meegeleverd, unieke geldige selector, toegankelijk ingeschakeld doel, ondersteund besturingselement en machtigingen. Probeer een tijdelijke time-out alleen opnieuw nadat u het doel hebt gecontroleerd. |
+| Mobiel paneel onbereikbaar | LAN-adres in plaats van loopback, hetzelfde netwerk, actieve server, goedgekeurde profielen, certificaatvingerafdruk/vertrouwen en handmatige firewallmachtigingen. |
+| Plug-in mislukt | Pakketintegriteit, expliciete vertrouwens-/inschakelstatus, afhankelijkheden, protocolcompatibiliteit en uitvoeringslogboek. |
+| AI-verzoek mislukt | Juist geselecteerde lokale runtime, dienst/model gereed, ondersteund JSON-schema, vertrouwde compatibele modelmap en verzoeklimieten. |
+| Lay-out of tekst lijkt verkeerd | Houd interfacetaal en toetsenbordgeometrie gescheiden; wijzig de venstergrootte, controleer de beeldschermschaal en meld de exacte pagina/taal/build. |
 
-Voor een nuttig bugrapport zijn de Windows-versie, app-build/commit, taal, weergaveschaling, hardwaremodel, een minimale reeks en het relevante geredigeerde logbestand opgenomen. Verwijder persoonlijke paden, actie-inhoud en inloggegevens voordat u deze publiceert.
+Vermeld voor een nuttig foutrapport de Windows-versie, app-build/commit, taal, beeldschermschaal, hardwaremodel, een minimale reeks stappen en het relevante geschoonde logboek. Verwijder persoonlijke paden, actie-inhoud en referenties voordat u publiceert.
 
 ## Bouwen, testen en verpakken
 
-Gebruik de SDK die is vastgezet in `global.json`. Vanuit de root van de repository:
+Gebruik de SDK-versie die is vastgezet in `global.json`. Vanuit de hoofdmap van de repository:
 
 ```powershell
 dotnet build Aivana.slnx -c Release
@@ -161,14 +161,14 @@ dotnet run --project src/Aivana.Desktop -c Release -- --smoke-test
 python tools/check_documentation.py
 ```
 
-Windows-integratietests kunnen geïsoleerde vensters openen en ondersteunde leveranciersbindingen tijdelijk configureren/vrijgeven. Voer ze uit zonder dat een andere controller eigenaar is van deze bindingen. De standaard helderheids-/audiosondes zijn alleen-lezen; expliciete hardware round-trip-tests zijn afzonderlijk. Mock-protocollen, weergegeven schermafbeeldingen en willekeurige gevolgtrekkingsgrafieken mogen niet worden voorgesteld als echte acceptatie van hardware/modelkwaliteit.
+Windows-integratietests kunnen geïsoleerde vensters openen en ondersteunde leveranciersbindingen tijdelijk configureren/vrijgeven. Voer ze uit zonder een andere controller die deze bindingen beheert. De standaard helderheids-/audiotests lezen alleen; expliciete hardwaretests die waarden wijzigen en terugzetten staan apart. Mockprotocollen, gerenderde schermafbeeldingen en willekeurige inferentiegrafen mogen niet worden voorgesteld als echte hardware-/modelkwaliteitsacceptatie.
 
-De volledige uitgever verzamelt begeleidende hosts, mobiele middelen, de voorbeeldplug-in, de ONNX-runtime en beschikbare afhankelijkheidskennisgevingen. Behoud de submappen. Een succesvolle build is geen ondertekend installatieprogramma of wettelijke goedkeuring. Bron en builds kunnen afzonderlijk evolueren; vergelijk de documentatie-snapshot en voer de commit uit met de geïnstalleerde versie.
+Het volledige publicatiehulpmiddel verzamelt begeleidende hosts, mobiele bestanden, de voorbeeldplug-in, de ONNX-runtime en beschikbare afhankelijkheidsverklaringen. Behoud de submappen. Een geslaagde build is geen ondertekend installatieprogramma of juridische releasegoedkeuring. Broncode en builds kunnen afzonderlijk evolueren; vergelijk de documentatiemomentopname en commit met de geïnstalleerde versie.
 
-## Licentie-, privacy- en releasestatus
+## Licenties, privacy en releasestatus
 
-Het beoogde commerciële model is een eenmalige aankoop met eeuwigdurend gebruik van de gekochte hoofdversie; de uiteindelijke prijs, het apparaatbedrag en de upgradevoorwaarden moeten worden vastgelegd in de daadwerkelijke verkoopvoorwaarden. In dit handboek wordt geen productieaankoop-/activeringssysteem vastgelegd. Er is geen vereist cloudaccount voor dagelijkse controle.
+Het beoogde commerciële model is een eenmalige aankoop met blijvend gebruik van de gekochte hoofdversie; definitieve prijs, toegestaan aantal apparaten en upgradevoorwaarden moeten in de daadwerkelijke verkoopvoorwaarden worden vastgelegd. Dit handboek stelt geen productiegeschikt aankoop-/activeringssysteem vast. Voor dagelijkse bediening is geen cloudaccount vereist.
 
-Verspreid geen bedrijfseigen SDK-binaire bestanden zonder bewezen toestemming. Bewaar licentiekennisgevingen en kennisgevingen van derden voor elke verzonden afhankelijkheid, inclusief .NET- en ONNX-pakketten. Modelgewichten hebben hun eigen voorwaarden. De gedateerde licentie-audit dateert van vóór enkele nieuwe afhankelijkheden en is geen goedkeuring voor deze toevoegingen. Omdat de repository openbaar is, wordt op zichzelf geen algemene open-sourcelicentie verleend.
+Verspreid geen bedrijfseigen binaire SDK-bestanden zonder aantoonbare toestemming. Bewaar licentieverklaringen en verklaringen van derden voor elke meegeleverde afhankelijkheid, inclusief .NET- en ONNX-pakketten. Modelgewichten hebben hun eigen voorwaarden. De gedateerde licentie-audit dateert van vóór sommige nieuwe afhankelijkheden en verleent geen toestemming voor die toevoegingen. Dat de repository openbaar is, verleent op zichzelf geen algemene opensourcelicentie.
 
-Hardware van echte leveranciers, LAN-gebruik via telefoon/tablet, overgangen tussen monitoren/DPI, langdurig gebruik, volledige taalkundige beoordeling, exclusieve driverondersteuning en nuttige AI-planningskwaliteit blijven afzonderlijke acceptatiewerkzaamheden. Leid nooit goedkeuring af op basis van de aanwezigheid van een kenmerk alleen.
+Echte leveranciershardware, LAN-gebruik op telefoons/tablets, overgangen tussen monitoren/DPI-instellingen, langdurig gebruik, volledige taalkundige controle, exclusieve driverondersteuning en nuttige AI-planningskwaliteit vereisen nog afzonderlijke acceptatietests. Leid nooit goedkeuring af uit alleen de aanwezigheid van een functie.

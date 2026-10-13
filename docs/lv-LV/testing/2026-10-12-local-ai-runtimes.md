@@ -19,7 +19,7 @@ Tādēļ, ja jūs esat gatavs, jums ir jāizvēlas, kāpēc jūs varat izvairīt
 
 ## ONNX
 
-Izvēlieties dialogu genai_config.json. mapei ir jābūt tokenizer.json un tērzēšanas veidnes. atbalsta chat_template kā zīmju ķēdi, nosaukta pamata veidne (Array vai runas) un atsevišķa chat_tempate.jinja, ja nav inline veidnes vai tas ir nulle. 65536 Tādēļ, ja jūs esat gatavs, jums ir jāizvēlas, kāpēc jūs varat izvairīties no tā, ka jums ir nepieciešams, lai iegūtu labu rezultātu..
+Dialogā izvēlieties genai_config.json. Mapē jābūt tokenizer.json un tērzēšanas veidnei. Tiek atbalstīts chat_template kā virkne, nosaukta default veidne (masīvs vai vārdnīca), kā arī atsevišķs chat_template.jinja, ja iekļautās veidnes nav vai tās vērtība ir null. Neviennozīmīgas veidnes tiek noraidītas; maksimums ir 65536 rakstzīmes. Patvaļīgi .onnx faili, redzes/iegulšanas modeļi vai tikai GPU/NPU eksporti nav sanāksmju modeļi.
 
 Iepazīstiet: Microsoft.Mārtiņš: Mārtiņa ir viena no lielākajām pasaules valstīm 0.17.1, CPU. piegādātāja konfigurācija tiek atjaunota uz CPU. nav lejupielādes un nav modeļa svaru pakāpē. nav nepieciešama Python instalācija. izmantojiet tikai uzticamus modeļu paketes; atsevišķs process ir sabrukuma / izkropļojuma robeža, nav drošības sandbox.
 
@@ -28,7 +28,7 @@ robežas: 90 Tās ir ļoti svarīgas, jo tas ir ļoti svarīgi. 3072 Prompts un 
 ## Pārbaude
 
 - Mūsu uzņēmums, kas strādā ar uzņēmumu, ir uzņēmums, kurš darbojas ar uzņēmumu un kas darbojas ar pakalpojumu sniedzēju.-/llama.cpp-/Ollama-Atbilde, shēma / atbrīvojums / resursu pārbaude.
-- Unikoda protokola regresiju ar maksimāli ilgu mērķi un 24 resursu nosaukumiem.
+- Unicode protokola regresijas tests ar maksimāla garuma mērķiem un 24 resursu nosaukumiem.
 - Tas ir ļoti svarīgi, jo tas ir ļoti svarīgs jautājums. tiny-random-gpt2-fp32-Testgraph no microsoft/onnxruntime-genai, Commit 5c19002edce50beaa3a5c7eeefd8fe5269ee8d19. testēšanas paraugs ir papildināts un byte-tokenizer pielāgots nelielam nejaušības grafiks..
 - Tāpēc, ka tas ir ļoti svarīgi, lai jūs varētu izvairīties no tā, ko jūs varat darīt, lai iegūtu labu rezultātu. <GenAI-Modelis kārtība>.
 - WPF-Šo rakstu publicēja redakcija Ceturtdiena, jūnijs 1, 2015, 11:04 reizes redakcija ir publicējusi redakciju..
@@ -44,14 +44,14 @@ Mums joprojām ir nepieciešami mašīnu/smartphone/tableta/monitoru maiņas tes
 - https://lmstudio.ai/docs/developer/openai-compat/chat-completions
 - https://github.com/ggml-org/llama.cpp/blob/master/tools/server/README.md
 
-Pēdējais testēšanas posms: atbrīvošana bez brīdinājumiem / kļūdām; pilns kodols un Windows komplektā, ieskaitot oriģinālo fokusēšanu, HTTPS, UIA, plugins IPC un saderīgu AI pārvadājumu testu. Jaunā iepakojuma izlaišana20261012-190618: WPF smaka izturējās (19:07 pulkstenis), savienots ONNX CPU reference ar testgraph izturējās. Neatkarīga pārskata: Unicode protokola robeža koriģēta, nav vairāk konkrētu atklājumu. Tāpēc, ka tas ir ļoti svarīgi, lai jūs varētu izvairīties no tā, kā jūs varat.
+Galīgais pārbaudes stāvoklis: Release-Build bez brīdinājumiem/kļūdām; pilnās Core un Windows testu kopas izturētas, tostarp vietējā fokusa testvide, HTTPS, UIA, Plugin-IPC un saderīgo AI transportu testi. Jaunā pakotne release-20261012-190618: WPF-Smoke izturēts (19:07), iekļautā ONNX-CPU inference ar testa grafu izdevās. Neatkarīga pārskatīšana: Unicode protokola robeža izlabota, citu konkrētu atradumu nav. No tā neizriet fiziskas ražotāju aparatūras/tālruņu/monitoru pieņemšana.
 
 ## Tās ir ļoti svarīgas, jo tas ir ļoti svarīgi.
 
-Papildu CPU brauciens ar allama-ai/SmolLM-360M-Instruct-onnx-int4, pārskatīšana 82a3d1a8a86c8053f2a859a90ed4d344fc0725b0: native inference. Modellgewichte-SHA256: 48e9c4ef12f7f995ca11fc7020b39990aa27bc67cc0fe116067676a000a04429. Tas ir ļoti svarīgi, jo tas ir ļoti svarīgs jautājums.
+Papildu CPU izpilde ar allama-ai/SmolLM-360M-Instruct-onnx-int4, revīzija 82a3d1a8a86c8053f2a859a90ed4d344fc0725b0: vietējā inference izdevās. Modeļa svaru SHA256: 48e9c4ef12f7f995ca11fc7020b39990aa27bc67cc0fe116067676a000a04429. Kopienas eksports ir tikai testēšanas apgabalā, nevis laidienā.
 
-Šīs zāles var lietot tikai pēc tam, kad tiek izvadītas zāles, kas var izraisīt alerģiju.): **0/4 Galvenie plāni**; Tādēļ, ja jūs esat gatavs, jums ir jāizvēlas, kāpēc jūs varat izvairīties no tā, ka jūs varat izturēties pret to, kas jums ir. 63501, 6376, 72118 Tātad, ja jūs esat 6774 Tas ir ļoti svarīgi, jo tas ir ļoti svarīgs jautājums.: Windows-Tests --evaluate-onnx <modela kārtība> <reporta ceļš>..
+Četri īsti plānošanas testi (vācu/angļu valodā, dokuments, programma, skaidri pieprasīta mikrofona izslēgšana): **0/4 derīgi plāni**; katru reizi stingrajā atbildes pārbaudē radās JsonException. Izpildes laiki bija 63501, 6376, 72118 un 6774 ms. Nekādas darbības netika izpildītas. Šis mazais modelis neatbilst plānošanas līgumam un netiek ieteikts kā piemērots. Pārskats: artifacts/local-ai-evaluation/smollm360-results.json. Atkārtošana: Windows-Tests --evaluate-onnx <Modellordner> <Berichtspfad>. Izpildvides darbība nepierāda modeļa kvalitāti.
 
-Mūsu uzņēmums, kas strādā ar uzņēmumu, ir uzņēmums, kurš darbojas ar uzņēmumu un uzņēmumu. 27 Tāpēc, lai gan tas ir ļoti svarīgi, mēs esam pārliecināti par to, ka mēs esam pārliecinājušies par to, kas notiek mūsu dzīvē, un mēs esam pārliecināts par to, ko mēs darām..
+Rīku navigācija un pārbaudes pārskats papildus tulkoti visos 27 valodu katalogos. Garie teksti un lingvistiskais apstiprinājums vēl nav pabeigti. Veidņu regresijas tests pārbauda arī nepareizus JSON tipus, tukšas/neviennozīmīgas/pārāk garas veidnes un null ar Jinja rezerves variantu.
 
-Atjaunināts pakete: artifakts / izlaišana-20261012-201134. iepakojums WPF-Smēķēšana am 12.10.2026 Tātad, ja jūs esat 20:12 Tāpēc, ja jūs esat pārliecināts par to, ka jums ir nepieciešams, lai iegūtu labu rezultātu, jums ir jāizvairās. Windows-Tādēļ, ja jūs esat gatavs, jums ir jāizvēlas, kāpēc jūs varat izvairīties no tā, ka jums ir nepieciešams, lai to izdarītu. 0/4.
+Atjauninātā pakotne: artifacts/release-20261012-201134. Iepakotais WPF-Smoke tests izturēts 12.10.2026 plkst. 20:12; vietējā CPU inference ar atsevišķo Instruct testa modeli iekļautajā darba procesā izdevās. Core un Windows-KI testi izturēti; būvējums bez brīdinājumiem/kļūdām. Modeļa plānošanas kvalitāte joprojām ir 0/4.

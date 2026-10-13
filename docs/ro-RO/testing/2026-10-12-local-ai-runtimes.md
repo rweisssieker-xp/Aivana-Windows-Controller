@@ -19,7 +19,7 @@ Clienții HTTP nu utilizează proxy-uri și nu urmează instrucțiuni. Serverele
 
 ## ONNX
 
-În dialog, selectați genai_config.json. Folderul trebuie să conțină tokenizer.json și un șablon de chat. Chat_template sunt susținute ca lanț de caractere, un templu numit (Array sau Dictionary) și un templu separat chat_template.jinja, dacă nu există un templu inline sau acesta este zero. Se refuză modelele multiple; maximum 65536 semne. Fișierele .onnx populare, modelele de vizionare / ambedare sau exporturile pure GPU / NPU nu sunt modele de întâlnire.
+Selectați genai_config.json în dialog. Folderul trebuie să conțină tokenizer.json și un șablon de conversație. Sunt acceptate chat_template ca șir, un șablon denumit default (Array sau Dictionary) și un fișier separat chat_template.jinja dacă șablonul inline lipsește sau este null. Șabloanele ambigue sunt respinse; maximum 65536 caractere. Fișierele .onnx arbitrare, modelele Vision/Embedding și exporturile exclusiv GPU/NPU nu sunt modele pentru întâlniri.
 
 Combinat: Microsoft.ML.OnnxRuntimeGenAI 0.17.1, CPU. Configurația furnizorului este returnată la CPU. Nu există descărcări și nu există greutăți de model în pachet. Nu este necesară instalarea Python. Folosiți numai pachete de modele de încredere; procesul separat este o limită de prăbușire / prăbușire, nu o cutie de siguranță.
 
@@ -28,7 +28,7 @@ Limitele: 90 secunde, inclusiv încărcarea de modele, maximum 3072 tokenuri gen
 ## Verificarea
 
 - Core-Suite, testele de transport Loopback cu răspunsuri simulate LM-Studio-/llama.cpp-/Ollama, schema/dezvoltare/testarea resurselor.
-- Unicode-regresie cu obiective maxime și 24 nume de resurse.
+- Test de regresie a protocolului Unicode cu obiective de lungime maximă și 24 de nume de resurse.
 - Adevărata referință nativă a CPU cu oficial tiny-random-gpt2-fp32-Testgraph de la microsoft/onnxruntime-genai, Commit 5c19002edce50beaa3a5c7eeefd8fe5269ee8d19. Modelul de testare este completat și tocenizatorul de byte este adaptat la micul grafic aleatoriu. Acest model accidental nu verifică calitatea și nu este în lansare.
 - Testul de rulare nativă reproduse: tools/check-onnx-runtime.ps1 -ModelDirectory <GenAI-Modelordner>.
 - WPF-Smoke verifică selecția tuturor celor patru furnizori și starea de testare; selecția singură nu generează o cerere de model.
@@ -44,14 +44,14 @@ Testele de schimbare a hardware-ului/smartphone-ului/tabletului/monitorului sunt
 - https://lmstudio.ai/docs/developer/openai-compat/chat-completions
 - https://github.com/ggml-org/llama.cpp/blob/master/tools/server/README.md
 
-Testarea finală: Construirea de lansare fără avertize/erocuri; completă seturi de bază și Windows, inclusiv fixarea focală nativă, HTTPS, UIA, IPC plug-in și testele de transport AI compatibile. Noul pachet de eliberare20261012-190618: WPF-Smoke a trecut (19:07 oră), conectat ONNX-CPU-a trecut cu test graph. Revizuirea independentă: Unicode-limită de protocol corectat, nu mai multe descoperiri concrete. Nu există nici o pierdere fizică a producătorului/telefonului/monitorului.
+Starea finală a verificării: compilare Release fără avertismente/erori; suitele complete Core și Windows au trecut, inclusiv testul nativ de focalizare, HTTPS, UIA, Plugin-IPC și testele compatibile de transport AI. Pachet nou release-20261012-190618: WPF-Smoke trecut (19:07), inferența ONNX-CPU inclusă a trecut cu graful de test. Revizuire independentă: limita protocolului Unicode corectată, fără alte constatări concrete. Nu se deduce acceptanța fizică a producătorilor/telefoanelor/monitoarelor.
 
 ## Continuare: modelare reală și modele
 
-Procesor suplimentar cu allama-ai/SmolLM-360M-Instruct-onnx-int4, revizuire 82a3d1a8a86c8053f2a859a90ed4d344fc0725b0: native infert. Modellgewichte-SHA256: 48e9c4ef12f7f995ca11fc7020b39990aa27bc67cc0fe116067676a000a04429.
+Rulare CPU suplimentară cu allama-ai/SmolLM-360M-Instruct-onnx-int4, revizia 82a3d1a8a86c8053f2a859a90ed4d344fc0725b0: inferența nativă a trecut. SHA256 al ponderilor modelului: 48e9c4ef12f7f995ca11fc7020b39990aa27bc67cc0fe116067676a000a04429. Export comunitar numai în zona de test, nu în versiunea distribuită.
 
-Patru teste reale de planificare (germană/engleză, document, program, schiță explicită de microfon): **0/4 Planuri valabile**; JsonException în cazul unui test de răspuns strict. 63501, 6376, 72118 şi 6774 Acest model mic nu îndeplinește contractul de planificare și nu este recomandat ca fiind potrivit. raport: artifacts/local-ai-evaluation/smollm360-results.json. reproducere: Windows-Testele --evaluate-onnx <ordinar de model> <calea de raportare> Funcția timpului nu dovedește calitatea modelului.
+Patru teste reale de planificare (germană/engleză, document, program, dezactivare explicită a microfonului): **0/4 planuri valide**; JsonException la fiecare verificare strictă a răspunsului. Durate 63501, 6376, 72118 și 6774 ms. Nu s-au executat acțiuni. Acest model mic nu îndeplinește contractul de planificare și nu este recomandat ca adecvat. Raport: artifacts/local-ai-evaluation/smollm360-results.json. Reproducere: Windows-Tests --evaluate-onnx <Modellordner> <Berichtspfad>. Funcționarea mediului de execuție nu dovedește calitatea modelului.
 
-Navigația de instrumente și rapoartele de testare au fost traduse în plus în toate catalogurile de limbă 27. textele lungi și descărcările lingvistice rămân deschise. regresia de șablonă verifică, de asemenea, tipuri false JSON, șablonele goale / multi-deformate / lungi și zero cu Jinja Fallback.
+Navigarea instrumentelor și raportul de verificare au fost traduse suplimentar în toate cele 27 de cataloage de limbă. Textele lungi și acceptanța lingvistică rămân nefinalizate. Testele de regresie ale șabloanelor verifică și tipurile JSON greșite, șabloanele goale/ambigue/prea lungi și null cu alternativa Jinja.
 
-Pachetul actualizat: artifacte/release-20261012-201134 Spray-ul WPF a rămas în 12.10.2026 în jurul 20:12; infertilitatea nativă a CPU-ului a rămas cu modelul de testare separat de instrucțiune în laboratorul combinat. Testele de bază și Windows au trecut; construiți fără avertize/erocuri. Calitatea modelului continuă 0/4.
+Pachet actualizat: artifacts/release-20261012-201134. WPF-Smoke din pachet a trecut la 12.10.2026, ora 20:12; inferența nativă CPU cu modelul separat de test Instruct a trecut în procesul Worker inclus. Testele Core și Windows-KI au trecut; compilare fără avertismente/erori. Calitatea planificării modelului rămâne 0/4.

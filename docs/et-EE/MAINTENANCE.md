@@ -4,7 +4,7 @@
 
 # Kogu dokumendi keele säilitamine
 
-Dokumentatsioonide loend järgib kõiki 27 UI keeli. Loodud kaardid kasutavad piirkondlikke koode; Norra kaardid `nb-NO` ja Serbia Ladina `sr-Latn`. Iga faili sisaldab indeksit, käsiraamatut, üksikasjalikku tegevuse viidet, funktsioonide inventori, kontrollimaterjale, uuringuid, sealhulgas CSV-d, ajaloolisi plaane ja litsentsianalüüsi.
+Dokumentatsioon hõlmab kõiki 27 kasutajaliidese keelt. Loodud kaustad kasutavad piirkonnakoode; norra keele kood on `nb-NO` ja ladina kirjas serbia keele kood `sr-Latn`. Igas kaustas on sisukord, käsiraamat, üksikasjalik toimingute teatmik, funktsioonide loend, kontrollimärkmed, uuringud koos CSV-failiga, ajaloolised plaanid ja litsentsianalüüs.
 
 ## Tõe allikas
 

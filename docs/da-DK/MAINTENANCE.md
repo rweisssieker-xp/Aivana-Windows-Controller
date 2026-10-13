@@ -28,7 +28,7 @@ python tools/localize_documentation.py --cache-only
 python tools/check_documentation.py
 ```
 
-Uden `--refresh-sources`, genoptager en løb sin frosne snapshot. Brug alternativet efter at have redigeret originalerne. De skjulte segmenter genbruges. En delvis kørsel kan vælge lokale koder ved hjælp af `--locales`; færdiggøre alle lokaler før offentliggørelse. Forstyrrede løber erstattes ikke stille for en uoversat prose.
+Uden `--refresh-sources` genoptager en kørsel sit fastfrosne snapshot. Brug opdateringsindstillingen efter redigering af originaler. Cachede segmenter genbruges. En delvis kørsel kan vælge sprogkoder med `--locales`; færdiggør alle sprog før udgivelse. Afbrudte kørsler erstatter ikke ubemærket en mislykket oversættelse med uoversat tekst.
 
 Manifestet registrerer hver kilde og genereret fil med SHA-256 fingeraftryk af standardiseret UTF-8 tekst: LF-linjeindtægter og ingen byte-ordre. Den offline checker kontrollerer fuldt per-language dækning, fingeraftryk, lokale links, kode eksempler, tabel/CSV struktur, kilde URL'er og ubetinget placering. Det afviser stålkilder. En gennemførende strukturkontrol er ikke en indfødte anmeldelse eller juridisk godkendelse. Genererede sider bærer denne kvalifikation synligt.
 

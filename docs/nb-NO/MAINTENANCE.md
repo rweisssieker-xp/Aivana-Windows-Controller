@@ -28,7 +28,7 @@ python tools/localize_documentation.py --cache-only
 python tools/check_documentation.py
 ```
 
-Uten `--refresh-sources` gjenoppretter en løp sin frosne snapshot. Bruk alternativet etter å ha redigert originalene. De skjulte segmentene blir gjenbrukt. En delvis kjøring kan velge lokale koder ved hjelp av `--locales`; avslutte alle lokale før publisering. Avbrutt løp er ikke stille for å erstatte uoversatt prose for en feil oversettelse.
+Uten `--refresh-sources` gjenopptar en kjøring sitt fryste øyeblikksbilde. Bruk oppdateringsvalget etter redigering av originalene. Bufrede segmenter gjenbrukes. En delvis kjøring kan velge språkkoder med `--locales`; fullfør alle språk før publisering. Avbrutte kjøringer erstatter ikke ubemerket en mislykket oversettelse med uoversatt tekst.
 
 Det manifesterer alle kilder og genererte filer med SHA-256 Fingeravtrykk av normal UTF-8 tekst: LF-linje endinger og ingen byte-order. Den offline sjekker verifiserer fullstendig per-språk dekning, fingeravtrykk, lokale koblinger, kodeksempler, tabell/CSV struktur, kilde URLs og uoppløpt plass holdere. Det nekter stale kilder. En gjennomgående strukturell sjekk er ikke en innfødte talers vurdering eller juridisk godkjenning. Genererte sider bærer denne kvalifikasjonen synlig.
 

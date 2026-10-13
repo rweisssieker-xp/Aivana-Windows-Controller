@@ -10,6 +10,6 @@
 - Filtrul de acțiune apare numai pe panou. selecția de profil și căutarea au nume explicite pentru tehnologii de asistență. descrierile de câmp sunt mai contraste.
 - Testul de dialog-smoke include o imagine de ansamblu a instrumentelor și dialoguri de extindere în 560 × 440 și dimensiuni normale; testele de înregistrare și de limbă existente au fost adaptate la structura de scanare.
 
-Limite: Fereastra compactă nu este un substitut pentru testele reale Windows cu 150/200 procente. noile texte germane nu sunt încă complet traduse pentru toate 27 limbi.
+Limite: Ferestrele compacte nu înlocuiesc testele Windows DPI reale la 150/200 procente. Noile texte germane nu sunt încă traduse complet în toate cele 27 de limbi. Nu există validare hardware nouă și nici afirmații despre utilizabilitate măsurată.
 
 Stația de testare: Crearea de lansare fără avertize/eroc; a trecut printr-un test complet de smoke WPF, inclusiv dialoguri compacte cu instrumente și extinderi, precum și testele de schimbare a limbii.

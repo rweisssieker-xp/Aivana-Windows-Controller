@@ -4,12 +4,12 @@
 
 > Strojno podprt prevod. Struktura, primeri kode in povezave se preverjajo; to ne pomeni pregleda maternega govorca ali pravne odobritve. Zgodovinska poročila ohranijo izvirne datume in obseg.
 
-Dokumentacija snapshot: 2026-10-12 · Aivana
+Stanje dokumentacije: 2026-10-12 · Aivana
 
 - [Uporabniški priročnik](HANDBOOK.md)
-- [Podrobna referenca za akcijo](REFERENCE.md)
-- [Opredelitev in omejitve](FEATURES.md)
-- [Gradnja in dokumentacija preverjanja](VERIFICATION.md)
+- [Podrobna referenca dejanj](REFERENCE.md)
+- [Pregled funkcij in omejitve](FEATURES.md)
+- [Preverjanje gradnje in dokumentacije](VERIFICATION.md)
 - [Vzdrževanje dokumentacije](MAINTENANCE.md)
 
 ## Preverjanje in testiranje poročil

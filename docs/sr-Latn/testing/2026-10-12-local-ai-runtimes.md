@@ -13,23 +13,23 @@ Instrumenti → Otvoriti II asistent, eksplicitno aktivirati i izabrati II vreme
 | Ollama | lokalno instaliran model | 127.0.0.1:11434 |
 | LM Studio | Lokalni server sa lokalnim model i podršku za JSON shemu | 127.0.0.1:1234 |
 | llama.cpp | Falma server sa lokalnim model i podršku JSON sheme | 127.0.0.1:8080 |
-| ONNX Runtejm GenAI CPU | kompatibilni, pouzdani lokalni GenAI tekstualni model | Odvojeni povezani proces, a ne HTTP |
+| ONNX Runtime GenAI CPU | kompatibilni, pouzdani lokalni GenAI tekstualni model | Odvojeni povezani proces, a ne HTTP |
 
 HTTP klijenti ne koriste proxy i ne prate smernice. Lokalni serveri mogu da se odnose na druge usluge; posebno LM link / daljinski routing ne može da se koristi za lokalnu obradu. Ovo MAKRIVO ne može pouzdano da otkrije kompatibilan interfejs. Ollama udaljeni podaci i imena oblaka su dodatno odbijeni. Autentifikovani lokalni serveri nisu konfigurisani u ovoj verziji.
 
 ## ONNX
 
-U dijalogu izaberite genai_config.json. Papke moraju da sadrže tokenizer.json i šablon za razgovor. Podržava se chat_template kao znak lanca, imenovan podrazumevani šablon (arej ili rečnik) kao i odvojeni chat_t template.jinja, ako nema inline šablona ili je nula. Nedostatak brojnih obrasca je odbijen; maksimalno 65536 znakova. Popularni .onk datoteke, vizuelni / embeding modeli ili čisti GPU / NPU izvoz nisu modeli za sastanak.
+U dijalogu izaberite genai_config.json. Fascikla mora da sadrži tokenizer.json i šablon razgovora. Podržani su chat_template kao string, imenovani šablon default (niz ili rečnik) i zaseban chat_template.jinja ako nema ugrađenog šablona ili je null. Dvosmisleni šabloni se odbijaju; najviše 65536 znakova. Proizvoljne datoteke .onnx, modeli vida/vektorskih reprezentacija ili izvozi samo za GPU/NPU nisu modeli za sastanke.
 
-Kombinovano: Microsoft.ML.OnkRuntajGeAI 0.17.1, CPU Konfiguracija provajdera se vraća na CPU. Nema preuzimanja i nema težine u paketu. Nema potrebe za Python instaliranjem. Koristite samo pouzdane pakete modela; odvojeni proces je granica za srušenje / srušenje, a ne bezbednosni peškir.
+Priloženo: Microsoft.ML.OnnxRuntimeGenAI 0.17.1, CPU. Konfiguracija pružaoca vraća se na CPU. Nema preuzimanja ni težina modela u paketu. Instalacija Python nije potrebna. Koristite samo pouzdane pakete modela; zaseban proces je granica za rušenje/otkazivanje, a ne bezbednosni sandbox.
 
-Ograničenja: 90 sekundi uključujući model, maksimum 3072 tokena i 1024 generisanih tokena, dodatni model kontekst granica; strogo provereni JSON i poznati ID resursa. Odgovor je odbijen / odbijen. Zatvaranje/ukidanje završava započeti proces radnika. Nema slobodnih zapovesti za model i nema programa / fajlova u odvojenom listu resursa; ciljni tekst koji je napisao korisnik može da sadrži takve podatke.
+Ograničenja: 90 sekundi uključujući učitavanje modela, najviše 3072 ulazna tokena i 1024 generisana tokena, dodatno ograničeno kontekstom modela; strogo proveren JSON i poznati identifikatori resursa. Neispravan/odsečen odgovor se odbacuje. Zatvaranje/otkazivanje završava pokrenuti radni proces. Nema proizvoljnih komandi modela ni programa/putanja datoteka u zasebnoj listi resursa upita; korisnički tekst cilja može sam da sadrži takve podatke.
 
 ## Provera
 
 - Core Suite, Loopback Transport Tests with Simulated LM Studio/llama.cpp/Ollama Reactions, Shema/Otvaranje/Istraživanje resursa.
-- Unikalna regresija protokola sa maksimalnim dugim ciljevima i imenima resursa 24.
-- Istinski indijanski CPU reference sa zvaničnim tiny-random-gpt2-fp32-Testgraph iz Microsoft/onkruntej-genai, Komit 5c19002edce50bea3a5c7eefd8fe5269e8d19. Test šablon je dopunjen i bite tokenizator prilagođen na mali slučajni grafik. Ovaj slučajni model ne testira kvalitet i nije u izdanju.
+- Regresioni test protokola Unicode sa ciljevima najveće dozvoljene dužine i 24 imena resursa.
+- Stvarno nativno izvođenje na CPU sa zvaničnim testnim grafom tiny-random-gpt2-fp32 iz microsoft/onnxruntime-genai, revizija 5c19002edce50beaa3a5c7eeefd8fe5269ee8d19. Dodat je testni šablon, a bajtni tokenizator prilagođen malom nasumičnom grafu. Taj nasumični model ne proverava kvalitet i nije u izdanju.
 - Reproduktivni test za pokretanje: tools/check-onnx-runtime.ps1 -ModelDirectory <GenAI-Model Order>
 - WPF-Smoke ispituje izbor svih četiri provajdera i ispitivanje; izbor sam ne stvara zahtev za model.
 
@@ -44,14 +44,14 @@ Testovi za promenu hardvera / pametnog telefona / tableta / monitora i dalje su 
 - https://lmstudio.ai/docs/developer/openai-compat/chat-completions
 - https://github.com/ggml-org/llama.cpp/blob/master/tools/server/README.md
 
-Finalni test: Izgradnja izdanja bez upozorenja / grešaka; potpuni nuklearni i Windows suit, uključujući indijanski fokus fiksiranje, HTTPS, UIA, Plugin IPC i kompatibilne II transportne testove. Novi paket izlazak20261012-190618: WPF-Smuke (19:07 sat), povezan ONNX CPU inferens sa testagraf je izdržao. Nezavisni pregled: Unikalni protokol granica ispravljen, nema više konkretnih otkrića. Nema fizičkog proizvođača / telefona / monitora od toga.
+Konačno stanje provere: izgradnja Release bez upozorenja/grešaka; celi skupovi testova Core i Windows uspešni, uključujući nativno testno okruženje fokusa, HTTPS, UIA, Plugin-IPC i kompatibilne AI transportne testove. Novi paket release-20261012-190618: WPF-Smoke uspešan (19:07), priloženo ONNX CPU izvođenje sa testnim grafom uspešno. Nezavisni pregled: ispravljena granica protokola Unicode, bez daljih konkretnih nalaza. Iz toga se ne izvodi fizičko prihvatno testiranje uređaja proizvođača/telefona/monitora.
 
-## Nastavljanje: stvarni model kvaliteta i obrasci
+## Nastavak: stvarni kvalitet modela i šabloni
 
-Dodatni CPU pokretanje sa allama-ai/SmolLM-360M-Instruct-onnx-int4, revizija 82a3d1a8a86c8053f2a859a90ed4d344fc0725b0: indijanski inferencija. Modellgewichte-SHA256: 48e9c4ef12f7f995ka11fc7020b39990a27bc67cC0fe116067676a000a04429. Eksport zajednice samo u testu, a ne u izdanju.
+Dodatni CPU test sa allama-ai/SmolLM-360M-Instruct-onnx-int4, revizija 82a3d1a8a86c8053f2a859a90ed4d344fc0725b0: nativno izvođenje modela je uspelo. SHA256 težina modela: 48e9c4ef12f7f995ca11fc7020b39990aa27bc67cc0fe116067676a000a04429. Izvoz zajednice je samo u testnom području, a ne u izdanju.
 
-Četiri stvarne testove planiranja (germanski/angliski, dokument, program, eksplicitna mikrofonska zvučna slagalica): **0/4 Važeći planovi**; JsonException u slučaju strogog ispitivanja. 63501, 6376, 72118 i 6774 Ovaj mali model ne ispunjava ugovor o planiranju i ne preporučuje se kao odgovarajući. izveštaj: artifakt/lokal-ai-ocena/smolm360-rezultat.: Windows-Testovi --ocenite-onks <modelski raspored> <reportažni put>. funkcija trajanja ne dokazuje kvalitet modela.
+Četiri stvarna testa planiranja (nemački/engleski, dokument, program, izričito utišavanje mikrofona): **0/4 važećih planova**; svaki put JsonException pri strogoj proveri odgovora. Vremena izvođenja 63501, 6376, 72118 i 6774 ms. Nijedna radnja nije izvršena. Ovaj mali model ne zadovoljava zahteve planiranja i ne preporučuje se kao prikladan. Izveštaj: artifacts/local-ai-evaluation/smollm360-results.json. Reprodukcija: Windows-Tests --evaluate-onnx <Modellordner> <Berichtspfad>. Funkcionisanje izvršnog okruženja ne dokazuje kvalitet modela.
 
-Instrumentalni navigacija i izveštaji o ispitivanju su dodatno prevedeni u svim 27 jezičkim katalozima. Dugotrajni tekstovi i jezički prekid ostaju otvoreni. Regresija šablona takođe ispituje lažne JSON tipove, prazne / višestruke / dugotrajne šablone i nule sa Jinga Fallback.
+Navigacija alata i izveštaj provere dodatno su prevedeni u svih 27 jezičkih kataloga. Dugi tekstovi i jezičko odobrenje ostaju otvoreni. Regresioni test šablona proverava i pogrešne tipove JSON, prazne/dvosmislene/preduge šablone i null sa zamenskim šablonom Jinja.
 
-Ažurirani paket: artifakti / release-20261012-201134 Pakovani WPF su izdržljivi na 12.10.2026 oko 20:12; indijanski CPU inferens sa odvojenim instrukt test model u kombinovanom radniku. Testovi Core i Windows II su prošli; Izgradnja bez upozorenja / grešaka. Model planiranja kvaliteta nastavlja 0/4.
+Ažurirani paket: artifacts/release-20261012-201134. Zapakovani WPF-Smoke uspešno je proveren 12.10.2026 u 20:12; nativno CPU izvođenje zasebnog testnog modela Instruct u priloženom radnom procesu je uspelo. Testovi Core i Windows za AI su uspeli; izgradnja bez upozorenja/grešaka. Kvalitet planiranja modela i dalje je 0/4.

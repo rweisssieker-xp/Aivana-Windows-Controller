@@ -4,15 +4,15 @@
 
 # MAKRIVO - Pregled funkcij
 
-Proizvajalec: **Aivana**. Stanišče: **12. Oktobra 2026**. To je razvojna stopnja, ne prodaja ali ločitev strojne opreme.
+Proizvajalec: **Aivana**. Stanje: **12. oktober 2026**. To je stanje razvoja, ne odobritev prodaje ali strojne opreme.
 
 ## Windows upravljanje
 
-- Kabel, globalni hotkeys, ukazna paleta, priljubljeni in profili, ki so odvisni od uporabe.
-- Makro z več koraki, ponavljanja, prekinitve in predogled.
-- Odprite programe, datoteke in spletne strani; uporabite besedilo, mehanizem in kratke tipke.
+- Ploščice, globalne bližnjice, ukazna paleta, priljubljene postavke in profili za posamezne aplikacije.
+- Makri z več koraki, ponovitvami, premori, preklicem in predogledom.
+- Odpiranje programov, datotek in spletnih mest; uporaba besedila, odložišča in bližnjic na tipkovnici.
 - Urejanje oken, blokiranje Windows, nadzor avdio izhodov in mikrofonov ter spreminjanje svetlosti zaslona prek podprtih vmesnikov.
-- OBS-WebSocket-v5-Anbindung za snemanje, snemanje in avdio.
+- Integracija OBS-WebSocket-v5 za scene, snemanje, pretakanje in zvok.
 - Šabloni, pomočnik za delovno mesto, prepoznavanje naprave in nadomestilo tipkovnice.
 - Uvoz in izvoz profilnih konfiguracij; preverjanje in odkrivanje konfliktov.
 - Lokalno shranjene nastavitve; račun ni potreben za vsakodnevno uporabo.
@@ -21,22 +21,22 @@ Proizvajalec: **Aivana**. Stanišče: **12. Oktobra 2026**. To je razvojna stopn
 
 | območje | Obseg funkcij | meje |
 | --- | --- | --- |
-| Rezultati pregleda | Preverjanje, spremljanje in preizkus | Samo preverljivi učinki potrjujejo; uspešen pritisk na tipko ne dokazuje ciljnega učinka. |
-| Delovni asistent | Priprava profilov in postopkov iz izbranih programov, datotek, URL-jev in drugih ukrepov | Predogled in shranjevanje je potrebno; namestitev ne povzroča nič. |
-| Makro in Workflows | Vpis, pogoji, gest in lokalna sinhronizacija | Obnašanje in omejitve so zapisane v poročilih o izvajanju in testiranju. |
-| UI avtomatizacija | Izberite cilje, preverite selektorje, sprejmite ukrepe in omejene klikovne poteke | Ločeni delavci; večnamenski, deaktivirani in gesla cilji so zavrnjeni; nobena splošna vnos besedila. |
-| Razširitve | Preverjanje, uvoz, aktiviranje, izvoz in vračanje paketov po izrecnem zaupanju | Procesna izolacija ni pesek; ni javnega tržnega prostora za plugine. |
-| Mobilni panel | Lokalni HTTPS panel, povezava, izbrani profili in status/pregled | Realni telefon/tablet LAN oddajanje še vedno odprt; brez univerzalnega senzorja plošče. |
-| Proizvajalec adapter | Corsair, Logitech-G-SDK, Razer/SteelSeries-RGB in Wooting-Analogadapter | Model / SDK odvisno; novi adapter ni popolnoma potrjen z realno strojno opremo. Ni novih lastnih SDK-DLL povezanih. |
+| Rezultati pregleda | Predhodno preverjanje, naknadna kontrola in zgodovina preverjanja | Samo preverljivi učinki potrjujejo; uspešen pritisk na tipko ne dokazuje ciljnega učinka. |
+| Delovni asistent | Priprava profilov in postopkov iz izbranih programov, datotek, URL-jev in drugih ukrepov | Potreben je predogled in shranjevanje; nastavitev ničesar ne izvede. |
+| Makro in Workflows | Snemanje, pogoji, geste in lokalna sinhronizacija profilov | Obnašanje in omejitve so zapisane v poročilih o izvajanju in testiranju. |
+| UI avtomatizacija | Izberite cilje, preverite selektorje, sprejmite ukrepe in omejene klikovne poteke | Ločen delovni proces; dvoumni, onemogočeni cilji in polja za gesla se zavrnejo; splošno snemanje vnosa besedila ni podprto. |
+| Razširitve | Preverjanje, uvoz, aktiviranje, izvoz in vračanje paketov po izrecnem zaupanju | Izolacija procesa ni peskovnik; javne tržnice vtičnikov ni. |
+| Mobilni panel | Lokalni HTTPS panel, povezava, izbrani profili in status/pregled | Sprejemno preverjanje s pravim telefonom/tablico prek LAN ostaja odprto; to ni univerzalna nadzorna plošča senzorjev. |
+| Proizvajalec adapter | Corsair, Logitech-G-SDK, Razer/SteelSeries-RGB in Wooting-Analogadapter | Odvisno od modela/SDK; novi adapterji niso v celoti preverjeni s pravo strojno opremo. Nove lastniške DLL-je SDK niso priložene. |
 | Fizična nastavitev | Standardni tipki za prepoznavanje s pomočjo naprave in skeniranja kode | Raw Input ne zavira normalnega vnosa Windows. |
-| Lokalni pomočnik za razpravo | Opcionalni prototip za Ollama, LM Studio, llama.cpp in ONNX Runtime čas GenAI CPU ustvarja omejene zasnove iz izrecno izbranih virov | Standardno; native CPU delovni čas z naključnim modelom, vendar ni dokazano kakovost načrtovanja ali prihranek časa; ne vsebuje teže modela. |
+| Lokalni pomočnik za razpravo | Izbirni prototip za Ollama, LM Studio, llama.cpp in ONNX Runtime GenAI CPU ustvarja omejene osnutke iz izrecno izbranih virov | Privzeto izklopljeno; nativno izvajanje CPU preverjeno z naključnim modelom, vendar brez dokazane kakovosti načrtovanja ali prihranka časa; uteži modelov niso vključene. |
 
 ## Še vedno ne ponujajo kot končana prodaja
 
-- **Ekskluzivni drugi računalnik/makropad:** Ni podpisanega, licenciranega in strojno preverjenega filtra. Običajne tipke lahko še naprej dosežejo Windows.
-- Popolna odstranitev strojne opreme vseh adapterjev proizvajalca, pa tudi realni mobilni napravni test.
-- Pravi mešan monitor/DPI spreminjanje in strokovno prevajanje vseh novih prevodov. PerMonitorV2 in simulacije 150/200-Prozent-Layouts so bili preverjeni; realni test zaslona ostane ločeno. Površina vsebuje 27 jezike; podrobne nove besedila še niso v celoti prenesene.
-- Podpisani prodajni inštalator, končni EULA, preverjene prodajne pravice SDK in produktivna integracija nakupa/pregleda.
+- **Izključna druga tipkovnica/makropad:** Manjka podpisan, licenciran in strojno preizkušen filtrirni gonilnik. Običajni pritiski tipk lahko še vedno dosežejo Windows.
+- Popolno sprejemno preverjanje strojne opreme vseh adapterjev proizvajalcev ter pravi preizkusi mobilnih naprav prek LAN.
+- Pravi prehodi med različnimi monitorji/DPI in strokovna odobritev vseh novih prevodov. Preverjeni so bili PerMonitorV2 in simulirane postavitve s 150/200-odstotno povečavo; pravi preizkusi zaslonov ostajajo ločeni. Vmesnik ponuja 27 jezikov; podrobna nova besedila še niso v celoti jezikovno odobrena.
+- Podpisan prodajni namestitveni program, končna EULA, preverjene pravice do distribucije SDK in produkcijska integracija nakupnih licenc/blagajne.
 
 ## Podrobnosti in dokazi
 
@@ -54,4 +54,4 @@ Proizvajalec: **Aivana**. Stanišče: **12. Oktobra 2026**. To je razvojna stopn
 ./tools/publish-complete.ps1 -SelfContained
 ```
 
-Paket vsebuje namizno aplikacijo, UI avtomatizatorja, mobilni gostitelj, brskalnik datoteke, primerni plugin in obvestilo o licencah za izvajanje. Gradbeni podatki niso preverjeni v Git. Izvorni kodo GitHub še ni objavljen Windows namestnik.
+Paket vsebuje namizno aplikacijo, delovni proces za avtomatizacijo vmesnika, mobilni gostitelj, datoteke brskalnika, vzorčni vtičnik in licenčna obvestila izvajalnega okolja. Rezultati gradnje se ne dodajajo v Git. Izvorna koda na GitHub še ni objavljen namestitveni program Windows.

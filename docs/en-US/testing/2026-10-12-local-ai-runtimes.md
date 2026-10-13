@@ -4,11 +4,11 @@
 
 # Local AI runtimes
 
-## Service
+## Usage
 
-Tools → Open AI meeting assistant, activate it explicitly and select AI runtime. Release resources, formulate a goal, create a draft and check it in the editor. No provider runs the design automatically. There is no automatic change of provider.
+Open Tools → AI meeting assistant, explicitly enable it and select an AI runtime. Authorize resources, describe the goal, create a draft and review it in the editor. No provider executes the draft automatically. There is no automatic provider fallback.
 
-| Duration | Requirement | connection |
+| Runtime | Requirement | Connection |
 |---|---|---|
 | Ollama | locally installed model | 127.0.0.1:11434 |
 | LM Studio | running local server with locally loaded model and JSON schema support | 127.0.0.1:1234 |
@@ -19,23 +19,23 @@ The HTTP clients do not use proxies and do not follow redirects. Local servers c
 
 ## ONNX
 
-In the dialogue select genai_config.json. the folder must contain tokenizer.json and a chat template. chat_template is supported as a character chain, a designated default template (Array or Dictionary) as well as a separate chat_template.jinja, if no inline template is present or this is null. multi-template are rejected; 65536 Popular .onnx files, vision/embedding models or pure GPU/NPU exports are not meeting models.
+Select genai_config.json in the dialog. The folder must contain tokenizer.json and a chat template. Supported forms are chat_template as a string, a named default template (array or dictionary), or a separate chat_template.jinja when the inline template is absent or null. Ambiguous templates are rejected; the maximum length is 65536 characters. Arbitrary .onnx files, vision/embedding models and GPU/NPU-only exports are not meeting-assistant models.
 
-Bundled: Microsoft.ML.OnnxRuntimeGenAI 0.17.1, CPU. Provider configuration is reset to CPU. No download and no model weights in the package. No Python installation required. Use only trusted model packages; the separate process is a crash/abort boundary, not a security sandbox.
+Bundled: Microsoft.ML.OnnxRuntimeGenAI 0.17.1, CPU. Provider configuration is reset to CPU. No downloads and no model weights in the package. No Python installation required. Use only trusted model packages; the separate process contains crashes and supports cancellation, but is not a security sandbox.
 
-Limits: 90 seconds including model loading, maximum 3072 prompt tokens and 1024 generated tokens, additional model context limit; rigorously checked JSON and known resource IDs. Incorrect/truncated answer will be discarded. Close/Cancel terminates the started worker process. No free model commands and no programs/file paths in the prompt's separate resource list; the target text written by the user may itself contain such data.
+Limits: 90 seconds including model loading, at most 3072 prompt tokens and 1024 generated tokens, further restricted by model context; strict validation of JSON and known resource IDs. Invalid or truncated responses are discarded. Closing or cancelling terminates the started worker process. No unrestricted model commands and no programs/file paths in the separate prompt resource list; the goal text entered by the user can itself contain such data.
 
 ## Verification
 
 - Core suite, loopback transport tests with simulated LM-Studio/llama.cpp/Ollama responses, schema/abort/resource check.
 - Unicode protocol regression with maximum long targets and 24 resource names.
-- Real native CPU inference with official tiny-random-gpt2-fp32-Testgraph from microsoft/onnxruntime-genai, commit 5c19002edce50beaa3a5c7eeefd8fe5269ee8d19. Test template added and byte tokenizer adapted to the small random graph. This random model does not check quality and is not in release.
+- Real native CPU inference with the official tiny-random-gpt2-fp32 test graph from microsoft/onnxruntime-genai, commit 5c19002edce50beaa3a5c7eeefd8fe5269ee8d19. A test template was added and the byte tokenizer adapted to the small random graph. This random model does not test quality and is not included in the release.
 - Reproducible native runtime test: tools/check-onnx-runtime.ps1 -ModelDirectory <GenAI model folder>.
 - WPF-Smoke checks the selection of all four providers and the test bench; Selection alone does not generate a model request.
 
-## Remaining real shares
+## Remaining acceptance work
 
-Hardware/smartphone/tablet/monitor replacement testing is still required. Exclusive keyboard suppression remains blocked without a signed, licensed and verified filter driver. Not replaced by dummy drivers or Raw Input. The focus change can still be blocked by Windows; the error now mentions manual activation of the target window. Translations have been added to central AI controls in all 27 catalogs; Detailed new texts and technical translation approval are still open. Live quality with a suitable instruction model, continuous operation and measured time savings are not proven by random model/fake HTTP tests.
+Hardware, smartphone, tablet and monitor-transition tests are still required. Exclusive keyboard suppression remains blocked without a signed, licensed and tested filter driver; dummy drivers and Raw Input do not replace it. Windows can still block focus changes; the error now instructs the user to activate the target window manually. Translations for central AI controls were added to all 27 catalogs; detailed new text and specialist translation review remain outstanding. Random-model and simulated-HTTP tests do not demonstrate live quality with a suitable Instruct model, sustained operation or measured time savings.
 
 ## Sources
 
@@ -44,14 +44,14 @@ Hardware/smartphone/tablet/monitor replacement testing is still required. Exclus
 - https://lmstudio.ai/docs/developer/openai-compat/chat-completions
 - https://github.com/ggml-org/llama.cpp/blob/master/tools/server/README.md
 
-Final test: release build without warnings/errors; Passed full core and Windows suite, including native focus fixture, HTTPS, UIA, plugin IPC and compatible AI transport tests. New package release-20261012-190618: WPF smoke passed (19:07 clock), bundled ONNX CPU inference with test graph passed. Independent review: Unicode protocol limit corrected, no other concrete findings. No physical manufacturer/phone/monitor acceptance derived from this.
+Final test state: Release build without warnings/errors; full Core and Windows suites passed, including the native focus fixture, HTTPS, UIA, plugin IPC and compatible AI transport tests. New package release-20261012-190618: WPF smoke passed (19:07), bundled ONNX CPU inference with the test graph passed. Independent review: Unicode protocol limit corrected, no other concrete findings. This does not establish physical manufacturer-device, phone or monitor acceptance.
 
-## Continued: Real model quality and models
+## Follow-up: real model quality and templates
 
-Additional CPU running allama-ai/SmolLM-360M-Instruct-onnx-int4Revision 82a3d1a8a86c8053f2a859a90ed4d344fc0725b0: native inference survived. Modellgewichte-SHA25648e9c4ef12f7f995ca11fc7020b39990aa27bc67cc0fe1160676a000a04429.
+Additional CPU run with allama-ai/SmolLM-360M-Instruct-onnx-int4, revision 82a3d1a8a86c8053f2a859a90ed4d344fc0725b0: native inference passed. Model-weights SHA256: 48e9c4ef12f7f995ca11fc7020b39990aa27bc67cc0fe116067676a000a04429. Community export used only in the test area, not included in the release.
 
-Four real planning tests (German/English, Document, Program, explicit microphone sounding): **0/4 valid plans**; each JsonException in strict response examination. 63501, 6376, 72118 and 6774 This small model does not comply with the planning contract and is not recommended as suitable. report: artifacts/local-ai-evaluation/smollm360-results.json. reproduction: Windows-Tests --evaluate-onnx <model order> <report path>. The performance function does not prove model quality.
+Four real planning tests (German/English; document, program, explicit microphone mute): **0/4 valid plans**; each produced JsonException during strict response validation. Durations: 63501, 6376, 72118 and 6774 ms. No actions were executed. This small model does not meet the planning contract and is not recommended as suitable. Report: artifacts/local-ai-evaluation/smollm360-results.json. Reproduce: Windows-Tests --evaluate-onnx <model folder> <report path>. Runtime functionality does not establish model quality.
 
-Tools navigation and test reports were added in all 27 Language catalogues are translated. long texts and language recordings remain open. template regression also examines false JSON types, empty/multiple/over-long templates and zero with Jinja Fallback.
+Tool navigation and the test report were additionally translated in all 27 language catalogs. Long-form text and linguistic review remain outstanding. Template regression checks also cover wrong JSON types, empty/ambiguous/overlong templates and null with Jinja fallback.
 
-Updated package: Artifacts/Release-20261012-201134Packed WPFSmoke on 12.10.2026 by 20:12 Native CPU reference with the separate Instruct test model in the binding worker. Windows-KI tests passed; Build without warnings/errors. 0/4.
+Updated package: artifacts/release-20261012-201134. Packaged WPF smoke passed on 12 October 2026 at 20:12; native CPU inference with the separate Instruct test model passed in the bundled worker. Core and Windows AI tests passed; build without warnings/errors. Model planning quality remains 0/4.

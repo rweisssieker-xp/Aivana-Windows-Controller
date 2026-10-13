@@ -4,7 +4,7 @@
 
 # MAKRIVO – Descripción general de funciones
 
-Fabricante: **Aivana**. Estado: **12. Octubre 2026**. Este es el estado de desarrollo, no un lanzamiento de ventas o de hardware.
+Fabricante: **Aivana**. Estado a **12. octubre 2026**. Es el estado de desarrollo, no una aprobación comercial ni una validación de hardware.
 
 ## Windows control
 
@@ -12,7 +12,7 @@ Fabricante: **Aivana**. Estado: **12. Octubre 2026**. Este es el estado de desar
 - Macros de varios pasos, repetir, pausar, cancelar y obtener una vista previa.
 - Abrir programas, archivos y sitios web; Utilice atajos de texto, portapapeles y teclado.
 - Organice ventanas, bloquee Windows, controle salidas de audio y micrófonos y cambie el brillo de la pantalla a través de interfaces compatibles.
-- OBS-WebSocket-v5-Anbindung para escenas, grabación, streaming y audio.
+- Integración OBS WebSocket v5 para escenas, grabación, streaming y audio.
 - Plantillas, Asistente de Workplace, Descubrimiento de dispositivos y Superposición de teclado.
 - Importación y exportación de configuraciones de perfiles; Revisión de diseño y detección de conflictos.
 - Configuraciones guardadas localmente; no se requiere cuenta para el uso diario.
@@ -22,20 +22,20 @@ Fabricante: **Aivana**. Estado: **12. Octubre 2026**. Este es el estado de desar
 | área | Gama de funciones | Límites |
 | --- | --- | --- |
 | Verificación de resultados | Historial de pruebas previas, posteriores a la inspección y de pruebas | Confirmar únicamente efectos verificables; Una pulsación de tecla exitosa no prueba el efecto objetivo. |
-| Asistente en el lugar de trabajo | Prepare perfiles y procesos a partir de programas, archivos, URL y otras acciones seleccionadas. | Es necesario obtener una vista previa y guardar; La configuración no hace nada. |
+| Asistente en el lugar de trabajo | Prepare perfiles y procesos a partir de programas, archivos, URL y otras acciones seleccionadas. | Vista previa y guardado necesarios; la configuración no ejecuta ninguna acción. |
 | Grabación de macros y flujos de trabajo | Grabación, condiciones, gestos y sincronización de perfiles locales. | El comportamiento y los límites están documentados en los informes de implementación y prueba. |
 | Automatización de la interfaz de usuario | Seleccione objetivos, verifique selectores, registre acciones y secuencias de clics limitadas | Trabajador separado; Se rechazan los objetivos ambiguos, deshabilitados y de contraseña; sin grabación de entrada de texto general. |
 | Extensiones | Inspeccionar, importar, activar basándose en confianza explícita, exportar y revertir paquetes | El aislamiento de procesos no es un entorno limitado; no es un mercado público de complementos. |
 | Panel móvil | Panel HTTPS local, emparejamiento, perfiles seleccionados e historial de estado/auditoría | La aceptación de LAN real para teléfonos/tabletas aún está abierta; Sin panel de instrumentos con sensores universales. |
-| Adaptador del fabricante | Adaptador analógico Corsair, Logitech-G-SDK, Razer/SteelSeries-RGB y Wooting | Depende del modelo/SDK; Nuevos adaptadores no completamente validados con hardware real. No se incluyen nuevas DLL de SDK patentadas. |
-| Mapeo de teclado físico | Reconocer claves estándar según el dispositivo y el código de escaneo | Raw Input no suprime la entrada normal Windows. |
-| Asistente de reuniones locales de IA | Prototipo opcional para Ollama, LM Studio, llama.cpp y ONNX Runtime GenAI La CPU produce diseños limitados a partir de recursos seleccionados explícitamente | Desactivado de forma predeterminada; tiempo de ejecución de CPU nativo probado con modelo aleatorio, pero sin calidad de planificación comprobada ni ahorro de tiempo; No se incluyen pesos de modelo. |
+| Adaptador del fabricante | Corsair, SDK Logitech G, RGB Razer/SteelSeries y adaptador analógico Wooting | Depende del modelo/SDK; Nuevos adaptadores no completamente validados con hardware real. No se incluyen nuevas DLL de SDK patentadas. |
+| Mapeo de teclado físico | Reconocer las teclas estándar según el dispositivo y el código de exploración | Raw Input no suprime la entrada normal Windows. |
+| Asistente de reuniones locales de IA | Prototipo opcional para Ollama, LM Studio, llama.cpp y ONNX Runtime GenAI CPU que genera borradores limitados a partir de recursos seleccionados explícitamente | Desactivado de forma predeterminada; tiempo de ejecución de CPU nativo probado con modelo aleatorio, pero sin calidad de planificación comprobada ni ahorro de tiempo; No se incluyen pesos de modelo. |
 
 ## Aún no está disponible como característica de ventas terminada
 
 - **Teclado secundario/teclado de macros exclusivo:** Falta un controlador de filtro firmado, con licencia y probado por hardware. Las pulsaciones de teclas normales aún pueden llegar a Windows.
 - Aceptación completa del hardware de todos los adaptadores del fabricante, así como pruebas de LAN de dispositivos móviles reales.
-- Verdaderos cambios mixtos de monitor/DPI y aprobación técnica de todas las nuevas traducciones. Se comprobaron PerMonitorV2 y 150/200-Prozent-Layouts simulado; Las pruebas de visualización reales permanecen separadas. La interfaz ofrece idiomas 27; Los nuevos textos detallados aún no han sido completamente aprobados lingüísticamente.
+- Transiciones reales entre monitores con DPI diferentes y revisión técnica de todas las nuevas traducciones. Se comprobaron PerMonitorV2 y distribuciones simuladas al 150/200 por ciento; las pruebas con pantallas reales siguen siendo independientes. La interfaz ofrece 27 idiomas; los nuevos textos detallados aún no se han validado lingüísticamente por completo.
 - Instalador minorista firmado, CLUF final, derechos de distribución de SDK verificados e integración productiva de licencia de compra/pago.
 
 ## Detalles y evidencia

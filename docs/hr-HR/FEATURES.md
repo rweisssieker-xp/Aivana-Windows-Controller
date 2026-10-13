@@ -4,15 +4,15 @@
 
 # MAKRIVO – Pregled sadržaja
 
-Proizvođač: **Aivana**. Stanište: **12. listopad 2026**. To je razvojni status, bez prodaje ili hardverske distribucije.
+Proizvođač: **Aivana**. Stanje: **12. listopada 2026**. Ovo je stanje razvoja, a ne odobrenje prodaje ili hardvera.
 
 ## Windows upravljanje
 
-- Kachel, globalni hotkeys, paleta zapovijedi, omiljeni i profili ovisni o aplikaciji.
-- Makro s nekoliko koraka, ponavljanja, pauze, prekida i predviđanja.
-- Otvaranje programa, datoteka i web stranica; korištenje teksta, međusobnog rasporeda i skraćivanja.
+- Pločice, globalni prečaci, paleta naredbi, favoriti i profili za određene aplikacije.
+- Makronaredbe s više koraka, ponavljanjima, pauzama, otkazivanjem i pretpregledom.
+- Otvaranje programa, datoteka i web-mjesta; korištenje teksta, međuspremnika i tipkovničkih prečaca.
 - Uređivanje prozora, blokiranje Windows, upravljanje zvukom i mikrofonom te promjena svjetlosti zaslona preko podržanih sučelja.
-- OBS-WebSocket-v5-Anbindung za snimanje, prijenos i audio.
+- Integracija OBS-WebSocket-v5 za scene, snimanje, prijenos i zvuk.
 - Šabloni, asistent za radno mjesto, prepoznavanje uređaja i preklapanje tipkovnice.
 - Uvoz i izvoz konfiguracija profila; provjera dizajna i otkrivanje sukoba.
 - Lokalne postavke pohranjene; ne zahtijeva račun za svakodnevnu upotrebu.
@@ -21,22 +21,22 @@ Proizvođač: **Aivana**. Stanište: **12. listopad 2026**. To je razvojni statu
 
 | Područje | Opseg funkcija | granice |
 | --- | --- | --- |
-| Rezultati ispitivanja | Prethodni članakPredizbor, kontrola i ispit | Samo provjerljivi učinci potvrđuju; uspješni pritisak ne dokazuje ciljni učinak. |
-| Radni asistent | Priprema profila i postupaka iz odabranih programa, datoteka, URL-a i drugih akcija | Potrebno je unaprijed vidjeti i pohraniti; uređaj ne dovodi u pitanje. |
-| Makroizvješće i Workflows | Prijave, uvjeti, gestovi i lokalna sinhronizacija profila | Posao i granice su dokumentirane u izvješćima o provedbi i testiranju. |
-| UI automatizacija | Izaberite ciljeve, provjerite selektor, uključite akcije i ograničene klikove | Odvojeni radnici; više-povijesni, deaktivirani i lozinke su odbijeni; nema opće upisivanje teksta. |
-| proširenja | Proveriti, uvoziti, aktivirati, izvoziti i vratiti pakete po izričitoj povjerenju | Procesna izolacija nije pješčana kutija; nema javnog tržišta plugina. |
-| Mobilni panel | Lokalni HTTPS panel, povezivanje, odabrani profili i povijest ispitivanja | Realni telefon/tablet LAN prijenos još uvijek otvoren; nema univerzalnog senzornog ploča. |
-| Proizvođač adaptera | Corsair, Logitech-G-SDK, Razer/SteelSeries-RGB i Wooting-Analogadapter | Modeli/SDK ovisno; novi adapteri nisu u potpunosti validirani s stvarnim hardverom. Nema novih vlastitih SDK-a povezanih. |
+| Rezultati ispitivanja | Prethodna provjera, naknadna kontrola i povijest provjera | Samo provjerljivi učinci potvrđuju; uspješni pritisak ne dokazuje ciljni učinak. |
+| Radni asistent | Priprema profila i postupaka iz odabranih programa, datoteka, URL-a i drugih akcija | Potrebni su pretpregled i spremanje; postavljanje ništa ne izvršava. |
+| Makroizvješće i Workflows | Snimanje, uvjeti, geste i lokalna sinkronizacija profila | Posao i granice su dokumentirane u izvješćima o provedbi i testiranju. |
+| UI automatizacija | Izaberite ciljeve, provjerite selektor, uključite akcije i ograničene klikove | Zaseban radni proces; dvosmisleni, onemogućeni ciljevi i polja lozinki odbijaju se; nema općeg snimanja unosa teksta. |
+| proširenja | Proveriti, uvoziti, aktivirati, izvoziti i vratiti pakete po izričitoj povjerenju | Izolacija procesa nije sandbox; nema javnog tržišta dodataka. |
+| Mobilni panel | Lokalni HTTPS panel, povezivanje, odabrani profili i povijest ispitivanja | Prihvatno testiranje stvarnog telefona/tableta putem LAN još nije dovršeno; nije univerzalna nadzorna ploča senzora. |
+| Proizvođač adaptera | Corsair, Logitech-G-SDK, Razer/SteelSeries-RGB i Wooting-Analogadapter | Ovisi o modelu/SDK-u; novi adapteri nisu potpuno provjereni na stvarnom hardveru. Nove vlasničke datoteke SDK-DLL nisu priložene. |
 | Fizička tasta | Prepoznajte standardne tipke pomoću uređaja i skeniranja koda | Raw Input ne potiskuje normalno ulazak Windows. |
-| Lokalni asistent za razgovor | Opcionalni prototip za Ollama, LM Studio, llama.cpp i ONNX Runtime vrijeme GenAI CPU proizvodi ograničene dizajne iz izričito odabranih resursa | Standardno; native CPU radno vrijeme provjerena slučajnim modelom, ali bez dokazane kvalitete planiranja ili uštede vremena; ne sadrži težine modela. |
+| Lokalni asistent za razgovor | Neobvezni prototip za Ollama, LM Studio, llama.cpp i ONNX Runtime GenAI CPU stvara ograničene nacrte iz izričito odabranih resursa | Zadano isključeno; izvorno CPU izvršno okruženje provjereno nasumičnim modelom, ali bez dokazane kvalitete planiranja ili uštede vremena; težine modela nisu uključene. |
 
 ## Još uvijek ne ponudi kao gotova prodaja
 
-- **Ekskluzivni drugi uređaj/makropad: ** Nedostaje potpisani, licencirani i hardverno provjereni filter. Normalne ulaznice mogu i dalje doseći Windows.
-- Potpuno oduzimanje hardvera svih adaptera proizvođača, kao i stvarne testove mobilnih uređaja.
-- Prava mješovita promjena monitor/DPI i profesionalni prijenos svih novih prevoda. PerMonitorV2 i simulirani 150/200-Prozent-Layouts provjereni su; stvarni testovi prikazivanja ostaju odvojeno. Površina sadrži 27 jezike; detaljni novi tekstovi još nisu u potpunosti ispisani.
-- Potpisani prodajni instalator, konačni EULA, provjerene prava prodaje SDK-a i produktivna integracija kupovine/pregledanja.
+- **Isključiva druga tipkovnica/makropad:** Nedostaje potpisani, licencirani i hardverski provjereni filtarski upravljački program. Uobičajeni pritisci tipki i dalje mogu doći do Windows.
+- Potpuno prihvatno testiranje hardvera svih adaptera proizvođača i stvarni testovi mobilnih uređaja putem LAN.
+- Stvarni prijelazi između različitih monitora/DPI i stručna provjera svih novih prijevoda. PerMonitorV2 i simulirani rasporedi sa 150/200-postotnim skaliranjem provjereni su; stvarni testovi zaslona ostaju zasebni. Sučelje nudi 27 jezika; detaljni novi tekstovi još nisu potpuno jezično odobreni.
+- Potpisani prodajni instalacijski program, konačni EULA, provjerena prava distribucije SDK-a i produkcijska integracija kupovnih licenci/naplate.
 
 ## Detalji i dokazi
 
@@ -54,4 +54,4 @@ Proizvođač: **Aivana**. Stanište: **12. listopad 2026**. To je razvojni statu
 ./tools/publish-complete.ps1 -SelfContained
 ```
 
-Paket sadrži desktop aplikaciju, UI automatizacijski radnik, mobilni domaćin, pretraživač datoteke, primjer plugin i upute za radno vrijeme. Stvarni činjenice nisu provjerene u Git. Izvorni kod GitHub još nije objavljen Windows instalator.
+Paket sadrži aplikaciju za stolna računala, radni proces automatizacije sučelja, mobilni host, datoteke preglednika, primjer dodatka i licencne obavijesti izvršnog okruženja. Rezultati izgradnje ne dodaju se u Git. Izvorni kod na GitHub još nije objavljen instalacijski program Windows.

@@ -10,6 +10,6 @@
 - Filter akcií sa zobrazuje iba na ovládacom paneli. Výber profilu a vyhľadávanie majú jasné názvy pre asistenčné technológie. Označenia polí sú kontrastnejšie.
 - Dialógový test dymu zahŕňa prehľad nástrojov a dialógové okná rozšírenia v 560 × 440 a normálnej veľkosti; Existujúce rekordérske a jazykové testy boli prispôsobené štruktúre rolovania.
 
-Obmedzenia: Kompaktné okná nie sú náhradou za skutočné testy Windows DPI s percentami 150/200. Nové nemecké texty ešte nie sú úplne preložené do všetkých jazykov 27. Žiadne nové hardvérové ​​overenie a žiadne vyhlásenie o meranej použiteľnosti.
+Obmedzenia: kompaktné okná nenahrádzajú skutočné testy Windows-DPI pri 150/200 percentách. Nové nemecké texty ešte nie sú úplne preložené do všetkých 27 jazykov. Nejde o novú validáciu hardvéru ani tvrdenie o zmeranej použiteľnosti.
 
 Testovacia stolica: Uvoľnite zostavu bez varovaní/chýb; Prešiel úplným dymovým testom WPF, vrátane kompaktných nástrojov a dialógov rozšírenia a kontroly prepínania jazykov. git diff --kontrola prebehla.

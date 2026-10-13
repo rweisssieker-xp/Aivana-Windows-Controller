@@ -24,12 +24,12 @@ Producenterne: **Aivana**. Stand: **12. Oktober 2026**. Dette er udviklingsstatu
 | Resultatundersøgelse | Forundersøgelse, efterkontrol og testprocedure | Kun verificable effekter bekræfter; et vellykket tastatur beviser ikke målvirkningen. |
 | Arbejdsstilassistent | Forbered profiler og procedurer fra udvalgte programmer, filer, URL'er og andre handlinger | Forudsigelse og opbevaring er nødvendigt; Anlægget udfører intet. |
 | Makroindtagelse og Workflows | Optagelse, betingelser, gestus og lokal profilsynkronisering | Adfærd og grænser er dokumenteret i gennemførelses- og testrapporter. |
-| UI-automation | Vælg målsætninger, tjek selektorer, indtagelse af handlinger og begrænsede klik | Separaterede arbejdere; flere, deaktiverede og adgangskoder afvises; ingen generel tekstindtagelse. |
+| UI-automation | Vælg målsætninger, tjek selektorer, indtagelse af handlinger og begrænsede klik | Separat worker; tvetydige, deaktiverede og adgangskodebeskyttede mål afvises; ingen optagelse af almindelig tekstindtastning. |
 | Udvidelser | Prøve, importere, aktivere, eksportere og returnerer pakker efter udtrykkelig tillid | Processisolering er ikke en sandboks; ingen offentlig pluginsmarked. |
 | Mobilpanel | Lokalt HTTPS-panel, kopiering, udvalgte profiler og status-/testhistorie | Virkelig telefon/tablet-LAN indtagelse er stadig åben; ingen universel sensor dashboard. |
 | Producentadapter | Corsair, Logitech-G-SDK, Razer/SteelSeries-RGB og Wooting-Analogadapter | Modeller/SDK-afhængig; nye adaptere ikke fuldt valideret med real hardware. Ingen nye proprietære SDK-DLL'er er bundet. |
 | Fysisk tastatur | Standardknapper ved hjælp af enheden og skanningskode | Raw Input undertrykker ikke den normale Windows indtagelse. |
-| Lokalt AI-rådgivere | Optionelle prototyper for Ollama, LM Studio, llama.cpp og ONNX Runtime GenAI CPU genererer begrænsede design fra udtrykkeligt udvalgte ressourcer | Standard ud; indfødte CPU-drift testet med tilfældig model, men ingen dokumenteret planlægning kvalitet eller tid besparelse; ingen model vægt. |
+| Lokalt AI-rådgivere | Optionelle prototyper for Ollama, LM Studio, llama.cpp og ONNX Runtime GenAI CPU genererer begrænsede design fra udtrykkeligt udvalgte ressourcer | Deaktiveret som standard; native CPU-runtime testet med en tilfældig model, men ingen dokumenteret planlægningskvalitet eller tidsbesparelse; ingen modelvægte medfølger. |
 
 ## Ikke tilbudt som færdig salg
 

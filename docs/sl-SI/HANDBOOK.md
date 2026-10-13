@@ -4,153 +4,153 @@
 
 # MAKRIVO — Uporabniški priročnik
 
-Proizvajalec: **Aivana**. Dokumentacija snapshot: **2026-10-12**. Ta priročnik opisuje trenutno izvajanje delovnega drevesa. eksperimentalne integracije in funkcije, ki so odvisne od strojne opreme, so izrecno identificirane. zgodovinski podatki opisujejo njihovo datirano snop, ne pa garancijo za novo gradnjo.
+Proizvajalec: **Aivana**. Stanje dokumentacije: **2026-10-12**. Ta priročnik opisuje trenutno implementacijo v delovnem drevesu. Eksperimentalne integracije in funkcije, odvisne od strojne opreme, so izrecno označene. Zgodovinska poročila opisujejo stanje na navedeni datum in niso zagotovilo za novejšo gradnjo.
 
 ## Dokumentacija in jeziki
 
-Uporabite izbiro jezika dokumentacije za odprtje celotnega priročnika, zapisa funkcij, reševanja težav, poročil o razvoju, raziskav in zgodovinskih testnih poročil v katerem koli od 27 uporabniški jeziki. ustvarjeni prevodi so strojno podprti in imajo strukturne preverjanja; niso vsi prejeli pregleda domačega govornika. tehnični identifikatorji in izvedljivi primeri ostanejo nespremenjeni. Izvirni vir je na voljo za primerjavo. Prevedena analiza licence je informativna in ne nadomešča prvotnih pravnih pogojev tretje osebe ali končnega EULA.
+Z izbiro jezika dokumentacije odprite celoten priročnik, pregled funkcij, odpravljanje težav, razvojne zapiske, raziskave in zgodovinska poročila o preizkusih v katerem koli od 27 jezikov aplikacije. Ustvarjeni prevodi so strojno podprti in strukturno preverjeni; vseh niso pregledali materni govorci. Tehnični identifikatorji in izvedljivi primeri ostanejo nespremenjeni. Izvirni vir ostane na voljo za primerjavo. Prevedena analiza licenc je informativna in ne nadomesti izvirnih pravnih pogojev tretjih oseb ali končne pogodbe EULA.
 
 ## Namestitev in prvi zagon
 
-Prvi cilj je Windows 11 x64. ohranite vse datoteke in pododdelke distribucije skupaj. `MAKRIVO.exe`. Samodejni paketi vključujejo čas delovanja .NET; paketi, ki so odvisni od okvirja, zahtevajo ustrezno .NET 10 Desktop in ASP.NET izvajanje. ONNX in spremljevalci morajo biti vključeni za njihove značilnosti.
+Začetna ciljna platforma je Windows 11 x64. Vse datoteke in podimenike distribucije ohranite skupaj. Zaženite `MAKRIVO.exe`. Kopija izvorne kode ni namestitveni program. Samostojni paketi vključujejo izvajalno okolje .NET; paketi, odvisni od ogrodja, zahtevajo ustrezni izvajalni okolji .NET 10 Desktop in ASP.NET. Za ustrezne funkcije morajo biti vključeni ONNX in spremljevalni gostiteljski procesi.
 
-1. Začnite MAKRIVO in izberite jezik v nastavitvah. Samodejno sledi Windows Ključna plošča je ločena postavitev.
-2. Izberite profil in nato dodajte vrstico skozi katalog iskanja. Dajte mu prepoznavno ime in izberite njegove dejavnosti.
-3. Preverite korake in po potrebi dodelite skrajšanje. Izogibajte se kombinacijam, ki jih že uporablja Windows ali vaša ciljna aplikacija.
-4. Shrani projekt Neposkrbene spremembe niso shranjene konfiguracije.
+1. Zaženite MAKRIVO in v nastavitvah izberite jezik vmesnika. Samodejna izbira sledi jeziku Windows. Razporeditev tipkovnice je ločena nastavitev.
+2. Izberite profil in nato v katalogu dejanj z iskanjem dodajte ploščico. Dajte ji prepoznavno ime in izberite njena dejanja.
+3. Preglejte korake in po potrebi dodelite bližnjico. Izogibajte se kombinacijam, ki jih že uporablja Windows ali ciljna aplikacija.
+4. Shranite osnutek. Neshranjene spremembe niso del shranjene konfiguracije.
 5. Preizkusite z neškodljivimi dejanji, kot je odprtje dokumenta in preverite povratne informacije o izvedbi.
 
-Zapiranje glavnega okna običajno zapusti aplikacijo v območju obvestila. Dvojno kliknite ikono za ponovno odprtje, ali pa uporabite meniju za izhod. Začetek z Windows je prostoren in na začetku onemogočen. Kontrola odmora ustavi vezave; ikona prikazuje oznako odmora. Odstranite delovne makro prek UI, tray ali konfiguriranega odpovednika; privzeto je `Ctrl+Alt+Escape`.
+Zapiranje glavnega okna običajno pusti aplikacijo v območju za obvestila. Dvokliknite njeno ikono, da jo znova odprete, ali uporabite meni ikone za izhod. Zagon skupaj z Windows je izbiren in sprva onemogočen. Gumb za premor začasno ustavi vezave; ikona prikaže oznako premora. Tekoče makre prekličite prek uporabniškega vmesnika, ikone v območju za obvestila ali nastavljene bližnjice za preklic; privzeta je `Ctrl+Alt+Escape`.
 
-## Tile, akcije in ukazna paleta
+## Ploščice, dejanja in ukazna paleta
 
-Tile pripadajo profilom in lahko vsebujejo več naročenih korakov. Upravljavec podpira shranjevanje/izogibanje, predogled, undo/redo in korak preoblikovanje. Katalog zagotavlja prednastavitve za programe, dokumente, URL-je, besedilo, klipe, skrajšane, medije, avdio, okna, sistemske akcije in podprte integracije. Prednastavitev, ki zahteva parametre, se odpre kot načrt.
+Ploščice pripadajo profilom in lahko vsebujejo več zaporednih korakov. Urejevalnik podpira shranjevanje/zavračanje, predogled, razveljavitev/ponovitev in spreminjanje vrstnega reda korakov. Katalog vsebuje prednastavitve za programe, dokumente, URL-je, besedilo, odložišče, bližnjice, predstavnost, zvok, okna, sistemska dejanja in podprte integracije. Prednastavitev, ki zahteva parametre, se odpre kot osnutek.
 
-Odprite paleto z `Ctrl+K` medtem ko MAKRIVO je osredotočen. Iskanje shranjenih dejanj, prednastavitve, profilov in orodij. Izberite ključe; Vpišite aktivira; `Ctrl+Enter` urejanje podprte točke; Izhod zapre. Nekatere pripravljene ukaze se izvajajo takoj, konfigurirane ukrepe pa zahtevajo pregled. Lahko konfigurirate ločeno globalno kratko paleto; nove konfiguracije uporabljajo `Ctrl+Shift+Space`.
+Odprite paleto s `Ctrl+K`, ko ima MAKRIVO fokus. Iščite shranjena dejanja, prednastavitve, preklapljanje profilov in orodja. Smerne tipke izbirajo; Enter aktivira; `Ctrl+Enter` ureja podprti element; Escape zapre. Nekateri pripravljeni ukazi se izvedejo takoj, nastavljena dejanja pa zahtevajo pregled. Nastavite lahko ločeno globalno bližnjico za paleto; nove konfiguracije uporabljajo `Ctrl+Shift+Space`.
 
-Podpora za besedilo in clipboard korake `{{date}}`, `{{time}}`, `{{datetime}}`, `{{clipboard}}`, `{{profile}}`, `{{process}}` in `{{user}}`. Datum oblikovanja je `yyyy-MM-dd`; Čas oblikovanja je `HH:mm`. Neznane spremenljivke ostanejo nespremenjene.Clipboard branje se zgodi le, ko je zahtevan.Klipboard dejanje piše besedilo brez samodejnega prilagajanja.
+Koraki za besedilo in odložišče podpirajo `{{date}}`, `{{time}}`, `{{datetime}}`, `{{clipboard}}`, `{{profile}}`, `{{process}}` in `{{user}}`. Oblika datuma je `yyyy-MM-dd`; oblika časa je `HH:mm`. Neznane spremenljivke ostanejo nespremenjene. Odložišče se bere samo na zahtevo. Dejanje odložišča zapiše besedilo, ne da bi ga samodejno prilepilo.
 
-Ukrepi, ki se začnejo s strani uporabnika, lahko usmerjajo na zadnjo zunanjo aplikacijo. Windows blokov vnaprej aktivirajo, ročno aktivirajo cilj in se vrnejo. uspešna dostava ključa ne dokaže, da je cilj končal svoje naloge.
+Dejanja, zagnana iz uporabniškega vmesnika, lahko ciljajo zadnjo zunanjo aplikacijo. Če cilj izgine ali Windows prepreči aktiviranje v ospredju, cilj aktivirajte ročno in poskusite znova. Uspešna dostava pritiska tipke ne dokazuje, da je cilj dokončal nalogo.
 
-## Profili in nastavitve delovnega mesta
+## Profili in nastavitev delovnega mesta
 
-Profili se lahko ujemajo z imenom procesa in delom naslova okna. Ko sta obe postavljeni, se morajo oba združiti. Profilska naročila rešujejo tekme; privzet profil je padec. omogočajo samodejno izbiro. Lock Profile preprečuje samodejne spremembe trenutne seje.
+Profili se lahko ujemajo z imenom procesa in delom naslova okna. Če sta nastavljena oba pogoja, se morata ujemati oba. Vrstni red profilov razreši več sočasnih ujemanj; privzeti profil se uporabi, če ni drugih ujemanj. Samodejno izbiro izrecno omogočite. Zaklep profila prepreči samodejne spremembe v trenutni seji.
 
-Odprte nastavitve delovnega mesta iz orodij ali palete. Izberite programe, dokumente, spletne strani, ciljno/izgledno ali sceno OBS. Pomočnik pripravi delovno mesto, srečanje, pretakanje, raziskave ali profili projekta. Preverite ustvarjene korake pred prihranki. Nastavitve ne izvajajo pripravljenih ukrepov.
+Odprite nastavitev delovnega mesta v orodjih ali paleti. Izberite programe, dokumente, spletna mesta, ciljno zvočno napravo/zaslon ali sceno OBS. Pomočnik pripravi profile za delovno mesto, sestanke, pretakanje, raziskovanje ali projekte. Pred shranjevanjem preglejte ustvarjene korake. Nastavitev ne izvede pripravljenih dejanj.
 
-## Makro, pogoji in snemanje
+## Makri, pogoji in snemanje
 
-Macros izvaja svoje korake v redu in podpira počitke, ponovitve in preklic. Skupna omejitev ponovitve je 100. Uporabite predogled, preden izvedete dejanja, ki jih vnesete v drugo aplikacijo ali spremenite stanje sistema.
+Makri izvajajo korake po vrsti ter podpirajo čakanje, ponovitve in preklic. Splošna omejitev ponovitev je 100. Pred zagonom dejanj, ki vnašajo besedilo v drugo aplikacijo ali spreminjajo stanje sistema, uporabite predogled.
 
-Čakajte na ciljno okno, ki sprejme proces, naslov in časovni izhod od 1 do 600,000 ms. Potrebno je vsaj en filter. Prilagodljivo vidno okno mora odgovoriti in postati predhodno, preden se nadaljujejo naslednje korake. Pripravljeno okno ne dokaže, da je dokument ali storitev končana polnjenje.
+Čakanje na ciljno okno sprejme proces, podniz naslova in časovno omejitev od 1 do 600000 ms. Potreben je vsaj en filter. Ujemajoče se vidno okno se mora odzvati in postati okno v ospredju, preden se nadaljujejo naslednji koraki. Pripravljeno okno ne dokazuje, da se je dokument ali storitev dokončno naložila.
 
-Upravljavec delovnega toka dodaja pogoje za datoteke, procesno delovanje in okno. Lažji pogoj je korak naprej in lahko premika dodatne korake naprej. Zavrnite pogoj, da izrazite alternativno podružnico. Izberite stop-on-error ali continu-on-err delno; nadaljevanje lahko zapusti poznejše korake brez njihovih pričakovanih pogojev.
+Urejevalnik poteka dela dodaja pogoje za obstoj datoteke, izvajanje procesa in naslov okna. Neizpolnjen pogoj preskoči korak in lahko preskoči dodatne korake naprej. Za alternativno vejo uporabite negacijo pogoja. Premišljeno izberite ustavitev ali nadaljevanje ob napaki; nadaljevanje lahko pusti poznejše korake brez pričakovanih predpogojev.
 
-Akcijski zapisnik zajema kratke kode in čaka, ne običajno pisanje. Podpira spremenljivke in funkcijske ključe. Utekanje se ustavi z snemanjem. Preverite seznam in ga sprejmete kot nezahtevni načrt, nato pa izrecno shranite. UI-klik je ločeno orodje, opisano spodaj.
+Snemalnik dejanj zajema kombinacije tipk za bližnjice in čakanja, ne običajnega tipkanja. Podpira bližnjice z modifikatorskimi tipkami in funkcijske tipke. Escape ustavi snemanje. Preglejte seznam in ga prevzemite kot neshranjen osnutek ploščice, nato ga izrecno shranite. Snemanje klikov uporabniškega vmesnika je ločeno orodje, opisano spodaj.
 
-## Ključne plošče, gest in sloji
+## Tipkovnice, geste in plasti
 
-Na tipkovnici so navedeni odkriti vmesniki in referenčni postavki. Ena fizična tipkovnica lahko razkriva več vmesnikov. Izberite pravilni jezik in geometrijo; samo ime izdelka ne določa ISO ali ANSI postavitve.
+Stran tipkovnice navaja zaznane vmesnike in referenčne razporeditve. Ena fizična tipkovnica lahko izpostavi več vmesnikov. Izberite pravi jezik in geometrijo; samo ime izdelka ne določa razporeditve ISO ali ANSI.
 
-Standardni globalni hotkeys se uporabljajo na tipkovnicah. Raw Input povezave spremljajo določeno napravo in kodo skeniranja, vključno s podporo funkcije in medijev ključe. **Raw Input Ne zavrača običajnega Windows izključna druga tipkovnica ni pripravljena na proizvodnjo.** Potrjen, licenciran in preizkušeni filter-vodnik je še vedno potreben; nobenega MAKRIVO.
+Standardne globalne bližnjice veljajo za vse tipkovnice. Vezave Raw Input za posamezno napravo opazujejo določeno napravo in kodo tipke, vključno s podprtimi funkcijskimi in predstavnostnimi tipkami. **Raw Input ne prepreči običajnega vnosa v Windows. Izključna druga tipkovnica ni pripravljena za produkcijsko uporabo.** Še vedno je potreben podpisan, licenciran in preizkušen zaledni sistem s filtrirnim gonilnikom; MAKRIVO ne namesti nobenega.
 
-Podprte posebne ključne vezave lahko takoj pritisnete, tapete, držite ali dvakrat pritisnete. ključavnice s slojem začasno izberete drugo mapiranje in obnovite osnovno plast na sproščanje; ključavnica s slojem ne deluje svoje makro. 150 za 5,000 MS; dvoposteljna okna iz 150 za 1,000 MS. Te mapiranje se razlikuje od običajnih globalnih hotkeys.
+Podprte vezave posebnih tipk lahko uporabijo takojšen pritisk, kratek pritisk, držanje ali dvojni pritisk. Tipke za začasno plast med držanjem izberejo drugo preslikavo in ob sprostitvi obnovijo osnovno plast; tipke za izbiro plasti ne izvedejo lastnega makra. Pragovi držanja segajo od 150 do 5000 ms; časovna okna dvojnega pritiska od 150 do 1000 ms. Te preslikave so ločene od običajnih globalnih bližnjic.
 
-Posebni ključni čarovnik odkrije združljive ključe, ne da bi izvajal svoje dodeljene ukrepe med ujetjem. Diagnoza pojasnjuje razpoložljive naprave, prekinjene vezave, nepravilnosti profila in konflikte. Preklapljanje prikazuje izbrano postavitev in vezave; njeno privzeto kratko je `Ctrl+Alt+F1`.
+Čarovnik za posebne tipke zazna združljive tipke, ne da bi med zajemom izvajal dodeljena dejanja. Diagnostika pojasni nedostopne naprave, začasno ustavljene vezave, neujemanja profilov in spore. Prekrivni prikaz kaže izbrano razporeditev in vezave; privzeta bližnjica, ki jo držite za prikaz, je `Ctrl+Alt+F1`.
 
 | Integracija | Zahteve in omejitve |
 | --- | --- |
-| Corsair | Spremljanje iCUE, dostop do SDK in združljiv model. G1–G6 in podprte funkcije RGB; lastni Fn, kolesa, ključavnice in profilne kontrole so običajno ne izpostavljeni API G ključavnic. |
-| Logitech G | Originalna lokalna knjižnica x64 G-key/LED zahteva izrecno odobritev. G-slavni dogodki ne identificirajo več enakih fizičnih tipkovnic. |
-| Razer | Chroma RGB in standardni vnos; zemljevidi lastniški kontrolniki v Synapse kjer je potrebno. |
-| SteelSeries | GameSense RGB in standardni vnosi; mapna lastnina v GG, kjer je potrebno. |
-| Wooting | Prilagodljiva originalna x64 SDK za analogne vrednosti in pragove; normalni vnos HID ostane aktiven. |
-| Druge ključne plošče | Standardni hotkeys ali podprti fizični skenerji. Fn in lastniški kontrolniki so odvisni od modela in konfiguracije ponudnika. |
+| Corsair | Zagnan iCUE, dostop do SDK in združljiv model. G1–G6 in podprte funkcije RGB; lastniški kontrolniki Fn, koleščka, zaklepanja in profilov običajno niso izpostavljeni prek API-ja G-key. |
+| Logitech G | Izvirne lokalne knjižnice x64 G-key/LED SDK zahtevajo izrecno odobritev. Dogodki G-key ne omogočajo enoličnega razlikovanja več enakih fizičnih tipkovnic. |
+| Razer | Chroma RGB in standardni vnos; po potrebi preslikajte lastniške kontrolnike v Synapse. |
+| SteelSeries | GameSense RGB in standardni vnos; po potrebi preslikajte lastniške kontrolnike v GG. |
+| Wooting | Združljiv izvirni lokalni SDK x64 za analogne vrednosti in pragove; običajni vnos HID ostane aktiven. |
+| Druge tipkovnice | Standardne bližnjice ali podprte fizične vezave kod tipk. Fn in lastniški kontrolniki so odvisni od modela in nastavitev proizvajalca. |
 
-Raziskave proizvajalca opisujejo dokumentirane zmogljivosti, ki niso bile izvedene ali preizkušene za združljivost z vsemi navedenimi napravami. Novi adapterji še vedno potrebujejo resnično sprejemanje strojne opreme. Ne prenesite SDK binarnih virov iz nezanesljivih virov; pravice distribucije SDK so ločene od tehnične združljivosti.
+Raziskava proizvajalcev opisuje dokumentirane zmogljivosti, ne implementirane ali preizkušene združljivosti z vsako navedeno napravo. Novi adapterji še vedno potrebujejo sprejemno preverjanje na pravi strojni opremi. Binarnih datotek SDK ne prenašajte iz nezaupanja vrednih virov; pravice do distribucije SDK so ločene od tehnične združljivosti.
 
-## Avdio, zasloni in OBS
+## Zvok, zasloni in OBS
 
-Zvočni koraki nastavijo volumen od 0 do 100 odstotkov in mute/unmute/toggle podprto izhod ali mikrofon končne točke. Izberite določeno končno točko ali uporabite predvideno Windows. Izgubljeni cilj povzroči napako namesto tiho nadzora nad drugo napravo. Naprave po ponovnem povezovanju. Končna točka nadzora ni zahteva za neodvisno podporo mešalnika.
+Zvočni koraki nastavijo glasnost od 0 do 100 odstotkov ter utišajo, vklopijo zvok ali preklopijo utišanje podprtih izhodnih oziroma mikrofonskih končnih točk. Izberite določeno končno točko ali privzeto napravo Windows. Manjkajoči shranjeni cilj povzroči napako, namesto da bi aplikacija tiho upravljala drugo napravo. Po ponovni povezavi osvežite naprave. Upravljanje končnih točk ne pomeni podpore za neodvisni mešalnik posameznih aplikacij.
 
-Prikazuje akcije povečati / zmanjšati svetlost za 10 odstotnih točk ali določiti vrednost od 0 do 100. Notranji zasloni uporabljajo podprte WMI vmesnike; zunanji monitorji zahtevajo podporo DDC/CI in običajno nastavitev menija. Dokovi, adapterji in kabli lahko blokirajo nadzor. Izberite vse zaslone ali en monitor. Ponovna povezava lahko spremeni razpoložljive identitete; pregleda shranjene cilje. Izgubljeni bralci so prikazani kot nedostopni namesto merjenih vrednosti.
+Dejanja zaslona povečajo/zmanjšajo svetlost za 10 odstotnih točk ali nastavijo vrednost od 0 do 100. Vgrajeni zasloni uporabljajo podprte vmesnike WMI; zunanji monitorji zahtevajo podporo DDC/CI in običajno vklop te možnosti v meniju monitorja. Priklopne postaje, adapterji in kabli lahko preprečijo upravljanje. Izberite vse podprte zaslone ali en monitor. Ponovna povezava lahko spremeni razpoložljive identifikatorje; preverite shranjeni cilj. Manjkajoči odčitki so prikazani kot nedostopni, ne kot izmerjene vrednosti.
 
-OBS zahteva WebSocket v5 omogočen v OBS orodja. Nastavite končno točko, preizkusite povezavo in polnjenje scene / vnos imena pred shranjevanjem. Podprte ukrepe vključujejo premikanje scene, tok / zapis start / stop / togo, snemanje odmora / povzetka in vnos mute. Besedila se lahko shranijo v Windows Credential Manager in so izključena iz konfiguracijskih izvozov. Uspešna ukaz OBS ne določa vsakega pretoka učinka.
+OBS zahteva omogočen WebSocket v5 v orodjih OBS. Nastavite končno točko, preizkusite povezavo in pred shranjevanjem naložite imena scen/vhodov. Podprta dejanja vključujejo preklapljanje scen, zagon/ustavitev/preklop pretakanja in snemanja, premor/nadaljevanje snemanja ter utišanje vhoda. Gesla lahko shranite v Windows Credential Manager in so izključena iz izvozov konfiguracije. Uspešen ukaz OBS ne dokazuje vseh nadaljnjih učinkov pretakanja.
 
-## Zgodovina preverjanja in izvrševanja
+## Preverjanje rezultatov in zgodovina izvajanja
 
-Preverite rezultate za ustrezne korake. Aplikacija razlikuje predogled, potrjene učinke, napake, preklic in učinke, ki jih ni mogoče preveriti. Obstoječi proces ni pripravljenost za uporabo. Relativne spremembe, skrajšanja in vnos besedila ne morejo prejeti zahtevka za uspeh. Preverite dnevnik dejavnosti in zgodovino preverjanja, ko dejanje ne uspe. Napake v konfiguraciji je treba popraviti, preden končate celotno makro.
+Za primerne korake omogočite preverjanje rezultata. Aplikacija razlikuje predhodna preverjanja, potrjene učinke, napake, preklic in učinke, ki jih ni mogoče preveriti. Obstoj procesa ne pomeni pripravljenosti aplikacije. Relativnim spremembam, bližnjicam in vnosu besedila ni mogoče pripisati splošno zagotovljenega uspeha. Ob neuspehu dejanja preglejte dnevnik dejavnosti in zgodovino preverjanja. Pred ponovnim zagonom celotnega makra odpravite napake konfiguracije.
 
-## UI avtomatizacija in snemanje klik
+## Avtomatizacija vmesnika in snemanje klikov
 
-Dodajte korak za avtomatizacijo, izberite operacijo in zajemajte cilj pod ukaznikom po prikazani zamudi. samo zajemanje ne izvaja ničesar. preverite izbiro in zahtevate edinstveno tekmo. `Invoke`, `Select`, `Toggle`, `Focus`, `SetValue` in `WaitState`. Polja gesla, onemogočen kontrolnik in nejasni selektorji so zavrnjeni.
+Dodajte korak avtomatizacije uporabniškega vmesnika, izberite operacijo in po prikazani zakasnitvi zajemite cilj pod kazalcem. Sam zajem ne izvede ničesar. Preverite selektor in zahtevajte enolično ujemanje. Podprte operacije vključujejo `Invoke`, `Select`, `Toggle`, `Focus`, `SetValue` in `WaitState`. Polja za gesla, onemogočeni kontrolniki in dvoumni selektorji so zavrnjeni.
 
-UI avtomatizacija poteka v omejenem spremljevalnem procesu. Odvisno je od podporo in dovoljenj za dostopnost ciljne aplikacije Windows. Klikni zapisnik zajema podprte ukrepe in prekinitve; ne snemajo splošnega vnosa besedila. Preverite in potrdite predlog pred sprejetjem. Spremembe v zunanji aplikaciji lahko onemogočajo izbire. Procesna izolacija omejuje nesreče in preklic, vendar ni varnostna peska.
+Avtomatizacija uporabniškega vmesnika poteka v omejenem spremljevalnem procesu. Odvisna je od podpore za dostopnost Windows v ciljni aplikaciji in dovoljenj. Snemalnik klikov zajema podprta dejanja in premore; ne snema splošnega vnosa besedila. Pred prevzemom preglejte in preverite osnutek. Spremembe vmesnika zunanje aplikacije lahko razveljavijo selektorje. Izolacija procesa omejuje posledice zrušitev in omogoča omejevanje izvajanja ob preklicu, vendar ni varnostni peskovnik.
 
-## Plugin
+## Vtičniki
 
-Odprite razširitve za preverjanje paketa pred uvozom. Struktura paketa, manifesti in hashes so preverjeni. Uvoz se začne z invalidnostjo. Preberite izjavljene ukrepe in izrecno zaupajte izdajatelju, preden omogočite. Plugins deluje z dovoljenji uporabnika v ločenem procesu; ta proces je **ne pesek**. Namestite samo pakete, ki jih zaupate.
+Odprite razširitve in pred uvozom preglejte paket. Preverijo se struktura paketa, manifest in zgoščene vrednosti. Uvoženi vtičnik je sprva onemogočen. Pred omogočanjem preberite navedena dejanja in izrecno zaupajte izdajatelju. Vtičniki se izvajajo z vašimi uporabniškimi dovoljenji v ločenem procesu; ta proces **ni peskovnik**. Nameščajte samo pakete, ki jim zaupate.
 
-Upravljavec podpira izvoz, onemogočanje, odstranjevanje in obnovitev/odstranjevanje prejšnje različice. Izgubljene odvisnosti blokirajo povabilo. Primerni paket zagotavlja računovodstvo in lokalno-državne ukrepe. Podprta shema je dokumentirana podsestava JSON-Schema, ne pa vsaka možna funkcija JSON-Šema. Na trgu ni javnega plugina.
+Upravljalnik podpira izvoz, onemogočanje, odstranitev ter obnovitev/zavrnitev prejšnje različice. Manjkajoče odvisnosti preprečijo klic. Vzorčni paket ponuja odštevanje in dejanja lokalnega stanja. Podprta shema je dokumentirana podmnožica JSON-Schema, ne vse možne funkcije JSON-Schema. Javne tržnice vtičnikov ni.
 
-## Mobilni panel
+## Mobilna plošča
 
-1. Odprite Mobile Panel, izberite lokalni IP in izrecno izberite profile, ki jih želite prikazati. Privzeto naslov za vrtenje je na voljo le na samem računalniku; izberite ustrezno naslov LAN za telefon ali tablico.
-2. Začnite s panelom in preberite naslov HTTPS, potrdite prstni odtis in enostavno uporabite šest-digitalni kodo.
-3. Na eni napravi v isti zaupani omrežju, odprite naslov. Primerjajte SHA-256 prstni odtis prek zaupanja pred zaupanjem lokalnemu certifikatu. Aplikacija ne namesti zaupanja vrednega potrdila samodejno.
-4. Par uporabite prikazani kodo in preizkusite eno neškodljivo ploščo. Za dostop do LAN je morda potrebna ročna dovoljenja Windows Firewall. Ne izpostavljajte pristanišča internetu.
-5. Zaustavite ploščo, ko je končana, ali prek aplikacije preklicate stranke.
+1. Odprite mobilno ploščo, izberite lokalni IP in izrecno izberite profile za dostop. Privzeti povratni naslov loopback je dosegljiv samo na samem računalniku; za telefon ali tablico izberite ustrezen naslov LAN.
+2. Zaženite ploščo in preberite njen naslov HTTPS, prstni odtis potrdila ter enkratno šestmestno kodo za seznanjanje.
+3. Na napravi v istem zaupanja vrednem omrežju odprite naslov. Preden zaupate lokalnemu potrdilu, primerjajte prstni odtis SHA-256 prek zaupanja vrednega kanala. Aplikacija ne namesti zaupanja vrednega potrdila samodejno.
+4. Seznanite napravo s prikazano kodo in preizkusite eno neškodljivo ploščico. Za dostop LAN bo morda potrebna ročna odobritev v Windows Firewall. Vrata ne smejo biti izpostavljena internetu.
+5. Ko končate, ustavite ploščo ali prek aplikacije prekličite dostop seznanjenim odjemalcem.
 
-Zasebni strežniki so zaščiteni z Windows DPAPI; potrdila strank so shranjena kot hash. Spreminjanje IP ali podaljšanje potrdila lahko zahteva ponovno zaupanje. Panel prikazuje stanje delovanja in preverjanja, ne vsak možen živ senzor. Razpored brskalnika in lokalni HTTPS preverjanja ne nadomeščajo resničnega sprejemanja telefona/tableta LAN.
+Zasebni strežniški ključi so zaščiteni z Windows DPAPI; poverilnice odjemalcev so shranjene kot zgoščene vrednosti. Sprememba IP ali obnovitev potrdila lahko zahteva ponovno vzpostavitev zaupanja. Plošča kaže stanja dejanj in preverjanj, ne vseh možnih sprotnih senzorjev. Preverjanje postavitve v brskalniku in lokalnega HTTPS ne nadomesti sprejemnega preizkusa na pravem telefonu/tablici prek LAN.
 
-## lokalni pomočnik
+## Lokalni pomočnik za sestanke z umetno inteligenco
 
-Ta opcijski eksperimentalni asistent je privzeto onemogočen. Odprite ga iz orodij, ga izrecno omogočite, izberite delovni čas/model in dodajte le vire, ki jih želite upoštevati. Nastavite cilj, ustvarite projekt, preverite neuspešne zahteve in prenesete rezultat na običajen urednik. Nič se ne izvaja samodejno; shranjevanje in delovanje ostanejo izrecni ukrepi. Ne obstaja samodejni padec časa.
+Ta izbirni eksperimentalni pomočnik je privzeto onemogočen. Odprite ga v orodjih, ga izrecno omogočite, izberite izvajalno okolje/model in dodajte samo vire, ki naj jih upošteva. Navedite cilj, ustvarite osnutek, preglejte nerešene zahteve in prenesite rezultat v običajni urejevalnik. Nič se ne izvede samodejno; shranjevanje in zagon ostaneta izrecni dejanji. Samodejnega preklopa na drugo izvajalno okolje ni.
 
-| Runtime v času | nastavitev |
+| Izvajalno okolje | Nastavitev |
 | --- | --- |
-| Ollama | Ločen lokalni servis in lokalno nameščen model na `127.0.0.1:11434`. Izjavljeni modeli za daljavo / oblak so zavrnjeni. |
-| LM Studio | Lokalni strežnik z lokalno naloženim modelom in podporo za shemo JSON na `127.0.0.1:1234`. Ne omogočite daljinskega usmerjanja za lokalno obdelavo. |
-| llama.cpp | Lokalni `llama-server` in združljiv model z podporo za shemo JSON na `127.0.0.1:8080`. |
-| ONNX Čas delovanja GenAI CPU | Zaupanja vredna lokalna GenAI besedilna miza; izberite `genai_config.json`. Inference uporablja povezani proces brez HTTP. |
+| Ollama | Ločena lokalna storitev in lokalno nameščen model na `127.0.0.1:11434`. Deklarirani oddaljeni modeli/modeli v oblaku so zavrnjeni. |
+| LM Studio | Lokalni strežnik z lokalno naloženim modelom in podporo za shemo JSON na `127.0.0.1:1234`. Za lokalno obdelavo ne omogočite oddaljenega usmerjanja. |
+| llama.cpp | Lokalni `llama-server` in združljiv model s podporo za shemo JSON na `127.0.0.1:8080`. |
+| ONNX Runtime GenAI CPU | Zaupanja vredna združljiva lokalna mapa besedilnega modela GenAI; izberite `genai_config.json`. Sklepanje uporablja priloženi spremljevalni proces brez HTTP. |
 
-HTTP stranke uporabljajo le loopback, ne uporabljajo proxy in ne sledijo preusmeritvam. MAKRIVO ne more zanesljivo določiti, ali združljiv lokalni strežnik internalizira daljinsko storitev. Avtentizirani lokalni strežniki v tej različici niso konfigurirani. Modelne teže, Python in lokalni inference strežniki se ne prenesejo ali namestijo samodejno.
+Odjemalci HTTP uporabljajo samo loopback, ne uporabljajo posredniških strežnikov in ne sledijo preusmeritvam. MAKRIVO ne more zanesljivo ugotoviti, ali združljiv lokalni strežnik interno kliče oddaljeno storitev. Lokalnih strežnikov z avtentikacijo v tej različici ni mogoče nastaviti. Uteži modelov, Python in lokalni strežniki za sklepanje se ne prenesejo ali namestijo samodejno.
 
-ONNX paketi potrebujejo `tokenizer.json` in veljavni šabloni za klepet. Podprte predloge v `tokenizer_config.json` so vrstica `chat_template`, slovar z vrsticami `default` ali nepogrešljiv seznam imen/predvidenega predloga. Če je predloga odsotna ali nič, se `chat_template.jinja` uporablja kot padec. Prosti, dvomljivi, čezmerni ali nepravilno vpisani predlogi so zavrnjeni. Arbitrični ONNX datoteke, modeli vstavljanja/vidovanja in paketi samo GPU niso izmenjavljivi z združljivimi GenAI besedilnimi modeli. Zvezdna različica GenAI je 0.17.1, CPU. Uporabite samo zaupane modele; procesno ločevanje ni pesek.
+Paketi ONNX potrebujejo `tokenizer.json` in veljavno predlogo za klepet. Podprte oblike predlog v `tokenizer_config.json` so niz `chat_template`, slovar z nizom `default` ali nedvoumen seznam poimenovanih/privzetih predlog. Če predloga manjka ali je null, se kot nadomestilo uporabi `chat_template.jinja`. Prazne, dvoumne, prevelike predloge in predloge napačnega podatkovnega tipa so zavrnjene. Poljubne datoteke ONNX, modeli za vektorske vložitve/vid in paketi samo za GPU niso zamenljivi z združljivimi besedilnimi modeli GenAI. Priložena različica izvajalnega okolja GenAI je 0.17.1, CPU. Uporabljajte samo zaupanja vredne modele; ločevanje procesov ni peskovnik.
 
-Asistent podpira izbrane programe brez argumentov, izbrane dokumente in spletne strani ter mikrofon mute, ko je izrecno zahtevan. Ne ustvarja sporočil, zmenkov, samovoljnih skriptov, brezplačnih klikov, prenosov ali preklopov slušalke. Cilj in imena virov se pošljejo v izbrano lokalno časovno obdobje; poti virov in vsebine datoteke niso ločeno. Namen, ki ga določi uporabnik, lahko vsebuje osebne podatke. Obnašanje omrežja lokalnega delovnega časa ostaja odgovornost uporabnika.
+Pomočnik podpira izbrane programe brez argumentov, izbrane dokumente in spletna mesta ter utišanje mikrofona, kadar je izrecno zahtevano. Ne ustvarja sporočil, sestankov, poljubnih skriptov, poljubnih klikov, prenosov ali preklapljanja slušalk. Cilj in imena virov se pošljejo izbranemu lokalnemu izvajalnemu okolju; poti virov in vsebina datotek se ne posredujejo posebej. Cilj, ki ga vnese uporabnik, lahko sam vsebuje osebne podatke. Omrežno vedenje lokalnega izvajalnega okolja ostaja odgovornost uporabnika.
 
-V tem primeru ONNX Zahtevek proračuna je 90 sekund, vključno z modelom, do 3,072 hitro token in 1,024 ustvarjeni tokeni, ki so omejeni tudi na kontekst modela. zlonamerni/zlomljeni JSON in neznani ID-ji so zavrnjeni. preklic ali blizu zaključka zahteve. naključni model testirajo izvedbo, ne koristno načrtovanje kakovosti ali prihranek časa. Lokalni eksperimentni logi vsebujejo identifikacije dogodkov in časov, ne ciljno besedilo ali vsebino dokumenta; niso samodejno preneseni.
+Časovna omejitev zahteve ONNX je 90 sekund, vključno z nalaganjem modela, z največ 3072 vhodnimi žetoni in 1024 ustvarjenimi žetoni, dodatno omejenimi s kontekstom modela. Nepravilno oblikovan/odrezan JSON in neznani identifikatorji virov so zavrnjeni. Zahtevo končate s preklicem ali zapiranjem. Preizkus izvajalnega okolja z naključnim modelom dokazuje izvajanje, ne uporabne kakovosti načrtovanja ali prihranka časa. Lokalni dnevniki poskusov vsebujejo identifikatorje dogodkov in čase, ne besedila cilja ali vsebine dokumentov; ne nalagajo se samodejno na strežnik.
 
-Kasnejša ocena malega modela Instruct je ustvarila nič veljavne načrte v štirih nemških/angleških preskusih. Native inference je delal, vendar model ni dosegel stroge pogodbe o načrtovanju. To je negativen rezultat kakovosti, ne priporočeni model ali dokazano uporaben pomočnik. Oglejte si datum lokalnega časovnega testa za natančno pregled in omejitve modela.
+Poznejše vrednotenje majhnega modela Instruct ni ustvarilo nobenega veljavnega načrta v štirih nemških/angleških preizkusih. Nativno sklepanje je delovalo, vendar model ni izpolnil strogih zahtev načrtovanja. To je negativen rezultat kakovosti, ne priporočilo modela ali dokazano uporaben pomočnik. Za natančno revizijo modela in omejitve glejte datirano poročilo o preizkusu lokalnega izvajalnega okolja.
 
-## Uvoz, izvoz, sinhronizacija in varnostna kopija
+## Uvoz, izvoz, sinhronizacija in varnostno kopiranje
 
-Preverite uvozne napovedi, preden zamenjate konfiguracijo. Uvožene ukrepe se začnejo onemogočiti, prenosna sinhronizacija pa odstrani hardware-specific povezave. Ponovite naprave in omogočite ukrepe namerno po pregledu. Pregled besedila/akcijskega vsebine pred delitvijo izvoza; izključitev gesel ne naredi vseh uporabnikov ustvarjenih vsebin občutljivih.
+Pred zamenjavo konfiguracije preglejte predogled uvoza. Uvožena dejanja so sprva onemogočena, prenosna sinhronizacija pa odstrani vezave, odvisne od strojne opreme. Po pregledu znova dodelite naprave in premišljeno omogočite dejanja. Pred deljenjem izvoza preglejte vsebino besedila/dejanj; izključitev gesel ne pomeni, da vsa uporabniško ustvarjena dejanja ne vsebujejo občutljivih podatkov.
 
-Sinkronizacija profila izmenjuje datoteke v izbranem mapi, opcionalno upravlja obstoječi odjemalec v oblaku. MAKRIVO ne zagotavlja nobenega računa v oblaku in ne shrani nobenih verodostojnosti v oblaku Revizija preprečuje tiho prepisovanje. Vključevanje vsebin je izrecna izbira. Nadgradite konfiguracijo pred uvozom zamenjave. Privzeta konfiguracija je `%LOCALAPPDATA%\AivanaWindowsController\settings.json`; zgodovinsko ime imenika je ohranjeno za združljivost. Zaprite aplikacijo, preden jo ročno kopirate / obnovite. Shranjene odobritve SDK in OS-zaščitene potrdila so morda potrebne za ponovno uporabo na drugem računalniku.
+Sinhronizacija profilov izmenjuje datoteke v izbrani mapi, ki jo lahko upravlja vaš obstoječi odjemalec za oblak. MAKRIVO ne zagotavlja računa v oblaku in ne shranjuje poverilnic za oblak. Revizije preprečujejo tiho prepisovanje. Vključitev vsebine dejanj je izrecna izbira. Pred nadomestnim uvozom izdelajte varnostno kopijo konfiguracije. Privzeta konfiguracija je `%LOCALAPPDATA%\AivanaWindowsController\settings.json`; zgodovinsko ime imenika je ohranjeno zaradi združljivosti. Pred ročnim kopiranjem/obnavljanjem zaprite aplikacijo. Shranjene odobritve SDK in poverilnice, zaščitene z operacijskim sistemom, bo morda treba na drugem računalniku ustvariti znova.
 
-## reševanje težav
+## Odpravljanje težav
 
-| Simptomi | Kaj preveriti |
+| Simptom | Kaj preveriti |
 | --- | --- |
-| kratko nič ne dela | Uporablja se aplikacija, povezave niso prekinjene, pravilni aktivni profil, shranjena/ omogočena plošča, konflikti in razpoložljivi cilji. |
-| Ciljno okno ni mogoče aktivirati | Ročno ga aktivirajte. Windows omejitve prednosti in privilegijske razlike lahko blokirajo avtomatizacijo. |
-| Posebni ključ ni odkril | Podpora za prodajalce / SDK / model; konfigurirajte lastne kontrolnike, da lahko izdajo podprt standardni ključ. |
-| Druga tipka je tudi običajno | Pričakovan z Raw Input. Izključno zaviranje ni izvedena za proizvodnjo. |
-| Avdio ali svetlost ni na voljo | Obnovite naprave; preverite izbrane identitete, končne seje, podporo WMI/DDC/CI in omejitve dok/kabel. |
-| OBS offline | WebSocket v5 omogočen, pravilna končna točka/povezava, dostopna storitev in veljavna imena prizora/vnosa. |
-| Avtomatizacija ne uspe | Vključena je družinska gostiteljica, edinstven veljavni selektor, dostopna omogočena ciljna oprema, podprta nadzorna oprema in dovoljenja. Odstranite prehodni čas samo po pregledu cilja. |
-| Mobilna plošča nepremičnina | LAN namesto naslovov za vrtenje, enake mreže, strežnika, odobrenih profilov, potrditev prstnih odtisov/trusta in ročnih dovoljenj za ogenj. |
-| Plugin ne uspe | Celovitost paketa, izrecno zaupanje / dovoljeno stanje, odvisnosti, združljivost protokola in log izvedbe. |
-| Vprašanje ne uspe | Pravilno izbrani lokalni čas delovanja, storitev/model pripravljen, podprta shema JSON, zaupanja vredna mape modelov in omejitve zahteve. |
-| Razporeditev ali besedilo se zdi napačno | Ločite jezik uporabnika od geometrije tipkovnice; preoblikujte okno, preverite razsežnost zaslona in poročate o natančni strani/jezici/izdelavi. |
+| Bližnjica ne naredi ničesar | Aplikacija deluje, vezave niso začasno ustavljene, pravilen aktivni profil, shranjena/omogočena ploščica, spori bližnjic in razpoložljiv cilj. |
+| Ciljnega okna ni mogoče aktivirati | Aktivirajte ga ročno. Omejitve aktiviranja v ospredju v Windows in razlike v pravicah lahko preprečijo avtomatizacijo. |
+| Posebna tipka ni zaznana | Podpora storitve proizvajalca/SDK/modela; če je mogoče, nastavite lastniške kontrolnike tako, da pošljejo podprto standardno tipko. |
+| Druga tipkovnica tudi običajno tipka | To je pričakovano pri Raw Input. Izključno preprečevanje vnosa ni implementirano za produkcijsko uporabo. |
+| Zvok ali svetlost ni na voljo | Osvežite naprave; preverite izbrani identifikator, seje končnih točk, podporo WMI/DDC/CI in omejitve priklopne postaje/kabla. |
+| OBS offline | Omogočen WebSocket v5, pravilna končna točka/geslo, dosegljiva storitev in veljavna imena scen/vhodov. |
+| Avtomatizacija uporabniškega vmesnika ne uspe | Vključen spremljevalni gostiteljski proces, enoličen veljaven selektor, dostopen omogočen cilj, podprt kontrolnik in dovoljenja. Po začasni časovni prekoračitvi poskusite znova šele po pregledu cilja. |
+| Mobilna plošča ni dosegljiva | Naslov LAN namesto loopback, isto omrežje, delujoč strežnik, odobreni profili, prstni odtis potrdila/zaupanje in ročna dovoljenja požarnega zidu. |
+| Vtičnik ne uspe | Celovitost paketa, izrecno zaupanje/omogočeno stanje, odvisnosti, združljivost protokola in dnevnik izvajanja. |
+| Zahteva umetni inteligenci ne uspe | Pravilno izbrano lokalno izvajalno okolje, pripravljena storitev/model, podprta shema JSON, zaupanja vredna združljiva mapa modela in omejitve zahtev. |
+| Razporeditev ali besedilo je videti napačno | Ločite jezik vmesnika od geometrije tipkovnice; spremenite velikost okna, preverite povečavo zaslona in navedite točno stran/jezik/gradnjo. |
 
-Za uporabno poročilo o napaki vključujejo različico Windows, gradnjo aplikacij/obvezo, jezik, razsežnost zaslona, strojni model, minimalno zaporedje in ustrezno urejeno dnevno zvezo. Odstranite osebne poti, vsebino in potrdila pred objavo.
+Za uporabno poročilo o napaki navedite različico Windows, gradnjo aplikacije/revizijo kode, jezik, povečavo zaslona, model strojne opreme, minimalno zaporedje in ustrezen dnevnik z odstranjenimi občutljivimi podatki. Pred objavo odstranite osebne poti, vsebino dejanj in poverilnice.
 
-## Gradnja, testiranje in pakiranje
+## Gradnja, preizkušanje in priprava paketov
 
-Uporabite SDK, ki je nameščen v `global.json`. Od korenine do repozitorij:
+Uporabite SDK, katerega različica je določena v `global.json`. Iz korenskega imenika repozitorija:
 
 ```powershell
 dotnet build Aivana.slnx -c Release
@@ -161,14 +161,14 @@ dotnet run --project src/Aivana.Desktop -c Release -- --smoke-test
 python tools/check_documentation.py
 ```
 
-Windows integracijski testi lahko odprejo izolirane okne in začasno konfigurirajo/oddajajo podprte povezave dobavitelja. Uporabljajte jih brez drugega upravljavca, ki ima te obveznosti. Privzeto svetlost / avdio testi so samo branje; izrecno strojno krožno testiranje so ločeni. Mock protokolov, posnetkov zaslona in naključnih grafikonov ne smejo biti predstavljeni kot resnično kakovostno opremo / model.
+Integracijski preizkusi Windows lahko odprejo izolirana okna ter začasno nastavijo/sprostijo podprte vezave proizvajalcev. Izvajajte jih brez drugega upravljalnika, ki uporablja te vezave. Privzeta preverjanja svetlosti/zvoka samo berejo podatke; izrecni preizkusi spreminjanja in obnovitve strojne opreme so ločeni. Simuliranih protokolov, izrisanih posnetkov zaslona in naključnih grafov za sklepanje ne smete predstavljati kot sprejemno preverjanje prave strojne opreme ali kakovosti modela.
 
-Celoten izdajatelj združuje gostitelje, mobilne sredstva, primerni plugin, čas delovanja ONNX in razpoložljive obvestila o odvisnosti. Upoštevajte svoje pododdelke. Uspešna gradnja ni podpisano namestitev ali odobritev za izdajo. Izvor in gradnje se lahko razvijejo ločeno; primerjajte snemanje dokumentacije in se zavezujete nameščenemu različicam.
+Celotni postopek priprave paketa zbere spremljevalne gostiteljske procese, sredstva za mobilno ploščo, vzorčni vtičnik, izvajalno okolje ONNX in razpoložljiva obvestila o odvisnostih. Ohranite njegove podimenike. Uspešna gradnja ni podpisan namestitveni program ali pravna odobritev izdaje. Izvorna koda in gradnje se lahko razvijajo ločeno; primerjajte stanje dokumentacije in revizijo kode z nameščeno različico.
 
-## Licenca, zasebnost in status sproščanja
+## Licenciranje, zasebnost in stanje izdaje
 
-Namenjeni komercialni model je enkratna nakupa s stalno uporabo kupljene velike različice; končna cena, doplačilo naprave in pogoji nadgradnje morajo biti določeni v dejanskih prodajnih pogojih. Sistem nakupa/aktiviranja proizvodnje ni določen s to priročnico. Za vsakodnevno nadzorovanje ni potrebnega računa v oblaku.
+Predvideni poslovni model je enkratni nakup s trajno uporabo kupljene glavne različice; končno ceno, dovoljeno število naprav in pogoje nadgradenj je treba določiti v dejanskih prodajnih pogojih. Ta priročnik ne vzpostavlja produkcijskega sistema za nakup/aktiviranje. Za vsakodnevno upravljanje račun v oblaku ni potreben.
 
-Ne distribuirajte lastnih binarnih SDK brez dokazanega dovoljenja. Ohrani licenco in obvestila tretjih oseb za vsako pošiljano odvisnost, vključno z paketom .NET in ONNX. Modelske teže imajo svoje pogoje. Datirana revizija dovoljenja prenaša nekatere nove odvisnosti in ne pomeni razrešnice za te dodatke. Podjetje, ki je javno, sam ne dodeli splošnega odprtega vira.
+Lastniških binarnih datotek SDK ne distribuirajte brez dokazanega dovoljenja. Ohranite licence in obvestila tretjih oseb za vsako priloženo odvisnost, vključno s paketi .NET in ONNX. Uteži modelov imajo svoje pogoje. Datirana revizija licenc je bila opravljena pred nekaterimi novimi odvisnostmi in ne pomeni odobritve teh dodatkov. Javna dostopnost repozitorija sama po sebi ne podeljuje splošne odprtokodne licence.
 
-Resnična oprema ponudnika, delovanje telefona/tableta LAN, mešani monitor/DPI prehodov, dolgotrajna uporaba, popolna jezikovna pregleda, ekskluzivna podpora za voznike in uporabna kakovost AI načrtovanja ostane ločeno delo sprejemanja. Nikoli ne odobri samega prisotnosti.
+Prava strojna oprema proizvajalcev, delovanje telefona/tablice prek LAN, prehodi med različnimi monitorji/DPI, dolgotrajna uporaba, popoln jezikovni pregled, podpora izključnega gonilnika in uporabna kakovost načrtovanja z umetno inteligenco še vedno zahtevajo ločeno sprejemno preverjanje. Iz same prisotnosti funkcije nikoli ne sklepajte na odobritev.
