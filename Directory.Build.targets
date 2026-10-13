@@ -14,4 +14,5 @@
     <Copy SourceFiles="@(Companion)" DestinationFolder="$(OutDir)" SkipUnchangedFiles="true" />
     <Copy SourceFiles="@(MobileAsset)" DestinationFiles="@(MobileAsset->'$(OutDir)wwwroot/%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
   </Target>
+  <Import Project="$(MSBuildThisFileDirectory)build/MakrivoRetail.targets" />
 </Project>

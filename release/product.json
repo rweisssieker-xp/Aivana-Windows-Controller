@@ -1,0 +1,10 @@
+{
+  "product": "MAKRIVO",
+  "priceMinor": 2900,
+  "currency": "EUR",
+  "taxBehavior": "inclusive",
+  "maxDevices": 4,
+  "majorVersion": 1,
+  "billing": "one_time",
+  "perpetual": true
+}

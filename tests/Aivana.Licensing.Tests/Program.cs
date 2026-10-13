@@ -1,0 +1,55 @@
+using System.Security.Cryptography;
+using System.Text;
+using System.Text.Json;
+using Aivana.Licensing;
+using var rsa = RSA.Create(3072);
+using var other = RSA.Create(3072);
+var keys = new Dictionary<string,string>{{"primary",rsa.ExportSubjectPublicKeyInfoPem()},{"rotated",other.ExportRSAPublicKeyPem()}};
+var device = new string('a',64);
+var payload = new LicensePayload(1,"MAKRIVO",Guid.NewGuid().ToString(),1,4,device,DateTimeOffset.UtcNow.AddYears(-10));
+int checks=0;
+void Check(bool ok,string name) { checks++; if(!ok) throw new Exception(name); }
+LicenseValidationResult Verify(string json) => LicenseVerifier.Verify(json,keys,device,1);
+string Sign(LicensePayload p) => LicenseSigner.Sign(p,"primary",rsa.ExportPkcs8PrivateKeyPem());
+string Raw(string text) { var bytes=Encoding.UTF8.GetBytes(text); return JsonSerializer.Serialize(new {payload=B64(bytes),signature=B64(rsa.SignData(bytes,HashAlgorithmName.SHA256,RSASignaturePadding.Pkcs1)),keyId="primary"}); }
+string B64(byte[] bytes)=>Convert.ToBase64String(bytes).TrimEnd('=').Replace('+','-').Replace('/','_');
+var good=Sign(payload);
+Check(Verify(good).IsValid,"perpetual license from ten years ago");
+Check(Verify(LicenseSigner.Sign(payload,"rotated",other.ExportPkcs8PrivateKeyPem())).IsValid,"rotation");
+Check(!Verify(good.Replace("primary","missing")).IsValid,"unknown key");
+Check(!LicenseVerifier.Verify(good,keys,new string('b',64),1).IsValid,"device mismatch");
+Check(!LicenseVerifier.Verify(good,keys,device,2).IsValid,"major mismatch");
+Check(!Verify(Sign(payload with {Product="OTHER"})).IsValid,"product");
+Check(!Verify(Sign(payload with {SchemaVersion=2})).IsValid,"schema");
+Check(!Verify(Sign(payload with {MaxDevices=5})).IsValid,"seats");
+Check(!Verify(Sign(payload with {IssuedAt=DateTimeOffset.UtcNow.AddHours(1)})).IsValid,"future");
+Check(!Verify(Sign(payload with {LicenseId="no"})).IsValid,"guid");
+Check(!Verify(Sign(payload with {DeviceId=new string('A',64)})).IsValid,"hex");
+var text=JsonSerializer.Serialize(payload,new JsonSerializerOptions {PropertyNamingPolicy=JsonNamingPolicy.CamelCase});
+Check(!Verify(Raw(text[..^1]+",\"product\":\"MAKRIVO\"}")).IsValid,"duplicate payload");
+Check(!Verify(Raw(text[..^1]+",\"expiry\":null}")).IsValid,"unknown payload");
+Check(!Verify(good[..^1]+",\"keyId\":\"primary\"}").IsValid,"duplicate envelope");
+Check(!Verify(good[..^1]+",\"extra\":0}").IsValid,"unknown envelope");
+Check(!Verify(new string(' ',17000)+good).IsValid,"oversize");
+Check(!Verify("{}").IsValid,"missing fields");
+Check(!Verify("{bad}").IsValid,"malformed JSON");
+Check(!Verify(good.Replace("\"signature\":\"","\"signature\":\"A")).IsValid,"tamper signature");
+Check(!Verify(good.Replace("\"payload\":\"","\"payload\":\"=")).IsValid,"invalid base64url");
+Check(!LicenseVerifier.Verify(good,new Dictionary<string,string>{{"primary",rsa.ExportPkcs8PrivateKeyPem()}},device,1).IsValid,"private key rejected");
+using var weak=RSA.Create(2048);
+Check(!LicenseVerifier.Verify(LicenseSigner.Sign(payload,"weak",weak.ExportPkcs8PrivateKeyPem()),new Dictionary<string,string>{{"weak",weak.ExportSubjectPublicKeyInfoPem()}},device,1).IsValid,"weak key");
+Console.WriteLine($"PASS {checks} licensing checks");
+
+// Independently sign raw bytes so decoder and payload validation are exercised after valid cryptography.
+string RawBytes(byte[] bytes) => JsonSerializer.Serialize(new {payload=B64(bytes),signature=B64(rsa.SignData(bytes,HashAlgorithmName.SHA256,RSASignaturePadding.Pkcs1)),keyId="primary"});
+Check(!Verify(RawBytes([0xff,0xfe])).IsValid,"malformed signed UTF8");
+Check(!Verify(Raw(text.Replace("\"issuedAt\":\"", "\"issuedAt\":\"invalid"))).IsValid,"invalid timestamp");
+Check(!Verify(Sign(payload with {IssuedAt=DateTimeOffset.UtcNow.ToOffset(TimeSpan.FromHours(2))})).IsValid,"non UTC timestamp");
+Check(!Verify(Raw(text.Replace("schemaVersion\":1","schemaVersion\":1.0"))).IsValid,"non integer schema");
+Check(!Verify(RawBytes(new byte[4097])).IsValid,"payload oversize");
+var envelope=JsonDocument.Parse(good).RootElement;
+var tampered=Convert.FromBase64String(envelope.GetProperty("payload").GetString()!.Replace('-','+').Replace('_','/') + new string('=',(4-envelope.GetProperty("payload").GetString()!.Length%4)%4));
+tampered[10] ^= 1;
+Check(!Verify(JsonSerializer.Serialize(new {payload=B64(tampered),signature=envelope.GetProperty("signature").GetString(),keyId="primary"})).IsValid,"payload byte tampering");
+Check(!LicenseVerifier.Verify(good,new Dictionary<string,string>{{"primary",other.ExportSubjectPublicKeyInfoPem()}},device,1).IsValid,"wrong signing key");
+Console.WriteLine($"PASS {checks} total licensing checks");

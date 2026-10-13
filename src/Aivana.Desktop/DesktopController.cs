@@ -167,6 +167,7 @@ public sealed partial class DesktopController : IDisposable
     public async Task ExecuteAsync(Tile tile)
     {
         if (!tile.Enabled || _disposed) return;
+        if (!CheckRetailEntitlement(tile.Name)) return;
         if (!string.IsNullOrWhiteSpace(tile.HeldLayer))
         {
             Log(tile.Name, Aivana.Core.Localization.Translate("Die Tastenebene wird durch Halten der zugeordneten Sondertaste aktiviert."));
@@ -192,7 +193,7 @@ public sealed partial class DesktopController : IDisposable
                     GetWindowThreadProcessId(GetForegroundWindow(), out var pid);
                     needsTargetRestore = pid == Environment.ProcessId;
                 }
-                await DispatchPendingExecutionAsync(pendingExecution.Token, () => !Paused && !_disposed,
+                await DispatchPendingExecutionAsync(pendingExecution.Token, () => !Paused && !_disposed && CheckRetailEntitlement(tile.Name),
                     needsTargetRestore ? RestoreActionTargetAsync : static () => Task.CompletedTask,
                     token => _runner.RunAsync(snapshot, token));
             }
@@ -281,10 +282,12 @@ public sealed partial class DesktopController : IDisposable
     }
     public async Task TestCorsairColorAsync(string color)
     {
+        if (!CheckRetailEntitlement("Corsair")) return;
         if (!CorsairAvailable) throw new InvalidOperationException(CorsairStatus);
         try
         {
-            await Task.Run(() => _corsair.SetColor(color));
+            var applied = await Task.Run(() => { if (!CheckRetailEntitlement("Corsair")) return false; _corsair.SetColor(color); return true; });
+            if (!applied) return;
             Log(Aivana.Core.Localization.Translate("Corsair"), Aivana.Core.Localization.Translate("Beleuchtungsfarbe angewendet"));
         }
         catch (Exception ex) { Log(Aivana.Core.Localization.Translate("Corsair"), Aivana.Core.Localization.Format("Fehler: {0}", ex.Message)); throw; }
@@ -344,13 +347,4 @@ public sealed partial class DesktopController : IDisposable
     [DllImport("user32.dll")] [return: MarshalAs(UnmanagedType.Bool)] private static extern bool SetForegroundWindow(IntPtr hwnd);
     [DllImport("user32.dll")] [return: MarshalAs(UnmanagedType.Bool)] private static extern bool IsWindow(IntPtr hwnd);
 
-    internal static async Task DispatchPendingExecutionAsync(CancellationToken cancellationToken, Func<bool> canExecute,
-        Func<Task> restoreTarget, Func<CancellationToken, Task> execute)
-    {
-        cancellationToken.ThrowIfCancellationRequested();
-        await restoreTarget();
-        cancellationToken.ThrowIfCancellationRequested();
-        if (!canExecute()) return;
-        await Task.Run(() => execute(cancellationToken), cancellationToken);
-    }
 }
