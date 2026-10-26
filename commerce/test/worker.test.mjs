@@ -849,3 +849,144 @@ test("buyer page exposes device deactivation and authenticated handler releases 
   );
   assert.equal((await worker.fetch(req(), e)).status, 200);
 });
+
+test("buyer rate buckets hash IP, retain 30 request limit and prune only expired rows", async () => {
+  const db = database(),
+    e = configured(db);
+  const originalNow = Date.now;
+  const now = 1800000000000;
+  Date.now = () => now;
+  try {
+    db.raw
+      .prepare("INSERT INTO rate_limits(bucket,hits,expires_at) VALUES(?,?,?)")
+      .run("expired", 7, now - 1);
+    db.raw
+      .prepare("INSERT INTO rate_limits(bucket,hits,expires_at) VALUES(?,?,?)")
+      .run("active", 7, now + 600000);
+    for (let i = 0; i < 31; i++) {
+      const r = await worker.fetch(
+        new Request(e.PUBLIC_ORIGIN + "/api/order", {
+          headers: { "CF-Connecting-IP": "203.0.113.42" },
+        }),
+        e,
+      );
+      assert.equal(r.status, i < 30 ? 401 : 429);
+    }
+    const rows = db.raw.prepare("SELECT * FROM rate_limits").all();
+    assert.equal(
+      rows.some((r) => r.bucket === "expired"),
+      false,
+    );
+    assert.equal(rows.find((r) => r.bucket === "active").hits, 7);
+    const bucket = rows.find((r) => r.bucket !== "active");
+    assert.match(bucket.bucket, /^[A-Za-z0-9_-]{43}$/);
+    assert.equal(bucket.hits, 31);
+    assert.equal(bucket.expires_at, (Math.floor(now / 60000) + 2) * 60000);
+    assert.equal(JSON.stringify(rows).includes("203.0.113.42"), false);
+    Date.now = () => now + 60000;
+    assert.equal(
+      (
+        await worker.fetch(
+          new Request(e.PUBLIC_ORIGIN + "/api/order", {
+            headers: { "CF-Connecting-IP": "203.0.113.42" },
+          }),
+          e,
+        )
+      ).status,
+      401,
+    );
+  } finally {
+    Date.now = originalNow;
+  }
+});
+test("scheduled cleanup preserves newer buckets and commerce records without sale configuration", async () => {
+  const db = database(),
+    now = Date.now();
+  db.raw
+    .prepare("INSERT INTO orders VALUES(?,?,?,?)")
+    .run("o", "h", 1, "cs_test");
+  db.raw
+    .prepare("INSERT INTO entitlements(id,order_id,session_id) VALUES(?,?,?)")
+    .run("l", "o", "cs_test");
+  db.raw.prepare("INSERT INTO revoked_payments VALUES(?)").run("pi_test");
+  db.raw.prepare("INSERT INTO devices VALUES(?,?,?)").run("l", "device", 1);
+  db.raw
+    .prepare("INSERT INTO events VALUES(?,?)")
+    .run("evt", "checkout.session.completed");
+  db.raw
+    .prepare("INSERT INTO rate_limits VALUES(?,?,?)")
+    .run("expired", 2, now - 1);
+  db.raw
+    .prepare("INSERT INTO rate_limits VALUES(?,?,?)")
+    .run("future", 2, now + 600000);
+  await worker.scheduled({ scheduledTime: now + 999999999 }, { DB: db }, {});
+  assert.deepEqual(
+    db.raw
+      .prepare("SELECT bucket FROM rate_limits")
+      .all()
+      .map((r) => r.bucket),
+    ["future"],
+  );
+  for (const table of [
+    "orders",
+    "entitlements",
+    "devices",
+    "events",
+    "revoked_payments",
+  ])
+    assert.equal(db.raw.prepare("SELECT count(*) n FROM " + table).get().n, 1);
+});
+test("explicit existing-install migration preserves buckets then prunes legacy raw IP rows", async () => {
+  const db = database();
+  db.raw.exec(
+    "DROP TABLE rate_limits; CREATE TABLE rate_limits(bucket TEXT PRIMARY KEY,hits INTEGER NOT NULL);",
+  );
+  db.raw
+    .prepare("INSERT INTO rate_limits VALUES(?,?)")
+    .run("203.0.113.7:123", 9);
+  db.raw.exec(
+    readFileSync(
+      new URL("../migrations/0002_rate_limit_retention.sql", import.meta.url),
+      "utf8",
+    ),
+  );
+  assert.equal(
+    db.raw.prepare("SELECT expires_at FROM rate_limits").get().expires_at,
+    null,
+  );
+  const now = Date.now();
+  db.raw
+    .prepare("INSERT INTO rate_limits VALUES(?,?,?)")
+    .run("future", 1, now + 600000);
+  await worker.scheduled({}, { DB: db }, {});
+  assert.deepEqual(
+    db.raw
+      .prepare("SELECT bucket FROM rate_limits")
+      .all()
+      .map((r) => r.bucket),
+    ["future"],
+  );
+  db.raw
+    .prepare("INSERT INTO rate_limits(bucket,hits) VALUES(?,?)")
+    .run("203.0.113.8:legacy", 1);
+  assert.equal(
+    (
+      await worker.fetch(
+        new Request("https://buyer.test/api/order"),
+        configured(db),
+      )
+    ).status,
+    401,
+  );
+  assert.equal(
+    db.raw
+      .prepare("SELECT count(*) n FROM rate_limits WHERE expires_at IS NULL")
+      .get().n,
+    0,
+  );
+  assert.equal(
+    db.raw.prepare("SELECT hits FROM rate_limits WHERE bucket='future'").get()
+      .hits,
+    1,
+  );
+});

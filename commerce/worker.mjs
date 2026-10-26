@@ -291,7 +291,20 @@ function providerReady(e) {
     ["true", "false"].includes(e.STRIPE_LIVE),
   );
 }
+// Milliseconds since epoch. Only short-lived abuse counters are pruned here.
+async function pruneRateLimits(env, now) {
+  await env.DB.prepare(
+    "DELETE FROM rate_limits WHERE expires_at IS NULL OR expires_at <= ?",
+  )
+    .bind(now)
+    .run();
+}
 export default {
+  async scheduled(_controller, env, _ctx) {
+    // Use execution time, never an event-supplied future timestamp that could
+    // delete current request buckets. Errors propagate for operator visibility.
+    await pruneRateLimits(env, Date.now());
+  },
   async fetch(req, e) {
     try {
       const u = new URL(req.url);
@@ -313,11 +326,21 @@ export default {
         req.headers.get("Origin") !== e.PUBLIC_ORIGIN
       )
         return json({ error: "Invalid origin" }, 403);
-      const bucket = `${req.headers.get("CF-Connecting-IP") || "unknown"}:${Math.floor(Date.now() / 60000)}`;
+      const now = Date.now();
+      const minute = Math.floor(now / 60000);
+      await pruneRateLimits(e, now);
+      // Pseudonymous, not anonymous: input IP exists in request memory only.
+      const bucket = await hash(
+        "MAKRIVO|rate-limit|" +
+          minute +
+          "|" +
+          (req.headers.get("CF-Connecting-IP") || "unknown"),
+      );
+      const expiresAt = (minute + 2) * 60000;
       const limit = await e.DB.prepare(
-        "INSERT INTO rate_limits(bucket,hits) VALUES(?,1) ON CONFLICT(bucket) DO UPDATE SET hits=hits+1 RETURNING hits",
+        "INSERT INTO rate_limits(bucket,hits,expires_at) VALUES(?,1,?) ON CONFLICT(bucket) DO UPDATE SET hits=hits+1 RETURNING hits",
       )
-        .bind(bucket)
+        .bind(bucket, expiresAt)
         .first();
       if (limit.hits > 30) return json({ error: "Try later" }, 429);
       if (u.pathname === "/api/checkout" && req.method === "POST") {

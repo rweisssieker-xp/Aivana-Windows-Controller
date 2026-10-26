@@ -4,4 +4,5 @@ CREATE TABLE entitlements(id TEXT PRIMARY KEY, order_id TEXT NOT NULL UNIQUE REF
 CREATE TABLE devices(license_id TEXT NOT NULL REFERENCES entitlements(id), device_id TEXT NOT NULL, active INTEGER NOT NULL DEFAULT 1 CHECK(active IN(0,1)), PRIMARY KEY(license_id,device_id));
 CREATE TABLE events(id TEXT PRIMARY KEY, kind TEXT NOT NULL);
 CREATE TABLE revoked_payments(payment_intent TEXT PRIMARY KEY);
-CREATE TABLE rate_limits(bucket TEXT PRIMARY KEY, hits INTEGER NOT NULL);
+CREATE TABLE rate_limits(bucket TEXT PRIMARY KEY, hits INTEGER NOT NULL, expires_at INTEGER NOT NULL);
+CREATE INDEX rate_limits_expiry ON rate_limits(expires_at);

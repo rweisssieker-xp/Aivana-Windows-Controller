@@ -1,0 +1,31 @@
+{
+  "name": "makrivo-commerce",
+  "main": "worker.mjs",
+  "account_id": "4b0fd8180d954c7db4b4a0bacbe2594b",
+  "compatibility_date": "2026-10-01",
+  "workers_dev": false,
+  "preview_urls": false,
+  "routes": [],
+  "vars": {
+    "SALES_ENABLED": "false",
+    "LEGAL_APPROVED": "false",
+    "STRIPE_LIVE": "false",
+    "PUBLIC_ORIGIN": "https://kaufen.aivana-gmbh.ai",
+    "STRIPE_PRICE_ID": "",
+    "STRIPE_PRODUCT_ID": "",
+    "LICENSE_KEY_ID": "",
+    "LEGAL_TERMS_URL": "",
+    "PRIVACY_URL": "",
+    "SELLER_IMPRINT_URL": "https://aivana-gmbh.ai/de/Imprint"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "makrivo-commerce",
+      "database_id": "c1313e7b-e8d4-44fa-bc20-9bbfbbf0a6bf"
+    }
+  ],
+  "triggers": {
+    "crons": ["*/5 * * * *"]
+  }
+}
