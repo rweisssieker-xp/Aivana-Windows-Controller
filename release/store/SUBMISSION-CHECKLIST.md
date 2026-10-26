@@ -1,12 +1,12 @@
 # Microsoft Store submission handoff
 
-Status: preparation only, 2026-10-26. No Partner Center submission, name reservation, identity, age rating, certification result or live listing is asserted. The selected model is **free Store installation with a separately purchased EUR 29 gross one-time license for one person on four own PCs**.
+Status: preparation only, 2026-10-26. MAKRIVO was reserved in the existing Aivana account and a submission draft was started on 2026-10-26. Product identity is recorded in partner-center-identity.json. No age rating, certification result or live listing is asserted. The selected model is **free Store installation with a separately purchased EUR 29 gross one-time license for one person on four own PCs**.
 
 ## Account and product identity
 
 - [ ] Sign in to the Aivana GmbH Partner Center **company** account and complete Microsoft's actual verification requirements. Use an authorized operator; do not put credentials in this repository.
-- [ ] Reserve MAKRIVO as a Windows desktop MSIX app, subject to name availability. A GitHub repository name does not reserve a Store name.
-- [ ] Copy the exact case-sensitive `Package/Identity/Name` and `Package/Identity/Publisher` from Product identity, together with the actual publisher display name. Do not replace the publisher value with an invented `CN=Aivana`.
+- [x] Reserve MAKRIVO as a Windows desktop MSIX app. Product 9NKW4WK59QX8 was created in draft on 2026-10-26; no public release.
+- [x] Copy the exact case-sensitive identity and publisher display name from Product identity; see partner-center-identity.json.
 - [ ] Configure Windows Desktop/x64 and review the minimum supported OS against the final manifest and actual tests. No Xbox, ARM or Windows S-mode compatibility claim is prepared.
 
 [Microsoft Store setup](https://learn.microsoft.com/en-us/windows/apps/publish/get-started) and [MSIX identity/package requirements](https://learn.microsoft.com/en-us/windows/apps/publish/publish-your-app/app-package-requirements?pivots=store-installer-msix).
@@ -17,13 +17,13 @@ Status: preparation only, 2026-10-26. No Partner Center submission, name reserva
 - [ ] Supply the exact Partner Center identity, an increasing Store-compatible four-part version, real operator HTTPS purchase URL and the public key corresponding to the production license signer.
 - [ ] Review dependency notices and bundled files; include no private license key, purchase secret, card data or proprietary vendor SDK without verified distribution rights.
 - [ ] Use the MSIX submission path. Microsoft signs accepted Store MSIX packages; that does not make an unsigned local package generally installable or waive certification. MSI/EXE is a different path requiring publisher signing and hosting.
-- [ ] Configure the Store acquisition as **free**, not a second paid purchase or a subscription. Complete the applicable external/in-product-purchase disclosure in the current Partner Center UI.
+- [x] Configure Store acquisition as free (0 EUR base price, Germany); external-purchase declaration saved in the Properties draft. No subscription or second paid Store purchase.
 - [ ] Put the separate EUR 29 purchase and four-PC limit at the beginning of descriptions and explain it on first run. A Store installation alone does not grant the paid execution license.
 - [ ] Keep production checkout disabled until legal/service acceptance is complete. Provide reviewers with working private activation access without charging them.
 
 ## Store listing fields
 
-- [ ] Copy and review field contents from `LISTING.de-DE.md` and `LISTING.en-US.md`, including the opening purchase disclosure. Category proposal: Productivity; the operator must choose the matching current category in Partner Center.
+- [x] Save German and English descriptions, short descriptions, six features and seven keywords from the prepared listing files. Productivity was selected in the Properties draft. Store listings shows Complete with provisional actual UI preview imagery; final packaged-image review remains required.
 - [ ] Initially declare only the submission languages for which complete listing material and accepted localized behavior exist. The prepared listing material covers de-DE and en-US. The app's wider translation inventory does not mean 27 Store descriptions have been supplied.
 - [ ] Set the actual support contact and reachable privacy URL. Publish reviewed MAKRIVO-specific privacy/contract documents first; existing website pages and repository drafts are not approval.
 - [ ] Complete the age-rating questionnaire from actual app content and functionality. No rating is invented here.

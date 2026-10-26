@@ -1,0 +1,13 @@
+# Partner Center progress — 2026-10-26
+
+The existing Aivana company account was accessible after the user's sign-in. MAKRIVO was successfully reserved as an **MSIX or PWA app**, Store ID `9NKW4WK59QX8`. Exact public identity values are recorded in `partner-center-identity.json`. A new company account was not needed.
+
+Submission 1, ID `1152921505702236458`, is **in draft**. Pricing and availability was saved and the overview shows **Complete**: base currency EUR (Germany), retail download price 0. This is free installation only, not a free MAKRIVO execution license. The separate Aivana EUR 29 gross one-time/four-own-PC purchase remains unchanged.
+
+Submission options was saved and the overview shows **Complete**. The selected publishing option is **Don't publish this submission until I select Publish now**. No certification or publication was requested.
+
+Properties was saved as **Incomplete**. Productivity was selected; personal-information use and external purchase were declared. A real MAKRIVO privacy policy is still required; no unrelated website notice or invented URL was entered. Existing account support information was retained rather than inventing different seller identity details.
+
+No package was uploaded. The actual-identity MSIX candidate passes the local package checker but still embeds test keys and `commerce.invalid`; it is not a production submission package. German (Germany) and English (United States) listing drafts were added. Each contains the prepared long/short description, six features, seven keywords and Aivana GmbH as developer. Two actual unpackaged WPF UI previews per language were uploaded and saved as provisional draft imagery; they are not installed-package acceptance evidence. The portal now shows Store listings as Complete. Age rating, final image review against the installed package, production activation and private reviewer access remain pending.
+
+Portal screenshots are retained locally under `artifacts/store-readiness/partner-center-makrivo-*.png`. Do not confuse the assigned public Store URL with an already published Store listing.

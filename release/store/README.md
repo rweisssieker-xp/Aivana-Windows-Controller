@@ -35,6 +35,8 @@ See `BUILD-EVIDENCE.md` for the local test candidate and reproducible source rev
 
 ## Complete the submission
 
-Use the German and English listing drafts, `CERTIFICATION-NOTES.md` and `SUBMISSION-CHECKLIST.md`. Still needed: a verified company Partner Center account, available/reserved product name and real identity, functioning production purchase/activation service, reviewed privacy/contract documents, private reviewer activation, real screenshots, WACK and actual packaged install/upgrade/uninstall/device acceptance.
+Use the German and English listing drafts, `CERTIFICATION-NOTES.md` and `SUBMISSION-CHECKLIST.md`. Still needed: verification of any remaining company-account requirements, functioning production purchase/activation service, reviewed privacy/contract documents, private reviewer activation, real screenshots, WACK and actual packaged install/upgrade/uninstall/device acceptance.
 
 Microsoft signs accepted Store MSIX packages and provides hosting/update delivery; a separately purchased CA certificate is not required for that Store path. Direct MSI/EXE distribution remains a different path. See [Microsoft's distribution comparison](https://learn.microsoft.com/en-us/windows/apps/package-and-deploy/choose-distribution-path) and [MSIX package requirements](https://learn.microsoft.com/en-us/windows/apps/publish/publish-your-app/app-package-requirements?pivots=store-installer-msix).
+
+Partner Center update, 2026-10-26: the existing Aivana account is accessible, MAKRIVO is reserved as product 9NKW4WK59QX8, and the exact public package identity is recorded in partner-center-identity.json. A submission draft has been started; no package or public listing has been released.
