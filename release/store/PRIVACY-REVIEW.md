@@ -21,5 +21,6 @@ Primary sources retrieved 26 October 2026:
 - [Cloudflare privacy policy](https://www.cloudflare.com/privacypolicy/): provider-level information; not proof of configured region or an executed DPA.
 - [Microsoft privacy statement](https://www.microsoft.com/en-us/privacy/privacystatement), September 2026: Microsoft Store processing is separately described. Do not imply the external license payment is a Microsoft Store payment.
 
-No legal approval, provider contract verification, production deployment or deletion-job verification is asserted by these documents.
+Deployment update: a separate disabled Cloudflare Worker and fresh D1 database were deployed on 26 October 2026, without public routes or Stripe/signing secrets. See `../../commerce/DEPLOYMENT-STATUS.md` for configuration and scheduled-cleanup evidence. This is not an accepted production purchase service. The new database used the fresh schema and must not receive the legacy ALTER migration mentioned above; that migration applies only to old installations.
 
+No legal approval, provider contract verification or accepted production payment service is asserted by these documents.

@@ -41,4 +41,3 @@ Zugriff erhalten befugte Mitarbeitende und für Zahlung, Hosting, Kommunikation 
 ## Ihre Rechte
 
 Unter den gesetzlichen Voraussetzungen können Sie Auskunft, Berichtigung, Löschung, Einschränkung und Datenübertragbarkeit verlangen. Gegen eine auf berechtigte Interessen gestützte Verarbeitung können Sie Widerspruch einlegen. Eine etwaige Einwilligung können Sie für die Zukunft widerrufen. Kontakt: info@aivana-gmbh.ai. Sie können sich bei einer Datenschutzaufsichtsbehörde beschweren, insbesondere an Ihrem Wohn- oder Arbeitsort oder am Ort eines vermuteten Verstoßes. Wenden Sie sich an uns, wenn eine automatische Aktivierungsablehnung überprüft werden soll.
-

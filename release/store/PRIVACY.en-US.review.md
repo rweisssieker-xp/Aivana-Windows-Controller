@@ -41,4 +41,3 @@ Information is accessible to authorized personnel and service providers needed f
 ## Your rights
 
 Subject to the legal conditions, you may request access, correction, erasure, restriction and portability. You may object to processing based on legitimate interests. Any consent can be withdrawn for the future. Contact info@aivana-gmbh.ai. You may complain to a data protection supervisory authority, particularly where you live or work or where an alleged infringement occurred. Contact us if an automated activation refusal needs review.
-
