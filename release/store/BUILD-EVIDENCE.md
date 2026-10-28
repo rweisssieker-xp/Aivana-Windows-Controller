@@ -26,3 +26,15 @@ Actual source revision, artifact SHA-256 and package inventory should accompany 
 MAKRIVO was reserved in the existing Aivana account as Store product 9NKW4WK59QX8. Submission 1 (1152921505702236458) exists in draft. Exact public identity values are in partner-center-identity.json.
 
 A second MSIX was built with that actual identity from the same clean retail source: artifacts/store-candidate-20261026-aivana-identity/MAKRIVO.msix, SHA-256 19ab02492995884836807ae111e2052505fc8d7cbc21d21d2ec5012c79d37ee3. Publisher and checker completed successfully. Its testIdentity flag is false, but testRetailSource and unsigned remain true and submissionReady/releaseApproved remain false. This resolves the identity placeholder only: commerce.invalid and test keys still prevent real paid use. No package was uploaded.
+
+## First Store release without AI — 28 October 2026
+
+The user selected exclusion of the optional AI assistant. Clean worktree `C:/tmp/Aivana-store-no-ai` provided runtime source `e9860a0`; packaging hardening `c67df63` was applied before MSIX production/checking. These reviewed changes were integrated as `7c9881b`, preserving unrelated local development changes outside the commit.
+
+- Retail candidate: `artifacts/store-retail-no-ai-20261028`, digest `d65395afc55197e73fc0f961e6ac2b792c7b977b42b3d840f5dab3c744a886d5`.
+- Actual-identity MSIX: `artifacts/store-no-ai-20261028/MAKRIVO.msix`, SHA-256 `b8ce769cafdd4789a1df72e793e1196f16a85b78812820f22e9504d181ed6d8a`.
+- `storeRelease=true`, `aiAssistantIncluded=false`, `experimentalOnnxIncluded=false`; both compiled Desktop and Windows assemblies verified by PE metadata without executing input assemblies.
+- Store compile succeeded with zero warnings/errors. Packaging Python suite: 19 passed; final valid Store fixture plus 16 mutations passed, seven injected ONNX/model variants rejected. An independent replay cleared the checker fix. Ordinary model-client regression passed. The unchanged core suite had 36 successful checks and a reproduced file-lock failure in `bounded meeting assistant`; no blanket all-tests-passing claim is made.
+- Root reran the final package checker successfully against the exact MSIX and verified its SHA-256. MakeAppx schema validation completed. WiX emitted path-normalization warnings while building the unsigned retail fixture.
+
+This remains an unsigned test-source candidate with `https://commerce.invalid` and a freshly generated test-only public key; no private signing key was retained. `releaseApproved=false`, `submissionReady=false`. It was not installed, uploaded, certified or published. Packaged runtime/hardware acceptance and a working production license service remain open.

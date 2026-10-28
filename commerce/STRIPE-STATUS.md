@@ -16,3 +16,9 @@ These are sandbox identifiers, not live credentials or evidence of a paid order.
 Selecting the existing live Aivana account led to **Payments activation / company verification and bank setup**. That onboarding must be completed by the account owner. No company or payout information from other businesses was copied. The internal browser remains at that handoff.
 
 Next: complete Aivana onboarding; configure dedicated staging credentials/webhook and isolated data; exercise hosted checkout, refunds, duplicate deliveries, recovery and four-seat enforcement; then separately configure and verify live product/Price and legal/tax information. The sales flags stay disabled until acceptance. Local screenshots are under `artifacts/store-readiness/stripe-makrivo-sandbox-20261028.png`.
+
+## Later onboarding follow-up
+
+At the user's request, the public software description and support telephone from Aivana's imprint were entered. The inherited statement descriptor was corrected to `AIVANA GMBH` / `AIVANA`. Included Radar Lite was selected; optional tax onboarding and Climate contributions were skipped. Tax configuration remains a release gate.
+
+The owner subsequently advanced the live account to Dashboard. Read-only `accounts retrieve` confirms `charges_enabled=true`, `payouts_enabled=true`, `details_submitted=true`, no currently-due requirements — but **`business_type=individual`, company name absent**. The account is therefore technically active but does not establish the intended Aivana GmbH seller setup. The shared-legal-entity notice means changing its legal identity can affect linked accounts; the owner was asked to separate/correct that configuration and verify payout ownership. No agent acceptance of the Stripe/SEPA agreements occurred. No live MAKRIVO product or charge was created. Sales remain disabled.

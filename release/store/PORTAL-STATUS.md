@@ -15,3 +15,5 @@ Age ratings now shows **In Progress**. The incomplete IARC questionnaire was sav
 A separate disabled Cloudflare Worker and fresh EU-jurisdiction D1 database were provisioned; see `../../commerce/DEPLOYMENT-STATUS.md`. There is no public checkout route, Stripe/signing secret or sales approval. Stripe remains at sign-in pending the user's login.
 
 Portal screenshots are retained locally under `artifacts/store-readiness/partner-center-makrivo-*.png`. Do not confuse the assigned public Store URL with an already published Store listing.
+
+28 October update: the user selected the first Store release without the AI assistant. A no-AI MSIX was built and checked (BUILD-EVIDENCE.md). Properties was saved with generative AI unchecked; privacy still blocks completion. IARC answers were adapted to that variant and the preview generated: Germany Everyone, PEGI 3, global 3+, with In-App Purchases; Brazil preview is 14. This is a preview, not a saved final rating: IARC Terms of Use and majority-age confirmation await explicit user action. No package upload or certification request occurred.
