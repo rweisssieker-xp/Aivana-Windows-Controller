@@ -1,4 +1,4 @@
-param([string]$OutputDirectory, [switch]$SelfContained)
+param([string]$OutputDirectory, [switch]$SelfContained, [switch]$StoreRelease)
 $ErrorActionPreference = 'Stop'
 $repository = Split-Path -Parent $PSScriptRoot
 if (-not $OutputDirectory) { $OutputDirectory = Join-Path $repository ('artifacts/release-' + (Get-Date -Format 'yyyyMMdd-HHmmss')) }
@@ -6,11 +6,11 @@ $destination = [IO.Path]::GetFullPath($OutputDirectory)
 New-Item -ItemType Directory -Path $destination -Force | Out-Null
 $runtimeOption = if ($SelfContained) { 'true' } else { 'false' }
 foreach ($project in @('Aivana.AutomationHost','Aivana.MobileHost','Aivana.Desktop')) {
-    dotnet publish (Join-Path $repository "src/$project/$project.csproj") -c Release -r win-x64 --self-contained $runtimeOption -o $destination
+    dotnet publish (Join-Path $repository "src/$project/$project.csproj") "-p:StoreRelease=$($StoreRelease.IsPresent.ToString().ToLowerInvariant())" -c Release -r win-x64 --self-contained $runtimeOption -o $destination
     if ($LASTEXITCODE -ne 0) { throw "Publish failed: $project" }
 }
 $example = Join-Path $destination 'example-plugin'
-dotnet publish (Join-Path $repository 'src/Aivana.PluginHost/Aivana.PluginHost.csproj') -c Release -r win-x64 --self-contained $runtimeOption -o $example
+dotnet publish (Join-Path $repository 'src/Aivana.PluginHost/Aivana.PluginHost.csproj') "-p:StoreRelease=$($StoreRelease.IsPresent.ToString().ToLowerInvariant())" -c Release -r win-x64 --self-contained $runtimeOption -o $example
 if ($LASTEXITCODE -ne 0) { throw 'Example publish failed' }
 $hashes = @{}
 Get-ChildItem -LiteralPath $example -File | ForEach-Object { $hashes[$_.Name] = (Get-FileHash -LiteralPath $_.FullName -Algorithm SHA256).Hash }
@@ -37,5 +37,5 @@ foreach ($config in $runtimeConfigs) {
 }
 Copy-Item -LiteralPath (Join-Path $repository 'docs/testing/2026-10-12-six-extensions.md') -Destination (Join-Path $destination 'FEATURES-AND-TESTS.md')
 $meetingNotes = Join-Path $repository 'docs/testing/2026-10-12-local-meeting-assistant.md'
-if (Test-Path -LiteralPath $meetingNotes) { Copy-Item -LiteralPath $meetingNotes -Destination (Join-Path $destination 'MEETING-ASSISTANT.md') }
+if (!$StoreRelease -and (Test-Path -LiteralPath $meetingNotes)) { Copy-Item -LiteralPath $meetingNotes -Destination (Join-Path $destination 'MEETING-ASSISTANT.md') }
 Write-Output "Release package: $destination"
