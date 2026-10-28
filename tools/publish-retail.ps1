@@ -3,6 +3,7 @@ param(
  [Parameter(Mandatory)][string]$CommerceUrl,
  [Parameter(Mandatory)][string]$OutputDirectory,
  [switch]$AllowUnsignedCandidate,
+ [switch]$StoreRelease,
  [string]$PackageVersion='1.0.0',
  [string]$CertificateThumbprint,
  [string]$TimestampUrl='https://timestamp.digicert.com',
@@ -13,6 +14,7 @@ if($PackageVersion -notmatch '^(0|[1-9][0-9]{0,2})\.(0|[1-9][0-9]{0,2})\.(0|[1-9
 $versionParts=$PackageVersion.Split('.')
 if([int]$versionParts[0] -gt 255 -or [int]$versionParts[1] -gt 255 -or [int]$versionParts[2] -gt 65535){throw 'PackageVersion must contain exactly three numeric MSI parts: major 0-255, minor 0-255, build 0-65535'}
 $repository=Split-Path -Parent $PSScriptRoot
+if($StoreRelease -and (Test-Path -LiteralPath (Join-Path $repository 'src/Aivana.OnnxHost/Aivana.OnnxHost.csproj'))){throw 'Store no-AI release requires a clean release source without experimental ONNX extensions'}
 $destination=[IO.Path]::GetFullPath($OutputDirectory)
 if(Test-Path -LiteralPath $destination){throw 'OutputDirectory must be new; existing directories are never replaced'}
 $keys=Get-Content -LiteralPath $PublicKeyFile -Raw | ConvertFrom-Json -AsHashtable
@@ -33,7 +35,7 @@ $experimentalOnnxIncluded=Test-Path -LiteralPath (Join-Path $repository 'src/Aiv
 if(!$experimentalOnnxIncluded){$projects.Remove('Aivana.OnnxHost')}
 foreach($project in $projects.Keys){
  $output=Join-Path $app $projects[$project]
- dotnet publish (Join-Path $repository "src/$project/$project.csproj") -c Release -r win-x64 --self-contained true --artifacts-path $buildArtifacts -o $output '-p:MakrivoRetailBuild=true' "-p:MakrivoLicensePublicKeyFile=$([IO.Path]::GetFullPath($PublicKeyFile))" "-p:MakrivoCommerceUrl=$CommerceUrl"
+ dotnet publish (Join-Path $repository "src/$project/$project.csproj") "-p:StoreRelease=$($StoreRelease.IsPresent.ToString().ToLowerInvariant())" -c Release -r win-x64 --self-contained true --artifacts-path $buildArtifacts -o $output '-p:MakrivoRetailBuild=true' "-p:MakrivoLicensePublicKeyFile=$([IO.Path]::GetFullPath($PublicKeyFile))" "-p:MakrivoCommerceUrl=$CommerceUrl"
  if($LASTEXITCODE -ne 0){throw "Retail publish failed: $project; partial candidate retained at $destination"}
 }
 $legal=New-Item -ItemType Directory -Path (Join-Path $destination 'legal')
@@ -105,7 +107,7 @@ if($LASTEXITCODE -ne 0){throw 'WiX installer build failed; candidate retained'}
 # Build sources contain absolute local paths and are not distribution content.
 Remove-Item -LiteralPath $payload
 if(!$AllowUnsignedCandidate){SignFile (Join-Path $destination 'MAKRIVO.msi')}
-@{releaseApproved=$false;unsignedCandidate=[bool]$AllowUnsignedCandidate;packageVersion=$PackageVersion;experimentalOnnxIncluded=[bool]$experimentalOnnxIncluded;buildPurpose=if($AllowUnsignedCandidate){'TEST_ONLY'}else{'SIGNED_PENDING_ACCEPTANCE'};commerceUrl=$CommerceUrl;publicKeyIds=@($keys.Keys);legalDocuments='draft-review-required';createdAt=[DateTime]::UtcNow.ToString('o')} | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $destination 'release-status.json')
+@{releaseApproved=$false;unsignedCandidate=[bool]$AllowUnsignedCandidate;packageVersion=$PackageVersion;experimentalOnnxIncluded=[bool]$experimentalOnnxIncluded;storeRelease=[bool]$StoreRelease;aiAssistantIncluded=(!$StoreRelease);buildPurpose=if($AllowUnsignedCandidate){'TEST_ONLY'}else{'SIGNED_PENDING_ACCEPTANCE'};commerceUrl=$CommerceUrl;publicKeyIds=@($keys.Keys);legalDocuments='draft-review-required';createdAt=[DateTime]::UtcNow.ToString('o')} | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $destination 'release-status.json')
 $inventory=@{}
 foreach($file in Get-ChildItem -LiteralPath $destination -File -Recurse -Force){$relative=[IO.Path]::GetRelativePath($destination,$file.FullName).Replace('\','/');$inventory[$relative]=(Get-FileHash -LiteralPath $file.FullName -Algorithm SHA256).Hash.ToLowerInvariant()}
 $digestNames=[string[]]@($inventory.Keys | Where-Object {$_ -notin @('inventory.json','release-status.json','legal/acceptance.json')})

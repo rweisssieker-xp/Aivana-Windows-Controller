@@ -6,6 +6,8 @@ foreach($name in @('MAKRIVO.msix','store-status.json','store-inventory.json','pa
 $status=ReadJson 'store-status.json'
 if($status.schemaVersion -ne 1 -or $status.releaseApproved -ne $false -or $status.submissionReady -ne $false -or $status.unsigned -ne $true -or $status.testIdentity -isnot [bool] -or $status.testRetailSource -isnot [bool]){throw 'Store candidate cannot claim release/submission approval'}
 if($status.licenseModel -cne 'external_one_time_four_own_pcs' -or $status.priceMinor -ne 2900 -or $status.currency -cne 'EUR'){throw 'Store commercial terms changed'}
+if($status.experimentalOnnxIncluded -isnot [bool] -or $status.experimentalOnnxIncluded -ne $false){throw 'Store no-AI release forbids experimental ONNX payload'}
+if($status.storeRelease -isnot [bool] -or $status.storeRelease -ne $true -or $status.aiAssistantIncluded -isnot [bool] -or $status.aiAssistantIncluded -ne $false){throw 'Store no-AI release metadata required'}
 $manifest=ReadJson 'store-inventory.json'
 if($manifest.schemaVersion -ne 1 -or !$manifest.files){throw 'Invalid Store inventory'}
 foreach($directory in Get-ChildItem -LiteralPath $root -Directory -Recurse -Force){if($directory.Attributes -band [IO.FileAttributes]::ReparsePoint){throw 'Store directory links forbidden'}}
@@ -52,4 +54,7 @@ try{
  foreach($name in $actual.Keys | Where-Object {$_.StartsWith('payload/')} ) {if(!$names.ContainsKey($name.Substring(8))){throw "MSIX missing payload: $name"}}
  if(!$names.ContainsKey('AppxBlockMap.xml') -or !$names.ContainsKey('[Content_Types].xml')){throw 'Missing MSIX package footprints'}
 }finally{$archive.Dispose()}
+. (Join-Path $PSScriptRoot 'Assert-StoreNoAi.ps1')
+Assert-StoreNoAiPayload (Join-Path $root 'payload')
+foreach($assembly in @('MAKRIVO.dll','Aivana.Windows.dll')){Assert-StoreNoAi (Join-Path $root "payload/$assembly")}
 Write-Output "Store package integrity verified: $($status.msixSha256); unsigned candidate only, no certification or runtime acceptance."

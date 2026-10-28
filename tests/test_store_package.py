@@ -1,5 +1,6 @@
 import hashlib, json, pathlib, subprocess, tempfile, unittest, zipfile, struct, zlib
 import test_retail_package
+import store_assembly_fixture
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 
@@ -77,6 +78,8 @@ class StorePackageTests(unittest.TestCase):
             target = payload / name
             target.parent.mkdir(parents=True, exist_ok=True)
             target.write_text('package fixture')
+        for name in ['MAKRIVO.dll', 'Aivana.Windows.dll']:
+            (payload / name).write_bytes(store_assembly_fixture.assembly().read_bytes())
         (payload / 'legal').mkdir()
         (payload / 'legal/product.json').write_text(json.dumps(dict(priceMinor=2900, maxDevices=4, billing='one_time', perpetual=True)))
         (payload / 'StoreAssets').mkdir()
@@ -87,7 +90,7 @@ class StorePackageTests(unittest.TestCase):
         for size in [44, 50, 150]:
             (payload / f'StoreAssets/Logo{size}.png').write_bytes(png(size))
         (payload / 'AppxManifest.xml').write_text('''<Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" xmlns:r="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"><Identity Name="MAKRIVO.TestOnly" Publisher="CN=MAKRIVO Test Only" Version="1.0.0.0" ProcessorArchitecture="x64"/><Applications><Application Executable="MAKRIVO.exe" EntryPoint="Windows.FullTrustApplication"/></Applications><Capabilities><Capability Name="internetClient"/><Capability Name="privateNetworkClientServer"/><r:Capability Name="runFullTrust"/></Capabilities></Package>''')
-        status = dict(schemaVersion=1, releaseApproved=False, submissionReady=False, unsigned=True,
+        status = dict(schemaVersion=1, storeRelease=True, aiAssistantIncluded=False, experimentalOnnxIncluded=False, releaseApproved=False, submissionReady=False, unsigned=True,
                       testIdentity=True, testRetailSource=True, packageName='MAKRIVO.TestOnly',
                       publisher='CN=MAKRIVO Test Only', packageVersion='1.0.0.0',
                       licenseModel='external_one_time_four_own_pcs', priceMinor=2900, currency='EUR')
@@ -116,10 +119,21 @@ class StorePackageTests(unittest.TestCase):
                                '-PackagePath', str(root)], capture_output=True, text=True)
 
     def test_checker_accepts_structural_fixture_and_rejects_mutations(self):
-        for scenario in ['valid', 'tamper', 'extra', 'false_approval', 'identity', 'capability', 'price', 'wrong_logo', 'payload_rehashed', 'archive_rehashed']:
+        for scenario in ['valid', 'tamper', 'extra', 'false_approval', 'identity', 'capability', 'price', 'wrong_logo', 'payload_rehashed', 'archive_rehashed', 'ai_true', 'store_false', 'string_false', 'missing_ai_flag', 'ai_binary', 'unmarked_binary']:
             with self.subTest(scenario=scenario), tempfile.TemporaryDirectory() as temporary:
                 root = pathlib.Path(temporary)
                 self.fixture(root)
+                if scenario in ['ai_true', 'store_false', 'string_false', 'missing_ai_flag']:
+                    path=root/'store-status.json'
+                    status=json.loads(path.read_text())
+                    if scenario == 'ai_true': status['aiAssistantIncluded']=True
+                    if scenario == 'store_false': status['storeRelease']=False
+                    if scenario == 'string_false': status['aiAssistantIncluded']='false'
+                    if scenario == 'missing_ai_flag': del status['aiAssistantIncluded']
+                    path.write_text(json.dumps(status)); self.archive_and_inventory(root)
+                if scenario in ['ai_binary', 'unmarked_binary']:
+                    (root/'payload/Aivana.Windows.dll').write_bytes(store_assembly_fixture.assembly(marker=scenario=='ai_binary',ai=scenario=='ai_binary').read_bytes())
+                    self.archive_and_inventory(root)
                 if scenario == 'tamper':
                     (root / 'payload/MAKRIVO.dll').write_text('changed')
                 if scenario == 'extra':

@@ -14,5 +14,19 @@
     <Copy SourceFiles="@(Companion)" DestinationFolder="$(OutDir)" SkipUnchangedFiles="true" />
     <Copy SourceFiles="@(MobileAsset)" DestinationFiles="@(MobileAsset->'$(OutDir)wwwroot/%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
   </Target>
+  <PropertyGroup Condition="'$(StoreRelease)' == 'true'">
+    <DefineConstants>$(DefineConstants);MAKRIVO_STORE_NO_AI</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup Condition="'$(StoreRelease)' == 'true' And '$(MSBuildProjectName)' == 'Aivana.Windows'">
+    <Compile Remove="MeetingModelClient.cs" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)build/StoreNoAi.json" LogicalName="MAKRIVO.Store.NoAi.json" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(StoreRelease)' == 'true' And '$(MSBuildProjectName)' == 'Aivana.Desktop'">
+    <Compile Remove="MainWindow.MeetingAssistant.cs" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)build/StoreNoAi.json" LogicalName="MAKRIVO.Store.NoAi.json" />
+  </ItemGroup>
+  <Target Name="ValidateStoreNoAiSource" BeforeTargets="PrepareForBuild" Condition="'$(StoreRelease)' == 'true'">
+    <Error Condition="Exists('$(MSBuildThisFileDirectory)src/Aivana.OnnxHost/Aivana.OnnxHost.csproj')" Text="Store no-AI release requires a clean release source without experimental ONNX extensions." />
+  </Target>
   <Import Project="$(MSBuildThisFileDirectory)build/MakrivoRetail.targets" />
 </Project>

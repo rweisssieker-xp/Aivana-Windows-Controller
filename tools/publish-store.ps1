@@ -32,6 +32,11 @@ $sourceInventoryText=Get-Content -LiteralPath (Join-Path $source 'inventory.json
 if((Get-Content -LiteralPath (Join-Path $source 'inventory.json') -Raw) -cne $sourceInventoryText){throw 'Retail inventory changed during validation'}
 $sourceManifest=$sourceInventoryText | ConvertFrom-Json -AsHashtable
 $retailStatus=Get-Content -LiteralPath (Join-Path $source 'release-status.json') -Raw | ConvertFrom-Json -AsHashtable
+if($retailStatus.experimentalOnnxIncluded -isnot [bool] -or $retailStatus.experimentalOnnxIncluded -ne $false){throw 'Store no-AI release forbids experimental ONNX payload'}
+if($retailStatus.storeRelease -isnot [bool] -or $retailStatus.storeRelease -ne $true -or $retailStatus.aiAssistantIncluded -isnot [bool] -or $retailStatus.aiAssistantIncluded -ne $false){throw 'Store no-AI release requires a retail source built with -StoreRelease'}
+. (Join-Path $PSScriptRoot 'Assert-StoreNoAi.ps1')
+Assert-StoreNoAiPayload (Join-Path $source 'app')
+foreach($assembly in @('MAKRIVO.dll','Aivana.Windows.dll')){Assert-StoreNoAi (Join-Path $source "app/$assembly")}
 if(!$retailStatus.commerceUrl -or ![Uri]::IsWellFormedUriString($retailStatus.commerceUrl,[UriKind]::Absolute) -or ([Uri]$retailStatus.commerceUrl).Scheme -ne 'https'){throw 'Retail source must record its embedded HTTPS commerce URL'}
 # Read metadata only. Never execute an assembly supplied as packaging input.
 $stream=[IO.File]::OpenRead((Join-Path $source 'app/MAKRIVO.dll'))
@@ -106,7 +111,7 @@ $msix=Join-Path $destination 'MAKRIVO.msix'
 if($LASTEXITCODE -ne 0){throw 'MakeAppx failed; partial candidate retained'}
 $sourceIsTest=$retailStatus.buildPurpose -eq 'TEST_ONLY' -or $retailStatus.commerceUrl -match '(?i)\.invalid([/:]|$)' -or @($ring.Keys | Where-Object {$_ -match '(?i)test|candidate'}).Count -gt 0
 $status=@{
- schemaVersion=1;releaseApproved=$false;submissionReady=$false;unsigned=$true;testIdentity=[bool]$AllowTestIdentity;testRetailSource=[bool]$sourceIsTest
+ schemaVersion=1;storeRelease=$true;aiAssistantIncluded=$false;experimentalOnnxIncluded=$false;releaseApproved=$false;submissionReady=$false;unsigned=$true;testIdentity=[bool]$AllowTestIdentity;testRetailSource=[bool]$sourceIsTest
  packageName=$PackageName;publisher=$Publisher;packageVersion=$PackageVersion;architecture='x64';licenseModel='external_one_time_four_own_pcs';priceMinor=2900;currency='EUR'
  commerceUrl=$retailStatus.commerceUrl;publicKeyIds=@($ring.Keys);sourcePackageBuildSha256=$sourceManifest.packageBuildSha256
  msixSha256=(Get-FileHash -LiteralPath $msix -Algorithm SHA256).Hash.ToLowerInvariant();createdAt=[DateTime]::UtcNow.ToString('o')
