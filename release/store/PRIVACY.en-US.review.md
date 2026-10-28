@@ -18,10 +18,6 @@ If you enable mobile control, paired browsers on your network can receive select
 
 OBS integration exchanges commands and status with the OBS server you configure. Its default connection is local; a configured remote server receives the same functional data. The OBS password is stored using Windows Credential Manager. Profile synchronization writes to a folder you select. If that folder belongs to a cloud service, that service processes the synchronized contents. Plugins run as trusted local processes with the permissions available to them; they are not isolated by a network sandbox. Device lighting integrations communicate with locally installed vendor services.
 
-## Optional local AI, if enabled in your version
-
-When you explicitly use the local AI meeting assistant, MAKRIVO communicates with Ollama at 127.0.0.1:11434 on your PC. It sends your entered goal and the identifiers, names and kinds of selected resources. Names can reveal a file name or a website host. It does not send resource file contents, full resource paths, audio or images through this interface. The goal itself may contain personal information; enter only what you intend to provide to your local model. Returned labels and explanations can also contain personal information. Ollama and any model you install are separate software; their storage and configuration determine further local handling. This interface does not send the request to an Aivana-hosted model service.
-
 ## Purchase, payment and activation
 
 The external purchase service uses Stripe-hosted checkout. Stripe receives the contact, billing and payment information you provide. We process the order and payment references, payment status and information necessary for invoicing, license delivery and support. Our license service does not store card details. Stripe acts as processor or controller depending on the processing purpose; see its [data processing agreement](https://stripe.com/legal/dpa) and [privacy policy](https://stripe.com/privacy).

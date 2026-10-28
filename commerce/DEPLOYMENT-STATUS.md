@@ -20,3 +20,5 @@ Still required: Stripe test/live configuration, actual license signing secret an
 ## Scheduled delivery probe
 
 At approximately 16:39 UTC, a remote SELECT still returned both synthetic `MAKRIVO_TTL_CHECK_EXPIRED_63d27e4a` and `MAKRIVO_TTL_CHECK_ACTIVE_63d27e4a` rows. Actual scheduled execution is therefore **not yet verified**; the schedule metadata alone is insufficient. Recheck after Cloudflare trigger propagation, record whether only the future-expiry row survives, then remove only these synthetic probe rows. Neither row represents a buyer or contains an IP address. Do not enable public sales until the deployed cleanup behavior is accepted.
+
+28 October follow-up: the authenticated remote SELECT succeeded and returned no synthetic probe rows. Both expiry timestamps were by then in the past; no explicit cleanup DELETE was issued. This confirms eventual removal after the deployed schedule had time to propagate, not exact timing or preservation of the formerly active probe during its initial hour. Preservation of unexpired buckets remains covered by local tests; no seven-minute physical-retention guarantee is asserted.
