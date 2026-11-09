@@ -9,8 +9,8 @@ Verantwortlicher: Aivana GmbH, Paulusstr. 45a – Hinterhaus – LOFT45, 33602 B
 | Checkout | E-Mail, für Rechnung nötige Adress-/Steuerdaten, Produkt, Betrag, Zahlungsstatus und Transaktionskennungen; Vertrag und Abrechnung | Art. 6 Abs. 1 lit. b DSGVO; Aivana und Stripe als Zahlungsdienst, dessen konkrete Rolle vertraglich prüfen |
 | Zahlungsabwicklung | Zahlungsdaten werden im Stripe-gehosteten Checkout eingegeben; die App erhält keine Kartendaten | Stripe; Betreiber erhält nur erforderliche Transaktionsdaten |
 | Hosting | Requests, IP-Adresse, Zeit und technisch erforderliche Sicherheitsdaten | Cloudflare Worker/D1 vorgesehen; Art. 6 Abs. 1 lit. b bzw. f nach tatsächlichem Zweck und dokumentierter Interessenabwägung |
-| Anspruch und Aktivierung | Gehashtes zufälliges Bestellgeheimnis, Lizenz-ID, Zahlungsreferenz, Gerätehash, Aktivierungsstatus und Zeitpunkt; Zahlung zuordnen und vier Plätze verwalten | Art. 6 Abs. 1 lit. b; Aivana/Hostinganbieter |
-| Lokale Lizenz | Signierter Lizenzinhalt, Gerätehash und öffentliche Prüfschlüssel lokal; Offline-Berechtigungsprüfung | Lokal auf dem PC; keine regelmäßige Online-Meldung vorgesehen |
+| Anspruch und Aktivierung | Gehashtes zufälliges Bestellgeheimnis, Bestellzeit, Lizenz-ID, Zahlungsreferenz, Gerätehash und Aktivierungsstatus; Zahlung zuordnen und vier Plätze verwalten. Das aktuelle Datenbankschema enthält keinen Aktivierungs- oder Deaktivierungszeitpunkt. | Art. 6 Abs. 1 lit. b; Aivana/Hostinganbieter |
+| Lokale Lizenz | Signierter Lizenzinhalt einschließlich Ausstellungszeitpunkt und Gerätehash sowie öffentliche Prüfschlüssel lokal; Offline-Berechtigungsprüfung | Lokal auf dem PC; keine regelmäßige Online-Meldung vorgesehen |
 | Support | Freiwillig übermittelte Nachricht, Kontakt und beigefügte Diagnose; Bearbeitung | Art. 6 Abs. 1 lit. b bzw. f; Betreiber und tatsächlich eingesetzter Maildienst |
 | Buchführung | Gesetzlich erforderliche Rechnungs-/Transaktionsbelege | Art. 6 Abs. 1 lit. c; zuständige Stellen und beauftragte Buchhaltung im erforderlichen Umfang |
 
