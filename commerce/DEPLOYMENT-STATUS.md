@@ -1,5 +1,11 @@
 # MAKRIVO disabled Cloudflare deployment — 2026-10-26
 
+## 9 November 2026: checkout recovery update
+
+The separate `makrivo-commerce` D1 database was checked before migration: `orders`, `devices`, `entitlements`, `events` and `revoked_payments` contained zero rows, and `checkout_attempts` was absent. A full D1 export was downloaded to the local, untracked `artifacts/store-readiness/makrivo-d1-before-0003-20261109.sql`; its SQL was restored into an in-memory SQLite database and `PRAGMA integrity_check` returned `ok`. The migration `migrations/0003_checkout_attempts.sql` was then applied to the selected remote database. A subsequent query confirmed the expected `checkout_attempts` schema and zero orders.
+
+After the migration, source commit `65c9d69` was deployed to the existing isolated Worker as version `c65406ba-28b9-4ccf-b0f5-f13a2622f75c`. The deploy output reports `SALES_ENABLED=false`, `LEGAL_APPROVED=false`, `STRIPE_LIVE=false`, the expected D1 binding, and the existing five-minute schedule. The deployment used `wrangler.aivana.jsonc`, which declares no routes, disables `workers.dev` and previews, and contains no payment, signer or customer-facing legal configuration. Secret-list output was empty before deployment. This is a disabled update, not a live sale or an end-to-end staging acceptance; real Stripe test-mode checkout, recovery, refunds, Cloudflare D1 concurrency, and production readiness remain unverified.
+
 The existing Cloudflare account managing `aivana-gmbh.ai` was verified through its authenticated zone metadata. A separate `makrivo-commerce` Worker and fresh database were created without modifying the existing website or its services.
 
 - Source commit: `3b3a316`.
