@@ -44,7 +44,7 @@ Status: preparation only, 2026-10-26. MAKRIVO was reserved in the existing Aivan
 - [ ] On a clean authorized test machine/flight: install, normal Start launch, missing-license recovery, import of valid/invalid licenses, offline macro, cancellation, tray lifecycle, helpers and safe shutdown.
 - [ ] Verify upgrade, profile/license behavior and uninstall/reinstall under MSIX package identity and AppData virtualization. Export data first; do not infer persistence from the direct-download MSI tests.
 - [ ] Verify global hotkeys, Raw Input, supported device models, mixed-DPI displays and privilege-boundary behavior. Avoid real-user data/actions in test macros.
-- [ ] Either implement and test a supported packaged autostart mechanism or disable the existing registry-based optional control for the Store build. Do not advertise it as accepted.
+- [ ] Verify the current Store build's disabled autostart control and UI under the actual installed package identity. Do not advertise packaged autostart as supported. See `AUTOSTART-NOTES.md`.
 - [ ] Complete real LAN/mobile pairing, firewall, certificate and unauthorized-client tests before offering that integration as supported. Verify user-trusted plugin behavior and disclosures.
 - [ ] Test the real purchase, recovery, device activation/deactivation, seat limit and refund flow. Confirm external services remain available for certification.
 - [ ] Record legal approval and the actual deployment/data flows; update `release/acceptance.json` only with genuine evidence. Keep approval false/pending for unperformed work.

@@ -41,7 +41,7 @@ No installer-granted administrator rights, UIAccess entitlement, filter driver, 
 
 ## Known packaged-app acceptance gaps
 
-The existing optional autostart control writes `HKCU\Software\Microsoft\Windows\CurrentVersion\Run` using the executable path. No MSIX StartupTask is introduced by this design. Do not list packaged autostart as supported until a supported packaged mechanism is implemented and tested, or disable that control in the Store build. No startup behavior is enabled by the packager.
+The ordinary desktop build has an optional autostart control that writes `HKCU\Software\Microsoft\Windows\CurrentVersion\Run`. Current Store source hides that control and rejects autostart changes; no MSIX StartupTask is introduced. Check the actual installed package and its UI before submission, and do not advertise packaged autostart as supported. No startup behavior is enabled by the packager.
 
 Packaged device/Raw Input access, mixed-DPI monitors, UI Automation, helper-process startup, LAN pairing, input cancellation, plugin permissions, read-only package paths and configuration migration all require actual acceptance. Compilation, MakeAppx validation and archive integrity alone do not establish these results. Windows App Certification Kit results and actual installation evidence are pending until recorded by the operator.
 

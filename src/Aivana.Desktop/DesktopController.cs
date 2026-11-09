@@ -315,14 +315,6 @@ public sealed partial class DesktopController : IDisposable
         var dialog = new SaveFileDialog { Filter = "MAKRIVO Profile (*.json)|*.json", FileName = "makrivo-profile.json", Title = Aivana.Core.Localization.Translate("Profile exportieren") };
         if (dialog.ShowDialog() == true) _store.Export(Settings, dialog.FileName);
     }
-    public void SetAutoStart(bool enabled)
-    {
-        var executable = Environment.ProcessPath ?? throw new InvalidOperationException("Programmpfad unbekannt.");
-        using var key = Registry.CurrentUser.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run");
-        if (enabled) key.SetValue("AivanaController", "\"" + executable + "\"");
-        else key.DeleteValue("AivanaController", false);
-        Settings.AutoStart = enabled; Save();
-    }
     private void Log(string name, string status)
     {
         if (!System.Windows.Application.Current.Dispatcher.CheckAccess()) { System.Windows.Application.Current.Dispatcher.BeginInvoke(() => Log(name, status)); return; }

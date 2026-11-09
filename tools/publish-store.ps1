@@ -37,6 +37,8 @@ if($retailStatus.storeRelease -isnot [bool] -or $retailStatus.storeRelease -ne $
 . (Join-Path $PSScriptRoot 'Assert-StoreNoAi.ps1')
 Assert-StoreNoAiPayload (Join-Path $source 'app')
 foreach($assembly in @('MAKRIVO.dll','Aivana.Windows.dll')){Assert-StoreNoAi (Join-Path $source "app/$assembly")}
+. (Join-Path $PSScriptRoot 'Assert-StoreNoAutostart.ps1')
+Assert-StoreNoAutostart (Join-Path $source 'app/MAKRIVO.dll')
 if(!$retailStatus.commerceUrl -or ![Uri]::IsWellFormedUriString($retailStatus.commerceUrl,[UriKind]::Absolute) -or ([Uri]$retailStatus.commerceUrl).Scheme -ne 'https'){throw 'Retail source must record its embedded HTTPS commerce URL'}
 # Read metadata only. Never execute an assembly supplied as packaging input.
 $stream=[IO.File]::OpenRead((Join-Path $source 'app/MAKRIVO.dll'))

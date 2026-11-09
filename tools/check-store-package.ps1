@@ -57,4 +57,6 @@ try{
 . (Join-Path $PSScriptRoot 'Assert-StoreNoAi.ps1')
 Assert-StoreNoAiPayload (Join-Path $root 'payload')
 foreach($assembly in @('MAKRIVO.dll','Aivana.Windows.dll')){Assert-StoreNoAi (Join-Path $root "payload/$assembly")}
+. (Join-Path $PSScriptRoot 'Assert-StoreNoAutostart.ps1')
+Assert-StoreNoAutostart (Join-Path $root 'payload/MAKRIVO.dll')
 Write-Output "Store package integrity verified: $($status.msixSha256); unsigned candidate only, no certification or runtime acceptance."

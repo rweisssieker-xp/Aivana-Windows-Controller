@@ -31,7 +31,7 @@ python -m unittest discover -s tests -p test_store_package.py
 
 MakeAppx checks the manifest schema and produces a real MSIX. The checker compares every archive payload member with the staged payload, validates declared identity/capabilities/logo sizes/commercial terms and checks the full inventory. These checks establish package structure and integrity, not Windows installation behavior or Microsoft certification. Both `submissionReady` and `releaseApproved` remain false. Test-identity packages are unsigned and are not ready to install through a normal production Store flow.
 
-See `BUILD-EVIDENCE.md` for the local test candidate and reproducible source revision. The Store scripts add no startup task, administrator request, UIAccess entitlement or driver. Existing optional registry-based autostart remains an acceptance gap for packaged operation.
+See `BUILD-EVIDENCE.md` and `AUTOSTART-NOTES.md` for test candidates and their source revisions. The Store scripts add no startup task, administrator request, UIAccess entitlement or driver. The current Store source disables the registry-based autostart control; verify the resulting behavior and UI in the actual installed package before submission.
 
 ## Complete the submission
 
