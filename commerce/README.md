@@ -65,3 +65,7 @@ The disabled Aivana deployment has a remotely imported fresh schema and verified
 ## Checkout recovery migration
 
 Fresh databases use `schema.sql`. Before deploying this Worker over an existing database, back up and verify the correct account and database, then apply `migrations/0003_checkout_attempts.sql` once in a coordinated maintenance window. The migration adds only a table; existing orders, entitlements and claim recovery remain unchanged. Do not apply it to a fresh database created from the updated schema. Deployment and migration are not performed by local tests. Test interrupted and concurrent payment creation, browser return and operator reconciliation in isolated Stripe test mode before enabling sales.
+
+## Cloudflare runtime smoke check
+
+The Node suite checks the Worker module and SQL, but it does not start Cloudflare's runtime. In November 2026 a named non-callable module export passed Node tests while preventing workerd startup. Before deploying, additionally run `wrangler dev --local --test-scheduled` against an isolated local D1 database initialized from `schema.sql`, with sales and legal approval disabled. Check the German/English page, a rejected checkout request and the scheduled handler; confirm the server actually starts. `test/worker-exports.test.mjs` catches the specific incompatible-export class but is not a replacement for this runtime check. Do not use a remote D1 database or real secrets for the local smoke test. This does not replace an authenticated Stripe/Cloudflare staging test.
