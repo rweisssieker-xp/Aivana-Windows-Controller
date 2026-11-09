@@ -122,3 +122,31 @@ test('a buyer can resume with the saved code after a reload without storing secr
   assert.equal(redirected,'https://checkout.stripe.com/pay');
   assert.doesNotMatch(script,/localStorage|sessionStorage/);
 });
+
+test('new buyer explicitly restores saved code after payment before accessing the order', async () => {
+  const html=await (await worker.fetch(new Request('https://buyer.test/?lang=de'),{})).text();
+  assert.match(html,/Gib nach der Zahlung oben deinen gespeicherten Wiederherstellungscode ein/);
+  assert.match(html,/ersetzt den in diesem Browser ausgewählten Kauf/);
+  const script=html.match(/<script>([\s\S]*?)<\/script>/)[1],saved='new-recovery-code';
+  let selected='previous-purchase',redirected='',paid=false;
+  const fetch=async(path,options)=>{
+    const body=options.body ? JSON.parse(options.body) : null;
+    if(path==='/api/checkout/prepare') return {ok:true,json:async()=>({recoveryCode:saved})};
+    if(path==='/api/checkout') {assert.equal(body.recoveryCode,saved);paid=true;return {ok:true,json:async()=>({url:'https://checkout.stripe.com/pay'})};}
+    if(path==='/api/claim/restore') {assert.equal(body.recoveryCode,saved);selected=body.recoveryCode;return {ok:true,json:async()=>({restored:true})};}
+    if(path==='/api/order') return selected===saved&&paid ? {ok:true,json:async()=>({status:'paid',devices:[]})} : {ok:false,json:async()=>({error:'Order claim required'})};
+    throw Error('Unexpected request');
+  };
+  const load=()=>{
+    const elements=Object.fromEntries(['status','backup','saved','buy','terms','recovery','copyRecovery','continue','restore','restoreCode','resume','order','activate','seats','devices'].map(id=>[id,{}]));
+    elements.terms.checked=true;elements.devices.replaceChildren=()=>{};
+    const document={getElementById:id=>elements[id],querySelectorAll:()=>[]};
+    runInNewContext(script,{document,fetch,location:{assign:url=>{redirected=url;}}});return elements;
+  };
+  const before=load();await before.buy.onclick();assert.equal(before.recovery.textContent,saved);
+  before.saved.checked=true;await before.continue.onclick();
+  assert.equal(redirected,'https://checkout.stripe.com/pay');assert.equal(selected,'previous-purchase');
+  const after=load();after.restoreCode.value=saved;await after.restore.onclick();
+  assert.equal(selected,saved);await after.order.onclick();
+  assert.match(after.seats.textContent,/bezahlt/);
+});
