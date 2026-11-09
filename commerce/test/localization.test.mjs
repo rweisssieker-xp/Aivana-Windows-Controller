@@ -94,6 +94,16 @@ test('German buyer receives actionable translated checkout errors', async () => 
   assert.equal(elements.backup.hidden, true);
 });
 
+test('English buyer receives an actionable message when purchase terms are unchecked', async () => {
+  const html=await (await worker.fetch(new Request('https://buyer.test/?lang=en'),{})).text();
+  const script=html.match(/<script>([\s\S]*?)<\/script>/)[1];
+  const elements=Object.fromEntries(['status','backup','saved','buy','terms','recovery','copyRecovery','continue','restore','restoreCode','resume','order','activate'].map(id=>[id,{}]));
+  elements.terms.checked=false;
+  const document={getElementById:id=>elements[id],querySelectorAll:()=>[]};
+  runInNewContext(script,{document,fetch:async()=>({ok:false,json:async()=>({error:'Accept purchase terms'})})});
+  await elements.buy.onclick();assert.match(elements.status.textContent,/accept.*terms/i);
+});
+
 test('language selection is blocked during another API request and unlocked after its failure', async () => {
   const html = await (await worker.fetch(new Request('https://buyer.test/?lang=en'), {})).text();
   const script = html.match(/<script>([\s\S]*?)<\/script>/)[1];

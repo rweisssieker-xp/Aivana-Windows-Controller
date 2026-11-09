@@ -361,11 +361,13 @@ export default {
           return json({ error: "Accept purchase terms" }, 400);
         if (!/^[A-Za-z0-9_-]{43}$/.test(input.recoveryCode || ""))
           return json({ error: "Invalid recovery code" }, 401);
-        const order = await e.DB.prepare("SELECT o.id,o.created_at,o.session_id,a.return_lang FROM orders o JOIN checkout_attempts a ON a.order_id=o.id WHERE o.claim_hash=?")
+        const order = await e.DB.prepare("SELECT o.id,o.created_at,o.session_id,a.return_lang FROM orders o LEFT JOIN checkout_attempts a ON a.order_id=o.id WHERE o.claim_hash=?")
           .bind(await hash(input.recoveryCode)).first();
         if (!order) return json({ error: "Invalid recovery code" }, 401);
         let sessionId = order.session_id;
         if (!sessionId) {
+        // Legacy orders lack the fixed creation parameters required for a safe retry.
+        if (order.return_lang === null) return json({ error: "Checkout needs support" }, 409);
         // Stripe can prune idempotency keys after 24 hours. Never retry creation
         // after the conservative cutoff; uncertain attempts need reconciliation.
         if (Date.now() - order.created_at >= 20 * 60 * 60 * 1000)
@@ -522,7 +524,7 @@ async function page(e, req) {
       code: "Device code (64 characters)", download: "Download license", copied: "Recovery code copied. Save it privately.", saveFirst: "Save the recovery code first.", restored: "Purchase restored.",
       order: "Order: ", activePCs: ". Active PCs: ", ofFour: " of 4. Available seats: ", states: {pending:"pending",paid:"paid",revoked:"revoked"},
       deactivate: "Deactivate this PC", aria: "Deactivate PC ", confirm: "Release this PC activation seat? Remove the license file on that PC. Existing offline files cannot be remotely disabled.", released: "PC deactivated. Activation seat released.",
-      languageWarning: "Complete the purchase or wait for the request to finish before changing language.", errors: {"Checkout no longer open":"This payment page can no longer be used. If you paid, restore your purchase. Otherwise contact support.","Checkout needs support":"Please contact support before retrying this purchase."}, genericError: "Request could not be completed."
+      languageWarning: "Complete the purchase or wait for the request to finish before changing language.", errors: {"Accept purchase terms":"Please accept the purchase terms.","Invalid recovery code":"The recovery code is invalid.","Try later":"Too many requests. Please try again later.","Price is not configured":"The price is not configured yet.","New sales are not configured":"Purchases are not currently available.","Checkout no longer open":"This payment page can no longer be used. If you paid, restore your purchase. Otherwise contact support.","Checkout needs support":"Please contact support before retrying this purchase."}, genericError: "Request could not be completed."
     },
     de: {
       title: "MAKRIVO kaufen und aktivieren",

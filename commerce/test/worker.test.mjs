@@ -533,6 +533,42 @@ test("lost database write and simultaneous retries use one idempotent Stripe ses
     assert.equal(db.raw.prepare('SELECT session_id FROM orders').get().session_id,'cs_test_lost');
   } finally {globalThis.fetch=original;}
 });
+test("provider conflict or lost provider response can be retried with the same idempotency key", async () => {
+  const original=globalThis.fetch;
+  try {
+    for(const failure of ['conflict','timeout']) {
+      const db=database(),e=configured(db),sessions=new Map(),keys=[];let first=true;
+      globalThis.fetch=async(url,options)=>{
+        if(String(url).includes('/prices/')) return Response.json(goodPrice);
+        if(options.method==='POST') {
+          const key=options.headers['Idempotency-Key'];keys.push(key);
+          if(!sessions.has(key)) sessions.set(key,{id:'cs_test_retry',mode:'payment',livemode:false,status:'open',payment_status:'unpaid',url:'https://checkout.stripe.com/pay',metadata:{orderId:new URLSearchParams(options.body).get('metadata[orderId]')}});
+          if(first){first=false;if(failure==='timeout')throw Error('simulated timeout');return new Response('',{status:409});}
+          return Response.json(sessions.get(key));
+        }
+        return Response.json([...sessions.values()][0]);
+      };
+      const code=await prepareCheckout(e,'de'),failed=await checkoutRequest(e,code);
+      assert.equal(failed.status,400);assert.equal((await failed.json()).url,undefined);
+      assert.equal((await checkoutRequest(e,code)).status,200);
+      assert.equal(sessions.size,1);assert.equal(new Set(keys).size,1);assert.equal(keys.length,2);
+    }
+  } finally {globalThis.fetch=original;}
+});
+test("lost response after committed session mapping resumes without another Stripe creation", async () => {
+  const db=database(),e=configured(db),original=globalThis.fetch,prepare=db.prepare.bind(db);let lost=true,posts=0,session;
+  db.prepare=sql=>{const stmt=prepare(sql);if(!sql.startsWith('UPDATE orders SET session_id='))return stmt;return {bind(...values){const bound=stmt.bind(...values);return {...bound,async run(){const result=await bound.run();if(lost){lost=false;throw Error('lost committed response');}return result;}};}};};
+  try {
+    globalThis.fetch=async(url,options)=>{
+      if(String(url).includes('/prices/'))return Response.json(goodPrice);
+      if(options.method==='POST'){posts++;session={id:'cs_test_commit',mode:'payment',livemode:false,status:'open',payment_status:'unpaid',url:'https://checkout.stripe.com/pay',metadata:{orderId:new URLSearchParams(options.body).get('metadata[orderId]')}};}
+      return Response.json(session);
+    };
+    const code=await prepareCheckout(e,'de');assert.equal((await checkoutRequest(e,code)).status,400);
+    assert.equal(db.raw.prepare('SELECT session_id FROM orders').get().session_id,'cs_test_commit');
+    assert.equal((await checkoutRequest(e,code)).status,200);assert.equal(posts,1);
+  } finally {globalThis.fetch=original;}
+});
 test("an ambiguous old attempt is never recreated after the idempotency window", async () => {
   const db=database(),e=configured(db),original=globalThis.fetch;let requests=0;
   try {
@@ -552,6 +588,19 @@ test("checkout migration preserves existing orders and entitlements", () => {
   assert.equal(db.prepare('SELECT session_id FROM orders WHERE id=?').get('existing').session_id,'cs_test');
   assert.equal(db.prepare('SELECT order_id FROM entitlements WHERE id=?').get('license').order_id,'existing');
   db.close();
+});
+test("a pre-migration open checkout resumes only with its saved claim", async () => {
+  const db=database(),e=configured(db),original=globalThis.fetch,code='A'.repeat(43);
+  const digest=Buffer.from(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(code))).toString('base64url');
+  db.raw.prepare('INSERT INTO orders VALUES(?,?,?,?)').run('old-order',digest,Date.now(),'cs_old');
+  try {
+    let posts=0;
+    globalThis.fetch=async(_url,options)=>{if(options.method==='POST')posts++;return Response.json({id:'cs_old',mode:'payment',livemode:false,status:'open',payment_status:'unpaid',url:'https://checkout.stripe.com/pay',metadata:{orderId:'old-order'}});};
+    const r=await checkoutRequest(e,code);assert.equal(r.status,200);assert.equal((await r.json()).url,'https://checkout.stripe.com/pay');assert.equal(posts,0);
+    assert.equal((await checkoutRequest(e,'B'.repeat(43))).status,401);
+    db.raw.prepare('UPDATE orders SET session_id=NULL WHERE id=?').run('old-order');
+    assert.equal((await checkoutRequest(e,code)).status,409);assert.equal(posts,0);
+  } finally {globalThis.fetch=original;}
 });
 test("checkout refuses live price in test mode before creating a session", async () => {
   const original=globalThis.fetch, e=configured(database()); let creates=0;
