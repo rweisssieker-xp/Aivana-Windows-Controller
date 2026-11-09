@@ -492,6 +492,28 @@ test("checkout refuses live price in test mode before creating a session", async
     globalThis.fetch = original;
   }
 });
+test("checkout returns to the same language using only whitelisted locale values", async () => {
+  const original = globalThis.fetch;
+  const env = configured(database());
+  const captured = [];
+  try {
+    globalThis.fetch = async (_url, options) => {
+      if (options.method === "POST") {
+        captured.push(new URLSearchParams(options.body));
+        return Response.json({id:"cs_test_"+captured.length,mode:"payment",livemode:false,url:"https://checkout.stripe.com/c/pay/test"});
+      }
+      return Response.json({active:true,type:"one_time",currency:"eur",unit_amount:2900,tax_behavior:"inclusive",product:"prod_a",livemode:false});
+    };
+    for (const lang of ["de", "en", "//attacker.test", null]) {
+      const res = await worker.fetch(new Request(env.PUBLIC_ORIGIN + "/api/checkout", {method:"POST",headers:{Origin:env.PUBLIC_ORIGIN},body:JSON.stringify({acceptTerms:true,lang})}), env);
+      assert.equal(res.status,200);
+    }
+    assert.equal(captured[0].get("success_url"), env.PUBLIC_ORIGIN + "/?lang=de");
+    assert.equal(captured[1].get("cancel_url"), env.PUBLIC_ORIGIN + "/?lang=en");
+    assert.equal(captured[2].get("success_url"), env.PUBLIC_ORIGIN + "/");
+    assert.equal(captured[3].get("cancel_url"), env.PUBLIC_ORIGIN + "/");
+  } finally { globalThis.fetch = original; }
+});
 test("checkout recovery code is hash-only and restores cookie without public session proof", async () => {
   const original = globalThis.fetch;
   try {
