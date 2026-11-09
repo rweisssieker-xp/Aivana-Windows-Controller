@@ -161,12 +161,13 @@ async function ready(e) {
     e.DB
   );
 }
-async function stripe(e, path, body) {
+async function stripe(e, path, body, idempotencyKey) {
   const r = await fetch(`https://api.stripe.com/v1/${path}`, {
     method: body ? "POST" : "GET",
     headers: {
       Authorization: `Bearer ${e.STRIPE_SECRET_KEY}`,
       ...(body ? { "Content-Type": "application/x-www-form-urlencoded" } : {}),
+      ...(idempotencyKey ? { "Idempotency-Key": idempotencyKey } : {}),
     },
     body: body ? new URLSearchParams(body) : undefined,
   });
@@ -315,7 +316,7 @@ export default {
           return json({ error: "Payment processing is not configured" }, 503);
         return await webhook(req, e);
       }
-      if (u.pathname === "/api/checkout" && !(await ready(e)))
+      if (["/api/checkout", "/api/checkout/prepare"].includes(u.pathname) && !(await ready(e)))
         return json({ error: "New sales are not configured" }, 503);
       if (!accountReady(e))
         return json({ error: "Order access is not configured" }, 503);
@@ -343,10 +344,32 @@ export default {
         .bind(bucket, expiresAt)
         .first();
       if (limit.hits > 30) return json({ error: "Try later" }, 429);
+      if (u.pathname === "/api/checkout/prepare" && req.method === "POST") {
+        const input = JSON.parse(await bounded(req));
+        if (input.acceptTerms !== true) return json({ error: "Accept purchase terms" }, 400);
+        const secret = b64(crypto.getRandomValues(new Uint8Array(32))), id = crypto.randomUUID();
+        const lang = input.lang === "de" || input.lang === "en" ? input.lang : "";
+        await e.DB.batch([
+          e.DB.prepare("INSERT INTO orders(id,claim_hash,created_at) VALUES(?,?,?)").bind(id, await hash(secret), Date.now()),
+          e.DB.prepare("INSERT INTO checkout_attempts(order_id,return_lang) VALUES(?,?)").bind(id, lang),
+        ]);
+        return json({ recoveryCode: secret });
+      }
       if (u.pathname === "/api/checkout" && req.method === "POST") {
         const input = JSON.parse(await bounded(req));
         if (input.acceptTerms !== true)
           return json({ error: "Accept purchase terms" }, 400);
+        if (!/^[A-Za-z0-9_-]{43}$/.test(input.recoveryCode || ""))
+          return json({ error: "Invalid recovery code" }, 401);
+        const order = await e.DB.prepare("SELECT o.id,o.created_at,o.session_id,a.return_lang FROM orders o JOIN checkout_attempts a ON a.order_id=o.id WHERE o.claim_hash=?")
+          .bind(await hash(input.recoveryCode)).first();
+        if (!order) return json({ error: "Invalid recovery code" }, 401);
+        let sessionId = order.session_id;
+        if (!sessionId) {
+        // Stripe can prune idempotency keys after 24 hours. Never retry creation
+        // after the conservative cutoff; uncertain attempts need reconciliation.
+        if (Date.now() - order.created_at >= 20 * 60 * 60 * 1000)
+          return json({ error: "Checkout needs support" }, 409);
         const price = await stripe(
           e,
           "prices/" + encodeURIComponent(e.STRIPE_PRICE_ID),
@@ -361,26 +384,31 @@ export default {
           price.product !== e.STRIPE_PRODUCT_ID
         )
           return json({ error: "Price is not configured" }, 503);
-        const secret = b64(crypto.getRandomValues(new Uint8Array(32))),
-          id = crypto.randomUUID();
-        await e.DB.prepare(
-          "INSERT INTO orders(id,claim_hash,created_at) VALUES(?,?,?)",
-        )
-          .bind(id, await hash(secret), Date.now())
-          .run();
         // Only these fixed locale values may enter Stripe return URLs.
-        const returnPath = input.lang === "de" || input.lang === "en" ? `/?lang=${input.lang}` : "/";
+        const returnPath = order.return_lang ? `/?lang=${order.return_lang}` : "/";
         const s = await stripe(e, "checkout/sessions", {
           mode: "payment",
           "line_items[0][price]": e.STRIPE_PRICE_ID,
           "line_items[0][quantity]": "1",
           success_url: `${e.PUBLIC_ORIGIN}${returnPath}`,
           cancel_url: `${e.PUBLIC_ORIGIN}${returnPath}`,
-          "metadata[orderId]": id,
-          "payment_intent_data[metadata][orderId]": id,
+          "metadata[orderId]": order.id,
+          "payment_intent_data[metadata][orderId]": order.id,
           "consent_collection[terms_of_service]": "required",
           "automatic_tax[enabled]": "true",
-        });
+        }, `makrivo-checkout-${order.id}`);
+        if (!/^cs_[A-Za-z0-9_]+$/.test(s.id || "") || s.mode !== "payment" || s.livemode !== (e.STRIPE_LIVE === "true"))
+          return json({ error: "Invalid checkout response" }, 502);
+        await e.DB.prepare("UPDATE orders SET session_id=? WHERE id=? AND (session_id IS NULL OR session_id=?)")
+          .bind(s.id, order.id, s.id).run();
+        const stored = await e.DB.prepare("SELECT session_id FROM orders WHERE id=?").bind(order.id).first();
+        if (stored?.session_id !== s.id) return json({ error: "Invalid checkout response" }, 502);
+        sessionId = s.id;
+        }
+        // An idempotent POST may return a cached open response after payment.
+        const s = await stripe(e, `checkout/sessions/${encodeURIComponent(sessionId)}`);
+        if (s.status !== "open" || s.payment_status !== "unpaid")
+          return json({ error: "Checkout no longer open" }, 409);
         let checkoutUrl;
         try {
           checkoutUrl = new URL(s.url);
@@ -388,6 +416,7 @@ export default {
           return json({ error: "Invalid checkout response" }, 502);
         }
         if (
+          s.id !== sessionId || s.metadata?.orderId !== order.id ||
           s.mode !== "payment" ||
           s.livemode !== (e.STRIPE_LIVE === "true") ||
           checkoutUrl.protocol !== "https:" ||
@@ -397,12 +426,7 @@ export default {
           checkoutUrl.port
         )
           return json({ error: "Invalid checkout response" }, 502);
-        await e.DB.prepare("UPDATE orders SET session_id=? WHERE id=?")
-          .bind(s.id, id)
-          .run();
-        return json({ url: s.url, recoveryCode: secret }, 200, {
-          "Set-Cookie": `makrivo_claim=${secret}; Path=/; Secure; HttpOnly; SameSite=Lax; Max-Age=31536000`,
-        });
+        return json({ url: s.url });
       }
       if (u.pathname === "/api/claim/restore" && req.method === "POST") {
         const input = JSON.parse(await bounded(req));
@@ -491,14 +515,14 @@ async function page(e, req) {
       enabled: "Sales configured.", disabled: "Checkout is currently unavailable.",
       terms: "Purchase terms", privacy: "Privacy", imprint: "Seller imprint", accept: "I accept the purchase terms.", buy: "Buy for €29.00",
       backupTitle: "Save your recovery code", backupInfo: "This secret restores your purchase in another browser. Save it privately before continuing. Never share it.",
-      copy: "Copy recovery code", saved: "I saved this recovery code privately.", continue: "Continue to secure payment", restoreTitle: "Restore purchase", restoreLabel: "Saved recovery code", restoreButton: "Restore purchase", activation: "Activate your PC",
+      resume: "Resume payment with saved code", resumeInfo: "If payment was interrupted, enter your saved code below and choose Resume payment. After payment, use Restore purchase to access your license.", copy: "Copy recovery code", saved: "I saved this recovery code privately.", continue: "Continue to secure payment", restoreTitle: "Restore purchase", restoreLabel: "Saved recovery code", restoreButton: "Restore purchase", activation: "Activate your PC",
       activationInfo: "Return in this browser after payment. Copy the device code shown in the Windows app. Download the license and import it in MAKRIVO on that PC. Keep this browser profile to access your order.",
       refresh: "Refresh payment and PCs", active: "Your active PCs", refreshInfo: "Refresh to view your active PCs and available seats.",
       offline: "Deactivate a PC you no longer use to release an activation seat. Remove its local license file too; an already issued offline license cannot be remotely disabled.",
       code: "Device code (64 characters)", download: "Download license", copied: "Recovery code copied. Save it privately.", saveFirst: "Save the recovery code first.", restored: "Purchase restored.",
       order: "Order: ", activePCs: ". Active PCs: ", ofFour: " of 4. Available seats: ", states: {pending:"pending",paid:"paid",revoked:"revoked"},
       deactivate: "Deactivate this PC", aria: "Deactivate PC ", confirm: "Release this PC activation seat? Remove the license file on that PC. Existing offline files cannot be remotely disabled.", released: "PC deactivated. Activation seat released.",
-      languageWarning: "Complete the purchase or wait for the request to finish before changing language.", errors: {}, genericError: "Request could not be completed."
+      languageWarning: "Complete the purchase or wait for the request to finish before changing language.", errors: {"Checkout no longer open":"This payment page can no longer be used. If you paid, restore your purchase. Otherwise contact support.","Checkout needs support":"Please contact support before retrying this purchase."}, genericError: "Request could not be completed."
     },
     de: {
       title: "MAKRIVO kaufen und aktivieren",
@@ -506,7 +530,7 @@ async function page(e, req) {
       enabled: "Kauf ist verfügbar.", disabled: "Der Kauf ist derzeit nicht verfügbar.",
       terms: "Kaufbedingungen", privacy: "Datenschutz", imprint: "Impressum", accept: "Ich akzeptiere die Kaufbedingungen.", buy: "Für 29,00 € kaufen",
       backupTitle: "Wiederherstellungscode speichern", backupInfo: "Mit diesem geheimen Code stellst du deinen Kauf in einem anderen Browser wieder her. Speichere ihn vor dem Fortfahren sicher und gib ihn niemals weiter.",
-      copy: "Wiederherstellungscode kopieren", saved: "Ich habe den Wiederherstellungscode sicher gespeichert.", continue: "Weiter zur sicheren Zahlung", restoreTitle: "Kauf wiederherstellen", restoreLabel: "Gespeicherter Wiederherstellungscode", restoreButton: "Kauf wiederherstellen", activation: "PC aktivieren",
+      resume: "Zahlung mit gespeichertem Code fortsetzen", resumeInfo: "Falls die Zahlung unterbrochen wurde, gib unten deinen gespeicherten Code ein und wähle Zahlung fortsetzen. Nach der Zahlung wähle Kauf wiederherstellen, um auf deine Lizenz zuzugreifen.", copy: "Wiederherstellungscode kopieren", saved: "Ich habe den Wiederherstellungscode sicher gespeichert.", continue: "Weiter zur sicheren Zahlung", restoreTitle: "Kauf wiederherstellen", restoreLabel: "Gespeicherter Wiederherstellungscode", restoreButton: "Kauf wiederherstellen", activation: "PC aktivieren",
       activationInfo: "Kehre nach der Zahlung in diesen Browser zurück. Kopiere den Gerätecode aus der Windows-App. Lade die Lizenz herunter und importiere sie auf diesem PC in MAKRIVO. Behalte dieses Browserprofil, um auf deinen Kauf zuzugreifen.",
       refresh: "Zahlungsstatus und PCs aktualisieren", active: "Deine aktiven PCs", refreshInfo: "Aktualisiere die Ansicht, um aktive PCs und freie Plätze zu sehen.",
       offline: "Deaktiviere einen nicht mehr genutzten PC, um einen Aktivierungsplatz freizugeben. Entferne auch dessen lokale Lizenzdatei; bereits ausgestellte Offline-Lizenzen können nicht aus der Ferne deaktiviert werden.",
@@ -514,7 +538,7 @@ async function page(e, req) {
       order: "Bestellung: ", activePCs: ". Aktive PCs: ", ofFour: " von 4. Freie Plätze: ", states: {pending:"ausstehend",paid:"bezahlt",revoked:"widerrufen"},
       deactivate: "Diesen PC deaktivieren", aria: "PC deaktivieren: ", confirm: "Aktivierungsplatz dieses PCs freigeben? Entferne die Lizenzdatei auf diesem PC. Bestehende Offline-Lizenzdateien können nicht aus der Ferne deaktiviert werden.", released: "PC deaktiviert. Der Aktivierungsplatz wurde freigegeben.",
       languageWarning: "Bitte zuerst den Kauf abschließen oder warten, bis die Anfrage abgeschlossen ist, bevor du die Sprache wechselst.",
-      errors: {"New sales are not configured":"Der Kauf ist noch nicht verfügbar.","Order access is not configured":"Der Zugriff auf Bestellungen ist derzeit nicht verfügbar.","Method not allowed":"Diese Anfrage ist nicht zulässig.","Invalid origin":"Die Anfrage stammt von einer ungültigen Adresse.","Try later":"Zu viele Anfragen. Bitte versuche es später erneut.","Accept purchase terms":"Bitte akzeptiere die Kaufbedingungen.","Price is not configured":"Der Preis ist noch nicht eingerichtet.","Invalid checkout response":"Die Zahlungsseite konnte nicht geöffnet werden.","Invalid recovery code":"Der Wiederherstellungscode ist ungültig.","Order claim required":"Bitte stelle zuerst deinen Kauf wieder her.","No active entitlement":"Für diesen Kauf ist keine aktive Lizenz vorhanden.","Invalid device code":"Der Gerätecode ist ungültig.","License signing is not configured":"Die Lizenzerstellung ist derzeit nicht verfügbar.","Four PC limit reached":"Das Limit von vier PCs ist erreicht.","Not found":"Die angeforderte Seite wurde nicht gefunden.","Request could not be completed":"Die Anfrage konnte nicht abgeschlossen werden."},
+      errors: {"Checkout no longer open":"Diese Zahlungsseite kann nicht mehr verwendet werden. Falls du bezahlt hast, stelle deinen Kauf wieder her. Andernfalls kontaktiere den Support.","Checkout needs support":"Bitte kontaktiere den Support, bevor du diesen Kauf erneut versuchst.","New sales are not configured":"Der Kauf ist noch nicht verfügbar.","Order access is not configured":"Der Zugriff auf Bestellungen ist derzeit nicht verfügbar.","Method not allowed":"Diese Anfrage ist nicht zulässig.","Invalid origin":"Die Anfrage stammt von einer ungültigen Adresse.","Try later":"Zu viele Anfragen. Bitte versuche es später erneut.","Accept purchase terms":"Bitte akzeptiere die Kaufbedingungen.","Price is not configured":"Der Preis ist noch nicht eingerichtet.","Invalid checkout response":"Die Zahlungsseite konnte nicht geöffnet werden.","Invalid recovery code":"Der Wiederherstellungscode ist ungültig.","Order claim required":"Bitte stelle zuerst deinen Kauf wieder her.","No active entitlement":"Für diesen Kauf ist keine aktive Lizenz vorhanden.","Invalid device code":"Der Gerätecode ist ungültig.","License signing is not configured":"Die Lizenzerstellung ist derzeit nicht verfügbar.","Four PC limit reached":"Das Limit von vier PCs ist erreicht.","Not found":"Die angeforderte Seite wurde nicht gefunden.","Request could not be completed":"Die Anfrage konnte nicht abgeschlossen werden."},
       genericError: "Die Anfrage konnte nicht abgeschlossen werden."
     }
   };
@@ -536,7 +560,7 @@ async function page(e, req) {
     }
   };
   return new Response(
-    `<!doctype html><html lang="${language}"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>${t.title}</title><style>body{font:18px system-ui;max-width:48rem;margin:3rem auto;padding:1rem}button,input{font:inherit;padding:.7rem}label{display:block;margin:1rem 0}#status{white-space:pre-wrap}</style><h1>MAKRIVO</h1><nav aria-label="Language / Sprache"><a data-language-switch href="/?lang=de" hreflang="de">Deutsch</a> · <a data-language-switch href="/?lang=en" hreflang="en">English</a></nav><p>${t.offer}</p><p>${enabled ? t.enabled : t.disabled}</p><p>${link(e.LEGAL_TERMS_URL, t.terms)} · ${link(e.PRIVACY_URL, t.privacy)} · ${link(e.SELLER_IMPRINT_URL, t.imprint)}</p><label><input type="checkbox" id="terms"> ${t.accept}</label><button id="buy" ${enabled ? "" : "disabled"}>${t.buy}</button><section id="backup" hidden><h2>${t.backupTitle}</h2><p>${t.backupInfo}</p><output id="recovery"></output><button id="copyRecovery">${t.copy}</button><p><label><input type="checkbox" id="saved"> ${t.saved}</label><button id="continue">${t.continue}</button></p></section><h2>${t.restoreTitle}</h2><label for="restoreCode">${t.restoreLabel}</label><input id="restoreCode" autocomplete="off" type="password"><button id="restore">${t.restoreTitle}</button><h2>${t.activation}</h2><p>${t.activationInfo}</p><button id="order">${t.refresh}</button><h3>${t.active}</h3><p id="seats" role="status">${t.refreshInfo}</p><ul id="devices"></ul><p>${t.offline}</p><label for="device">${t.code}</label><input id="device" maxlength="64" autocomplete="off" size="40"><button id="activate">${t.download}</button><p id="status" role="status"></p><script>const T=${JSON.stringify(t).replaceAll("<", "\\u003c")};let activeRequests=0,checkoutLocked=false;async function call(path,data){activeRequests++;try{const r=await fetch(path,{method:data?'POST':'GET',headers:{'Content-Type':'application/json'},body:data?JSON.stringify(data):undefined});const v=await r.json();if(!r.ok)throw Error(v.error);return v}finally{activeRequests--}}function fail(e){status.textContent=T.errors[e.message]||(Object.keys(T.errors).length?T.genericError:e.message)}const status=document.getElementById('status');for(const a of document.querySelectorAll('[data-language-switch]'))a.addEventListener('click',event=>{if(activeRequests>0||checkoutLocked){event.preventDefault();status.textContent=T.languageWarning;}});document.getElementById('buy').onclick=()=>{if(checkoutLocked)return;checkoutLocked=true;return call('/api/checkout',{acceptTerms:document.getElementById('terms').checked,lang:'${language}'}).then(v=>{document.getElementById('recovery').textContent=v.recoveryCode;document.getElementById('copyRecovery').onclick=()=>navigator.clipboard.writeText(v.recoveryCode).then(()=>status.textContent=T.copied).catch(fail);document.getElementById('backup').hidden=false;document.getElementById('continue').onclick=()=>{if(document.getElementById('saved').checked)location.assign(v.url);else status.textContent=T.saveFirst;};}).catch(e=>{checkoutLocked=false;fail(e)});};document.getElementById('restore').onclick=()=>call('/api/claim/restore',{recoveryCode:document.getElementById('restoreCode').value.trim()}).then(()=>{document.getElementById('restoreCode').value='';status.textContent=T.restored;}).catch(fail);async function refreshOrder(){const v=await call('/api/order');const list=document.getElementById('devices');list.replaceChildren();document.getElementById('seats').textContent=T.order+(T.states[v.status]||v.status)+T.activePCs+v.devices.length+T.ofFour+Math.max(0,4-v.devices.length)+'.';for(const device of v.devices){const item=document.createElement('li');const code=document.createElement('code');code.textContent=device.device_id;const button=document.createElement('button');button.textContent=T.deactivate;button.setAttribute('aria-label',T.aria+device.device_id);button.onclick=async()=>{if(!confirm(T.confirm))return;button.disabled=true;try{await call('/api/licenses/deactivate',{deviceId:device.device_id});await refreshOrder();status.textContent=T.released;}catch(e){button.disabled=false;fail(e);}};item.append(code,document.createTextNode(' '),button);list.append(item);}}document.getElementById('order').onclick=()=>refreshOrder().catch(fail);document.getElementById('activate').onclick=()=>call('/api/licenses/activate',{deviceId:document.getElementById('device').value.trim()}).then(v=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(v)],{type:'application/json'}));a.download='MAKRIVO.license.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);refreshOrder().catch(fail)}).catch(fail);</script></html>`,
+    `<!doctype html><html lang="${language}"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>${t.title}</title><style>body{font:18px system-ui;max-width:48rem;margin:3rem auto;padding:1rem}button,input{font:inherit;padding:.7rem}label{display:block;margin:1rem 0}#status{white-space:pre-wrap}</style><h1>MAKRIVO</h1><nav aria-label="Language / Sprache"><a data-language-switch href="/?lang=de" hreflang="de">Deutsch</a> · <a data-language-switch href="/?lang=en" hreflang="en">English</a></nav><p>${t.offer}</p><p>${enabled ? t.enabled : t.disabled}</p><p>${link(e.LEGAL_TERMS_URL, t.terms)} · ${link(e.PRIVACY_URL, t.privacy)} · ${link(e.SELLER_IMPRINT_URL, t.imprint)}</p><label><input type="checkbox" id="terms"> ${t.accept}</label><button id="buy" ${enabled ? "" : "disabled"}>${t.buy}</button><section id="backup" hidden><h2>${t.backupTitle}</h2><p>${t.backupInfo}</p><output id="recovery"></output><button id="copyRecovery">${t.copy}</button><p><label><input type="checkbox" id="saved"> ${t.saved}</label><button id="continue">${t.continue}</button></p></section><h2>${t.restoreTitle}</h2><p>${t.resumeInfo}</p><label for="restoreCode">${t.restoreLabel}</label><input id="restoreCode" autocomplete="off" type="password"><button id="restore">${t.restoreTitle}</button><button id="resume" ${enabled ? "" : "disabled"}>${t.resume}</button><h2>${t.activation}</h2><p>${t.activationInfo}</p><button id="order">${t.refresh}</button><h3>${t.active}</h3><p id="seats" role="status">${t.refreshInfo}</p><ul id="devices"></ul><p>${t.offline}</p><label for="device">${t.code}</label><input id="device" maxlength="64" autocomplete="off" size="40"><button id="activate">${t.download}</button><p id="status" role="status"></p><script>const T=${JSON.stringify(t).replaceAll("<", "\\u003c")};let activeRequests=0,checkoutLocked=false;async function call(path,data){activeRequests++;try{const r=await fetch(path,{method:data?'POST':'GET',headers:{'Content-Type':'application/json'},body:data?JSON.stringify(data):undefined});const v=await r.json();if(!r.ok)throw Error(v.error);return v}finally{activeRequests--}}function fail(e){status.textContent=T.errors[e.message]||(Object.keys(T.errors).length?T.genericError:e.message)}const status=document.getElementById('status');for(const a of document.querySelectorAll('[data-language-switch]'))a.addEventListener('click',event=>{if(activeRequests>0||checkoutLocked){event.preventDefault();status.textContent=T.languageWarning;}});document.getElementById('buy').onclick=()=>{if(checkoutLocked)return;checkoutLocked=true;return call('/api/checkout/prepare',{acceptTerms:document.getElementById('terms').checked,lang:'${language}'}).then(v=>{document.getElementById('recovery').textContent=v.recoveryCode;document.getElementById('copyRecovery').onclick=()=>navigator.clipboard.writeText(v.recoveryCode).then(()=>status.textContent=T.copied).catch(fail);document.getElementById('backup').hidden=false;document.getElementById('continue').onclick=()=>{if(document.getElementById('saved').checked)return call('/api/checkout',{acceptTerms:document.getElementById('terms').checked,recoveryCode:v.recoveryCode}).then(result=>location.assign(result.url)).catch(fail);else status.textContent=T.saveFirst;};}).catch(e=>{checkoutLocked=false;fail(e)});};document.getElementById('resume').onclick=()=>call('/api/checkout',{acceptTerms:document.getElementById('terms').checked,recoveryCode:document.getElementById('restoreCode').value.trim()}).then(result=>location.assign(result.url)).catch(fail);document.getElementById('restore').onclick=()=>call('/api/claim/restore',{recoveryCode:document.getElementById('restoreCode').value.trim()}).then(()=>{document.getElementById('restoreCode').value='';status.textContent=T.restored;}).catch(fail);async function refreshOrder(){const v=await call('/api/order');const list=document.getElementById('devices');list.replaceChildren();document.getElementById('seats').textContent=T.order+(T.states[v.status]||v.status)+T.activePCs+v.devices.length+T.ofFour+Math.max(0,4-v.devices.length)+'.';for(const device of v.devices){const item=document.createElement('li');const code=document.createElement('code');code.textContent=device.device_id;const button=document.createElement('button');button.textContent=T.deactivate;button.setAttribute('aria-label',T.aria+device.device_id);button.onclick=async()=>{if(!confirm(T.confirm))return;button.disabled=true;try{await call('/api/licenses/deactivate',{deviceId:device.device_id});await refreshOrder();status.textContent=T.released;}catch(e){button.disabled=false;fail(e);}};item.append(code,document.createTextNode(' '),button);list.append(item);}}document.getElementById('order').onclick=()=>refreshOrder().catch(fail);document.getElementById('activate').onclick=()=>call('/api/licenses/activate',{deviceId:document.getElementById('device').value.trim()}).then(v=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(v)],{type:'application/json'}));a.download='MAKRIVO.license.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);refreshOrder().catch(fail)}).catch(fail);</script></html>`,
     {
       headers: {
         "Content-Type": "text/html;charset=utf-8",

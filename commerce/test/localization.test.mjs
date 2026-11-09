@@ -36,7 +36,7 @@ test('purchase page selects German and English without changing the purchase con
 test('German page preserves the recovery code during language switching and guides the buyer', async () => {
   const html = await (await worker.fetch(new Request('https://buyer.test/?lang=de'), {})).text();
   const script = html.match(/<script>([\s\S]*?)<\/script>/)[1];
-  const elements = Object.fromEntries(['status','backup','saved','buy','terms','recovery','copyRecovery','continue','restore','restoreCode','order','activate'].map(id => [id, {}]));
+  const elements = Object.fromEntries(['status','backup','saved','buy','terms','recovery','copyRecovery','continue','restore','restoreCode','resume','order','activate'].map(id => [id, {}]));
   elements.backup.hidden = true;
   elements.saved.checked = false;
   elements.terms.checked = true;
@@ -64,7 +64,7 @@ test('German page preserves the recovery code during language switching and guid
 test('switching languages stays blocked while checkout is in flight and after success, but unlocks after failure for retry', async () => {
   const html = await (await worker.fetch(new Request('https://buyer.test/?lang=de'), {})).text();
   const script = html.match(/<script>([\s\S]*?)<\/script>/)[1];
-  const elements = Object.fromEntries(['status','backup','saved','buy','terms','recovery','copyRecovery','continue','restore','restoreCode','order','activate'].map(id => [id, {}]));
+  const elements = Object.fromEntries(['status','backup','saved','buy','terms','recovery','copyRecovery','continue','restore','restoreCode','resume','order','activate'].map(id => [id, {}]));
   elements.backup.hidden=true; elements.terms.checked=true;
   const anchor={}; let resolveFetch; let count=0;
   const document={getElementById:id=>elements[id], querySelectorAll:()=>[{addEventListener:(_,fn)=>{anchor.click=fn;}}]};
@@ -81,7 +81,7 @@ test('switching languages stays blocked while checkout is in flight and after su
 test('German buyer receives actionable translated checkout errors', async () => {
   const html = await (await worker.fetch(new Request('https://buyer.test/?lang=de'), {})).text();
   const script = html.match(/<script>([\s\S]*?)<\/script>/)[1];
-  const elements = Object.fromEntries(['status','backup','saved','buy','terms','recovery','copyRecovery','continue','restore','restoreCode','order','activate'].map(id => [id, {}]));
+  const elements = Object.fromEntries(['status','backup','saved','buy','terms','recovery','copyRecovery','continue','restore','restoreCode','resume','order','activate'].map(id => [id, {}]));
   elements.backup.hidden = true;
   elements.terms.checked = false;
   const document = { getElementById: id => elements[id], querySelectorAll: () => [] };
@@ -97,7 +97,7 @@ test('German buyer receives actionable translated checkout errors', async () => 
 test('language selection is blocked during another API request and unlocked after its failure', async () => {
   const html = await (await worker.fetch(new Request('https://buyer.test/?lang=en'), {})).text();
   const script = html.match(/<script>([\s\S]*?)<\/script>/)[1];
-  const elements = Object.fromEntries(['status','backup','saved','buy','terms','recovery','copyRecovery','continue','restore','restoreCode','order','activate'].map(id => [id, {}]));
+  const elements = Object.fromEntries(['status','backup','saved','buy','terms','recovery','copyRecovery','continue','restore','restoreCode','resume','order','activate'].map(id => [id, {}]));
   elements.restoreCode.value = 'test';
   const anchor={}; let resolveFetch;
   const document={getElementById:id=>elements[id],querySelectorAll:()=>[{addEventListener:(_,fn)=>{anchor.click=fn;}}]};
@@ -106,4 +106,19 @@ test('language selection is blocked during another API request and unlocked afte
   let stopped=false;anchor.click({preventDefault(){stopped=true;}});assert.equal(stopped,true);
   resolveFetch({ok:false,json:async()=>({error:'Invalid recovery code'})});await pending;
   stopped=false;anchor.click({preventDefault(){stopped=true;}});assert.equal(stopped,false);
+});
+
+test('a buyer can resume with the saved code after a reload without storing secrets in browser storage or URLs', async () => {
+  const html=await (await worker.fetch(new Request('https://buyer.test/?lang=de'),{})).text();
+  const script=html.match(/<script>([\s\S]*?)<\/script>/)[1];
+  const elements=Object.fromEntries(['status','backup','saved','buy','terms','recovery','copyRecovery','continue','restore','restoreCode','resume','order','activate'].map(id=>[id,{}]));
+  elements.terms.checked=true;elements.restoreCode.value='saved-code';
+  const sent=[];let redirected='';
+  const document={getElementById:id=>elements[id],querySelectorAll:()=>[]};
+  runInNewContext(script,{document,location:{assign:url=>{redirected=url;}},fetch:async(path,options)=>{sent.push({path,body:JSON.parse(options.body)});return {ok:true,json:async()=>({url:'https://checkout.stripe.com/pay'})};}});
+  await elements.resume.onclick();
+  assert.equal(sent[0].path,'/api/checkout');
+  assert.equal(sent[0].body.recoveryCode,'saved-code');
+  assert.equal(redirected,'https://checkout.stripe.com/pay');
+  assert.doesNotMatch(script,/localStorage|sessionStorage/);
 });

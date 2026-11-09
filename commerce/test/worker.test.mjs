@@ -137,6 +137,40 @@ test("worker RSA envelope exact bytes", async () => {
   assert.equal(JSON.parse(Buffer.from(e.payload, "base64url")).maxDevices, 4);
 });
 import worker from "../worker.mjs";
+test("checkout can recover a lost response without creating a second session or replacing an existing claim", async () => {
+  const db = database(), e = configured(db), original = globalThis.fetch;
+  const sessions = new Map(); let posts = 0;
+  try {
+    globalThis.fetch = async (url, options) => {
+      if (String(url).includes('/prices/')) return Response.json({active:true,type:'one_time',currency:'eur',unit_amount:2900,tax_behavior:'inclusive',product:'prod_a',livemode:false});
+      if (options.method === 'POST') {
+        posts++;
+        const key = options.headers['Idempotency-Key'];
+        assert.ok(key);
+        if (!sessions.has(key)) sessions.set(key, {id:'cs_test_recover',mode:'payment',livemode:false,status:'open',payment_status:'unpaid',url:'https://checkout.stripe.com/c/pay/test',metadata:{orderId:new URLSearchParams(options.body).get('metadata[orderId]')}});
+        return Response.json(sessions.get(key));
+      }
+      return Response.json([...sessions.values()][0]);
+    };
+    const request = (path, data, cookie='') => worker.fetch(new Request(e.PUBLIC_ORIGIN+path,{method:'POST',headers:{Origin:e.PUBLIC_ORIGIN,Cookie:cookie},body:JSON.stringify(data)}),e);
+    const prep = await request('/api/checkout/prepare',{acceptTerms:true,lang:'de'});
+    assert.equal(prep.status, 200);
+    const {recoveryCode} = await prep.json();
+    assert.match(recoveryCode, /^[A-Za-z0-9_-]{43}$/);
+    assert.equal(posts, 0);
+    const first = await request('/api/checkout',{acceptTerms:true,recoveryCode},'makrivo_claim='+ 'A'.repeat(43));
+    assert.equal(first.status,200);
+    assert.equal(first.headers.get('Set-Cookie'),null);
+    const second = await request('/api/checkout',{acceptTerms:true,recoveryCode},'makrivo_claim='+ 'B'.repeat(43));
+    assert.equal(second.status,200);
+    assert.equal(second.headers.get('Set-Cookie'),null);
+    assert.equal((await second.json()).url,'https://checkout.stripe.com/c/pay/test');
+    assert.equal(sessions.size,1);
+    const unauthorized = await request('/api/checkout',{acceptTerms:true,recoveryCode:'C'.repeat(43),sessionId:'cs_test_recover'});
+    assert.equal(unauthorized.status,401);
+    assert.equal((await unauthorized.json()).url,undefined);
+  } finally { globalThis.fetch=original; }
+});
 function database() {
   const d = new DatabaseSync(":memory:");
   d.exec(readFileSync(new URL("../schema.sql", import.meta.url), "utf8"));
@@ -462,161 +496,118 @@ test("actual webhook duplicate parallel async failure and reordered refund trans
     globalThis.fetch = original;
   }
 });
-test("checkout refuses live price in test mode before creating a session", async () => {
-  const original = globalThis.fetch;
+async function prepareCheckout(e, lang) {
+  const r = await worker.fetch(new Request(e.PUBLIC_ORIGIN + "/api/checkout/prepare", { method:"POST", headers:{Origin:e.PUBLIC_ORIGIN}, body:JSON.stringify({acceptTerms:true,lang}) }),e);
+  assert.equal(r.status,200);
+  return (await r.json()).recoveryCode;
+}
+function checkoutRequest(e, recoveryCode, cookie = '') {
+  return worker.fetch(new Request(e.PUBLIC_ORIGIN + "/api/checkout", {method:"POST",headers:{Origin:e.PUBLIC_ORIGIN,Cookie:cookie},body:JSON.stringify({acceptTerms:true,recoveryCode})}),e);
+}
+const goodPrice = {active:true,type:"one_time",currency:"eur",unit_amount:2900,tax_behavior:"inclusive",product:"prod_a",livemode:false};
+test("lost database write and simultaneous retries use one idempotent Stripe session", async () => {
+  const db=database(),e=configured(db),original=globalThis.fetch,prepare=db.prepare.bind(db),sessions=new Map();
+  let failWrite=true; const keys=[];
+  db.prepare=(sql)=>{
+    const stmt=prepare(sql);
+    if(!sql.startsWith('UPDATE orders SET session_id=')) return stmt;
+    return {bind(...values){const bound=stmt.bind(...values);return {...bound,async run(){if(failWrite){failWrite=false;throw Error('simulated lost write');}return bound.run();}};}};
+  };
   try {
-    let creates = 0;
-    globalThis.fetch = async (url, options) => {
-      if (options.method === "POST") creates++;
-      return Response.json({
-        active: true,
-        type: "one_time",
-        currency: "eur",
-        unit_amount: 2900,
-        tax_behavior: "inclusive",
-        product: "prod_a",
-        livemode: true,
-      });
-    };
-    const r = await worker.fetch(
-      new Request("https://buyer.test/api/checkout", {
-        method: "POST",
-        headers: { Origin: "https://buyer.test" },
-        body: '{"acceptTerms":true}',
-      }),
-      configured(database()),
-    );
-    assert.equal(r.status, 503);
-    assert.equal(creates, 0);
-  } finally {
-    globalThis.fetch = original;
-  }
-});
-test("checkout returns to the same language using only whitelisted locale values", async () => {
-  const original = globalThis.fetch;
-  const env = configured(database());
-  const captured = [];
-  try {
-    globalThis.fetch = async (_url, options) => {
-      if (options.method === "POST") {
-        captured.push(new URLSearchParams(options.body));
-        return Response.json({id:"cs_test_"+captured.length,mode:"payment",livemode:false,url:"https://checkout.stripe.com/c/pay/test"});
+    globalThis.fetch=async(url,options)=>{
+      if(String(url).includes('/prices/')) return Response.json(goodPrice);
+      if(options.method==='POST') {
+        const key=options.headers['Idempotency-Key']; keys.push(key);
+        if(!sessions.has(key)) sessions.set(key,{id:'cs_test_lost',mode:'payment',livemode:false,status:'open',payment_status:'unpaid',url:'https://checkout.stripe.com/pay',metadata:{orderId:new URLSearchParams(options.body).get('metadata[orderId]')}});
+        await Promise.resolve(); return Response.json(sessions.get(key));
       }
-      return Response.json({active:true,type:"one_time",currency:"eur",unit_amount:2900,tax_behavior:"inclusive",product:"prod_a",livemode:false});
+      return Response.json([...sessions.values()][0]);
     };
-    for (const lang of ["de", "en", "//attacker.test", null]) {
-      const res = await worker.fetch(new Request(env.PUBLIC_ORIGIN + "/api/checkout", {method:"POST",headers:{Origin:env.PUBLIC_ORIGIN},body:JSON.stringify({acceptTerms:true,lang})}), env);
-      assert.equal(res.status,200);
+    const code=await prepareCheckout(e,'de');
+    assert.equal((await checkoutRequest(e,code)).status,400);
+    assert.equal(db.raw.prepare('SELECT session_id FROM orders').get().session_id,null);
+    const [a,b]=await Promise.all([checkoutRequest(e,code,'makrivo_claim='+'A'.repeat(43)),checkoutRequest(e,code,'makrivo_claim='+'B'.repeat(43))]);
+    assert.equal(a.status,200);assert.equal(b.status,200);
+    assert.equal(a.headers.get('Set-Cookie'),null);assert.equal(b.headers.get('Set-Cookie'),null);
+    assert.equal(sessions.size,1);assert.equal(new Set(keys).size,1);assert.ok(keys.length>=2);
+    assert.equal(db.raw.prepare('SELECT session_id FROM orders').get().session_id,'cs_test_lost');
+  } finally {globalThis.fetch=original;}
+});
+test("an ambiguous old attempt is never recreated after the idempotency window", async () => {
+  const db=database(),e=configured(db),original=globalThis.fetch;let requests=0;
+  try {
+    const code=await prepareCheckout(e,'de');
+    db.raw.prepare('UPDATE orders SET created_at=?').run(Date.now()-21*60*60*1000);
+    globalThis.fetch=async()=>{requests++;throw Error('must not reach provider');};
+    const r=await checkoutRequest(e,code);
+    assert.equal(r.status,409);assert.equal((await r.json()).error,'Checkout needs support');assert.equal(requests,0);
+  } finally {globalThis.fetch=original;}
+});
+test("checkout migration preserves existing orders and entitlements", () => {
+  const db=new DatabaseSync(':memory:');
+  db.exec('CREATE TABLE orders(id TEXT PRIMARY KEY, claim_hash TEXT NOT NULL UNIQUE, created_at INTEGER NOT NULL, session_id TEXT UNIQUE); CREATE TABLE entitlements(id TEXT PRIMARY KEY, order_id TEXT NOT NULL UNIQUE REFERENCES orders(id));');
+  db.prepare('INSERT INTO orders VALUES(?,?,?,?)').run('existing','hashed',1,'cs_test');
+  db.prepare('INSERT INTO entitlements VALUES(?,?)').run('license','existing');
+  db.exec(readFileSync(new URL('../migrations/0003_checkout_attempts.sql',import.meta.url),'utf8'));
+  assert.equal(db.prepare('SELECT session_id FROM orders WHERE id=?').get('existing').session_id,'cs_test');
+  assert.equal(db.prepare('SELECT order_id FROM entitlements WHERE id=?').get('license').order_id,'existing');
+  db.close();
+});
+test("checkout refuses live price in test mode before creating a session", async () => {
+  const original=globalThis.fetch, e=configured(database()); let creates=0;
+  try {
+    globalThis.fetch=async (_url, options) => { if(options.method==='POST') creates++; return Response.json({...goodPrice,livemode:true}); };
+    const code=await prepareCheckout(e,'de');
+    assert.equal((await checkoutRequest(e,code)).status,503);
+    assert.equal(creates,0);
+  } finally { globalThis.fetch=original; }
+});
+test("checkout preserves whitelisted return language across retries", async () => {
+  const original=globalThis.fetch, e=configured(database()), captured=[], sessions=new Map();
+  try {
+    globalThis.fetch=async (url, options) => {
+      if(String(url).includes('/prices/')) return Response.json(goodPrice);
+      if(options.method==='POST') {
+        const body=new URLSearchParams(options.body); captured.push(body);
+        const s={id:'cs_test_'+captured.length,mode:'payment',livemode:false,status:'open',payment_status:'unpaid',url:'https://checkout.stripe.com/c/pay/test',metadata:{orderId:body.get('metadata[orderId]')}};
+        sessions.set(s.id,s); return Response.json(s);
+      }
+      return Response.json(sessions.get(String(url).split('/').pop()));
+    };
+    for(const lang of ['de','en','//attacker.test',null]) {
+      const code=await prepareCheckout(e,lang);
+      assert.equal((await checkoutRequest(e,code)).status,200);
+      assert.equal((await checkoutRequest(e,code)).status,200);
     }
-    assert.equal(captured[0].get("success_url"), env.PUBLIC_ORIGIN + "/?lang=de");
-    assert.equal(captured[1].get("cancel_url"), env.PUBLIC_ORIGIN + "/?lang=en");
-    assert.equal(captured[2].get("success_url"), env.PUBLIC_ORIGIN + "/");
-    assert.equal(captured[3].get("cancel_url"), env.PUBLIC_ORIGIN + "/");
-  } finally { globalThis.fetch = original; }
+    assert.equal(captured.length,4);
+    assert.equal(captured[0].get('success_url'),e.PUBLIC_ORIGIN+'/?lang=de');
+    assert.equal(captured[1].get('cancel_url'),e.PUBLIC_ORIGIN+'/?lang=en');
+    assert.equal(captured[2].get('success_url'),e.PUBLIC_ORIGIN+'/');
+    assert.equal(captured[3].get('cancel_url'),e.PUBLIC_ORIGIN+'/');
+  } finally { globalThis.fetch=original; }
 });
 test("checkout recovery code is hash-only and restores cookie without public session proof", async () => {
-  const original = globalThis.fetch;
-  try {
-    const db = database(),
-      e = configured(db);
-    globalThis.fetch = async (url, options) =>
-      Response.json(
-        options.method === "POST"
-          ? {
-              id: "cs_test",
-              mode: "payment",
-              livemode: false,
-              url: "https://checkout.stripe.com/c/pay/test",
-            }
-          : {
-              active: true,
-              type: "one_time",
-              currency: "eur",
-              unit_amount: 2900,
-              tax_behavior: "inclusive",
-              product: "prod_a",
-              livemode: false,
-            },
-      );
-    const r = await worker.fetch(
-      new Request("https://buyer.test/api/checkout", {
-        method: "POST",
-        headers: { Origin: e.PUBLIC_ORIGIN },
-        body: '{"acceptTerms":true}',
-      }),
-      e,
-    );
-    assert.equal(r.status, 200);
-    const { recoveryCode } = await r.json();
-    assert.match(recoveryCode, /^[A-Za-z0-9_-]{43}$/);
-    assert.notEqual(
-      db.raw.prepare("SELECT claim_hash FROM orders").get().claim_hash,
-      recoveryCode,
-    );
-    const restore = await worker.fetch(
-      new Request("https://buyer.test/api/claim/restore", {
-        method: "POST",
-        headers: { Origin: e.PUBLIC_ORIGIN },
-        body: JSON.stringify({ recoveryCode }),
-      }),
-      e,
-    );
-    assert.equal(restore.status, 200);
-    assert.match(restore.headers.get("Set-Cookie"), /HttpOnly/);
-    const a = await worker.fetch(
-      new Request("https://buyer.test/api/order", {
-        headers: { Authorization: `Bearer ${recoveryCode}` },
-      }),
-      e,
-    );
-    assert.equal(a.status, 200);
-  } finally {
-    globalThis.fetch = original;
-  }
+  const db=database(),e=configured(db),code=await prepareCheckout(e,'de');
+  assert.match(code,/^[A-Za-z0-9_-]{43}$/);
+  assert.notEqual(db.raw.prepare('SELECT claim_hash FROM orders').get().claim_hash,code);
+  const restore=await worker.fetch(new Request(e.PUBLIC_ORIGIN+'/api/claim/restore',{method:'POST',headers:{Origin:e.PUBLIC_ORIGIN},body:JSON.stringify({recoveryCode:code})}),e);
+  assert.equal(restore.status,200); assert.match(restore.headers.get('Set-Cookie'),/HttpOnly/);
+  assert.equal((await worker.fetch(new Request(e.PUBLIC_ORIGIN+'/api/order',{headers:{Authorization:`Bearer ${code}`}}),e)).status,200);
 });
-test("checkout response requires Stripe host, HTTPS, payment and matching mode", async () => {
-  const original = globalThis.fetch;
+test("checkout rejects invalid provider responses and closed or paid sessions", async () => {
+  const original=globalThis.fetch;
   try {
-    for (const patch of [
-      { url: "https://evil.test/pay" },
-      { url: "http://checkout.stripe.com/pay" },
-      { mode: "subscription" },
-      { livemode: true },
-    ]) {
-      globalThis.fetch = async (url, options) =>
-        Response.json(
-          options.method === "POST"
-            ? {
-                id: "cs_test",
-                mode: "payment",
-                livemode: false,
-                url: "https://checkout.stripe.com/pay",
-                ...patch,
-              }
-            : {
-                active: true,
-                type: "one_time",
-                currency: "eur",
-                unit_amount: 2900,
-                tax_behavior: "inclusive",
-                product: "prod_a",
-                livemode: false,
-              },
-        );
-      const r = await worker.fetch(
-        new Request("https://buyer.test/api/checkout", {
-          method: "POST",
-          headers: { Origin: "https://buyer.test" },
-          body: '{"acceptTerms":true}',
-        }),
-        configured(database()),
-      );
-      assert.equal(r.status, 502);
-      assert.equal((await r.json()).url, undefined);
+    for(const patch of [{url:'https://evil.test/pay'},{url:'http://checkout.stripe.com/pay'},{mode:'subscription'},{livemode:true},{status:'complete'},{payment_status:'paid'}]) {
+      const e=configured(database()); let session;
+      globalThis.fetch=async (url,options) => {
+        if(String(url).includes('/prices/')) return Response.json(goodPrice);
+        if(options.method==='POST') {const body=new URLSearchParams(options.body); session={id:'cs_test',mode:'payment',livemode:false,status:'open',payment_status:'unpaid',url:'https://checkout.stripe.com/pay',metadata:{orderId:body.get('metadata[orderId]')},...patch};}
+        return Response.json(session);
+      };
+      const code=await prepareCheckout(e,'de'),r=await checkoutRequest(e,code);
+      assert.equal(r.status, patch.status || patch.payment_status ? 409 : 502); assert.equal((await r.json()).url,undefined);
     }
-  } finally {
-    globalThis.fetch = original;
-  }
+  } finally { globalThis.fetch=original; }
 });
 test("actual paid fulfillment then refund disables later issuance", async () => {
   const original = globalThis.fetch;

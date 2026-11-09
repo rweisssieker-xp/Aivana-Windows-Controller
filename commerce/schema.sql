@@ -1,5 +1,6 @@
 PRAGMA foreign_keys=ON;
 CREATE TABLE orders(id TEXT PRIMARY KEY, claim_hash TEXT NOT NULL UNIQUE, created_at INTEGER NOT NULL, session_id TEXT UNIQUE);
+CREATE TABLE checkout_attempts(order_id TEXT PRIMARY KEY REFERENCES orders(id), return_lang TEXT NOT NULL CHECK(return_lang IN ('de','en','')));
 CREATE TABLE entitlements(id TEXT PRIMARY KEY, order_id TEXT NOT NULL UNIQUE REFERENCES orders(id), session_id TEXT NOT NULL UNIQUE, payment_intent TEXT UNIQUE, revoked INTEGER NOT NULL DEFAULT 0 CHECK(revoked IN(0,1)));
 CREATE TABLE devices(license_id TEXT NOT NULL REFERENCES entitlements(id), device_id TEXT NOT NULL, active INTEGER NOT NULL DEFAULT 1 CHECK(active IN(0,1)), PRIMARY KEY(license_id,device_id));
 CREATE TABLE events(id TEXT PRIMARY KEY, kind TEXT NOT NULL);
