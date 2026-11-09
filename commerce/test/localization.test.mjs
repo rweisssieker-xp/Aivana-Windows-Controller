@@ -103,6 +103,17 @@ test('English buyer receives an actionable message when purchase terms are unche
   runInNewContext(script,{document,fetch:async()=>({ok:false,json:async()=>({error:'Accept purchase terms'})})});
   await elements.buy.onclick();assert.match(elements.status.textContent,/accept.*terms/i);
 });
+test('English activation explains missing purchase and the four-PC limit', async () => {
+  const html=await (await worker.fetch(new Request('https://buyer.test/?lang=en'),{})).text();
+  const script=html.match(/<script>([\s\S]*?)<\/script>/)[1];
+  for(const [error,expected] of [['Order claim required',/restore.*purchase/i],['Invalid device code',/device code/i],['Four PC limit reached',/four.*PC|4.*PC/i],['No active entitlement',/active license/i]]) {
+    const elements=Object.fromEntries(['status','backup','saved','buy','terms','recovery','copyRecovery','continue','restore','restoreCode','resume','order','activate','device'].map(id=>[id,{}]));
+    elements.device.value='device-code';
+    const document={getElementById:id=>elements[id],querySelectorAll:()=>[]};
+    runInNewContext(script,{document,fetch:async()=>({ok:false,json:async()=>({error})})});
+    await elements.activate.onclick();assert.match(elements.status.textContent,expected);
+  }
+});
 
 test('language selection is blocked during another API request and unlocked after its failure', async () => {
   const html = await (await worker.fetch(new Request('https://buyer.test/?lang=en'), {})).text();
