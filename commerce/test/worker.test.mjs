@@ -22,8 +22,8 @@ import {
   validateSession,
   verifyWebhook,
   signLicense,
-  activationSql,
 } from "../worker.mjs";
+import { activationSql } from "../activation-sql.mjs";
 test("paid checkout exact contract", () => {
   const env = {
     STRIPE_PRICE_ID: "price_a",

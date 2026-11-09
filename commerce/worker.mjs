@@ -1,3 +1,5 @@
+import { activationSql } from './activation-sql.mjs';
+
 const enc = new TextEncoder();
 const b64 = (b) =>
   btoa(String.fromCharCode(...new Uint8Array(b)))
@@ -15,7 +17,6 @@ const json = (v, status = 200, headers = {}) =>
   });
 const hash = async (s) =>
   b64(await crypto.subtle.digest("SHA-256", enc.encode(s)));
-export const activationSql = `INSERT INTO devices(license_id,device_id,active) SELECT ?1,?2,1 WHERE EXISTS(SELECT 1 FROM entitlements WHERE id=?1 AND revoked=0) AND (SELECT count(*) FROM devices WHERE license_id=?1 AND active=1)<4 ON CONFLICT(license_id,device_id) DO UPDATE SET active=1 WHERE devices.active=0 AND EXISTS(SELECT 1 FROM entitlements WHERE id=?1 AND revoked=0) AND (SELECT count(*) FROM devices WHERE license_id=?1 AND active=1)<4`;
 export function validateSession(s, e) {
   const a = s.line_items?.data;
   return (
