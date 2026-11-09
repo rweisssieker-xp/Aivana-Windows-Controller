@@ -1139,3 +1139,25 @@ test('contract versions cannot be overwritten or removed after publication', () 
   assert.throws(()=>db.prepare('DELETE FROM contract_documents WHERE language=? AND version=?').run('de','test-v1'),/immutable/);
   assert.equal(db.prepare('SELECT text FROM contract_documents WHERE language=? AND version=?').get('de','test-v1').text,'Testbedingungen');
 });
+
+test('replace and upsert cannot bypass document version immutability', () => {
+  const db=database().raw;db.exec('PRAGMA recursive_triggers=OFF');
+  assert.throws(()=>db.prepare('INSERT OR REPLACE INTO contract_documents VALUES(?,?,?)').run('de','test-v1','substituted'),/immutable/);
+  assert.throws(()=>db.prepare('INSERT INTO contract_documents VALUES(?,?,?) ON CONFLICT(language,version) DO UPDATE SET text=excluded.text').run('de','test-v1','substituted'),/immutable/);
+  assert.equal(db.prepare('SELECT text FROM contract_documents WHERE language=? AND version=?').get('de','test-v1').text,'Testbedingungen');
+});
+
+test('stored acceptance cannot be rewritten, deleted or replaced by ordinary operations', () => {
+  const db=database().raw;db.exec('PRAGMA recursive_triggers=OFF');
+  db.prepare('INSERT INTO orders VALUES(?,?,?,?)').run('o','h',1,null);
+  db.prepare('INSERT INTO contract_acceptances VALUES(?,?,?,?,?,?)').run('o','de','v1','Original','digest',1);
+  assert.throws(()=>db.prepare('UPDATE contract_acceptances SET text=? WHERE order_id=?').run('Modified','o'),/immutable/);
+  assert.throws(()=>db.prepare('DELETE FROM contract_acceptances WHERE order_id=?').run('o'),/immutable/);
+  assert.throws(()=>db.prepare('INSERT OR REPLACE INTO contract_acceptances VALUES(?,?,?,?,?,?)').run('o','de','v2','Modified','new',2),/immutable/);
+});
+
+test('contract documents containing carriage returns cannot become active', async () => {
+  const db=database(), e=configured(db);db.raw.prepare('INSERT INTO contract_documents VALUES(?,?,?)').run('de','crlf','First\r\nSecond');e.CONTRACT_VERSION_DE='crlf';
+  const res=await worker.fetch(new Request(e.PUBLIC_ORIGIN+'/api/checkout/prepare',{method:'POST',headers:{Origin:e.PUBLIC_ORIGIN},body:JSON.stringify({acceptTerms:true,lang:'de'})}),e);
+  assert.equal(res.status,503);
+});
