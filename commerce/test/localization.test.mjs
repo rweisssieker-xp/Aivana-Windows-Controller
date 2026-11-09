@@ -171,3 +171,11 @@ test('new buyer explicitly restores saved code after payment before accessing th
   assert.equal(selected,saved);await after.order.onclick();
   assert.match(after.seats.textContent,/bezahlt/);
 });
+
+test('updated terms require the German buyer to reload and review again', async () => {
+  const html=await (await worker.fetch(new Request('https://buyer.test/?lang=de'),{})).text(), script=html.match(/<script>([\s\S]*?)<\/script>/)[1];
+  const elements=Object.fromEntries(['status','backup','saved','buy','terms','recovery','copyRecovery','continue','restore','restoreCode','resume','order','activate'].map(id=>[id,{}]));
+  elements.terms.checked=true; const document={getElementById:id=>elements[id],querySelectorAll:()=>[]};
+  runInNewContext(script,{document,fetch:async()=>({ok:false,json:async()=>({error:'Contract changed'})})});
+  await elements.buy.onclick();assert.match(elements.status.textContent,/Lade die Seite neu/);
+});
