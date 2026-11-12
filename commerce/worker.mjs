@@ -281,7 +281,7 @@ async function webhook(req, e) {
       s.payment_intent,
     ),
     e.DB.prepare(
-      `INSERT OR IGNORE INTO confirmation_jobs(order_id,created_at) SELECT o.order_id,? FROM confirmation_obligations o JOIN entitlements e ON e.order_id=o.order_id WHERE o.order_id=? AND e.revoked=0`,
+      `INSERT OR IGNORE INTO confirmation_jobs(order_id,created_at) SELECT o.order_id,? FROM confirmation_obligations o JOIN entitlements e ON e.order_id=o.order_id WHERE o.order_id=?`,
     ).bind(Date.now(),order.id),
     e.DB.prepare("INSERT OR IGNORE INTO events(id,kind) VALUES(?,?)").bind(
       event.id,
