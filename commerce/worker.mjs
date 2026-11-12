@@ -281,13 +281,14 @@ async function webhook(req, e) {
       s.payment_intent,
     ),
     e.DB.prepare(
-      `INSERT OR IGNORE INTO confirmation_jobs(order_id,created_at) SELECT o.order_id,? FROM confirmation_obligations o JOIN entitlements e ON e.order_id=o.order_id WHERE o.order_id=?`,
-    ).bind(Date.now(),order.id),
-    e.DB.prepare("INSERT OR IGNORE INTO events(id,kind) VALUES(?,?)").bind(
-      event.id,
-      event.type,
+      `INSERT OR IGNORE INTO confirmation_jobs(order_id,created_at) SELECT o.order_id,? FROM confirmation_obligations o JOIN entitlements e ON e.order_id=o.order_id WHERE o.order_id=? AND e.session_id=? AND e.payment_intent=?`,
+    ).bind(Date.now(),order.id,s.id,s.payment_intent),
+    e.DB.prepare("INSERT OR IGNORE INTO events(id,kind) SELECT ?,? WHERE EXISTS(SELECT 1 FROM entitlements WHERE order_id=? AND session_id=? AND payment_intent=?)").bind(
+      event.id,event.type,order.id,s.id,s.payment_intent,
     ),
   ]);
+  const mapping=await e.DB.prepare("SELECT 1 AS ok FROM entitlements WHERE order_id=? AND session_id=? AND payment_intent=?").bind(order.id,s.id,s.payment_intent).first();
+  if (!mapping) return json({ error: "Payment mapping conflict" },409);
   return json({ received: true });
 }
 function accountReady(e) {
@@ -557,7 +558,14 @@ export default {
           .bind(a.license_id, deviceId)
           .first();
         if (!seated) return json({ error: "Four PC limit reached" }, 409);
-        return json(await signLicense(a.license_id, deviceId, e));
+        const signed = await signLicense(a.license_id, deviceId, e);
+        // This conditional write is the issuance linearization point: a refund
+        // or deactivation committed before it prevents the signed file leaving.
+        const issued = await e.DB.prepare(
+          `UPDATE devices SET active=1 WHERE license_id=? AND device_id=? AND active=1 AND EXISTS(SELECT 1 FROM entitlements e WHERE e.id=devices.license_id AND e.revoked=0 AND NOT EXISTS(SELECT 1 FROM confirmation_obligations o WHERE o.order_id=e.order_id)) RETURNING 1 AS ok`,
+        ).bind(a.license_id,deviceId).first();
+        if (!issued) return json({ error: "No active entitlement" },403);
+        return json(signed);
       }
       return json({ error: "Not found" }, 404);
     } catch {

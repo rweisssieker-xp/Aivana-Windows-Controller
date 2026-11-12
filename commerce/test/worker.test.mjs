@@ -1301,3 +1301,67 @@ test('a refund received before a paid webhook still queues a confirmation job wi
     assert.equal(activation.status,403);
   } finally { globalThis.fetch=original; }
 });
+
+for (const mismatch of ['different payment on same order','payment intent belongs to another order']) {
+  test(`inconsistent fulfillment mapping rejects webhook: ${mismatch}`,async()=>{
+    const db=database(),e=configured(db),original=globalThis.fetch;
+    try {
+      await prepareCheckout(e,'de'); const order=db.raw.prepare('SELECT id FROM orders').get().id;
+      db.raw.prepare('UPDATE orders SET session_id=? WHERE id=?').run('cs_test',order);
+      if (mismatch==='different payment on same order') {
+        db.raw.prepare('INSERT INTO entitlements(id,order_id,session_id,payment_intent) VALUES(?,?,?,?)').run('wrong',order,'cs_old','pi_old');
+      } else {
+        db.raw.prepare('INSERT INTO orders VALUES(?,?,?,?)').run('other','otherhash',1,'cs_other');
+        db.raw.prepare('INSERT INTO entitlements(id,order_id,session_id,payment_intent) VALUES(?,?,?,?)').run('other-license','other','cs_other','pi_test');
+      }
+      globalThis.fetch=async()=>Response.json({id:'cs_test',metadata:{orderId:order},payment_intent:'pi_test',payment_status:'paid',mode:'payment',currency:'eur',amount_total:2900,livemode:false,line_items:{data:[{quantity:1,price:{id:'price_a',product:'prod_a'}}]}});
+      const response=await worker.fetch(await signedEvent(e,'checkout.session.completed'),e);
+      assert.equal(response.status,409);
+      assert.equal(db.raw.prepare('SELECT count(*) n FROM confirmation_jobs WHERE order_id=?').get(order).n,0);
+    } finally {globalThis.fetch=original;}
+  });
+}
+
+for (const kind of ['refund','deactivation']) {
+  test(`${kind} committed during signing prevents license issuance`, async () => {
+    const db=database(), e=configured(db), claim='R'.repeat(43), id='12345678-1234-1234-1234-123456789abc', device='a'.repeat(64);
+    const h=Buffer.from(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(claim))).toString('base64url');
+    db.raw.prepare('INSERT INTO orders VALUES(?,?,?,?)').run('legacy',h,1,'cs_test');
+    db.raw.prepare('INSERT INTO entitlements(id,order_id,session_id,payment_intent) VALUES(?,?,?,?)').run(id,'legacy','cs_test','pi_test');
+    const original=crypto.subtle.sign; let fired=false;
+    try {
+      crypto.subtle.sign=async function(algorithm,...args) {
+        if (algorithm==='RSASSA-PKCS1-v1_5' && !fired) {
+          fired=true;
+          const concurrent=kind==='refund'
+            ? await worker.fetch(await signedEvent(e,'charge.refunded','evt_refund',{payment_intent:'pi_test'}),e)
+            : await worker.fetch(new Request(e.PUBLIC_ORIGIN+'/api/licenses/deactivate',{method:'POST',headers:{Origin:e.PUBLIC_ORIGIN,Authorization:'Bearer '+claim},body:JSON.stringify({deviceId:device})}),e);
+          assert.equal(concurrent.status,200);
+        }
+        return original.call(this,algorithm,...args);
+      };
+      const response=await worker.fetch(new Request(e.PUBLIC_ORIGIN+'/api/licenses/activate',{method:'POST',headers:{Origin:e.PUBLIC_ORIGIN,Authorization:'Bearer '+claim},body:JSON.stringify({deviceId:device})}),e);
+      assert.equal(fired,true);
+      assert.equal(response.status,403);
+      assert.equal((await response.json()).signature,undefined);
+      if(kind==='refund') assert.equal(db.raw.prepare('SELECT revoked FROM entitlements').get().revoked,1);
+      else assert.equal(db.raw.prepare('SELECT active FROM devices').get().active,0);
+    } finally { crypto.subtle.sign=original; }
+  });
+}
+
+test('refund committed after the atomic issuance point cannot revoke the issued offline file', async () => {
+  const db=database(), e=configured(db), claim='Q'.repeat(43), id='12345678-1234-1234-1234-123456789abc', device='b'.repeat(64);
+  const h=Buffer.from(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(claim))).toString('base64url');
+  db.raw.prepare('INSERT INTO orders VALUES(?,?,?,?)').run('legacy',h,1,'cs_test');
+  db.raw.prepare('INSERT INTO entitlements(id,order_id,session_id,payment_intent) VALUES(?,?,?,?)').run(id,'legacy','cs_test','pi_test');
+  const prepare=db.prepare.bind(db); let fired=false;
+  db.prepare=sql=>{
+    const statement=prepare(sql);
+    if(!sql.startsWith('UPDATE devices SET active=1 WHERE license_id=? AND device_id=? AND active=1'))return statement;
+    return {bind(...args){const bound=statement.bind(...args); return {...bound,async first(){const issued=await bound.first();fired=true;assert.equal((await worker.fetch(await signedEvent(e,'charge.refunded','evt_refund',{payment_intent:'pi_test'}),e)).status,200);return issued;}};}};
+  };
+  const response=await worker.fetch(new Request(e.PUBLIC_ORIGIN+'/api/licenses/activate',{method:'POST',headers:{Origin:e.PUBLIC_ORIGIN,Authorization:'Bearer '+claim},body:JSON.stringify({deviceId:device})}),e);
+  assert.equal(fired,true); assert.equal(response.status,200); assert.ok((await response.json()).signature);
+  assert.equal(db.raw.prepare('SELECT revoked FROM entitlements').get().revoked,1);
+});
