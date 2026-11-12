@@ -36,4 +36,6 @@ Information is accessible to authorized personnel and service providers needed f
 
 ## Your rights
 
+After restoring a purchase, you can download selected purchase and device data from the MAKRIVO service. The download does not include data held by Stripe or in support, infrastructure logs or backups. Contact us for other access or rights requests; the download does not replace such a request.
+
 Subject to the legal conditions, you may request access, correction, erasure, restriction and portability. You may object to processing based on legitimate interests. Any consent can be withdrawn for the future. Contact info@aivana-gmbh.ai. You may complain to a data protection supervisory authority, particularly where you live or work or where an alleged infringement occurred. Contact us if an automated activation refusal needs review.

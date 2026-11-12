@@ -1156,6 +1156,50 @@ test('stored acceptance cannot be rewritten, deleted or replaced by ordinary ope
   assert.throws(()=>db.prepare('INSERT OR REPLACE INTO contract_acceptances VALUES(?,?,?,?,?,?)').run('o','de','v2','Modified','new',2),/immutable/);
 });
 
+test('purchase-data export is scoped to an authenticated purchase and excludes secrets', async () => {
+  const db=database(), e=configured(db), mine='A'.repeat(43), theirs='B'.repeat(43);
+  const digest=async value=>Buffer.from(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(value))).toString('base64url');
+  db.raw.prepare('INSERT INTO orders VALUES(?,?,?,?)').run('order_mine',await digest(mine),1000,'cs_mine');
+  db.raw.prepare('INSERT INTO orders VALUES(?,?,?,?)').run('order_theirs',await digest(theirs),2000,'cs_theirs');
+  db.raw.prepare('INSERT INTO checkout_attempts VALUES(?,?)').run('order_mine','de');
+  db.raw.prepare('INSERT INTO contract_acceptances VALUES(?,?,?,?,?,?)').run('order_mine','de','v1','Accepted own terms','terms-hash',1500);
+  db.raw.prepare('INSERT INTO contract_acceptances VALUES(?,?,?,?,?,?)').run('order_theirs','en','v2','PRIVATE OTHER TERMS','other-hash',2500);
+  db.raw.prepare('INSERT INTO entitlements(id,order_id,session_id,payment_intent,revoked) VALUES(?,?,?,?,?)').run('license_mine','order_mine','cs_mine','pi_mine',1);
+  db.raw.prepare('INSERT INTO entitlements(id,order_id,session_id,payment_intent) VALUES(?,?,?,?)').run('license_other','order_theirs','cs_theirs','pi_other');
+  db.raw.prepare('INSERT INTO devices VALUES(?,?,?)').run('license_mine','a'.repeat(64),1);
+  db.raw.prepare('INSERT INTO devices VALUES(?,?,?)').run('license_mine','b'.repeat(64),0);
+  db.raw.prepare('INSERT INTO devices VALUES(?,?,?)').run('license_other','c'.repeat(64),1);
+  const request=(headers={})=>worker.fetch(new Request(e.PUBLIC_ORIGIN+'/api/order/export',{headers}),e);
+  assert.equal((await request()).status,401);
+  assert.equal((await request({Authorization:'Bearer cs_mine'})).status,401);
+  const response=await request({Cookie:'makrivo_claim='+mine});
+  assert.equal(response.status,200);
+  assert.match(response.headers.get('Content-Type'),/^application\/json/);
+  assert.match(response.headers.get('Content-Disposition'),/^attachment/);
+  assert.equal(response.headers.get('Cache-Control'),'no-store');
+  assert.equal(response.headers.get('X-Content-Type-Options'),'nosniff');
+  const raw=await response.text(), data=JSON.parse(raw);
+  assert.equal(data.order.reference,'order_mine');assert.equal(data.order.prepared_at_ms,1000);
+  assert.equal(data.order.status,'revoked');assert.equal(data.acceptance.text,'Accepted own terms');
+  assert.deepEqual(data.devices.map(d=>d.active).sort(),[false,true]);
+  for(const secret of [mine,await digest(mine),'cs_mine','pi_mine','order_theirs','PRIVATE OTHER TERMS','c'.repeat(64)]) assert.ok(!raw.includes(secret),secret);
+  const otherResponse=await request({Authorization:'Bearer '+theirs});
+  assert.equal(otherResponse.status,200);
+  const otherData=await otherResponse.text();assert.ok(!otherData.includes('order_mine'));assert.ok(!otherData.includes('Accepted own terms'));assert.ok(!otherData.includes('a'.repeat(64)));
+});
+
+test('purchase-data export handles a pending legacy purchase and refuses oversized device history', async () => {
+  const db=database(),e=configured(db),code='C'.repeat(43);
+  const h=Buffer.from(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(code))).toString('base64url');
+  db.raw.prepare('INSERT INTO orders VALUES(?,?,?,?)').run('legacy',h,1,null);
+  const request=()=>worker.fetch(new Request(e.PUBLIC_ORIGIN+'/api/order/export',{headers:{Authorization:'Bearer '+code}}),e);
+  let res=await request();assert.equal(res.status,200);
+  let data=await res.json();assert.equal(data.order.status,'pending');assert.equal(data.acceptance,null);assert.deepEqual(data.devices,[]);
+  db.raw.prepare('INSERT INTO entitlements(id,order_id,session_id) VALUES(?,?,?)').run('l','legacy','cs_test');
+  const add=db.raw.prepare('INSERT INTO devices VALUES(?,?,0)');for(let n=0;n<1001;n++) add.run('l',n.toString(16).padStart(64,'0'));
+  res=await request();assert.equal(res.status,413);assert.match((await res.json()).error,/support/i);
+});
+
 test('contract documents containing carriage returns cannot become active', async () => {
   const db=database(), e=configured(db);db.raw.prepare('INSERT INTO contract_documents VALUES(?,?,?)').run('de','crlf','First\r\nSecond');e.CONTRACT_VERSION_DE='crlf';
   const res=await worker.fetch(new Request(e.PUBLIC_ORIGIN+'/api/checkout/prepare',{method:'POST',headers:{Origin:e.PUBLIC_ORIGIN},body:JSON.stringify({acceptTerms:true,lang:'de'})}),e);

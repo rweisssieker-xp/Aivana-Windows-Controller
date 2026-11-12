@@ -36,4 +36,6 @@ Zugriff erhalten befugte Mitarbeitende und für Zahlung, Hosting, Kommunikation 
 
 ## Ihre Rechte
 
+Nach Wiederherstellung eines Kaufs können Sie ausgewählte zugehörige Kauf- und Gerätedaten aus dem MAKRIVO-Dienst herunterladen. Daten bei Stripe, im Support, in Infrastrukturprotokollen oder Sicherungen sind in diesem Download nicht enthalten. Für weitere Auskunfts- oder Rechteanfragen wenden Sie sich an uns; der Download ersetzt diese Anfrage nicht.
+
 Unter den gesetzlichen Voraussetzungen können Sie Auskunft, Berichtigung, Löschung, Einschränkung und Datenübertragbarkeit verlangen. Gegen eine auf berechtigte Interessen gestützte Verarbeitung können Sie Widerspruch einlegen. Eine etwaige Einwilligung können Sie für die Zukunft widerrufen. Kontakt: info@aivana-gmbh.ai. Sie können sich bei einer Datenschutzaufsichtsbehörde beschweren, insbesondere an Ihrem Wohn- oder Arbeitsort oder am Ort eines vermuteten Verstoßes. Wenden Sie sich an uns, wenn eine automatische Aktivierungsablehnung überprüft werden soll.

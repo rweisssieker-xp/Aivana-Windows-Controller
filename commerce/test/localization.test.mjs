@@ -33,6 +33,16 @@ test('purchase page selects German and English without changing the purchase con
   assert.equal(de.headers.get('Cache-Control'), 'no-store');
 });
 
+test('purchase data export is clearly scoped in both supported languages', async () => {
+  const get = async lang => (await worker.fetch(new Request(`https://buyer.test/?lang=${lang}`),{})).text();
+  const de=await get('de'),en=await get('en');
+  for(const html of [de,en]) assert.match(html,/href="\/api\/order\/export"/);
+  assert.match(de,/Kaufdaten aus MAKRIVO herunterladen/);
+  assert.match(de,/Stripe und andere Dienstleister/);
+  assert.match(en,/Download MAKRIVO purchase data/);
+  assert.match(en,/Stripe and other providers/);
+});
+
 test('German page preserves the recovery code during language switching and guides the buyer', async () => {
   const html = await (await worker.fetch(new Request('https://buyer.test/?lang=de'), {})).text();
   const script = html.match(/<script>([\s\S]*?)<\/script>/)[1];
