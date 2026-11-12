@@ -280,6 +280,9 @@ async function webhook(req, e) {
       s.payment_intent,
       s.payment_intent,
     ),
+    e.DB.prepare(
+      `INSERT OR IGNORE INTO confirmation_jobs(order_id,created_at) SELECT o.order_id,? FROM confirmation_obligations o JOIN entitlements e ON e.order_id=o.order_id WHERE o.order_id=? AND e.revoked=0`,
+    ).bind(Date.now(),order.id),
     e.DB.prepare("INSERT OR IGNORE INTO events(id,kind) VALUES(?,?)").bind(
       event.id,
       event.type,
@@ -371,6 +374,7 @@ export default {
           e.DB.prepare("INSERT INTO orders(id,claim_hash,created_at) VALUES(?,?,?)").bind(id, await hash(secret), acceptedAt),
           e.DB.prepare("INSERT INTO checkout_attempts(order_id,return_lang) VALUES(?,?)").bind(id, lang),
           e.DB.prepare("INSERT INTO contract_acceptances(order_id,language,version,text,digest,accepted_at) VALUES(?,?,?,?,?,?)").bind(id, document.language, document.version, document.text, input.contractDigest, acceptedAt),
+          e.DB.prepare("INSERT INTO confirmation_obligations(order_id,created_at) VALUES(?,?)").bind(id, acceptedAt),
         ]);
         return json({ recoveryCode: secret });
       }
@@ -537,6 +541,10 @@ export default {
             .run();
           return json({ deactivated: true });
         }
+        // There is no trusted delivery transport or delivery acknowledgement yet.
+        // A recorded obligation therefore fails closed, even if a pending job is absent.
+        const obligation = await e.DB.prepare("SELECT 1 AS required FROM confirmation_obligations WHERE order_id=?").bind(a.id).first();
+        if (obligation) return json({ error: "Contract confirmation delivery unavailable" }, 503);
         try {
           await signingKey(e);
         } catch {
@@ -604,6 +612,8 @@ async function page(e, req) {
       genericError: "Die Anfrage konnte nicht abgeschlossen werden."
     }
   };
+  strings.en.errors["Contract confirmation delivery unavailable"] = "Contract confirmation delivery is not available. Please contact support before activating this purchase.";
+  strings.de.errors["Contract confirmation delivery unavailable"] = "Die Zustellung der Vertragsbestätigung ist derzeit nicht verfügbar. Bitte kontaktiere den Support, bevor du diesen Kauf aktivierst.";
   const t = strings[language];
   const enabled = await ready(e);
   const document = await contractDocument(e, language);

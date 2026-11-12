@@ -146,6 +146,17 @@ test('English activation explains missing purchase and the four-PC limit', async
     await elements.activate.onclick();assert.match(elements.status.textContent,expected);
   }
 });
+test('confirmation delivery failures direct buyers to support in German and English', async () => {
+  for (const [language,pattern] of [['de',/Vertragsbestätigung.*Support/],['en',/confirmation.*support/i]]) {
+    const html=await (await worker.fetch(new Request(`https://buyer.test/?lang=${language}`),{})).text();
+    const script=html.match(/<script>([\s\S]*?)<\/script>/)[1];
+    const elements=Object.fromEntries(['status','backup','saved','buy','terms','recovery','copyRecovery','continue','restore','restoreCode','resume','order','activate','device'].map(id=>[id,{}]));
+    elements.device.value='a'.repeat(64);
+    const document={getElementById:id=>elements[id],querySelectorAll:()=>[]};
+    runInNewContext(script,{document,fetch:async()=>({ok:false,json:async()=>({error:'Contract confirmation delivery unavailable'})})});
+    await elements.activate.onclick(); assert.match(elements.status.textContent,pattern);
+  }
+});
 
 test('language selection is blocked during another API request and unlocked after its failure', async () => {
   const html = await (await worker.fetch(new Request('https://buyer.test/?lang=en'), {})).text();

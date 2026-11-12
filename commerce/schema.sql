@@ -9,6 +9,11 @@ CREATE TABLE contract_acceptances(order_id TEXT PRIMARY KEY REFERENCES orders(id
 CREATE TRIGGER contract_acceptances_no_replace BEFORE INSERT ON contract_acceptances WHEN EXISTS(SELECT 1 FROM contract_acceptances WHERE order_id=NEW.order_id) BEGIN SELECT RAISE(ABORT,'contract acceptances are immutable'); END;
 CREATE TRIGGER contract_acceptances_no_update BEFORE UPDATE ON contract_acceptances BEGIN SELECT RAISE(ABORT,'contract acceptances are immutable'); END;
 CREATE TRIGGER contract_acceptances_no_delete BEFORE DELETE ON contract_acceptances BEGIN SELECT RAISE(ABORT,'contract acceptances are immutable'); END;
+CREATE TABLE confirmation_obligations(order_id TEXT PRIMARY KEY REFERENCES orders(id), created_at INTEGER NOT NULL);
+CREATE TRIGGER confirmation_obligations_no_replace BEFORE INSERT ON confirmation_obligations WHEN EXISTS(SELECT 1 FROM confirmation_obligations WHERE order_id=NEW.order_id) BEGIN SELECT RAISE(ABORT,'confirmation obligations are immutable'); END;
+CREATE TRIGGER confirmation_obligations_no_update BEFORE UPDATE ON confirmation_obligations BEGIN SELECT RAISE(ABORT,'confirmation obligations are immutable'); END;
+CREATE TRIGGER confirmation_obligations_no_delete BEFORE DELETE ON confirmation_obligations BEGIN SELECT RAISE(ABORT,'confirmation obligations are immutable'); END;
+CREATE TABLE confirmation_jobs(order_id TEXT PRIMARY KEY REFERENCES confirmation_obligations(order_id), created_at INTEGER NOT NULL);
 CREATE TABLE entitlements(id TEXT PRIMARY KEY, order_id TEXT NOT NULL UNIQUE REFERENCES orders(id), session_id TEXT NOT NULL UNIQUE, payment_intent TEXT UNIQUE, revoked INTEGER NOT NULL DEFAULT 0 CHECK(revoked IN(0,1)));
 CREATE TABLE devices(license_id TEXT NOT NULL REFERENCES entitlements(id), device_id TEXT NOT NULL, active INTEGER NOT NULL DEFAULT 1 CHECK(active IN(0,1)), PRIMARY KEY(license_id,device_id));
 CREATE TABLE events(id TEXT PRIMARY KEY, kind TEXT NOT NULL);

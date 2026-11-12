@@ -1215,3 +1215,78 @@ test('contract documents containing carriage returns cannot become active', asyn
   const res=await worker.fetch(new Request(e.PUBLIC_ORIGIN+'/api/checkout/prepare',{method:'POST',headers:{Origin:e.PUBLIC_ORIGIN},body:JSON.stringify({acceptTerms:true,lang:'de'})}),e);
   assert.equal(res.status,503);
 });
+
+test('new paid purchase cannot issue a license without contract confirmation delivery', async () => {
+  const db=database(), e=configured(db), original=globalThis.fetch;
+  try {
+    const claim=await prepareCheckout(e,'de');
+    const order=db.raw.prepare('SELECT id FROM orders').get().id;
+    db.raw.prepare('UPDATE orders SET session_id=? WHERE id=?').run('cs_test',order);
+    globalThis.fetch=async()=>Response.json({id:'cs_test',metadata:{orderId:order},payment_intent:'pi_test',payment_status:'paid',mode:'payment',currency:'eur',amount_total:2900,livemode:false,line_items:{data:[{quantity:1,price:{id:'price_a',product:'prod_a'}}]}});
+    assert.equal((await worker.fetch(await signedEvent(e,'checkout.session.completed'),e)).status,200);
+    assert.equal((await worker.fetch(await signedEvent(e,'checkout.session.completed'),e)).status,200);
+    const response=await worker.fetch(new Request(e.PUBLIC_ORIGIN+'/api/licenses/activate',{method:'POST',headers:{Origin:e.PUBLIC_ORIGIN,Authorization:'Bearer '+claim},body:JSON.stringify({deviceId:'a'.repeat(64)})}),e);
+    assert.equal(response.status,503);
+    assert.equal((await response.json()).error,'Contract confirmation delivery unavailable');
+    assert.equal(db.raw.prepare('SELECT count(*) AS n FROM devices').get().n,0);
+    assert.equal(db.raw.prepare('SELECT count(*) AS n FROM confirmation_obligations').get().n,1);
+    assert.equal(db.raw.prepare('SELECT count(*) AS n FROM confirmation_jobs').get().n,1);
+    assert.throws(()=>db.raw.prepare('DELETE FROM confirmation_obligations WHERE order_id=?').run(order),/immutable/);
+    assert.throws(()=>db.raw.prepare('INSERT OR REPLACE INTO confirmation_obligations VALUES(?,?)').run(order,1),/immutable/);
+    // A missing queue entry cannot release the license: there is no trusted delivery yet.
+    db.raw.prepare('DELETE FROM confirmation_jobs WHERE order_id=?').run(order);
+    const retry=await worker.fetch(new Request(e.PUBLIC_ORIGIN+'/api/licenses/activate',{method:'POST',headers:{Origin:e.PUBLIC_ORIGIN,Authorization:'Bearer '+claim},body:JSON.stringify({deviceId:'a'.repeat(64)})}),e);
+    assert.equal(retry.status,503);
+  } finally { globalThis.fetch=original; }
+});
+
+test('confirmation migration protects previously accepted purchases and preserves legacy entitlements', () => {
+  const db=new DatabaseSync(':memory:');
+  db.exec('PRAGMA foreign_keys=ON; CREATE TABLE orders(id TEXT PRIMARY KEY); CREATE TABLE contract_acceptances(order_id TEXT PRIMARY KEY, accepted_at INTEGER NOT NULL); CREATE TABLE entitlements(id TEXT PRIMARY KEY, order_id TEXT UNIQUE, revoked INTEGER NOT NULL);');
+  db.prepare('INSERT INTO orders VALUES(?)').run('new'); db.prepare('INSERT INTO orders VALUES(?)').run('legacy');
+  db.prepare('INSERT INTO contract_acceptances VALUES(?,?)').run('new',123);
+  db.prepare('INSERT INTO entitlements VALUES(?,?,?)').run('new-license','new',0);
+  db.prepare('INSERT INTO entitlements VALUES(?,?,?)').run('old-license','legacy',0);
+  db.exec(readFileSync(new URL('../migrations/0005_confirmation_jobs.sql',import.meta.url),'utf8'));
+  assert.deepEqual(db.prepare('SELECT order_id,created_at FROM confirmation_obligations').all().map(x=>({...x})),[{order_id:'new',created_at:123}]);
+  assert.equal(db.prepare('SELECT count(*) AS n FROM confirmation_jobs WHERE order_id=?').get('new').n,1);
+  assert.equal(db.prepare('SELECT count(*) AS n FROM confirmation_obligations WHERE order_id=?').get('legacy').n,0);
+  assert.equal(db.prepare('SELECT count(*) AS n FROM entitlements').get().n,2);
+  db.close();
+});
+
+test('failed confirmation enqueue rolls back payment fulfillment so Stripe can retry', async () => {
+  const db=database(), e=configured(db), original=globalThis.fetch;
+  try {
+    await prepareCheckout(e,'de');
+    const order=db.raw.prepare('SELECT id FROM orders').get().id;
+    db.raw.prepare('UPDATE orders SET session_id=? WHERE id=?').run('cs_test',order);
+    const prep=db.prepare.bind(db); db.prepare=sql=>sql.startsWith('INSERT OR IGNORE INTO confirmation_jobs')?{bind(){return {_run(){throw Error('outbox unavailable');}};}}:prep(sql);
+    globalThis.fetch=async()=>Response.json({id:'cs_test',metadata:{orderId:order},payment_intent:'pi_test',payment_status:'paid',mode:'payment',currency:'eur',amount_total:2900,livemode:false,line_items:{data:[{quantity:1,price:{id:'price_a',product:'prod_a'}}]}});
+    assert.equal((await worker.fetch(await signedEvent(e,'checkout.session.completed'),e)).status,400);
+    assert.equal(db.raw.prepare('SELECT count(*) AS n FROM entitlements').get().n,0);
+    assert.equal(db.raw.prepare('SELECT count(*) AS n FROM events').get().n,0);
+  } finally { globalThis.fetch=original; }
+});
+
+test('failed confirmation obligation storage rolls back the entire prepared order', async () => {
+  const db=database(), e=configured(db), prep=db.prepare.bind(db);
+  db.prepare=sql=>sql.startsWith('INSERT INTO confirmation_obligations')?{bind(){return {_run(){throw Error('storage failed');}};}}:prep(sql);
+  const r=await worker.fetch(new Request(e.PUBLIC_ORIGIN+'/api/checkout/prepare',{method:'POST',headers:{Origin:e.PUBLIC_ORIGIN},body:JSON.stringify({acceptTerms:true,lang:'de',contractDigest:await fixtureDigest('de')})}),e);
+  assert.equal(r.status,400);
+  for(const table of ['orders','checkout_attempts','contract_acceptances','confirmation_obligations']) assert.equal(db.raw.prepare(`SELECT count(*) n FROM ${table}`).get().n,0);
+});
+
+test('a refund received before a paid webhook does not queue a confirmation job', async () => {
+  const db=database(), e=configured(db), original=globalThis.fetch;
+  try {
+    await prepareCheckout(e,'de');
+    const order=db.raw.prepare('SELECT id FROM orders').get().id;
+    db.raw.prepare('UPDATE orders SET session_id=? WHERE id=?').run('cs_test',order);
+    globalThis.fetch=async()=>Response.json({id:'cs_test',metadata:{orderId:order},payment_intent:'pi_test',payment_status:'paid',mode:'payment',currency:'eur',amount_total:2900,livemode:false,line_items:{data:[{quantity:1,price:{id:'price_a',product:'prod_a'}}]}});
+    assert.equal((await worker.fetch(await signedEvent(e,'charge.refunded','evt_refund',{payment_intent:'pi_test'}),e)).status,200);
+    assert.equal((await worker.fetch(await signedEvent(e,'checkout.session.completed'),e)).status,200);
+    assert.equal(db.raw.prepare('SELECT revoked FROM entitlements').get().revoked,1);
+    assert.equal(db.raw.prepare('SELECT count(*) n FROM confirmation_jobs').get().n,0);
+  } finally { globalThis.fetch=original; }
+});
