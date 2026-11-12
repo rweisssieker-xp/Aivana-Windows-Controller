@@ -159,32 +159,46 @@ test('retry after lost response survives reload without storing entered informat
     const fetch=async(path,opts)=>{const res=await withdrawalTestFetch(new Request(origin+path,{...opts,headers:{...opts.headers,Origin:origin}}),env);if(lose)throw Error('lost');return res;};
     runInNewContext(script,{document:{getElementById:x=>elements[x]},fetch,sessionStorage:storage,crypto:{randomUUID:()=>id}});return elements;};
   const before=page(input.requestId,true);before.preview.onclick();await before.confirm.onclick();assert.match(before.status.textContent,/Erneut versuchen/);
+  assert.equal(items.size,1);assert.deepEqual([...items.values()],[input.requestId]);
   const after=page('1f1b2b0c-b0cf-4aa0-9f20-c486a81d2bfa',false);after.preview.onclick();await after.confirm.onclick();
   assert.match(after.status.textContent,/nicht versendet/i);assert.equal(db.raw.prepare('SELECT count(*) n FROM withdrawal_requests').get().n,1);
-  assert.equal(items.size,1);assert.deepEqual([...items.values()],[input.requestId]);
+  assert.equal(items.size,0);
 });
 
 test('a deliberately new withdrawal in the same tab uses a new ID and leaves the first intact', async () => {
   const db=database(), origin='https://test.invalid', env={WITHDRAWAL_TEST_ONLY:'true',STRIPE_LIVE:'false',PUBLIC_ORIGIN:origin,DB:db};
   const html=await (await withdrawalTestFetch(new Request(origin+'/withdrawal'),env)).text();
   const elements=Object.fromEntries(['name','contract','email','preview','confirm','details','status','edit','new'].map(id=>[id,{}]));
-  const values=new Map(),storage={getItem:k=>values.get(k)||null,setItem:(k,v)=>values.set(k,v)};
+  const values=new Map(),storage={getItem:k=>values.get(k)||null,setItem:(k,v)=>values.set(k,v),removeItem:k=>values.delete(k)};
   const ids=[input.requestId,'1f1b2b0c-b0cf-4aa0-9f20-c486a81d2bfa'];
   const fetch=async(path,opts)=>withdrawalTestFetch(new Request(origin+path,{...opts,headers:{...opts.headers,Origin:origin}}),env);
   runInNewContext(html.match(/<script>([\s\S]*?)<\/script>/)[1],{document:{getElementById:id=>elements[id]},fetch,sessionStorage:storage,crypto:{randomUUID:()=>ids.shift()}});
   elements.name.value=input.name;elements.contract.value=input.contract;elements.email.value=input.email;
   elements.preview.onclick();await elements.confirm.onclick();assert.equal(elements.new.hidden,false);
-  elements.new.onclick();elements.name.value=input.name;elements.contract.value='Anderer Vertrag';elements.email.value=input.email;
+  elements.new.onclick();assert.deepEqual([...values.values()],['1f1b2b0c-b0cf-4aa0-9f20-c486a81d2bfa']);elements.name.value=input.name;elements.contract.value='Anderer Vertrag';elements.email.value=input.email;
   elements.preview.onclick();await elements.confirm.onclick();
   const rows=db.raw.prepare('SELECT id,contract_reference FROM withdrawal_requests ORDER BY id').all();
   assert.equal(rows.length,2);assert.deepEqual(rows.map(x=>x.contract_reference).sort(),[input.contract,'Anderer Vertrag'].sort());
-  assert.equal(db.raw.prepare('SELECT count(*) n FROM withdrawal_receipts').get().n,2);assert.deepEqual([...values.values()],['1f1b2b0c-b0cf-4aa0-9f20-c486a81d2bfa']);
+  assert.equal(db.raw.prepare('SELECT count(*) n FROM withdrawal_receipts').get().n,2);assert.equal(values.size,0);
+});
+
+test('after a confirmed response, a later new withdrawal after reload does not reuse the completed ID', async () => {
+  const db=database(),origin='https://test.invalid',env={WITHDRAWAL_TEST_ONLY:'true',STRIPE_LIVE:'false',PUBLIC_ORIGIN:origin,DB:db};
+  const html=await(await withdrawalTestFetch(new Request(origin+'/withdrawal'),env)).text(),script=html.match(/<script>([\s\S]*?)<\/script>/)[1];
+  const values=new Map(),storage={getItem:k=>values.get(k)||null,setItem:(k,v)=>values.set(k,v),removeItem:k=>values.delete(k)};
+  const page=id=>{const elements=Object.fromEntries(['name','contract','email','preview','confirm','details','status','edit','new'].map(x=>[x,{}]));
+    elements.name.value=input.name;elements.contract.value=input.contract;elements.email.value=input.email;
+    const fetch=async(path,opts)=>withdrawalTestFetch(new Request(origin+path,{...opts,headers:{...opts.headers,Origin:origin}}),env);
+    runInNewContext(script,{document:{getElementById:x=>elements[x]},fetch,sessionStorage:storage,crypto:{randomUUID:()=>id}});return elements;};
+  const first=page(input.requestId);first.preview.onclick();await first.confirm.onclick();assert.equal(values.size,0);
+  const later=page('1f1b2b0c-b0cf-4aa0-9f20-c486a81d2bfa');later.preview.onclick();await later.confirm.onclick();
+  assert.equal(db.raw.prepare('SELECT count(*) n FROM withdrawal_requests').get().n,2);
 });
 
 test('after an uncertain submission, changed data conflicts until an explicit new test is started', async () => {
   const db=database(), origin='https://test.invalid', env={WITHDRAWAL_TEST_ONLY:'true',STRIPE_LIVE:'false',PUBLIC_ORIGIN:origin,DB:db};
   const html=await (await withdrawalTestFetch(new Request(origin+'/withdrawal'),env)).text();const script=html.match(/<script>([\s\S]*?)<\/script>/)[1];
-  const values=new Map(),storage={getItem:k=>values.get(k)||null,setItem:(k,v)=>values.set(k,v)};
+  const values=new Map(),storage={getItem:k=>values.get(k)||null,setItem:(k,v)=>values.set(k,v),removeItem:k=>values.delete(k)};
   let calls=0;const fetch=async(path,opts)=>{const r=await withdrawalTestFetch(new Request(origin+path,{...opts,headers:{...opts.headers,Origin:origin}}),env);if(++calls===1)throw Error('response lost');return r;};
   const elements=Object.fromEntries(['name','contract','email','preview','confirm','details','status','edit','new'].map(id=>[id,{}]));
   elements.name.value=input.name;elements.contract.value=input.contract;elements.email.value=input.email;
