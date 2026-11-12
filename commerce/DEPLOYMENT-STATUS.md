@@ -1,5 +1,11 @@
 # MAKRIVO disabled Cloudflare deployment — 2026-10-26
 
+## 12 November 2026: confirmation queue and private downloads
+
+The selected isolated D1 database had zero orders, acceptance records and entitlements; neither `confirmation_obligations` nor `confirmation_jobs` existed. A remote export was restored into in-memory SQLite and passed `PRAGMA integrity_check`, with the existing acceptance schema and zero orders confirmed. Migration `0005_confirmation_jobs.sql` was applied; a remote query confirmed both tables, three obligation immutability triggers and zero orders, obligations and jobs. No withdrawal-test migration was applied.
+
+Source commit `80c7281` (including the isolated, unmounted withdrawal-test files) was deployed as Worker version `b8aff80b-c40c-4d33-be6d-ce93809bf893`. Upload output confirmed `SALES_ENABLED=false`, `LEGAL_APPROVED=false`, `STRIPE_LIVE=false`, empty Stripe/product/signer settings and the five-minute schedule. The configured Worker has no public route. Local workerd accepted the merged Worker with the 0005 migration: page 200, checkout 503 and scheduled handler 200; the combined local suite passed 88 tests. This does not demonstrate remote HTTP, Stripe payments, mail delivery, legal compliance or a production purchase. The unmounted withdrawal module is not a live withdrawal function.
+
 ## 9 November 2026: checkout recovery update
 
 **Contract-evidence preparation:** The isolated D1 database was checked to contain zero orders and no `contract_documents`/`contract_acceptances` tables. A local export was restored into SQLite and passed `PRAGMA integrity_check`; migration `0004_contract_acceptances.sql` was then applied. A remote schema query confirmed both tables and all six immutability triggers. Source commit `2b61634` was tested with 54 Node tests and local workerd (page 200, disabled checkout 503 and scheduled handler 200), then deployed as disabled Worker version `6dc57e01-f8a0-44b0-aab3-0ee3eb7d676b`. Both sales and legal approval remain false; no legal documents, payment credentials or license secrets were added. New live checkout is also blocked in code until durable confirmation delivery is implemented. This is not a tested sale or proof of legally sufficient consent, delivery, tax configuration, or remote HTTP operation.
