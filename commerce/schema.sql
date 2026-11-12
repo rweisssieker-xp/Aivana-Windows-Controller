@@ -1,6 +1,7 @@
 PRAGMA foreign_keys=ON;
 CREATE TABLE orders(id TEXT PRIMARY KEY, claim_hash TEXT NOT NULL UNIQUE, created_at INTEGER NOT NULL, session_id TEXT UNIQUE);
 CREATE TABLE checkout_attempts(order_id TEXT PRIMARY KEY REFERENCES orders(id), return_lang TEXT NOT NULL CHECK(return_lang IN ('de','en','')));
+CREATE TABLE checkout_authorizations(order_id TEXT PRIMARY KEY REFERENCES orders(id), token_hash TEXT NOT NULL UNIQUE, snapshot_digest TEXT NOT NULL, expires_at INTEGER NOT NULL, used_at INTEGER);
 CREATE TABLE contract_documents(language TEXT NOT NULL CHECK(language IN ('de','en')), version TEXT NOT NULL, text TEXT NOT NULL, PRIMARY KEY(language,version));
 CREATE TRIGGER contract_documents_no_replace BEFORE INSERT ON contract_documents WHEN EXISTS(SELECT 1 FROM contract_documents WHERE language=NEW.language AND version=NEW.version) BEGIN SELECT RAISE(ABORT,'contract versions are immutable'); END;
 CREATE TRIGGER contract_documents_no_update BEFORE UPDATE ON contract_documents BEGIN SELECT RAISE(ABORT,'contract versions are immutable'); END;

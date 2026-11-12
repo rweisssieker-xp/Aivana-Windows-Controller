@@ -164,13 +164,13 @@ test("checkout can recover a lost response without creating a second session or 
     const request = (path, data, cookie='') => worker.fetch(new Request(e.PUBLIC_ORIGIN+path,{method:'POST',headers:{Origin:e.PUBLIC_ORIGIN,Cookie:cookie},body:JSON.stringify(data)}),e);
     const prep = await request('/api/checkout/prepare',{acceptTerms:true,lang:'de',contractDigest:await fixtureDigest('de'),...await declarationFields('de')});
     assert.equal(prep.status, 200);
-    const {recoveryCode} = await prep.json();
+    const {recoveryCode,checkoutToken} = await prep.json();
     assert.match(recoveryCode, /^[A-Za-z0-9_-]{43}$/);
     assert.equal(posts, 0);
-    const first = await request('/api/checkout',{acceptTerms:true,recoveryCode},'makrivo_claim='+ 'A'.repeat(43));
+    const first = await request('/api/checkout',{acceptTerms:true,recoveryCode,checkoutToken},'makrivo_claim='+ 'A'.repeat(43));
     assert.equal(first.status,200);
     assert.equal(first.headers.get('Set-Cookie'),null);
-    const second = await request('/api/checkout',{acceptTerms:true,recoveryCode},'makrivo_claim='+ 'B'.repeat(43));
+    const second = await request('/api/checkout',{acceptTerms:true,recoveryCode,checkoutToken},'makrivo_claim='+ 'B'.repeat(43));
     assert.equal(second.status,200);
     assert.equal(second.headers.get('Set-Cookie'),null);
     assert.equal((await second.json()).url,'https://checkout.stripe.com/c/pay/test');
@@ -510,10 +510,13 @@ test("actual webhook duplicate parallel async failure and reordered refund trans
     globalThis.fetch = original;
   }
 });
+const checkoutTokens = new Map();
 async function prepareCheckout(e, lang) {
   const r = await worker.fetch(new Request(e.PUBLIC_ORIGIN + "/api/checkout/prepare", { method:"POST", headers:{Origin:e.PUBLIC_ORIGIN}, body:JSON.stringify({acceptTerms:true,lang,contractDigest:await fixtureDigest(lang),...await declarationFields(lang)}) }),e);
   assert.equal(r.status,200);
-  return (await r.json()).recoveryCode;
+  const {recoveryCode, checkoutToken} = await r.json();
+  checkoutTokens.set(recoveryCode, checkoutToken);
+  return recoveryCode;
 }
 test('checkout preparation requires separate affirmative early-start and withdrawal acknowledgements', async () => {
   for (const [early, acknowledgement] of [[undefined,undefined],[true,false],[false,true],['true',true],[true,'true']]) {
@@ -588,7 +591,7 @@ test('an earlier open checkout with only one declaration cannot contact Stripe',
   try {let calls=0;globalThis.fetch=async()=>{calls++;throw Error('provider must not be reached');};const r=await checkoutRequest(e,code);assert.equal(r.status,409);assert.equal((await r.json()).error,'Declarations unavailable');assert.equal(calls,0);} finally {globalThis.fetch=original;}
 });
 function checkoutRequest(e, recoveryCode, cookie = '') {
-  return worker.fetch(new Request(e.PUBLIC_ORIGIN + "/api/checkout", {method:"POST",headers:{Origin:e.PUBLIC_ORIGIN,Cookie:cookie},body:JSON.stringify({acceptTerms:true,recoveryCode})}),e);
+  return worker.fetch(new Request(e.PUBLIC_ORIGIN + "/api/checkout", {method:"POST",headers:{Origin:e.PUBLIC_ORIGIN,Cookie:cookie},body:JSON.stringify({acceptTerms:true,recoveryCode,checkoutToken:checkoutTokens.get(recoveryCode)})}),e);
 }
 const goodPrice = {active:true,type:"one_time",currency:"eur",unit_amount:2900,tax_behavior:"inclusive",product:"prod_a",livemode:false};
 test("lost database write and simultaneous retries use one idempotent Stripe session", async () => {
@@ -597,7 +600,7 @@ test("lost database write and simultaneous retries use one idempotent Stripe ses
   db.prepare=(sql)=>{
     const stmt=prepare(sql);
     if(!sql.startsWith('UPDATE orders SET session_id=')) return stmt;
-    return {bind(...values){const bound=stmt.bind(...values);return {...bound,async run(){if(failWrite){failWrite=false;throw Error('simulated lost write');}return bound.run();}};}};
+    return {bind(...values){const bound=stmt.bind(...values);return {...bound,_run(){if(failWrite){failWrite=false;throw Error('simulated lost write');}return bound._run();}};}};
   };
   try {
     globalThis.fetch=async(url,options)=>{
@@ -613,7 +616,8 @@ test("lost database write and simultaneous retries use one idempotent Stripe ses
     assert.equal((await checkoutRequest(e,code)).status,400);
     assert.equal(db.raw.prepare('SELECT session_id FROM orders').get().session_id,null);
     const [a,b]=await Promise.all([checkoutRequest(e,code,'makrivo_claim='+'A'.repeat(43)),checkoutRequest(e,code,'makrivo_claim='+'B'.repeat(43))]);
-    assert.equal(a.status,200);assert.equal(b.status,200);
+    assert.ok([200,409].includes(a.status));assert.ok([200,409].includes(b.status));
+    assert.ok(a.status===200||b.status===200);assert.equal((await checkoutRequest(e,code)).status,200);
     assert.equal(a.headers.get('Set-Cookie'),null);assert.equal(b.headers.get('Set-Cookie'),null);
     assert.equal(sessions.size,1);assert.equal(new Set(keys).size,1);assert.ok(keys.length>=2);
     assert.equal(db.raw.prepare('SELECT session_id FROM orders').get().session_id,'cs_test_lost');
@@ -643,7 +647,8 @@ test("provider conflict or lost provider response can be retried with the same i
 });
 test("lost response after committed session mapping resumes without another Stripe creation", async () => {
   const db=database(),e=configured(db),original=globalThis.fetch,prepare=db.prepare.bind(db);let lost=true,posts=0,session;
-  db.prepare=sql=>{const stmt=prepare(sql);if(!sql.startsWith('UPDATE orders SET session_id='))return stmt;return {bind(...values){const bound=stmt.bind(...values);return {...bound,async run(){const result=await bound.run();if(lost){lost=false;throw Error('lost committed response');}return result;}};}};};
+  db.prepare=sql=>{const stmt=prepare(sql);if(!sql.startsWith('UPDATE orders SET session_id='))return stmt;return {bind(...values){return {...stmt.bind(...values),_mapping:true};}};};
+  const realBatch=db.batch.bind(db); db.batch=async statements=>{const result=await realBatch(statements);if(lost&&statements.some(s=>s._mapping)){lost=false;throw Error('lost committed response');}return result;};
   try {
     globalThis.fetch=async(url,options)=>{
       if(String(url).includes('/prices/'))return Response.json(goodPrice);
@@ -1444,4 +1449,47 @@ test('refund committed after the atomic issuance point cannot revoke the issued 
   const response=await worker.fetch(new Request(e.PUBLIC_ORIGIN+'/api/licenses/activate',{method:'POST',headers:{Origin:e.PUBLIC_ORIGIN,Authorization:'Bearer '+claim},body:JSON.stringify({deviceId:device})}),e);
   assert.equal(fired,true); assert.equal(response.status,200); assert.ok((await response.json()).signature);
   assert.equal(db.raw.prepare('SELECT revoked FROM entitlements').get().revoked,1);
+});
+
+
+test('historical preview binds rotated token to the saved order and original text', async () => {
+  const db=database(),e=configured(db),code=await prepareCheckout(e,'de'),other=await prepareCheckout(e,'en'),original=globalThis.fetch;let calls=0;
+  const preview=code=>worker.fetch(new Request(e.PUBLIC_ORIGIN+'/api/checkout/preview',{method:'POST',headers:{Origin:e.PUBLIC_ORIGIN},body:JSON.stringify({recoveryCode:code})}),e);
+  try {
+    globalThis.fetch=async()=>{calls++;throw Error('Stripe must not be contacted');};
+    db.raw.prepare('INSERT INTO contract_documents VALUES(?,?,?)').run('de','new-terms','Synthetic current terms');e.CONTRACT_VERSION_DE='new-terms';
+    assert.equal((await preview('X'.repeat(43))).status,401);
+    const first=await preview(code);assert.equal(first.status,200);assert.equal(first.headers.get('cache-control'),'no-store');const a=await first.json();
+    assert.equal(a.language,'de');assert.equal(a.terms.text,JSON.parse(fixtureDocuments).de.text);assert.equal(a.early.text,fixtureDeclarations.de.early_start.text);assert.equal(a.ack.text,fixtureDeclarations.de.withdrawal_ack.text);
+    const tokenHash=Buffer.from(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(a.checkoutToken))).toString('base64url');assert.ok(db.raw.prepare('SELECT 1 FROM checkout_authorizations WHERE token_hash=?').get(tokenHash));assert.notEqual(tokenHash,a.checkoutToken);
+    const b=await (await preview(code)).json();assert.notEqual(a.checkoutToken,b.checkoutToken);
+    checkoutTokens.set(code,a.checkoutToken);assert.equal((await checkoutRequest(e,code)).status,409);
+    checkoutTokens.set(other,b.checkoutToken);assert.equal((await checkoutRequest(e,other)).status,409);
+    const bHash=Buffer.from(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(b.checkoutToken))).toString('base64url');db.raw.prepare('UPDATE checkout_authorizations SET expires_at=0 WHERE token_hash=?').run(bHash);
+    checkoutTokens.set(code,b.checkoutToken);assert.equal((await checkoutRequest(e,code)).status,409);assert.equal(calls,0);
+  } finally {globalThis.fetch=original;}
+});
+test('legacy incomplete evidence fails closed before preview can authorize checkout',async()=>{
+  const db=database(),e=configured(db),code='Z'.repeat(43),digest=Buffer.from(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(code))).toString('base64url');
+  db.raw.prepare('INSERT INTO orders VALUES(?,?,?,?)').run('legacy',digest,1,null);db.raw.prepare('INSERT INTO checkout_attempts VALUES(?,?)').run('legacy','de');
+  const r=await worker.fetch(new Request(e.PUBLIC_ORIGIN+'/api/checkout/preview',{method:'POST',headers:{Origin:e.PUBLIC_ORIGIN},body:JSON.stringify({recoveryCode:code})}),e);
+  assert.equal(r.status,409);assert.equal((await r.json()).error,'Declarations unavailable');assert.equal(db.raw.prepare('SELECT count(*) n FROM checkout_authorizations').get().n,0);
+});
+
+
+test('rotation while creating checkout prevents stale authorization from returning a payment URL', async()=>{
+  const db=database(),e=configured(db),code=await prepareCheckout(e,'de'),original=globalThis.fetch,sessions=new Map();let release,started;
+  const startedPromise=new Promise(resolve=>{started=resolve;});const gate=new Promise(resolve=>{release=resolve;});
+  const preview=()=>worker.fetch(new Request(e.PUBLIC_ORIGIN+'/api/checkout/preview',{method:'POST',headers:{Origin:e.PUBLIC_ORIGIN},body:JSON.stringify({recoveryCode:code})}),e);
+  try {
+    globalThis.fetch=async(url,options)=>{
+      if(String(url).includes('/prices/'))return Response.json(goodPrice);
+      if(options.method==='POST') {const key=options.headers['Idempotency-Key'];if(!sessions.has(key))sessions.set(key,{id:'cs_test_rotate',mode:'payment',livemode:false,status:'open',payment_status:'unpaid',url:'https://checkout.stripe.com/pay',metadata:{orderId:new URLSearchParams(options.body).get('metadata[orderId]')}});started();await gate;return Response.json(sessions.get(key));}
+      return Response.json([...sessions.values()][0]);
+    };
+    const oldRequest=checkoutRequest(e,code);await startedPromise;const next=await (await preview()).json();release();
+    const old=await oldRequest;assert.equal(old.status,409);assert.equal((await old.json()).url,undefined);assert.equal(db.raw.prepare('SELECT session_id FROM orders').get().session_id,null);
+    checkoutTokens.set(code,next.checkoutToken);assert.equal((await checkoutRequest(e,code)).status,200);assert.equal(sessions.size,1);
+    assert.equal((await checkoutRequest(e,code)).status,200);assert.equal(sessions.size,1);
+  } finally {release?.();globalThis.fetch=original;}
 });
