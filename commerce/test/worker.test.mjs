@@ -1,5 +1,12 @@
 const fixtureDocuments=JSON.stringify({de:{version:'test-v1',text:'Testbedingungen'},en:{version:'test-v1',text:'Test terms'}});
 async function fixtureDigest(lang) { const d=JSON.parse(fixtureDocuments)[lang]; if(!d)return null; return Buffer.from(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(JSON.stringify({language:lang,version:d.version,text:d.text})))).toString('base64url'); }
+
+const fixtureDeclarations={de:{early_start:{version:'early-v1',text:'Synthetic DE early start'},withdrawal_ack:{version:'ack-v1',text:'Synthetic DE acknowledgement'}},en:{early_start:{version:'early-v1',text:'Synthetic EN early start'},withdrawal_ack:{version:'ack-v1',text:'Synthetic EN acknowledgement'}}};
+async function declarationFields(language) {
+ const digest=async kind=>{const doc=fixtureDeclarations[language][kind]; return Buffer.from(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(JSON.stringify({kind,language,version:doc.version,text:doc.text})))).toString('base64url');};
+ return {acceptEarlyStart:true,acknowledgeWithdrawal:true,earlyStartDigest:await digest('early_start'),withdrawalAckDigest:await digest('withdrawal_ack')};
+}
+
 const testSigner = await crypto.subtle.generateKey(
   {
     name: "RSASSA-PKCS1-v1_5",
@@ -155,7 +162,7 @@ test("checkout can recover a lost response without creating a second session or 
       return Response.json([...sessions.values()][0]);
     };
     const request = (path, data, cookie='') => worker.fetch(new Request(e.PUBLIC_ORIGIN+path,{method:'POST',headers:{Origin:e.PUBLIC_ORIGIN,Cookie:cookie},body:JSON.stringify(data)}),e);
-    const prep = await request('/api/checkout/prepare',{acceptTerms:true,lang:'de',contractDigest:await fixtureDigest('de')});
+    const prep = await request('/api/checkout/prepare',{acceptTerms:true,lang:'de',contractDigest:await fixtureDigest('de'),...await declarationFields('de')});
     assert.equal(prep.status, 200);
     const {recoveryCode} = await prep.json();
     assert.match(recoveryCode, /^[A-Za-z0-9_-]{43}$/);
@@ -177,6 +184,7 @@ function database() {
   const d = new DatabaseSync(":memory:");
   d.exec(readFileSync(new URL("../schema.sql", import.meta.url), "utf8"));
   const docs=JSON.parse(fixtureDocuments);for (const [lang,doc] of Object.entries(docs)) d.prepare('INSERT INTO contract_documents VALUES(?,?,?)').run(lang,doc.version,doc.text);
+  for(const [lang,docs] of Object.entries(fixtureDeclarations)) for(const doc of Object.values(docs)) d.prepare('INSERT INTO contract_documents VALUES(?,?,?)').run(lang,doc.version,doc.text);
   return {
     raw: d,
     async batch(statements) {
@@ -217,7 +225,7 @@ test("public session IDs cannot authorize and disabled checkout fails closed", a
   const db = database();
   const e = {
     DB: db,
-    CONTRACT_VERSION_DE:'test-v1', CONTRACT_VERSION_EN:'test-v1',
+    CONTRACT_VERSION_DE:'test-v1', CONTRACT_VERSION_EN:'test-v1', CONSENT_EARLY_VERSION_DE:'early-v1', CONSENT_ACK_VERSION_DE:'ack-v1', CONSENT_EARLY_VERSION_EN:'early-v1', CONSENT_ACK_VERSION_EN:'ack-v1',
     SALES_ENABLED: "true",
     LEGAL_APPROVED: "true",
     PUBLIC_ORIGIN: "https://buyer.test",
@@ -353,7 +361,7 @@ test("unknown and hostile claim cannot read paid receipt", async () => {
   const db = database();
   const e = {
     DB: db,
-    CONTRACT_VERSION_DE:'test-v1', CONTRACT_VERSION_EN:'test-v1',
+    CONTRACT_VERSION_DE:'test-v1', CONTRACT_VERSION_EN:'test-v1', CONSENT_EARLY_VERSION_DE:'early-v1', CONSENT_ACK_VERSION_DE:'ack-v1', CONSENT_EARLY_VERSION_EN:'early-v1', CONSENT_ACK_VERSION_EN:'ack-v1',
     SALES_ENABLED: "true",
     LEGAL_APPROVED: "true",
     PUBLIC_ORIGIN: "https://buyer.test",
@@ -385,7 +393,7 @@ test("unknown and hostile claim cannot read paid receipt", async () => {
 function configured(db) {
   return {
     DB: db,
-    CONTRACT_VERSION_DE:'test-v1', CONTRACT_VERSION_EN:'test-v1',
+    CONTRACT_VERSION_DE:'test-v1', CONTRACT_VERSION_EN:'test-v1', CONSENT_EARLY_VERSION_DE:'early-v1', CONSENT_ACK_VERSION_DE:'ack-v1', CONSENT_EARLY_VERSION_EN:'early-v1', CONSENT_ACK_VERSION_EN:'ack-v1',
     SALES_ENABLED: "true",
     LEGAL_APPROVED: "true",
     STRIPE_LIVE: "false",
@@ -503,10 +511,82 @@ test("actual webhook duplicate parallel async failure and reordered refund trans
   }
 });
 async function prepareCheckout(e, lang) {
-  const r = await worker.fetch(new Request(e.PUBLIC_ORIGIN + "/api/checkout/prepare", { method:"POST", headers:{Origin:e.PUBLIC_ORIGIN}, body:JSON.stringify({acceptTerms:true,lang,contractDigest:await fixtureDigest(lang)}) }),e);
+  const r = await worker.fetch(new Request(e.PUBLIC_ORIGIN + "/api/checkout/prepare", { method:"POST", headers:{Origin:e.PUBLIC_ORIGIN}, body:JSON.stringify({acceptTerms:true,lang,contractDigest:await fixtureDigest(lang),...await declarationFields(lang)}) }),e);
   assert.equal(r.status,200);
   return (await r.json()).recoveryCode;
 }
+test('checkout preparation requires separate affirmative early-start and withdrawal acknowledgements', async () => {
+  for (const [early, acknowledgement] of [[undefined,undefined],[true,false],[false,true],['true',true],[true,'true']]) {
+    const e=configured(database());
+    const r=await worker.fetch(new Request(e.PUBLIC_ORIGIN+'/api/checkout/prepare',{method:'POST',headers:{Origin:e.PUBLIC_ORIGIN},body:JSON.stringify({acceptTerms:true,lang:'de',contractDigest:await fixtureDigest('de'),...await declarationFields('de'),acceptEarlyStart:early,acknowledgeWithdrawal:acknowledgement})}),e);
+    assert.equal(r.status,400);
+    assert.equal(e.DB.raw.prepare('SELECT count(*) n FROM orders').get().n,0);
+  }
+});
+test('both versioned declarations are snapshotted per language together with the order', async () => {
+  for (const lang of ['de','en']) {
+    const db=database(),e=configured(db),fields=await declarationFields(lang);
+    const request=new Request(e.PUBLIC_ORIGIN+'/api/checkout/prepare',{method:'POST',headers:{Origin:e.PUBLIC_ORIGIN},body:JSON.stringify({acceptTerms:true,lang,contractDigest:await fixtureDigest(lang),...fields,earlyText:'untrusted',withdrawalText:'untrusted'})});
+    const response=await worker.fetch(request,e); assert.equal(response.status,200);
+    const claim=(await response.json()).recoveryCode, rows=db.raw.prepare('SELECT * FROM contract_declarations ORDER BY kind').all();
+    assert.equal(rows.length,2); assert.deepEqual(rows.map(x=>x.kind),['early_start','withdrawal_ack']);
+    for (const row of rows) {const expected=fixtureDeclarations[lang][row.kind];assert.equal(row.language,lang);assert.equal(row.text,expected.text);assert.equal(row.version,expected.version);assert.ok(row.accepted_at>0);}
+    assert.equal(rows[0].digest,fields.earlyStartDigest);assert.equal(rows[1].digest,fields.withdrawalAckDigest);
+    const exported=await worker.fetch(new Request(e.PUBLIC_ORIGIN+'/api/order/export',{method:'POST',headers:{Origin:e.PUBLIC_ORIGIN,Authorization:'Bearer '+claim}}),e);
+    assert.equal(exported.status,200);assert.equal((await exported.json()).declarations.length,2);
+  }
+});
+test('the purchase page renders two distinct unchecked declarations as escaped text', async () => {
+  for (const lang of ['de','en']) {
+    const db=database(),e=configured(db), text='Synthetic <img src=x onerror=alert(1)> & test';
+    db.raw.prepare('INSERT INTO contract_documents VALUES(?,?,?)').run(lang,'early-escaped',text);e['CONSENT_EARLY_VERSION_'+lang.toUpperCase()]='early-escaped';
+    const page=await (await worker.fetch(new Request(e.PUBLIC_ORIGIN+'/?lang='+lang),e)).text();
+    assert.match(page,/<input type="checkbox" id="earlyStart">/);
+    assert.match(page,/<input type="checkbox" id="withdrawalAck">/);
+    assert.match(page,/Synthetic &lt;img src=x onerror=alert\(1\)&gt; &amp; test/);
+    assert.equal(page.includes(text),false);
+  }
+});
+test('changed, mismatched or missing declaration versions fail closed before order creation', async () => {
+  for(const kind of ['early','ack','missing']) {
+    const db=database(),e=configured(db),fields=await declarationFields('de');
+    if(kind==='missing') {delete e.CONSENT_ACK_VERSION_EN;} else {const version=kind==='early'?'early-v2':'ack-v2';db.raw.prepare('INSERT INTO contract_documents VALUES(?,?,?)').run('de',version,'Synthetic changed version');e[kind==='early'?'CONSENT_EARLY_VERSION_DE':'CONSENT_ACK_VERSION_DE']=version;}
+    const r=await worker.fetch(new Request(e.PUBLIC_ORIGIN+'/api/checkout/prepare',{method:'POST',headers:{Origin:e.PUBLIC_ORIGIN},body:JSON.stringify({acceptTerms:true,lang:'de',contractDigest:await fixtureDigest('de'),...fields})}),e);
+    assert.equal(r.status,kind==='missing'?503:409); assert.equal(db.raw.prepare('SELECT count(*) n FROM orders').get().n,0);
+  }
+  const db=database(),e=configured(db),fields=await declarationFields('en');
+  const r=await worker.fetch(new Request(e.PUBLIC_ORIGIN+'/api/checkout/prepare',{method:'POST',headers:{Origin:e.PUBLIC_ORIGIN},body:JSON.stringify({acceptTerms:true,lang:'de',contractDigest:await fixtureDigest('de'),...fields})}),e);
+  assert.equal(r.status,409);assert.equal(db.raw.prepare('SELECT count(*) n FROM orders').get().n,0);
+});
+test('a failed second declaration insert rolls back the full order and evidence', async () => {
+  const db=database(),e=configured(db),prepare=db.prepare.bind(db);let count=0;
+  db.prepare=sql=>{if(sql.startsWith('INSERT INTO contract_declarations') && ++count===2)return {bind(){return {_run(){throw Error('simulated database failure');}};}};return prepare(sql);};
+  const r=await worker.fetch(new Request(e.PUBLIC_ORIGIN+'/api/checkout/prepare',{method:'POST',headers:{Origin:e.PUBLIC_ORIGIN},body:JSON.stringify({acceptTerms:true,lang:'de',contractDigest:await fixtureDigest('de'),...await declarationFields('de')})}),e);
+  assert.equal(r.status,400);
+  for(const table of ['orders','checkout_attempts','contract_acceptances','contract_declarations','confirmation_obligations'])assert.equal(db.raw.prepare(`SELECT count(*) n FROM ${table}`).get().n,0);
+});
+test('declaration evidence rejects ordinary update, delete and replace operations', async () => {
+  const db=database(),e=configured(db); await prepareCheckout(e,'de');
+  const order=db.raw.prepare('SELECT id FROM orders').get().id;
+  assert.throws(()=>db.raw.prepare('UPDATE contract_declarations SET text=? WHERE order_id=?').run('changed',order),/immutable/);
+  assert.throws(()=>db.raw.prepare('DELETE FROM contract_declarations WHERE order_id=?').run(order),/immutable/);
+  assert.throws(()=>db.raw.prepare('INSERT OR REPLACE INTO contract_declarations VALUES(?,?,?,?,?,?,?)').run(order,'early_start','de','new','changed','hash',1),/immutable/);
+});
+test('digital consent migration preserves old orders without inventing declarations', () => {
+  const db=new DatabaseSync(':memory:');db.exec('PRAGMA foreign_keys=ON; CREATE TABLE orders(id TEXT PRIMARY KEY,claim_hash TEXT NOT NULL,created_at INTEGER NOT NULL,session_id TEXT);');
+  db.prepare('INSERT INTO orders VALUES(?,?,?,?)').run('legacy','hash',1,'cs_old');
+  db.exec(readFileSync(new URL('../migrations/0011_digital_consents.sql',import.meta.url),'utf8'));
+  assert.equal(db.prepare('SELECT session_id FROM orders WHERE id=?').get('legacy').session_id,'cs_old');
+  assert.equal(db.prepare('SELECT count(*) n FROM contract_declarations').get().n,0);db.close();
+});
+test('an earlier open checkout with only one declaration cannot contact Stripe',async()=>{
+  const db=database(),e=configured(db),code='A'.repeat(43),original=globalThis.fetch;
+  const digest=Buffer.from(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(code))).toString('base64url');
+  db.raw.prepare('INSERT INTO orders VALUES(?,?,?,?)').run('old-order',digest,1,'cs_old');
+  db.raw.prepare('INSERT INTO checkout_attempts VALUES(?,?)').run('old-order','de');
+  db.raw.prepare('INSERT INTO contract_declarations VALUES(?,?,?,?,?,?,?)').run('old-order','early_start','de','v','text','digest',1);
+  try {let calls=0;globalThis.fetch=async()=>{calls++;throw Error('provider must not be reached');};const r=await checkoutRequest(e,code);assert.equal(r.status,409);assert.equal((await r.json()).error,'Declarations unavailable');assert.equal(calls,0);} finally {globalThis.fetch=original;}
+});
 function checkoutRequest(e, recoveryCode, cookie = '') {
   return worker.fetch(new Request(e.PUBLIC_ORIGIN + "/api/checkout", {method:"POST",headers:{Origin:e.PUBLIC_ORIGIN,Cookie:cookie},body:JSON.stringify({acceptTerms:true,recoveryCode})}),e);
 }
@@ -595,14 +675,14 @@ test("checkout migration preserves existing orders and entitlements", () => {
   assert.equal(db.prepare('SELECT order_id FROM entitlements WHERE id=?').get('license').order_id,'existing');
   db.close();
 });
-test("a pre-migration open checkout resumes only with its saved claim", async () => {
+test("a pre-migration open checkout without declarations cannot resume", async () => {
   const db=database(),e=configured(db),original=globalThis.fetch,code='A'.repeat(43);
   const digest=Buffer.from(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(code))).toString('base64url');
   db.raw.prepare('INSERT INTO orders VALUES(?,?,?,?)').run('old-order',digest,Date.now(),'cs_old');
   try {
     let posts=0;
     globalThis.fetch=async(_url,options)=>{if(options.method==='POST')posts++;return Response.json({id:'cs_old',mode:'payment',livemode:false,status:'open',payment_status:'unpaid',url:'https://checkout.stripe.com/pay',metadata:{orderId:'old-order'}});};
-    const r=await checkoutRequest(e,code);assert.equal(r.status,200);assert.equal((await r.json()).url,'https://checkout.stripe.com/pay');assert.equal(posts,0);
+    const r=await checkoutRequest(e,code);assert.equal(r.status,409);assert.equal((await r.json()).error,'Declarations unavailable');assert.equal(posts,0);
     assert.equal((await checkoutRequest(e,'B'.repeat(43))).status,401);
     db.raw.prepare('UPDATE orders SET session_id=NULL WHERE id=?').run('old-order');
     assert.equal((await checkoutRequest(e,code)).status,409);assert.equal(posts,0);
@@ -639,7 +719,7 @@ test("checkout preserves whitelisted return language across retries", async () =
     assert.equal(captured[0].get('success_url'),e.PUBLIC_ORIGIN+'/?lang=de');
     assert.equal(captured[1].get('cancel_url'),e.PUBLIC_ORIGIN+'/?lang=en');
     for(const lang of ['//attacker.test',null]) {
-      const r=await worker.fetch(new Request(e.PUBLIC_ORIGIN+'/api/checkout/prepare',{method:'POST',headers:{Origin:e.PUBLIC_ORIGIN},body:JSON.stringify({acceptTerms:true,lang})}),e); assert.equal(r.status,409);
+      const r=await worker.fetch(new Request(e.PUBLIC_ORIGIN+'/api/checkout/prepare',{method:'POST',headers:{Origin:e.PUBLIC_ORIGIN},body:JSON.stringify({acceptTerms:true,lang,...await declarationFields('de')})}),e); assert.equal(r.status,409);
     }
   } finally { globalThis.fetch=original; }
 });
@@ -1065,9 +1145,9 @@ test('checkout rejects a changed or missing displayed contract version before cr
   const db = database(); const e = configured(db);
 
   const post = input => worker.fetch(new Request(e.PUBLIC_ORIGIN+'/api/checkout/prepare', {method:'POST',headers:{Origin:e.PUBLIC_ORIGIN},body:JSON.stringify(input)}),e);
-  assert.equal((await post({acceptTerms:true,lang:'de'})).status, 409);
+  assert.equal((await post({acceptTerms:true,lang:'de',...await declarationFields('de')})).status, 409);
   assert.equal(db.raw.prepare('SELECT count(*) n FROM orders').get().n,0);
-  assert.equal((await post({acceptTerms:true,lang:'de',contractDigest:'wrong'})).status, 409);
+  assert.equal((await post({acceptTerms:true,lang:'de',contractDigest:'wrong',...await declarationFields('de')})).status, 409);
   assert.equal(db.raw.prepare('SELECT count(*) n FROM orders').get().n,0);
 });
 
@@ -1079,7 +1159,7 @@ test('checkout records the exact terms presented and accepted without trusting c
   assert.ok(page.includes('First &lt;script&gt;alert(1)&lt;/script&gt; terms'));
   assert.ok(!page.includes(original));
   const digest=Buffer.from(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(JSON.stringify({language:'de',version:'v1',text:original})))).toString('base64url');
-  const res=await worker.fetch(new Request(e.PUBLIC_ORIGIN+'/api/checkout/prepare',{method:'POST',headers:{Origin:e.PUBLIC_ORIGIN},body:JSON.stringify({lang:'de',acceptTerms:true,contractDigest:digest,contractText:'attacker'})}),e);
+  const res=await worker.fetch(new Request(e.PUBLIC_ORIGIN+'/api/checkout/prepare',{method:'POST',headers:{Origin:e.PUBLIC_ORIGIN},body:JSON.stringify({lang:'de',acceptTerms:true,contractDigest:digest,...await declarationFields('de'),contractText:'attacker'})}),e);
   assert.equal(res.status,200);
   const record=db.raw.prepare('SELECT language,version,text,digest,accepted_at FROM contract_acceptances').get();
   assert.equal(record.text,original);assert.equal(record.language,'de');assert.equal(record.version,'v1');assert.equal(record.digest,digest);assert.ok(record.accepted_at>0);
@@ -1114,14 +1194,14 @@ test('checkout remains disabled when contract documents are missing a valid vers
 test('changes after the buyer loaded the terms block the order and preserve prior evidence', async () => {
   const db=database(), e=configured(db), old=await fixtureDigest('de');
   db.raw.prepare('INSERT INTO contract_documents VALUES(?,?,?)').run('de','test-v2','A different version'); e.CONTRACT_VERSION_DE='test-v2';
-  const res=await worker.fetch(new Request(e.PUBLIC_ORIGIN+'/api/checkout/prepare',{method:'POST',headers:{Origin:e.PUBLIC_ORIGIN},body:JSON.stringify({acceptTerms:true,lang:'de',contractDigest:old})}),e);
+  const res=await worker.fetch(new Request(e.PUBLIC_ORIGIN+'/api/checkout/prepare',{method:'POST',headers:{Origin:e.PUBLIC_ORIGIN},body:JSON.stringify({acceptTerms:true,lang:'de',contractDigest:old,...await declarationFields('de')})}),e);
   assert.equal(res.status,409);assert.equal(db.raw.prepare('SELECT count(*) n FROM orders').get().n,0);
 });
 
 test('failed evidence storage rolls back the entire prepared order', async () => {
   const db=database(), e=configured(db), prepare=db.prepare.bind(db);
   db.prepare=sql=>sql.startsWith('INSERT INTO contract_acceptances')?{bind(){return {_run(){throw Error('storage failed');}};}}:prepare(sql);
-  const r=await worker.fetch(new Request(e.PUBLIC_ORIGIN+'/api/checkout/prepare',{method:'POST',headers:{Origin:e.PUBLIC_ORIGIN},body:JSON.stringify({acceptTerms:true,lang:'de',contractDigest:await fixtureDigest('de')})}),e);
+  const r=await worker.fetch(new Request(e.PUBLIC_ORIGIN+'/api/checkout/prepare',{method:'POST',headers:{Origin:e.PUBLIC_ORIGIN},body:JSON.stringify({acceptTerms:true,lang:'de',contractDigest:await fixtureDigest('de'),...await declarationFields('de')})}),e);
   assert.equal(r.status,400);assert.equal(db.raw.prepare('SELECT count(*) n FROM orders').get().n,0);assert.equal(db.raw.prepare('SELECT count(*) n FROM checkout_attempts').get().n,0);
 });
 
@@ -1135,7 +1215,7 @@ test('contract acceptance migration preserves existing orders', () => {
 
 test('live checkout stays disabled until contract confirmation delivery exists', async () => {
   const e=configured(database()); e.STRIPE_LIVE='true';
-  const r=await worker.fetch(new Request(e.PUBLIC_ORIGIN+'/api/checkout/prepare',{method:'POST',headers:{Origin:e.PUBLIC_ORIGIN},body:JSON.stringify({acceptTerms:true,lang:'de',contractDigest:await fixtureDigest('de')})}),e);
+  const r=await worker.fetch(new Request(e.PUBLIC_ORIGIN+'/api/checkout/prepare',{method:'POST',headers:{Origin:e.PUBLIC_ORIGIN},body:JSON.stringify({acceptTerms:true,lang:'de',contractDigest:await fixtureDigest('de'),...await declarationFields('de')})}),e);
   assert.equal(r.status,503);
 });
 
@@ -1281,7 +1361,7 @@ test('failed confirmation enqueue rolls back payment fulfillment so Stripe can r
 test('failed confirmation obligation storage rolls back the entire prepared order', async () => {
   const db=database(), e=configured(db), prep=db.prepare.bind(db);
   db.prepare=sql=>sql.startsWith('INSERT INTO confirmation_obligations')?{bind(){return {_run(){throw Error('storage failed');}};}}:prep(sql);
-  const r=await worker.fetch(new Request(e.PUBLIC_ORIGIN+'/api/checkout/prepare',{method:'POST',headers:{Origin:e.PUBLIC_ORIGIN},body:JSON.stringify({acceptTerms:true,lang:'de',contractDigest:await fixtureDigest('de')})}),e);
+  const r=await worker.fetch(new Request(e.PUBLIC_ORIGIN+'/api/checkout/prepare',{method:'POST',headers:{Origin:e.PUBLIC_ORIGIN},body:JSON.stringify({acceptTerms:true,lang:'de',contractDigest:await fixtureDigest('de'),...await declarationFields('de')})}),e);
   assert.equal(r.status,400);
   for(const table of ['orders','checkout_attempts','contract_acceptances','confirmation_obligations']) assert.equal(db.raw.prepare(`SELECT count(*) n FROM ${table}`).get().n,0);
 });

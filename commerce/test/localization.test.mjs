@@ -135,6 +135,15 @@ test('English buyer receives an actionable message when purchase terms are unche
   runInNewContext(script,{document,fetch:async()=>({ok:false,json:async()=>({error:'Accept purchase terms'})})});
   await elements.buy.onclick();assert.match(elements.status.textContent,/accept.*terms/i);
 });
+test('buyer submits two independently selected consent values', async () => {
+  const html=await (await worker.fetch(new Request('https://buyer.test/?lang=de'),{})).text();
+  const script=html.match(/<script>([\s\S]*?)<\/script>/)[1];
+  const elements=Object.fromEntries(['status','backup','saved','buy','terms','earlyStart','withdrawalAck','recovery','copyRecovery','continue','restore','restoreCode','resume','order','activate'].map(id=>[id,{}]));
+  elements.terms.checked=true;elements.earlyStart.checked=true;elements.withdrawalAck.checked=false;
+  let sent; const document={getElementById:id=>elements[id],querySelectorAll:()=>[]};
+  runInNewContext(script,{document,fetch:async(_path,opts)=>{sent=JSON.parse(opts.body);return {ok:false,json:async()=>({error:'Accept both declarations'})};}});
+  await elements.buy.onclick();assert.equal(sent.acceptEarlyStart,true);assert.equal(sent.acknowledgeWithdrawal,false);assert.match(elements.status.textContent,/beide Erklärungen einzeln/);
+});
 test('English activation explains missing purchase and the four-PC limit', async () => {
   const html=await (await worker.fetch(new Request('https://buyer.test/?lang=en'),{})).text();
   const script=html.match(/<script>([\s\S]*?)<\/script>/)[1];

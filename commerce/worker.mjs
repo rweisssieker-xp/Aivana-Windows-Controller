@@ -17,15 +17,25 @@ const json = (v, status = 200, headers = {}) =>
   });
 const hash = async (s) =>
   b64(await crypto.subtle.digest("SHA-256", enc.encode(s)));
-async function contractDocument(e, language) {
+async function versionedDocument(e, language, version) {
   try {
     if (!['de','en'].includes(language) || !e.DB) return null;
-    const version=e[language === 'de' ? 'CONTRACT_VERSION_DE' : 'CONTRACT_VERSION_EN'];
     if (typeof version !== 'string' || !/^[A-Za-z0-9._-]{1,64}$/.test(version)) return null;
     const d=await e.DB.prepare('SELECT text FROM contract_documents WHERE language=? AND version=?').bind(language,version).first();
     if (!d || typeof d.text !== 'string' || !d.text.trim() || d.text.length > 20000 || /[\u0000-\u0009\u000B-\u001F\u007F]/.test(d.text)) return null;
     return { language, version, text:d.text };
   } catch { return null; }
+}
+async function contractDocument(e, language) {
+  return versionedDocument(e, language, e[language === 'de' ? 'CONTRACT_VERSION_DE' : 'CONTRACT_VERSION_EN']);
+}
+async function consentDocuments(e, language) {
+  if (!['de','en'].includes(language)) return null;
+  const suffix=language.toUpperCase();
+  const early=await versionedDocument(e,language,e['CONSENT_EARLY_VERSION_'+suffix]);
+  const ack=await versionedDocument(e,language,e['CONSENT_ACK_VERSION_'+suffix]);
+  if (!early || !ack || early.version===ack.version || early.text===ack.text) return null;
+  return [{kind:'early_start',...early},{kind:'withdrawal_ack',...ack}];
 }
 async function contractDigest(document) { return hash(JSON.stringify(document)); }
 export function validateSession(s, e) {
@@ -154,7 +164,7 @@ async function ready(e) {
     }
     if (new URL(e.PUBLIC_ORIGIN).origin !== e.PUBLIC_ORIGIN) return false;
     await signingKey(e);
-    if (!(await contractDocument(e, 'de')) || !(await contractDocument(e, 'en'))) return false;
+    if (!(await contractDocument(e, 'de')) || !(await contractDocument(e, 'en')) || !(await consentDocuments(e,'de')) || !(await consentDocuments(e,'en'))) return false;
   } catch {
     return false;
   }
@@ -367,14 +377,18 @@ export default {
       if (u.pathname === "/api/checkout/prepare" && req.method === "POST") {
         const input = JSON.parse(await bounded(req));
         if (input.acceptTerms !== true) return json({ error: "Accept purchase terms" }, 400);
+        if (input.acceptEarlyStart !== true || input.acknowledgeWithdrawal !== true) return json({ error: "Accept both declarations" }, 400);
         const document = await contractDocument(e, input.lang);
         if (!document || input.contractDigest !== await contractDigest(document)) return json({ error: "Contract changed" }, 409);
+        const declarations=await consentDocuments(e,input.lang);
+        if (!declarations || input.earlyStartDigest !== await contractDigest(declarations[0]) || input.withdrawalAckDigest !== await contractDigest(declarations[1])) return json({ error: "Declarations changed" },409);
         const secret = b64(crypto.getRandomValues(new Uint8Array(32))), id = crypto.randomUUID(), acceptedAt = Date.now();
         const lang = input.lang === "de" || input.lang === "en" ? input.lang : "";
         await e.DB.batch([
           e.DB.prepare("INSERT INTO orders(id,claim_hash,created_at) VALUES(?,?,?)").bind(id, await hash(secret), acceptedAt),
           e.DB.prepare("INSERT INTO checkout_attempts(order_id,return_lang) VALUES(?,?)").bind(id, lang),
           e.DB.prepare("INSERT INTO contract_acceptances(order_id,language,version,text,digest,accepted_at) VALUES(?,?,?,?,?,?)").bind(id, document.language, document.version, document.text, input.contractDigest, acceptedAt),
+          ...declarations.map((d,i)=>e.DB.prepare("INSERT INTO contract_declarations(order_id,kind,language,version,text,digest,accepted_at) VALUES(?,?,?,?,?,?,?)").bind(id,d.kind,d.language,d.version,d.text,i===0?input.earlyStartDigest:input.withdrawalAckDigest,acceptedAt)),
           e.DB.prepare("INSERT INTO confirmation_obligations(order_id,created_at) VALUES(?,?)").bind(id, acceptedAt),
         ]);
         return json({ recoveryCode: secret });
@@ -388,6 +402,8 @@ export default {
         const order = await e.DB.prepare("SELECT o.id,o.created_at,o.session_id,a.return_lang FROM orders o LEFT JOIN checkout_attempts a ON a.order_id=o.id WHERE o.claim_hash=?")
           .bind(await hash(input.recoveryCode)).first();
         if (!order) return json({ error: "Invalid recovery code" }, 401);
+        const recorded=await e.DB.prepare("SELECT COUNT(*) AS n FROM contract_declarations WHERE order_id=? AND language=? AND kind IN ('early_start','withdrawal_ack')").bind(order.id,order.return_lang).first();
+        if (recorded?.n !== 2) return json({ error: "Declarations unavailable" },409);
         let sessionId = order.session_id;
         if (!sessionId) {
         // Legacy orders lack the fixed creation parameters required for a safe retry.
@@ -485,16 +501,18 @@ export default {
         const deviceRows = order.license_id
           ? (await e.DB.prepare("SELECT device_id,active FROM devices WHERE license_id=? ORDER BY device_id LIMIT 1001").bind(order.license_id).all()).results
           : [];
+        const declarations = (await e.DB.prepare("SELECT kind,language,version,text,accepted_at FROM contract_declarations WHERE order_id=? ORDER BY kind").bind(a.id).all()).results;
         // Never silently present a truncated record as a complete export.
         if (deviceRows.length > 1000) return json({ error: "Export too large; contact support" }, 413);
         return new Response(JSON.stringify({
           format: "makrivo-purchase-data-v1",
-          scope: "Selected data for this MAKRIVO purchase: order, accepted terms and devices. Recovery-code hashes, payment identifiers, Stripe, support, infrastructure logs and backups are not included; contact Aivana for other data.",
+          scope: "Selected data for this MAKRIVO purchase: order, accepted terms and declarations, and devices. Recovery-code hashes, payment identifiers, Stripe, support, infrastructure logs and backups are not included; contact Aivana for other data.",
           order: { reference: order.id, prepared_at_ms: order.created_at,
             status: order.revoked ? "revoked" : order.license_id ? "paid" : "pending",
             license_reference: order.license_id || null },
           acceptance: order.language ? { language: order.language, version: order.version,
             text: order.text, accepted_at_ms: order.accepted_at } : null,
+          declarations: declarations.map(d=>({kind:d.kind,language:d.language,version:d.version,text:d.text,accepted_at_ms:d.accepted_at})),
           devices: deviceRows.map(d => ({ device_code: d.device_id, active: d.active === 1 })),
         }, null, 2), { headers: {
           "Content-Type": "application/json;charset=utf-8",
@@ -622,11 +640,20 @@ async function page(e, req) {
   };
   strings.en.errors["Contract confirmation delivery unavailable"] = "Contract confirmation delivery is not available. Please contact support before activating this purchase.";
   strings.de.errors["Contract confirmation delivery unavailable"] = "Die Zustellung der Vertragsbestätigung ist derzeit nicht verfügbar. Bitte kontaktiere den Support, bevor du diesen Kauf aktivierst.";
+  strings.en.errors["Accept both declarations"] = "Please review and separately confirm both declarations.";
+  strings.de.errors["Accept both declarations"] = "Bitte prüfe und bestätige beide Erklärungen einzeln.";
+  strings.en.errors["Declarations changed"] = "The declarations changed. Reload the page and review them again.";
+  strings.de.errors["Declarations changed"] = "Die Erklärungen haben sich geändert. Lade die Seite neu und prüfe sie erneut.";
+  strings.en.errors["Declarations unavailable"] = "This earlier payment attempt cannot be resumed. Contact support.";
+  strings.de.errors["Declarations unavailable"] = "Dieser ältere Zahlungsvorgang kann nicht fortgesetzt werden. Bitte kontaktiere den Support.";
   const t = strings[language];
   const enabled = await ready(e);
   const document = await contractDocument(e, language);
   const documentDigest = document ? await contractDigest(document) : null;
+  const declarations = await consentDocuments(e,language);
+  const declarationDigests = declarations ? await Promise.all(declarations.map(contractDigest)) : [null,null];
   const escapeText = text => text.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\"", "&quot;").replaceAll("'", "&#39;");
+  const declarationControls = declarations ? declarations.map((d,i)=>`<label><input type="checkbox" id="${i===0?'earlyStart':'withdrawalAck'}"><span style="white-space:pre-wrap">${escapeText(d.text)}</span> (${escapeText(d.version)})</label>`).join('') : '';
   const link = (url, label) => {
     try {
       const u = new URL(url);
@@ -643,7 +670,7 @@ async function page(e, req) {
     }
   };
   return new Response(
-    `<!doctype html><html lang="${language}"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>${t.title}</title><style>body{font:18px system-ui;max-width:48rem;margin:3rem auto;padding:1rem}button,input{font:inherit;padding:.7rem}label{display:block;margin:1rem 0}#status{white-space:pre-wrap}</style><h1>MAKRIVO</h1><nav aria-label="Language / Sprache"><a data-language-switch href="/?lang=de" hreflang="de">Deutsch</a> · <a data-language-switch href="/?lang=en" hreflang="en">English</a></nav><p>${t.offer}</p><p>${enabled ? t.enabled : t.disabled}</p><p>${link(e.LEGAL_TERMS_URL, t.terms)} · ${link(e.PRIVACY_URL, t.privacy)} · ${link(e.SELLER_IMPRINT_URL, t.imprint)}</p>${document ? `<section><h2>${t.terms} (${escapeText(document.version)})</h2><pre style="white-space:pre-wrap"><span>${escapeText(document.text)}</span></pre></section>` : ""}<label><input type="checkbox" id="terms"> ${t.accept}</label><button id="buy" ${enabled ? "" : "disabled"}>${t.buy}</button><section id="backup" hidden><h2>${t.backupTitle}</h2><p>${t.backupInfo}</p><output id="recovery"></output><button id="copyRecovery">${t.copy}</button><p><label><input type="checkbox" id="saved"> ${t.saved}</label><button id="continue">${t.continue}</button></p></section><h2>${t.restoreTitle}</h2><p>${t.resumeInfo}</p><label for="restoreCode">${t.restoreLabel}</label><input id="restoreCode" autocomplete="off" type="password"><button id="restore">${t.restoreTitle}</button><button id="resume" ${enabled ? "" : "disabled"}>${t.resume}</button><h2>${t.activation}</h2><p>${t.activationInfo}</p><p><button id="termsDownload">${t.documentCopy}</button></p><p><button id="dataExport">${t.dataExport}</button></p><p>${t.dataScope}</p><button id="order">${t.refresh}</button><h3>${t.active}</h3><p id="seats" role="status">${t.refreshInfo}</p><ul id="devices"></ul><p>${t.offline}</p><label for="device">${t.code}</label><input id="device" maxlength="64" autocomplete="off" size="40"><button id="activate">${t.download}</button><p id="status" role="status"></p><script>const T=${JSON.stringify(t).replaceAll("<", "\\u003c")};let activeRequests=0,checkoutLocked=false;async function call(path,data){activeRequests++;try{const r=await fetch(path,{method:data?'POST':'GET',headers:{'Content-Type':'application/json'},body:data?JSON.stringify(data):undefined});const v=await r.json();if(!r.ok)throw Error(v.error);return v}finally{activeRequests--}}function fail(e){status.textContent=T.errors[e.message]||(Object.keys(T.errors).length?T.genericError:e.message)}const status=document.getElementById('status');for(const a of document.querySelectorAll('[data-language-switch]'))a.addEventListener('click',event=>{if(activeRequests>0||checkoutLocked){event.preventDefault();status.textContent=T.languageWarning;}});document.getElementById('buy').onclick=()=>{if(checkoutLocked)return;checkoutLocked=true;return call('/api/checkout/prepare',{acceptTerms:document.getElementById('terms').checked,lang:'${language}',contractDigest:${JSON.stringify(documentDigest)}}).then(v=>{document.getElementById('recovery').textContent=v.recoveryCode;document.getElementById('copyRecovery').onclick=()=>navigator.clipboard.writeText(v.recoveryCode).then(()=>status.textContent=T.copied).catch(fail);document.getElementById('backup').hidden=false;document.getElementById('continue').onclick=()=>{if(document.getElementById('saved').checked)return call('/api/checkout',{acceptTerms:document.getElementById('terms').checked,recoveryCode:v.recoveryCode}).then(result=>location.assign(result.url)).catch(fail);else status.textContent=T.saveFirst;};}).catch(e=>{checkoutLocked=false;fail(e)});};document.getElementById('resume').onclick=()=>call('/api/checkout',{acceptTerms:document.getElementById('terms').checked,recoveryCode:document.getElementById('restoreCode').value.trim()}).then(result=>location.assign(result.url)).catch(fail);document.getElementById('restore').onclick=()=>call('/api/claim/restore',{recoveryCode:document.getElementById('restoreCode').value.trim()}).then(()=>{document.getElementById('restoreCode').value='';status.textContent=T.restored;}).catch(fail);async function refreshOrder(){const v=await call('/api/order');const list=document.getElementById('devices');list.replaceChildren();document.getElementById('seats').textContent=T.order+(T.states[v.status]||v.status)+T.activePCs+v.devices.length+T.ofFour+Math.max(0,4-v.devices.length)+'.';for(const device of v.devices){const item=document.createElement('li');const code=document.createElement('code');code.textContent=device.device_id;const button=document.createElement('button');button.textContent=T.deactivate;button.setAttribute('aria-label',T.aria+device.device_id);button.onclick=async()=>{if(!confirm(T.confirm))return;button.disabled=true;try{await call('/api/licenses/deactivate',{deviceId:device.device_id});await refreshOrder();status.textContent=T.released;}catch(e){button.disabled=false;fail(e);}};item.append(code,document.createTextNode(' '),button);list.append(item);}}document.getElementById('order').onclick=()=>refreshOrder().catch(fail);async function downloadPrivate(path,filename){activeRequests++;try{const r=await fetch(path,{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/json'},body:'{}'});if(!r.ok){const v=await r.json();throw Error(v.error);}const blob=await r.blob();const a=document.createElement('a');const u=URL.createObjectURL(blob);a.href=u;a.download=filename;a.click();setTimeout(()=>URL.revokeObjectURL(u),1000);}catch(e){fail(e);}finally{activeRequests--;}}const dataExportButton=document.getElementById('dataExport');if(dataExportButton)dataExportButton.onclick=()=>downloadPrivate('/api/order/export','MAKRIVO-purchase-data.json');const termsDownloadButton=document.getElementById('termsDownload');if(termsDownloadButton)termsDownloadButton.onclick=()=>downloadPrivate('/api/order/terms','MAKRIVO-terms.txt');document.getElementById('activate').onclick=()=>call('/api/licenses/activate',{deviceId:document.getElementById('device').value.trim()}).then(v=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(v)],{type:'application/json'}));a.download='MAKRIVO.license.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);refreshOrder().catch(fail)}).catch(fail);</script></html>`,
+    `<!doctype html><html lang="${language}"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>${t.title}</title><style>body{font:18px system-ui;max-width:48rem;margin:3rem auto;padding:1rem}button,input{font:inherit;padding:.7rem}label{display:block;margin:1rem 0}#status{white-space:pre-wrap}</style><h1>MAKRIVO</h1><nav aria-label="Language / Sprache"><a data-language-switch href="/?lang=de" hreflang="de">Deutsch</a> · <a data-language-switch href="/?lang=en" hreflang="en">English</a></nav><p>${t.offer}</p><p>${enabled ? t.enabled : t.disabled}</p><p>${link(e.LEGAL_TERMS_URL, t.terms)} · ${link(e.PRIVACY_URL, t.privacy)} · ${link(e.SELLER_IMPRINT_URL, t.imprint)}</p>${document ? `<section><h2>${t.terms} (${escapeText(document.version)})</h2><pre style="white-space:pre-wrap"><span>${escapeText(document.text)}</span></pre></section>` : ""}<label><input type="checkbox" id="terms"> ${t.accept}</label>${declarationControls}<button id="buy" ${enabled ? "" : "disabled"}>${t.buy}</button><section id="backup" hidden><h2>${t.backupTitle}</h2><p>${t.backupInfo}</p><output id="recovery"></output><button id="copyRecovery">${t.copy}</button><p><label><input type="checkbox" id="saved"> ${t.saved}</label><button id="continue">${t.continue}</button></p></section><h2>${t.restoreTitle}</h2><p>${t.resumeInfo}</p><label for="restoreCode">${t.restoreLabel}</label><input id="restoreCode" autocomplete="off" type="password"><button id="restore">${t.restoreTitle}</button><button id="resume" ${enabled ? "" : "disabled"}>${t.resume}</button><h2>${t.activation}</h2><p>${t.activationInfo}</p><p><button id="termsDownload">${t.documentCopy}</button></p><p><button id="dataExport">${t.dataExport}</button></p><p>${t.dataScope}</p><button id="order">${t.refresh}</button><h3>${t.active}</h3><p id="seats" role="status">${t.refreshInfo}</p><ul id="devices"></ul><p>${t.offline}</p><label for="device">${t.code}</label><input id="device" maxlength="64" autocomplete="off" size="40"><button id="activate">${t.download}</button><p id="status" role="status"></p><script>const T=${JSON.stringify(t).replaceAll("<", "\\u003c")};let activeRequests=0,checkoutLocked=false;async function call(path,data){activeRequests++;try{const r=await fetch(path,{method:data?'POST':'GET',headers:{'Content-Type':'application/json'},body:data?JSON.stringify(data):undefined});const v=await r.json();if(!r.ok)throw Error(v.error);return v}finally{activeRequests--}}function fail(e){status.textContent=T.errors[e.message]||(Object.keys(T.errors).length?T.genericError:e.message)}const status=document.getElementById('status');for(const a of document.querySelectorAll('[data-language-switch]'))a.addEventListener('click',event=>{if(activeRequests>0||checkoutLocked){event.preventDefault();status.textContent=T.languageWarning;}});document.getElementById('buy').onclick=()=>{if(checkoutLocked)return;checkoutLocked=true;return call('/api/checkout/prepare',{acceptTerms:document.getElementById('terms').checked,acceptEarlyStart:document.getElementById('earlyStart')?.checked===true,acknowledgeWithdrawal:document.getElementById('withdrawalAck')?.checked===true,earlyStartDigest:${JSON.stringify(declarationDigests[0])},withdrawalAckDigest:${JSON.stringify(declarationDigests[1])},lang:'${language}',contractDigest:${JSON.stringify(documentDigest)}}).then(v=>{document.getElementById('recovery').textContent=v.recoveryCode;document.getElementById('copyRecovery').onclick=()=>navigator.clipboard.writeText(v.recoveryCode).then(()=>status.textContent=T.copied).catch(fail);document.getElementById('backup').hidden=false;document.getElementById('continue').onclick=()=>{if(document.getElementById('saved').checked)return call('/api/checkout',{acceptTerms:document.getElementById('terms').checked,recoveryCode:v.recoveryCode}).then(result=>location.assign(result.url)).catch(fail);else status.textContent=T.saveFirst;};}).catch(e=>{checkoutLocked=false;fail(e)});};document.getElementById('resume').onclick=()=>call('/api/checkout',{acceptTerms:document.getElementById('terms').checked,recoveryCode:document.getElementById('restoreCode').value.trim()}).then(result=>location.assign(result.url)).catch(fail);document.getElementById('restore').onclick=()=>call('/api/claim/restore',{recoveryCode:document.getElementById('restoreCode').value.trim()}).then(()=>{document.getElementById('restoreCode').value='';status.textContent=T.restored;}).catch(fail);async function refreshOrder(){const v=await call('/api/order');const list=document.getElementById('devices');list.replaceChildren();document.getElementById('seats').textContent=T.order+(T.states[v.status]||v.status)+T.activePCs+v.devices.length+T.ofFour+Math.max(0,4-v.devices.length)+'.';for(const device of v.devices){const item=document.createElement('li');const code=document.createElement('code');code.textContent=device.device_id;const button=document.createElement('button');button.textContent=T.deactivate;button.setAttribute('aria-label',T.aria+device.device_id);button.onclick=async()=>{if(!confirm(T.confirm))return;button.disabled=true;try{await call('/api/licenses/deactivate',{deviceId:device.device_id});await refreshOrder();status.textContent=T.released;}catch(e){button.disabled=false;fail(e);}};item.append(code,document.createTextNode(' '),button);list.append(item);}}document.getElementById('order').onclick=()=>refreshOrder().catch(fail);async function downloadPrivate(path,filename){activeRequests++;try{const r=await fetch(path,{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/json'},body:'{}'});if(!r.ok){const v=await r.json();throw Error(v.error);}const blob=await r.blob();const a=document.createElement('a');const u=URL.createObjectURL(blob);a.href=u;a.download=filename;a.click();setTimeout(()=>URL.revokeObjectURL(u),1000);}catch(e){fail(e);}finally{activeRequests--;}}const dataExportButton=document.getElementById('dataExport');if(dataExportButton)dataExportButton.onclick=()=>downloadPrivate('/api/order/export','MAKRIVO-purchase-data.json');const termsDownloadButton=document.getElementById('termsDownload');if(termsDownloadButton)termsDownloadButton.onclick=()=>downloadPrivate('/api/order/terms','MAKRIVO-terms.txt');document.getElementById('activate').onclick=()=>call('/api/licenses/activate',{deviceId:document.getElementById('device').value.trim()}).then(v=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(v)],{type:'application/json'}));a.download='MAKRIVO.license.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);refreshOrder().catch(fail)}).catch(fail);</script></html>`,
     {
       headers: {
         "Content-Type": "text/html;charset=utf-8",

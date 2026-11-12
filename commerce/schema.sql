@@ -9,6 +9,10 @@ CREATE TABLE contract_acceptances(order_id TEXT PRIMARY KEY REFERENCES orders(id
 CREATE TRIGGER contract_acceptances_no_replace BEFORE INSERT ON contract_acceptances WHEN EXISTS(SELECT 1 FROM contract_acceptances WHERE order_id=NEW.order_id) BEGIN SELECT RAISE(ABORT,'contract acceptances are immutable'); END;
 CREATE TRIGGER contract_acceptances_no_update BEFORE UPDATE ON contract_acceptances BEGIN SELECT RAISE(ABORT,'contract acceptances are immutable'); END;
 CREATE TRIGGER contract_acceptances_no_delete BEFORE DELETE ON contract_acceptances BEGIN SELECT RAISE(ABORT,'contract acceptances are immutable'); END;
+CREATE TABLE contract_declarations(order_id TEXT NOT NULL REFERENCES orders(id), kind TEXT NOT NULL CHECK(kind IN ('early_start','withdrawal_ack')), language TEXT NOT NULL CHECK(language IN ('de','en')), version TEXT NOT NULL, text TEXT NOT NULL, digest TEXT NOT NULL, accepted_at INTEGER NOT NULL, PRIMARY KEY(order_id,kind));
+CREATE TRIGGER contract_declarations_no_replace BEFORE INSERT ON contract_declarations WHEN EXISTS(SELECT 1 FROM contract_declarations WHERE order_id=NEW.order_id AND kind=NEW.kind) BEGIN SELECT RAISE(ABORT,'contract declarations are immutable'); END;
+CREATE TRIGGER contract_declarations_no_update BEFORE UPDATE ON contract_declarations BEGIN SELECT RAISE(ABORT,'contract declarations are immutable'); END;
+CREATE TRIGGER contract_declarations_no_delete BEFORE DELETE ON contract_declarations BEGIN SELECT RAISE(ABORT,'contract declarations are immutable'); END;
 CREATE TABLE confirmation_obligations(order_id TEXT PRIMARY KEY REFERENCES orders(id), created_at INTEGER NOT NULL);
 CREATE TRIGGER confirmation_obligations_no_replace BEFORE INSERT ON confirmation_obligations WHEN EXISTS(SELECT 1 FROM confirmation_obligations WHERE order_id=NEW.order_id) BEGIN SELECT RAISE(ABORT,'confirmation obligations are immutable'); END;
 CREATE TRIGGER confirmation_obligations_no_update BEFORE UPDATE ON confirmation_obligations BEGIN SELECT RAISE(ABORT,'confirmation obligations are immutable'); END;
