@@ -252,5 +252,16 @@ test('unchecking a locked declaration cannot continue a prepared purchase',async
   const elements=Object.fromEntries(['newPurchase','cancelNew','resumePreview','resumeLang','resumeTerms','resumeEarlyText','resumeAckText','resumeReviewed','resumeContinue','cancelPreview','status','backup','saved','buy','terms','earlyStart','withdrawalAck','recovery','copyRecovery','continue','restore','restoreCode','resume','order','activate'].map(id=>[id,{}]));
   for(const id of ['terms','earlyStart','withdrawalAck','saved'])elements[id].checked=true;
   const calls=[];runInNewContext(script,{document:{getElementById:id=>elements[id],querySelectorAll:()=>[]},location:{assign(){throw Error('must not redirect');}},fetch:async(path)=>{calls.push(path);return {ok:true,json:async()=>({recoveryCode:'A'.repeat(43),checkoutToken:'T'.repeat(43)})};}});
-  await elements.buy.onclick();elements.earlyStart.checked=false;await elements.continue.onclick();assert.deepEqual(calls,['/api/checkout/prepare']);assert.match(elements.status.textContent,/Brich ab/);
+  await elements.buy.onclick();elements.saved.checked=true;elements.earlyStart.checked=false;await elements.continue.onclick();assert.deepEqual(calls,['/api/checkout/prepare']);assert.match(elements.status.textContent,/Brich ab/);
+});
+
+
+test('a new purchase never inherits the previous recovery code saved confirmation',async()=>{
+  const html=await (await worker.fetch(new Request('https://buyer.test/?lang=de'),{})).text();const script=html.match(/<script>([\s\S]*?)<\/script>/)[1];
+  const elements=Object.fromEntries(['newPurchase','cancelNew','resumePreview','resumeLang','resumeTerms','resumeEarlyText','resumeAckText','resumeReviewed','resumeContinue','cancelPreview','status','backup','saved','buy','terms','earlyStart','withdrawalAck','recovery','copyRecovery','continue','restore','restoreCode','resume','order','activate'].map(id=>[id,{}]));let n=0;
+  runInNewContext(script,{document:{getElementById:id=>elements[id],querySelectorAll:()=>[]},fetch:async()=>({ok:true,json:async()=>({recoveryCode:String(++n).repeat(43),checkoutToken:'T'.repeat(43)})})});
+  for(const id of ['terms','earlyStart','withdrawalAck'])elements[id].checked=true;
+  elements.saved.checked=true;await elements.buy.onclick();assert.equal(elements.saved.checked,false);elements.saved.checked=true;elements.cancelNew.onclick();assert.equal(elements.saved.checked,false);
+  for(const id of ['terms','earlyStart','withdrawalAck'])elements[id].checked=true;
+  await elements.buy.onclick();assert.equal(elements.saved.checked,false);await elements.continue.onclick();assert.match(elements.status.textContent,/Speichere zuerst/);
 });
