@@ -16,12 +16,18 @@ Bei einem widerrufbaren Fernabsatzvertrag über nicht auf einem körperlichen Da
 
 Für die Prüfung des vorgeschriebenen Musters: [amtliches Muster-Widerrufsformular, Anlage 2 zu Artikel 246a § 1 EGBGB](https://www.gesetze-im-internet.de/bgbeg/art_253anlage_2.html). Der endgültigen Kundenfassung muss das zutreffend bereitgestellte Muster beigefügt werden; der folgende Freitext ist lediglich eine praktische Erklärungshilfe und ersetzt diese Pflicht nicht:
 
-> An Aivana GmbH, Paulusstr. 45a, Hinterhaus – LOFT45, 33602 Bielefeld, info@aivana-gmbh.ai.  
-> Ich widerrufe meinen Vertrag über MAKRIVO.  
-> Bestelldatum: __________  
-> Name: __________  
-> Anschrift: __________  
-> Datum: __________  
+> An Aivana GmbH, Paulusstr. 45a, Hinterhaus – LOFT45, 33602 Bielefeld, info@aivana-gmbh.ai.
+>
+> Ich widerrufe meinen Vertrag über MAKRIVO.
+>
+> Bestelldatum: __________
+>
+> Name: __________
+>
+> Anschrift: __________
+>
+> Datum: __________
+>
 > Unterschrift bei Mitteilung auf Papier: __________
 
 Bei Online-Fernabsatz ist die [elektronische Widerrufsfunktion nach § 356a BGB](https://www.gesetze-im-internet.de/bgb/__356a.html) einschließlich Eingangsbestätigung für den anwendbaren Fall zu prüfen und umzusetzen. Eine solche Funktion oder ein funktionsfähiger Bestätigungsversand wird hier noch nicht zugesagt. Ihre endgültige Adresse und Platzierung müssen in der Kundenbelehrung nach erfolgter Implementierung ergänzt werden.
