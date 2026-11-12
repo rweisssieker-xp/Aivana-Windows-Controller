@@ -38,3 +38,15 @@ The user selected exclusion of the optional AI assistant. Clean worktree `C:/tmp
 - Root reran the final package checker successfully against the exact MSIX and verified its SHA-256. MakeAppx schema validation completed. WiX emitted path-normalization warnings while building the unsigned retail fixture.
 
 This remains an unsigned test-source candidate with `https://commerce.invalid` and a freshly generated test-only public key; no private signing key was retained. `releaseApproved=false`, `submissionReady=false`. It was not installed, uploaded, certified or published. Packaged runtime/hardware acceptance and a working production license service remain open.
+
+## Current no-AI test package with Partner Center identity — 12 November 2026
+
+The isolated packaging scripts at source `085484c` repackaged the already checked 9 November retail test payload from `C:/tmp/makrivo-store-autostart-retail-test2-20261109` (retail inventory digest `41b8d0906ae6c05e20d9fda13a775517c72eda6ccb01f2aa181b45a456a7a287`) with the exact reserved Partner Center package name and publisher recorded in `partner-center-identity.json`. The retail payload was originally built at isolated Store source `b969be6`; the equivalent Store patch was integrated as `84ee587`, but this packaging run did not rebuild its source.
+
+- Candidate: `C:/tmp/makrivo-store-identity-test-20261112/MAKRIVO.msix`.
+- SHA-256: `6e2dd8a7c90f511d5c7eefadb509ca8a370de1723c2928ecc96379a04d0d67e0`.
+- x64, version `1.0.0.0`; `storeRelease=true`, `aiAssistantIncluded=false`, `experimentalOnnxIncluded=false`.
+- Actual reserved name/publisher are used (`testIdentity=false`), but the source is explicitly test-only (`testRetailSource=true`), contains only a test public key and points to `https://commerce.invalid`. The candidate is unsigned, `releaseApproved=false` and `submissionReady=false`.
+- The current Store package checker independently rechecked manifest identity, inventory, archive members, retained product terms, no-AI checks and the scoped autostart checks. A separate SHA-256 computation matched. No install, Windows App Certification Kit, real checkout/license test, certification, upload or publication was performed.
+
+The real Partner Center identity does not make this a production package. Rebuild from the final approved source with the real service and public verification key, then repeat package and Windows acceptance on that exact artifact before submission. The source test candidate and `1.0.0.0` version do not establish which version Microsoft will accept in a future submission.
