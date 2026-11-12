@@ -1493,3 +1493,25 @@ test('rotation while creating checkout prevents stale authorization from returni
     assert.equal((await checkoutRequest(e,code)).status,200);assert.equal(sessions.size,1);
   } finally {release?.();globalThis.fetch=original;}
 });
+
+
+test('concurrent previews leave exactly one current authorization without leaking a payment URL', async()=>{
+  const db=database(),e=configured(db),code=await prepareCheckout(e,'de'),original=globalThis.fetch;let calls=0;
+  const preview=origin=>worker.fetch(new Request(e.PUBLIC_ORIGIN+'/api/checkout/preview',{method:'POST',headers:{Origin:origin},body:JSON.stringify({recoveryCode:code})}),e);
+  try {
+    globalThis.fetch=async()=>{calls++;throw Error('must not call provider');};
+    assert.equal((await preview('https://attacker.test')).status,403);
+    const [a,b]=await Promise.all([preview(e.PUBLIC_ORIGIN),preview(e.PUBLIC_ORIGIN)]);assert.equal(a.status,200);assert.equal(b.status,200);
+    const x=await a.json(),y=await b.json();assert.notEqual(x.checkoutToken,y.checkoutToken);assert.equal(x.url,undefined);assert.equal(y.url,undefined);
+    const hash=async s=>Buffer.from(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s))).toString('base64url');
+    const saved=db.raw.prepare('SELECT token_hash FROM checkout_authorizations').get().token_hash;assert.ok(saved===await hash(x.checkoutToken)||saved===await hash(y.checkoutToken));
+    const stale=saved===await hash(x.checkoutToken)?y:x;checkoutTokens.set(code,stale.checkoutToken);assert.equal((await checkoutRequest(e,code)).status,409);assert.equal(calls,0);
+  } finally {globalThis.fetch=original;}
+});
+
+
+test('checkout authorization insert failure rolls back order and all consent evidence',async()=>{
+  const db=database(),e=configured(db),prepare=db.prepare.bind(db);db.prepare=sql=>sql.startsWith('INSERT INTO checkout_authorizations')?{bind(){return {_run(){throw Error('simulated failure');}};}}:prepare(sql);
+  const r=await worker.fetch(new Request(e.PUBLIC_ORIGIN+'/api/checkout/prepare',{method:'POST',headers:{Origin:e.PUBLIC_ORIGIN},body:JSON.stringify({acceptTerms:true,lang:'de',contractDigest:await fixtureDigest('de'),...await declarationFields('de')})}),e);
+  assert.equal(r.status,400);for(const table of ['orders','checkout_attempts','contract_acceptances','contract_declarations','confirmation_obligations','checkout_authorizations'])assert.equal(db.raw.prepare(`SELECT count(*) n FROM ${table}`).get().n,0);
+});
