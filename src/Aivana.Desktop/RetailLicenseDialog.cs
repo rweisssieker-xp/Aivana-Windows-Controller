@@ -12,7 +12,7 @@ public sealed class RetailLicenseDialog : Window
     {
         Title = "MAKRIVO – " + RetailText.Get("License"); Width = 620; Height = 430; MinWidth = 420; MinHeight = 300; WindowStartupLocation = WindowStartupLocation.CenterOwner;
         var panel = new StackPanel { Margin = new Thickness(22) }; Content = new ScrollViewer { Content = panel, VerticalScrollBarVisibility = ScrollBarVisibility.Auto };
-        panel.Children.Add(new TextBlock { Text = RetailText.Get("29 EUR · up to 4 own PCs") + "\n" + RetailText.Get("One-time purchase, no subscription") + "\n" + RetailText.Get("Purchased major version works offline permanently."), TextWrapping = TextWrapping.Wrap });
+        panel.Children.Add(new TextBlock { Text = RetailText.Get("29 EUR including applicable taxes · one person · up to 4 own PCs") + "\n" + RetailText.Get("One-time purchase, no subscription") + "\n" + RetailText.Get("Purchased major version works offline permanently."), TextWrapping = TextWrapping.Wrap });
         var status = new TextBlock { Margin = new Thickness(0,16,0,12), TextWrapping = TextWrapping.Wrap }; panel.Children.Add(status);
         void Refresh() { try { var result = controller.RetailLicense.Validate(); status.Text = result.IsValid ? RetailText.Get("License valid") : RetailText.Get("License required") + ": " + result.Error; } catch (Exception ex) { status.Text = ex.Message; } }
         Refresh();
