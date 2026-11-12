@@ -90,7 +90,7 @@ test('preview cannot change while final submission is awaiting a response', asyn
   runInNewContext(html.match(/<script>([\s\S]*?)<\/script>/)[1],{document:{getElementById:id=>elements[id]},fetch,crypto:{randomUUID:()=>input.requestId}});
   elements.preview.onclick(); const original=elements.details.textContent; const submitting=elements.confirm.onclick();
   elements.contract.value='Andere Bestellung'; elements.preview.onclick(); assert.equal(elements.details.textContent,original);
-  release({ok:true}); await submitting;
+  release({ok:true,status:202,json:async()=>({requestId:input.requestId,status:'receipt_pending',receivedAt:Date.now()})}); await submitting;
 });
 
 test('oversized, malformed and conflicting submissions do not expose stored details', async () => {
@@ -131,7 +131,7 @@ test('preview locks inputs and refuses to send if displayed fields are altered',
   const html=await (await withdrawalTestFetch(new Request(origin+'/withdrawal'),env)).text();
   const elements=Object.fromEntries(['name','contract','email','preview','confirm','details','status','edit','new'].map(id=>[id,{}]));
   elements.name.value=input.name;elements.contract.value=input.contract;elements.email.value=input.email;
-  let calls=0; const fetch=async()=>{calls++;return {ok:true};};
+  let calls=0; const fetch=async()=>{calls++;return {ok:true,status:202,json:async()=>({requestId:input.requestId,status:'receipt_pending',receivedAt:Date.now()})};};
   runInNewContext(html.match(/<script>([\s\S]*?)<\/script>/)[1],{document:{getElementById:id=>elements[id]},fetch,crypto:{randomUUID:()=>input.requestId}});
   elements.preview.onclick();for(const id of ['name','contract','email'])assert.equal(elements[id].disabled,true);
   elements.contract.value='Andere Bestellung'; await elements.confirm.onclick(); assert.equal(calls,0); assert.match(elements.status.textContent,/erneut prüfen/i); assert.equal(elements.confirm.hidden,true);
@@ -143,7 +143,7 @@ test('edit action invalidates preview and confirms only reviewed updated values'
   const html=await (await withdrawalTestFetch(new Request(origin+'/withdrawal'),env)).text();
   const elements=Object.fromEntries(['name','contract','email','preview','confirm','details','status','edit','new'].map(id=>[id,{}]));
   elements.name.value=input.name;elements.contract.value=input.contract;elements.email.value=input.email;
-  let payload;const fetch=async(path,opts)=>{payload=JSON.parse(opts.body);return {ok:true};};
+  let payload;const fetch=async(path,opts)=>{payload=JSON.parse(opts.body);return {ok:true,status:202,json:async()=>({requestId:input.requestId,status:'receipt_pending',receivedAt:Date.now()})};};
   runInNewContext(html.match(/<script>([\s\S]*?)<\/script>/)[1],{document:{getElementById:id=>elements[id]},fetch,crypto:{randomUUID:()=>input.requestId}});
   elements.preview.onclick();elements.edit.onclick();assert.equal(elements.confirm.hidden,true);assert.equal(elements.contract.disabled,false);
   elements.contract.value='Neue geprüfte Bestellung';elements.preview.onclick();assert.match(elements.details.textContent,/Neue geprüfte Bestellung/);
@@ -222,4 +222,46 @@ test('unavailable sessionStorage does not prevent same-page retry but cannot gua
   assert.equal(db.raw.prepare('SELECT count(*) n FROM withdrawal_requests').get().n,1);
   const reloaded=page('1f1b2b0c-b0cf-4aa0-9f20-c486a81d2bfa');reloaded.preview.onclick();await reloaded.confirm.onclick();
   assert.equal(db.raw.prepare('SELECT count(*) n FROM withdrawal_requests').get().n,2);
+});
+
+test('unexpected successful HTTP responses never erase an uncertain request ID or claim storage', async () => {
+  const db=database(),origin='https://test.invalid',env={WITHDRAWAL_TEST_ONLY:'true',STRIPE_LIVE:'false',PUBLIC_ORIGIN:origin,DB:db};
+  const html=await(await withdrawalTestFetch(new Request(origin+'/withdrawal'),env)).text(),script=html.match(/<script>([\s\S]*?)<\/script>/)[1];
+  const valid={requestId:input.requestId,status:'receipt_pending',receivedAt:Date.now()};
+  const variants=[
+    {ok:true,status:200,json:async()=>valid},
+    {ok:true,status:204,json:async()=>valid},
+    {ok:true,status:202,json:async()=>{throw Error('broken JSON');}},
+    {ok:true,status:202,json:async()=>({...valid,requestId:'1f1b2b0c-b0cf-4aa0-9f20-c486a81d2bfa'})},
+    {ok:true,status:202,json:async()=>({...valid,status:'sent'})},
+    {ok:true,status:202,json:async()=>null},
+    {ok:true,status:202,json:async()=>({requestId:input.requestId,status:'receipt_pending'})},
+    {ok:true,status:202,json:async()=>({...valid,receivedAt:'2026-11-12'})},
+    {ok:true,status:202,json:async()=>({...valid,receivedAt:-1})},
+    {ok:true,status:202,json:async()=>({...valid,receivedAt:0})},
+    {ok:true,status:202,json:async()=>({...valid,receivedAt:8640000000000001})},
+    {ok:true,status:202,json:async()=>({...valid,receivedAt:3.5})},
+  ];
+  for(const response of variants){
+    const values=new Map(), storage={getItem:k=>values.get(k)||null,setItem:(k,v)=>values.set(k,v),removeItem:k=>values.delete(k)};
+    const elements=Object.fromEntries(['name','contract','email','preview','confirm','details','status','edit','new'].map(x=>[x,{}]));
+    elements.name.value=input.name;elements.contract.value=input.contract;elements.email.value=input.email;
+    runInNewContext(script,{document:{getElementById:x=>elements[x]},fetch:async()=>response,sessionStorage:storage,crypto:{randomUUID:()=>input.requestId}});
+    elements.preview.onclick();await elements.confirm.onclick();
+    assert.match(elements.status.textContent,/Erneut versuchen/);assert.doesNotMatch(elements.status.textContent,/Erklärung gespeichert/);
+    assert.equal(elements.confirm.disabled,false);assert.deepEqual([...values.values()],[input.requestId]);
+  }
+});
+
+test('a corrupted 202 after committed intake can retry without a second withdrawal', async () => {
+  const db=database(),origin='https://test.invalid',env={WITHDRAWAL_TEST_ONLY:'true',STRIPE_LIVE:'false',PUBLIC_ORIGIN:origin,DB:db};
+  const html=await(await withdrawalTestFetch(new Request(origin+'/withdrawal'),env)).text(),script=html.match(/<script>([\s\S]*?)<\/script>/)[1];
+  const values=new Map(),storage={getItem:k=>values.get(k)||null,setItem:(k,v)=>values.set(k,v),removeItem:k=>values.delete(k)};
+  const elements=Object.fromEntries(['name','contract','email','preview','confirm','details','status','edit','new'].map(id=>[id,{}]));
+  elements.name.value=input.name;elements.contract.value=input.contract;elements.email.value=input.email;
+  let calls=0;const fetch=async(path,opts)=>{const actual=await withdrawalTestFetch(new Request(origin+path,{...opts,headers:{...opts.headers,Origin:origin}}),env);if(++calls===1)return {status:202,json:async()=>{throw Error('truncated');}};return actual;};
+  runInNewContext(script,{document:{getElementById:id=>elements[id]},fetch,sessionStorage:storage,crypto:{randomUUID:()=>input.requestId}});
+  elements.preview.onclick();await elements.confirm.onclick();assert.match(elements.status.textContent,/Erneut versuchen/);assert.deepEqual([...values.values()],[input.requestId]);
+  await elements.confirm.onclick();assert.match(elements.status.textContent,/nicht versendet/i);assert.equal(values.size,0);
+  assert.equal(db.raw.prepare('SELECT count(*) n FROM withdrawal_requests').get().n,1);assert.equal(db.raw.prepare('SELECT count(*) n FROM withdrawal_receipts').get().n,1);
 });
