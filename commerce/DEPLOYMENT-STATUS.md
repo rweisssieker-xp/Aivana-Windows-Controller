@@ -1,5 +1,11 @@
 # MAKRIVO disabled Cloudflare deployment — 2026-10-26
 
+## 12 November 2026: digital-content declarations
+
+Before migration `0011_digital_consents.sql`, a remote export was restored into in-memory SQLite and passed `PRAGMA integrity_check`; it contained zero orders and the confirmation-jobs table. The migration was applied to the same isolated D1 database. A remote query confirmed zero orders, declaration rows and checkout authorizations, and all three declaration-protection triggers. The checked backup is `artifacts/store-readiness/makrivo-d1-before-0011-20261112.sql` and must remain private.
+
+Source commit `f024fa4` was deployed as Worker version `92a03ff1-8beb-4c3b-bc4e-26891928c0fd`. Upload output confirms sales, legal approval and live Stripe remain false, payment and signing identifiers are empty, and the five-minute schedule remains configured. No public route or legal texts were added. The integrated suite passed 105 tests; local workerd with migration 0011 returned page 200, disabled checkout 503 and scheduled handler 200. This is not a live transaction, provider delivery or legal approval. The isolated withdrawal prototype remains unmounted.
+
 ## 12 November 2026: confirmation queue and private downloads
 
 The selected isolated D1 database had zero orders, acceptance records and entitlements; neither `confirmation_obligations` nor `confirmation_jobs` existed. A remote export was restored into in-memory SQLite and passed `PRAGMA integrity_check`, with the existing acceptance schema and zero orders confirmed. Migration `0005_confirmation_jobs.sql` was applied; a remote query confirmed both tables, three obligation immutability triggers and zero orders, obligations and jobs. No withdrawal-test migration was applied.
