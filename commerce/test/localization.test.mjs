@@ -36,11 +36,33 @@ test('purchase page selects German and English without changing the purchase con
 test('purchase data export is clearly scoped in both supported languages', async () => {
   const get = async lang => (await worker.fetch(new Request(`https://buyer.test/?lang=${lang}`),{})).text();
   const de=await get('de'),en=await get('en');
-  for(const html of [de,en]) assert.match(html,/href="\/api\/order\/export"/);
+  for(const html of [de,en]) { assert.match(html,/<button id="dataExport">/); assert.match(html,/<button id="termsDownload">/); assert.doesNotMatch(html,/href="\/api\/order\/(?:export|terms)"/); }
   assert.match(de,/Kaufdaten aus MAKRIVO herunterladen/);
   assert.match(de,/Stripe und andere Dienstleister/);
   assert.match(en,/Download MAKRIVO purchase data/);
   assert.match(en,/Stripe and other providers/);
+});
+
+test('private download buttons send same-origin POSTs, download blobs, and translate failures', async () => {
+  for(const [language,message] of [['de','Bitte stelle zuerst deinen Kauf wieder her.'],['en','Please restore your purchase first.']]) {
+    const html=await (await worker.fetch(new Request(`https://buyer.test/?lang=${language}`),{})).text();
+    const script=html.match(/<script>([\s\S]*?)<\/script>/)[1];
+    const elements=Object.fromEntries(['status','backup','saved','buy','terms','recovery','copyRecovery','continue','restore','restoreCode','resume','order','activate','dataExport','termsDownload'].map(id=>[id,{}]));
+    let sent,downloaded=false,content,mode='success',error='Order claim required';
+    const document={getElementById:id=>elements[id],querySelectorAll:()=>[],createElement:()=>({click(){downloaded=true;}})};
+    const mockUrl={createObjectURL(blob){content=blob;return 'blob:test';},revokeObjectURL(){}};
+    const fetch=async(path,opts)=>{sent={path,opts};return mode==='success'?{ok:true,blob:async()=>new Blob([path==='\/api\/order\/terms'?'Terms sample':JSON.stringify({order:{reference:'sample'}})])}:{ok:false,json:async()=>({error})};};
+    runInNewContext(script,{document,fetch,Blob,URL:mockUrl,setTimeout:fn=>fn()});
+    await elements.dataExport.onclick();
+    assert.equal(sent.path,'/api/order/export');assert.equal(sent.opts.method,'POST');assert.equal(sent.opts.credentials,'same-origin');assert.equal(sent.opts.body,'{}');
+    assert.equal(sent.opts.headers.Authorization,undefined);assert.equal(sent.opts.headers.Cookie,undefined);
+    assert.equal(downloaded,true);assert.deepEqual(JSON.parse(await content.text()),{order:{reference:'sample'}});
+    downloaded=false;await elements.termsDownload.onclick();assert.equal(sent.path,'/api/order/terms');assert.equal(sent.opts.method,'POST');assert.equal(downloaded,true);assert.equal(await content.text(),'Terms sample');
+    mode='error';downloaded=false;await elements.dataExport.onclick();assert.equal(downloaded,false);assert.equal(elements.status.textContent,message);
+    error='Export too large; contact support';await elements.dataExport.onclick();assert.match(elements.status.textContent,language==='de'?/zu viele Gerätedaten/:/too many device records/);
+    error='No paid order';await elements.termsDownload.onclick();assert.match(elements.status.textContent,language==='de'?/nach der Zahlung/:/after payment/);
+    error='Terms copy unavailable';await elements.termsDownload.onclick();assert.match(elements.status.textContent,language==='de'?/keine gespeicherte Fassung/:/saved copy is unavailable/);
+  }
 });
 
 test('German page preserves the recovery code during language switching and guides the buyer', async () => {

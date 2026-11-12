@@ -1092,7 +1092,13 @@ test('a paid buyer can download the accepted terms, while a pending or unrelated
   db.raw.prepare('INSERT INTO orders VALUES(?,?,?,?)').run('o',h,1,'cs');
   db.raw.prepare('INSERT INTO orders VALUES(?,?,?,?)').run('o2',h2,1,'cs2');
   db.raw.prepare('INSERT INTO contract_acceptances VALUES(?,?,?,?,?,?)').run('o','de','v1','Original terms','digest',1);
-  const request=c=>worker.fetch(new Request(e.PUBLIC_ORIGIN+'/api/order/terms',{headers:{Authorization:'Bearer '+c}}),e);
+  const request=c=>worker.fetch(new Request(e.PUBLIC_ORIGIN+'/api/order/terms',{method:'POST',headers:{Origin:e.PUBLIC_ORIGIN,Authorization:'Bearer '+c}}),e);
+  const cross=await worker.fetch(new Request(e.PUBLIC_ORIGIN+'/api/order/terms',{method:'POST',headers:{Origin:'https://attacker.test',Cookie:'makrivo_claim='+code}}),e);
+  assert.equal(cross.status,403);
+  const missingOrigin=await worker.fetch(new Request(e.PUBLIC_ORIGIN+'/api/order/terms',{method:'POST',headers:{Cookie:'makrivo_claim='+code}}),e);
+  assert.equal(missingOrigin.status,403);
+  const nav=await worker.fetch(new Request(e.PUBLIC_ORIGIN+'/api/order/terms',{headers:{Cookie:'makrivo_claim='+code}}),e);
+  assert.equal(nav.status,404);assert.equal(nav.headers.get('Content-Disposition'),null);
   assert.equal((await request(code)).status,403);
   db.raw.prepare('INSERT INTO entitlements(id,order_id,session_id) VALUES(?,?,?)').run('l','o','cs');
   const r=await request(code);assert.equal(r.status,200);assert.match(r.headers.get('Content-Type'),/^text\/plain/);assert.match(await r.text(),/Original terms/);
@@ -1169,9 +1175,13 @@ test('purchase-data export is scoped to an authenticated purchase and excludes s
   db.raw.prepare('INSERT INTO devices VALUES(?,?,?)').run('license_mine','a'.repeat(64),1);
   db.raw.prepare('INSERT INTO devices VALUES(?,?,?)').run('license_mine','b'.repeat(64),0);
   db.raw.prepare('INSERT INTO devices VALUES(?,?,?)').run('license_other','c'.repeat(64),1);
-  const request=(headers={})=>worker.fetch(new Request(e.PUBLIC_ORIGIN+'/api/order/export',{headers}),e);
+  const request=(headers={})=>worker.fetch(new Request(e.PUBLIC_ORIGIN+'/api/order/export',{method:'POST',headers:{Origin:e.PUBLIC_ORIGIN,...headers}}),e);
   assert.equal((await request()).status,401);
   assert.equal((await request({Authorization:'Bearer cs_mine'})).status,401);
+  assert.equal((await request({Origin:'https://attacker.test',Cookie:'makrivo_claim='+mine})).status,403);
+  assert.equal((await worker.fetch(new Request(e.PUBLIC_ORIGIN+'/api/order/export',{method:'POST',headers:{Cookie:'makrivo_claim='+mine}}),e)).status,403);
+  const navigation=await worker.fetch(new Request(e.PUBLIC_ORIGIN+'/api/order/export',{headers:{Cookie:'makrivo_claim='+mine}}),e);
+  assert.equal(navigation.status,404);assert.equal(navigation.headers.get('Content-Disposition'),null);
   const response=await request({Cookie:'makrivo_claim='+mine});
   assert.equal(response.status,200);
   assert.match(response.headers.get('Content-Type'),/^application\/json/);
@@ -1192,7 +1202,7 @@ test('purchase-data export handles a pending legacy purchase and refuses oversiz
   const db=database(),e=configured(db),code='C'.repeat(43);
   const h=Buffer.from(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(code))).toString('base64url');
   db.raw.prepare('INSERT INTO orders VALUES(?,?,?,?)').run('legacy',h,1,null);
-  const request=()=>worker.fetch(new Request(e.PUBLIC_ORIGIN+'/api/order/export',{headers:{Authorization:'Bearer '+code}}),e);
+  const request=()=>worker.fetch(new Request(e.PUBLIC_ORIGIN+'/api/order/export',{method:'POST',headers:{Origin:e.PUBLIC_ORIGIN,Authorization:'Bearer '+code}}),e);
   let res=await request();assert.equal(res.status,200);
   let data=await res.json();assert.equal(data.order.status,'pending');assert.equal(data.acceptance,null);assert.deepEqual(data.devices,[]);
   db.raw.prepare('INSERT INTO entitlements(id,order_id,session_id) VALUES(?,?,?)').run('l','legacy','cs_test');
