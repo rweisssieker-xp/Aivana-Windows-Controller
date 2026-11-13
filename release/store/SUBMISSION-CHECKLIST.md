@@ -1,6 +1,6 @@
 # Microsoft Store submission handoff
 
-Status: preparation only, 2026-10-26. MAKRIVO was reserved in the existing Aivana account and a submission draft was started on 2026-10-26. Product identity is recorded in partner-center-identity.json. No age rating, certification result or live listing is asserted. The selected model is **free Store installation with a separately purchased EUR 29 gross one-time license for one person on four own PCs**.
+Status: preparation only, checked 13 November 2026. MAKRIVO was reserved in the existing Aivana account and a submission draft was started on 2026-10-26. Product identity is recorded in partner-center-identity.json. Partner Center reports age ratings complete; no certification result or live listing is asserted. The selected model is **free Store installation with a separately purchased EUR 29 gross one-time license for one person on four own PCs**.
 
 ## Account and product identity
 
@@ -18,6 +18,7 @@ Status: preparation only, 2026-10-26. MAKRIVO was reserved in the existing Aivan
 - [ ] Review dependency notices and bundled files; include no private license key, purchase secret, card data or proprietary vendor SDK without verified distribution rights.
 - [ ] Use the MSIX submission path. Microsoft signs accepted Store MSIX packages; that does not make an unsigned local package generally installable or waive certification. MSI/EXE is a different path requiring publisher signing and hosting.
 - [x] Configure Store acquisition as free (0 EUR base price, Germany); external-purchase declaration saved in the Properties draft. No subscription or second paid Store purchase.
+- [ ] Prepare worldwide availability as selected by the user on 13 November: the Store draft selects all 240 markets and future markets. Clear applicable taxes, consumer rules, payment and service availability for each offered market; a Store selection does not itself configure or legally clear the external checkout.
 - [ ] Put the separate EUR 29 purchase and four-PC limit at the beginning of descriptions and explain it on first run. A Store installation alone does not grant the paid execution license.
 - [ ] Keep production checkout disabled until legal/service acceptance is complete. Provide reviewers with working private activation access without charging them.
 
@@ -26,7 +27,7 @@ Status: preparation only, 2026-10-26. MAKRIVO was reserved in the existing Aivan
 - [x] Save German and English descriptions, short descriptions, six features and seven keywords from the prepared listing files. Productivity was selected in the Properties draft. Store listings shows Complete with provisional actual UI preview imagery; final packaged-image review remains required.
 - [ ] Initially declare only the submission languages for which complete listing material and accepted localized behavior exist. The prepared listing material covers de-DE and en-US. The app's wider translation inventory does not mean 27 Store descriptions have been supplied.
 - [ ] Set the actual support contact and reachable privacy URL. Publish reviewed MAKRIVO-specific privacy/contract documents first; existing website pages and repository drafts are not approval.
-- [ ] Complete the age-rating questionnaire from actual app content and functionality. No rating is invented here.
+- [x] Complete the age-rating questionnaire for the selected no-AI release. The user accepted IARC terms on 9 November and Partner Center reports Age ratings complete; verify against any changes to the final package.
 - [ ] Explain `runFullTrust` and external commerce in the private certification notes. Reconcile `CERTIFICATION-NOTES.md` with the final payload, actual optional integrations and operator deployment.
 
 ## Real screenshots and Store imagery
@@ -34,7 +35,7 @@ Status: preparation only, 2026-10-26. MAKRIVO was reserved in the existing Aivan
 - [ ] Capture at least one real Desktop screenshot; four useful views are recommended. Use the actual submission UI, preferably in each listing language: profile tiles, macro editor, command palette, license information.
 - [ ] Desktop screenshots must be PNG, at least 1366 × 768 and below 50 MB each. Do not upscale a small UI capture and represent it as a tested high-resolution layout. Use up to ten Desktop screenshots and review the current portal limits.
 - [ ] Remove personal filenames, window titles, device IDs, recovery codes and license material. Avoid added marketing banners/logos over screenshots. Captions in the prepared listings are conditional on the real view captured.
-- [ ] Provide a clean 300 × 300 app tile icon if desired; manifest icon assets and Store screenshot images are distinct outputs. No screenshot is asserted to exist in these documents.
+- [ ] Provide a clean 300 × 300 app tile icon if desired; manifest icon assets and Store screenshot images are distinct outputs. The portal contains provisional unpackaged UI previews; they do not establish installed-package acceptance.
 
 [Microsoft screenshot and image requirements](https://learn.microsoft.com/en-us/windows/apps/publish/publish-your-app/msix/screenshots-and-images).
 
