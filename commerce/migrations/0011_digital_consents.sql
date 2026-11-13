@@ -1,0 +1,5 @@
+CREATE TABLE contract_declarations(order_id TEXT NOT NULL REFERENCES orders(id), kind TEXT NOT NULL CHECK(kind IN ('early_start','withdrawal_ack')), language TEXT NOT NULL CHECK(language IN ('de','en')), version TEXT NOT NULL, text TEXT NOT NULL, digest TEXT NOT NULL, accepted_at INTEGER NOT NULL, PRIMARY KEY(order_id,kind));
+CREATE TABLE checkout_authorizations(order_id TEXT PRIMARY KEY REFERENCES orders(id), token_hash TEXT NOT NULL UNIQUE, snapshot_digest TEXT NOT NULL, expires_at INTEGER NOT NULL, used_at INTEGER);
+CREATE TRIGGER contract_declarations_no_replace BEFORE INSERT ON contract_declarations WHEN EXISTS(SELECT 1 FROM contract_declarations WHERE order_id=NEW.order_id AND kind=NEW.kind) BEGIN SELECT RAISE(ABORT,'contract declarations are immutable'); END;
+CREATE TRIGGER contract_declarations_no_update BEFORE UPDATE ON contract_declarations BEGIN SELECT RAISE(ABORT,'contract declarations are immutable'); END;
+CREATE TRIGGER contract_declarations_no_delete BEFORE DELETE ON contract_declarations BEGIN SELECT RAISE(ABORT,'contract declarations are immutable'); END;

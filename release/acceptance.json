@@ -1,0 +1,85 @@
+{
+  "schemaVersion": 1,
+  "product": "MAKRIVO",
+  "recordedAt": "2026-10-13",
+  "releaseApproved": false,
+  "legalApproval": false,
+  "legalAcceptance": {
+    "approved": false,
+    "status": "pending",
+    "evidence": null
+  },
+  "physicalAcceptance": "pending",
+  "signing": {
+    "status": "pending",
+    "evidence": null,
+    "reason": "No production code signer supplied or verified."
+  },
+  "checkout": {
+    "status": "pending",
+    "evidence": null,
+    "reason": "One-time checkout not deployed or live verified."
+  },
+  "ai": {
+    "status": "experimental_off",
+    "validPlans": 0,
+    "planningTrials": 4,
+    "modelsEvaluated": 1,
+    "evidence": "Dated SmolLM-360M-Instruct evaluation: zero valid plans in four German/English trials with one model; not a fresh test."
+  },
+  "exclusiveKeyboard": {
+    "status": "unsupported",
+    "evidence": "Suitable signed filter driver absent."
+  },
+  "physicalMatrix": {
+    "hardware": {
+      "status": "pending",
+      "evidence": null,
+      "buildSha256": null,
+      "executedAt": null,
+      "testOnly": false
+    },
+    "lan": {
+      "status": "pending",
+      "evidence": null,
+      "buildSha256": null,
+      "executedAt": null,
+      "testOnly": false
+    },
+    "dpi": {
+      "status": "pending",
+      "evidence": null,
+      "buildSha256": null,
+      "executedAt": null,
+      "testOnly": false
+    },
+    "endurance": {
+      "status": "pending",
+      "evidence": null,
+      "buildSha256": null,
+      "executedAt": null,
+      "testOnly": false
+    },
+    "install": {
+      "status": "pending",
+      "evidence": null,
+      "buildSha256": null,
+      "executedAt": null,
+      "testOnly": false
+    },
+    "upgrade": {
+      "status": "pending",
+      "evidence": null,
+      "buildSha256": null,
+      "executedAt": null,
+      "testOnly": false
+    },
+    "uninstall": {
+      "status": "pending",
+      "evidence": null,
+      "buildSha256": null,
+      "executedAt": null,
+      "testOnly": false
+    }
+  }
+}

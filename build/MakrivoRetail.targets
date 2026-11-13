@@ -1,0 +1,16 @@
+<Project>
+  <ItemGroup Condition="'$(MSBuildProjectName)' == 'Aivana.Desktop'">
+    <ProjectReference Include="$(MSBuildThisFileDirectory)../src/Aivana.Licensing/Aivana.Licensing.csproj" />
+  </ItemGroup>
+  <PropertyGroup Condition="'$(MSBuildProjectName)' == 'Aivana.Desktop' And '$(MakrivoRetailBuild)' == 'true'">
+    <DefineConstants>$(DefineConstants);MAKRIVO_RETAIL</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup Condition="'$(MSBuildProjectName)' == 'Aivana.Desktop' And '$(MakrivoRetailBuild)' == 'true'">
+    <EmbeddedResource Include="$(MakrivoLicensePublicKeyFile)" LogicalName="MAKRIVO.Retail.PublicKeys.json" />
+    <AssemblyMetadata Include="MakrivoCommerceUrl" Value="$(MakrivoCommerceUrl)" />
+  </ItemGroup>
+  <Target Name="ValidateMakrivoRetailConfiguration" BeforeTargets="PrepareForBuild" Condition="'$(MSBuildProjectName)' == 'Aivana.Desktop' And '$(MakrivoRetailBuild)' == 'true'">
+    <Error Condition="!Exists('$(MakrivoLicensePublicKeyFile)')" Text="MAKRIVO retail requires MakrivoLicensePublicKeyFile." />
+    <Exec Command="pwsh -NoProfile -NonInteractive -File &quot;$(MSBuildThisFileDirectory)ValidateRetailConfiguration.ps1&quot;" EnvironmentVariables="MakrivoKeyFile=$(MakrivoLicensePublicKeyFile);MakrivoCommerceUrl=$(MakrivoCommerceUrl)" />
+  </Target>
+</Project>

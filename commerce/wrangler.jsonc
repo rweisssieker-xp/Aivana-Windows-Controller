@@ -1,0 +1,28 @@
+{
+  "name": "makrivo-commerce",
+  "main": "worker.mjs",
+  "compatibility_date": "2026-10-01",
+  "workers_dev": false,
+  "vars": {
+    "SALES_ENABLED": "false",
+    "LEGAL_APPROVED": "false",
+    "STRIPE_LIVE": "false",
+    "PUBLIC_ORIGIN": "https://REPLACE_OPERATOR_DOMAIN",
+    "STRIPE_PRICE_ID": "",
+    "STRIPE_PRODUCT_ID": "",
+    "LICENSE_KEY_ID": "",
+    "LEGAL_TERMS_URL": "",
+    "PRIVACY_URL": "",
+    "SELLER_IMPRINT_URL": "",
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "makrivo-commerce",
+      "database_id": "OPERATOR_PROVIDED_D1_DATABASE_ID",
+    },
+  ],
+  "triggers": {
+    "crons": ["*/5 * * * *"],
+  },
+}

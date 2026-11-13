@@ -1,0 +1,11 @@
+<?ifndef PackageVersion?>
+<?define PackageVersion = "1.0.0" ?>
+<?endif?>
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+ <Package Name="MAKRIVO" Manufacturer="Aivana GmbH" Version="$(var.PackageVersion)" UpgradeCode="F08E1353-12D6-4F98-BB6C-A047D2F1A1D6" Scope="perUser" InstallerVersion="500">
+  <MajorUpgrade DowngradeErrorMessage="A newer MAKRIVO version is already installed." />
+  <MediaTemplate EmbedCab="yes" />
+  <StandardDirectory Id="LocalAppDataFolder"><Directory Id="ProgramsFolder" Name="Programs"><Directory Id="INSTALLFOLDER" Name="MAKRIVO" /></Directory></StandardDirectory>
+  <Feature Id="Main" Title="MAKRIVO" Level="1"><ComponentGroupRef Id="Payload" /></Feature>
+ </Package>
+</Wix>

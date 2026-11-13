@@ -1,0 +1,56 @@
+using System.IO;
+using System.Windows;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using Aivana.Desktop;
+
+internal static class Program
+{
+    [STAThread]
+    private static void Main(string[] args) { try { Run(args); } catch(Exception ex) { Console.Error.WriteLine(ex); Environment.ExitCode=1; } }
+    private static void Run(string[] args)
+    {
+        var output=Path.GetFullPath(args[0]);
+        var app=new Application { ShutdownMode=ShutdownMode.OnExplicitShutdown };
+        foreach(var language in new[]{"de","en"})
+        {
+            var config=Path.Combine(Path.GetTempPath(),"makrivo-shot-config-"+Guid.NewGuid().ToString("N"));
+            using var controller=new DesktopController(config);
+            controller.Settings.UiLanguage=language;
+            controller.Settings.AutoStart=false;
+            controller.Settings.AutoProfiles=false;
+            controller.SetPaused(true);
+            if(language=="en")
+            {
+                controller.ActiveProfile.Name="Everyday actions";
+                var names=new[]{"Play / pause","Next track","Volume up","Volume down","Mute"};
+                for(int i=0;i<controller.ActiveProfile.Tiles.Count;i++)controller.ActiveProfile.Tiles[i].Name=names[i];
+            }
+            else controller.ActiveProfile.Name="Alltagsaktionen";
+            var window=new MainWindow(controller) { Width=1600, Height=900 };
+            try
+            {
+                Capture(window,Path.Combine(output,$"{language}-dashboard.png"));
+                window.NavigateToSection("Profile");
+                Capture(window,Path.Combine(output,$"{language}-profiles.png"));
+            }
+            finally { window.Close(); }
+            Console.WriteLine($"Captured real WPF {language} views from isolated configuration {config}; no Attach or execution.");
+        }
+        app.Shutdown();
+    }
+    private static void Capture(MainWindow window,string path)
+    {
+        window.Measure(new Size(1600,900));
+        window.Arrange(new Rect(0,0,1600,900));
+        window.UpdateLayout();
+        var visual=(FrameworkElement)window.Content;
+        visual.Measure(new Size(1600,900));
+        visual.Arrange(new Rect(0,0,1600,900));
+        visual.UpdateLayout();
+        var bitmap=new RenderTargetBitmap(1600,900,96,96,PixelFormats.Pbgra32);
+        bitmap.Render(visual);
+        var encoder=new PngBitmapEncoder();encoder.Frames.Add(BitmapFrame.Create(bitmap));
+        using var file=File.Create(path);encoder.Save(file);
+    }
+}

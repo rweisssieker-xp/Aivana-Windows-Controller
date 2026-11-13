@@ -857,13 +857,16 @@ public partial class MainWindow : Window
         var general = Card(); var g = new StackPanel(); g.Children.Add(Label(L("START & VERHALTEN"), 12, "#E8F0F1", true));
         g.Children.Add(FieldLabel(L("ANZEIGESPRACHE")));
         g.Children.Add(BuildLanguagePicker());
-        var auto = SettingCheck(L("Mit Windows starten"), _controller.Settings.AutoStart, v =>
+        if (AutoStartPolicy.Supported)
         {
-            var prior = _controller.Settings.AutoStart;
-            try { _controller.SetAutoStart(v); }
-            catch { try { _controller.SetAutoStart(prior); } catch { _controller.Settings.AutoStart = prior; } throw; }
-        }); g.Children.Add(auto);
-        g.Children.Add(Label(L("Autostart ist standardmäßig aus und wird als Benutzeroption verwaltet."), 10, "#718284"));
+            var auto = SettingCheck(L("Mit Windows starten"), _controller.Settings.AutoStart, v =>
+            {
+                var prior = _controller.Settings.AutoStart;
+                try { _controller.SetAutoStart(v); }
+                catch { try { _controller.SetAutoStart(prior); } catch { _controller.Settings.AutoStart = prior; } throw; }
+            }); g.Children.Add(auto);
+            g.Children.Add(Label(L("Autostart ist standardmäßig aus und wird als Benutzeroption verwaltet."), 10, "#718284"));
+        }
         var autoProfiles = SettingCheck(L("Profil anhand des Vordergrundprogramms wechseln"), _controller.Settings.AutoProfiles, v =>
         { var prior = _controller.Settings.AutoProfiles; SaveSetting(() => _controller.Settings.AutoProfiles = v, () => _controller.Settings.AutoProfiles = prior); }); g.Children.Add(autoProfiles);
         g.Children.Add(SettingCheck(L("Beim Schließen in den Infobereich minimieren"), _controller.Settings.CloseToTray, v =>
