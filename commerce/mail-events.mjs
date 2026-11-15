@@ -51,14 +51,29 @@ export async function consumeTestMailEvents(batch,env){
 export async function listTestMailIssues(db,now=Date.now()){
   if(!Number.isSafeInteger(now)||now<0) throw new TypeError('Invalid clock');
   const cutoff=now-15*60*1000;
-  const attempts=(await db.prepare('SELECT kind,job_id,state,started_at,finished_at FROM mail_dispatch_attempts ORDER BY started_at').bind().all()).results;
+  const attempts=(await db.prepare(`WITH accepted AS (
+    SELECT message_id,COUNT(*) AS matches FROM mail_dispatch_attempts WHERE state='accepted' GROUP BY message_id
+  ), signals AS (
+    SELECT message_id, MAX(kind IN ('bounced','failed','rejected','complained')) AS failure,
+      MAX(kind='delivered') AS delivered, MAX(kind='deferred') AS deferred
+    FROM mail_delivery_events GROUP BY message_id
+  ) SELECT a.kind,a.job_id,a.state,a.started_at,a.finished_at,a.message_id,
+    COALESCE(accepted.matches,0) AS matches,COALESCE(signals.failure,0) AS failure,
+    COALESCE(signals.delivered,0) AS delivered,COALESCE(signals.deferred,0) AS deferred
+    FROM mail_dispatch_attempts a LEFT JOIN accepted ON accepted.message_id=a.message_id
+    LEFT JOIN signals ON signals.message_id=a.message_id ORDER BY a.started_at`).bind().all()).results;
   const issues=[];
   for(const a of attempts){
     let reason;
     if(a.state==='unknown') reason='outcome_unknown';
     else if(a.state==='processing'&&a.started_at<=cutoff) reason='processing_timeout';
     else if(a.state==='accepted'){
-      const status=(await getMailStatus(db,a.kind,a.job_id)).status;
+      let status='pending';
+      if(messageId(a.message_id)){
+        if(a.matches!==1||a.failure)status='needs_review';
+        else if(a.delivered)status='delivered_to_mail_server';
+        else if(a.deferred)status='deferred';
+      }
       if(status==='needs_review') reason='provider_or_matching_failure';
       else if((status==='pending'||status==='deferred')&&(a.finished_at??a.started_at)<=cutoff) reason='delivery_timeout';
     }
@@ -66,5 +81,24 @@ export async function listTestMailIssues(db,now=Date.now()){
   }
   const unmatched=(await db.prepare("SELECT e.event_id FROM mail_delivery_events e WHERE NOT EXISTS (SELECT 1 FROM mail_dispatch_attempts a WHERE a.state='accepted' AND a.message_id=e.message_id) ORDER BY e.event_at").bind().all()).results;
   for(const row of unmatched) issues.push({eventId:row.event_id,reason:'unmatched_event'});
+  return issues;
+}
+
+// Detect jobs that never acquired a dispatch attempt, including jobs which
+// fail preparation indefinitely. This is read-only and does not send mail.
+export async function listUnclaimedTestMailJobs(db,now=Date.now()){
+  if(!Number.isSafeInteger(now)||now<0) throw new TypeError('Invalid clock');
+  const cutoff=now-15*60*1000;
+  const rows=(await db.prepare(`SELECT 'purchase' AS kind,j.order_id AS job_id
+    FROM confirmation_jobs j LEFT JOIN mail_dispatch_attempts a ON a.kind='purchase' AND a.job_id=j.order_id
+    WHERE a.job_id IS NULL AND j.created_at<=?
+    UNION ALL
+    SELECT 'withdrawal' AS kind,q.request_id AS job_id
+    FROM withdrawal_receipts q JOIN withdrawal_requests r ON r.id=q.request_id
+    LEFT JOIN mail_dispatch_attempts a ON a.kind='withdrawal' AND a.job_id=q.request_id
+    WHERE q.status='pending' AND a.job_id IS NULL AND r.received_at<=?
+    ORDER BY kind,job_id LIMIT 501`).bind(cutoff,cutoff).all()).results;
+  const issues=rows.slice(0,500).map(row=>({kind:row.kind,jobId:row.job_id,reason:'dispatch_not_started'}));
+  if(rows.length>500)issues.push({reason:'additional_unclaimed_jobs'});
   return issues;
 }

@@ -1,6 +1,6 @@
 // Isolated intake foundation. No HTTP route, transport, or live readiness gate
 // uses this module yet. A pending receipt is not a delivered confirmation.
-const testPage = `<!doctype html><html lang="de"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>TEST – Vertrag widerrufen</title><h1>TEST: Vertrag widerrufen</h1><p>Isolierte Testfunktion: Es wird keine Bestätigung versendet. Nicht für echte Widerrufe verwenden.</p><label>Name <input id="name" maxlength="160" autocomplete="name"></label><label>Vertrag identifizieren <input id="contract" maxlength="1000"></label><label>E-Mail für die Eingangsbestätigung <input id="email" maxlength="254" type="email" autocomplete="email"></label><p>Keine Kauf- oder Wiederherstellungscodes eingeben.</p><button id="preview" type="button">Weiter</button><section><p id="details"></p><button id="edit" type="button" hidden>Angaben ändern</button><button id="confirm" type="button" hidden>Widerruf bestätigen</button></section><p id="status" role="status"></p><button id="new" type="button" hidden>Neuen Testvorgang beginnen (kann einen zweiten Datensatz erzeugen)</button><script>
+const testPage = `<!doctype html><html lang="de"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>TEST – Vertrag widerrufen</title><h1>TEST: Vertrag widerrufen</h1><p>Isolierte Testfunktion: Es wird keine Bestätigung versendet. Nicht für echte Widerrufe verwenden.</p><p>TEST: Alternativer Kontakt im Entwurf: info@aivana-gmbh.ai; Aivana GmbH, Paulusstr. 45a, Hinterhaus – LOFT45, 33602 Bielefeld.</p><label>Name <input id="name" maxlength="160" autocomplete="name"></label><label>Vertrag identifizieren <input id="contract" maxlength="1000"></label><label>E-Mail für die Eingangsbestätigung <input id="email" maxlength="254" type="email" autocomplete="email"></label><p>Keine Kauf- oder Wiederherstellungscodes eingeben.</p><button id="preview" type="button">Weiter</button><section><p id="details"></p><button id="edit" type="button" hidden>Angaben ändern</button><button id="confirm" type="button" hidden>Widerruf bestätigen</button></section><p id="status" role="status"></p><button id="new" type="button" hidden>Neuen Testvorgang beginnen (kann einen zweiten Datensatz erzeugen)</button><script>
 const el=id=>document.getElementById(id); const names=['name','contract','email']; const storageKey='makrivo_withdrawal_test_id'; let snapshot=null,pending=false;
 const validId=id=>typeof id==='string'&&/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(id);
 function newId(){const id=crypto.randomUUID();try{sessionStorage.setItem(storageKey,id);}catch{}return id;}
@@ -11,7 +11,7 @@ function invalidate(){snapshot=null;for(const id of names)el(id).disabled=false;
 el('preview').onclick=()=>{ if(pending)return; const name=el('name').value.trim(), contract=el('contract').value.trim(), email=el('email').value.trim(); if(!name||!contract||!email){el('status').textContent='Bitte alle Angaben ausfüllen.';return;} snapshot={name,contract,email};for(const id of names)el(id).disabled=true;el('details').textContent='Ich widerrufe den Vertrag. Name: '+name+'; Vertrag: '+contract+'; Bestätigung an: '+email; el('confirm').hidden=false;el('edit').hidden=false;el('preview').hidden=true;el('confirm').disabled=false;el('status').textContent='Bitte Angaben prüfen.'; };
 el('edit').onclick=()=>{if(pending)return;invalidate();el('status').textContent='Bitte Angaben ändern und erneut prüfen.';};
 el('new').onclick=()=>{if(pending)return;invalidate();requestId=newId();for(const id of names)el(id).value='';el('new').hidden=true;el('status').textContent='Neuer Testvorgang.';};
-el('confirm').onclick=async()=>{ if(!snapshot||pending)return; if(names.some(id=>el(id).value.trim()!==snapshot[id])){invalidate();el('status').textContent='Angaben wurden geändert. Bitte erneut prüfen.';return;} pending=true;el('confirm').disabled=true;el('edit').disabled=true;try { const response=await fetch('/withdrawal',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({...snapshot,confirmed:true,requestId})});if(response.status===409){el('status').textContent='TEST: Diese Kennung gehört zu anderen Angaben. Ein neuer Testvorgang kann einen zweiten Datensatz erzeugen.';el('new').hidden=false;return;}if(response.status!==202)throw Error('failed');const result=await response.json();if(!result||result.status!=='receipt_pending'||result.requestId!==requestId||!Number.isSafeInteger(result.receivedAt)||result.receivedAt<=0||result.receivedAt>8640000000000000)throw Error('invalid response');clearCompletedId();el('status').textContent='TEST: Erklärung gespeichert. Eine Eingangsbestätigung wurde nicht versendet.';el('confirm').hidden=true;el('edit').hidden=true;el('new').hidden=false;} catch {el('status').textContent='TEST: Speicherung konnte nicht bestätigt werden. Erneut versuchen.';el('confirm').disabled=false;} finally {pending=false;el('edit').disabled=false;} };
+el('confirm').onclick=async()=>{ if(!snapshot||pending)return; if(names.some(id=>el(id).value.trim()!==snapshot[id])){invalidate();el('status').textContent='Angaben wurden geändert. Bitte erneut prüfen.';return;} pending=true;el('confirm').disabled=true;el('edit').disabled=true;try { const response=await fetch('/withdrawal',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({...snapshot,confirmed:true,requestId})});if(response.status===409){el('status').textContent='TEST: Diese Kennung gehört zu anderen Angaben. Ein neuer Testvorgang kann einen zweiten Datensatz erzeugen.';el('new').hidden=false;return;}if(response.status===429){el('status').textContent='TEST: Vorübergehend begrenzt. Für diesen Versuch wurde keine Speicherung bestätigt. Alternativer Kontakt im Entwurf: info@aivana-gmbh.ai.';el('confirm').disabled=false;return;}if(response.status!==202)throw Error('failed');const result=await response.json();if(!result||result.status!=='receipt_pending'||result.requestId!==requestId||!Number.isSafeInteger(result.receivedAt)||result.receivedAt<=0||result.receivedAt>8640000000000000)throw Error('invalid response');clearCompletedId();el('status').textContent='TEST: Erklärung gespeichert. Eine Eingangsbestätigung wurde nicht versendet.';el('confirm').hidden=true;el('edit').hidden=true;el('new').hidden=false;} catch {el('status').textContent='TEST: Speicherung konnte nicht bestätigt werden. Erneut versuchen. Alternativer Kontakt im Entwurf: info@aivana-gmbh.ai.';el('confirm').disabled=false;} finally {pending=false;el('edit').disabled=false;} };
 </script></html>`;
 
 async function readBounded(req) {
@@ -36,11 +36,20 @@ export async function withdrawalTestFetch(req, e) {
   if (!/^application\/json(?:\s*;|$)/i.test(req.headers.get('Content-Type') || '')) return new Response('Invalid content type',{status:415,headers});
   try {
     const payload=JSON.parse(await readBounded(req));
+    if (e.WITHDRAWAL_TEST_RATE_LIMIT_ENABLED === 'true') {
+      const validated=validateWithdrawal(payload);
+      testProtectionSource(e,req);
+      const previous=await e.DB.prepare('SELECT r.name,r.contract_reference,r.contact_email,r.received_at FROM withdrawal_requests r JOIN withdrawal_receipts q ON q.request_id=r.id WHERE r.id=?').bind(validated.id).first();
+      if(previous&&previous.name===validated.name&&previous.contract_reference===validated.contract&&previous.contact_email===validated.email)
+        return new Response(JSON.stringify({requestId:validated.id,receivedAt:previous.received_at,status:'receipt_pending'}),{status:202,headers:{...headers,'Content-Type':'application/json;charset=utf-8'}});
+      const retryAfter=await testAbuseLimit(e,req,validated.email);
+      if (retryAfter) return new Response(JSON.stringify({error:'Test request rate limited',alternative:'info@aivana-gmbh.ai'}),{status:429,headers:{...headers,'Content-Type':'application/json;charset=utf-8','Retry-After':String(retryAfter)}});
+    }
     const result=await acceptWithdrawal(e.DB,payload);
     return new Response(JSON.stringify(result),{status:202,headers:{...headers,'Content-Type':'application/json;charset=utf-8'}});
   } catch (err) {
     const status=err instanceof RangeError ? 413 : err instanceof SyntaxError || err instanceof TypeError ? 400 : err?.message === 'Withdrawal request conflict' ? 409 : 503;
-    return new Response(JSON.stringify({error:'Test request could not be completed'}),{status,headers:{...headers,'Content-Type':'application/json;charset=utf-8'}});
+    return new Response(JSON.stringify({error:'Test request could not be completed',...(status===503?{alternative:'info@aivana-gmbh.ai'}:{})}),{status,headers:{...headers,'Content-Type':'application/json;charset=utf-8'}});
   }
 }
 
@@ -50,7 +59,7 @@ function inputText(value, max) {
   return value.trim();
 }
 
-export async function acceptWithdrawal(db, input) {
+function validateWithdrawal(input) {
   if (!input || input.confirmed !== true || typeof input.requestId !== 'string' ||
       !/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(input.requestId))
     throw new TypeError('Invalid withdrawal confirmation or request identifier');
@@ -59,6 +68,35 @@ export async function acceptWithdrawal(db, input) {
   const contract = inputText(input.contract, 1000);
   const email = inputText(input.email, 254);
   if (!/^[^\s@]+@[^\s@]+$/u.test(email)) throw new TypeError('Invalid confirmation email');
+  return {id,name,contract,email};
+}
+
+// Optional test-only throttling. This is not a public abuse or legal solution:
+// a hard limit can also reject a legitimate declaration and requires a tested
+// alternative intake channel before any production use.
+function testProtectionSource(env,req){
+  const secret=env.WITHDRAWAL_TEST_RATE_LIMIT_SECRET;
+  const source=req.headers.get('CF-Connecting-IP');
+  if(env.WITHDRAWAL_TEST_TRUST_PROXY!=='true'||typeof secret!=='string'||!/^[A-Za-z0-9_-]{32,128}$/.test(secret)||typeof source!=='string'||!/^[0-9a-f:.]{3,45}$/i.test(source)) throw new Error('Test protection unavailable');
+  return {secret,source};
+}
+
+async function testAbuseLimit(env,req,email){
+  const {secret,source}=testProtectionSource(env,req);
+  const now=Date.now(),end=(Math.floor(now/600000)+1)*600000,window=Math.floor(now/600000);
+  const encoder=new TextEncoder();
+  const key=await crypto.subtle.importKey('raw',encoder.encode(secret),{name:'HMAC',hash:'SHA-256'},false,['sign']);
+  const bucket=async(kind,value)=>Array.from(new Uint8Array(await crypto.subtle.sign('HMAC',key,encoder.encode(JSON.stringify([kind,window,value])))),b=>b.toString(16).padStart(2,'0')).join('');
+  const buckets=await Promise.all([bucket('source',source.toLowerCase()),bucket('recipient',email.toLowerCase()),bucket('global','')]);
+  await env.DB.prepare('DELETE FROM withdrawal_test_rate_limits WHERE expires_at<=?').bind(now).run();
+  const rows=(await env.DB.prepare('INSERT INTO withdrawal_test_rate_limits(bucket,hits,expires_at) VALUES (?,1,?),(?,1,?),(?,1,?) ON CONFLICT(bucket) DO UPDATE SET hits=hits+1 RETURNING bucket,hits').bind(buckets[0],end,buckets[1],end,buckets[2],end).all()).results;
+  const counts=new Map(rows.map(row=>[row.bucket,row.hits]));
+  if(buckets.some(x=>!Number.isSafeInteger(counts.get(x))))throw new Error('Test protection unavailable');
+  return counts.get(buckets[0])>10||counts.get(buckets[1])>3||counts.get(buckets[2])>100 ? Math.max(1,Math.ceil((end-now)/1000)) : 0;
+}
+
+export async function acceptWithdrawal(db, input) {
+  const {id,name,contract,email}=validateWithdrawal(input);
   const now = Date.now();
   await db.batch([
     db.prepare('INSERT INTO withdrawal_requests(id,name,contract_reference,contact_email,received_at) VALUES(?,?,?,?,?) ON CONFLICT(id) DO NOTHING').bind(id,name,contract,email,now),

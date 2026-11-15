@@ -72,3 +72,40 @@ test('worker routes an isolated test queue and refuses events when the live gate
  await worker.queue(batch,{...config,MAIL_EVENT_QUEUE:'mail-events-test',DB:db,STRIPE_LIVE:'true'});
  assert.deepEqual(decisions,['ack','retry']);
 });
+
+test('unclaimed purchase and withdrawal jobs past the threshold appear without exposing contact details',async()=>{
+ const db=database(),now=1800000;
+ db.raw.exec("CREATE TABLE confirmation_jobs(order_id TEXT PRIMARY KEY,created_at INTEGER NOT NULL);CREATE TABLE withdrawal_requests(id TEXT PRIMARY KEY,received_at INTEGER NOT NULL,contact_email TEXT);CREATE TABLE withdrawal_receipts(request_id TEXT PRIMARY KEY,status TEXT NOT NULL)");
+ db.raw.exec("INSERT INTO confirmation_jobs VALUES('old-purchase',1),('new-purchase',1799999),('already-attempted',1);INSERT INTO withdrawal_requests VALUES('old-withdrawal',1,'private@example.test'),('already-sent',1,'private@example.test');INSERT INTO withdrawal_receipts VALUES('old-withdrawal','pending'),('already-sent','sent');INSERT INTO mail_dispatch_attempts VALUES('purchase','already-attempted','unknown',1,2,NULL)");
+ const {listUnclaimedTestMailJobs}=await import('../mail-events.mjs');
+ const issues=await listUnclaimedTestMailJobs(db,now);
+ assert.deepEqual(issues,[{kind:'purchase',jobId:'old-purchase',reason:'dispatch_not_started'},{kind:'withdrawal',jobId:'old-withdrawal',reason:'dispatch_not_started'}]);
+ assert.ok(!JSON.stringify(issues).includes('private@example.test'));
+});
+
+test('issue classification uses a constant number of database queries for many dispatches',async()=>{
+ const db=database();
+ for(let i=0;i<20;i++) db.raw.prepare("INSERT INTO mail_dispatch_attempts VALUES('purchase',?,'accepted',1,2,?)").run('job-'+i,'msg-'+i);
+ let count=0;const measured={prepare(sql){count++;return db.prepare(sql)}};
+ const issues=await listTestMailIssues(measured,1800000);
+ assert.equal(issues.length,20);assert.ok(issues.every(x=>x.reason==='delivery_timeout'));
+ assert.ok(count<=3,`too many queries: ${count}`);
+});
+
+test('aggregated issue list reports ambiguous and failed delivery but excludes confirmed and recent attempts',async()=>{
+ const db=database();
+ db.raw.exec("INSERT INTO mail_dispatch_attempts VALUES('purchase','delivered','accepted',1,2,'message-delivered'),('purchase','failed','accepted',1,2,'message-failed'),('purchase','ambiguous-one','accepted',1,2,'shared'),('withdrawal','ambiguous-two','accepted',1,2,'shared'),('purchase','recent','accepted',1799999,1799999,'message-recent')");
+ db.raw.exec("INSERT INTO mail_delivery_events VALUES('delivered-event','message-delivered','delivered',100),('failed-event','message-failed','bounced',100)");
+ const issues=await listTestMailIssues(db,1800000);
+ assert.deepEqual(new Set(issues.map(x=>x.jobId)),new Set(['failed','ambiguous-one','ambiguous-two']));
+ assert.ok(issues.every(x=>x.reason==='provider_or_matching_failure'));
+});
+
+test('unclaimed queue report signals truncation without hiding an overflow',async()=>{
+ const db=database();
+ db.raw.exec('CREATE TABLE confirmation_jobs(order_id TEXT PRIMARY KEY,created_at INTEGER NOT NULL);CREATE TABLE withdrawal_requests(id TEXT PRIMARY KEY,received_at INTEGER NOT NULL);CREATE TABLE withdrawal_receipts(request_id TEXT PRIMARY KEY,status TEXT NOT NULL)');
+ const insert=db.raw.prepare('INSERT INTO confirmation_jobs VALUES(?,1)');for(let i=0;i<501;i++)insert.run('purchase-'+String(i).padStart(4,'0'));
+ const {listUnclaimedTestMailJobs}=await import('../mail-events.mjs');
+ const issues=await listUnclaimedTestMailJobs(db,1800000);
+ assert.equal(issues.length,501);assert.equal(issues.at(-1).reason,'additional_unclaimed_jobs');
+});
