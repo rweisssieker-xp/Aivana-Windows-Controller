@@ -3,7 +3,7 @@
 import {sendPreparedEmail} from './cloudflare-mail.mjs';
 import {buildConfirmationEvidence} from './confirmation-evidence.mjs';
 import {buildTestConfirmationPackage} from './confirmation-package-test.mjs';
-import {formatWithdrawalReceipt} from './withdrawal.mjs';
+import {formatWithdrawalReceipt,hasWithdrawalLanguageTable} from './withdrawal.mjs';
 
 const allowed = (env, binding) => env?.MAIL_DELIVERY_TEST_ENABLED === 'true' && env?.STRIPE_LIVE === 'false' && typeof env?.TEST_MAIL_RECIPIENT === 'string' && typeof env?.MAIL_SENDER === 'string' && typeof binding?.send === 'function';
 
@@ -50,8 +50,10 @@ export async function sendPurchaseJob({db,env,binding,jobId,loadSession,validate
 
 export async function sendWithdrawalJob({db,env,binding,jobId}) {
   if (!allowed(env,binding)) return {status:'not_ready'};
-  const record=await db.prepare("SELECT r.name,r.contract_reference,r.contact_email,r.received_at FROM withdrawal_requests r JOIN withdrawal_receipts q ON q.request_id=r.id WHERE r.id=? AND q.status='pending'").bind(jobId).first();
+  const localized=await hasWithdrawalLanguageTable(db);
+  const sql=localized ? "SELECT r.name,r.contract_reference,r.contact_email,r.received_at,l.language FROM withdrawal_requests r JOIN withdrawal_receipts q ON q.request_id=r.id JOIN withdrawal_test_languages l ON l.request_id=r.id WHERE r.id=? AND q.status='pending'" : "SELECT r.name,r.contract_reference,r.contact_email,r.received_at,'de' AS language FROM withdrawal_requests r JOIN withdrawal_receipts q ON q.request_id=r.id WHERE r.id=? AND q.status='pending'";
+  const record=await db.prepare(sql).bind(jobId).first();
   if (!record || record.contact_email!==env.TEST_MAIL_RECIPIENT) return {status:'not_ready'};
-  let text; try { text='TEST — keine echte Widerrufsbearbeitung\n\n'+formatWithdrawalReceipt(record); } catch { return {status:'not_ready'}; }
-  return sendOnce({db,env,binding,kind:'withdrawal',jobId,recipient:record.contact_email,subject:'MAKRIVO - TEST Widerrufseingang',text});
+  let text; try { text=(record.language==='en'?'TEST — not an actual withdrawal process\n\n':'TEST — keine echte Widerrufsbearbeitung\n\n')+formatWithdrawalReceipt(record,record.language); } catch { return {status:'not_ready'}; }
+  return sendOnce({db,env,binding,kind:'withdrawal',jobId,recipient:record.contact_email,subject:record.language==='en'?'MAKRIVO - TEST Withdrawal receipt':'MAKRIVO - TEST Widerrufseingang',text});
 }

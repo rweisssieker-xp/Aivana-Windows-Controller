@@ -109,3 +109,36 @@ test('unclaimed queue report signals truncation without hiding an overflow',asyn
  const issues=await listUnclaimedTestMailJobs(db,1800000);
  assert.equal(issues.length,501);assert.equal(issues.at(-1).reason,'additional_unclaimed_jobs');
 });
+
+test('accepted attempts with missing or malformed provider identifiers immediately require review',async()=>{
+ const db=database();db.raw.exec("INSERT INTO mail_dispatch_attempts VALUES('purchase','no-id','accepted',1799999,1799999,NULL),('purchase','bad-id','accepted',1799999,1799999,'not valid')");
+ assert.equal((await getMailStatus(db,'purchase','no-id')).status,'needs_review');
+ assert.equal((await getMailStatus(db,'purchase','bad-id')).status,'needs_review');
+ const issues=await listTestMailIssues(db,1800000);
+ assert.deepEqual(new Set(issues.map(x=>x.jobId)),new Set(['no-id','bad-id']));
+ assert.ok(issues.every(x=>x.reason==='provider_or_matching_failure'));
+});
+
+test('large event issue report is bounded and explicitly signals remaining issues',async()=>{
+ const db=database(),insert=db.raw.prepare("INSERT INTO mail_dispatch_attempts VALUES('purchase',?,'unknown',1,2,NULL)");
+ for(let i=0;i<501;i++)insert.run('unknown-'+String(i).padStart(4,'0'));
+ const issues=await listTestMailIssues(db,1800000);
+ assert.equal(issues.length,501);assert.equal(issues.at(-1).reason,'additional_mail_issues');
+});
+
+test('malformed provider IDs are classified consistently across status and issue queries',async()=>{
+ const db=database(),values=[null,'','two words','with\u0000zero','é','x'.repeat(513),'x'.repeat(512),'valid-identifier'];
+ for(const [i,value] of values.entries())db.raw.prepare("INSERT INTO mail_dispatch_attempts VALUES('purchase',?,'accepted',1799999,1799999,?)").run('job-'+i,value);
+ const issues=await listTestMailIssues(db,1800000),reported=new Set(issues.map(x=>x.jobId));
+ for(const i of values.keys()){
+  const status=(await getMailStatus(db,'purchase','job-'+i)).status;
+  assert.equal(reported.has('job-'+i),status==='needs_review',`mismatch at ${i}`);
+ }
+});
+
+test('many completed sends do not hide a later unresolved attempt',async()=>{
+ const db=database(),addAttempt=db.raw.prepare("INSERT INTO mail_dispatch_attempts VALUES('purchase',?,'accepted',1,2,?)"),addEvent=db.raw.prepare("INSERT INTO mail_delivery_events VALUES(?,?,'delivered',3)");
+ for(let i=0;i<600;i++){addAttempt.run('job-'+i,'message-'+i);addEvent.run('event-'+i,'message-'+i);}
+ db.raw.exec("INSERT INTO mail_dispatch_attempts VALUES('withdrawal','unresolved','unknown',100,101,NULL)");
+ assert.deepEqual(await listTestMailIssues(db,1800000),[{kind:'withdrawal',jobId:'unresolved',reason:'outcome_unknown'}]);
+});

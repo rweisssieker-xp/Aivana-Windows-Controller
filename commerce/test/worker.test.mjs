@@ -27,12 +27,14 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { DatabaseSync } from "node:sqlite";
 import { readFileSync } from "node:fs";
+import { runInNewContext } from 'node:vm';
 import {
   validateSession,
   verifyWebhook,
   signLicense,
 } from "../worker.mjs";
 import { activationSql } from "../activation-sql.mjs";
+import {readTestSupplementDocuments} from '../confirmation-package-test.mjs';
 test("paid checkout exact contract", () => {
   const env = {
     STRIPE_PRICE_ID: "price_a",
@@ -1576,4 +1578,90 @@ test('checkout authorization insert failure rolls back order and all consent evi
   const db=database(),e=configured(db),prepare=db.prepare.bind(db);db.prepare=sql=>sql.startsWith('INSERT INTO checkout_authorizations')?{bind(){return {_run(){throw Error('simulated failure');}};}}:prepare(sql);
   const r=await worker.fetch(new Request(e.PUBLIC_ORIGIN+'/api/checkout/prepare',{method:'POST',headers:{Origin:e.PUBLIC_ORIGIN},body:JSON.stringify({acceptTerms:true,lang:'de',contractDigest:await fixtureDigest('de'),...await declarationFields('de')})}),e);
   assert.equal(r.status,400);for(const table of ['orders','checkout_attempts','contract_acceptances','contract_declarations','confirmation_obligations','checkout_authorizations'])assert.equal(db.raw.prepare(`SELECT count(*) n FROM ${table}`).get().n,0);
+});
+
+function fullTestConfiguration(db){
+ db.raw.exec(readFileSync(new URL('../migrations/0016_test_confirmation_supplements.sql',import.meta.url),'utf8'));
+ for(const language of ['de','en'])for(const [version,text] of [['notice-v1',`Synthetic ${language} notice`],['form-v1',`Synthetic ${language} form`],['notice-v2',`Synthetic ${language} notice new`],['form-v2',`Synthetic ${language} form new`]])db.raw.prepare('INSERT INTO contract_documents VALUES(?,?,?)').run(language,version,text);
+ return {...configured(db),FULL_CONFIRMATION_TEST_ENABLED:'true',WITHDRAWAL_NOTICE_VERSION_DE:'notice-v1',WITHDRAWAL_FORM_VERSION_DE:'form-v1',WITHDRAWAL_NOTICE_VERSION_EN:'notice-v1',WITHDRAWAL_FORM_VERSION_EN:'form-v1'};
+}
+async function fullPrepare(e,language='de',overrides={}){
+ const docs=await readTestSupplementDocuments(e.DB,e,language);
+ return worker.fetch(new Request(e.PUBLIC_ORIGIN+'/api/checkout/prepare',{method:'POST',headers:{Origin:e.PUBLIC_ORIGIN},body:JSON.stringify({acceptTerms:true,lang:language,contractDigest:await fixtureDigest(language),...await declarationFields(language),noticeDigest:docs[0].digest,formDigest:docs[1].digest,...overrides})}),e);
+}
+test('full test checkout shows and snapshots supplemental texts, then resumes the original versions after changes',async()=>{
+ const db=database(),e=fullTestConfiguration(db),html=await (await worker.fetch(new Request(e.PUBLIC_ORIGIN+'/?lang=de'),e)).text();
+ assert.match(html,/Synthetic de notice/);assert.match(html,/Synthetic de form/);
+ const prep=await fullPrepare(e);assert.equal(prep.status,200);const result=await prep.json();
+ assert.equal(db.raw.prepare('SELECT count(*) n FROM test_confirmation_supplements').get().n,2);
+ const post=(path,body)=>worker.fetch(new Request(e.PUBLIC_ORIGIN+path,{method:'POST',headers:{Origin:e.PUBLIC_ORIGIN},body:JSON.stringify(body)}),e);
+ e.WITHDRAWAL_NOTICE_VERSION_DE='notice-v2';e.WITHDRAWAL_FORM_VERSION_DE='form-v2';
+ const response=await post('/api/checkout/preview',{recoveryCode:result.recoveryCode});assert.equal(response.status,200);
+ const snapshot=await response.json();assert.equal(snapshot.notice.text,'Synthetic de notice');assert.equal(snapshot.form.text,'Synthetic de form');assert.notEqual(snapshot.checkoutToken,result.checkoutToken);
+ const disabled={...e,FULL_CONFIRMATION_TEST_ENABLED:'false'};
+ const reverted=await worker.fetch(new Request(e.PUBLIC_ORIGIN+'/api/checkout/preview',{method:'POST',headers:{Origin:e.PUBLIC_ORIGIN},body:JSON.stringify({recoveryCode:result.recoveryCode})}),disabled);
+ assert.equal(reverted.status,409);
+});
+test('full test checkout rejects missing or changed supplemental evidence before creating an order',async()=>{
+ const db=database(),e=fullTestConfiguration(db);
+ const changed=await fullPrepare(e,'de',{noticeDigest:'A'.repeat(43)});assert.equal(changed.status,409);
+ const missing=await fullPrepare(e,'de',{formDigest:undefined});assert.equal(missing.status,409);
+ assert.equal(db.raw.prepare('SELECT count(*) n FROM orders').get().n,0);
+ const live={...e,STRIPE_LIVE:'true'};const r=await worker.fetch(new Request(e.PUBLIC_ORIGIN+'/api/checkout/prepare',{method:'POST',headers:{Origin:e.PUBLIC_ORIGIN},body:'{}'}),live);assert.equal(r.status,503);
+});
+test('full test checkout rolls back entire order if supplemental snapshot storage fails',async()=>{
+ const db=database(),e=fullTestConfiguration(db);
+ db.raw.exec("CREATE TRIGGER synthetic_fail_form BEFORE INSERT ON test_confirmation_supplements WHEN NEW.kind='withdrawal_form' BEGIN SELECT RAISE(ABORT,'synthetic failure'); END");
+ const result=await fullPrepare(e);assert.equal(result.status,400);
+ for(const table of ['orders','contract_acceptances','contract_declarations','test_confirmation_supplements','checkout_authorizations'])assert.equal(db.raw.prepare('SELECT count(*) n FROM '+table).get().n,0);
+});
+test('older three-document test order cannot resume in full confirmation mode',async()=>{
+ const db=database(),e=configured(db),code=await prepareCheckout(e,'de');const full=fullTestConfiguration(db);
+ const r=await worker.fetch(new Request(full.PUBLIC_ORIGIN+'/api/checkout/preview',{method:'POST',headers:{Origin:full.PUBLIC_ORIGIN},body:JSON.stringify({recoveryCode:code})}),full);
+ assert.equal(r.status,409);
+});
+test('preparation from a full-test page cannot silently downgrade when the switch is turned off',async()=>{
+ const db=database(),e=fullTestConfiguration(db);const docs=await readTestSupplementDocuments(db,e,'de');
+ const off={...e,FULL_CONFIRMATION_TEST_ENABLED:'false'};
+ const request=new Request(e.PUBLIC_ORIGIN+'/api/checkout/prepare',{method:'POST',headers:{Origin:e.PUBLIC_ORIGIN},body:JSON.stringify({acceptTerms:true,lang:'de',contractDigest:await fixtureDigest('de'),...await declarationFields('de'),noticeDigest:docs[0].digest,formDigest:docs[1].digest})});
+ const response=await worker.fetch(request,off);assert.equal(response.status,409);assert.equal(db.raw.prepare('SELECT count(*) n FROM orders').get().n,0);
+});
+
+test('full test UI submits the shown document digests and renders both historical resume texts',async()=>{
+ const db=database(),e=fullTestConfiguration(db),html=await (await worker.fetch(new Request(e.PUBLIC_ORIGIN+'/?lang=de'),e)).text();
+ const script=html.match(/<script>([\s\S]*?)<\/script>/)[1],ids=['newPurchase','cancelNew','resumePreview','resumeLang','resumeTerms','resumeEarlyText','resumeAckText','resumeNoticeText','resumeFormText','resumeReviewed','resumeContinue','cancelPreview','status','backup','saved','buy','terms','earlyStart','withdrawalAck','recovery','copyRecovery','continue','restore','restoreCode','resume','order','activate','dataExport','termsDownload'];
+ const elements=Object.fromEntries(ids.map(id=>[id,{}]));for(const id of ['terms','earlyStart','withdrawalAck'])elements[id].checked=true;elements.restoreCode.value='synthetic';
+ let posted;
+ const docs=await readTestSupplementDocuments(db,e,'de');
+ const fetch=async(path,options)=>{posted=JSON.parse(options.body);return {ok:true,json:async()=>path.endsWith('/preview')?{language:'de',terms:{version:'v',text:'old terms'},early:{version:'v',text:'old early'},ack:{version:'v',text:'old ack'},notice:{version:'old-notice',text:'Historical notice'},form:{version:'old-form',text:'Historical form'},checkoutToken:'A'.repeat(43)}:{recoveryCode:'synthetic',checkoutToken:'A'.repeat(43)}};};
+ runInNewContext(script,{document:{getElementById:id=>elements[id],querySelectorAll:()=>[]},fetch,Blob,URL,setTimeout});
+ await elements.buy.onclick();assert.equal(posted.noticeDigest,docs[0].digest);assert.equal(posted.formDigest,docs[1].digest);
+ elements.cancelNew.onclick();await elements.resume.onclick();
+ assert.match(elements.resumeNoticeText.textContent,/Historical notice/);assert.match(elements.resumeFormText.textContent,/Historical form/);assert.equal(elements.resumeReviewed.checked,false);
+});
+
+test('older page refuses a full-test preview after a server mode change',async()=>{
+ const html=await (await worker.fetch(new Request('https://buyer.test/?lang=de'),{})).text();
+ const script=html.match(/<script>([\s\S]*?)<\/script>/)[1],ids=['newPurchase','cancelNew','resumePreview','resumeLang','resumeTerms','resumeEarlyText','resumeAckText','resumeReviewed','resumeContinue','cancelPreview','status','backup','saved','buy','terms','earlyStart','withdrawalAck','recovery','copyRecovery','continue','restore','restoreCode','resume','order','activate','dataExport','termsDownload'];
+ const elements=Object.fromEntries(ids.map(id=>[id,{}]));elements.restoreCode.value='synthetic';elements.resumePreview.hidden=true;
+ const fetch=async()=>({ok:true,json:async()=>({language:'de',terms:{version:'v',text:'old'},early:{version:'v',text:'old'},ack:{version:'v',text:'old'},notice:{version:'v',text:'new'},form:{version:'v',text:'new'},checkoutToken:'A'.repeat(43)})});
+ runInNewContext(script,{document:{getElementById:id=>elements[id],querySelectorAll:()=>[]},fetch,Blob,URL,setTimeout});
+ await elements.resume.onclick();assert.equal(elements.resumePreview.hidden,true);assert.match(elements.status.textContent,/konnte nicht abgeschlossen/);
+});
+
+test('full test checkout token binds the five historical texts before the provider can be called',async()=>{
+ const db=database(),e=fullTestConfiguration(db),prepared=await (await fullPrepare(e)).json();
+ const post=(path,body)=>worker.fetch(new Request(e.PUBLIC_ORIGIN+path,{method:'POST',headers:{Origin:e.PUBLIC_ORIGIN},body:JSON.stringify(body)}),e);
+ const preview=await (await post('/api/checkout/preview',{recoveryCode:prepared.recoveryCode})).json();
+ const original=globalThis.fetch;let providerCalls=0,session;
+ try {
+  globalThis.fetch=async(url,options)=>{
+   providerCalls++;if(String(url).includes('/prices/'))return Response.json(goodPrice);
+   if(options?.method==='POST')session={id:'cs_test_full',mode:'payment',livemode:false,status:'open',payment_status:'unpaid',url:'https://checkout.stripe.com/c/pay/test',metadata:{orderId:new URLSearchParams(options.body).get('metadata[orderId]')}};
+   return Response.json(session);
+  };
+  const first=await post('/api/checkout',{acceptTerms:true,recoveryCode:prepared.recoveryCode,checkoutToken:preview.checkoutToken});assert.equal(first.status,200);assert.equal((await first.json()).url,'https://checkout.stripe.com/c/pay/test');
+  const after=providerCalls;db.raw.exec('DROP TRIGGER test_confirmation_supplements_no_update');db.raw.prepare("UPDATE test_confirmation_supplements SET text='tampered' WHERE kind='withdrawal_notice'").run();
+  const blocked=await post('/api/checkout',{acceptTerms:true,recoveryCode:prepared.recoveryCode,checkoutToken:preview.checkoutToken});assert.equal(blocked.status,409);assert.equal(providerCalls,after);
+ } finally {globalThis.fetch=original;}
 });

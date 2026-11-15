@@ -20,6 +20,8 @@ Die Testimplementierung hat keinen Operator-Endpunkt, keine Fallverwaltung, kein
 
 Im Verzeichnis `commerce` kann ein berechtigter Betreiber `python monitor_support.py` ausführen. Der Aufruf liest ausschließlich aggregierte Zustände der getrennten Test-D1, der beiden Testqueues und der Testsubscription; er zeigt keine Empfänger, Nachrichteninhalte, Einzelkennungen oder Zugangsdaten. Exitcode `0` bedeutet keine der geprüften Auffälligkeiten, `1` bedeutet Handlungsbedarf und `2`, dass die Prüfung nicht sicher durchgeführt werden konnte. Der zuletzt geprüfte echte Zustand meldete `subscription_disabled` und leere Testqueues. Eine aktive Subscription ist für die gegenwärtig absichtlich pausierte Testumgebung nicht zu erwarten.
 
+Mit `python monitor_support.py --cases` sind zusätzlich höchstens 50 pseudonyme Referenzen offener synthetischer Versandversuche samt Prüfgrund abrufbar. Bei größerem Umfang weist `truncated` auf eine unvollständige Liste hin. Keine Kundendaten, Anbieterkennungen oder Mailinhalte werden ausgegeben; Fälle werden nicht automatisch verändert oder geschlossen.
+
 Der Befehl wird **nicht periodisch ausgeführt** und richtet **keinen unabhängigen Alarm** ein. Ein Ergebnis `ok` erfasst weder den Heartbeat noch die tatsächliche Mailzustellung. Der Cloudflare-Alarmzugriff scheiterte mit dem vorhandenen Wrangler-OAuth an HTTP 403. Umfang, Credential-Handhabung, Tests und Grenzen beschreibt `MONITOR-SUPPORT-CHECK.review.md`.
 
 Quellen: [Cloudflare Mail-Ereignisse](https://developers.cloudflare.com/email-service/reference/event-subscriptions/), [Fehlerwarteschlangen und Wiederholungen](https://developers.cloudflare.com/queues/configuration/dead-letter-queues/), [§ 356a BGB](https://www.gesetze-im-internet.de/bgb/__356a.html).

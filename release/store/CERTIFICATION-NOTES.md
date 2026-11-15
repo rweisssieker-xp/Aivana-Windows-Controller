@@ -28,7 +28,7 @@ No installer-granted administrator rights, UIAccess entitlement, filter driver, 
 - The optional mobile host serves a user-enabled local HTTPS panel; the current source listens on port 47831 at the configured local address and uses pairing/authentication. It is not a public cloud-control service. Verify firewall behavior, certificate presentation, authorization, disconnect and shutdown on real LAN devices before offering it as a supported Store feature.
 - User-imported plugin packages require explicit trust in the existing app. Their separate process is **not a security sandbox**: a trusted plugin can act with the user's permissions. There is no public plugin store and no third-party driver bundle. Explain extension import/export and executable-code behavior to the reviewer; test it under package identity rather than claiming MSIX sandboxes plugin code.
 - Optional integrations can connect to services/programs the user configures, such as OBS. Device support remains model- and SDK-dependent; no blanket vendor compatibility is claimed in the prepared listing. Proprietary SDK redistributables are not added by this packaging work.
-- Experimental local AI is not an advertised Store feature. If the selected payload includes an experimental host, disclose it and its disabled default; do not claim validated planning quality, included model weights or accepted Store review of this behavior.
+- The intended first Store release excludes the AI assistant and experimental ONNX host entirely. The no-AI build and payload checks are described in `NO-AI-RELEASE.md`; the actual submitted artifact must pass those checks. Do not describe a package containing an experimental host as this approved no-AI variant.
 
 ## Reproduction sequence for the final package
 

@@ -24,3 +24,49 @@ export async function buildTestConfirmationPackage(input){
   }
   return {...evidence,supplements};
 }
+const allowedTest=(env,language)=>env?.FULL_CONFIRMATION_TEST_ENABLED==='true'&&env?.STRIPE_LIVE==='false'&&['de','en'].includes(language);
+export async function calculateTestFullSnapshotDigest(language,digests){
+  if(!['de','en'].includes(language)||!Array.isArray(digests)||digests.length!==5||digests.some(d=>typeof d!=='string'||!/^[A-Za-z0-9_-]{43}$/.test(d)))throw new Error('Invalid test checkout snapshot');
+  const [termsDigest,earlyDigest,ackDigest,noticeDigest,formDigest]=digests;
+  return digest({schema:'test_full_confirmation_v1',language,termsDigest,earlyDigest,ackDigest,noticeDigest,formDigest});
+}
+
+// These are the exact documents the test UI must render and hash. Both the
+// initial rendering and purchase preparation must call this against immutable
+// document versions; the latter compares against the displayed digests.
+export async function readTestSupplementDocuments(db,env,language){
+  if(!allowedTest(env,language))throw new Error('Test confirmation unavailable');
+  const suffix=language.toUpperCase();
+  const entries=[['withdrawal_notice',env['WITHDRAWAL_NOTICE_VERSION_'+suffix]],['withdrawal_form',env['WITHDRAWAL_FORM_VERSION_'+suffix]]];
+  const docs=[];
+  for(const [kind,docVersion] of entries){
+    if(!version(docVersion))throw new Error('Test confirmation unavailable');
+    const row=await db.prepare('SELECT text FROM contract_documents WHERE language=? AND version=?').bind(language,docVersion).first();
+    if(!row||!text(row.text))throw new Error('Test confirmation unavailable');
+    const doc={kind,language,version:docVersion,text:row.text};docs.push({...doc,digest:await digest(doc)});
+  }
+  if(docs[0].version===docs[1].version||docs[0].text===docs[1].text)throw new Error('Test confirmation unavailable');
+  return docs;
+}
+
+// Caller MUST append these statements to the same db.batch as order,
+// acceptance, declarations and checkout authorization; never execute alone.
+export async function prepareTestSupplementStatements({db,env,orderId,language,acceptedAt,displayed}){
+  if(typeof orderId!=='string'||!/^[A-Za-z0-9_-]{1,128}$/.test(orderId)||!Number.isSafeInteger(acceptedAt)||acceptedAt<=0||acceptedAt>8640000000000000||!Array.isArray(displayed)||displayed.length!==2)throw new Error('Invalid test checkout snapshot');
+  const docs=await readTestSupplementDocuments(db,env,language);
+  if(docs.some((d,i)=>d.digest!==displayed[i]))throw new Error('Test confirmation changed');
+  return docs.map(d=>db.prepare('INSERT INTO test_confirmation_supplements(order_id,kind,language,version,text,digest,captured_at) VALUES(?,?,?,?,?,?,?)').bind(orderId,d.kind,d.language,d.version,d.text,d.digest,acceptedAt));
+}
+
+// A resume reads only order snapshots and never chooses current documents.
+// Returned digest must be bound into the checkout authorization token, and
+// compared again immediately before the provider session is returned.
+export async function loadTestFullOrderSnapshot(db,env,orderId,language){
+  if(!allowedTest(env,language))throw new Error('Test confirmation unavailable');
+  const acceptance=await db.prepare('SELECT order_id,language,version,text,digest,accepted_at FROM contract_acceptances WHERE order_id=?').bind(orderId).first();
+  const declarations=(await db.prepare('SELECT order_id,kind,language,version,text,digest,accepted_at FROM contract_declarations WHERE order_id=?').bind(orderId).all()).results;
+  const supplements=(await db.prepare('SELECT order_id,kind,language,version,text,digest,captured_at FROM test_confirmation_supplements WHERE order_id=?').bind(orderId).all()).results;
+  const p=await buildTestConfirmationPackage({orderId,language,acceptance,declarations,supplements});
+  const snapshotDigest=await calculateTestFullSnapshotDigest(p.language,[p.terms.digest,...p.declarations.map(d=>d.digest),...p.supplements.map(d=>d.digest)]);
+  return {...p,digest:snapshotDigest};
+}

@@ -7,6 +7,9 @@ Stand 15. November 2026. **Arbeits- und Prüfpaket; kein veröffentlichter Vertr
 - `EULA-review-draft.md`: Entwurf von Lizenz- und Verkaufsbedingungen für MAKRIVO.
 - `EULA.en.review.md`: englische Gegenfassung des Lizenz- und Verkaufsentwurfs für die gemeinsame fachliche Prüfung.
 - `VERBRAUCHERHINWEISE.review.md`: deutscher Verbraucher- und Widerrufsentwurf mit Verkäuferanschrift und Verweis auf das amtliche Muster.
+- `WIDERRUF-DE-KUNDENTEXT.review.md` und `WITHDRAWAL-EN-CUSTOMER-DRAFT.review.md`: ausführlichere Widerrufsbelehrung und eigene Erklärungshilfe für den deutschen Fall; das amtliche Muster muss noch in den Kundenunterlagen bereitgestellt werden.
+- `DIGITALE-INHALTE-ZUSTIMMUNG-DE-EN.review.md`: separate DE-/EN-Prüftexte für Zustimmung und Kenntnisbestätigung mit den noch zu prüfenden Prozessbedingungen.
+- `WELTWEIT-MARKTMATRIX.review.md`: gebietsbezogene Aufgaben mit Beispielen amtlicher Quellen und ausdrücklich offenen Freigabeständen.
 - `VERTRAGSBESTAETIGUNG-DE-EN.review.md`: deutsch-englische Vorlage für eine spätere vollständige Vertragsbestätigung mit gekennzeichneten Pflichtinhalten und Umsetzungsanforderungen.
 - Die bestehenden Datenschutzentwürfe DE/EN sowie `commerce/DIGITAL-CONSENT.review.md`, `commerce/CONTRACT-EVIDENCE.review.md` und `commerce/WITHDRAWAL-TEST.review.md` beschreiben den vorbereiteten Daten- und Nachweisprozess. Diese Texte enthalten offene Punkte und sind nicht automatisch Bestandteil einer versandten Vertragsbestätigung.
 

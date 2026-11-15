@@ -23,7 +23,8 @@ export async function getMailStatus(db,kind,jobId){
   const attempt=await db.prepare('SELECT state,message_id FROM mail_dispatch_attempts WHERE kind=? AND job_id=?').bind(kind,jobId).first();
   if(!attempt)return {status:'not_found'};
   if(attempt.state==='unknown')return {status:'needs_review'};
-  if(attempt.state!=='accepted'||!messageId(attempt.message_id))return {status:'pending'};
+  if(attempt.state!=='accepted')return {status:'pending'};
+  if(!messageId(attempt.message_id))return {status:'needs_review'};
   const shared=await db.prepare("SELECT COUNT(*) AS count FROM mail_dispatch_attempts WHERE state='accepted' AND message_id=?").bind(attempt.message_id).first();
   if(shared?.count!==1)return {status:'needs_review'};
   const rows=(await db.prepare('SELECT kind FROM mail_delivery_events WHERE message_id=?').bind(attempt.message_id).all()).results;
@@ -51,36 +52,37 @@ export async function consumeTestMailEvents(batch,env){
 export async function listTestMailIssues(db,now=Date.now()){
   if(!Number.isSafeInteger(now)||now<0) throw new TypeError('Invalid clock');
   const cutoff=now-15*60*1000;
-  const attempts=(await db.prepare(`WITH accepted AS (
+  const rows=(await db.prepare(`WITH accepted AS (
     SELECT message_id,COUNT(*) AS matches FROM mail_dispatch_attempts WHERE state='accepted' GROUP BY message_id
   ), signals AS (
     SELECT message_id, MAX(kind IN ('bounced','failed','rejected','complained')) AS failure,
-      MAX(kind='delivered') AS delivered, MAX(kind='deferred') AS deferred
+      MAX(kind='delivered') AS delivered
     FROM mail_delivery_events GROUP BY message_id
-  ) SELECT a.kind,a.job_id,a.state,a.started_at,a.finished_at,a.message_id,
-    COALESCE(accepted.matches,0) AS matches,COALESCE(signals.failure,0) AS failure,
-    COALESCE(signals.delivered,0) AS delivered,COALESCE(signals.deferred,0) AS deferred
+  ), classified AS (
+    SELECT a.kind,a.job_id,a.started_at,
+      CASE
+        WHEN a.state='unknown' THEN 'outcome_unknown'
+        WHEN a.state='processing' AND a.started_at<=? THEN 'processing_timeout'
+        WHEN a.state='accepted' AND (
+          a.message_id IS NULL OR typeof(a.message_id)<>'text' OR length(a.message_id) NOT BETWEEN 1 AND 512
+          OR instr(a.message_id,char(0))>0 OR a.message_id GLOB '*[^!-~]*'
+          OR COALESCE(accepted.matches,0)<>1 OR COALESCE(signals.failure,0)<>0
+        ) THEN 'provider_or_matching_failure'
+        WHEN a.state='accepted' AND COALESCE(signals.delivered,0)=0
+          AND COALESCE(a.finished_at,a.started_at)<=? THEN 'delivery_timeout'
+      END AS reason
     FROM mail_dispatch_attempts a LEFT JOIN accepted ON accepted.message_id=a.message_id
-    LEFT JOIN signals ON signals.message_id=a.message_id ORDER BY a.started_at`).bind().all()).results;
-  const issues=[];
-  for(const a of attempts){
-    let reason;
-    if(a.state==='unknown') reason='outcome_unknown';
-    else if(a.state==='processing'&&a.started_at<=cutoff) reason='processing_timeout';
-    else if(a.state==='accepted'){
-      let status='pending';
-      if(messageId(a.message_id)){
-        if(a.matches!==1||a.failure)status='needs_review';
-        else if(a.delivered)status='delivered_to_mail_server';
-        else if(a.deferred)status='deferred';
-      }
-      if(status==='needs_review') reason='provider_or_matching_failure';
-      else if((status==='pending'||status==='deferred')&&(a.finished_at??a.started_at)<=cutoff) reason='delivery_timeout';
-    }
-    if(reason)issues.push({kind:a.kind,jobId:a.job_id,reason});
-  }
-  const unmatched=(await db.prepare("SELECT e.event_id FROM mail_delivery_events e WHERE NOT EXISTS (SELECT 1 FROM mail_dispatch_attempts a WHERE a.state='accepted' AND a.message_id=e.message_id) ORDER BY e.event_at").bind().all()).results;
-  for(const row of unmatched) issues.push({eventId:row.event_id,reason:'unmatched_event'});
+    LEFT JOIN signals ON signals.message_id=a.message_id
+  ), issues AS (
+    SELECT kind,job_id,NULL AS event_id,reason,started_at AS sort_at FROM classified WHERE reason IS NOT NULL
+    UNION ALL
+    SELECT NULL,NULL,e.event_id,'unmatched_event',e.event_at FROM mail_delivery_events e
+    WHERE NOT EXISTS (SELECT 1 FROM accepted WHERE accepted.message_id=e.message_id)
+  ) SELECT kind,job_id,event_id,reason FROM issues ORDER BY sort_at,kind,job_id,event_id LIMIT 501`).bind(cutoff,cutoff).all()).results;
+  const issues=rows.slice(0,500).map(row=>row.reason==='unmatched_event'
+    ? {eventId:row.event_id,reason:row.reason}
+    : {kind:row.kind,jobId:row.job_id,reason:row.reason});
+  if(rows.length>500)issues.push({reason:'additional_mail_issues'});
   return issues;
 }
 

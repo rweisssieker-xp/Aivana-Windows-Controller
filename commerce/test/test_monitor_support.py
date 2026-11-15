@@ -74,4 +74,33 @@ class SupportMonitorTests(unittest.TestCase):
         self.metrics['source']['oldest_message_timestamp_ms'] = 0
         self.assertIn('event_queue_backlog', monitor.read_status(self.api, 2_000_000)['issues'])
 
+    def test_case_view_lists_safe_pseudonymous_references_for_investigation(self):
+        self.db.execute("INSERT INTO mail_dispatch_attempts VALUES('purchase','order-test','unknown',0,1,NULL)")
+        self.db.execute("INSERT INTO mail_dispatch_attempts VALUES('withdrawal','withdrawal-test','accepted',0,1,'private-message-id')")
+        result = monitor.read_test_cases(self.api, 2_000_000)
+        self.assertEqual({(item['kind'],item['reference'],item['reason']) for item in result['cases']},
+                         {('purchase','order-test','outcome_unknown'),('withdrawal','withdrawal-test','delivery_timeout')})
+        self.assertNotIn('private-message-id',str(result))
+        self.assertFalse(result['truncated'])
+
+    def test_case_view_reports_truncation_and_rejects_unexpected_identifiers(self):
+        for index in range(3):
+            self.db.execute("INSERT INTO mail_dispatch_attempts VALUES('purchase',?,'unknown',0,1,NULL)",(f'job-{index}',))
+        result=monitor.read_test_cases(self.api,2_000_000,limit=2)
+        self.assertEqual(len(result['cases']),2)
+        self.assertTrue(result['truncated'])
+        self.db.execute("INSERT INTO mail_dispatch_attempts VALUES('purchase','bad identifier','unknown',0,1,NULL)")
+        with self.assertRaises(ValueError):monitor.read_test_cases(self.api,2_000_000)
+
+    def test_invalid_accepted_message_identifier_requires_immediate_review(self):
+        for index, identifier in enumerate([None, '', 'has space', 'über', 'x'*513, 'abc\0def']):
+            self.db.execute("INSERT INTO mail_dispatch_attempts VALUES('purchase',?,'accepted',1000,1000,?)",
+                            (f'invalid-{index}',identifier))
+        result=monitor.read_status(self.api,1001)
+        self.assertEqual(result['counts']['provider_failures'],6)
+        self.assertEqual(result['counts']['delivery_timeout'],0)
+        cases=monitor.read_test_cases(self.api,1001)
+        self.assertEqual(len(cases['cases']),6)
+        self.assertTrue(all(case['reason']=='provider_or_matching_failure' for case in cases['cases']))
+
 if __name__ == '__main__': unittest.main()

@@ -8,11 +8,53 @@ function loadId(){try{const id=sessionStorage.getItem(storageKey);if(validId(id)
 function clearCompletedId(){try{if(sessionStorage.getItem(storageKey)?.toLowerCase()===requestId)sessionStorage.removeItem(storageKey);}catch{}}
 let requestId=loadId();
 function invalidate(){snapshot=null;for(const id of names)el(id).disabled=false;el('confirm').hidden=true;el('edit').hidden=true;el('preview').hidden=false;el('details').textContent='';}
-el('preview').onclick=()=>{ if(pending)return; const name=el('name').value.trim(), contract=el('contract').value.trim(), email=el('email').value.trim(); if(!name||!contract||!email){el('status').textContent='Bitte alle Angaben ausfüllen.';return;} snapshot={name,contract,email};for(const id of names)el(id).disabled=true;el('details').textContent='Ich widerrufe den Vertrag. Name: '+name+'; Vertrag: '+contract+'; Bestätigung an: '+email; el('confirm').hidden=false;el('edit').hidden=false;el('preview').hidden=true;el('confirm').disabled=false;el('status').textContent='Bitte Angaben prüfen.'; };
-el('edit').onclick=()=>{if(pending)return;invalidate();el('status').textContent='Bitte Angaben ändern und erneut prüfen.';};
+el('preview').onclick=()=>{ if(pending)return; const name=el('name').value.trim(), contract=el('contract').value.trim(), email=el('email').value.trim(); if(!name||!contract||!email){el('status').textContent='Bitte alle Angaben ausfüllen.';return;} snapshot={name,contract,email};for(const id of names)el(id).disabled=true;el('details').textContent='Ich widerrufe den Vertrag. Name: '+name+'; Vertrag: '+contract+'; Bestätigung an: '+email; el('confirm').hidden=false;el('edit').hidden=false;el('preview').hidden=true;el('confirm').disabled=false;el('status').textContent='Bitte Angaben prüfen.';el('confirm').focus?.(); };
+el('edit').onclick=()=>{if(pending)return;invalidate();el('status').textContent='Bitte Angaben ändern und erneut prüfen.';el('name').focus?.();};
 el('new').onclick=()=>{if(pending)return;invalidate();requestId=newId();for(const id of names)el(id).value='';el('new').hidden=true;el('status').textContent='Neuer Testvorgang.';};
 el('confirm').onclick=async()=>{ if(!snapshot||pending)return; if(names.some(id=>el(id).value.trim()!==snapshot[id])){invalidate();el('status').textContent='Angaben wurden geändert. Bitte erneut prüfen.';return;} pending=true;el('confirm').disabled=true;el('edit').disabled=true;try { const response=await fetch('/withdrawal',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({...snapshot,confirmed:true,requestId})});if(response.status===409){el('status').textContent='TEST: Diese Kennung gehört zu anderen Angaben. Ein neuer Testvorgang kann einen zweiten Datensatz erzeugen.';el('new').hidden=false;return;}if(response.status===429){el('status').textContent='TEST: Vorübergehend begrenzt. Für diesen Versuch wurde keine Speicherung bestätigt. Alternativer Kontakt im Entwurf: info@aivana-gmbh.ai.';el('confirm').disabled=false;return;}if(response.status!==202)throw Error('failed');const result=await response.json();if(!result||result.status!=='receipt_pending'||result.requestId!==requestId||!Number.isSafeInteger(result.receivedAt)||result.receivedAt<=0||result.receivedAt>8640000000000000)throw Error('invalid response');clearCompletedId();el('status').textContent='TEST: Erklärung gespeichert. Eine Eingangsbestätigung wurde nicht versendet.';el('confirm').hidden=true;el('edit').hidden=true;el('new').hidden=false;} catch {el('status').textContent='TEST: Speicherung konnte nicht bestätigt werden. Erneut versuchen. Alternativer Kontakt im Entwurf: info@aivana-gmbh.ai.';el('confirm').disabled=false;} finally {pending=false;el('edit').disabled=false;} };
 </script></html>`;
+
+// Static translations only. User input is never interpolated into markup.
+// The localized flow is test-only and does not establish legal compliance.
+function testPageFor(language) {
+  const navigation='<nav aria-label="Language / Sprache"><a id="langDe" href="/withdrawal?lang=de" hreflang="de">Deutsch</a> · <a id="langEn" href="/withdrawal?lang=en" hreflang="en">English</a></nav><p>Sprachwechsel löscht eingegebene Angaben.</p>';
+  const guard="for(const id of ['langDe','langEn']){const link=el(id);if(link)link.onclick=event=>{if(pending){event.preventDefault();el('status').textContent='Bitte warten, bis die Anfrage abgeschlossen ist.';}};}\n";
+  const selected=language==='en'?'en':'de';
+  const page=testPage.replace('</h1>','</h1>'+navigation).replace('</script>',guard+'</script>')
+    .replace('JSON.stringify({...snapshot,confirmed:true,requestId})',`JSON.stringify({...snapshot,confirmed:true,requestId,language:'${selected}'})`);
+  if(language!=='en')return page;
+  const translations=[
+    ['<html lang="de">','<html lang="en">'],
+    ['Vertrag widerrufen','Withdraw from contract'],
+    ['Isolierte Testfunktion: Es wird keine Bestätigung versendet. Nicht für echte Widerrufe verwenden.','Isolated test only. This test does not send a confirmation. Do not use for an actual withdrawal.'],
+    ['Alternativer Kontakt im Entwurf','Alternative contact in the draft'],
+    ['Sprachwechsel löscht eingegebene Angaben.','Changing language clears entered details.'],
+    ['Bitte warten, bis die Anfrage abgeschlossen ist.','Wait for the request to finish.'],
+    ['Vertrag identifizieren','Identify the contract'],
+    ['E-Mail für die Eingangsbestätigung','Email for the receipt confirmation'],
+    ['Keine Kauf- oder Wiederherstellungscodes eingeben.','Do not enter purchase or recovery codes.'],
+    ['>Weiter</button>','>Continue</button>'],
+    ['Angaben ändern','Change details'],
+    ['Widerruf bestätigen','Confirm withdrawal'],
+    ['Neuen Testvorgang beginnen (kann einen zweiten Datensatz erzeugen)','Start a new test (may create a second record)'],
+    ['Bitte alle Angaben ausfüllen.','Complete all fields.'],
+    ['Ich widerrufe den Vertrag. Name: ','I withdraw from the contract. Name: '],
+    ['; Vertrag: ','; Contract: '],
+    ['; Bestätigung an: ','; Confirmation to: '],
+    ['Bitte Angaben prüfen.','Review the details.'],
+    ['Bitte Angaben ändern und erneut prüfen.','Change the details and review them again.'],
+    ['Neuer Testvorgang.','New test request.'],
+    ['Angaben wurden geändert. Bitte erneut prüfen.','Details changed. Review them again.'],
+    ['TEST: Diese Kennung gehört zu anderen Angaben. Ein neuer Testvorgang kann einen zweiten Datensatz erzeugen.','TEST: This identifier belongs to different details. Starting a new test may create a second record.'],
+    ['TEST: Vorübergehend begrenzt. Für diesen Versuch wurde keine Speicherung bestätigt.','TEST: Temporarily limited. Storage was not confirmed for this attempt.'],
+    ['TEST: Erklärung gespeichert. Eine Eingangsbestätigung wurde nicht versendet.','TEST: Declaration stored. No receipt confirmation was sent.'],
+    ['TEST: Speicherung konnte nicht bestätigt werden. Erneut versuchen.','TEST: Storage could not be confirmed. Try again.'],
+  ];
+  // Replace longer phrases first so shared substrings cannot partially alter
+  // another phrase before it is translated.
+  translations.sort((a,b)=>b[0].length-a[0].length);
+  return translations.reduce((result,[from,to])=>result.replaceAll(from,to),page);
+}
 
 async function readBounded(req) {
   const reader=req.body?.getReader(); if (!reader) return '';
@@ -30,7 +72,7 @@ export async function withdrawalTestFetch(req, e) {
   catch { return new Response('Invalid test origin', {status:503}); }
   if (url.pathname !== '/withdrawal') return new Response('Not found',{status:404});
   const headers={'Cache-Control':'no-store','X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer'};
-  if (req.method === 'GET') return new Response(testPage,{headers:{...headers,'Content-Type':'text/html;charset=utf-8','Content-Security-Policy':"default-src 'none'; script-src 'unsafe-inline'; connect-src 'self'; form-action 'none'; base-uri 'none'; frame-ancestors 'none'"}});
+  if (req.method === 'GET') return new Response(testPageFor(url.searchParams.get('lang')),{headers:{...headers,'Content-Type':'text/html;charset=utf-8','Content-Security-Policy':"default-src 'none'; script-src 'unsafe-inline'; connect-src 'self'; form-action 'none'; base-uri 'none'; frame-ancestors 'none'"}});
   if (req.method !== 'POST') return new Response('Method not allowed',{status:405,headers});
   if (req.headers.get('Origin') !== e.PUBLIC_ORIGIN) return new Response('Invalid origin',{status:403,headers});
   if (!/^application\/json(?:\s*;|$)/i.test(req.headers.get('Content-Type') || '')) return new Response('Invalid content type',{status:415,headers});
@@ -39,8 +81,11 @@ export async function withdrawalTestFetch(req, e) {
     if (e.WITHDRAWAL_TEST_RATE_LIMIT_ENABLED === 'true') {
       const validated=validateWithdrawal(payload);
       testProtectionSource(e,req);
-      const previous=await e.DB.prepare('SELECT r.name,r.contract_reference,r.contact_email,r.received_at FROM withdrawal_requests r JOIN withdrawal_receipts q ON q.request_id=r.id WHERE r.id=?').bind(validated.id).first();
-      if(previous&&previous.name===validated.name&&previous.contract_reference===validated.contract&&previous.contact_email===validated.email)
+      const localized=await hasWithdrawalLanguageTable(e.DB);
+      if (!localized && validated.language!=='de') throw new Error('Test language unavailable');
+      const sql=localized ? 'SELECT r.name,r.contract_reference,r.contact_email,r.received_at,l.language FROM withdrawal_requests r JOIN withdrawal_receipts q ON q.request_id=r.id LEFT JOIN withdrawal_test_languages l ON l.request_id=r.id WHERE r.id=?' : "SELECT r.name,r.contract_reference,r.contact_email,r.received_at,'de' AS language FROM withdrawal_requests r JOIN withdrawal_receipts q ON q.request_id=r.id WHERE r.id=?";
+      const previous=await e.DB.prepare(sql).bind(validated.id).first();
+      if(previous&&previous.language===validated.language&&previous.name===validated.name&&previous.contract_reference===validated.contract&&previous.contact_email===validated.email)
         return new Response(JSON.stringify({requestId:validated.id,receivedAt:previous.received_at,status:'receipt_pending'}),{status:202,headers:{...headers,'Content-Type':'application/json;charset=utf-8'}});
       const retryAfter=await testAbuseLimit(e,req,validated.email);
       if (retryAfter) return new Response(JSON.stringify({error:'Test request rate limited',alternative:'info@aivana-gmbh.ai'}),{status:429,headers:{...headers,'Content-Type':'application/json;charset=utf-8','Retry-After':String(retryAfter)}});
@@ -68,7 +113,17 @@ function validateWithdrawal(input) {
   const contract = inputText(input.contract, 1000);
   const email = inputText(input.email, 254);
   if (!/^[^\s@]+@[^\s@]+$/u.test(email)) throw new TypeError('Invalid confirmation email');
-  return {id,name,contract,email};
+  const language=input.language===undefined?'de':input.language;
+  if(!['de','en'].includes(language))throw new TypeError('Invalid test language');
+  return {id,name,contract,email,language};
+}
+
+// Existing isolated databases lack migration 0018. They can process only the
+// original German form; an unknown or failed schema lookup never falls back.
+export async function hasWithdrawalLanguageTable(db){
+  const result=await db.prepare("SELECT COUNT(*) AS present FROM sqlite_master WHERE type='table' AND name='withdrawal_test_languages'").bind().first();
+  if(!result||![0,1].includes(result.present))throw new Error('Test language schema unavailable');
+  return result.present===1;
 }
 
 // Optional test-only throttling. This is not a public abuse or legal solution:
@@ -96,22 +151,29 @@ async function testAbuseLimit(env,req,email){
 }
 
 export async function acceptWithdrawal(db, input) {
-  const {id,name,contract,email}=validateWithdrawal(input);
+  const {id,name,contract,email,language}=validateWithdrawal(input);
+  const localized=await hasWithdrawalLanguageTable(db);
+  if(!localized && language!=='de')throw new Error('Test language unavailable');
   const now = Date.now();
-  await db.batch([
-    db.prepare('INSERT INTO withdrawal_requests(id,name,contract_reference,contact_email,received_at) VALUES(?,?,?,?,?) ON CONFLICT(id) DO NOTHING').bind(id,name,contract,email,now),
-    db.prepare("INSERT INTO withdrawal_receipts(request_id,status) SELECT id,'pending' FROM withdrawal_requests WHERE id=? AND name=? AND contract_reference=? AND contact_email=? ON CONFLICT(request_id) DO NOTHING").bind(id,name,contract,email),
-  ]);
-  const record = await db.prepare('SELECT name,contract_reference,contact_email,received_at FROM withdrawal_requests WHERE id=?').bind(id).first();
-  if (!record || record.name !== name || record.contract_reference !== contract || record.contact_email !== email) throw new Error('Withdrawal request conflict');
+  const statements=[db.prepare('INSERT INTO withdrawal_requests(id,name,contract_reference,contact_email,received_at) VALUES(?,?,?,?,?) ON CONFLICT(id) DO NOTHING').bind(id,name,contract,email,now)];
+  if(localized){
+    statements.push(db.prepare('INSERT INTO withdrawal_test_languages(request_id,language) SELECT id,? FROM withdrawal_requests WHERE id=? AND name=? AND contract_reference=? AND contact_email=? AND changes()=1 ON CONFLICT(request_id) DO NOTHING').bind(language,id,name,contract,email));
+    statements.push(db.prepare("INSERT INTO withdrawal_receipts(request_id,status) SELECT r.id,'pending' FROM withdrawal_requests r JOIN withdrawal_test_languages l ON l.request_id=r.id WHERE r.id=? AND r.name=? AND r.contract_reference=? AND r.contact_email=? AND l.language=? ON CONFLICT(request_id) DO NOTHING").bind(id,name,contract,email,language));
+  }else statements.push(db.prepare("INSERT INTO withdrawal_receipts(request_id,status) SELECT id,'pending' FROM withdrawal_requests WHERE id=? AND name=? AND contract_reference=? AND contact_email=? ON CONFLICT(request_id) DO NOTHING").bind(id,name,contract,email));
+  await db.batch(statements);
+  const sql=localized?'SELECT r.name,r.contract_reference,r.contact_email,r.received_at,l.language FROM withdrawal_requests r LEFT JOIN withdrawal_test_languages l ON l.request_id=r.id WHERE r.id=?':"SELECT name,contract_reference,contact_email,received_at,'de' AS language FROM withdrawal_requests WHERE id=?";
+  const record=await db.prepare(sql).bind(id).first();
+  if (!record || record.language!==language || record.name !== name || record.contract_reference !== contract || record.contact_email !== email) throw new Error('Withdrawal request conflict');
   return { requestId:id, receivedAt:record.received_at, status:'receipt_pending' };
 }
 
-export function formatWithdrawalReceipt(record) {
+export function formatWithdrawalReceipt(record,language='de') {
   if (!record || !Number.isSafeInteger(record.received_at) || record.received_at < 0)
     throw new TypeError('Invalid withdrawal receipt');
   const name = inputText(record.name, 160);
   const contract = inputText(record.contract_reference, 1000);
   const email = inputText(record.contact_email, 254);
+  if(!['de','en'].includes(language))throw new TypeError('Invalid receipt language');
+  if(language==='en')return `Withdrawal receipt\n\nI withdraw from the following contract.\nName: ${name}\nContract: ${contract}\nContact: ${email}\nReceived: ${new Date(record.received_at).toISOString()}\n`;
   return `Eingang einer Widerrufserklärung\n\nHiermit widerrufe ich den folgenden Vertrag.\nName: ${name}\nVertrag: ${contract}\nKontakt: ${email}\nEingang: ${new Date(record.received_at).toISOString()}\n`;
 }

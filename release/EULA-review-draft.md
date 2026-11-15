@@ -1,18 +1,22 @@
 # MAKRIVO – Lizenz- und Verkaufsbedingungen
 
-Stand 13.10.2026. **Ungeprüfter juristischer Entwurf; keine Vertriebsfreigabe.** Die Geschäftsparameter sind bestätigt, die rechtliche Formulierung und der Verbraucherprozess benötigen fachliche Freigabe vor Veröffentlichung.
+Stand 15.11.2026. **Ungeprüfter juristischer Entwurf; keine Vertriebsfreigabe.** Die Geschäftsparameter sind bestätigt, die rechtliche Formulierung und der Verbraucherprozess benötigen fachliche Freigabe vor Veröffentlichung. Die Kundenentwürfe für Widerruf und die separaten Erklärungen befinden sich in `WIDERRUF-DE-KUNDENTEXT.review.md` und `DIGITALE-INHALTE-ZUSTIMMUNG-DE-EN.review.md`.
 
 ## Anbieter und Vertragsgegenstand
 
-Verkäufer und Lizenzgeber ist Aivana GmbH, Paulusstr. 45a – Hinterhaus – LOFT45, 33602 Bielefeld, Deutschland; Amtsgericht Bielefeld, HRB 46421; USt-IdNr. DE459356027; Geschäftsführer Udo Bergmann; info@aivana-gmbh.ai. Angaben gemäß dem im Projekt dokumentierten Abruf des [offiziellen Impressums](https://aivana-gmbh.ai/de/Imprint), keine eigene Registerprüfung.
+Verkäufer und Lizenzgeber ist Aivana GmbH, Paulusstr. 45a – Hinterhaus – LOFT45, 33602 Bielefeld, Deutschland; Amtsgericht Bielefeld, HRB 46421; USt-IdNr. DE459356027; Geschäftsführer Udo Bergmann; info@aivana-gmbh.ai; Telefon +49 521 92278996. Angaben am 15. November 2026 mit dem [offiziellen Impressum](https://aivana-gmbh.ai/de/Imprint) abgeglichen, keine eigene Register- oder USt-IdNr.-Prüfung. Das tatsächliche Stripe-Zahlungskonto muss separat verifiziert werden.
 
 MAKRIVO ist herunterladbare Windows-Software zur lokalen Automatisierung. Der endgültigen Bestellung müssen die konkret unterstützten Windows-Versionen, Hardware und angebotenen Funktionen zugrunde liegen. Exklusive Unterdrückung einer Zweittastatur gehört ohne geeigneten freigegebenen Filtertreiber nicht zum Lieferumfang. Die erste Store-Fassung ist ohne KI-Assistenten vorgesehen; die tatsächliche Auslieferung ist vor Veröffentlichung zu prüfen. Nicht nachgewiesene Hardwarekompatibilität wird nicht zugesagt. Hersteller-SDKs und deren Nutzungsrechte werden nicht mitverkauft.
+
+Vor Veröffentlichung sind die verbindlichen Systemvoraussetzungen anhand des ausgelieferten Pakets sowie Vertragsschluss, angebotene Zahlungsmittel und der späteste Bereitstellungszeitpunkt anhand des tatsächlichen Kaufablaufs zu ergänzen. Das ursprüngliche Entwicklungsziel Windows 11 x64 allein ist noch kein Nachweis einer für das endgültige Store-Paket geprüften Mindestversion.
 
 ## Preis und Nutzungsrecht
 
 Der Kaufpreis beträgt einmalig 29,00 EUR brutto einschließlich anwendbarer Umsatzsteuer. Es gibt kein Abonnement und keine automatische Verlängerung. Nach Zahlung erhält eine natürliche Person ein einfaches Nutzungsrecht an Hauptversion 1 auf gleichzeitig bis zu vier eigenen Windows-PCs; berufliche und gewerbliche Nutzung dieser Person ist erlaubt. Eine Lizenz ist keine Mehrpersonen- oder Teamlizenz. Die Nutzung der gekauften Hauptversion ist zeitlich unbefristet; die Lizenz enthält kein Laufzeitende.
 
 Fehlerkorrekturen und kleinere Updates der gekauften Hauptversion sind enthalten. Neue Hauptversionen können gesondert angeboten werden; ihr Kauf ist freiwillig. Gesetzliche Ansprüche einschließlich erforderlicher Aktualisierungen und Sicherheitsupdates bleiben unberührt. Es wird weder ein unbegrenzter individueller Support noch ein SLA oder ein Anspruch auf alle späteren Hauptversionen vereinbart.
+
+Die Mindestdauer für zugesagte Softwareaktualisierungen ist vom Anbieter noch nicht festgelegt und darf nicht erfunden werden. Bei den vorvertraglichen Informationen ist [Artikel 246a § 1 Abs. 1 Nr. 11b und 11c EGBGB](https://www.gesetze-im-internet.de/bgbeg/art_246a__1.html) anhand des konkreten Angebots zu berücksichtigen.
 
 ## Bereitstellung und Aktivierung
 
