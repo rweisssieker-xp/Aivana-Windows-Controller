@@ -1,4 +1,5 @@
 import { activationSql } from './activation-sql.mjs';
+import { sendPurchaseJob, sendWithdrawalJob } from './delivery-dispatch.mjs';
 
 const enc = new TextEncoder();
 const b64 = (b) =>
@@ -344,6 +345,30 @@ async function pruneRateLimits(env, now) {
     .bind(now)
     .run();
 }
+async function processTestMailQueues(env) {
+  // This path cannot send live mail. It requires separately installed test
+  // tables, an explicit test recipient, and a test-only sender configuration.
+  if (env.MAIL_DELIVERY_TEST_ENABLED !== 'true' || env.STRIPE_LIVE !== 'false' || !env.TEST_MAIL_RECIPIENT || !env.MAIL_SENDER || !env.EMAIL) return;
+  const purchases=(await env.DB.prepare("SELECT j.order_id FROM confirmation_jobs j LEFT JOIN mail_dispatch_attempts m ON m.kind='purchase' AND m.job_id=j.order_id WHERE m.job_id IS NULL ORDER BY j.created_at LIMIT ?").bind(5).all()).results;
+  const withdrawals=(await env.DB.prepare("SELECT q.request_id FROM withdrawal_receipts q JOIN withdrawal_requests r ON r.id=q.request_id LEFT JOIN mail_dispatch_attempts m ON m.kind='withdrawal' AND m.job_id=q.request_id WHERE q.status='pending' AND m.job_id IS NULL ORDER BY r.received_at LIMIT ?").bind(5).all()).results;
+  let issues=0;
+  for (const row of purchases) {
+    if (!providerReady(env)) { issues++; continue; }
+    try {
+      const result=await sendPurchaseJob({db:env.DB,env,binding:env.EMAIL,jobId:row.order_id,validateSession,loadSession:sid=>stripe(env,`checkout/sessions/${encodeURIComponent(sid)}?expand[]=line_items.data.price.product`)});
+      if (!['accepted_by_provider','already_claimed'].includes(result.status)) issues++;
+    } catch { issues++; }
+  }
+  for (const row of withdrawals) {
+    try {
+      const result=await sendWithdrawalJob({db:env.DB,env,binding:env.EMAIL,jobId:row.request_id});
+      if (!['accepted_by_provider','already_claimed'].includes(result.status)) issues++;
+    } catch { issues++; }
+  }
+  // Re-signal unresolved or abandoned claims; never resend automatically.
+  const unresolved=await env.DB.prepare("SELECT COUNT(*) AS count FROM mail_dispatch_attempts WHERE state='unknown' OR (state='processing' AND started_at<=?)").bind(Date.now()-120000).first();
+  if (issues || unresolved?.count > 0) throw new Error('Test mail requires operator review');
+}
 export default {
   async scheduled(_controller, env, _ctx) {
     // Use execution time, never an event-supplied future timestamp that could
@@ -352,6 +377,7 @@ export default {
     const now = Date.now();
     await pruneRateLimits(env, now);
     await env.DB.prepare('DELETE FROM checkout_authorizations WHERE expires_at <= ?').bind(now).run();
+    await processTestMailQueues(env);
   },
   async fetch(req, e) {
     try {

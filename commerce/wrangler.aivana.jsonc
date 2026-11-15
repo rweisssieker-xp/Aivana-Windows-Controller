@@ -16,6 +16,7 @@
     "SALES_ENABLED": "false",
     "LEGAL_APPROVED": "false",
     "STRIPE_LIVE": "false",
+    "MAIL_DELIVERY_TEST_ENABLED": "false",
     "PUBLIC_ORIGIN": "https://kaufen.aivana-gmbh.ai",
     "STRIPE_PRICE_ID": "",
     "STRIPE_PRODUCT_ID": "",

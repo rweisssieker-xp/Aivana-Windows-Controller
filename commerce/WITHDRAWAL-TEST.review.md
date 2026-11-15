@@ -1,5 +1,7 @@
 # Elektronischer Widerruf – isolierte Testvorbereitung
 
+**Ergänzung 15. November 2026:** Die isolierte Widerrufswarteschlange kann im ausdrücklich gesperrten Testmodus über die vorbereitete Cloudflare-Bindung eine synthetische Eingangsbestätigung an ein festes eigenes Testpostfach übermitteln. Der tatsächliche Posteingang wurde geprüft; ein fehlerhafter Anbieteraufruf blieb ungeklärt und wurde nicht automatisch wiederholt. Der Widerrufs-Endpunkt bleibt unmontiert, und keine echten Kundenerklärungen werden verarbeitet. Zustell- und Bounce-Ereignisse, Missbrauchsschutz und der produktive Betreiberprozess fehlen weiterhin. Einzelheiten: `DELIVERY-IMPLEMENTATION.review.md`.
+
 Stand 12. November 2026. **Kein Produktivverfahren und keine rechtliche Freigabe.** Die Dateien `withdrawal.mjs` und `migrations/0010_withdrawal.sql` sind nicht im Kaufdienst eingebunden, nicht deployt und verarbeiten keine echten Kundenanfragen. Die Live-Kaufsperre bleibt bestehen. Ein auf dem Testbildschirm gespeicherter Datensatz ist keine nachgewiesene Zustellung einer Eingangsbestätigung.
 
 ## Amtliche Anforderungen und Prüfkontext
