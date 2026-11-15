@@ -6,6 +6,12 @@
   "workers_dev": false,
   "preview_urls": false,
   "routes": [],
+  "send_email": [
+    {
+      "name": "EMAIL",
+      "allowed_sender_addresses": ["noreply@makrivo.aivana-gmbh.ai"]
+    }
+  ],
   "vars": {
     "SALES_ENABLED": "false",
     "LEGAL_APPROVED": "false",
