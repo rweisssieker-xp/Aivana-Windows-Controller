@@ -1,10 +1,18 @@
 # MAKRIVO disabled Cloudflare deployment — 2026-10-26
 
+## 15 November 2026: sending domain and disabled binding
+
+The user signed in to the Cloudflare account owning the active `aivana-gmbh.ai` zone. The dedicated sending domain `makrivo.aivana-gmbh.ai` was created, with message-content preview disabled and suppression dropping disabled. Cloudflare created separate bounce MX/SPF, DKIM and DMARC DNS records. Public DNS checks observed those records and the existing apex MX still pointed to Microsoft. No account-wide mail configuration or tariff was changed.
+
+After a remote check showed zero orders and authorizations, a private export was restored in memory and passed `PRAGMA integrity_check`. Migration 0012 was applied; a remote query confirmed the expiry index and zero orders and authorizations. Source commit `b83971d` was deployed as Worker version `ad3401ed-5eef-4c79-94af-bbc6adbb73fa`, with an email binding restricted to `noreply@makrivo.aivana-gmbh.ai`. Deploy output confirms `SALES_ENABLED=false`, `LEGAL_APPROVED=false`, `STRIPE_LIVE=false`, empty Stripe and signer identifiers, and the five-minute schedule. No public route was added. The Worker does not yet invoke the email adapter, so this binding does not send customer messages or fulfill confirmation duties.
+
+A single synthetic test message was sent using the Cloudflare REST API to the authenticated account owner's own Gmail mailbox. Cloudflare initially queued it, and Gmail subsequently showed the message in Inbox with SPF, DKIM and DMARC all passing. This verifies that particular sender and destination through the REST API, not the Worker binding, actual purchase, queue processing, bounces, or general delivery. No customer data or payment was involved. The account's paid-plan status remains unverified because the token could not read subscriptions. No live sale has been enabled.
+
 ## 15 November 2026: expiry cleanup prepared locally
 
 The source now includes scheduled deletion of expired `checkout_authorizations`, and migration `0012_checkout_authorization_expiry.sql` adds an expiry index. The full Node suite passed 114 tests, including expiry boundary, valid/renewed authorization preservation, recovery after cleanup and migration replay. A separate local workerd/D1 instance returned page 200, disabled checkout 503 and scheduled handler 200; a synthetic expired authorization was removed while an active authorization and both synthetic orders remained. These are local results, not a remote concurrency or production test.
 
-A read-only remote database query could not run because the Cloudflare authentication session was unavailable. Migration 0012 was not applied remotely, and the updated Worker was not deployed. Before any deployment, verify the exact account/database and current schema, restore and check an appropriate backup, apply the migration, deploy with sales and legal flags disabled, and verify the version and schedule. Do not activate sales. The previous 12 November deployment is the last confirmed remote status, not a fresh remote check.
+At that earlier check the Cloudflare authentication session was unavailable, so migration 0012 was not yet applied or deployed. The later authenticated deployment and backup are recorded above. Sales remain disabled.
 
 ## 12 November 2026: digital-content declarations
 
