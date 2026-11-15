@@ -38,6 +38,8 @@ The following independently worded text is an additional way to prepare an unequ
 >
 > Order date, if known: ____________________
 >
+> Receipt date, where relevant to your contract: ____________________
+>
 > Name: ____________________
 >
 > Address: ____________________

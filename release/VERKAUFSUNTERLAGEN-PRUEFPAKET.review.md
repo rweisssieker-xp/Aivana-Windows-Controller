@@ -8,6 +8,7 @@ Stand 15. November 2026. **Arbeits- und Prüfpaket; kein veröffentlichter Vertr
 - `EULA.en.review.md`: englische Gegenfassung des Lizenz- und Verkaufsentwurfs für die gemeinsame fachliche Prüfung.
 - `VERBRAUCHERHINWEISE.review.md`: deutscher Verbraucher- und Widerrufsentwurf mit Verkäuferanschrift und Verweis auf das amtliche Muster.
 - `WIDERRUF-DE-KUNDENTEXT.review.md` und `WITHDRAWAL-EN-CUSTOMER-DRAFT.review.md`: ausführlichere Widerrufsbelehrung und eigene Erklärungshilfe für den deutschen Fall; das amtliche Muster muss noch in den Kundenunterlagen bereitgestellt werden.
+- `MUSTER-WIDERRUF-QUELLE.review.json`: maschinenlesbarer Quellen- und Empfängervermerk zum amtlichen deutschen Formular. Er enthält nicht das vollständige amtliche Formular und ist keine Kundenunterlage.
 - `DIGITALE-INHALTE-ZUSTIMMUNG-DE-EN.review.md`: separate DE-/EN-Prüftexte für Zustimmung und Kenntnisbestätigung mit den noch zu prüfenden Prozessbedingungen.
 - `WELTWEIT-MARKTMATRIX.review.md`: gebietsbezogene Aufgaben mit Beispielen amtlicher Quellen und ausdrücklich offenen Freigabeständen.
 - `VERTRAGSBESTAETIGUNG-DE-EN.review.md`: deutsch-englische Vorlage für eine spätere vollständige Vertragsbestätigung mit gekennzeichneten Pflichtinhalten und Umsetzungsanforderungen.

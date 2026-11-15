@@ -28,6 +28,12 @@ Bei Anfragen erhält die Hosting-Infrastruktur Netzwerkdaten einschließlich der
 
 Kauf- und Aktivierungsdaten verarbeiten wir zur Vertragserfüllung (Art. 6 Abs. 1 lit. b DSGVO), erforderliche Buchführungsunterlagen zur Erfüllung gesetzlicher Pflichten (lit. c) und notwendige Missbrauchsschutzdaten aufgrund unseres berechtigten Interesses am Schutz des Dienstes und Lizenzsystems (lit. f). Erforderliche Kauf-, Rechnungs- und Aktivierungsdaten werden für den Abschluss der Transaktion beziehungsweise die Gerätezuordnung benötigt; ohne sie können diese Leistungen nicht erbracht werden.
 
+## Vorbereitung von Vertrags- und Widerrufsbestätigungen
+
+Der folgende Abschnitt beschreibt ausschließlich den beabsichtigten Datenfluss zur Prüfung; der öffentliche Widerruf und der Versand an Kunden sind noch nicht freigegeben. Bei einer Widerrufserklärung sollen Name, Vertragsangaben, Kontaktadresse, erklärter Inhalt sowie Datum und Uhrzeit des Eingangs verarbeitet werden, um die Erklärung zu bearbeiten und den Eingang zu bestätigen. Für Vertragsbestätigungen sollen die zu der jeweiligen Bestellung gespeicherten Vertrags- und Erklärungstexte verwendet werden. Die Kontaktadresse darf nicht aus einer unzugeordneten Bestellung übernommen werden.
+
+Für den vorgesehenen Versand über Cloudflare können E-Mail-Adresse, Absender, Betreff, Zeit und Anbieterkennungen sowie Zustell-, Verzögerungs-, Rückläufer- und Fehlermeldungen anfallen. Die Ereigniswarteschlange des Anbieters kann personenbezogene Angaben enthalten; die separate Testdatenbank speichert aus diesen Ereignissen nur Kennungen, Art und Zeitpunkt. Auch diese Kennungen können Personenbezug haben. Zugriff, Speicherdauer, Löschung, Dienstleisterverträge, Verarbeitungsorte und Drittlandübermittlungen müssen für den tatsächlichen Betrieb festgelegt und geprüft werden. Die vorgeschlagenen Rechtsgrundlagen und Inhalte sind mit dem konkreten Betrieb abzugleichen; diese Passage behauptet keine abgeschlossene produktive Einrichtung.
+
 ## Support, Empfänger und Speicherdauer
 
 Wenn Sie uns kontaktieren, verarbeiten wir Ihre Kontaktdaten, Nachricht und Anhänge zur Beantwortung und zum vertraglichen Support (Art. 6 Abs. 1 lit. b DSGVO). Bei anderen Anfragen ist unser berechtigtes Interesse an der Beantwortung die Grundlage (lit. f). Senden Sie nur für das Problem erforderliche Diagnosedaten.

@@ -1,0 +1,37 @@
+{
+  "status": "source_reference_only_not_in_customer_package",
+  "reviewed_on": "2026-11-15",
+  "purpose": "German statutory withdrawal form; customer use is optional where required information is supplied",
+  "official_source": "https://www.gesetze-im-internet.de/bgbeg/art_253anlage_2.html",
+  "official_source_type": "EGBGB Anlage 2 zu Artikel 246a § 1 Absatz 2 Satz 1 Nummer 1 und § 2 Absatz 2 Nummer 2",
+  "retrieval": {
+    "method": "GET",
+    "http_status": 200,
+    "html_sha256": "2719398990c888c8b2e3d614375694c97cad0025e59169c4b5f710a8856b52f7",
+    "note": "Hash covers the retrieved complete HTML page, including page chrome; it does not certify legal validity or future content."
+  },
+  "recipient_to_insert": {
+    "name": "Aivana GmbH",
+    "street": "Paulusstr. 45a – Hinterhaus – LOFT45",
+    "postal_code": "33602",
+    "city": "Bielefeld",
+    "country": "Deutschland",
+    "email": "info@aivana-gmbh.ai",
+    "source": "https://aivana-gmbh.ai/de/Imprint",
+    "note": "Published imprint checked on 2026-11-15; no independent commercial-register or VAT-ID validation."
+  },
+  "client_completion_fields_to_check": [
+    "contract identification",
+    "order or receipt date as applicable",
+    "consumer name",
+    "consumer address",
+    "signature only for communication on paper",
+    "date"
+  ],
+  "required_before_release": [
+    "Obtain the complete applicable official form, accurately insert the intended recipient and confirm the correct current version with legal counsel.",
+    "Provide the correct form and withdrawal information with pre-contract information and on a durable medium as required; a link or this source reference alone is not proof of provision.",
+    "Implement and test the electronic withdrawal function and acknowledgement required by applicable law.",
+    "Recheck the correct form, language, and mandatory information independently for each jurisdiction."
+  ]
+}

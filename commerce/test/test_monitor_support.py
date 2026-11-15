@@ -1,7 +1,10 @@
 import importlib.util
 import pathlib
 import sqlite3
+import tempfile
 import unittest
+import urllib.error
+from unittest.mock import patch
 
 path = pathlib.Path(__file__).resolve().parents[1] / 'monitor_support.py'
 spec = importlib.util.spec_from_file_location('monitor_support', path)
@@ -102,5 +105,60 @@ class SupportMonitorTests(unittest.TestCase):
         cases=monitor.read_test_cases(self.api,1001)
         self.assertEqual(len(cases['cases']),6)
         self.assertTrue(all(case['reason']=='provider_or_matching_failure' for case in cases['cases']))
+
+    def test_expired_token_refreshes_once_then_restarts_full_test_query(self):
+        calls=[]
+        def token():
+            calls.append('load')
+            return 'expired' if calls.count('load') == 1 else 'renewed'
+        def make_api(value):
+            def api(path,body=None):
+                calls.append((value,path))
+                if value=='expired':
+                    raise urllib.error.HTTPError('https://example.test',401,'expired',None,None)
+                return self.api(path,body)
+            return api
+        def refresh(): calls.append('refresh')
+        result=monitor.run_check(token,refresh,make_api,2_000_000,include_cases=True)
+        self.assertEqual(result['status'],'ok')
+        self.assertEqual(calls.count('refresh'),1)
+        self.assertEqual(calls.count('load'),2)
+        self.assertNotIn('renewed',str(result))
+
+    def test_forbidden_does_not_refresh_and_second_unauthorized_fails(self):
+        refresh=[]
+        def make_api(code):
+            def api(path,body=None):raise urllib.error.HTTPError('https://example.test',code,'denied',None,None)
+            return api
+        with self.assertRaises(urllib.error.HTTPError):
+            monitor.run_check(lambda:'secret',lambda:refresh.append(True),lambda token:make_api(403),2_000_000)
+        self.assertEqual(refresh,[])
+        with self.assertRaises(urllib.error.HTTPError):
+            monitor.run_check(lambda:'secret',lambda:refresh.append(True),lambda token:make_api(401),2_000_000)
+        self.assertEqual(refresh,[True])
+
+    def test_refresh_uses_installed_wrangler_without_interaction_or_output(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=pathlib.Path(directory)
+            node=root/'node.exe'
+            npx=root/'node_modules'/'npm'/'bin'/'npx-cli.js'
+            npx.parent.mkdir(parents=True)
+            node.touch();npx.touch()
+            with patch.dict(monitor.os.environ,{'CLOUDFLARE_API_TOKEN':'never-pass-this'}), patch.object(monitor.shutil,'which',return_value=str(node)), patch.object(monitor.subprocess,'run') as run:
+                monitor.refresh_wranger_session()
+                args,kwargs=run.call_args
+                self.assertIn('--no-install',args[0])
+                self.assertIn('--package=wrangler@4.153.0',args[0])
+                self.assertEqual(kwargs['stdin'],monitor.subprocess.DEVNULL)
+                self.assertEqual(kwargs['stdout'],monitor.subprocess.DEVNULL)
+                self.assertEqual(kwargs['stderr'],monitor.subprocess.DEVNULL)
+                self.assertTrue(kwargs['check'])
+                self.assertEqual(kwargs['timeout'],60)
+                self.assertNotIn('CLOUDFLARE_API_TOKEN',kwargs['env'])
+
+    def test_refresh_refuses_to_run_when_npx_is_missing(self):
+        with tempfile.TemporaryDirectory() as directory:
+            with patch.object(monitor.shutil,'which',return_value=str(pathlib.Path(directory)/'node.exe')):
+                with self.assertRaises(RuntimeError): monitor.refresh_wranger_session()
 
 if __name__ == '__main__': unittest.main()

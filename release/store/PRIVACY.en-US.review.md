@@ -28,6 +28,12 @@ Requests expose network information, including the IP address, to the hosting in
 
 We process purchase and activation information to perform the contract (Article 6(1)(b) GDPR), required accounting records to meet legal obligations (Article 6(1)(c)), and necessary abuse-prevention information in our legitimate interest in protecting the service and license system (Article 6(1)(f)). Required purchase, billing and activation information is needed to complete the transaction or allocate a device; without it, those services cannot be provided.
 
+## Proposed contract and withdrawal confirmations
+
+The following describes a proposed data flow for review only; public withdrawal and customer email delivery have not been approved. To handle a withdrawal and acknowledge receipt, the proposed service would process the consumer's name, contract details, contact address, declaration, and date and time of receipt. Contract confirmations would use the terms and declarations saved for the particular purchase. A contact address must not be taken from an unrelated order.
+
+The proposed Cloudflare delivery process can involve email address, sender, subject, time, provider identifiers and delivery, delay, bounce or failure events. The provider's event queue can contain personal information; the separate test database retains only event and message identifiers, event type and time. Those identifiers may still be personal data. Access, retention and deletion, provider agreements, processing locations and international transfers must be established and reviewed for the actual operation. Proposed legal bases and wording must be reconciled with that operation; this paragraph does not claim that a production service has been completed.
+
 ## Support, recipients and retention
 
 If you contact us, we process your contact details, message and attachments to answer the request and provide contractual support (Article 6(1)(b)); for other enquiries, our legitimate interest in responding is the basis (Article 6(1)(f)). Send only diagnostics needed for the issue.

@@ -142,3 +142,28 @@ test('many completed sends do not hide a later unresolved attempt',async()=>{
  db.raw.exec("INSERT INTO mail_dispatch_attempts VALUES('withdrawal','unresolved','unknown',100,101,NULL)");
  assert.deepEqual(await listTestMailIssues(db,1800000),[{kind:'withdrawal',jobId:'unresolved',reason:'outcome_unknown'}]);
 });
+
+test('operator can page all mixed mail issues sharing a timestamp without duplicates or omissions',async()=>{
+ const db=database(),add=db.raw.prepare("INSERT INTO mail_dispatch_attempts VALUES(?,?,'unknown',100,101,NULL)");
+ add.run('purchase','same');add.run('withdrawal','same');add.run('purchase','third');
+ db.raw.exec("INSERT INTO mail_delivery_events VALUES('event-one','unmatched-one','bounced',100),('event-two','unmatched-two','failed',100)");
+ const {listTestMailIssuesPage}=await import('../mail-events.mjs');
+ const all=[];let cursor=null;
+ do {const page=await listTestMailIssuesPage(db,{now:1800000,limit:2,cursor});assert.ok(page.items.length<=2);all.push(...page.items);cursor=page.nextCursor;} while(cursor);
+ assert.equal(all.length,5);assert.equal(new Set(all.map(x=>JSON.stringify(x))).size,5);
+ assert.deepEqual(new Set(all.map(x=>x.eventId||`${x.kind}:${x.jobId}`)),new Set(['purchase:same','withdrawal:same','purchase:third','event-one','event-two']));
+});
+
+test('operator can page unclaimed jobs across purchase and withdrawal',async()=>{
+ const db=database();db.raw.exec("CREATE TABLE confirmation_jobs(order_id TEXT PRIMARY KEY,created_at INTEGER NOT NULL);CREATE TABLE withdrawal_requests(id TEXT PRIMARY KEY,received_at INTEGER NOT NULL);CREATE TABLE withdrawal_receipts(request_id TEXT PRIMARY KEY,status TEXT NOT NULL);INSERT INTO confirmation_jobs VALUES('b',1),('a',1);INSERT INTO withdrawal_requests VALUES('a',1),('c',1);INSERT INTO withdrawal_receipts VALUES('a','pending'),('c','pending')");
+ const {listUnclaimedTestMailJobsPage}=await import('../mail-events.mjs');
+ const items=[];let cursor=null;do{const page=await listUnclaimedTestMailJobsPage(db,{now:1800000,limit:1,cursor});items.push(...page.items);cursor=page.nextCursor;}while(cursor);
+ assert.deepEqual(items.map(x=>`${x.kind}:${x.jobId}`),['purchase:a','purchase:b','withdrawal:a','withdrawal:c']);
+});
+
+test('pagination rejects malformed cursors and unbounded pages',async()=>{
+ const db=database(),{listTestMailIssuesPage}=await import('../mail-events.mjs');
+ await assert.rejects(listTestMailIssuesPage(db,{now:1800000,limit:0}));
+ await assert.rejects(listTestMailIssuesPage(db,{now:1800000,limit:501}));
+ await assert.rejects(listTestMailIssuesPage(db,{now:1800000,cursor:{sortAt:'invalid',category:0,kind:'purchase',id:'x'}}));
+});

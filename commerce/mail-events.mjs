@@ -49,8 +49,21 @@ export async function consumeTestMailEvents(batch,env){
 
 // Restricted, read-only operator data. The caller must authenticate operators;
 // this function is intentionally not exposed as a public HTTP endpoint.
-export async function listTestMailIssues(db,now=Date.now()){
-  if(!Number.isSafeInteger(now)||now<0) throw new TypeError('Invalid clock');
+function pageOptions(options){
+  if(!options||typeof options!=='object'||Array.isArray(options))throw new TypeError('Invalid page options');
+  const now=options.now??Date.now(),limit=options.limit??100;
+  if(!Number.isSafeInteger(now)||now<0)throw new TypeError('Invalid clock');
+  if(!Number.isInteger(limit)||limit<1||limit>500)throw new TypeError('Invalid page size');
+  return {now,limit,cursor:options.cursor??null};
+}
+const cursorText=value=>typeof value==='string'&&value.length>0&&value.length<=1024&&!/[\x00-\x1f\x7f]/.test(value);
+
+// Keyset cursors are operator-only internal data, not authentication tokens.
+// Repeat a full scan after each review cycle: results can change between pages.
+export async function listTestMailIssuesPage(db,options={}){
+  const {now,limit,cursor}=pageOptions(options);
+  if(cursor!==null && (!Number.isSafeInteger(cursor?.sortAt)||![0,1].includes(cursor?.category)||!cursorText(cursor?.id)||
+    (cursor.category===0?!['purchase','withdrawal'].includes(cursor.kind):cursor.kind!=='')))throw new TypeError('Invalid cursor');
   const cutoff=now-15*60*1000;
   const rows=(await db.prepare(`WITH accepted AS (
     SELECT message_id,COUNT(*) AS matches FROM mail_dispatch_attempts WHERE state='accepted' GROUP BY message_id
@@ -74,33 +87,46 @@ export async function listTestMailIssues(db,now=Date.now()){
     FROM mail_dispatch_attempts a LEFT JOIN accepted ON accepted.message_id=a.message_id
     LEFT JOIN signals ON signals.message_id=a.message_id
   ), issues AS (
-    SELECT kind,job_id,NULL AS event_id,reason,started_at AS sort_at FROM classified WHERE reason IS NOT NULL
+    SELECT kind,job_id,NULL AS event_id,reason,started_at AS sort_at,0 AS category,job_id AS reference FROM classified WHERE reason IS NOT NULL
     UNION ALL
-    SELECT NULL,NULL,e.event_id,'unmatched_event',e.event_at FROM mail_delivery_events e
+    SELECT '',NULL,e.event_id,'unmatched_event',e.event_at,1,e.event_id FROM mail_delivery_events e
     WHERE NOT EXISTS (SELECT 1 FROM accepted WHERE accepted.message_id=e.message_id)
-  ) SELECT kind,job_id,event_id,reason FROM issues ORDER BY sort_at,kind,job_id,event_id LIMIT 501`).bind(cutoff,cutoff).all()).results;
-  const issues=rows.slice(0,500).map(row=>row.reason==='unmatched_event'
+  ) SELECT kind,job_id,event_id,reason,sort_at,category,reference FROM issues
+    WHERE ?=0 OR (sort_at,category,kind,reference)>(?,?,?,?)
+    ORDER BY sort_at,category,kind,reference LIMIT ?`).bind(cutoff,cutoff,cursor?1:0,cursor?.sortAt??0,cursor?.category??0,cursor?.kind??'',cursor?.id??'',limit+1).all()).results;
+  const visible=rows.slice(0,limit),items=visible.map(row=>row.reason==='unmatched_event'
     ? {eventId:row.event_id,reason:row.reason}
     : {kind:row.kind,jobId:row.job_id,reason:row.reason});
-  if(rows.length>500)issues.push({reason:'additional_mail_issues'});
-  return issues;
+  const last=visible.at(-1);
+  return {items,nextCursor:rows.length>limit?{sortAt:last.sort_at,category:last.category,kind:last.kind,id:last.reference}:null};
+}
+
+export async function listTestMailIssues(db,now=Date.now()){
+  const page=await listTestMailIssuesPage(db,{now,limit:500});
+  return page.nextCursor?[...page.items,{reason:'additional_mail_issues'}]:page.items;
 }
 
 // Detect jobs that never acquired a dispatch attempt, including jobs which
 // fail preparation indefinitely. This is read-only and does not send mail.
-export async function listUnclaimedTestMailJobs(db,now=Date.now()){
-  if(!Number.isSafeInteger(now)||now<0) throw new TypeError('Invalid clock');
+export async function listUnclaimedTestMailJobsPage(db,options={}){
+  const {now,limit,cursor}=pageOptions(options);
+  if(cursor!==null&&(!['purchase','withdrawal'].includes(cursor?.kind)||!cursorText(cursor?.id)))throw new TypeError('Invalid cursor');
   const cutoff=now-15*60*1000;
-  const rows=(await db.prepare(`SELECT 'purchase' AS kind,j.order_id AS job_id
+  const rows=(await db.prepare(`WITH jobs AS (SELECT 'purchase' AS kind,j.order_id AS job_id
     FROM confirmation_jobs j LEFT JOIN mail_dispatch_attempts a ON a.kind='purchase' AND a.job_id=j.order_id
     WHERE a.job_id IS NULL AND j.created_at<=?
     UNION ALL
     SELECT 'withdrawal' AS kind,q.request_id AS job_id
     FROM withdrawal_receipts q JOIN withdrawal_requests r ON r.id=q.request_id
     LEFT JOIN mail_dispatch_attempts a ON a.kind='withdrawal' AND a.job_id=q.request_id
-    WHERE q.status='pending' AND a.job_id IS NULL AND r.received_at<=?
-    ORDER BY kind,job_id LIMIT 501`).bind(cutoff,cutoff).all()).results;
-  const issues=rows.slice(0,500).map(row=>({kind:row.kind,jobId:row.job_id,reason:'dispatch_not_started'}));
-  if(rows.length>500)issues.push({reason:'additional_unclaimed_jobs'});
-  return issues;
+    WHERE q.status='pending' AND a.job_id IS NULL AND r.received_at<=?)
+    SELECT kind,job_id FROM jobs WHERE ?=0 OR (kind,job_id)>(?,?)
+    ORDER BY kind,job_id LIMIT ?`).bind(cutoff,cutoff,cursor?1:0,cursor?.kind??'',cursor?.id??'',limit+1).all()).results;
+  const visible=rows.slice(0,limit),items=visible.map(row=>({kind:row.kind,jobId:row.job_id,reason:'dispatch_not_started'})),last=visible.at(-1);
+  return {items,nextCursor:rows.length>limit?{kind:last.kind,id:last.job_id}:null};
+}
+
+export async function listUnclaimedTestMailJobs(db,now=Date.now()){
+  const page=await listUnclaimedTestMailJobsPage(db,{now,limit:500});
+  return page.nextCursor?[...page.items,{reason:'additional_unclaimed_jobs'}]:page.items;
 }

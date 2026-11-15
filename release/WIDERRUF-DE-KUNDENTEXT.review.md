@@ -38,6 +38,8 @@ Der folgende frei formulierte Text ist eine zusätzliche Möglichkeit, eine eind
 >
 > Bestelldatum, soweit bekannt: ____________________
 >
+> Erhaltsdatum, soweit für Ihren Vertrag zutreffend: ____________________
+>
 > Name: ____________________
 >
 > Anschrift: ____________________

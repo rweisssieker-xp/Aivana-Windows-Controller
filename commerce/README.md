@@ -2,6 +2,8 @@
 
 Standalone Cloudflare Worker/D1. Seller Aivana GmbH, https://www.aivana-gmbh.ai. €29 gross one-time, one person/four own PCs. Perpetual major version 1. No external website was changed. A disabled deployment without public routes was provisioned on 2026-10-26; see DEPLOYMENT-STATUS.md. No Stripe/signing secret or production sales approval was provisioned.
 
+**Later isolated test work:** With `FULL_CONFIRMATION_TEST_ENABLED=true` and `STRIPE_LIVE=false`, the local test checkout additionally displays and snapshots two synthetic withdrawal documents, and the authorization binds all five historical document digests. The DE/EN withdrawal prototype and its localized receipt require isolated test migration `0018`. Test mail and event monitoring have separate configuration and storage. These features do not enable live checkout or mount a public withdrawal route; the test migrations must not be applied to the remote commerce database as a substitute for production design, privacy review and acceptance. See `CONFIRMATION-PACKAGE.review.md`, `WITHDRAWAL-TEST.review.md` and `MAIL-SUPPORT.review.md`.
+
 Run `npm test` with Node 25. Tests require no packages and use actual SQLite and WebCrypto. Local tests do not replace Stripe/Cloudflare staging acceptance.
 
 ## Operator setup

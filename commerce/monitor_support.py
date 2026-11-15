@@ -8,10 +8,13 @@ import argparse
 import os
 import pathlib
 import re
+import shutil
+import subprocess
 import sys
 import time
 import tomllib
 import urllib.request
+import urllib.error
 
 ACCOUNT = '4b0fd8180d954c7db4b4a0bacbe2594b'
 SUBSCRIPTION_PATH = 'event_subscriptions/subscriptions/403f7eb689d842e28bfc0ea53d9b24b6'
@@ -121,23 +124,61 @@ def cloudflare_api(token):
         return payload['result']
     return call
 
+def load_wranger_token():
+    config = pathlib.Path(os.environ['APPDATA']) / 'xdg.config' / '.wrangler' / 'config' / 'default.toml'
+    with config.open('rb') as file:
+        token = tomllib.load(file)['oauth_token']
+    if not isinstance(token,str) or not token:
+        raise ValueError('credential unavailable')
+    return token
+
+def refresh_wranger_session():
+    # Wrangler owns OAuth refresh and credential storage. Never print its
+    # output: even whoami may contain account or email information.
+    node = shutil.which('node')
+    if not node:
+        raise RuntimeError('Node not installed')
+    npx = pathlib.Path(node).resolve().parent / 'node_modules' / 'npm' / 'bin' / 'npx-cli.js'
+    if not npx.is_file():
+        raise RuntimeError('npx not installed')
+    config = pathlib.Path(__file__).resolve().parent / 'wrangler.aivana.jsonc'
+    environment = os.environ.copy()
+    # Do not let an unrelated ambient API key replace this OAuth session or
+    # redirect the authentication request to an unexpected API endpoint.
+    for key in ('CLOUDFLARE_API_TOKEN','CF_API_TOKEN','CLOUDFLARE_API_KEY',
+                'CLOUDFLARE_EMAIL','CLOUDFLARE_API_USER_SERVICE_KEY','CLOUDFLARE_API_BASE_URL'):
+        environment.pop(key,None)
+    subprocess.run([node,str(npx),'--no-install','--package=wrangler@4.153.0','wrangler','whoami','--config',str(config)],
+                   stdin=subprocess.DEVNULL,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,
+                   timeout=60,check=True,creationflags=getattr(subprocess,'CREATE_NO_WINDOW',0),env=environment)
+
+def run_check(load_token,refresh,make_api,now,include_cases=False):
+    # Restart all read-only checks once after a 401, avoiding a mixed snapshot
+    # from two sessions. 403 is a permission problem and must never be retried
+    # as an authentication refresh.
+    for attempt in range(2):
+        token=load_token()
+        try:
+            api=make_api(token)
+            result=read_status(api,now)
+            if include_cases:
+                result['test_cases']=read_test_cases(api,now)
+                if result['test_cases']['truncated']:
+                    result['status']='attention'
+            return result
+        except urllib.error.HTTPError as error:
+            if error.code!=401 or attempt:
+                raise
+            refresh()
+    raise RuntimeError('authentication unavailable')
+
 def main():
     parser = argparse.ArgumentParser(description='Read-only isolated MAKRIVO mail-test status')
     parser.add_argument('--cases',action='store_true',help='include pseudonymous test cases (never customer content)')
     args = parser.parse_args()
     try:
-        config = pathlib.Path(os.environ['APPDATA']) / 'xdg.config' / '.wrangler' / 'config' / 'default.toml'
-        with config.open('rb') as file:
-            token = tomllib.load(file)['oauth_token']
-        if not isinstance(token, str) or not token:
-            raise ValueError('credential unavailable')
-        api = cloudflare_api(token)
         now = int(time.time()*1000)
-        result = read_status(api,now)
-        if args.cases:
-            result['test_cases'] = read_test_cases(api,now)
-            if result['test_cases']['truncated']:
-                result['status'] = 'attention'
+        result = run_check(load_wranger_token,refresh_wranger_session,cloudflare_api,now,args.cases)
         print(json.dumps(result, ensure_ascii=False))
         return 0 if result['status'] == 'ok' else 1
     except Exception:
