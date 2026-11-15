@@ -336,7 +336,7 @@ function providerReady(e) {
     ["true", "false"].includes(e.STRIPE_LIVE),
   );
 }
-// Milliseconds since epoch. Only short-lived abuse counters are pruned here.
+// Milliseconds since epoch. Short-lived abuse counters are pruned here.
 async function pruneRateLimits(env, now) {
   await env.DB.prepare(
     "DELETE FROM rate_limits WHERE expires_at IS NULL OR expires_at <= ?",
@@ -347,8 +347,11 @@ async function pruneRateLimits(env, now) {
 export default {
   async scheduled(_controller, env, _ctx) {
     // Use execution time, never an event-supplied future timestamp that could
-    // delete current request buckets. Errors propagate for operator visibility.
-    await pruneRateLimits(env, Date.now());
+    // delete current records. The SQL predicate protects tokens rotated before
+    // this statement executes; errors propagate for operator visibility.
+    const now = Date.now();
+    await pruneRateLimits(env, now);
+    await env.DB.prepare('DELETE FROM checkout_authorizations WHERE expires_at <= ?').bind(now).run();
   },
   async fetch(req, e) {
     try {

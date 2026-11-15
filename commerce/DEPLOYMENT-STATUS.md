@@ -1,5 +1,11 @@
 # MAKRIVO disabled Cloudflare deployment — 2026-10-26
 
+## 15 November 2026: expiry cleanup prepared locally
+
+The source now includes scheduled deletion of expired `checkout_authorizations`, and migration `0012_checkout_authorization_expiry.sql` adds an expiry index. The full Node suite passed 114 tests, including expiry boundary, valid/renewed authorization preservation, recovery after cleanup and migration replay. A separate local workerd/D1 instance returned page 200, disabled checkout 503 and scheduled handler 200; a synthetic expired authorization was removed while an active authorization and both synthetic orders remained. These are local results, not a remote concurrency or production test.
+
+A read-only remote database query could not run because the Cloudflare authentication session was unavailable. Migration 0012 was not applied remotely, and the updated Worker was not deployed. Before any deployment, verify the exact account/database and current schema, restore and check an appropriate backup, apply the migration, deploy with sales and legal flags disabled, and verify the version and schedule. Do not activate sales. The previous 12 November deployment is the last confirmed remote status, not a fresh remote check.
+
 ## 12 November 2026: digital-content declarations
 
 Before migration `0011_digital_consents.sql`, a remote export was restored into in-memory SQLite and passed `PRAGMA integrity_check`; it contained zero orders and the confirmation-jobs table. The migration was applied to the same isolated D1 database. A remote query confirmed zero orders, declaration rows and checkout authorizations, and all three declaration-protection triggers. The checked backup is `artifacts/store-readiness/makrivo-d1-before-0011-20261112.sql` and must remain private.

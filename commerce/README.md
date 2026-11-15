@@ -65,6 +65,10 @@ The Worker also has an awaited scheduled handler; wrangler.jsonc configures `*/5
 
 The disabled Aivana deployment has a remotely imported fresh schema and verified five-minute schedule; actual delivery evidence is tracked in DEPLOYMENT-STATUS.md. Other environments still require their own cron deployment and remote D1 verification. After the operator deploys, verify the five-minute trigger and successful scheduled execution, expired/NULL row removal and active-row preservation against staging D1; test cron locally via Wrangler's scheduled-handler endpoint. Local automated tests invoke the actual exported scheduled handler against SQLite; they do not prove Cloudflare delivery or timing. Primary references checked 2026-10-26: [scheduled handler](https://developers.cloudflare.com/workers/runtime-apis/handlers/scheduled/) and [Cron Triggers configuration](https://developers.cloudflare.com/workers/configuration/cron-triggers/).
 
+## Expired checkout authorization cleanup — source only
+
+The 15 November source also deletes `checkout_authorizations` rows at or past `expires_at` in the scheduled handler, using execution time. A new preview can create a fresh authorization after expiry; an already expired token is not restored. Apply migration `0011_digital_consents.sql` first and then `0012_checkout_authorization_expiry.sql` to an identified and backed-up existing environment before deploying this handler. Fresh `schema.sql` contains the index. Scheduled errors propagate and require monitoring; outages and backups can retain hashes longer. The remote Aivana Worker still runs the prior source until an operator updates it. Other orders, evidence, devices, payment events and refund tombstones are not deleted by this cleanup. This is not a complete privacy or deletion process.
+
 
 ## Checkout recovery migration
 

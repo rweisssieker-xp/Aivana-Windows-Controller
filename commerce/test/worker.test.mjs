@@ -1091,6 +1091,68 @@ test("scheduled cleanup preserves newer buckets and commerce records without sal
   ])
     assert.equal(db.raw.prepare("SELECT count(*) n FROM " + table).get().n, 1);
 });
+test('scheduled cleanup removes only expired checkout authorizations and keeps purchase records', async () => {
+  const db = database(), now = 1800000000000, originalNow = Date.now;
+  for (const id of ['expired', 'boundary', 'active']) {
+    db.raw.prepare('INSERT INTO orders(id,claim_hash,created_at) VALUES(?,?,?)').run(id,'claim-'+id,now);
+  }
+  const put = db.raw.prepare('INSERT INTO checkout_authorizations(order_id,token_hash,snapshot_digest,expires_at,used_at) VALUES(?,?,?,?,?)');
+  put.run('expired','hash-expired','snapshot',now-1,null);
+  put.run('boundary','hash-boundary','snapshot',now,now-1000);
+  put.run('active','hash-active','snapshot',now+1,null);
+  Date.now = () => now;
+  try {
+    await worker.scheduled({scheduledTime:now+999999}, {DB:db}, {});
+    assert.deepEqual(db.raw.prepare('SELECT order_id FROM checkout_authorizations ORDER BY order_id').all().map(r=>r.order_id), ['active']);
+    assert.equal(db.raw.prepare('SELECT count(*) n FROM orders').get().n,3);
+  } finally { Date.now = originalNow; }
+});
+
+test('a buyer can review and resume after an expired authorization is cleaned', async () => {
+  const db=database(), e=configured(db);
+  const post=(path,body)=>worker.fetch(new Request(e.PUBLIC_ORIGIN+path,{method:'POST',headers:{Origin:e.PUBLIC_ORIGIN},body:JSON.stringify(body)}),e);
+  const prep=await post('/api/checkout/prepare',{acceptTerms:true,lang:'de',contractDigest:await fixtureDigest('de'),...await declarationFields('de')});
+  assert.equal(prep.status,200);
+  const first=await prep.json();
+  db.raw.prepare('UPDATE checkout_authorizations SET expires_at=?').run(Date.now()-1);
+  await worker.scheduled({}, {DB:db}, {});
+  assert.equal(db.raw.prepare('SELECT count(*) n FROM checkout_authorizations').get().n,0);
+  const preview=await post('/api/checkout/preview',{recoveryCode:first.recoveryCode});
+  assert.equal(preview.status,200);
+  const second=await preview.json();
+  assert.notEqual(second.checkoutToken,first.checkoutToken);
+  assert.equal(second.terms.text,'Testbedingungen');
+  assert.equal(db.raw.prepare('SELECT count(*) n FROM checkout_authorizations').get().n,1);
+});
+
+test('a token renewed before the cleanup statement is not deleted', async () => {
+  const db=database(), now=Date.now();
+  db.raw.prepare('INSERT INTO orders(id,claim_hash,created_at) VALUES(?,?,?)').run('o','h',now);
+  db.raw.prepare('INSERT INTO checkout_authorizations VALUES(?,?,?,?,?)').run('o','expired-hash','snapshot',now-1,null);
+  let resume; const paused=new Promise(resolve=>{resume=resolve;});
+  let reached; const started=new Promise(resolve=>{reached=resolve;});
+  const wrapped={prepare(sql){
+    const prepared=db.prepare(sql);
+    if (!sql.startsWith('DELETE FROM checkout_authorizations')) return prepared;
+    return {bind(...args){const bound=prepared.bind(...args);return {async run(){reached();await paused;return bound.run();}};}};
+  }};
+  const task=worker.scheduled({}, {DB:wrapped}, {});
+  await started;
+  db.raw.prepare('UPDATE checkout_authorizations SET token_hash=?,expires_at=? WHERE order_id=?').run('new-hash',now+120000,'o');
+  resume(); await task;
+  assert.equal(db.raw.prepare('SELECT token_hash FROM checkout_authorizations WHERE order_id=?').get('o').token_hash,'new-hash');
+});
+
+test('authorization expiry index migration preserves existing records and can be applied again', () => {
+  const db=database(), sql=readFileSync(new URL('../migrations/0012_checkout_authorization_expiry.sql',import.meta.url),'utf8');
+  db.raw.prepare('INSERT INTO orders(id,claim_hash,created_at) VALUES(?,?,?)').run('o','h',1);
+  db.raw.prepare('INSERT INTO checkout_authorizations VALUES(?,?,?,?,?)').run('o','token','snapshot',1,null);
+  db.raw.exec('DROP INDEX checkout_authorizations_expiry');
+  db.raw.exec(sql); db.raw.exec(sql);
+  assert.equal(db.raw.prepare("SELECT count(*) n FROM sqlite_master WHERE type='index' AND name='checkout_authorizations_expiry'").get().n,1);
+  assert.equal(db.raw.prepare('SELECT count(*) n FROM checkout_authorizations').get().n,1);
+});
+
 test("explicit existing-install migration preserves buckets then prunes legacy raw IP rows", async () => {
   const db = database();
   db.raw.exec(
