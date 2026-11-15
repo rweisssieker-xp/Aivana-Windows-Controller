@@ -1,0 +1,22 @@
+{
+  "name": "makrivo-mail-monitor-test",
+  "main": "mail-monitor-test-worker.mjs",
+  "account_id": "REPLACE_TEST_ACCOUNT_ID",
+  "compatibility_date": "2026-10-01",
+  "workers_dev": false,
+  "preview_urls": false,
+  "routes": [],
+  "vars": {
+    "MAIL_EVENT_TEST_ENABLED": "false",
+    "STRIPE_LIVE": "false",
+    "MAIL_EVENT_QUEUE": "makrivo-mail-events-test",
+    "MAIL_EVENT_ACCOUNT": "REPLACE_TEST_ACCOUNT_ID",
+    "MAIL_EVENT_ZONE": "REPLACE_ZONE_ID",
+    "MAIL_EVENT_SUBSCRIPTION": "REPLACE_TEST_SUBSCRIPTION_ID",
+    "MAIL_EVENT_DOMAIN": "REPLACE_TEST_DOMAIN",
+    "MAIL_SENDER": "REPLACE_TEST_SENDER",
+    "TEST_MAIL_RECIPIENT": "REPLACE_OWN_TEST_RECIPIENT"
+  },
+  "d1_databases": [{"binding": "DB", "database_name": "makrivo-mail-monitor-test", "database_id": "REPLACE_ISOLATED_TEST_DATABASE_ID"}],
+  "queues": {"consumers": [{"queue": "makrivo-mail-events-test", "dead_letter_queue": "makrivo-mail-events-test-dlq", "max_retries": 3, "max_batch_timeout": 5}]}
+}

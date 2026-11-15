@@ -1,5 +1,6 @@
 import { activationSql } from './activation-sql.mjs';
 import { sendPurchaseJob, sendWithdrawalJob } from './delivery-dispatch.mjs';
+import { consumeTestMailEvents, listTestMailIssues } from './mail-events.mjs';
 
 const enc = new TextEncoder();
 const b64 = (b) =>
@@ -370,6 +371,9 @@ async function processTestMailQueues(env) {
   if (issues || unresolved?.count > 0) throw new Error('Test mail requires operator review');
 }
 export default {
+  async queue(batch, env) {
+    await consumeTestMailEvents(batch, env);
+  },
   async scheduled(_controller, env, _ctx) {
     // Use execution time, never an event-supplied future timestamp that could
     // delete current records. The SQL predicate protects tokens rotated before
@@ -378,6 +382,10 @@ export default {
     await pruneRateLimits(env, now);
     await env.DB.prepare('DELETE FROM checkout_authorizations WHERE expires_at <= ?').bind(now).run();
     await processTestMailQueues(env);
+    if (env.MAIL_EVENT_TEST_ENABLED === 'true' && env.STRIPE_LIVE === 'false') {
+      const issues=await listTestMailIssues(env.DB,now);
+      if (issues.length) throw new Error('Test mail events require operator review');
+    }
   },
   async fetch(req, e) {
     try {

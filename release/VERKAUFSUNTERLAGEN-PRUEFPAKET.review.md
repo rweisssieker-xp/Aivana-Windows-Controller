@@ -1,0 +1,21 @@
+# MAKRIVO: Unterlagen und Widerrufsweg für die Freigabe
+
+Stand 15. November 2026. **Arbeits- und Prüfpaket; kein veröffentlichter Vertrag und keine Rechts- oder Steuerfreigabe.** Die Geschäftsvorgabe lautet 29 Euro einmalig, eine Person auf bis zu vier eigenen PCs, kommerzielle Nutzung erlaubt und kein Abonnement. Die erste Store-Fassung soll keinen KI-Assistenten enthalten. Weltweiter Vertrieb ist gewünscht, aber bislang für kein Marktgebiet vollständig freigegeben.
+
+## Vorliegende Texte
+
+- `EULA-review-draft.md`: Entwurf von Lizenz- und Verkaufsbedingungen für MAKRIVO.
+- `VERBRAUCHERHINWEISE.review.md`: deutscher Verbraucher- und Widerrufsentwurf mit Verkäuferanschrift und Verweis auf das amtliche Muster.
+- Die bestehenden Datenschutzentwürfe DE/EN sowie `commerce/DIGITAL-CONSENT.review.md`, `commerce/CONTRACT-EVIDENCE.review.md` und `commerce/WITHDRAWAL-TEST.review.md` beschreiben den vorbereiteten Daten- und Nachweisprozess. Diese Texte enthalten offene Punkte und sind nicht automatisch Bestandteil einer versandten Vertragsbestätigung.
+
+## Freigabe am tatsächlichen Kaufweg
+
+1. Richtiges Aivana-GmbH-Stripe-Konto, Verkäuferidentität, zulässige Märkte, Steuern und Preisangabe je Markt verbindlich festlegen. Angebotsdarstellung, Zahlungsarten, Leistungsumfang, Voraussetzungen, Bereitstellung, Support und Updatepflichten anhand der tatsächlich verfügbaren Version vervollständigen. Gesetzliche Verbraucherrechte nicht pauschal ausschließen.
+2. Für jedes tatsächlich erreichbare Land und jeden Kundentyp sämtliche notwendigen Informationen und Übersetzungen sowie Zahlungs-, Steuer-, Verbraucher- und Datenschutzregeln fachlich prüfen. DE/EN alleine belegen keine weltweite Eignung. Nicht freigegebene Konstellationen technisch ausschließen; es ist gegenwärtig keine solche weltweite Freigabe dokumentiert.
+3. Rechtsverbindliche Dokumentfassungen und die erforderliche Widerrufsbelehrung mit zutreffendem [amtlichem Musterformular](https://www.gesetze-im-internet.de/bgbeg/art_253anlage_2.html) erstellen und vor Bestellung anzeigen. Für den deutschen Anwendungsfall die Anforderungen aus [§ 356a BGB](https://www.gesetze-im-internet.de/bgb/__356a.html) an die ständig verfügbare, deutlich erkennbare zweistufige elektronische Widerrufsfunktion und ihre unverzügliche Bestätigung erfüllen und testen. Die vorhandene Widerrufsseite ist ausschließlich ein lokaler Test und nicht öffentlich angeschlossen.
+4. Getrennte, nicht vorausgewählte Zustimmungen zum vorzeitigen Beginn und Kenntnisbestätigung für digitale Inhalte, falls rechtlich erforderlich, am tatsächlichen Ablauf prüfen. Ein mögliches Erlöschen des Widerrufsrechts hängt von allen einschlägigen Voraussetzungen ab; eine bloße Checkbox genügt als Nachweis nicht automatisch. Keine pauschale Behauptung eines Rechtsverlusts.
+5. Den vollständigen Inhalt der Vertragsbestätigung bestimmen und zusammen mit den zum konkreten Kauf angenommenen Textfassungen, Erklärungen und den erforderlichen Widerrufsinformationen auf einem dauerhaften Datenträger übermitteln. Zeitpunkte, Inhalt, Datenminimierung, Zustellung und sichere Wiederholung prüfen. Die bisherige Testmail enthält synthetische Inhalte und erfüllt diesen Punkt nicht.
+6. Funktionsfähigen Widerrufsempfang mit Bestätigung, Missbrauchsschutz, Support, Fristen, sicherer Zuordnung, geregelter Rückabwicklung sowie Datenschutz, Löschung, Verantwortlichkeit und Eskalation vor Freischaltung nachweisen. Kein Zugriff auf geheime Wiederherstellungscodes für den Support.
+7. Freigegebene Fassungen unveränderlich versionieren, in DE/EN und allen erforderlichen weiteren Sprachfassungen am tatsächlichen Checkout prüfen, den rechtlichen und technischen Freigabestand festhalten und mit realem isoliertem End-to-End-Test nachweisen. Live-Verkaufs- und Lizenzausgabesperren erst nach vollständiger Abnahme technisch überarbeiten.
+
+Das Testdatenmodell speichert den Inhalt akzeptierter Texte und zweier Erklärungen bestellungsbezogen. Es enthält derzeit weder einen vollständigen dauerhaft übermittelten Vertrag noch eine freigegebene Aufbewahrungs- und Löschlösung. Bereits ausgestellte Offline-Lizenzen können nicht zuverlässig aus der Ferne deaktiviert werden; eine Rückabwicklung darf dies nicht anders darstellen.
