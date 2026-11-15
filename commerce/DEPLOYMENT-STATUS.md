@@ -1,5 +1,11 @@
 # MAKRIVO disabled Cloudflare deployment — 2026-10-26
 
+## 15 November 2026: restricted queue-dispatch code
+
+Source commit `4a69104` was deployed as Worker version `29c0e53a-fddd-4fab-9003-3e4df44d3837`. Authenticated settings inspection confirmed the email binding and `MAIL_DELIVERY_TEST_ENABLED=false`, `SALES_ENABLED=false`, `LEGAL_APPROVED=false`, `STRIPE_LIVE=false`. There is no public route. The remote database has not had test-only migrations 0010 or 0013 applied; the disabled worker does not access those tables. A local workerd run using that non-test configuration returned page 200, disabled checkout 503 and scheduled handler 200 without the test-only tables.
+
+With an isolated **local** D1, separate synthetic order and withdrawal records, and a remote Cloudflare email binding restricted to the account owner's test mailbox, the purchase and withdrawal dispatch functions each produced one real test email that appeared in the mailbox. Payment was simulated: no Stripe account, payment, real contract or customer withdrawal was used. A repeated dispatch returned `already_claimed` for both. A separate test with an unonboarded sender returned `outcome_unknown`, remained blocked on retry, and made the local scheduled handler report operator review. The Node suite passed 128 tests. See `DELIVERY-IMPLEMENTATION.review.md` for limits. No delivery-event or bounce subscription has been configured; no real customer dispatch or license release is enabled.
+
 ## 15 November 2026: sending domain and disabled binding
 
 The user signed in to the Cloudflare account owning the active `aivana-gmbh.ai` zone. The dedicated sending domain `makrivo.aivana-gmbh.ai` was created, with message-content preview disabled and suppression dropping disabled. Cloudflare created separate bounce MX/SPF, DKIM and DMARC DNS records. Public DNS checks observed those records and the existing apex MX still pointed to Microsoft. No account-wide mail configuration or tariff was changed.
