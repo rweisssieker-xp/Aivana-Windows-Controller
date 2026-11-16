@@ -10,7 +10,7 @@ const digest=x=>createHash('sha256').update(JSON.stringify(x)).digest('base64url
 const id='test-order',device='a'.repeat(64),at=1700000000000;
 function fixture(){
  const raw=new DatabaseSync(':memory:');
- for(const file of ['../schema.sql','../migrations/0013_test_mail_attempts.sql','../migrations/0014_test_mail_events.sql','../migrations/0016_test_confirmation_supplements.sql','../migrations/0019_test_confirmation_dispatch_proof.sql'])raw.exec(readFileSync(new URL(file,import.meta.url),'utf8'));
+ for(const file of ['../schema.sql','../migrations/0013_test_mail_attempts.sql','../migrations/0014_test_mail_events.sql','../migrations/0016_test_confirmation_supplements.sql','../migrations/0019_test_confirmation_dispatch_proof.sql','../migrations/0021_test_signed_license_artifacts.sql'])raw.exec(readFileSync(new URL(file,import.meta.url),'utf8'));
  const db={raw,async batch(stmts){raw.exec('BEGIN IMMEDIATE');try{const out=stmts.map(s=>s._run());raw.exec('COMMIT');return out;}catch(e){raw.exec('ROLLBACK');throw e;}},prepare(sql){return {bind(...p){const s=raw.prepare(sql);return {_run:()=>s.run(...p),first:async()=>s.get(...p)||null,all:async()=>({results:s.all(...p)}),run:async()=>s.run(...p)};}};}};
  raw.prepare('INSERT INTO orders VALUES(?,?,?,?)').run(id,'claim-hash',at,'cs_test_gate');
  raw.prepare('INSERT INTO checkout_attempts VALUES(?,?)').run(id,'de');
@@ -26,7 +26,7 @@ function fixture(){
  for(const [kind,version,text] of [['withdrawal_notice','notice-v1','Synthetic notice'],['withdrawal_form','form-v1','Synthetic form']]){
   const d={kind,language:'de',version,text};raw.prepare('INSERT INTO test_confirmation_supplements VALUES(?,?,?,?,?,?,?)').run(id,kind,'de',version,text,digest(d),at);
  }
- const env={STRIPE_LIVE:'false',FULL_CONFIRMATION_TEST_ENABLED:'true',MAIL_DELIVERY_TEST_ENABLED:'true',LICENSE_DELIVERY_PROOF_TEST_ENABLED:'true',TEST_MAIL_RECIPIENT:'owner@example.test',MAIL_SENDER:'sender@example.test',STRIPE_PRICE_ID:'price_test',STRIPE_PRODUCT_ID:'prod_test'};
+ const env={STRIPE_LIVE:'false',FULL_CONFIRMATION_TEST_ENABLED:'true',MAIL_DELIVERY_TEST_ENABLED:'true',LICENSE_DELIVERY_PROOF_TEST_ENABLED:'true',TEST_LICENSE_SIGNATURE_ENABLED:'true',TEST_MAIL_RECIPIENT:'owner@example.test',MAIL_SENDER:'sender@example.test',STRIPE_PRICE_ID:'price_test',STRIPE_PRODUCT_ID:'prod_test'};
  const sent=[],binding={send:async m=>{sent.push(m);return {messageId:'provider-id'};}};
  const session={id:'cs_test_gate',payment_intent:'pi_test',metadata:{orderId:id},customer_details:{email:'owner@example.test'},livemode:false,mode:'payment',payment_status:'paid',currency:'eur',amount_total:2900,line_items:{data:[{quantity:1,price:{id:'price_test',product:'prod_test'}}],has_more:false}};
  const send=()=>sendCompleteConfirmationTest({db,env,binding,jobId:id,loadSession:async()=>session,validateSession:()=>true});
@@ -98,4 +98,19 @@ test('altered bound facts and incomplete payment facts do not pass the test gate
  const g=fixture();g.session.line_items.has_more=true;
  assert.equal((await g.send()).status,'not_ready');assert.equal(g.sent.length,0);
  assert.equal(g.db.raw.prepare('SELECT count(*) n FROM mail_dispatch_attempts').get().n,0);
+});
+
+test('a simulated gate decision cannot reuse proof after the payment intent or session changes',async()=>{
+ for(const field of ['payment_intent','session_id']){
+  const f=fixture();await f.send();f.event('delivered');
+  if(field==='payment_intent'){f.db.raw.prepare("INSERT INTO revoked_payments VALUES('pi_test')").run();f.db.raw.prepare("UPDATE entitlements SET payment_intent='pi_replacement'").run();}
+  else f.db.raw.prepare("UPDATE entitlements SET session_id='cs_test_replacement'").run();
+  assert.equal((await f.issue()).status,'blocked');
+ }
+});
+
+test('legacy 0019 test dispatch stays available but its unbound evidence never passes the gate',async()=>{
+ const f=fixture();delete f.env.TEST_LICENSE_SIGNATURE_ENABLED;f.db.raw.exec('DROP TABLE test_confirmation_payment_bindings');
+ assert.equal((await f.send()).status,'accepted_by_provider');f.event('delivered');
+ assert.equal((await f.issue()).status,'blocked');assert.equal(f.sent.length,1);
 });

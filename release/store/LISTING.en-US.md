@@ -54,7 +54,7 @@ Proposed category: Productivity. Device family: Windows Desktop; architecture: x
 3. Find actions in the command palette.
 4. View license status and the device code for activation.
 
-No screenshots have been generated or claimed to exist. Capture the actual submission package and exclude personal files, device codes and license data. Use non-sensitive test data expressly prepared for imagery when capturing the license dialog.
+Two older unpackaged UI previews per language exist under `ui-previews/` and are provisionally present in the Store draft; they do not establish installed-MSIX behavior or reflect the final package. Before submission, compare them with the actual package and replace or explicitly approve them. Exclude personal files, device codes and license data. Use non-sensitive test data expressly prepared for imagery when capturing the license dialog.
 
 ## Operator fields still to complete
 

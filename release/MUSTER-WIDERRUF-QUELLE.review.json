@@ -1,12 +1,13 @@
 {
   "status": "source_reference_only_not_in_customer_package",
-  "reviewed_on": "2026-11-15",
+  "reviewed_on": "2026-11-16",
   "purpose": "German statutory withdrawal form; customer use is optional where required information is supplied",
   "official_source": "https://www.gesetze-im-internet.de/bgbeg/art_253anlage_2.html",
   "official_source_type": "EGBGB Anlage 2 zu Artikel 246a § 1 Absatz 2 Satz 1 Nummer 1 und § 2 Absatz 2 Nummer 2",
   "retrieval": {
     "method": "GET",
     "http_status": 200,
+    "observed_on": "2026-11-16",
     "html_sha256": "2719398990c888c8b2e3d614375694c97cad0025e59169c4b5f710a8856b52f7",
     "note": "Hash covers the retrieved complete HTML page, including page chrome; it does not certify legal validity or future content."
   },
@@ -18,8 +19,9 @@
     "country": "Deutschland",
     "email": "info@aivana-gmbh.ai",
     "source": "https://aivana-gmbh.ai/de/Imprint",
-    "note": "Published imprint checked on 2026-11-15; no independent commercial-register or VAT-ID validation."
+    "note": "Published imprint checked on 2026-11-16; no independent commercial-register or VAT-ID validation."
   },
+  "official_work_reference": "https://www.gesetze-im-internet.de/urhg/__5.html",
   "client_completion_fields_to_check": [
     "contract identification",
     "order or receipt date as applicable",

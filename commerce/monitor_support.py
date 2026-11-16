@@ -58,8 +58,14 @@ WITH attempt_status AS (
      ELSE NULL
    END AS reason
  FROM attempt_status
+ UNION ALL
+ SELECT 'event' AS kind, e.event_id AS reference, 'unmatched_event' AS reason
+ FROM mail_delivery_events e
+ WHERE NOT EXISTS (SELECT 1 FROM mail_dispatch_attempts a WHERE a.state='accepted' AND a.message_id=e.message_id)
 )
-SELECT kind, reference, reason FROM cases WHERE reason IS NOT NULL ORDER BY kind, reference LIMIT ?
+SELECT kind, reference, reason FROM cases
+WHERE reason IS NOT NULL AND (?=0 OR (kind,reference)>(?,?))
+ORDER BY kind, reference LIMIT ?
 """
 
 def read_status(api, now):
@@ -84,6 +90,9 @@ def read_status(api, now):
     if any(type(counts.get(k)) is not int or counts[k] < 0 for k in labels):
         raise ValueError('invalid database counts')
     issues = [label for label in labels if counts[label]]
+    # This intentionally isolated database has no purchase/withdrawal queues.
+    # A green result would conceal that unclaimed jobs are not checked here.
+    issues.append('unclaimed_jobs_not_monitored')
     if not subscription['enabled']:
         issues.append('subscription_disabled')
     if dead['backlog_count']:
@@ -94,20 +103,31 @@ def read_status(api, now):
             'queue_counts':{'events':source['backlog_count'],'dead_letter':dead['backlog_count']},
             'scope':'isolated test only; no independent alarm or heartbeat'}
 
-def read_test_cases(api, now, limit=50):
+def read_test_cases(api, now, limit=50, cursor=None):
     """List bounded pseudonymous synthetic test references, not customer data."""
     if type(now) is not int or now < 0 or type(limit) is not int or not 1 <= limit <= 100:
         raise ValueError('invalid case parameters')
-    response = api(DATABASE_PATH, {'sql':CASES_QUERY,'params':[now-900000,now-900000,limit+1]})
+    kinds = ('purchase','withdrawal','event')
+    def safe_reference(value):
+        return isinstance(value,str) and re.fullmatch(r'[A-Za-z0-9._:-]{1,128}',value) is not None
+    if cursor is not None and (not isinstance(cursor,dict) or set(cursor)!= {'kind','reference','as_of'} or
+                               cursor['kind'] not in kinds or not safe_reference(cursor['reference']) or
+                               type(cursor['as_of']) is not int or cursor['as_of'] != now):
+        raise ValueError('invalid cursor')
+    response = api(DATABASE_PATH, {'sql':CASES_QUERY,'params':[now-900000,now-900000,1 if cursor else 0,
+                   cursor['kind'] if cursor else '',cursor['reference'] if cursor else '',limit+1]})
     if len(response) != 1 or response[0].get('success') is not True or not isinstance(response[0].get('results'),list):
         raise ValueError('invalid database result')
     rows = response[0]['results']
-    reasons = ('outcome_unknown','processing_timeout','provider_or_matching_failure','delivery_timeout')
+    reasons = ('outcome_unknown','processing_timeout','provider_or_matching_failure','delivery_timeout','unmatched_event')
     for row in rows:
-        if (row.get('kind') not in ('purchase','withdrawal') or row.get('reason') not in reasons or
-            not isinstance(row.get('reference'),str) or not re.fullmatch(r'[A-Za-z0-9_-]{1,128}',row['reference'])):
+        if (row.get('kind') not in kinds or row.get('reason') not in reasons or
+            (row.get('kind') == 'event') != (row.get('reason') == 'unmatched_event') or
+            not safe_reference(row.get('reference'))):
             raise ValueError('invalid test case')
-    return {'cases':rows[:limit], 'truncated':len(rows)>limit}
+    visible=rows[:limit]
+    next_cursor={'kind':visible[-1]['kind'],'reference':visible[-1]['reference'],'as_of':now} if len(rows)>limit else None
+    return {'cases':visible, 'truncated':next_cursor is not None, 'next_cursor':next_cursor}
 
 def cloudflare_api(token):
     base = 'https://api.cloudflare.com/client/v4/accounts/' + ACCOUNT + '/'
@@ -152,17 +172,20 @@ def refresh_wranger_session():
                    stdin=subprocess.DEVNULL,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,
                    timeout=60,check=True,creationflags=getattr(subprocess,'CREATE_NO_WINDOW',0),env=environment)
 
-def run_check(load_token,refresh,make_api,now,include_cases=False):
+def run_check(load_token,refresh,make_api,now,include_cases=False,case_cursor=None):
     # Restart all read-only checks once after a 401, avoiding a mixed snapshot
     # from two sessions. 403 is a permission problem and must never be retried
     # as an authentication refresh.
+    if case_cursor is not None and (not include_cases or not isinstance(case_cursor,dict) or
+       type(case_cursor.get('as_of')) is not int or not 0<=case_cursor['as_of']<=now):
+        raise ValueError('invalid case cursor')
     for attempt in range(2):
         token=load_token()
         try:
             api=make_api(token)
             result=read_status(api,now)
             if include_cases:
-                result['test_cases']=read_test_cases(api,now)
+                result['test_cases']=read_test_cases(api,case_cursor['as_of'] if case_cursor else now,cursor=case_cursor)
                 if result['test_cases']['truncated']:
                     result['status']='attention'
             return result
@@ -175,10 +198,17 @@ def run_check(load_token,refresh,make_api,now,include_cases=False):
 def main():
     parser = argparse.ArgumentParser(description='Read-only isolated MAKRIVO mail-test status')
     parser.add_argument('--cases',action='store_true',help='include pseudonymous test cases (never customer content)')
+    parser.add_argument('--after-kind',choices=('purchase','withdrawal','event'))
+    parser.add_argument('--after-reference')
+    parser.add_argument('--after-as-of',type=int)
     args = parser.parse_args()
     try:
         now = int(time.time()*1000)
-        result = run_check(load_wranger_token,refresh_wranger_session,cloudflare_api,now,args.cases)
+        parts=(args.after_kind,args.after_reference,args.after_as_of)
+        if any(value is not None for value in parts) and (not args.cases or any(value is None for value in parts)):
+            raise ValueError('incomplete cursor')
+        cursor={'kind':parts[0],'reference':parts[1],'as_of':parts[2]} if parts[0] is not None else None
+        result = run_check(load_wranger_token,refresh_wranger_session,cloudflare_api,now,args.cases,cursor)
         print(json.dumps(result, ensure_ascii=False))
         return 0 if result['status'] == 'ok' else 1
     except Exception:

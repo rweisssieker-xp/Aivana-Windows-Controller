@@ -5,6 +5,8 @@ import tempfile
 import unittest
 import urllib.error
 from unittest.mock import patch
+from contextlib import redirect_stdout
+from io import StringIO
 
 path = pathlib.Path(__file__).resolve().parents[1] / 'monitor_support.py'
 spec = importlib.util.spec_from_file_location('monitor_support', path)
@@ -35,12 +37,12 @@ class SupportMonitorTests(unittest.TestCase):
             return [{'success': True, 'results': [dict(row) for row in rows]}]
         raise AssertionError('unexpected API request')
 
-    def test_clean_delivered_case_is_healthy_if_subscription_enabled(self):
+    def test_clean_delivered_case_still_reports_unmonitored_purchase_and_withdrawal_jobs(self):
         self.db.execute("INSERT INTO mail_dispatch_attempts VALUES('purchase','internal-job','accepted',0,1,'message-id')")
         self.db.execute("INSERT INTO mail_delivery_events VALUES('event-id','message-id','delivered',2)")
         result = monitor.read_status(self.api, 2_000_000)
-        self.assertEqual(result['status'], 'ok')
-        self.assertEqual(result['issues'], [])
+        self.assertEqual(result['status'], 'attention')
+        self.assertEqual(result['issues'], ['unclaimed_jobs_not_monitored'])
         self.assertNotIn('message-id', str(result))
 
     def test_uncertain_failure_stale_unmatched_and_queue_failure_are_reported(self):
@@ -52,14 +54,14 @@ class SupportMonitorTests(unittest.TestCase):
         self.metrics['dead_letter']['backlog_count'] = 1
         result = monitor.read_status(self.api, 2_000_000)
         self.assertEqual(result['status'], 'attention')
-        self.assertEqual(set(result['issues']), {'unknown_attempts','stuck_attempts','provider_failures','unmatched_events','dead_letter_backlog'})
+        self.assertEqual(set(result['issues']), {'unknown_attempts','stuck_attempts','provider_failures','unmatched_events','dead_letter_backlog','unclaimed_jobs_not_monitored'})
         self.assertNotIn('unmatched', str(result.get('details', {})))
 
     def test_disabled_subscription_and_expired_accepted_mail_are_not_healthy(self):
         self.enabled = False
         self.db.execute("INSERT INTO mail_dispatch_attempts VALUES('purchase','one','accepted',0,1,'message')")
         result = monitor.read_status(self.api, 2_000_000)
-        self.assertEqual(set(result['issues']), {'subscription_disabled','delivery_timeout'})
+        self.assertEqual(set(result['issues']), {'subscription_disabled','delivery_timeout','unclaimed_jobs_not_monitored'})
 
     def test_missing_or_invalid_data_and_api_failure_do_not_report_healthy(self):
         with self.assertRaises(ValueError): monitor.read_status(self.api, -1)
@@ -120,7 +122,7 @@ class SupportMonitorTests(unittest.TestCase):
             return api
         def refresh(): calls.append('refresh')
         result=monitor.run_check(token,refresh,make_api,2_000_000,include_cases=True)
-        self.assertEqual(result['status'],'ok')
+        self.assertEqual(result['status'],'attention')
         self.assertEqual(calls.count('refresh'),1)
         self.assertEqual(calls.count('load'),2)
         self.assertNotIn('renewed',str(result))
@@ -136,6 +138,53 @@ class SupportMonitorTests(unittest.TestCase):
         with self.assertRaises(urllib.error.HTTPError):
             monitor.run_check(lambda:'secret',lambda:refresh.append(True),lambda token:make_api(401),2_000_000)
         self.assertEqual(refresh,[True])
+
+    def test_case_pagination_includes_unmatched_events_without_provider_ids_or_addresses(self):
+        for reference in ('a','b','c'):
+            self.db.execute("INSERT INTO mail_dispatch_attempts VALUES('purchase',?,'unknown',0,1,NULL)",(reference,))
+        self.db.execute("INSERT INTO mail_delivery_events VALUES('event-test','private-provider-id','bounced',2)")
+        results=[];cursor=None
+        while True:
+            page=monitor.read_test_cases(self.api,2_000_000,limit=2,cursor=cursor)
+            results.extend(page['cases'])
+            cursor=page['next_cursor']
+            if cursor is None:break
+        self.assertEqual({(item['kind'],item['reference'],item['reason']) for item in results},
+                         {('purchase','a','outcome_unknown'),('purchase','b','outcome_unknown'),('purchase','c','outcome_unknown'),('event','event-test','unmatched_event')})
+        self.assertNotIn('private-provider-id',str(results))
+
+    def test_case_pagination_rejects_invalid_cursor(self):
+        with self.assertRaises(ValueError):monitor.read_test_cases(self.api,2_000_000,cursor={'kind':'purchase','reference':'x@invalid.test'})
+        with self.assertRaises(ValueError):monitor.read_test_cases(self.api,2_000_000,cursor={'kind':'unknown','reference':'valid'})
+
+    def test_pagination_cursor_binds_the_same_time_and_is_forwarded_by_run_check(self):
+        for reference in ('a','b'):
+            self.db.execute("INSERT INTO mail_dispatch_attempts VALUES('purchase',?,'unknown',0,1,NULL)",(reference,))
+        first=monitor.read_test_cases(self.api,2_000_000,limit=1)
+        cursor=first['next_cursor']
+        self.assertEqual(cursor,{'kind':'purchase','reference':'a','as_of':2_000_000})
+        with self.assertRaises(ValueError):monitor.read_test_cases(self.api,2_000_001,limit=1,cursor=cursor)
+        result=monitor.run_check(lambda:'token',lambda:None,lambda token:self.api,2_000_001,True,cursor)
+        self.assertEqual(result['test_cases']['cases'][0]['reference'],'b')
+
+    def test_pagination_cursor_with_future_snapshot_is_rejected(self):
+        with self.assertRaises(ValueError):
+            monitor.run_check(lambda:'token',lambda:None,lambda token:self.api,2_000_000,True,
+                              {'kind':'purchase','reference':'a','as_of':2_000_001})
+
+    def test_command_accepts_pseudonymous_continuation_fields_without_shell_json(self):
+        expected={'kind':'purchase','reference':'test-1','as_of':2000000}
+        with patch.object(monitor.sys,'argv',['monitor_support.py','--cases','--after-kind','purchase','--after-reference','test-1','--after-as-of','2000000']), \
+             patch.object(monitor.time,'time',return_value=2000.001), \
+             patch.object(monitor,'run_check',return_value={'status':'attention'}) as run, redirect_stdout(StringIO()):
+            self.assertEqual(monitor.main(),1)
+        self.assertEqual(run.call_args.args[-1],expected)
+
+    def test_command_rejects_incomplete_continuation_without_query(self):
+        with patch.object(monitor.sys,'argv',['monitor_support.py','--cases','--after-kind','purchase']), \
+             patch.object(monitor,'run_check') as run, redirect_stdout(StringIO()):
+            self.assertEqual(monitor.main(),2)
+            run.assert_not_called()
 
     def test_refresh_uses_installed_wrangler_without_interaction_or_output(self):
         with tempfile.TemporaryDirectory() as directory:

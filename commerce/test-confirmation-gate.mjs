@@ -30,7 +30,8 @@ export async function sendCompleteConfirmationTest({db,env,binding,jobId,loadSes
     // sending, including a pre-existing legacy partial-dispatch attempt.
     await db.batch([
       db.prepare("INSERT INTO mail_dispatch_attempts(kind,job_id,state,started_at) VALUES('purchase',?,'processing',?)").bind(order.id,now),
-      db.prepare('INSERT INTO test_confirmation_dispatch_proofs(order_id,text_digest,facts_text,created_at) VALUES(?,?,?,?)').bind(order.id,textDigest,facts,now)
+      db.prepare('INSERT INTO test_confirmation_dispatch_proofs(order_id,text_digest,facts_text,created_at) VALUES(?,?,?,?)').bind(order.id,textDigest,facts,now),
+      ...(env.TEST_LICENSE_SIGNATURE_ENABLED==='true'?[db.prepare('INSERT INTO test_confirmation_payment_bindings(order_id,session_id,payment_intent,created_at) VALUES(?,?,?,?)').bind(order.id,order.session_id,order.payment_intent,now)]:[])
     ]);
   }catch{return {status:'not_ready'};}
   let result;try{result=await sendPreparedEmail(binding,{sender:env.MAIL_SENDER,recipient:env.TEST_MAIL_RECIPIENT,subject:'MAKRIVO - TEST Vertragsinformationen',text});}catch{result={status:'outcome_unknown'};}
@@ -54,8 +55,10 @@ export async function recordTestIssuance({db,env,licenseId,deviceId}){
     SELECT ?1,?2,CASE WHEN EXISTS(
       SELECT 1 FROM entitlements e
       JOIN devices d ON d.license_id=e.id AND d.device_id=?2 AND d.active=1
+      JOIN orders ordered ON ordered.id=e.order_id AND ordered.session_id=e.session_id
       JOIN confirmation_obligations o ON o.order_id=e.order_id
       JOIN test_confirmation_dispatch_proofs p ON p.order_id=o.order_id AND p.text_digest=?3
+      JOIN test_confirmation_payment_bindings binding ON binding.order_id=e.order_id AND binding.session_id=e.session_id AND binding.payment_intent=e.payment_intent AND binding.created_at=p.created_at
       JOIN mail_dispatch_attempts a ON a.kind='purchase' AND a.job_id=o.order_id AND a.state='accepted' AND a.started_at=p.created_at
       WHERE e.id=?1 AND e.revoked=0 AND e.payment_intent IS NOT NULL
         AND NOT EXISTS(SELECT 1 FROM revoked_payments r WHERE r.payment_intent=e.payment_intent)

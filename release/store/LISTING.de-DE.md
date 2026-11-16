@@ -54,7 +54,7 @@ Vorgeschlagene Kategorie: Produktivität. Gerätefamilie: Windows Desktop, Archi
 3. Aktionen über die Befehlspalette finden.
 4. Lizenzstatus und Gerätecode für die Aktivierung anzeigen.
 
-Keine Bilder erzeugt oder als vorhanden behauptet. Echte Screenshots des einzureichenden Pakets verwenden; keine persönlichen Dateien, Gerätecodes oder Lizenzdaten veröffentlichen. Den Lizenzdialog nur mit unkritischen, ausdrücklich für Bilder bestimmten Testdaten aufnehmen.
+Es liegen zwei ältere, unverpackte UI-Vorschauen pro Sprache unter `ui-previews/` vor; diese sind im Store-Entwurf vorläufig hinterlegt und zeigen weder ein installiertes MSIX noch den endgültigen Stand. Vor Einreichung mit dem tatsächlichen Paket abgleichen und ersetzen beziehungsweise ausdrücklich freigeben. Keine persönlichen Dateien, Gerätecodes oder Lizenzdaten veröffentlichen. Den Lizenzdialog nur mit unkritischen, ausdrücklich für Bilder bestimmten Testdaten aufnehmen.
 
 ## Noch einzutragende Betreiberfelder
 

@@ -1,5 +1,9 @@
 # MAKRIVO disabled Cloudflare deployment — 2026-10-26
 
+## 16 November 2026: local runtime smoke check
+
+The committed source at `89a0403` was exported into a fresh temporary directory. A local-only Wrangler 4.153.0 D1 database was initialized from `schema.sql`, without production credentials or test-only migrations. A local workerd instance started with `--local --test-scheduled`: the German and English pages each returned HTTP 200, the disabled checkout preparation returned 503, and the scheduled handler returned 200. The instance was stopped afterwards. This confirms local runtime startup and the disabled default configuration for that committed source, not a remote deployment, delivery, legal approval or production readiness.
+
 ## 15 November 2026: isolated delivery-event monitor
 
 Separate EU queues `makrivo-mail-events-test` and `makrivo-mail-events-test-dlq`, and a distinct WEUR test database `makrivo-mail-monitor-test`, were created without applying test migrations to the commerce database. The no-route Worker `makrivo-mail-monitor-test` version `37e710e9-83b3-417b-96be-50a9b872ec52` consumes only the configured sender and the owner's one test mailbox. The MAKRIVO-domain event subscription was temporarily enabled for a synthetic mail test and then verified disabled again. It is not continuous monitoring.
