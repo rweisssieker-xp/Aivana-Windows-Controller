@@ -25,3 +25,11 @@ Primary sources retrieved 26 October 2026:
 Deployment update: a separate disabled Cloudflare Worker and fresh D1 database were deployed on 26 October 2026, without public routes or Stripe/signing secrets. See `../../commerce/DEPLOYMENT-STATUS.md` for configuration and scheduled-cleanup evidence. This is not an accepted production purchase service. The new database used the fresh schema and must not receive the legacy ALTER migration mentioned above; that migration applies only to old installations.
 
 No legal approval, provider contract verification or accepted production payment service is asserted by these documents.
+
+## Inputs still needed from Aivana for the MAKRIVO policy
+
+- Identify or provide access to the current Aivana records for the contracted Stripe and Cloudflare entities, their data processing agreements, any other providers actually used for MAKRIVO support, email and accounting, and documented international transfer safeguards where applicable. Public provider policies cannot establish which agreements Aivana has in place.
+- Identify the operational contact for privacy and withdrawal requests and whether Aivana has a designated data protection officer. Confirm the actual retention periods or criteria and the handling of support, license records, email events, infrastructure logs and backups. An operator may point to existing approved records instead of supplying the facts separately.
+- Confirm which markets are authorized for the first paid launch after tax review. Worldwide preparation is already the product direction. This check identifies where payment may actually be offered at launch, without changing the saved Store draft.
+
+Then reconcile the DE/EN policy with the exact shipped app and operational services and publish it at a stable MAKRIVO HTTPS address. [Microsoft Store policy 10.5.1](https://learn.microsoft.com/en-us/windows/apps/publish/store-policies#105-personal-information) requires a policy URL in Partner Center for apps that process personal information. Aivana's existing website policy describes a business subscription workflow and cannot stand in for the MAKRIVO app and its one-time purchase. [Aivana website policy](https://aivana-gmbh.ai/privacy)
