@@ -1,5 +1,13 @@
 # Local Store packaging evidence — 2026-10-26
 
+## Clean-source no-AI test build — 19 November 2026
+
+Committed source `2d73ac7a0b411d8303f626171c421d44e8ce1613` was exported with `git archive` to `C:/tmp/makrivo-store-src-20261119-2d73ac7`; uncommitted application files in the working directory were not included. On .NET SDK 10.0.202, the no-AI retail publisher completed using an existing **test-only public key**, `https://commerce.invalid`, `-StoreRelease` and `-AllowUnsignedCandidate`. The retail integrity checker returned build digest `9f2399de4de266a878f2308ec6d4a3eb37aee5600738cd1c69ed7edb3b453e76`. WiX reported path-normalization warnings during MSI production.
+
+The Store packager used the reserved Partner Center package name and publisher, and produced `C:/tmp/makrivo-store-test-20261119-2d73ac7/MAKRIVO.msix` version `1.0.0.0`, x64. Independent SHA-256 and a separate package-checker execution both returned `c8e14cb99191a368f0047de3f6490c5fbf366568e0acd22954dc79e7009c8bf4`. Status reports `testIdentity=false`, `testRetailSource=true`, `unsigned=true`, `storeRelease=true`, `aiAssistantIncluded=false`, `experimentalOnnxIncluded=false`, `releaseApproved=false` and `submissionReady=false`.
+
+This validates buildability and structural integrity of **that test candidate only**. It was not installed, submitted, evaluated using Windows App Certification Kit or certified by Microsoft; no real purchase, license issuance or reviewer access was tested. Its test signing key and invalid commerce URL make it unsuitable for upload or distribution. The final package still requires the production public verification key matching the deployed private signer, an accessible real purchase/activation service, reviewed legal/privacy configuration and operation, exact-source package acceptance and a no-charge private review route. The Microsoft Store's own signing of an accepted MSIX is separate from the offline license-signing key.
+
 Source: clean Git export of `bf99712d0cbfcf3f9fa3842c1257ceb7c8adf655` (the published retail implementation). The current workspace's unrelated, uncommitted debugger/workspace/ONNX changes were not included in this candidate. The export was built with the existing retail publisher and the public test fixture ring, using `https://commerce.invalid`. No private signing key was used or included.
 
 ## Produced artifacts
