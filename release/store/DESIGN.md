@@ -1,0 +1,9 @@
+# Microsoft Store distribution design — 2026-10-26
+
+MAKRIVO will be distributed as a full-trust x64 MSIX desktop app. The user explicitly chose to retain the external EUR 29 gross one-time license for one person on four own PCs; Microsoft Store purchase licensing will not replace it. Store installation is free; execution requires the separately purchased license. Editing, export and cancellation remain available. Store listing and certification notes must disclose payment clearly and not promise native Store checkout.
+
+MSIX was selected over MSI/EXE because Microsoft signs and hosts Store packages and delivers updates. MSI/EXE remains the separate direct-download path and requires operator signing and hosting. No Partner Center identity is invented: real identity/publisher values are required for a submission package; test identity is available only in an explicitly labelled test candidate.
+
+The packager consumes an integrity-checked existing retail package, preserves its retail license gate, copies the standalone app, notices and draft legal files, adds manifest/assets and packs with Windows SDK MakeAppx. It validates real asset dimensions and manifest schema through the SDK. It never modifies or installs a package on this PC. Version is four parts with final zero for Store delivery. Full-trust capability and hardware/network/plugin behavior are disclosed for review. No driver, UIAccess, autostart or administrator capability is introduced.
+
+The package is a review candidate until Partner Center identity, real checkout/public keys, legal review and packaged Windows/hardware acceptance exist. Tests of package layout cannot substitute for install, uninstall, migration, tray/hotkey, helper-process or LAN behavior under MSIX virtualization. Screenshots must come from the actual app. No published Store listing or certification success is claimed.

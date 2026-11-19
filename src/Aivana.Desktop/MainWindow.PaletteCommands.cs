@@ -13,7 +13,9 @@ public partial class MainWindow
                 Command: command, SearchTerms: terms));
         foreach (var section in new[] { "Dashboard", "Profile", "Geräte", "Einstellungen", "Tastatur" })
             Add(L(section), L(section), () => NavigateToSection(section), section);
+#if !MAKRIVO_STORE_NO_AI
         Add(L("KI-Besprechungsassistent"), L("Lokal einen prüfbaren Besprechungsablauf entwerfen"), ShowMeetingAssistant, "ai ki meeting besprechung ollama outcome");
+#endif
         Add(L("Arbeitsplatz einrichten"), L("Geführte Einrichtung"), ShowWorkspaceWizard, "setup wizard workspace meeting streaming");
         Add(L("Tastaturhersteller und SDKs"), L("Razer, Logitech, Wooting und weitere Hersteller"), ShowKeyboardAdapters, "razer razor logitech steelseries wooting qmk via keychron");
         Add(L("Mobilpanel"), L("Telefon und Tablet lokal koppeln"), ShowMobilePanel, "mobile phone tablet panel");
